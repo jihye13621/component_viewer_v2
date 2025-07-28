@@ -1,0 +1,126 @@
+[
+	"dsx-padding",
+	[
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [5, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false 
+		},
+		{
+			"key": "bottom-pad",
+			"display": "Bottom Pad",
+			"type": "bool",
+			"default": false,
+			"required": false 
+		}
+	],
+	[
+		["null", {
+			"padding": [
+				"96nsu",
+				"96nsu",
+				["$", ["if",
+					["and",
+						["var", "bottom-pad"],
+						["<=", ["nth", ["var", "position"], 0], 3]
+					],
+					"300nsu",
+					"96nsu"
+				]],
+				"96nsu"
+			],
+			"rect": [0, 0, "100cw", "100ch"],
+			"align": ["$", ["switch", ["nth", ["var", "position"], 0], {
+				"1": "left",
+				"3": "right",
+				"4": "left",
+				"6": "right",
+				"7": "left",
+				"9": "right",
+				"_": "center"
+			}]],
+			"breakpoints": [
+				{
+					"_": "horizontal",
+					"enabled": ["$", 
+						["gte",
+							["aspect"],
+							1.1
+						]
+					],
+					"rect": [0, 0, "60rw", "100rh"]
+				},
+				{
+					"_": "square",
+					"enabled": ["$", 
+						["and",
+							["gte",
+								["aspect"],
+								0.9
+							],
+							["lt",
+								["aspect"],
+								1.1
+							]
+						]
+					],
+					"rect": [0, 0, "70rw", "100rh"]
+				},
+				{
+					"_": "tall",
+					"enabled": ["$", 
+						["and",
+							["gte",
+								["aspect"],
+								0.7
+							],
+							["lt",
+								["aspect"],
+								0.9
+							]
+						]
+					],
+					"rect": [0, 0, "80rw", "100rh"]
+				},
+				{
+					"_": "vertical",
+					"enabled": ["$", 
+						["lt",
+							["aspect"],
+							0.7
+						]
+					],
+					"rect": [0, 0, "90rw", "100rh"]
+				}
+			]
+		}, [
+			["null", {
+				"slot": "default",
+				"align": ["$", ["switch", ["nth", ["var", "position"], 0], {
+					"1": "left",
+					"3": "right",
+					"4": "left",
+					"6": "right",
+					"7": "left",
+					"9": "right",
+					"_": "center"
+				}]],
+				"layout": ["$", ["switch", ["nth", ["var", "position"], 0], {
+					"1": "vertical packed reverse",
+					"2": "vertical packed reverse",
+					"3": "vertical packed reverse",
+					"4": "vertical packed center",
+					"5": "vertical packed center",
+					"6": "vertical packed center",
+					"_": "vertical packed"
+				}]]
+			}]
+		]]
+	]
+]

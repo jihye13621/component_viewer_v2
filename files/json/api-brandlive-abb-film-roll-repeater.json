@@ -1,0 +1,57 @@
+[
+	"api-brandlive-abb-film-roll-repeater",
+	[
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"script": ["$", ["if",
+				["exists", ["var", "asset"]],
+				["var", "asset"],
+				"./media/api-brandlive/Onboarding-placeholder1.mp4"	
+			]]
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-dsx-su"
+			]
+		}, [
+			["null", {
+				"layout": "horizontal packed",
+				"gap": "15su"
+			}, [
+				["asset", {
+					"file": ["$", ["var", "asset"]]
+				}],
+				["asset", {
+					"file": ["$", ["var", "asset"]]
+				}],
+				["asset", {
+					"file": ["$", ["var", "asset"]]
+				}],
+				["asset", {
+					"file": ["$", ["var", "asset"]]
+				}],
+				["asset", {
+					"file": ["$", ["var", "asset"]]
+				}],
+				["asset", {
+					"file": ["$", ["var", "asset"]]
+				}],
+				["asset", {
+					"file": ["$", ["var", "asset"]]
+				}],
+				["asset", {
+					"file": ["$", ["var", "asset"]]
+				}],
+				["asset", {
+					"file": ["$", ["var", "asset"]]
+				}]
+			]]
+		]]
+	]
+]

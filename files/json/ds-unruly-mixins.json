@@ -1,0 +1,79 @@
+{
+	"params": {
+		"color-white": {
+			"key": "color-white",
+			"display": "Primary",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		},
+		"color-black": {
+			"key": "color-black",
+			"display": "Secondary",
+			"type": "color",
+			"default": "#000000",
+			"required": false
+		},
+		"color-pink": {
+			"key": "color-pink",
+			"display": "Accent",
+			"type": "color",
+			"default": "#F8B6FC",
+			"required": false
+		},
+		"color-blue": {
+			"key": "color-blue",
+			"display": "Accent",
+			"type": "color",
+			"default": "#355DF8",
+			"required": false
+		},
+		"font-headline": {
+			"key": "font-headline",
+			"display": "Font Headline",
+			"type": "string",
+			"default": "./media/Benzin-ExtraBold.ttf",
+			"global": "font-headline",
+			"required": false,
+			"private": true
+		},
+		"font-body": {
+			"key": "font-body",
+			"display": "Font Body",
+			"type": "string",
+			"default": "./media/Kamerik 205 Bold.ttf",
+			"global": "font-body",
+			"required": false,
+			"private": true
+		}
+	},
+
+	"text": {
+		"measure": "letter-size"
+	},
+	"text-display": {
+		"font": ["$", ["var", "font-headline"]],
+		"height": "180su",
+		"leading": "20su"
+	},
+	"text-headline": {
+		"font": ["$", ["var", "font-headline"]],
+		"height": "90su",
+		"leading": "40su"
+	},
+	"text-title": {
+		"font": ["$", ["var", "font-body"]],
+		"height": "70su",
+		"leading": "20su"
+	},
+	"text-body": {
+		"font": ["$", ["var", "font-body"]],
+		"height": "50su",
+		"leading": "20su"
+	},
+	"text-label": {
+		"font": ["$", ["var", "font-body"]],
+		"height": "45su",
+		"leading": "14su"
+	}
+}

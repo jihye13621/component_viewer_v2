@@ -1,0 +1,122 @@
+[
+	"ds-rippling-histu-outro",
+	[
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["gain", 0],
+				["justify", "fill"],
+				["motion", "none"]
+			],
+			"script": ["$", ["if",
+				["exists", ["var", "asset"]],
+				["var", "asset"],
+				"./media/image-wide.jpg"	
+			]]
+		},
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "text",
+			"default": "Keep Watching",
+			"required": false
+		},
+		["dsx-mixins",
+			"boilerplate"
+		],
+		["ds-rippling-histu-mixins",
+			"colors",
+			"text-regular",
+			"text-bold"
+		]
+	],
+	[
+		["user-asset", {
+			"enabled": ["$", ["exists", ["var", "asset"]]],
+			"file": ["$", ["var", "asset"]],
+			"justify": "fill center",
+			"effect": [
+				["blur", {
+					"radius": ["$", ["*", 20, ["/",
+						["min", ["width"], ["height"]],
+						1080
+					]]],
+					"extend": true 
+				}]
+			]
+		}],
+		["solid", {
+			"color": ["$", ["rgba-set", ["var", "maroon"], "a", 0.9]],
+			"blend": "multiply"
+		}],
+		["null", {
+			"mixins": [
+				"dsx-mixins",
+				"set-su",
+				"safezone"
+			],
+			"blend": "normal"
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"align": "top center",
+				"gap": "10su"
+			}, [
+				["text", {
+					"enabled": ["$", ["exists", ["var", "text"]]],
+					"font": ["$", ["var", "text-bold"]],
+					"case": "uppercase",
+					"height": "22su",
+					"kerning": 0.05,
+					"measure": "cap-size",
+					"color": ["$", ["var", "gold"]],
+					"string": ["$", ["var", "text"]],
+					"align": "center",
+					"boundary": "word"
+				}],
+				["asset", {
+					"file": "./media/ds-rippling-histu-logo-animated.mov",
+					"justify": "fit center",
+					"rect": [
+						0,
+						0,
+						"100rw",
+						"120su"
+					]
+				}]
+			]],
+			["asset", {
+				"file": "./media/ds-rippling-logo-white.svg",
+				"justify": "fit center",
+				"align": "bottom center",
+				"rect": [
+					0,
+					0,
+					"100rw",
+					"50su"
+				]
+			}],
+			["solid", {
+				"flex": {
+					"position": "fixed"
+				},
+				"color": ["$", ["var", "gold"]],
+				"align": "top left",
+				"rect": [
+					0,
+					0,
+					["animate", 
+						[0, 0],
+						["100%", "100rw"]
+					],
+					"10nsu"
+				]
+			}]
+		]]
+		
+	]
+]

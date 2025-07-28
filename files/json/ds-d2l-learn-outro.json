@@ -1,0 +1,22 @@
+[
+	"ds-d2l-learn-outro",
+	[],
+	[
+		["asset", {
+			"file": ["$",
+				["if",
+					["=", ["aspect"], 1],
+					"./media/ds-d2l-lba-outro-square.mp4",
+					["if",
+						["<", ["aspect"], 1],
+						"./media/ds-d2l-lba-outro-vert.mp4",
+						"./media/ds-d2l-lba-outro-wide.mp4"
+					]
+				]
+			],
+			"justify": "fill center",
+			"loop": true,
+			"mute": true
+		}] 
+	]
+]

@@ -1,0 +1,122 @@
+[
+	"ds-d2l-brightspace-headline",
+	[
+		["dsx-mixins",
+			"headline"
+		],
+		["ds-d2l-brightspace-mixins",
+			"color-selector",
+			"font-stanley-bold",
+			"font-d2l-sans-regular"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		]
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su"
+			],
+			"layout": "stacked",
+			"align": "center left",
+			"min-height": "100rh",
+			"padding": [
+				["$", ["nth", ["safezone"], 0]],
+				"300su",
+				["$", ["nth", ["safezone"], 2]],
+				["$", ["nth", ["safezone"], 3]]
+			],
+			"transform": [
+				["translate",
+					["animate",
+						["100%", "-50su"],
+						["-500", 0, "easeInCubic"]
+					],
+					0
+				]
+			],
+			"opacity": ["animate",
+				["100%", 0],
+				["-500", 1, "easeInQuad"]
+			]
+		}, [
+			["solid", {
+				"flex": {
+					"position": "fixed"
+				},
+				"color": ["linear-gradient",
+					-0.25,
+					[0, ["$", ["var", "#foreground"]]],
+					[1, ["$", ["rgba-set", ["var", "#foreground"], "a", 0.0]]]
+				],
+				"opacity": ["animate",
+					[0, 0, "easeOutQuad"],
+					["+700", 1]
+				]
+			}],
+			["null", {
+				"layout": "vertical packed",
+				"align": "center left",
+				"max-width": "800su",
+				"gap": "40su"
+			}, [
+				["text", {
+					"flex": {
+						"weight": 0.5
+					},
+					"enabled": ["$", ["exists", ["var", "subhead"]]],
+					"font": ["$", ["var", "font-d2l-sans-regular"]],
+					"height": "30su",
+					"color": [1, 1, 1, 1],
+					"measure": "cap-size",
+					"case": "uppercase",
+					"leading": "5su",
+					"string": ["$", ["var", "subhead"]],
+					"justify": "left",
+					"boundary": "line",
+					"animations": [
+						{
+							"translate": [0, "100su"],
+							"mask": ["5su", 0, "5su", 0]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+1000", 1]
+							],
+							"translate": [0, 0],
+							"easing": "easeOutCubic",
+							"ramp": 1
+						}
+					]
+				}],
+				["text", {
+					"enabled": ["$", ["exists", ["var", "headline"]]],
+					"font": ["$", ["var", "font-stanley-bold"]],
+					"height": "100su",
+					"leading": 0,
+					"color": [1, 1, 1, 1],
+					"string": ["$", ["var", "headline"]],
+					"justify": "left",
+					"boundary": "line",
+					"animations": [
+						{
+							"translate": [0, "100su"],
+							"mask": [0, 0, 0, 0]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+1000", 1]
+							],
+							"translate": [0, 0],
+							"easing": "easeOutCubic",
+							"ramp": 1.5
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

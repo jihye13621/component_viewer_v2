@@ -1,0 +1,62 @@
+[
+	"ds-sothebys-text",
+	[
+		["dsx-mixins",
+			"text"
+		],
+		["ds-sothebys-mixins",
+			"color-primary",
+			"font-body"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [4, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"max-width": "800nsu",
+				"align": ["$", ["var", "#align"]],
+				"layout": "vertical packed",
+				"mask": {}
+			}, [
+				["text", {
+					"enabled": ["$", ["exists", ["var", "text"]]],
+					"mixins": ["ds-sothebys-mixins",
+						"text",
+						"text-body"
+					],
+					"string": ["$", ["var", "text"]],
+					"justify": ["$", ["var", "#align"]],
+					"color": ["$", ["var", "color-primary"]],
+					"leading": "10su",
+					"trim-descender": false,
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[0, "100rh", "easeOutQuad"],
+								["+300", 0],
+								["100%", "100rh"],
+								["-300", 0, "easeInQuad"]
+							]
+						]
+					]
+				}]
+			]]
+		]]
+	]
+]

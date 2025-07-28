@@ -1,0 +1,188 @@
+[
+	"ds-sojern-title",
+	[
+		{
+			"key": "headline",
+			"display": "Headline",
+			"type": "text",
+			"default": "With Sojern, your email campaigns are managed end to end for you.",
+			"required": false
+		},
+		{
+			"key": "highlight-start",
+			"display": "Highlight Start",
+			"type": "number",
+			"default": 1,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 1,
+				"minimum": 1,
+				"maximum": 10
+			}
+		},
+		{
+			"key": "highlight-length",
+			"display": "Highlight Length",
+			"type": "number",
+			"default": 2,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 1,
+				"minimum": 0,
+				"maximum": 10
+			}
+		},
+		["ds-sojern-mixins",
+			"colors",
+			"darkmode",
+			"fonts"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		]
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			],
+			"color": ["$", ["var", "#bg"]]
+		}, [
+			["null", {
+				"flex" : {
+					"position": "fixed"
+				},
+				"transform": [
+					["scale",
+						["animate",
+							[0, 1],
+							["100%", 1.025]
+						]
+					]
+				]
+			}, [
+				["null", {
+					"align": "top left",
+					"rect": [0, 0, 0, 0],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["=", ["aspect"], 1]],
+							"transform": [
+								["scale", 0.77]
+							]
+						}
+					]
+				}, [
+					["asset", {
+						"slip": 250,
+						"file": "./media/ds-sojern-triangles-01.mov",
+						"hold": true,
+						"mute": true,
+						"align": "center",
+						"rect": [
+							0,
+							0,
+							"567nsu",
+							"724nsu"
+						],
+						"transform": [
+							["translate", 
+								"60nsu",
+								"60nsu"
+							]
+						]
+					}]
+				]],
+				["null", {
+					"align": "bottom right",
+					"rect": [0, 0, 0, 0],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["=", ["aspect"], 1]],
+							"transform": [
+								["scale", 0.77]
+							]
+						}
+					]
+				}, [
+					["asset", {
+						"start": 250,
+						"file": "./media/ds-sojern-triangles-02.mov",
+						"hold": true,
+						"mute": true,
+						"align": "center",
+						"rect": [
+							0,
+							0,
+							"454nsu",
+							"592nsu"
+						],
+						"transform": [
+							["translate", 
+								"-115nsu",
+								"-75nsu"
+							]
+						]
+					}]
+				]]
+			]],
+			["null", {
+				"layout": "vertical packed",
+				"align": "center",
+				"max-width": "1200su"
+			}, [
+				["text", {
+					"stagger": [250, -250],
+					"enabled": ["$", ["exists", ["var", "headline"]]],
+					"font": ["$", ["var", "text-semibold"]],
+					"measure": "letter-size",
+					"height": "80su",
+					"kerning": -0.02,
+					"leading": "20su",
+					"justify": ["$", ["var", "#align"]],
+					"color": ["$", ["var", "#fg"]],
+					"string": ["$", ["var", "headline"]],
+					"boundary": "word",
+					"animations": [
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+1000", 1]
+							],
+							"indices": [
+								["$", ["-", ["var", "highlight-start"], 1]],
+								["$", ["var", "highlight-length"]]
+							],
+							"easing": "easeOutCubic",
+							"ramp": 2,
+							"background-opacity": 1,
+							"color": ["$", ["var", "orange"]]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+1000", 1]
+							],
+							"easing": "easeOutQuad",
+							"opacity": 1,
+							"ramp": 2
+						}
+					],
+					"transform": [
+						["scale",
+							["animate",
+								[0, 0.9, "easeOutQuad"],
+								["100%", 1]
+							]
+						]
+					]
+				}]
+			]]
+		]]
+	]
+]

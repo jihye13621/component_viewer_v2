@@ -1,0 +1,108 @@
+[
+	"ds-gofundme-headline",
+	[
+		["dsx-mixins",
+			"headline"
+		],
+		["ds-gofundme-mixins",
+			"green",
+			"font-bold",
+			"font-medium"
+		]
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			],
+			"color": [1, 1, 1, 1],
+			"mask": {
+				"padding": [
+					["animate",
+						[0, "100rh", "easeOutCubic"],
+						["+500", 0]
+					],
+					0,
+					["animate",
+						["100%", "100rh"],
+						["-400", 0, "easeInCubic"]
+					],
+					0
+				]
+			}
+		}, [
+			["null", {
+				"stagger": [0, 0],
+				"layout": "vertical packed",
+				"align": "center",
+				"gap": "80su",
+				"max-width": "1300nsu",
+				"transform": [
+					["translate",
+						0,
+						["animate",
+							["100%", "-80su"],
+							["-500", 0, "easeInCubic"]
+						]
+					]
+				]
+			}, [
+				["text", {
+					"enabled": ["$", ["exists", ["var", "headline"]]],
+					"stagger": [250, 0],
+					"font": ["$", ["var", "font-bold"]],
+					"measure": "letter-size",
+					"height": "100su",
+					"leading": 0.2,
+					"justify": "center",
+					"string": ["$", ["var", "headline"]],
+					"color": ["$", ["var", "green"]],
+					"animations": [
+						{
+							"translate": [
+								0,
+								"100su"
+							]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+500", 1]
+							],
+							"easing": "easeOutQuad",
+							"ramp": 2,
+							"opacity": 1,
+							"translate": [0, 0]
+						}
+					]
+				}],
+				["text", {
+					"stagger": [500, -100],
+					"enabled": ["$", ["exists", ["var", "subhead"]]],
+					"font": ["$", ["var", "font-medium"]],
+					"measure": "letter-size",
+					"height": "60su",
+					"leading": 0.2,
+					"justify": "center",
+					"string": ["$", ["var", "subhead"]],
+					"color": [0, 0, 0, 1],
+					"boundary": "word",
+					"animations": [
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+1000", 1],
+								["100%", 0],
+								["-500", 1]
+							],
+							"easing": "easeOutQuad",
+							"ramp": 2,
+							"opacity": 1
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

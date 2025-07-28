@@ -1,0 +1,105 @@
+{
+	"params": {
+		"color-white": {
+			"key": "color-white",
+			"display": "Color",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false,
+			"private": true
+		},
+		"color-light-purple": {
+			"key": "color-light-purple",
+			"display": "Light Color",
+			"type": "color",
+			"default": "#997CED",
+			"required": false,
+			"private": true
+		},
+		"color-mid-purple": {
+			"key": "color-mid-purple",
+			"display": "Color",
+			"type": "color",
+			"default": "#8039DF",
+			"required": false,
+			"private": true
+		},
+		"color-dark-purple": {
+			"key": "color-dark-purple",
+			"display": "Dark Color",
+			"type": "color",
+			"default": "#3E0075",
+			"required": false,
+			"private": true
+		},
+		"color-cyan":  {
+			"key": "color-cyan",
+			"display": "Highlight Color",
+			"type": "color",
+			"default": "#4CFEC8",
+			"required": false,
+			"private": true
+		},
+		"font-400": {
+			"key": "font-400",
+			"display": "Font 400",
+			"type": "string",
+			"default": "./media/messina-sans-400.woff2",
+			"required": false,
+			"private": true
+		},
+		"font-700": {
+			"key": "font-700",
+			"display": "Font 700",
+			"type": "string",
+			"default": "./media/messina-sans-700.woff2",
+			"required": false,
+			"private": true
+		},
+		"font-italic": {
+			"key": "font-italic",
+			"display": "Font Italic",
+			"type": "string",
+			"default": "./media/Inter-Italic.woff2",
+			"required": false,
+			"private": true
+		},
+		"font-display": {
+			"key": "font-display",
+			"display": "Logo Font",
+			"type": "string",
+			"default": "./media/BNAxel Grotesk Bold.otf",
+			"required": false,
+			"private": true
+		},
+		"headline-star-animation": {
+			"key": "headline-star-animation",
+			"display": "Star Animation",
+			"type": "asset",
+			"default": "./media/ds-gong-headline-star.mp4",
+			"required": false,
+			"private": true
+		},
+		"theme": {
+			"key": "theme",
+			"display": "Theme",
+			"type": "string",
+			"default": "theme-1",
+			"required": false,
+			"options": [
+				{
+					"key": "theme-1",
+					"display": "Purple"
+				},
+				{
+					"key": "theme-2",
+					"display": "White"
+				},
+				{
+					"key": "theme-3",
+					"display": "Gradient"
+				}
+			]
+		}
+	}
+}

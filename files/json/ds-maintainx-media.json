@@ -1,0 +1,74 @@
+[
+	"ds-maintainx-media",
+	[
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["gain", 0],
+				["justify", "fit"]
+			],
+			"script": ["$", ["if",
+				["exists", ["var", "asset"]],
+				["var", "asset"],
+				"./media/image-wide.jpg"	
+			]]
+		}
+	],
+	[
+		["solid", {
+			"mixins": [
+				["dsx-mixins", "set-su"],
+				["ds-maintainx-mixins", "custom-safezone"]
+			],
+			"color": "#246CFF"
+		}, [
+			["solid", {
+				"radius": "50su",
+				"padding": [
+					"20su",
+					"20su"
+				],
+				"color": ["linear-gradient",
+					-0.125,
+					[0, [1, 1, 1, 0.3]],
+					[0.75, [1, 1, 1, 0.6]],
+					[1, [1, 1, 1, 0.3]]
+				],
+				"stroke": "3su",
+				"stroke-color": [1, 1, 1, 1],
+				"opacity": ["animate",
+					[0, 0.0, "easeOutQuart"],
+					["+800", 1],
+					["100%", 0],
+					["-500", 1, "easeInQuart"]
+				],
+				"layout": "stacked",
+				"align": "center",
+				"transform": [
+					["scale",
+						["animate",
+							[0, 0.9, "easeOutQuart"],
+							["+800", 1],
+							["100%", 0.9],
+							["-500", 1, "easeInQuart"]
+						]
+					]
+				]
+			}, [
+				["user-asset", {
+					"file": ["$", ["var", "asset"]],
+					"justify": "fit center",
+					"tags": ["b-roll"],
+					"mask": {
+						"radius": "35su",
+						"transform": true
+					}
+				}]
+			]]
+		]]
+	]
+]

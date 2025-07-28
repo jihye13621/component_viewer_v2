@@ -1,0 +1,202 @@
+[
+	"ds-instacart-sizzle-list",
+	[
+		{
+			"key": "items",
+			"display": "Items",
+			"type": "textarea",
+			"default": "Online Grocery\nIn-Store\nSupply Chain\nCore Capability Investment",
+			"required": false
+		},
+		{
+			"key": "selected-index",
+			"display": "Selected",
+			"type": "number",
+			"default": 1,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 1,
+				"minimum": 0,
+				"maximum": 10
+			}
+		},
+		["dsx-mixins", "boilerplate"],
+		["ds-instacart-mixins",
+			"colors",
+			"font-sans-800",
+			"theme"
+		]
+	],
+	[
+		["solid", {
+			"-calc-items": ["$", ["set", "#items", ["split", ["var", "items"], "\n"]]],
+			"mixins": ["dsx-mixins", "safezone", "set-su"],
+			"color": ["$", ["var", "#background"]],
+			"mask": {
+				"padding": [
+					0,
+					0,
+					["animate",
+						["100%", "100rh"],
+						["-500", 0, "easeInOutQuint"]
+					],
+					0
+				]
+			}
+		}, [
+			["null", {
+			}, [
+				["for-each", {
+					"rect": [
+						0,
+						0,
+						"100rw",
+						"300rh"
+					],
+					"items": ["$", ["var", "#items"]],
+					"layout": "vertical packed",
+					"align": "left",
+					"gap": "20su",
+					"padding": [
+						0,
+						0,
+						0,
+						"100su"
+					],
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[0, "150rh", "easeOutQuint"],
+								["+1000", 0],
+								["100%", "-150rh"],
+								["-1000", 0, "easeInQuint"]
+							]
+						]
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$",
+								["and",
+									["<=",
+										["var", "selected-index"],
+										["-", ["length", ["var", "#items"], 1]]
+									],
+									[">",
+										["var", "selected-index"],
+										0
+									]
+								]
+							],
+							"script": ["$$",
+								["let",
+									[
+										["start", ["key", ["var", "self"], "start"]],
+										["item", ["nth",
+											["key", ["var", "self"], "children"],
+											["$", ["-", ["var", "selected-index"], 1]]
+										]],
+										["parent", ["key", ["var", "self"], "parent"]],
+										["parent-h", ["key", ["key", ["var", "parent"], "roi"], "w"]],
+										["self-y", ["key", ["key", ["var", "self"], "roi"], "y"]],
+										["item-y", ["key", ["key", ["var", "item"], "roi"], "y"]],
+										["item-h", ["key", ["key", ["var", "item"], "roi"], "w"]],
+										["offset", ["+", 
+											["-",
+												["var", "item-y"],
+												["var", "self-y"],
+												["/", ["var", "parent-h"], 2]
+											],
+											["/", ["var", "item-h"], 2]
+										]],
+										["animate-in",
+											["ease",
+												["map",
+													["var", "frame"],
+													["+", ["var", "start"], 0],
+													["+", ["var", "start"], 1000],
+													0,
+													1
+												],
+												"easeOutCubic"
+											]
+										]
+									],
+									["live-transform",
+										["var", "self"],
+										"translate",
+										0,
+										["*",
+											["var", "animate-in"],
+											["var", "offset"],
+											-1
+										]
+									]
+								]
+							]
+						}
+					]
+				}, [
+					["text", {
+						"enabled": ["$", ["exists", ["var", "item"]]],
+						"rect": [
+							0,
+							0,
+							"100rw",
+							"200rh"
+						],
+						"font": ["$", ["var", "font-sans-800"]],
+						"measure": "letter-size",
+						"height": "180su",
+						"leading": "20su",
+						"justify": "top left",
+						"string": ["$", ["var", "item"]],
+						"color": ["$", ["var", "#foreground"]],
+						"trim-descender": false,
+						"boundary": "line",
+						"breakpoints": [
+							{
+								"enabled": ["$",
+									["<>",
+										["var", "selected-index"],
+										["+", ["var", "index"], 1]
+									]
+								],
+								"animations": [
+									{
+										"opacity": 0.5
+									}
+								]
+							}
+						]
+					}, [
+						["text", {
+							"enabled": ["$",
+								["=",
+									["var", "selected-index"],
+									["+", ["var", "index"], 1]
+								]
+							],
+							"rect": [
+								"-100su",
+								0,
+								"100su",
+								"180su"
+							],
+							"font": ["$", ["var", "font-sans-800"]],
+							"measure": "letter-size",
+							"height": "100su",
+							"justify": "top left",
+							"string": ["$", ["to-string", ["+", ["var", "index"], 1]]],
+							"color": ["$", ["var", "#foreground"]],
+							"trim-descender": false,
+							"boundary": "line"
+						}]
+					]]
+				]]
+			]]
+		]]
+	]
+]

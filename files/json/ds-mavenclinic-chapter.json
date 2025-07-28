@@ -1,0 +1,121 @@
+[
+	"ds-mavenclinic-chapter",
+	[
+		{
+			"key": "items",
+			"display": "Items",
+			"type": "textarea",
+			"default": "Section one\nSection two\nSection three\nSection four\nSection five",
+			"required": false
+		},
+		{
+			"key": "selected-index",
+			"display": "Selected",
+			"type": "number",
+			"default": 1,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 1,
+				"minimum": 0,
+				"maximum": 10
+			}
+		},
+		["ds-mavenclinic-mixins",
+			"color-selector",
+			"font-brand-2"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		]
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins",
+				"set-su"
+			],
+			"color": ["$", ["var", "#background"]],
+			"padding": [
+				"100su",
+				"70su"
+			]
+		}, [
+			["null", {
+			}, [
+				["asset", {
+					"file": "./media/ds-mavenclinic-logo-chromosome.svg",
+					"justify": "fit top left",
+					"rect": [
+						0,
+						0,
+						"70su",
+						"100su"
+					]
+				}],
+				["for-each", {
+					"items": ["$", ["split", ["var", "items"], "\n"]],
+					"layout": "vertical packed",
+					"align": "bottom left",
+					"gap": "40su"
+				}, [
+					["text", {
+						"stagger": [
+							["$",
+								["*",
+									["var", "index"],
+									200
+								]
+							],
+							0
+						],
+						"enabled": ["$", ["exists", ["var", "item"]]],
+						"font": ["$", ["var", "font-brand-2"]],
+						"measure": "letter-size",
+						"height": "60su",
+						"fit": true,
+						"justify": "top left",
+						"string": ["$", ["var", "item"]],
+						"color": ["$", ["var", "#foreground"]],
+						"padding": [
+							0,
+							0,
+							0,
+							"-70su"
+						],
+						"opacity": ["animate",
+							[0, 0, "easeOutQuad"],
+							["+500", 1]
+						],
+						"transform": [
+							["translate",
+								0,
+								["animate",
+									[0, "100su", "easeOutQuad"],
+									["+500", 0]
+								]
+							]
+						],
+						"breakpoints": [
+							{
+								"enabled": ["$", ["=", ["-", ["var", "selected-index"], 1], ["var", "index"]]],
+								"color": ["$", ["var", "#accent"]]
+							}
+						]
+					}, [
+						["solid", {
+							"enabled": ["$", ["=", ["-", ["var", "selected-index"], 1], ["var", "index"]]],
+							"rect": [
+								0,
+								"-10su",
+								"20su",
+								"60su"
+							],
+							"color": ["$", ["var", "#accent"]]
+						}]
+					]]
+				]]
+			]]
+		]]
+	]
+]

@@ -1,0 +1,150 @@
+[
+	"ds-nasdaq-speaker",
+	[
+		["dsx-mixins",
+			"speaker"
+		],
+		{
+			"key": "text-color",
+			"display": "Color",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		},
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [1, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"enabled": ["$", ["or",
+				["exists", ["var", "name"]],
+				["exists", ["var", "detail-1"]],
+				["exists", ["var", "detail-2"]]
+			]],
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			]
+		}, [
+			["null", {
+				"stagger": [0, -100],
+				"max-width": "1000nsu",
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"gap": "25su",
+				"opacity": ["animate",
+					["100%", 0],
+					["-1000", 1, "easeInQuad"]
+				]
+			}, [
+				["solid", {
+					"flex": {
+						"position": "fixed"
+					},
+					"color": [0, 0, 0, 0.8],
+					"effect": [
+						["blur", {
+							"radius": "100rh"
+						}]
+					],
+					"transform": [
+						["scale",
+						1.2,
+						1.7
+					]
+					],
+					"opacity": ["animate",
+						[0, 0],
+						["+2000", 1, "easeOutQuad"]
+					]
+				}],
+				["text", {
+					"enabled": ["$", ["exists", ["var", "name"]]],
+					"stagger": [0, 0],
+					"font": "./media/Inter-Medium.ttf",
+					"measure": "letter-size",
+					"string": ["$", ["var", "name"]],
+					"color": ["$", ["var", "text-color"]],
+					"height": "50su",
+					"boundary": "word",
+					"animations": [
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+700", 1]
+							],
+							"easing": "easeOutQuad",
+							"opacity": 1
+						}
+					],
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[0, "40su", "easeOutQuint"],
+								["+1400", 0],
+								["100%", "40su"],
+								["-1000", 0, "easeInCubic"]
+							]
+						]
+					]
+				}],
+				["text", {
+					"enabled": ["$", ["or",
+						["exists", ["var", "detail-1"]],
+						["exists", ["var", "detail-2"]]
+					]],
+					"stagger": [700, -100],
+					"font": "./media/Bitter-Medium.ttf",
+					"measure": "letter-size",
+					"string": ["$",
+						["join",
+							["compact", ["array",
+								["var", "detail-1"],
+								["var", "detail-2"]
+							]],
+							", "
+						]
+					],
+					"color": ["$", ["var", "text-color"]],
+					"height": "40su",
+					"kerning": 0.01,
+					"boundary": "word",
+					"animations": [
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+1000", 1]
+							],
+							"easing": "easeOutQuad",
+							"opacity": 1
+						}
+					],
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[0, "40su", "easeOutQuint"],
+								["+1400", 0],
+								["100%", "40su"],
+								["-1000", 0, "easeInCubic"]
+							]
+						]
+					]
+				}]
+			]]
+		]]
+	]
+]

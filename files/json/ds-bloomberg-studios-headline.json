@@ -1,0 +1,172 @@
+[
+	"ds-bloomberg-studios-headline",
+	[
+		{
+			"key": "headline",
+			"display": "Headline",
+			"type": "text",
+			"default": "Bloomberg Pro Tips",
+			"required": false
+		},
+		{
+			"key": "subhead",
+			"display": "Subhead",
+			"type": "text",
+			"default": "Optional subhead",
+			"required": false
+		},
+		["ds-bloomberg-studios-mixins",
+			"color-primary",
+			"color-secondary",
+			"color-orange",
+			"font-headline",
+			"font-title"
+		],
+		{
+			"key": "do-gradient",
+			"display": "Background Gradient",
+			"type": "bool",
+			"default": true,
+			"required": false
+		},
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [1, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]],
+			"layout": "vertical packed",
+			"align": ["$", ["var", "#align"]],
+			"min-width": "100cw"
+		}, [
+			["null", {
+				"enabled": ["$", ["var", "do-gradient"]],
+				"flex": {
+					"position": "fixed"
+				},
+				"padding": [
+					"-100su",
+					0
+				],
+				"opacity": ["animate",
+					[0, 0],
+					["+350", 1],
+					["100%", 0],
+					["-350", 1]
+				]
+			}, [
+				["solid", {
+					"color": ["linear-gradient",
+						0.0,
+						[0.0, [0, 0, 0, 0]],
+						[1.0, [0, 0, 0, 0.5]]
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["in", ["nth", ["var", "position"], 0], 7, 8, 9]],
+							"color": ["linear-gradient",
+								0.5,
+								[0.0, [0, 0, 0, 0]],
+								[1.0, [0, 0, 0, 0.5]]
+							]
+						},
+						{
+							"enabled": ["$", ["in", ["nth", ["var", "position"], 0], 4, 5, 6]],
+							"color": ["linear-gradient",
+								0.5,
+								[0.0, [0, 0, 0, 0]],
+								[0.3, [0, 0, 0, 0.5]],
+								[0.7, [0, 0, 0, 0.5]],
+								[1.0, [0, 0, 0, 0]]
+							]
+						}
+					]
+				}]
+			]],
+			["null", {
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"gap": "50su",
+				"max-width": "1000su"
+			}, [
+				["solid", {
+					"enabled": ["$", ["exists", ["var", "headline"]]],
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]],
+					"color": ["$", ["var", "color-orange"]],
+					"padding": [
+						"25su",
+						"25su"
+					],
+					"mask": {},
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[0, "100rh", "easeOutQuad"],
+								["+400", 0],
+								["100%", "100rh"],
+								["-400", 0, "easeInQuad"]
+							]
+						]
+					]
+				}, [
+					["text", {
+						"mixins": ["ds-bloomberg-studios-mixins",
+							"text"
+						],
+						"font": ["$", ["var", "font-headline"]],
+						"height": "50su",
+						"kerning": "0.015su",
+						"string": ["$", ["var", "headline"]],
+						"justify": ["$", ["var", "#align"]],
+						"color": ["$", ["var", "color-secondary"]]
+					}]
+				]],
+				["text", {
+					"enabled": ["$", ["exists", ["var", "subhead"]]],
+					"mixins": ["ds-bloomberg-studios-mixins",
+						"text",
+						"text-title"
+					],
+					"string": ["$", ["var", "subhead"]],
+					"justify": ["$", ["var", "#align"]],
+					"color": ["$", ["var", "color-primary"]],
+					"boundary": "line",
+					"animations": [
+						{
+							"translate": [
+								0,
+								"100su"
+							]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+500", 1],
+								["100%", 0],
+								["-500", 1]
+							],
+							"easing": "easeOutQuad",
+							"ramp": 2,
+							"opacity": 1,
+							"translate": [0, 0]
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

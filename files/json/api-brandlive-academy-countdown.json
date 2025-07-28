@@ -1,0 +1,207 @@
+[
+	"api-brandlive-academy-countdown",
+	[
+		{
+			"key": "font",
+			"display": "Font",
+			"type": "string",
+			"default": "./media/api-brandlive/Poppins-Bold.ttf",
+			"required": false
+		},
+		{
+			"key": "gradient-1-left",
+			"display": "Gradient 1 Left",
+			"type": "color",
+			"default": "#FFBC1E",
+			"required": false
+		},
+		{
+			"key": "gradient-1-right",
+			"display": "Gradient 1 Right",
+			"type": "color",
+			"default": "#FFE649",
+			"required": false
+		},       
+		{
+			"key": "text-color",
+			"display": "Text Color",
+			"type": "color",
+			"default": "#09083F",
+			"required": false
+		},
+		{
+			"key": "logo",
+			"display": "Image",
+			"type": "asset",
+			"default": "./media/api-brandlive/brandlive-logo.png",
+			"required": false
+		},
+		{
+			"key": "seconds",
+			"display": "Seconds",
+			"type": "int",
+			"default": 30,
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-dsx-su"
+			]
+		}, [
+			["solid", {
+				"rect": [0, 0, "100rw", "100rh"],
+				"color": ["linear-gradient",
+					-0.25,
+					[0.0, ["$", ["var", "gradient-1-left"]]],
+					[1.0, ["$", ["var", "gradient-1-right"]]]
+				],
+				"duration": ["$",
+					["+", 1000,
+						["floor", ["*", 1000, ["var", "seconds"]]]
+					]
+				]
+			}],
+			["asset", {
+				"rect": [
+					"1080su",
+					"140su",
+					"400su",
+					"140su"
+				],
+				"file": ["$", ["var", "logo"]],
+				"justify": "fit center"
+			}],
+			["null", {
+				"layout": "horizontal packed",
+				"align": "center"
+			}, [
+				["null", {
+					"layout": "horizontal packed"
+				}, [
+					["null", {
+						"layout": "horizontal packed"
+					}, [
+						["for-each", {
+							"items": [9, 8, 7, 6, 5, 4, 3, 2, 1, 0],
+							"layout": "stacked",
+							"align": "center right"
+						}, [
+							["text", {
+								"mixins": ["api-brandlive-mixins",
+									"looping-number-minten-no-anim"
+								],
+								"color": ["$", ["var", "text-color"]],
+								"font": ["$", ["var", "font"]],
+								"height": "300su",
+								"justify": "center right",
+								"string": ["$", ["var", "item"]],
+								"measure": "letter-size",
+								"stagger": [
+									["$",
+										["+",
+											["*", 600000, ["var", "index"]],
+											["*", 1000, ["mod", ["var", "seconds"], 6000]],
+											1000
+										]
+									],
+									0
+								]
+							}]
+						]],
+						["for-each", {
+							"items": [9, 8, 7, 6, 5, 4, 3, 2, 1, 0],
+							"layout": "stacked",
+							"align": "center right"
+						}, [
+							["text", {
+								"mixins": ["api-brandlive-mixins",
+									"looping-number-min-no-anim"
+								],
+								"color": ["$", ["var", "text-color"]],
+								"font": ["$", ["var", "font"]],
+								"height": "300su",
+								"justify": "center left",
+								"measure": "letter-size",
+								"string": ["$", ["var", "item"]],
+								"stagger": [
+									["$",
+										["+",
+											["*", 60000, ["var", "index"]],
+											["*", 1000, ["var", "seconds"]],
+											1000
+										]
+									],
+									0
+								]
+							}]
+						]]
+					]],
+					["text", {
+						"color": ["$", ["var", "text-color"]],
+						"font": ["$", ["var", "font"]],
+						"height": "300su",
+						"measure": "letter-size",
+						"justify": "center right",
+						"string": ":"
+					}],
+					["for-each", {
+						"items": [5, 4, 3, 2, 1, 0],
+						"layout": "stacked",
+						"align": "center right"
+					}, [
+						["text", {
+							"mixins": ["api-brandlive-mixins",
+								"looping-number-ten-no-anim"
+							],
+							"color": ["$", ["var", "text-color"]],
+							"font": ["$", ["var", "font"]],
+							"height": "300su",
+							"measure": "letter-size",
+							"justify": "center",
+							"string": ["$", ["var", "item"]],
+							"stagger": [
+								["$",
+									["+",
+										["*", 10000, ["var", "index"]],
+										["*", 1000, ["var", "seconds"]],
+										1000
+									]
+								],
+								0
+							]
+						}]
+					]],
+					["for-each", {
+						"items": [9, 8, 7, 6, 5, 4, 3, 2, 1, 0],
+						"layout": "stacked",
+						"align": "center left"
+					}, [
+						["text", {
+							"mixins": ["api-brandlive-mixins",
+								"looping-number-second-no-anim"
+							],
+							"color": ["$", ["var", "text-color"]],
+							"font": ["$", ["var", "font"]],
+							"height": "300su",
+							"measure": "letter-size",
+							"justify": "center",
+							"string": ["$", ["var", "item"]],
+							"stagger": [
+								["$",
+									["+",
+										["*", 1000, ["var", "index"]],
+										["*", 1000, ["mod", ["var", "seconds"], 10]],
+										1000
+									]
+								],
+								0
+							]
+						}]
+					]]
+				]]
+			]]
+		]]
+	]
+]

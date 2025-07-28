@@ -1,0 +1,199 @@
+[
+	"ds9-speaker",
+	[
+		{
+			"key": "name",
+			"display": "Speaker name",
+			"type": "text",
+			"default": "Speaker name",
+			"required": false
+		},
+		{
+			"key": "detail-1",
+			"display": "Title",
+			"type": "text",
+			"default": "Optional speaker detail",
+			"required": false
+		},
+		{
+			"key": "detail-2",
+			"display": "Company",
+			"type": "text",
+			"default": "Optional speaker detail",
+			"required": false
+		},
+		{
+			"key": "font-1",
+			"display": "Style",
+			"type": "fontstyle",
+			"default": {
+				"font": "./media/Newsreader16pt-Regular.ttf",
+				"height": 72
+			},
+			"required": false,
+			"script": ["$",
+				["key-set",
+					["var", "font-1"],
+					"height",
+					["round", ["*", ["var", "size"], ["var", "font-1", "height"]]]
+				]
+			]
+		},
+		{
+			"key": "font-2",
+			"display": "Style",
+			"type": "fontstyle",
+			"default": {
+				"font": "./media/Inter-Bold.ttf",
+				"height": 36,
+				"kerning": 0.08,
+				"leading": 0.333
+			},
+			"required": false,
+			"script": ["$",
+				["key-set",
+					["var", "font-2"],
+					"height",
+					["round", ["*", ["var", "size"], ["var", "font-2", "height"]]]
+				]
+			]
+		},
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		},
+		{
+			"key": "color-2",
+			"display": "Color 2",
+			"type": "color",
+			"default": "#E03467",
+			"required": false
+		},
+		{
+			"key": "background",
+			"display": "Background",
+			"type": "color",
+			"default": null,
+			"required": false
+		},
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": 1,
+			"required": false
+		},
+		{
+			"key": "size",
+			"display": "Size",
+			"type": "number",
+			"default": 1.0,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"step": 0.05,
+				"minimum": 0.5,
+				"maximum": 1.5
+			}
+		},
+		{
+			"key": "#align",
+			"type": "string",
+			"default": "center",
+			"required": false,
+			"private": true,
+			"script": ["$", ["switch", ["var", "position"], {
+				"1": "bottom left",
+				"2": "bottom center",
+				"3": "bottom right",
+				"4": "left",
+				"5": "center",
+				"6": "right",
+				"7": "top left",
+				"8": "top center",
+				"9": "top right",
+				"_": "center"
+			}]]
+		}
+	],
+	[
+		["dsx-background", {
+			"enabled": ["$", ["exists", ["var", "background"]]],
+			"color": ["$", ["var", "background"]]
+		}],
+		["dsx-padding", {
+			"position": ["$", ["var", "position"]]
+		}, [
+			["null", {
+				"layout": "vertical packed match",
+				"align": ["$", ["var", "#align"]],
+				"gap": ["$", ["*", ["var", "size"], 40]]
+			}, [
+				["null", {
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]]
+				}, [
+					["text", {
+						"mixins": ["ds9-mixins", ["headline-2", "animate-up"]],
+						"string": ["$", ["var", "name"]],
+						"justify": ["$", ["var", "#align"]]
+					}]
+				]],
+				["solid", {
+					"flex": {
+						"height": ["$", ["*", ["var", "size"], 5]]
+					},
+					"stagger": [200, -200],
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[0, ["$", ["*", ["var", "size"], 60]], "easeOutQuad"],
+								["+500", 0],
+								["100%", ["$", ["*", ["var", "size"], 60]]],
+								["-500", 0, "easeInQuad"]
+							]
+						],
+						["scale",
+							["animate",
+								[0, 0, "easeOutQuad"],
+								["+500", 1],
+								["100%", 0],
+								["-500", 1, "easeInQuad"]
+							],
+							1
+						]
+					]
+				}],
+				["null", {
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]]
+				}, [
+					["text", {
+						"mixins": ["ds9-mixins", ["text-2", "animate-up"]],
+						"string": ["$", ["var", "detail-1"]],
+						"justify": ["$", ["var", "#align"]],
+						"case": "uppercase",
+						"stagger": [400, -400],
+						"boundary": "line",
+						"breakpoints": [
+							{
+								"enabled": ["$", ["exists", "detail-2"]],
+								"string": ["$",
+									["concat",
+										["var", "detail-1"],
+										"\n",
+										["var", "detail-2"]
+									]
+								]
+							}
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

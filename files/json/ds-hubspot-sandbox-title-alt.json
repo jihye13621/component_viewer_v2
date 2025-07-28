@@ -1,0 +1,307 @@
+[
+	"ds-hubspot-sandbox-title-alt",
+	[
+		["dsx-mixins", "text"],
+		{
+			"key": "animate-style",
+			"display": "Animation",
+			"type": "string",
+			"default": "style-1",
+			"options": [
+				{
+					"key": "style-1",
+					"display": "Style 1"
+				},
+				{
+					"key": "style-2",
+					"display": "Style 2"
+				}
+			]
+		},
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["gain", 0],
+				["justify", "fit"],
+				["motion", "none"]
+			]
+		},
+		{
+			"key": "asset-bg",
+			"display": "Background",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["gain", 0],
+				["justify", "fill"],
+				["motion", "none"]
+			]
+		},
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": "#FEF4EA",
+			"required": false
+		},
+		{
+			"key": "color-2",
+			"display": "Color 2",
+			"type": "color",
+			"default": "#192733",
+			"required": false
+		},
+		["dsx-mixins", "boilerplate"],
+		{
+			"key": "#seed-1",
+			"display": "Seed",
+			"type": "number",
+			"default": 0.1,
+			"private": true,
+			"script": ["$",
+				["if",
+					["exists", ["var", "text"]],
+					["/", ["mod", ["char-code", ["var", "text"], 0], 50], 50],
+					0.9
+				]
+			]
+		},
+		{
+			"key": "#seed-2",
+			"display": "Seed",
+			"type": "number",
+			"default": 0.9,
+			"private": true,
+			"script": ["$",
+				["if",
+					["exists", ["var", "text"]],
+					["/", ["mod", ["char-code", ["var", "text"], ["-", ["length", ["var", "text"]], 1]], 50], 50],
+					0.5
+				]
+			]
+		}
+	],
+	[
+		["user-asset", {
+			"file": ["$", ["var", "asset-bg"]],
+			"justify": "fill center",
+			"hold": true,
+			"mute": true
+		}],
+		["solid",{
+			"mixins": ["dsx-mixins", ["set-su", "safezone"]],
+			"skip": ["$", ["exists", ["var", "asset-bg"]]],
+			"color": ["$", ["var", "color-2"]]
+		}, [
+			["null", {
+				"enabled": ["$", ["exists", ["var", "asset"]]],
+				"units": {
+					"lr": "40rw",
+					"ud": "20rh"
+				}
+			}, [
+				["user-asset", {
+					"stagger": [0, -200],
+					"file": ["$", ["var", "asset"]],
+					"rect": [
+						0,
+						0,
+						"200nsu",
+						"200nsu"
+					],
+					"align": "top left",
+					"justify": "fit",
+					"transform": [
+						["scale",
+							["$", ["+", 0.5, ["*", 0.5, ["var", "#seed-1"]]]]
+						],
+						["scale",
+							["animate",
+								[0, 0, "easeOutBack"],
+								["+300", 1],
+								["100%", 0],
+								["-300", 1, "easeInBack"]
+							]
+						],
+						["translate",
+							["$", ["concat", ["*", 1, ["var", "#seed-1"]], "lr"]],
+							["$", ["concat", ["*", 1, ["var", "#seed-2"]], "ud"]]
+						]
+					]
+				}],
+				["user-asset", {
+					"stagger": [200, -100],
+					"file": ["$", ["var", "asset"]],
+					"rect": [
+						0,
+						0,
+						"200nsu",
+						"200nsu"
+					],
+					"align": "top right",
+					"justify": "fit",
+					"transform": [
+						["scale",
+							["$", ["+", 0.5, ["*", 0.5, ["var", "#seed-2"]]]]
+						],
+						["scale",
+							["animate",
+								[0, 0, "easeOutBack"],
+								["+300", 1],
+								["100%", 0],
+								["-300", 1, "easeInBack"]
+							]
+						],
+						["translate",
+							["$", ["concat", ["*", -1, ["var", "#seed-2"]], "lr"]],
+							["$", ["concat", ["*", 1, ["var", "#seed-1"]], "ud"]]
+						]
+					]
+				}],
+				["user-asset", {
+					"stagger": [400, 0],
+					"file": ["$", ["var", "asset"]],
+					"rect": [
+						0,
+						0,
+						"200nsu",
+						"200nsu"
+					],
+					"align": "bottom center",
+					"justify": "fit",
+					"transform": [
+						["scale",
+							["$",
+								["+",
+									0.5,
+									["*",
+										0.5,
+										["/",
+											["+",
+												["var", "#seed-1"], ["var", "#seed-2"]
+											],
+											2
+										]
+									]
+								]
+							]
+						],
+						["scale",
+							["animate",
+								[0, 0, "easeOutBack"],
+								["+300", 1],
+								["100%", 0],
+								["-300", 1, "easeInBack"]
+							]
+						],
+						["translate",
+							["$",
+								["concat",
+									["+",
+										-0.5,
+										["/",
+											["+",
+												["var", "#seed-1"], ["var", "#seed-2"]
+											],
+											2
+										]
+									],
+									"lr"
+								]
+							],
+							["$",
+								["concat",
+									["*", -1, ["/", ["+", ["var", "#seed-1"], ["var", "#seed-2"]], 2]],
+									"ud"
+								]
+							]
+						]
+					]
+				}]
+			]],
+			["null", {
+				"align": "center",
+				"transform": ["$", 
+					["compact",
+						["array",
+							["switch", ["var", "animate-style"], {
+								"style-1": null,
+								"style-2": ["scale",
+									["animate",
+										[0, 1.6, "easeOutExpo"],
+										["+1000", 1]
+									]
+								],
+								"_": null
+							}],
+							["switch", ["var", "animate-style"], {
+								"style-1": ["scale",
+									["animate",
+										["100%", 0.5],
+										["-550", 1, "easeInQuart"]
+									]
+								],
+								"style-2": ["translate",
+									0,
+									["animate",
+										["100%", "-140su"],
+										["-400", 0, "easeInCubic"]
+									]
+								],
+								"_": null
+							}]
+						]
+					]
+				]
+			}, [
+				["text", {
+					"enabled": ["$", ["var", "text"]],
+					"mixins": ["ds-hubspot-mixins", "font-list-headline"],
+					"measure": "letter-size",
+					"string": ["$", ["var", "text"]],
+					"color": ["$", ["var", "color-1"]],
+					"boundary": "word",
+					"align": "center",
+					"justify": "center",
+					"breakpoints": [
+						{
+							"enabled": ["$", ["eq", ["var", "animate-style"], "style-1"]],
+							"animations": [
+								{
+									"translate": [
+										0,
+										"150su"
+									],
+									"opacity": 0
+								},
+								{
+									"mix": ["animate",
+										[0, 0],
+										["+600", 1]
+									],
+									"easing": "easeOutCubic",
+									"ramp": 1.5,
+									"translate": [0, 0]
+								},
+								{
+									"mix": ["animate",
+										[0, 0],
+										["+400", 1]
+									],
+									"easing": "plateauIn",
+									"ramp": 1,
+									"opacity": 1
+								}
+							]
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

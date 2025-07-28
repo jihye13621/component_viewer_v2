@@ -1,0 +1,264 @@
+[
+	"ds-justworks-list-alt",
+	[
+		{
+			"key": "image",
+			"display": "Image",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [],
+			"script": ["$", ["if",
+				["exists", ["var", "image"]],
+				["var", "image"],
+				"./media/image-wide.jpg"	
+			]]
+		},
+		{
+			"key": "headline",
+			"display": "Headline",
+			"type": "text",
+			"default": "Calculate Employee Pay",
+			"required": false
+		},
+		{
+			"key": "detail-1",
+			"display": "Detail 1",
+			"type": "text",
+			"default": "Hourly Employees",
+			"required": false
+		},
+		{
+			"key": "detail-2",
+			"display": "Detail 2",
+			"type": "text",
+			"default": "Hours worked x hourly rate",
+			"required": false
+		},
+		{
+			"key": "detail-3",
+			"display": "Detail 3",
+			"type": "text",
+			"default": "Salaried Employees",
+			"required": false
+		},
+		{
+			"key": "detail-4",
+			"display": "Detail 4",
+			"type": "text",
+			"default": "Salary / pay periods",
+			"required": false
+		},
+		["ds-justworks-mkii-mixins",
+			"fonts",
+			"color-primary",
+			"color-secondary"
+		]
+	],
+	[
+		["null", {
+			"buffer": "matte"
+		}, [
+			["solid", {
+				"color": "#ffffff",
+				"mask": {
+					"padding": [
+						["animate",
+							[0, "100rh", "easeOutCubic"],
+							[500, 0]
+						],
+						0,
+						["animate",
+							["100%", "100rh"],
+							["-350", 0, "easeInCubic"]
+						],
+						0
+					]
+				}
+			}]
+		]],
+		["solid", {
+			"mixins": ["dsx-mixins", ["set-su", "safezone"]],
+			"color": ["$", ["var", "color-primary"]],
+			"effect": [
+				["matte", {
+					"buffer-in": "matte",
+					"end": 500
+				}],
+				["matte", {
+					"buffer-in": "matte",
+					"start": ["$", ["-", ["key", ["comp-timing"], "duration"], 350]]
+				}]
+			]
+		}, [
+			["null", {
+				"layout": "horizontal",
+				"breakpoints": [
+					{
+						"enabled": ["$", ["<=", ["aspect"], 1]],
+						"layout": "vertical"
+					}
+				]
+			}, [
+				["null", {
+					"layout": "vertical packed",
+					"align": "center left",
+					"gap": "70su",
+					"breakpoints": [
+						{
+							"enabled": ["$", ["=", ["aspect"], 1]],
+							"flex": {
+								"weight": 1.5
+							}
+						}
+					]
+				}, [
+					["text", {
+						"enabled": ["$", ["exists", ["var", "headline"]]],
+						"stagger": [200, -200],
+						"mixins": ["ds-justworks-mixins",
+							"text",
+							"text-headline"
+						],				
+						"font": ["$", ["var", "font-bold-display"]],
+						"color": ["$", ["var", "color-secondary"]],
+						"string": ["$", ["var", "headline"]],
+						"boundary": "line",
+						"height": "100su",
+						"leading": 0.33,
+						"animations": [
+							{
+								"mask": [0, 0, "-10su", 0],
+								"translate": [
+									0,
+									"150rh"
+								]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+650", 1]
+								],
+								"ramp": 2,
+								"easing": "easeOutCubic",
+								"translate": [0, 0]
+							}
+						]
+					}],
+					["null", {
+						"layout": "vertical packed",
+						"align": "bottom left",
+						"gap": 25
+					}, [
+						["text", {
+							"enabled": ["$", ["exists", ["var", "detail-1"]]],
+							"mixins": ["ds-justworks-mixins",
+								"text"
+							],
+							"stagger": [500, 0],
+							"color": ["$", ["var", "color-secondary"]],
+							"string": ["$", ["var", "detail-1"]],
+							"font": ["$", ["var", "font-regular"]],
+							"height": "40su",
+							"opacity": ["animate",
+								[0,  0, "easeOutCubic"],
+								["+600", 1]
+							]
+						}],
+						["text", {
+							"enabled": ["$", ["exists", ["var", "detail-2"]]],
+							"mixins": ["ds-justworks-mixins",
+								"text"
+							],
+							"stagger": [600, 0],
+							"color": ["$", ["var", "color-secondary"]],
+							"string": ["$", ["var", "detail-2"]],
+							"font": ["$", ["var", "font-regular"]],
+							"height": "40su",
+							"opacity": ["animate",
+								[0,  0, "easeOutCubic"],
+								["+600", 1]
+							]
+						}],
+						["text", {
+							"enabled": ["$", ["exists", ["var", "detail-3"]]],
+							"mixins": ["ds-justworks-mixins",
+								"text"
+							],
+							"stagger": [700, 0],
+							"color": ["$", ["var", "color-secondary"]],
+							"string": ["$", ["var", "detail-3"]],
+							"font": ["$", ["var", "font-regular"]],
+							"height": "40su",
+							"opacity": ["animate",
+								[0,  0, "easeOutCubic"],
+								["+600", 1]
+							]
+						}],
+						["text", {
+							"enabled": ["$", ["exists", ["var", "detail-4"]]],
+							"mixins": ["ds-justworks-mixins",
+								"text"
+							],
+							"stagger": [800, 0],
+							"color": ["$", ["var", "color-secondary"]],
+							"string": ["$", ["var", "detail-4"]],
+							"font": ["$", ["var", "font-regular"]],
+							"height": "40su",
+							"opacity": ["animate",
+								[0,  0, "easeOutCubic"],
+								["+600", 1]
+							]
+						}]
+					]]
+				]],
+				["null", {
+				}, [
+					["null", {
+						"stagger": [800, -800],
+						"opacity": ["animate",
+							[0,  0, "plateauIn"],
+							["+600", 1]
+						],
+						"transform": [
+							["scale",
+								["animate",
+									[0, 0.8, "easeOutCubic"],
+									["+600", 1]
+								]
+							]
+						],
+						"mask": {
+							"transform": true,
+							"padding": [
+								["animate",
+									[0, "5rh", "easeOutCubic"],
+									["+300", 0]
+								],
+								["animate",
+									[0, "5rw", "easeOutCubic"],
+									["+300", 0]
+								],
+								["animate",
+									[0, "5rh", "easeOutCubic"],
+									["+300", 0]
+								],
+								["animate",
+									[0, "5rw", "easeOutCubic"],
+									["+300", 0]
+								]
+							]
+						}
+					}, [
+						["user-asset", {
+							"file": ["$", ["var", "image"]],
+							"mute": true,
+							"hold": true,
+							"justify": "center fill"
+						}]
+					]]
+				]]
+			]]
+		]]
+	]
+]

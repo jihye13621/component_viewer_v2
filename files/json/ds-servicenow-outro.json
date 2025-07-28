@@ -1,0 +1,154 @@
+[
+	"ds-servicenow-outro",
+	[
+		["ds-servicenow-mixins",
+			"color-primary",
+			"color-secondary",
+			"color-accent"
+		],
+		["dsx-mixins", 
+			"boilerplate-intro-outro"
+		],
+		{
+			"key": "do-transition-in",
+			"display": "Transition In",
+			"type": "bool",
+			"default": true,
+			"required": false
+		},
+		{
+			"key": "do-background",
+			"display": "Background",
+			"type": "bool",
+			"default": true,
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-su"]]
+		}, [
+			["solid", {
+				"mixins": ["dsx-mixins", ["safezone"]],
+				"color": ["$", ["var", "color-secondary"]],
+				"skip": ["$", ["not", ["var", "do-background"]]],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["and",
+							["var", "do-transition-in"],
+							["var", "do-background"]
+						]],
+						"mask": {
+							"padding": [
+								0,
+								0,
+								0,
+								["animate",
+									[0, "100rw", "easeInOutQuart"],
+									["+1000", 0]
+								]
+							]
+						}
+					}
+				]
+			}, [
+				["text", {
+					"stagger": [0, 0],
+					"end": "60%",
+					"mixins": ["ds-servicenow-mixins", "font-outro"],
+					"justify": "center",
+					"color": ["$", ["var", "color-accent"]],
+					"string": "The world works with ServiceNow.™",
+					"boundary": "word",
+					"animations": [
+						{
+							"indices": [4, 1],
+							"color": ["$", ["var", "color-primary"]]
+						},
+						{
+							"translate": [
+								"50su",
+								0
+							]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+1800", 1]
+							],
+							"opacity": 1,
+							"easing": "easeOutQuad",
+							"translate": [0, 0]
+						},
+						{
+							"mix": ["animate",
+								["100%", 1],
+								["-1000", 0]
+							],
+							"opacity": 0,
+							"easing": "easeInCubic",
+							"translate": [
+								"-100su",
+								0
+							]
+						}
+					],
+					"transform": [
+						["translate",
+							["animate",
+								[0, "700su", "easeOutQuart"],
+								["+1800", 0],
+								["100%", "-500su"],
+								["-1000", 0, "easeInCubic"]
+							],
+							0
+						]
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["var", "do-transition-in"]],
+							"stagger": [350, 0]
+						}
+					]
+				}],
+				["asset", {
+					"start": "60%",
+					"file": "./media/ds-servicenow-logo-animated.mov",
+					"rect": [
+						0,
+						0,
+						"800su",
+						"300su"
+					],
+					"align": "center",
+					"hold": true,
+					"justify": "fit center",
+					"opacity": ["animate",
+						[0, 0],
+						["+1000", 1]
+					],
+					"transform": [
+						["translate",
+							["animate",
+								[0, "200su", "easeOutQuad"],
+								["+500", 0]
+							],
+							0
+						]
+					]
+				}],
+				["text", {
+					"start": "60%",
+					"mixins": ["ds-servicenow-mixins", "font-legal"],
+					"justify": "bottom center",
+					"color": ["$", ["var", "color-primary"]],
+					"string": "©2025 ServiceNow, Inc. All rights reserved.",
+					"opacity": ["animate",
+						[1000, 0],
+						["+300", 1]
+					]
+				}]
+			]]
+		]]
+	]
+]

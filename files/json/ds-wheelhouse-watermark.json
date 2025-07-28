@@ -1,0 +1,233 @@
+[
+	"ds-wheelhouse-watermark",
+	[
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "text",
+			"default": "Optional text",
+			"required": false
+		},
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		},
+		{
+			"key": "color-2",
+			"display": "Color 2",
+			"type": "color",
+			"default": "#2B302B",
+			"required": false
+		},
+		["dsx-mixins", ["boilerplate"]],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [7, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"max-width": "800nsu",
+				"align": ["$", ["var", "#align"]],
+				"breakpoints": [
+					{
+						"enabled": ["$",
+							["eq",
+								["mod", ["nth", ["var", "position"], 0], 3],
+								2
+							]
+						],
+						"transform": [
+							["translate",
+								"75su",
+								0
+							]
+						]
+					}
+				]
+			}, [
+				["null", {
+					"layout": "horizontal packed match",
+					"align": "center",
+					"transform": [
+						["scale",
+							["animate",
+								[0, 0, "easeOutBack"],
+								["+330", 1],
+								["100%", 0],
+								["-300", 1, "easeInBack"]
+							],
+							"75su",
+							"75su"
+						]
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$",
+								["eq",
+									["mod", ["nth", ["var", "position"], 0], 3],
+									0
+								]
+							],
+							"transform": [
+								["translate",
+									"75su",
+									0
+								],
+								["scale",
+									["animate",
+										[0, 0, "easeOutBack"],
+										["+330", 1],
+										["100%", 0],
+										["-300", 1, "easeInBack"]
+									],
+									"100rw",
+									"75su"
+								],
+								["translate",
+									"-75su",
+									0
+								]
+							]
+						}
+					]
+				}, [
+					["solid", {
+						"z-index": 10,
+						"flex": {
+							"width": "150su",
+							"height": "150su"
+						},
+						"color": ["$", ["var", "color-1"]],
+						"radius": "200su",
+						"padding": [
+							"30su",
+							"30su",
+							"30su",
+							"30su"
+						],
+						"breakpoints": [
+							{
+								"enabled": ["$",
+									["eq",
+										["mod", ["nth", ["var", "position"], 0], 3],
+										0
+									]
+								],
+								"order": 2
+							}
+						]
+					}, [
+						["asset", {
+							"mute": true,
+							"file": "./media/ds-wheelhouse-icon.svg",
+							"justify": "fit center"
+						}]
+					]],
+					["solid", {
+						"enabled": ["$", ["exists", ["var", "text"]]],
+						"layout": "vertical packed center",
+						"align": "center",
+						"radius": "200su",
+						"color": ["$", ["var", "color-2"]],
+						"padding": [
+							"8su",
+							"75su",
+							"8su",
+							"180su"
+						],
+						"stagger": [500, -500],
+						"transform": [
+							["translate",
+								["animate",
+									[0, "-100rw", "easeInOutCubic"],
+									["+400", "-150su"],
+									["100%", "-100rw"],
+									["-400", "-150su", "easeInOutCubic"]
+								],
+								0
+							]
+						],
+						"mask": {
+							"radius": "200su",
+							"padding": [
+								0,
+								0,
+								0,
+								"-149su"
+							]
+						},
+						"breakpoints": [
+							{
+								"enabled": ["$",
+									["eq",
+										["mod", ["nth", ["var", "position"], 0], 3],
+										0
+									]
+								],
+								"mask": {
+									"radius": "200su",
+									"padding": [
+										0,
+										"-149su",
+										0,
+										0
+									]
+								},
+								"transform": [
+									["translate",
+										["animate",
+											[0, "100rw", "easeInOutCubic"],
+											["+400", "150su"],
+											["100%", "100rw"],
+											["-400", "150su", "easeInOutCubic"]
+										],
+										0
+									]
+								],
+								"padding": [
+									"8su",
+									"180su",
+									"8su",
+									"75su"
+								]
+							}
+						]
+					}, [
+						["text", {
+							"mixins": ["ds-wheelhouse-mixins", ["font-small"]],
+							"string": ["$", ["var", "text"]],
+							"color": ["$", ["var", "color-1"]],
+							"justify": "center left",
+							"breakpoints": [
+								{
+									"enabled": ["$",
+										["eq",
+											["mod", ["nth", ["var", "position"], 0], 3],
+											0
+										]
+									],
+									"justify": "center right"
+								}
+							]
+						}]
+					]]
+				]]
+			]]
+		]]
+	]
+]

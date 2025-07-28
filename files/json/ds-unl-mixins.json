@@ -1,0 +1,57 @@
+{
+	"params": {
+		"color-primary": {
+			"key": "color-primary",
+			"display": "Primary",
+			"type": "color",
+			"default": "#FEFDFA",
+			"required": false
+		},
+		"color-secondary": {
+			"key": "color-secondary",
+			"display": "Secondary",
+			"type": "color",
+			"default": "#D00000",
+			"required": false
+		},
+		"color-accent": {
+			"key": "color-accent",
+			"display": "Accent",
+			"type": "color",
+			"default": "#242423",
+			"required": false
+		}
+	},
+	"font-headline": {
+		"font": "./media/Liberator-HeavyItalic.otf",
+		"height": "100su"
+	},
+	"font-subhead": {
+		"font": "./media/WorkSans-Bold.ttf",
+		"height": "50su"
+	},
+	"font-speaker-name": {
+		"font": "./media/Liberator-HeavyItalic.otf",
+		"height": "70su"
+	},
+	"font-speaker-detail": {
+		"font": "./media/WorkSans-Medium.ttf",
+		"height": "40su"
+	},
+	"font-captions": {
+		"font": "./media/WorkSans-Medium.ttf",
+		"height": "70su"
+	},
+	"font-prompt-small": {
+		"font": "./media/WorkSans-Medium.ttf",
+		"height": "40su"
+	},
+	"font-prompt-large": {
+		"font": "./media/WorkSans-Medium.ttf",
+		"height": "60su"
+	},
+	"font-outro": {
+		"font": "./media/WorkSans-Bold.ttf",
+		"height": "60su"
+	}
+}

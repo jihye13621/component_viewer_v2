@@ -1,0 +1,109 @@
+[
+	"ds-clean-outro",
+	[
+		["dsx-mixins",
+			"outro"
+		],
+		["ds-clean-mixins",
+			"color-primary",
+			"color-accent",
+			"font-headline"
+		],
+		["dsx-mixins", ["boilerplate-intro-outro"]]
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]],
+			"color": ["$", ["var", "color-accent"]]
+		}, [
+			["null", {
+				"max-width": "1200nsu",
+				"layout": "vertical packed center",
+				"align": "center"
+			}, [
+				["text", {
+					"enabled": ["$", ["exists", ["var", "text"]]],
+					"mixins": ["ds-clean-mixins",
+						"text",
+						"text-title"
+					],
+					"string": ["$", ["var", "text"]],
+					"justify": "center",
+					"color": ["$", ["var", "color-primary"]],
+					"boundary": "word",
+					"animations": [
+						{
+							"translate": [
+								0,
+								"125su"
+							]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								[700, 1]
+							],
+							"easing": "easeOutCubic",
+							"ramp": 1.5,
+							"opacity": 1,
+							"translate": [0, 0]
+						},
+						{
+							"mix": ["animate", 
+								["100%", 1],
+								["-400", 0]
+							],
+							"opacity": 0,
+							"translate": [0, "-50su"],
+							"ramp": 1.5,
+							"easing": "easeInCubic"
+						}
+					]
+				}]
+			]],
+			["null", {
+				"rect": [
+					"30rw",
+					"65rh",
+					"40rw",
+					"35rh"
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["not", ["exists", ["var", "text"]]]],
+						"align": "center"
+					}
+				]
+			}, [
+				["user-asset", {
+					"mute": true,
+					"file": ["$", ["var", "logo"]],
+					"justify": "fit center",
+					"stagger": [500, 0],
+					"transform": [
+						["scale",
+							["animate",
+								[0, 0.8, "easeOutCubic"],
+								["+400", 1],
+								["100%", 0.8],
+								["-300", 1, "easeInCubic"]
+							]
+						]
+					],
+					"opacity": ["animate", 
+						[0, 0, "easeOutSine"],
+						["+150", 1],
+						["100%", 0],
+						["-150", 1, "easeInSine"]
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["not", ["exists", ["var", "text"]]]],
+							"stagger": [0, 0]
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

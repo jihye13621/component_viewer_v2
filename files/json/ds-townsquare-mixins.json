@@ -1,0 +1,56 @@
+{
+	"params": {
+		"color-1": {
+			"key": "color-1",
+			"display": "Primary",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		},
+		"color-2": {
+			"key": "color-2",
+			"display": "Secondary",
+			"type": "color",
+			"default": "#191919",
+			"required": false
+		},
+		"color-3": {
+			"key": "color-3",
+			"display": "Accent",
+			"type": "color",
+			"default": "#EF4136",
+			"required": false
+		}
+	},
+	"headline-0": {
+		"font": "./media/Oswald-SemiBold.ttf",
+		"height": "250su",
+		"leading": -0.3
+	},
+	"headline-1": {
+		"font": "./media/Oswald-SemiBold.ttf",
+		"height": "150su",
+		"leading": "-30su",
+		"kerning": -0.01
+	},
+	"headline-2": {
+		"font": "./media/Oswald-SemiBold.ttf",
+		"height": "100su"
+	},
+	"text-1": {
+		"font": "./media/Spartan-Medium.ttf",
+		"height": "70su",
+		"leading": -0.08,
+		"kerning": -0.01
+	},
+	"text-2": {
+		"font": "./media/Spartan-Medium.ttf",
+		"height": "50su",
+		"kerning": -0.02
+	},
+	"font-speaker-detail": {
+		"font": "./media/Spartan-Medium.ttf",
+		"height": "40su",
+		"kerning": -0.02
+	}
+}

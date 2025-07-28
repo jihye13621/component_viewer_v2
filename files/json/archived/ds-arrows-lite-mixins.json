@@ -1,0 +1,120 @@
+{
+	"params": {
+		"color-1": {
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		},
+		"color-2": {
+			"key": "color-2",
+			"display": "Color 2",
+			"type": "color",
+			"default": "#1B1F22",
+			"required": false
+		},
+		"color-3": {
+			"key": "color-3",
+			"display": "Color 3",
+			"type": "color",
+			"default": "#FFC310",
+			"required": false
+		}
+	},
+	"headline-0": {
+		"font": "./media/ABCDiatype-Bold.ttf",
+		"height": "200su"
+	},
+	"headline-1": {
+		"font": "./media/ABCDiatype-Bold.ttf",
+		"height": "140su",
+		"leading": -0.12
+	},
+	"headline-2": {
+		"font": "./media/ABCDiatype-Bold.ttf",
+		"height": "100su"
+	},
+	"text-1": {
+		"font": "./media/ABCDiatype-Regular.ttf",
+		"height": "64su"
+	},
+	"text-2": {
+		"font": "./media/ABCDiatype-Regular.ttf",
+		"height": "58su",
+		"leading": 0.1
+	},
+	"anchored-anim": {
+		"opacity": ["animate",
+			[0, 0, "easeOutSine"],
+			[100, 1],
+			["100%", 0],
+			["-100", 1, "easeInSine"]
+		],
+		"transform": [
+			["scale",
+				["animate",
+					[0, 0.8, "easeOutCubic"],
+					[250, 1],
+					["100%", 0.8],
+					["-250", 1, "easeInCubic"]
+				],
+				["$", ["switch", ["var", "position"], {
+					"1": 0,
+					"2": "50rw",
+					"3": "100rw",
+					"4": 0,
+					"5": "50rw",
+					"6": "100rw",
+					"7": 0,
+					"8": "50rw",
+					"9": "100rw",
+					"_": 0
+				}]],
+				["$", ["switch", ["var", "position"], {
+					"1": "100rh",
+					"2": "100rh",
+					"3": "100rh",
+					"4": "50rh",
+					"5": "50rh",
+					"6": "50rh",
+					"7": 0,
+					"8": 0,
+					"9": 0,
+					"_": 0
+				}]]
+			]
+		]
+	},
+	"anchored-anim-top": {
+		"opacity": ["animate",
+			[0, 0, "easeOutSine"],
+			[100, 1],
+			["100%", 0],
+			["-100", 1, "easeInSine"]
+		],
+		"transform": [
+			["scale",
+				["animate",
+					[0, 0.8, "easeOutCubic"],
+					[250, 1],
+					["100%", 0.8],
+					["-250", 1, "easeInCubic"]
+				],
+				["$", ["switch", ["var", "position"], {
+					"1": 0,
+					"2": "50rw",
+					"3": "100rw",
+					"4": 0,
+					"5": "50rw",
+					"6": "100rw",
+					"7": 0,
+					"8": "50rw",
+					"9": "100rw",
+					"_": 0
+				}]],
+				0
+			]
+		]
+	}
+}

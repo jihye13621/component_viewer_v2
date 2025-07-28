@@ -1,0 +1,123 @@
+[
+	"ds-impactdotcom-webinar-lines",
+	[
+		{
+			"key": "lines",
+			"display": "Lines",
+			"type": "object",
+			"default": [],
+			"required": false
+		},
+		{
+			"key": "stroke",
+			"display": "Stroke",
+			"type": "number",
+			"default": "4nsu",
+			"required": false
+		},
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": "#F77300",
+			"required": false
+		},
+		{
+			"key": "color-2",
+			"display": "Color 2",
+			"type": "color",
+			"default": "#F5333F",
+			"required": false
+		}
+	],
+	[
+		["for-each", {
+			"items": ["$", ["var", "lines"]]
+		}, [
+			["solid", {
+				"-calc-color": ["$",
+					["set", "#color", ["color-mix",
+						["var", "color-1"],
+						["var", "color-2"],
+						["nth", ["var", "item"], 0]
+					]]
+				],
+				"-calc-height": ["$",
+					["set", "#height",
+						["if", 
+							["gt", ["length", ["var", "item"]], 1],
+							["nth", ["var", "item"], 1],
+							1
+						]
+					]
+				],
+				"rect": [
+					0,
+					["$",
+						["if",
+							["lt", ["length", ["var", "item"]], 3],
+							0,
+							["if",
+								["eq", ["nth", ["var", "item"], 2], "top"],
+								0,
+								["concat",
+									["*", ["var", "#height"], 100],
+									"rh"
+								]
+							]
+						]
+					],
+					["$", ["var", "stroke"]],
+					["$",
+						["if",
+							["lt", ["length", ["var", "item"]], 3],
+							"100rh",
+							["if",
+								["eq", ["nth", ["var", "item"], 2], "top"],
+								["concat",
+									["*", ["var", "#height"], 100],
+									"rh"
+								],
+								["concat",
+									["*", ["-", 1, ["var", "#height"]], 100],
+									"rh"
+								]
+							]
+						]
+					]
+				],
+				"color": ["$", ["var", "#color"]],
+				"transform": [
+					["translate",
+						["$", ["*", ["width"], ["nth", ["var", "item"], 0]]],
+						0
+					]
+				]
+			}, [
+				["solid", {
+					"enabled": ["$", ["gt", ["length", ["var", "item"]], 1]],
+					"rect": [
+						0,
+						0,
+						"1000rw",
+						"1000rw"
+					],
+					"align": "top center",
+					"color": ["$", ["var", "#color"]],
+					"radius": 1000,
+					"breakpoints": [
+						{
+							"enabled": ["$", ["neq", ["nth", ["var", "item"], 2], "bottom"]],
+							"transform": [
+								["translate",
+									0,
+									["$", ["*", ["height"], ["var", "#height"]]]
+								]
+							]
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

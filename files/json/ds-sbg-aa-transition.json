@@ -1,0 +1,62 @@
+[
+	"ds-sbg-aa-transition",
+	[
+		["ds-sbg-aa-mixins",
+			"colors",
+			"color-selector"
+		]
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su"
+			]
+		}, [
+			["solid", {
+				"stagger": [0, 0],
+				"color": ["$", ["var", "#accent-2"]],
+				"transform": [
+					["translate",
+						["animate",
+							[0, "-100rw", "easeInQuart"],
+							["+800", 0],
+							["100%", "100rw"],
+							["-800", 0, "easeOutQuart"]
+						],
+						0
+					]
+				]
+			}],
+			["solid", {
+				"stagger": [150, -150],
+				"color": ["$", ["var", "#accent-1"]],
+				"transform": [
+					["translate",
+						["animate",
+							[0, "-100rw", "easeInQuart"],
+							["+800", 0],
+							["100%", "100rw"],
+							["-800", 0, "easeOutQuart"]
+						],
+						0
+					]
+				]
+			}],
+			["solid", {
+				"stagger": [300, -300],
+				"color": ["$", ["var", "#background"]],
+				"transform": [
+					["translate",
+						["animate",
+							[0, "-100rw", "easeInQuart"],
+							["+800", 0],
+							["100%", "100rw"],
+							["-800", 0, "easeOutQuart"]
+						],
+						0
+					]
+				]
+			}]
+		]]
+	]
+]

@@ -1,0 +1,107 @@
+[
+	"ds-teded-intro",
+	[
+		["dsx-mixins", ["intro"]],
+		["ds-teded-mixins", "color-1", "color-3"],
+		["dsx-mixins", ["boilerplate-intro-outro"]]
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su"]]
+		}, [
+			["solid", {
+				"mixins": ["dsx-mixins", ["safezone"]],
+				"color": ["$", ["var", "color-3"]]
+			}, [
+				["null", {
+					"max-width": "1200nsu",
+					"layout": "vertical packed center",
+					"align": "center",
+					"gap": "60su",
+					"transform": [
+						["scale",
+							["animate",
+								[0, 0.9],
+								["100%", 1]
+							]
+						]
+					]
+				}, [
+					["text", {
+						"mixins": ["ds-teded-mixins", ["headline-1"]],
+						"string": ["$", ["var", "headline"]],
+						"height": "110su",
+						"leading": -0.2,
+						"case": "uppercase",
+						"justify": "center",
+						"color": ["$", ["var", "color-1"]],
+						"boundary": "word",
+						"stagger": [0, -200],
+						"animations": [
+							{
+								"translate": [0, "100su"]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+800", 1]
+								],
+								"translate": [0, 0],
+								"opacity": 1,
+								"ramp": 1.5,
+								"easing": "easeOutQuart"
+							},
+							{
+								"mix": ["animate",
+									["100%", null],
+									["+100", 1],
+									["-600", 0]
+								],
+								"translate": [0, "-100su"],
+								"opacity": 0,
+								"ramp": 1.5,
+								"easing": "easeInQuart"
+							}
+						]
+					}],
+					["text", {
+						"enabled": ["$", ["exists", ["var", "subhead"]]],
+						"mixins": ["ds-teded-mixins", ["text-1"]],
+						"string": ["$", ["var", "subhead"]],
+						"case": "uppercase",
+						"justify": "center",
+						"color": ["$", ["var", "color-1"]],
+						"boundary": "line",
+						"stagger": [400, 0],
+						"animations": [
+							{
+								"translate": [0, "70su"]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+800", 1]
+								],
+								"translate": [0, 0],
+								"opacity": 1,
+								"ramp": 1.5,
+								"easing": "easeOutQuart"
+							},
+							{
+								"mix": ["animate",
+									["100%", null],
+									["+100", 1],
+									["-600", 0.2]
+								],
+								"translate": [0, "-100su"],
+								"opacity": 0,
+								"ramp": 1.5,
+								"easing": "easeInQuart"
+							}
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

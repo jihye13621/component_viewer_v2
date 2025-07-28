@@ -1,0 +1,117 @@
+[
+	"ds-virta-outro",
+	[
+		{
+			"key": "theme",
+			"display": "Theme",
+			"type": "string",
+			"options": [
+				{
+					"key": "one",
+					"display": "White"
+				},
+				{
+					"key": "two",
+					"display": "Light Blue"
+				},
+				{
+					"key": "three",
+					"display": "Blue"
+				}
+			],
+			"default": "one",
+			"required": false
+		},
+		{
+			"key": "orientation",
+			"display": "Logo Lockup",
+			"type": "string",
+			"options": [
+				{
+					"key": "horiz",
+					"display": "Horizontal"
+				},
+				{
+					"key": "vert",
+					"display": "Vertical"
+				}
+			],
+			"default": "horiz",
+			"required": false
+		},
+		{
+			"key": "#colors",
+			"display": "Color",
+			"type": "object",
+			"default": [
+				"#FFFFFF",
+				"#005EE7"
+			],
+			"required": false,
+			"private": true,
+			"script": ["$",
+				["switch", ["var", "theme"], {
+					"one": [
+						"#FFFFFF",
+						"#005EE7"
+					],
+					"two": [
+						"#D1EDFF",
+						"#005EE87"
+					],
+					"three": [
+						"#005EE7",
+						"#D1EDFF"
+					],
+					"_": [
+						"#FFFFFF",
+						"#005EE7"
+					]
+				}]
+			]
+		}
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]],
+			"color": ["$", ["nth", ["var", "#colors"], 0]]
+		}, [
+			["false-color", {
+				"layout": "vertical packed",
+				"max-width": "950nsu",
+				"align": "center",
+				"color-1": ["$", ["nth", ["var", "#colors"], 1]],
+				"color-2": ["$", ["nth", ["var", "#colors"], 1]],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["and",
+							["lt", ["aspect"], 1],
+							["eq", ["var", "orientation"], "vert"]
+						]],
+						"max-width": "600nsu"
+					},
+					{
+						"enabled": ["$", ["and",
+							["lt", ["aspect"], 1],
+							["eq", ["var", "orientation"], "horiz"]
+						]],
+						"max-width": "900su"
+					}
+				]
+			}, [
+				["asset", {
+					"file": ["$",
+						["if",
+							["eq", ["var", "orientation"], "horiz"],
+							"./media/ds-virta-logo-animated.mov",
+							"./media/ds-virta-logo-animated-vert.mov"
+						]
+					],
+					"hold": true,
+					"mute": true,
+					"justify": "fit center"
+				}]
+			]]
+		]]
+	]
+]

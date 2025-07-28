@@ -1,0 +1,187 @@
+[
+	"ds-suse-outro",
+	[
+		{
+			"key": "#screen-size",
+			"display": "Screen Size",
+			"type": "number",
+			"default": 100,
+			"private": true,
+			"required": false,
+			"script": ["$",
+				["let",
+					[
+						["width", ["width"]],
+						["height", ["height"]]
+					],
+					["sqrt",
+						["+",
+							["*", ["var", "width"], ["var", "width"]],
+							["*", ["var", "height"], ["var", "height"]]
+						]
+					]
+				]
+			]
+		},
+		{
+			"key": "#screen-angle",
+			"display": "Screen Angle",
+			"type": "number",
+			"default": 100,
+			"private": true,
+			"required": false,
+			"script": ["$",
+				["*",
+					-1,
+					["/",
+						["atan",
+							["height"],
+							["width"]
+						],
+						["tau"]
+					]
+				]
+			]
+		},
+		{
+			"key": "#asset-dur",
+			"display": "Asset Dur",
+			"type": "number",
+			"default": 100,
+			"private": true,
+			"required": false,
+			"script": ["$",
+				["dur", "./media/ds-suse-logo-animated.json"]
+			]
+		},
+		["ds-suse-mixins",
+			"white",
+			"green",
+			"dark-green"
+		]
+	],
+	[
+		["solid", {
+			"flex": {
+				"position": "fixed"
+			},
+			"color": ["$", ["var", "dark-green"]],
+			"rect": [
+				0,
+				0,
+				["$", ["var", "#screen-size"]],
+				["$", ["var", "#screen-size"]]
+			],
+			"align": "center",
+			"transform": [
+				["translate",
+					0,
+					["animate",
+						[0, ["$", ["*", -1, ["var", "#screen-size"]]], "easeInOutQuad"],
+						["+750", 0, "easeInQuad"]
+					]
+				],
+				["rotate", ["$", ["*", -1, ["var", "#screen-angle"]]]]
+			]
+		}],
+		["solid", {
+			"stagger": [250, 0],
+			"flex": {
+				"position": "fixed"
+			},
+			"color": ["$", ["var", "green"]],
+			"rect": [
+				0,
+				0,
+				["$", ["var", "#screen-size"]],
+				["$", ["var", "#screen-size"]]
+			],
+			"align": "center",
+			"transform": [
+				["translate",
+					0,
+					["animate",
+						[0, ["$", ["*", -1, ["var", "#screen-size"]]], "easeInOutQuad"],
+						["+750", 0, "easeInQuad"]
+					]
+				],
+				["rotate", ["$", ["*", -1, ["var", "#screen-angle"]]]]
+			]
+		}],
+		["solid", {
+			"color": [0, 0, 0, 1],
+			"buffer": "knockout",
+			"end": 850
+		}, [
+			["solid", {
+				"stagger": [350, 0],
+				"flex": {
+					"position": "fixed"
+				},
+				"color": [1, 1, 1, 1],
+				"rect": [
+					0,
+					0,
+					["$", ["var", "#screen-size"]],
+					["$", ["var", "#screen-size"]]
+				],
+				"align": "center",
+				"transform": [
+					["translate",
+						0,
+						["animate",
+							[0, ["$", ["*", -1, ["var", "#screen-size"]]], "easeInOutQuad"],
+							["+500", 0]
+						]
+					],
+					["rotate", ["$", ["var", "#screen-angle"]]]
+				]
+			}]
+		]],
+		["solid", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			],
+			"color": ["$", ["var", "white"]],
+			"effect": [
+				["matte", {
+					"buffer-in": "knockout",
+					"end": 850
+				}]
+			]
+		}, [
+			["asset", {
+				"rect": [
+					0,
+					0,
+					"50rw",
+					"50rh"
+				],
+				"align": "center",
+				"file": "./media/ds-suse-logo-animated.json",
+				"justify": "fit center",
+				"lottie-driver": ["animate",
+					[0, 0],
+					[
+						["$", ["to-relative-string", ["var", "#asset-dur"]]],
+						1
+					]
+				],
+				"opacity": 0.999999999,
+				"transform": [
+					["scale",
+						["animate",
+							[0, 0.9],
+							["100%", 1]
+						]
+					]
+				]
+			}],
+			["asset", {
+				"file": "./media/ds-suse-outro-audio.mp3",
+				"start": 800
+			}]
+		]]
+	]
+]

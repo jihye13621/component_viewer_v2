@@ -1,0 +1,80 @@
+[
+	"ds-sbg-watermark-general",
+	[
+		{
+			"key": "station",
+			"display": "Station",
+			"type": "string",
+			"options": [
+				{
+					"key": "wjla",
+					"display": "Washington DC (WJLA)"
+				},
+				{
+					"key": "wjar",
+					"display": "NBC 10 (WJAR)"
+				},
+				{
+					"key": "wgme",
+					"display": "CBS 13 (WGME)"
+				},
+				{
+					"key": "kbak",
+					"display": "Bakersfield (KBAK)"
+				},
+				{
+					"key": "kutv",
+					"display": "2 News (KUTV)"
+				},
+				{
+					"key": "kval",
+					"display": "KVAL"
+				},
+				{
+					"key": "wach",
+					"display": "FOX57 (WACH)"
+				},
+				{
+					"key": "wpec",
+					"display": "CBS12 (WPEC)"
+				},
+				{
+					"key": "wstm",
+					"display": "CNY Central (WSTM)"
+				},
+				{
+					"key": "kboi",
+					"display": "2 Idaho News (KBOI)"
+				},
+				{
+					"key": "wtvc",
+					"display": "Fox Chattanooga (WTVC)"
+				}
+			],
+			"default": "wjla",
+			"required": false,
+			"private": true
+		},
+		{
+			"key": "size",
+			"display": "Size",
+			"type": "number",
+			"default": 1.0,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"step": 0.05,
+				"minimum": 0.5,
+				"maximum": 1.5
+			}
+		},
+		["ds-sbg-mixins", "do-safezone"]
+	],
+	[
+		["ds-sbg-watermark", {
+			"size": ["$", ["var", "size"]],
+			"do-safezone": ["$", ["var", "do-safezone"]],
+			"station": ["$", ["var", "station"]]
+		}]
+	]
+]

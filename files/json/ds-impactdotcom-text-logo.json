@@ -1,0 +1,254 @@
+[
+	"ds-impactdotcom-text-logo",
+	[
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "text",
+			"default": "advocate",
+			"required": false
+		},
+		["ds-impactdotcom-mixins",
+			"color-primary",
+			"font-thin"
+		],
+		{
+			"key": "dark-mode",
+			"display": "Dark Mode",
+			"type": "bool",
+			"default": false,
+			"required": false
+		}
+	],
+	[
+		["solid", {
+			"color": ["$",
+				["if",
+					["var", "dark-mode"],
+					["var", "color-black"],
+					["var", "color-white"]
+				]
+			]
+		}],
+		["null", {
+			"stagger": [2600, 0],
+			"mixins": ["dsx-mixins", ["set-su"]],
+			"breakpoints": [
+				{
+					"enabled": ["$", ["exists", ["var", "text"]]],
+					"padding": [
+						["animate",
+							[0, 0],
+							["+1000", ["$", ["nth", ["safezone"], 0]]]
+						],
+						["animate",
+							[0, 0],
+							["+1000", ["$", ["nth", ["safezone"], 1]]]
+						],
+						["animate",
+							[0, 0],
+							["+1000", ["$", ["nth", ["safezone"], 2]]]
+						],
+						["animate",
+							[0, 0],
+							["+1000", ["$", ["nth", ["safezone"], 3]]]
+						]
+					],
+					"script": ["$$",
+						["let",
+							[
+								["start", ["+", ["key", ["var", "self"], "start"], 2600]],
+								["end", ["+", ["var", "start"], 1000]],
+								["text",
+									["nth",
+										["key",
+											["nth", ["key", ["var", "self"], "children"], 2],
+											"children"
+										],
+										0
+									]
+								],
+								["asset",
+									["nth",
+										["key",
+											["nth", ["key", ["var", "self"], "children"], 0],
+											"children"
+										],
+										0
+									]
+								],
+								["asset-width", ["key", ["key", ["var", "asset"], "roi"], "width"]],
+								["text-width", ["key", ["key", ["var", "text"], "roi"], "width"]],
+								["offset",
+									["/",
+										["-",
+											["*", ["var", "asset-width"], 0.5, 0.7],
+											["var", "text-width"]
+										],
+										2
+									]
+								],
+								["animation",
+									["ease",
+										["map",
+											["var", "frame"],
+											["var", "start"],
+											["var", "end"],
+											0,
+											1
+										],
+										"easeInOutQuad"
+									]
+								]
+							],
+							["live-transform",
+								["var", "self"],
+								"translate",
+								["*", ["var", "animation"], ["var", "offset"]],
+								0
+							]
+						]	
+					]
+				}
+			]
+		}, [
+			["null", {
+				"stagger": [2600, 0],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["exists", ["var", "text"]]],
+						"transform": [
+							["scale",
+								["animate",
+									[0, 1, "easeInOutCubic"],
+									["+1000", 0.6]
+								],
+								0,
+								"50rh"
+							],
+							["translate",
+								["animate",
+									[0, 0],
+									["+1000", "5rw"]
+								],
+								0
+							],
+							["translate",
+								["animate",
+									[0, 0],
+									["+1000", "-50su"]
+								],
+								["animate",
+									[0, 0],
+									["+1000", "12su"]
+								]
+							]
+						]
+					}
+				]
+			}, [
+				["asset", {
+					"file": ["$",
+						["if",
+							["var", "dark-mode"],
+							"./media/ds-impactdotcom-logo-dark.mp4",
+							"./media/ds-impactdotcom-logo.mp4"
+						]
+					],
+					"hold": true,
+					"justify": "fit center",
+					"mask": {
+						"padding": [
+							4,
+							4,
+							4,
+							4
+						]
+					}
+				}]
+			]],
+			["null", {
+				"enabled": ["$", ["exists", ["var", "text"]]],
+				"stagger": [3200, 0],
+				"rect": [
+					0,
+					0,
+					"4su",
+					"200su"
+				],
+				"align": "center",
+				"transform": [
+					["scale",
+						1,
+						["animate",
+							[0, 0, "easeInOutCubic"],
+							["+500", 1]
+						],
+						0,
+						"50rh"
+					],
+					["rotate",
+						0.05
+					]
+				]
+			}, [
+				["solid", {
+					"color": ["$",
+						["if",
+							["var", "dark-mode"],
+							["var", "color-white"],
+							["var", "color-black"]
+						]
+					]
+				}]
+			]],
+			["null", {
+				"enabled": ["$", ["exists", ["var", "text"]]],
+				"rect": [
+					"50rw",
+					0,
+					"50rw",
+					"100rh"
+				],
+				"padding": [
+					0,
+					0,
+					0,
+					"50su"
+				]
+			}, [
+				["text", {
+					"stagger": [3600, 0],
+					"mixins": ["ds-impactdotcom-mixins",
+						"text",
+						"text-headline"
+					],
+					"font": ["$", ["var", "font-thin"]],
+					"color": ["$",
+						["if",
+							["var", "dark-mode"],
+							["var", "color-white"],
+							["var", "color-black"]
+						]
+					],
+					"string": ["$", ["var", "text"]],
+					"fit": true,
+					"justify": "center left",
+					"opacity": ["animate",
+						[0, 0, "easeOutQuad"],
+						["+500", 1]
+					],
+					"transform": [
+						["translate",
+							["animate",
+								[0, "-40su", "easeOutCubic"],
+								["+500", 0]
+							],
+							0
+						]
+					]
+				}]
+			]]
+		]]
+	]
+]

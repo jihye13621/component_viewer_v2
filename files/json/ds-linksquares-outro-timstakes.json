@@ -1,0 +1,108 @@
+[
+	"ds-linksquares-outro-timstakes",
+	[
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "text",
+			"default": "Hear more from Tim on Cockpit Counsel",
+			"required": false
+		},
+		{
+			"key": "cta",
+			"display": "CTA",
+			"type": "text",
+			"default": "Watch here",
+			"required": false
+		},
+		["ds-linksquares-mixins",
+			"color-primary",
+			"color-secondary",
+			"color-accent",
+			"font-body"
+		],
+		["dsx-mixins", ["boilerplate-intro-outro"]]
+	],
+	[
+		["asset", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]],
+			"file": "./media/ds-linksquares-outro-timstakes.mp4",
+			"justify": "fill",
+			"loop": true
+		}, [
+			["null", {
+				"max-width": "1300nsu",
+				"layout": "vertical packed center",
+				"align": "center",
+				"gap": "75su"
+			}, [
+				["text", {
+					"enabled": ["$", ["exists", ["var", "text"]]],
+					"mixins": ["ds-linksquares-mixins",
+						"text"
+					],
+					"measure": "cap-size",
+					"string": ["$", ["var", "text"]],
+					"font": "./media/GT-America-Extended-Medium.otf",
+					"height": "45su",
+					"leading": "10su",
+					"kerning": 0.01,
+					"justify": "center",
+					"case": "uppercase",
+					"color": ["$", ["var", "color-secondary"]],
+					"boundary": "word",
+					"animations": [
+						{
+							"translate": [
+								0,
+								"-70su"
+							]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								[700, 1]
+							],
+							"easing": "easeOutCubic",
+							"ramp": 1.5,
+							"opacity": 1,
+							"translate": [0, 0]
+						}
+					]
+				}],
+				["solid", {
+					"enabled": ["$", ["exists", ["var", "cta"]]],
+					"stagger": [200, 0],
+					"color": ["$", ["var", "color-accent"]],
+					"layout": "vertical packed center",
+					"padding": [
+						"30su",
+						"60su"
+					],
+					"radius": "100su",
+					"transform": [
+						["scale", 
+							["animate",
+								[0, 0, "easeOutBack"],
+								["+450", 1]
+							]
+						]
+					]
+				}, [
+					["text", {
+						"enabled": ["$", ["exists", ["var", "cta"]]],
+						"mixins": ["ds-linksquares-mixins",
+							"text",
+							"text-body"
+						],
+						"string": ["$", ["var", "cta"]],
+						"height": "55su",
+						"kerning": 0.01,
+						"justify": "center",
+						"color": ["$", ["var", "color-secondary"]]
+					}]
+				]]
+			]]
+		]]
+	]
+]

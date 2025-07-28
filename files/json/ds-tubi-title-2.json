@@ -1,0 +1,128 @@
+[
+	"ds-tubi-title-2",
+	[
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "text",
+			"default": "78M Monthly Active Users",
+			"required": false
+		},
+		{
+			"key": "detail",
+			"display": "Detail",
+			"type": "text",
+			"default": "Source: Tubi Internal Data, Feb 2024",
+			"required": false
+		},
+		{
+			"key": "do-background",
+			"display": "Gradient Background",
+			"type": "bool",
+			"default": true,
+			"required": false
+		},
+		["ds-tubi-mixins",
+			"color-primary",
+			"color-secondary",
+			"font-light",
+			"font-black"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		]
+	],
+	[
+		["solid", {
+			"enabled": ["$", ["var", "do-background"]],
+			"mixins": [
+				["ds-tubi-mixins", ["bg-gradient"]]
+			]
+		}],
+		["null", {
+			"mixins": [
+				["dsx-mixins", ["set-su", "safezone"]]
+			]
+		}, [
+			["null", {
+				"enabled": ["$", ["exists", ["var", "text"]]],
+				"units": {
+					"grid": "100rh"
+				}
+			}, [
+				["text", {
+					"mixins": ["ds-tubi-mixins", "text"],
+					"font": ["$", ["var", "font-black"]],
+					"height": "220su",
+					"string": ["$", ["var", "text"]],
+					"justify": "center",
+					"measure": "cap-size",
+					"leading": "20su",
+					"case": "uppercase",
+					"color": ["$", ["var", "color-white"]],
+					"boundary": "line",
+					"animations": [
+						{
+							"indices": [0, 1],
+							"translate": [
+								0,
+								"-1grid"
+							]
+						},
+						{
+							"indices": [1, 100],
+							"translate": [
+								0,
+								"1grid"
+							]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+500", 1],
+								["100%", 0],
+								["-500", 1]
+							],
+							"ramp": 100,
+							"easing": "easeOutQuad",
+							"translate": [0, 0]
+						}
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["lte", ["aspect"], 1]],
+							"height": "150su"
+						}
+					]
+				}]
+			]],
+			["text", {
+				"stagger": [250, 0],
+				"mixins": ["ds-tubi-mixins", "text"],
+				"font": ["$", ["var", "font-light"]],
+				"height": "40nsu",
+				"string": ["$", ["var", "detail"]],
+				"justify": "center bottom",
+				"leading": "10su",
+				"fit": true,
+				"color": ["$", ["var", "color-white"]],
+				"opacity": ["animate",
+					[0, 0],
+					["+250", 1]
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["gt", ["key", ["comp-timing"], "duration"], 3000]],
+						"stagger": [250, -200],
+						"opacity": ["animate",
+							[0, 0],
+							["+250", 1],
+							["100%", 0],
+							["-200", 1]
+						]
+					}
+				]
+			}]
+		]]
+	]
+]

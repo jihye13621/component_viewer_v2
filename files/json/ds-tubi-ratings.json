@@ -1,0 +1,117 @@
+[
+	"ds-tubi-ratings",
+	[
+		{
+			"key": "rating",
+			"display": "Rating",
+			"type": "string",
+			"default": "g",
+			"options": [
+				{
+					"key": "g",
+					"display": "G"
+				},
+				{
+					"key": "14-l",
+					"display": "14 L"
+				},
+				{
+					"key": "14-v",
+					"display": "14 V"
+				},
+				{
+					"key": "14-lv",
+					"display": "14 LV"
+				},
+				{
+					"key": "14-lsv",
+					"display": "14 LSV"
+				},
+				{
+					"key": "ma",
+					"display": "MA"
+				},
+				{
+					"key": "ma-l",
+					"display": "MA L"
+				},
+				{
+					"key": "ma-lv",
+					"display": "MA LV"
+				},
+				{
+					"key": "ma-lsv",
+					"display": "MA LSV"
+				}
+			]
+		},
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "override-opacity",
+			"display": "Opacity",
+			"type": "number",
+			"default": 1,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"step": 0.05,
+				"minimum": 0.0,
+				"maximum": 1.0
+			}
+		},
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [7, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["asset", {
+				"file": ["$",
+					["concat",
+						"./media/ds-tubi-ratings-",
+						["var", "rating"],
+						".svg"
+					]
+				],
+				"rect": [
+					0,
+					0,
+					"150su",
+					"150su"
+				],
+				"justify": ["$", ["concat", "fit ", ["var", "#align"]]],
+				"align": ["$", ["var", "#align"]],
+				"svg-recolor": ["$", ["var", "color-hello-yellow"]],
+				"opacity": ["animate",
+					[0, 0],
+					["+150", ["$", ["var", "override-opacity"]]],
+					["100%", 0],
+					["-100", ["$", ["var", "override-opacity"]]]
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["gt", ["aspect"], 1.0]],
+						"rect": [
+							0,
+							0,
+							"200su",
+							"200su"
+						]
+					}
+				]
+			}]
+		]]
+	]
+]

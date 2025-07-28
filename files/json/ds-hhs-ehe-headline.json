@@ -1,0 +1,101 @@
+[
+	"ds-hhs-ehe-headline",
+	[
+		["dsx-mixins",
+			"headline"
+		],
+		{
+			"key": "color-white",
+			"display": "Color",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		},
+		{
+			"key": "color-light-blue",
+			"display": "Color",
+			"type": "color",
+			"default": "#88ACFF",
+			"required": false
+		},
+		{
+			"key": "color-dark-blue",
+			"display": "Color",
+			"type": "color",
+			"default": "#34006F",
+			"required": false
+		},
+		["ds-hhs-ehe-mixins",
+			"font-regular",
+			"font-bold"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [5, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"max-width": "800nsu",
+				"gap": "40su"
+			}, [
+				["text", {
+					"enabled": ["$", ["exists", ["var", "headline"]]],
+					"mixins": ["ds-hhs-ehe-mixins",
+						"blink-in-out"
+					],
+					"font": ["$", ["var", "font-bold"]],
+					"measure": "cap-size",
+					"case": "uppercase",
+					"height": "150su",
+					"leading": "20su",
+					"string": ["$", ["var", "headline"]],
+					"justify": ["$", ["var", "#align"]],
+					"color": ["$", ["var", "color-white"]]
+				}],
+				["solid", {
+					"enabled": ["$", ["exists", ["var", "subhead"]]],
+					"mixins": ["ds-hhs-ehe-mixins",
+						"box-in-out"
+					],
+					"layout": "vertical packed",
+					"stagger": [200, 0],
+					"align": ["$", ["var", "#align"]],
+					"color": ["$", ["var", "color-light-blue"]],
+					"padding": [
+						"30su",
+						"30su"
+					]
+				}, [
+					["text", {
+						"enabled": ["$", ["exists", ["var", "subhead"]]],
+						"mixins": ["ds-hhs-ehe-mixins",
+							"text",
+							"slide-in"
+						],
+						"font": ["$", ["var", "font-regular"]],
+						"height": "50su",
+						"string": ["$", ["var", "subhead"]],
+						"justify": ["$", ["var", "#align"]],
+						"color": ["$", ["var", "color-dark-blue"]]
+					}]
+				]]
+			]]
+		]]
+	]
+]

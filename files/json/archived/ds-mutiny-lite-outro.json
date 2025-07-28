@@ -1,0 +1,161 @@
+[
+	"ds-mutiny-lite-outro",
+	[
+		["dsx-mixins", ["outro"]],
+		["ds-mutiny-lite-mixins", "color-light", "color-dark"],
+		["dsx-mixins", ["boilerplate-intro-outro"]]
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su"]]
+		}, [
+			["solid", {
+				"mixins": ["dsx-mixins", ["safezone"]],
+				"color": ["$", ["var", "color-light"]]
+			}, [
+				["text", {
+					"max-width": "1200nsu",
+					"enabled": ["$", ["exists", ["var", "text"]]],
+					"mixins": ["ds-mutiny-lite-mixins", ["font-body"]],
+					"string": ["$", ["var", "text"]],
+					"justify": "center left",
+					"color": ["$", ["var", "color-dark"]],
+					"stagger": [0, 0],
+					"boundary": "word",
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[1200, 0, "easeInOutQuint"],
+								["+800", "-40ch"]
+							]	
+						]
+					],
+					"animations": [
+						{
+							"translate": [0, "100su"]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+1000", 1]
+							],
+							"translate": [0, 0],
+							"opacity": 1,
+							"ramp": 1.5,
+							"easing": "easeOutQuart"
+						},
+						{
+							"mix": ["animate",
+								["100%", null],
+								["+100", 1],
+								["-600", 0]
+							],
+							"translate": [0, "-100su"],
+							"opacity": 0,
+							"ramp": 1.5,
+							"easing": "easeInQuart"
+						}
+					]
+				}]
+			]],
+			["solid", {
+				"mixins": ["dsx-mixins", ["safezone"]],
+				"color": ["$", ["var", "color-dark"]],
+				"mask": {
+					"padding": [
+						["animate",
+							[1000, "100ch", "easeInOutQuint"],
+							["+1000", 0]
+						],
+						0,
+						0,
+						0
+					]
+				}
+			}, [
+				["text", {
+					"max-width": "1200nsu",
+					"mixins": ["ds-mutiny-lite-mixins", ["font-body"]],
+					"string": ["$", ["var", "text"]],
+					"justify": "center left",
+					"color": ["$", ["var", "color-light"]],
+					"stagger": [0, 0],
+					"boundary": "word",
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[1200, 0, "easeInOutQuint"],
+								["+800", "-40ch"]
+							]	
+						]
+					],
+					"animations": [
+						{
+							"translate": [0, "100su"]
+						},
+						{
+							"mix": ["animate",
+								[300, 0],
+								["+1000", 1]
+							],
+							"translate": [0, 0],
+							"opacity": 1,
+							"ramp": 1.5,
+							"easing": "easeOutQuart"
+						},
+						{
+							"mix": ["animate",
+								["100%", null],
+								["+100", 1],
+								["-500", 0]
+							],
+							"translate": [0, "-100su"],
+							"opacity": 0,
+							"ramp": 1.5,
+							"easing": "easeInQuart"
+						}
+					]
+				}],
+				["asset", {
+					"mute": true,
+					"file": ["$", ["var", "logo"]],
+					"justify": "fit bottom left",
+					"align": "bottom left",
+					"stagger": [1400, 0],
+					"rect": [
+						0,
+						0,
+						"400nsu",
+						"400nsu"
+					],
+					"transform": [
+						["translate",
+							0,
+							["animate", 
+								[0, "300su", "easeOutQuint"],
+								["+600", 0],
+								["100%", "-100su"],
+								["-400", 0, "easeInQuart"]
+							]
+						]
+					],
+					"opacity": ["animate", 
+						[0, 0, "easeOutQuad"],
+						["+400", 1],
+						["100%", 0],
+						["-400", 1, "easeInQuad"]
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["eq", ["var", "logo"], "./media/capsule.svg"]],
+							"file": "./media/ds-mutiny-lite-logo.svg",
+							"svg-recolor": ["$", ["var", "color-light"]]
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

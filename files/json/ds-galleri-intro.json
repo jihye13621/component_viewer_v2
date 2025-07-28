@@ -1,0 +1,38 @@
+[
+	"ds-galleri-intro",
+	[
+
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins", "set-su"],
+			"color": [1, 1, 1, 1],
+			"opacity": ["animate",
+				["100%", 0],
+				["-500", 1]
+			]
+		}, [
+			["asset", {
+				"file": "./media/ds-galleri-logo-animated.mp4",
+				"justify": "fit center",
+				"hold": true,
+				"mute": true,
+				"rect": [
+					0,
+					0,
+					"50rw",
+					"50rh"
+				],
+				"align": "center",
+				"mask": {
+					"padding": [
+						"2nsu",
+						"2nsu",
+						"2nsu",
+						"2nsu"
+					]
+				}
+			}]
+		]]
+	]
+]

@@ -1,0 +1,136 @@
+[
+	"ds-sothebys-captions-alt-2",
+	[
+		["dsx-mixins",
+			"captions",
+			"boilerplate-captions"
+		],
+		["ds-sothebys-mixins",
+			"font-toggle"
+		],
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"default": "#ffffff",
+			"type": "color",
+			"required": false
+		},
+		{
+			"key": "max-words",
+			"display": "Words",
+			"type": "number",
+			"default": 8,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 1,
+				"minimum": 1,
+				"maximum": 12
+			}
+		},
+		{
+			"key": "direction",
+			"display": "Slide To",
+			"default": "top-left",
+			"type": "string",
+			"required": false,
+			"options": [
+				{
+					"key": "top-left",
+					"display": "Top Left"
+				},
+				{
+					"key": "bottom-left",
+					"display": "Bottom Left"
+				},
+				{
+					"key": "top-right",
+					"display": "Top Right"
+				},
+				{
+					"key": "bottom-right",
+					"display": "Bottom Right"
+				}
+			]
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			],
+			"rect": [
+				0,
+				0,
+				"50rw",
+				"50rh"
+			],
+			"align": ["$", 
+				["switch", ["var", "direction"], {
+					"top-left": "top left",
+					"bottom-left": "bottom left",
+					"top-right": "top right",
+					"bottom-right": "bottom right"
+				}]
+			],
+			"breakpoints": [
+				{
+					"enabled": ["$", ["<=", ["aspect"], 1]],
+					"rect": [
+						0,
+						0,
+						"75rw",
+						"50rh"
+					]
+				}
+			]
+		}, [
+			["text", {
+				"mixins": ["ds-sothebys-mixins",
+					"font-toggle"
+				],
+				"color": ["$", ["var", "color-1"]],
+				"height": "100su",
+				"measure": "letter-size",
+				"boundary": "word",
+				"transcript": ["$",
+					["transcript-split",
+						["var", "transcript"],
+						["var", "max-words"]
+					]
+				],
+				"justify": ["$", 
+					["switch", ["var", "direction"], {
+						"top-left": "top left",
+						"bottom-left": "bottom left",
+						"top-right": "top right",
+						"bottom-right": "bottom right"
+					}]
+				],
+				"animations": [
+					{
+						"translate": [
+							0,
+							["$", 
+								["switch", ["var", "direction"], {
+									"top-left": "-50ch",
+									"bottom-left": "50ch",
+									"top-right": "-50ch",
+									"bottom-right": "50ch"
+								}]
+							]
+						]
+					},
+					{
+						"mix": [[0, 0], [1, 1]],
+						"easing": "easeOutCirc",
+						"translate": [0, 0]
+					}
+				]
+			}]
+		]]
+	]
+]
+

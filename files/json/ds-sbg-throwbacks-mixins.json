@@ -1,0 +1,105 @@
+{
+	"params": {
+		"colors": [
+			{
+				"key": "color-red",
+				"display": "Color",
+				"type": "color",
+				"default": "#C41616",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "color-blue",
+				"display": "Color",
+				"type": "color",
+				"default": "#2B3DA4",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "color-white",
+				"display": "Color",
+				"type": "color",
+				"default": [1, 1, 1, 1],
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "color-black",
+				"display": "Color",
+				"type": "color",
+				"default": [0, 0, 0, 1],
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "color-light-gray",
+				"display": "Color",
+				"type": "color",
+				"default": "#E1D9D2",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "color-dark-gray",
+				"display": "Color",
+				"type": "color",
+				"default": "#948B85",
+				"required": false,
+				"private": true
+			}
+		],
+		"theme": [
+			{
+				"key": "theme",
+				"display": "Theme",
+				"type": "string",
+				"default": "gradient",
+				"required": false,
+				"options": [
+					{
+						"key": "gradient",
+						"display": "Gradient"
+					},
+					{
+						"key": "black-white",
+						"display": "Black and White"
+					}
+				]
+			}
+		],
+		"font-headline": {
+			"key": "font-headline",
+			"display": "Font Headline",
+			"type": "string",
+			"default": "./media/PFFuel.woff2",
+			"required": false,
+			"private": true
+		},
+		"font-extra": {
+			"key": "font-extra",
+			"display": "Font Extra",
+			"type": "string",
+			"default": "./media/PFFuelPro.otf",
+			"required": false,
+			"private": true
+		},
+		"font-alt": {
+			"key": "font-alt",
+			"display": "Font Alt",
+			"type": "string",
+			"default": "./media/CCPhatBoi Bold.ttf",
+			"required": false,
+			"private": true
+		},
+		"font-body": {
+			"key": "font-body",
+			"display": "Font Body",
+			"type": "string",
+			"default": "./media/Archivo_Condensed-SemiBold.ttf",
+			"required": false,
+			"private": true
+		}
+	}
+}

@@ -1,0 +1,83 @@
+[
+	"ds-servicenow-sidepanel-logo",
+	[
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "asset",
+			"default": "./media/ds-servicenow-logo.svg",
+			"required": false,
+			"parameters": [
+				["gain", 0],
+				["justify", "fit"],
+				["motion", "none"]
+			]
+		},
+		{
+			"key": "split",
+			"display": "Panel Size",
+			"type": "string", 
+			"options": [
+				{
+					"key": "default",
+					"display": "Default"
+				},
+				{
+					"key": "half",
+					"display": "Half-screen"
+				},
+				{
+					"key": "full",
+					"display": "Full-screen"
+				}
+			],
+			"default": "default",
+			"required": false
+		},
+		["ds-servicenow-mixins",
+			"color-secondary",
+			"color-accent"
+		],
+		["dsx-mixins", 
+			"boilerplate"
+		]
+	],
+	[
+		["ds-servicenow-sidepanel", {
+			"mixins": ["dsx-mixins", ["set-dsx-su"]],
+			"split": ["$", ["var", "split"]],
+			"animate-camera": true,
+			"panel-alignment": "center",
+			"color-secondary": ["$", ["var", "color-secondary"]],
+			"color-accent": ["$", ["var", "color-accent"]]
+		}, [
+			["user-asset", {
+				"enabled": ["$", ["exists", ["var", "asset"]]],
+				"file": ["$", ["var", "asset"]],
+				"justify": "fit center",
+				"mask": {},
+				"flex": {
+					"width": "100rw"
+				},
+				"breakpoints": [
+					{
+						"enabled": ["$", ["gt", ["aspect"], 1.0]],
+						"max-width": "1300su"
+					},
+					{
+						"enabled": ["$", ["and",
+							["gt", ["aspect"], 1.0],
+							["eq", ["var", "split"], "half"]
+						
+						]],
+						"max-width": "800su"
+					},
+					{
+						"enabled": ["$", ["lt", ["aspect"], 1.1]],
+						"max-width": "800su"
+					}
+				]
+			}]
+		]]
+	]
+]

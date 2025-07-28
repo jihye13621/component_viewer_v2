@@ -1,0 +1,108 @@
+[
+	"ds-gofundme-captions",
+	[
+		["dsx-mixins",
+			"captions"
+		],
+        ["ds-gofundme-mixins",
+            "dark-green",
+            "light-green",
+            "font-medium"
+        ],
+		{
+			"key": "num-words",
+			"display": "Words",
+			"type": "number",
+			"default": 6,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 1,
+				"minimum": 1,
+				"maximum": 12
+			}
+		},
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [2, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": true,
+				"minimum": -100,
+				"maximum": 100
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone",
+				"offset"
+			]
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"max-width": "800nsu",
+				"align": ["$", ["var", "#align"]],
+				"gap": "20su"
+			}, [
+				["for-each", {
+					"max-width": "800nsu",
+					"align": ["$", ["var", "#align"]],
+					"items": ["$",
+						["transcript-split",
+							["var", "transcript"],
+							["var", "num-words"],
+							"absolute"
+						]
+					]
+				}, [
+					["solid", {
+						"start": ["$", ["concat", "+", ["key", ["first", ["var", "item"]], "relativeStart"]]],
+						"duration": ["$",
+							["-",
+								["key", ["last", ["var", "item"]], "relativeEnd"],
+								["key", ["first", ["var", "item"]], "relativeStart"]
+							]
+						],
+						"layout": "vertical packed",
+						"align": ["$", ["var", "#align"]],
+						"color": ["$", ["rgba-set", ["var", "dark-green"], "a", 0.7]],
+						"padding": [
+							"20su",
+							"30su"
+						],
+						"radius": "15su"
+					}, [
+						["text", {
+							"font": ["$", ["var", "font-medium"]],
+							"measure": "letter-size",
+							"height": "50su",
+							"leading": 0.2,
+							"justify": ["$", ["var", "#align"]],
+							"transcript": ["$", ["var", "item"]],
+							"color": ["$", ["var", "light-green"]],
+							"animations": [
+								{
+									"opacity": 0.5
+								},
+								{
+									"mix": [[0.0, 0], [0.5, 1]],
+									"opacity": 1
+								}
+							]
+						}]
+					]]
+				]]
+			]]
+		]]
+	]
+]

@@ -1,0 +1,256 @@
+[
+	"ds-netcelero-lite-pill",
+	[
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		},
+		{
+			"key": "color-2",
+			"display": "Color 2",
+			"type": "color",
+			"default": "#5E57FC",
+			"required": false
+		},
+		{
+			"key": "string",
+			"display": "String",
+			"type": "string",
+			"default": "",
+			"required": false
+		},
+		{
+			"key": "pill-stagger",
+			"display": "Pill Stagger",
+			"type": "point",
+			"default": [0, 0],
+			"required": false
+		},
+		{
+			"key": "pill-padding",
+			"display": "Pill Padding",
+			"type": "point",
+			"default": [0, 0],
+			"required": false
+		},
+		{
+			"key": "pill-radius",
+			"display": "Pill Radius",
+			"type": "float",
+			"default": 0,
+			"required": false
+		},
+		{
+			"key": "pill-stroke",
+			"display": "Pill Stroke",
+			"type": "float",
+			"default": 0,
+			"required": false
+		},
+		{
+			"key": "pill-mixin",
+			"display": "Pill Mixin",
+			"type": "string",
+			"default": null,
+			"required": false
+		},
+		{
+			"key": "#dir",
+			"display": "Direction",
+			"type": "position",
+			"default": 0,
+			"script": ["$", ["mod", ["-", ["var", "position"], 1], 3]],
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"layout": "vertical packed",
+			"align": ["$", ["var", "#align"]],
+			"padding": ["$", ["var", "pill-padding"]],
+			"stagger": ["$", ["var", "pill-stagger"]],
+			"breakpoints": [
+				{
+					"enabled": ["$", ["eq", 0, ["var", "#dir"]]],
+					"mask": {
+						"radius": ["$", ["var", "pill-radius"]],
+						"rect": [
+							0,
+							0,
+							["animate",
+								[0, 0, "easeOutQuint"],
+								[1000, "100rw"],
+								["100%", 0],
+								["-600", "100rw", "easeInQuint"]
+							],
+							"100rh"
+						]
+					}
+				},
+				{
+					"enabled": ["$", ["eq", 1, ["var", "#dir"]]],
+					"mask": {
+						"radius": ["$", ["var", "pill-radius"]],
+						"rect": [
+							["animate",
+								[0, "50rw", "easeOutQuint"],
+								[1000, 0],
+								["100%", "50rw"],
+								["-600", 0, "easeInQuint"]
+							],
+							0,
+							["animate",
+								[0, 0, "easeOutQuint"],
+								[1000, "100rw"],
+								["100%", 0],
+								["-600", "100rw", "easeInQuint"]
+							],
+							"100rh"
+						]
+					}
+				},
+				{
+					"enabled": ["$", ["eq", 2, ["var", "#dir"]]],
+					"mask": {
+						"radius": ["$", ["var", "pill-radius"]],
+						"rect": [
+							["animate",
+								[0, "100rw", "easeOutQuint"],
+								[1000, 0],
+								["100%", "100rw"],
+								["-600", 0, "easeInQuint"]
+							],
+							0,
+							["animate",
+								[0, 0, "easeOutQuint"],
+								[1000, "100rw"],
+								["100%", 0],
+								["-600", "100rw", "easeInQuint"]
+							],
+							"100rh"
+						]
+					}
+				}
+			]
+		}, [
+			["solid", {
+				"flex": {
+					"position": "fixed"
+				},
+				"radius": ["$", ["var", "pill-radius"]],
+				"color": ["$", ["var", "color-2"]],
+				"stroke": ["$", ["var", "pill-stroke"]],
+				"stroke-color": ["$", ["var", "color-1"]],
+				"stagger": ["$", ["var", "pill-stagger"]],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["eq", 0, ["var", "#dir"]]],
+						"rect": [
+							0,
+							0,
+							["animate",
+								[0, 0, "easeOutQuint"],
+								[1000, "100rw"],
+								["100%", 0],
+								["-600", "100rw", "easeInQuint"]
+							],
+							"100rh"
+						]
+					},
+					{
+						"enabled": ["$", ["eq", 1, ["var", "#dir"]]],
+						"rect": [
+							["animate",
+								[0, "50rw", "easeOutQuint"],
+								[1000, 0],
+								["100%", "50rw"],
+								["-600", 0, "easeInQuint"]
+							],
+							0,
+							["animate",
+								[0, 0, "easeOutQuint"],
+								[1000, "100rw"],
+								["100%", 0],
+								["-600", "100rw", "easeInQuint"]
+							],
+							"100rh"
+						]
+					},
+					{
+						"enabled": ["$", ["eq", 2, ["var", "#dir"]]],
+						"rect": [
+							["animate",
+								[0, "100rw", "easeOutQuint"],
+								[1000, 0],
+								["100%", "100rw"],
+								["-600", 0, "easeInQuint"]
+							],
+							0,
+							["animate",
+								[0, 0, "easeOutQuint"],
+								[1000, "100rw"],
+								["100%", 0],
+								["-600", "100rw", "easeInQuint"]
+							],
+							"100rh"
+						]
+					}
+				]
+			}],
+			["text", {
+				"mixins": ["ds-netcelero-lite-mixins", [["$", ["var", "pill-mixin"]]]],
+				"string": ["$", ["var", "string"]],
+				"justify": ["$", ["var", "#align"]],
+				"color": ["$", ["var", "color-1"]],
+				"stagger": ["$", ["var", "pill-stagger"]],
+				"boundary": "word",
+				"animations": [
+					{
+						"opacity": 0
+					},
+					{
+						"mix": ["animate",
+							[0, 0, "easeOutSine"],
+							[1000, 1]
+						],
+						"opacity": 1,
+						"easing": "easeOutQuart"
+					}
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["eq", 0, ["var", "#dir"]]],
+						"transform": [
+							["translate",
+								["animate",
+									[0, "-80rw", "easeOutQuint"],
+									[1000, 0],
+									["100%", "-80rw"],
+									["-600", 0, "easeInQuint"]
+								],
+								0
+							]
+						]
+					},
+					{
+						"enabled": ["$", ["eq", 2, ["var", "#dir"]]],
+						"transform": [
+							["translate",
+								["animate",
+									[0, "80rw", "easeOutQuint"],
+									[1000, 0],
+									["100%", "80rw"],
+									["-600", 0, "easeInQuint"]
+								],
+								0
+							]
+						]
+					}
+				]
+			}]
+		]]
+	]
+]

@@ -1,0 +1,119 @@
+[
+	"ds-aspect-outro",
+	[
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "text",
+			"default": "aspect.com",
+			"required": false
+		},
+		{
+			"key": "#anim-dur",
+			"private": true,
+			"type": "number",
+			"default": 0,
+			"script": ["$",
+				["dur", "./media/ds-aspect-logo-animated.json"]
+			]
+		},
+		["ds-aspect-mixins",
+			"colors",
+			"font-roobert"
+		]
+	],
+	[
+		["solid", {
+			"color": ["$", ["var", "color-eggshell"]]
+		}],
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			]
+		}, [
+			["asset", {
+				"file": "./media/ds-aspect-logo-animated.json",
+				"justify": "fit center",
+				"lottie-driver": ["animate",
+					[0, 0],
+					["+4000", ["$",
+						["/",
+							4000,
+							["var", "#anim-dur"]
+						]
+					]]
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$",
+							["gt",
+								["key", ["comp-timing"], "duration"],
+								["var", "#anim-dur"]
+							]
+						],
+						"lottie-driver": ["animate",
+							[0, 0],
+							[
+								"+4000",
+								["$",
+									["/",
+										4000,
+										["var", "#anim-dur"]
+									]
+								]
+							],
+							["100%", 1],
+							[
+								["$",
+									["to-relative-string",
+										["*",
+											-1,
+											["-",
+												["var", "#anim-dur"],
+												4000
+											]
+										]
+									]
+								],
+								["$",
+									["/",
+										4000,
+										["var", "#anim-dur"]
+									]
+								]
+							]
+						]
+					}
+				]
+			}],
+			["text", {
+				"enabled": ["$", ["exists", ["var", "text"]]],
+				"font": ["$", ["var", "font-roobert"]],
+				"height": "35su",
+				"color": ["$", ["var", "color-raspberry"]],
+				"measure": "letter-size",
+				"string": ["$", ["var", "text"]],
+				"align": "bottom center",
+				"justify": "bottom center",
+				"effect": [
+					["blur", {
+						"start": 0,
+						"end": 300,
+						"radius": ["animate",
+							[0, "20su"],
+							["+300", 0]
+						]
+					}],
+					["blur", {
+						"start": ["$", ["-", ["key", ["comp-timing"], "duration"], 300]],
+						"radius": ["animate",
+							["100%", "20su"],
+							["-300", 0]
+						]
+					}]
+				]
+			}]
+		]]
+	]
+]

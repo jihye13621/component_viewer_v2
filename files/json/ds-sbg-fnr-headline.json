@@ -1,0 +1,132 @@
+[
+	"ds-sbg-fnr-headline",
+	[
+		{
+			"key": "sponsor-1",
+			"display": "Sponsor 1",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": []
+		},
+		{
+			"key": "headline",
+			"display": "Headline",
+			"type": "text",
+			"default": "Add a headline",
+			"required": false
+		},
+		{
+			"key": "subhead",
+			"display": "Subhead",
+			"type": "text",
+			"default": "Optional subhead",
+			"required": false
+		},
+		["ds-sbg-fnr-mixins",
+			"font-headline",
+			"font-body"
+		]
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", "set-su-roi"]
+		}, [
+			["null", {
+				"start": 500
+			}, [
+				["asset", {
+					"file": "./media/ds-sbg-fnr-bg.mp4",
+					"justify": "fill center",
+					"loop": true
+				}],
+				["null", {
+					"mixins": ["dsx-mixins", "safezone"],
+					"layout": "vertical packed",
+					"align": "center",
+					"gap": "80su",
+					"transform": [
+						["scale",
+							["animate",
+								[0, 2, "easeOutExpo"],
+								["+2000", 1]
+							]
+						]
+					]
+				}, [
+					["user-asset", {
+						"enabled": ["$", ["exists", ["var", "sponsor-1"]]],
+						"file": ["$", ["var", "sponsor-1"]],
+						"mute": true,
+						"hold": true,
+						"flex": {
+							"height": "200su"
+						},
+						"justify": "fit center"
+					}],
+					["text", {
+						"enabled": ["$", ["exists", ["var", "headline"]]],
+						"flex": {
+							"weight": 2
+						},
+						"font": ["$", ["var", "font-headline"]],
+						"height": "100su",
+						"justify": "center",
+						"leading": "30su",
+						"measure": "cap-size",
+						"case": "uppercase",
+						"color": [1, 1, 1, 1],
+						"string": ["$", ["var", "headline"]]
+					}],
+					["text", {
+						"enabled": ["$", ["exists", ["var", "subhead"]]],
+						"font": ["$", ["var", "font-body"]],
+						"height": "40su",
+						"justify": "center",
+						"leading": "30su",
+						"measure": "cap-size",
+						"case": "uppercase",
+						"color": [1, 1, 1, 1],
+						"string": ["$", ["var", "subhead"]]
+					}]
+				]]
+			]],
+			["solid", {
+				"end": 1000,
+				"color": "#1D2A7C",
+				"path": [
+					[0, 0],
+					["50roiw", "25roiw"],
+					["100roiw", 0],
+					["100roiw", "50roiw"],
+					["50roiw", "75roiw"],
+					[0, "50roiw"],
+					[0, "100roiw"],
+					["50roiw", "125roiw"],
+					["100roiw", "100roiw"],
+					["100roiw", "150roiw"],
+					["50roiw", "175roiw"],
+					[0, "150roiw"]
+				],
+				"transform": [
+					["translate",
+						0,
+						["animate",
+							[0, "-175roiw"],
+							["+1000", "100roih"]
+						]
+					]
+				]
+			}]
+		]],
+		["solid", {
+			"start": 250,
+			"duration": 500,
+			"opacity": ["animate",
+				[0, 0],
+				["50%", 1],
+				["100%", 0]
+			]
+		}]
+	]
+]

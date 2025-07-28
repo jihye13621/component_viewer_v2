@@ -1,0 +1,161 @@
+[
+	"ds-ryno-list-boxed",
+	[
+		["ds-ryno-mixins", "color-primary", "color-scrim"],
+		{
+			"key": "item-1",
+			"display": "Item 1",
+			"type": "text",
+			"default": "Item 1",
+			"required": false
+		},
+		{
+			"key": "item-2",
+			"display": "Item 2",
+			"type": "text",
+			"default": "Item 2",
+			"required": false
+		},
+		{
+			"key": "item-3",
+			"display": "Item 3",
+			"type": "text",
+			"default": "Item 3",
+			"required": false
+		},
+		["dsx-mixins", "boilerplate"],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [5, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		},
+		{
+			"key": "#num-position-translate",
+			"type": "object",
+			"default": ["50rw", 0],
+			"private": true,
+			"script": ["$", ["switch", ["nth", ["var", "position"], 0], {
+				"1": [0, "80su"],
+				"4": [0, "80su"],
+				"7": [0, "80su"],
+				"3": ["100rw", "-80su"],
+				"6": ["100rw", "-80su"],
+				"9": ["100rw", "-80su"],
+				"_": ["50rw", 0]
+			}]] 
+		}
+	],
+	[
+		["for-each", {
+			"enabled": ["$", ["or",
+				["exists", ["var", "item-1"]],
+				["exists", ["var", "item-2"]],
+				["exists", ["var", "item-3"]]
+			]],
+			"items": ["$", ["compact", ["list", 
+				["var", "item-1"], 
+				["var", "item-2"], 
+				["var", "item-3"]
+			]]],
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]],
+			"layout": "vertical packed",
+			"align": ["$", ["var", "#align"]],
+			"gap": "100su"
+		}, [
+			["null", {
+				"padding": ["50su", "80su"],
+				"max-width": "900nsu",
+				"align": ["$", ["var", "#align"]],
+				"layout": "vertical packed",
+				"opacity": ["animate",
+					["100%", 0],
+					[
+						["$",
+							["to-relative-string",
+								["*", -1, ["-", ["var", "count"], ["var", "index"]], 200]
+							]
+						],
+						1
+					],
+					["+500", 0]
+				]
+			}, [
+				["solid", {
+					"flex": { "position": "fixed" },
+					"color": ["$", ["var", "color-scrim"]],
+					"opacity": ["animate",
+						[["$", ["*", ["var", "index"], 500]], 0],
+						["+500", 1]
+					]
+				}],
+				["text", {
+					"stagger": [350, 0],
+					"mixins": ["ds-ryno-mixins", "text", "text-list"],
+					"string": ["$", ["var", "item"]],
+					"boundary": "word",
+					"justify": ["$", ["var", "#align"]],
+					"animations": [
+						{
+							"mix": ["animate",
+								[["$", ["*", ["var", "index"], 500]], 0],
+								["+650", 1]
+							],
+							"opacity": 1,
+							"ramp": 0.5
+						}
+					]
+				}],
+				["ds-ryno-box", { 
+					"start": ["$", ["*", ["var", "index"], 500]],
+					"flex": { "position": "fixed" }
+				}],
+				["solid", {
+					"stagger": [350, 0],
+					"flex": { "position": "fixed" },
+					"color": ["$", ["var", "color-primary"]],
+					"rect": [
+						["$", ["nth", ["var", "#num-position-translate"], 0]], 
+						0, 
+						"70su", 
+						"70su"
+					],
+					"transform": [
+						["translate", "-50rw", "-50rw"],
+						["translate", 
+							["$", ["nth", ["var", "#num-position-translate"], 1]],
+							0
+						]
+					],
+					"mask": {
+						"transform": true,
+						"padding": [
+							["animate",
+								[["$", ["*", ["var", "index"], 500]], "50rh", "easeOutCubic"],
+								["+500", 0]
+							], 
+							0, 
+							["animate",
+								[["$", ["*", ["var", "index"], 500]], "50rh", "easeOutCubic"],
+								["+500", 0]
+							], 
+							0
+						]
+					}
+				}, [
+					["text", {
+						"mixins": ["ds-ryno-mixins", "text", "text-body"],
+						"color": [0, 0, 0, 1],
+						"string": ["$", ["+", ["var", "index"], 1]],
+						"justify": "center center"
+					}]
+				]]
+			]]
+		]]
+	]
+]

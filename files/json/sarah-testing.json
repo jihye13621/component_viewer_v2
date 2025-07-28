@@ -1,0 +1,349 @@
+[
+	"sarah-testing",
+	[
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["gain", 0],
+				["justify", "fill"],
+				["motion", "none"]
+			]
+		},
+		{
+			"key": "asset-fill",
+			"display": "Asset Fill",
+			"type": "bool",
+			"default": false,
+			"required": false
+		},
+		{
+			"key": "backdrop",
+			"display": "Backdrop",
+			"type": "string",
+			"default": "desktop-office",
+			"required": false,
+			"options": [
+				{
+					"key": "phone-hand",
+					"display": "Phone - Hand"
+				},
+				{
+					"key": "phone-office",
+					"display": "Phone - Office"
+				},
+				{
+					"key": "phone-studio",
+					"display": "Phone - Studio"
+				},
+				{
+					"key": "desktop-modern",
+					"display": "Desktop - Modern"
+				},
+				{
+					"key": "desktop-home",
+					"display": "Desktop - Home"
+				},
+				{
+					"key": "desktop-office",
+					"display": "Desktop - Office"
+				},
+				{
+					"key": "desktop-minimal",
+					"display": "Desktop - Minimal"
+				},
+				{
+					"key": "youtube",
+					"display": "Youtube"
+				},
+				{
+					"key": "window",
+					"display": "Window"
+				},
+				{
+					"key": "web",
+					"display": "Web"
+				}
+			]
+		},
+		{
+			"key": "animation",
+			"display": "Animation",
+			"default": "none",
+			"type": "string",
+			"required": false,
+			"options": [
+				{
+					"key": "none",
+					"display": "None"
+				},
+				{
+					"key": "slow-zoom-in",
+					"display": "Slow zoom in"
+				},
+				{
+					"key": "slow-zoom-out",
+					"display": "Slow zoom out"
+				},
+				{
+					"key": "zoom-to-fit",
+					"display": "Zoom to fit"
+				}
+			]
+		},
+		{
+			"key": "#rect",
+			"display": "Rect",
+			"type": "object",
+			"default": null,
+			"required": false,
+			"private": true,
+			"script": ["$",
+				["switch", ["var", "backdrop"], {
+					"phone": [380, 269, 199, 421],
+					"phone-minimal": [378, 265, 197, 429],
+					"phone-office": [970, 675, 499, 1090],
+					"phone-studio": [970, 675, 499, 1090],
+					"phone-hand": [963, 675, 511, 1088],
+					"desktop": [259, 288, 442, 249],
+					"desktop-minimal": [252, 286, 456, 265],
+					"desktop-office": [672, 820, 1083, 620],
+					"desktop-home": [672, 820, 1083, 620],
+					"desktop-modern": [672, 820, 1083, 620],
+					"youtube": [255, 320, 450, 286],
+					"window": [630, 665, 660, 625],
+					"web": [253, 341, 454, 286],
+					"_": [970, 675, 499, 1090]
+				}]
+			]
+		},
+		{
+			"key": "#zoomed-in-padding",
+			"display": "Zoomed-in Padding",
+			"type": "object",
+			"default": null,
+			"required": false,
+			"private": true,
+			"script": ["$",
+				["if",
+					["eq", ["var", "animation"], "zoom-to-fit"],
+					["'", 0, 0, 0, 0],
+					["'", -100, -100, -100, -100]
+				]
+			]
+		},
+		{
+			"key": "#backdrop-asset",
+			"display": "B Asset",
+			"type": "string",
+			"default": null,
+			"required": false,
+			"private": true,
+			"script": ["$",
+				["switch", ["var", "backdrop"], {
+					"phone": "./media/dsx-mockup-phone.png",
+					"phone-minimal": "./media/dsx-mockup-phone-minimal.png",
+					"phone-office": "./media/dsx-mockup-phone-office.jpg",
+					"phone-studio": "./media/dsx-mockup-phone-studio.jpg",
+					"phone-hand": "./media/dsx-mockup-phone-hand.jpg",
+					"desktop": "./media/dsx-mockup-desktop.png",
+					"desktop-minimal": "./media/dsx-mockup-desktop-minimal.png",
+					"desktop-office": "./media/dsx-mockup-desktop-office.jpg",
+					"desktop-home": "./media/dsx-mockup-desktop-home.jpg",
+					"desktop-modern": "./media/dsx-mockup-desktop-modern.jpg",
+					"youtube": "./media/dsx-mockup-youtube.png",
+					"window": "./media/dsx-mockup-window.png",
+					"web": "./media/dsx-mockup-web.png",
+					"_": "./media/dsx-mockup-desktop-office.jpg"
+				}]
+			]
+		},
+		{
+			"key": "#finder",
+			"display": "Finder",
+			"type": "object",
+			"default": null,
+			"required": false,
+			"private": true,
+			"script": ["$",
+				["rect-subrect-n",
+					["rect-solve",
+						["size", ["var", "#backdrop-asset"]],
+						["dim-to-rect", ["size"]]
+					],
+					["rect-px-to-n",
+						["size", ["var", "#backdrop-asset"]],
+						["var", "#rect"]
+					]
+				]
+			]
+		},
+		{
+			"key": "#scaler",
+			"display": "Scaler",
+			"type": "object",
+			"default": null,
+			"required": false,
+			"private": true,
+			"script": ["$",
+				["rect-zoom",
+					["dim-to-rect", ["size"]],
+					["rect-pad",
+						["var", "#finder"],
+						["var", "#zoomed-in-padding"]
+					],
+					"fit"
+				]
+			]
+		},
+		{
+			"key": "#radius-divisor",
+			"display": "Radius Divisor",
+			"type": "number",
+			"default": 7,
+			"required": false,
+			"private": true,
+			"script": ["$",
+				["switch", ["var", "backdrop"], {
+					"desktop": 200,
+					"desktop-minimal": 200,
+					"desktop-modern": 200,
+					"desktop-home": 200,
+					"desktop-office": 200,
+					"web": 1000,
+					"window": 50,
+					"youtube": 1000,
+					"_": 7
+				}]
+			]
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-su"]]
+		}, [
+			["null", {
+			}, [
+				["solid", {
+					"color": [0,0,0,0],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["in", ["var", "backdrop"], 
+								"phone", "phone-minimal", "desktop", "desktop-minimal", "web", "window"
+							]],
+							"color":["linear-gradient",
+								0.0,
+								[0.0, "#252829"],
+								[1.0, "#1A1D1E"]
+							]
+						},
+						{
+							"enabled": ["$", ["eq", ["var", "backdrop"], "youtube"]],
+							"color": [1, 1, 1, 1]
+						},
+						{
+							"enabled": ["$", ["in", ["var", "animation"], "slow-zoom-in", "zoom-to-fit"]],
+							"transform": [
+								["scale",
+									["animate",
+										[0, 1, "easeInOutQuart"],
+										[
+											"+5000",
+											["$", ["key", ["var", "#scaler"], "scale"]]
+										]
+									]
+								],
+								["translate",
+									["animate",
+										[0, 0, "easeInOutQuart"],
+										[
+											"+5000",
+											["$", ["key", ["var", "#scaler"], "x"]]
+										]
+									],
+									["animate",
+										[0, 0, "easeInOutQuart"],
+										[
+											"+5000",
+											["$", ["key", ["var", "#scaler"], "y"]]
+										]
+									]
+								]
+							]
+						},
+						{
+							"enabled": ["$", ["eq", ["var", "animation"], "slow-zoom-out"]],
+							"transform": [
+								["scale",
+									["animate",
+										[
+											0, 
+											["$", ["key", ["var", "#scaler"], "scale"]], 
+											"easeInOutQuart"
+										],
+										[
+											"+5000",
+											1
+										]
+									]
+								],
+								["translate",
+									["animate",
+										[
+											0, 
+											["$", ["key", ["var", "#scaler"], "x"]], 
+											"easeInOutQuart"
+										],
+										[
+											"+5000",
+											0
+										]
+									],
+									["animate",
+										[
+											0, 
+											["$", ["key", ["var", "#scaler"], "y"]], 
+											"easeInOutQuart"
+										],
+										[
+											"+5000",
+											0
+										]
+									]
+								]
+							]
+						}
+					]
+				}, [
+					["asset", {
+						"file": ["$", ["var", "#backdrop-asset"]],
+						"justify": "fill center"
+					}],
+					["solid", {
+						"color": [0, 0, 0, 1],
+						"rect": ["$", ["var", "#finder"]],
+						"mask": {
+							"radius": ["$", ["/", ["nth", ["var", "#finder"], 2], ["var", "#radius-divisor"]]]
+						},
+						"breakpoints": [
+							{
+								"enabled": ["$", ["in", ["var", "backdrop"], "phone", "youtube"]],
+								"z-index": -1 
+							}
+						]
+					}, [
+						["user-asset", {
+							"enabled": ["$", ["exists", ["var", "asset"]]],
+							"file": ["$", ["var", "asset"]],
+							"mask": {},
+							"justify": ["$", ["concat", ["if", ["var", "asset-fill"], "fill", "fit"], " center"]]
+						}]
+					]]
+				]]
+			]]
+		]]
+	]
+]

@@ -1,0 +1,211 @@
+[
+	"ds-getwell-outro",
+	[
+		{
+			"key": "cta",
+			"display": "CTA",
+			"type": "text",
+			"default": "Optional call to action",
+			"required": false
+		},
+		["ds-getwell-mixins",
+			"colors",
+			"dark-mode-colors"
+		],
+		["dsx-mixins",
+			"boilerplate-intro-outro"
+		],
+		{
+			"key": "#circle-diameter",
+			"display": "Circle Diameter",
+			"type": "string",
+			"default": "200cw",
+			"private": true,
+			"required": false,
+			"script": ["$",
+				["if",
+					["gte", ["aspect"], 1],
+					"200cw",
+					"400cw"
+				]
+			]
+		},
+		{
+			"key": "#circle-x-offset",
+			"display": "Circle X Offset",
+			"type": "string",
+			"default": "200cw",
+			"private": true,
+			"required": false,
+			"script": ["$",
+				["if",
+					["gte", ["aspect"], 1],
+					"-50cw",
+					"-150cw"
+				]
+			]
+		},
+		{
+			"key": "#circle-y-offset",
+			"display": "Circle X Offset",
+			"type": "string",
+			"default": "-45ch",
+			"private": true,
+			"required": false
+		}
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]],
+			"color": ["$", ["var", "#color-bg"]],
+			"layout": "vertical packed",
+			"min-height": "100rh",
+			"mask": {
+				"-": "circle-outer-mask, should match wipe-in-circle",
+				"rect": [
+					["$", ["var", "#circle-x-offset"]],
+					["animate",
+						[0, "100ch", "easeOutQuint"],
+						["+1200", ["$", ["var", "#circle-y-offset"]]]
+					], 
+					["$", ["var", "#circle-diameter"]],
+					["$", ["var", "#circle-diameter"]]
+				],
+				"radius": 99999
+			}
+		}, [
+			["asset", {
+				"flex": {
+					"position": "fixed"
+				},
+				"file": "./media/ds-getwell-circles.svg",
+				"align": "left bottom",
+				"rect": [0, 0, "550nsu", "550nsu"],
+				"svg-recolor": ["$", ["concat", ["var", "#color-text"], "14"]],
+				"transform": [
+					["rotate",
+						["animate",
+							[0, 0, "easeInOutExpo"],
+							["+2000", 0.25, "easeInOutExpo"],
+							["+2000", 0.5, "easeInOutExpo"],
+							["+2000", 0.75, "easeInOutExpo"], 
+							["+2000", 1],
+							"loop"
+						]
+					],
+					["translate",
+						["$", ["nth", ["safezone"], 3]], 
+						["$", ["concat", "-", ["nth", ["safezone"], 2]]]
+					],
+					["translate",
+						"-40rw", 
+						"48rh"
+					]
+				]
+			}],
+			["null", {
+				"_": "centered text container",
+				"layout": "vertical packed",
+				"align": "center",
+				"max-width": "800nsu",
+				"gap": "100nsu",
+				"flex": {
+					"grow": true
+				}
+			}, [
+				["asset", {
+					"flex": {
+						"height": "140su"
+					},
+					"file": "./media/ds-getwell-logo-white.svg",
+					"justify": "fit left",
+					"svg-recolor": ["$", ["var", "#color-text"]],
+					"stagger": [390, 0],
+					"opacity":["animate",
+						[0, 0, "easeOutQuad"],
+						["+400", 1]
+					],
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[0, "200su", "easeOutQuad"],
+								["+500", 0]
+							]
+						]
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["gt", ["aspect"], 1]],
+							"flex": {
+								"height": "170su"
+							}
+						}
+					]
+				}],
+				["text", {
+					"enabled": ["$", ["exists", ["var", "cta"]]],
+					"color": ["$", ["var", "#color-text"]],
+					"mixins": ["ds-getwell-mixins", "font-text-outro"],
+					"string": ["$", ["var", "cta"]],
+					"justify": "center",
+					"stagger": [550, 0],
+					"opacity": ["animate",
+						[0, 0],
+						["+400", 1]
+					],
+					"transform": [
+						["translate",
+							0, 
+							["animate",
+								[0, "200su", "easeOutQuad"],
+								["+500", 0]
+							]
+						]
+					]
+				}]
+			]]
+		]],
+		["solid", {
+			"_": "wipe-in-circle, should match circle-outer-mask",
+			"color": ["$", ["if", ["var", "dark-mode"], ["var", "light-purple"], ["var", "corporate-purple"]]],
+			"rect": [
+				["$", ["var", "#circle-x-offset"]],
+				["animate",
+					[0, "100ch", "easeOutQuint"],
+					["+1200", ["$", ["var", "#circle-y-offset"]]]
+				], 
+				["$", ["var", "#circle-diameter"]],
+				["$", ["var", "#circle-diameter"]]
+			],
+			"radius": 99999,
+			"mask": {
+				"rect": [
+					0, 
+					["animate",
+						[0, "200ch", "easeOutQuint"],
+						["+1200", "20ch"]
+					], 
+					"100rw", 
+					"100rh"
+				],
+				"radius": 9999,
+				"invert": true
+			}
+		}, [
+			["solid", {
+				"color": ["$", ["var", "bright-purple"]],
+				"radius": 99999,
+				"rect": [
+					0, 
+					["animate",
+						[0, "50ch", "easeOutQuint"],
+						["+1200", "10ch"]
+					], 
+					"100rw", 
+					"100rh"
+				]
+			}]
+		]]
+	]
+]

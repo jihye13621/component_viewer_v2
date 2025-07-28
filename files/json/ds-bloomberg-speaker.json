@@ -1,0 +1,191 @@
+[
+	"ds-bloomberg-speaker",
+	[
+		["dsx-mixins", "speaker"],
+		["ds-bloomberg-mixins", "color-1", "color-2", "color-3"],
+		["dsx-mixins", ["boilerplate"]],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [1, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"enabled": ["$",
+					["or",
+						["exists", ["var", "name"]],
+						["exists", ["var", "detail-1"]],
+						["exists", ["var", "detail-2"]]
+					]
+				],
+				"layout": "vertical packed",
+				"max-width": "800nsu",
+				"align": ["$", ["var", "#align"]],
+				"gap": "-1su"
+			}, [
+				["solid", {
+					"enabled": ["$", ["exists", ["var", "name"]]],
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]],
+					"color": ["$", ["var", "color-1"]],
+					"padding": [
+						"5su",
+						"15su"
+					],
+					"stagger": [0, -250],
+					"mask": {
+						"padding": [
+							0,
+							["animate",
+								[0, "100rw", "easeOutCubic"],
+								["+450", 0]
+							],
+							0,
+							["animate",
+								["100%", "100rw"],
+								["-300", 0, "easeInCubic"]
+							]
+						]
+					}
+				}, [
+					["text", {
+						"mixins": ["ds-bloomberg-mixins", "font-t1"],
+						"string": ["$", ["var", "name"]],
+						"color": ["$", ["var", "color-2"]],
+						"justify": ["$", ["var", "#align"]]
+					}],
+					["solid", {
+						"flex": {
+							"position": "fixed"
+						},
+						"color": ["$", ["var", "color-3"]],
+						"stagger": [150, -400],
+						"transform": [
+							["translate",
+								["animate",
+									[0, 0, "easeOutCubic"],
+									["+450", "100rw", "plateauOut"],
+									["100%", 0],
+									["-300", "-100rw", "easeInCubic"]
+								],
+								0
+							]
+						]
+					}]
+				]],
+				["solid", {
+					"enabled": ["$", ["exists", ["var", "detail-1"]]],
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]],
+					"color": ["$", ["var", "color-1"]],
+					"padding": [
+						"5su",
+						"15su"
+					],
+					"stagger": [150, -100],
+					"mask": {
+						"padding": [
+							0,
+							["animate",
+								[0, "100rw", "easeOutCubic"],
+								["+450", 0]
+							],
+							0,
+							["animate",
+								["100%", "100rw"],
+								["-300", 0, "easeInCubic"]
+							]
+						]
+					}
+				}, [
+					["text", {
+						"mixins": ["ds-bloomberg-mixins", "font-t2"],
+						"string": ["$", ["var", "detail-1"]],
+						"justify": ["$", ["var", "#align"]],
+						"color": ["$", ["var", "color-2"]],
+						"fit": true
+					}],
+					["solid", {
+						"flex": {
+							"position": "fixed"
+						},
+						"color": ["$", ["var", "color-3"]],
+						"stagger": [300, -250],
+						"transform": [
+							["translate",
+								["animate",
+									[0, 0, "easeOutCubic"],
+									["+450", "100rw", "plateauOut"],
+									["100%", 0],
+									["-300", "-100rw", "easeInCubic"]
+								],
+								0
+							]
+						]
+					}]
+				]],
+				["solid", {
+					"enabled": ["$", ["exists", ["var", "detail-2"]]],
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]],
+					"color": ["$", ["var", "color-1"]],
+					"padding": [
+						"5su",
+						"15su"
+					],
+					"stagger": [300, 0],
+					"mask": {
+						"padding": [
+							0,
+							["animate",
+								[0, "100rw", "easeOutCubic"],
+								["+450", 0]
+							],
+							0,
+							["animate",
+								["100%", "100rw"],
+								["-300", 0, "easeInCubic"]
+							]
+						]
+					}
+				}, [
+					["text", {
+						"mixins": ["ds-bloomberg-mixins", "font-t2"],
+						"string": ["$", ["var", "detail-2"]],
+						"justify": ["$", ["var", "#align"]],
+						"color": ["$", ["var", "color-2"]],
+						"fit": true
+					}],
+					["solid", {
+						"flex": {
+							"position": "fixed"
+						},
+						"color": ["$", ["var", "color-3"]],
+						"stagger": [450, -100],
+						"transform": [
+							["translate",
+								["animate",
+									[0, 0, "easeOutCubic"],
+									["+450", "100rw", "plateauOut"],
+									["100%", 0],
+									["-300", "-100rw", "easeInCubic"]
+								],
+								0
+							]
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

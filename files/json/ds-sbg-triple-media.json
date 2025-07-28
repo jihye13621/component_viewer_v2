@@ -1,0 +1,203 @@
+[
+	"ds-sbg-triple-media",
+	[
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["gain", 0],
+				["justify", "fill"],
+				["motion", "none"]
+			],
+			"script": ["$", ["if",
+				["exists", ["var", "asset"]],
+				["var", "asset"],
+				"./media/image-wide.jpg"	
+			]]
+		},
+		{
+			"key": "detail-1",
+			"display": "Source",
+			"type": "text",
+			"default": "Source",
+			"required": false
+		},
+		{
+			"key": "do-background",
+			"display": "Background",
+			"type": "bool",
+			"default": true,
+			"required": false
+		},
+		["ds-sbg-triple-mixins",
+			"color-black",
+			"color-white",
+			"font-headline"
+		],
+		{
+			"key": "size",
+			"display": "Size",
+			"type": "number",
+			"default": 1.0,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"step": 0.01,
+				"minimum": 0.25,
+				"maximum": 1.0
+			}
+		},
+		{
+			"key": "#align",
+			"type": "string",
+			"default": "center",
+			"required": false,
+			"private": true,
+			"script": ["$", ["switch", ["nth", ["var", "position"], 0], {
+				"1": "bottom left",
+				"2": "bottom center",
+				"3": "bottom right",
+				"4": "left center",
+				"5": "center",
+				"6": "right center",
+				"7": "top left",
+				"8": "top center",
+				"9": "top right",
+				"_": "center"
+			}]]
+		},
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [5, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": true,
+				"minimum": -100,
+				"maximum": 100
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			]
+		}, [
+			["asset", {
+				"enabled": ["$", ["var", "do-background"]],
+				"flex": {
+					"position": "fixed"
+				},
+				"file": "./media/ds-sbg-triple-checkers.svg",
+				"color": ["$", ["var", "color-black"]],
+				"justify": "fill center",
+				"mask": {
+					"padding": [
+						0,
+						["animate",
+							[0, "100rw", "easeOutQuad"],
+							["+400", 0]
+						],
+						0,
+						["animate",
+							["100%", "100rw"],
+							["-400", 0, "easeInQuad"]
+						]
+					]
+				}
+			}, [
+				["solid", {
+					"color": ["linear-gradient",
+						0.0,
+						[0, [0, 0, 0, 0.9]],
+						[1, [0, 0, 0, 0.8]]
+					]
+				}]
+			]],
+			["null", {
+				"enabled": ["$", ["exists", ["var", "asset"]]],
+				"mixins": ["dsx-mixins",
+					"offset"
+				],
+				"stagger": [100, -100],
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["neq", ["var", "size"], 1]],
+						"rect": [
+							0,
+							0,
+							["$", ["concat", ["*", 100, ["var", "size"]], "rw"]],
+							["$", ["concat", ["*", 100, ["var", "size"]], "rh"]]
+						]
+					}
+				],
+				"mask": {
+					"transform": true,
+					"padding": [
+						0,
+						["animate",
+							[0, "100rw", "easeOutQuad"],
+							["+400", 0]
+						],
+						0,
+						["animate",
+							["100%", "100rw"],
+							["-400", 0, "easeInQuad"]
+						]
+					]
+				}
+			}, [
+				["user-asset", {
+					"file": ["$", ["var", "asset"]],
+					"justify": "fill center",
+					"tags": ["b-roll"],
+					"mask": {}
+				}],
+				["null", {
+					"stagger": [300, -300],
+					"flex": {
+						"position": "fixed"
+					},
+					"padding": [
+						"30su",
+						"30su"
+					],
+					"opacity": ["animate",
+						[0, 0],
+						["+400", 1],
+						["100%", 0],
+						["-400", 1]
+					]
+				}, [
+					["text", {
+						"enabled": ["$", ["exists", ["var", "detail-1"]]],
+						"font": ["$", ["var", "font-headline"]],
+						"measure": "cap-size",
+						"string": ["$", ["var", "detail-1"]],
+						"justify": "bottom left",
+						"align": "bottom left",
+						"height": "30su",
+						"color": ["$", ["var", "color-white"]],
+						"fit": true,
+						"effect": [
+							["shadow", {
+								"offset": ["2su", "2su"],
+								"color": [0, 0, 0, 0.2],
+								"radius": "10su"
+							}]
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

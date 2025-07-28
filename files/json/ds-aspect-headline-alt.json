@@ -1,0 +1,242 @@
+[
+	"ds-aspect-headline-alt",
+	[
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["motion", "none"]
+			]
+		},
+		{
+			"key": "theme",
+			"display": "Theme",
+			"type": "string",
+			"default": "plum",
+			"options": [
+				{
+					"key": "plum",
+					"display": "Plum"
+				},
+				{
+					"key": "raspberry",
+					"display": "Raspberry"
+				}
+			],
+			"required": false
+		},
+		{
+			"key": "category",
+			"display": "Category",
+			"type": "text",
+			"default": "Video Category",
+			"required": false
+		},
+		["dsx-mixins",
+			"headline",
+			"boilerplate"
+		],
+		["ds-aspect-mixins",
+			"colors",
+			"font-wallop",
+			"font-roobert",
+			"font-roobert-mono"
+		]
+	],
+	[
+		["ds-aspect-bg", {
+			"theme": ["$", ["switch", ["var", "theme"], ["object",
+				["array", "plum", "plum"],
+				["array", "raspberry", "raspberry"]
+			]]]
+		}],
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			],
+			"layout": "horizontal",
+			"gap": "80su",
+			"breakpoints": [
+				{
+					"enabled": ["$",
+						["<", ["aspect"], 1]
+					],
+					"layout": "vertical"
+				}
+			]
+		}, [
+			["null", {
+				"layout": "vertical space-between",
+				"align": "left",
+				"max-width": "1300nsu"
+			}, [
+				["null", {
+					"layout": "vertical packed",
+					"align": "left",
+					"gap": "80su"
+				}, [
+					["solid", {
+						"enabled": ["$", ["exists", ["var", "category"]]],
+						"layout": "stacked",
+						"align": "left",
+						"radius": "5su",
+						"color": ["$", ["switch", ["var", "theme"], ["object",
+							["array", "plum", "#F1D3EA"],
+							["array", "raspberry", "#FEEBF2"]
+						]]],
+						"padding": [
+							"10su",
+							"15su"
+						],
+						"flex": {
+							"height": "60su"
+						}
+					}, [
+						["text", {
+							"enabled": ["$", ["exists", ["var", "category"]]],
+							"font": ["$", ["var", "font-roobert-mono"]],
+							"height": "12su",
+							"color": ["$", ["switch", ["var", "theme"], ["object",
+								["array", "plum", "#8B0F71"],
+								["array", "raspberry", "#F7397A"]
+							]]],
+							"measure": "cap-size",
+							"string": ["$", ["var", "category"]],
+							"case": "uppercase",
+							"align": "center",
+							"justify": "center"
+						}]
+					]],
+					["text", {
+						"enabled": ["$", ["exists", ["var", "headline"]]],
+						"font": ["$", ["var", "font-wallop"]],
+						"height": "120su",
+						"leading": "10su",
+						"color": ["$", ["var", "color-eggshell"]],
+						"measure": "letter-size",
+						"string": ["$", ["var", "headline"]],
+						"align": "left center",
+						"justify": "left center",
+						"flex": {
+							"weight": 4
+						},
+						"animations": [
+							{
+								"translate": [
+									0,
+									"100su"
+								]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+1800", 1]
+								],
+								"translate": [0, 0],
+								"ramp": 2,
+								"easing": "easeOutQuint"
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+1800", 1]
+								],
+								"opacity": 1,
+								"ramp": 2,
+								"easing": "plateauIn"
+							}
+						]
+					}],
+					["text", {
+						"enabled": ["$", ["exists", ["var", "subhead"]]],
+						"stagger": [600, 0],
+						"font": ["$", ["var", "font-roobert"]],
+						"height": "50su",
+						"color": ["$", ["var", "color-gray-light"]],
+						"measure": "letter-size",
+						"string": ["$", ["var", "subhead"]],
+						"align": "left center",
+						"justify": "left center",
+						"boundary": "line",
+						"animations": [
+							{
+								"translate": [
+									0,
+									"80su"
+								]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+1400", 1]
+								],
+								"translate": [0, 0],
+								"ramp": 2,
+								"easing": "easeOutQuint"
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+1400", 1]
+								],
+								"opacity": 1,
+								"ramp": 2,
+								"easing": "plateauIn"
+							}
+						]
+					}]
+				]],
+				["asset", {
+					"flex": {
+						"height": "50nsu"
+					},
+					"file": ["$",
+						["if",
+							["=", ["var", "theme"], "plum"],
+							"./media/ds-aspect-logo-horiz-color.svg",
+							"./media/ds-aspect-logo-horiz-white.svg"
+						]
+					],
+					"justify": "fit center left"
+				}]
+			]],
+			["null", {
+				"enabled": ["$", ["exists", ["var", "asset"]]],
+				"layout": "vertical",
+				"gap": "15su"
+			}, [
+				["null", {
+					"transform": [
+						["scale",
+							["animate",
+								[0, 0.8, "easeOutQuart"],
+								["+500", 1]
+							]
+						]
+					],
+					"effect": [
+						["shadow", {
+							"color": "#5C07471A",
+							"offset": ["-3su", "1su"],
+							"radius": "3su"
+						}]
+					]
+				}, [
+					["user-asset", {
+						"file": ["$", ["var", "asset"]],
+						"justify": "fill center",
+						"mute": true,
+						"hold": true,
+						"mask": {
+							"radius": "20su"
+						}
+					}]
+				]]
+			]]
+		]]
+	]
+]

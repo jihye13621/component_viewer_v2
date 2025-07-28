@@ -1,0 +1,27 @@
+[
+	"ds-justworks-mkii-text",
+	[
+		["dsx-mixins", "text"],
+		["ds-justworks-mkii-mixins",
+			"color-primary",
+			"fonts"
+		],
+		["dsx-mixins", "boilerplate"]
+	],
+	[
+		["null",{
+			"mixins": ["dsx-mixins", ["set-su", "safezone"]],
+			"max-width": "1500nsu"
+		}, [
+			["text", {
+				"mixins": ["ds-justworks-mkii-mixins", "text"],
+				"font": ["$", ["var", "font-regular"]],
+				"height": "200su",
+				"leading": "20su",
+				"kerning": -0.04,
+				"string": ["$", ["var", "text"]],
+				"color": ["$", ["var", "color-primary"]]
+			}]
+		]]
+	]
+]

@@ -1,0 +1,198 @@
+[
+	"ds-rippling-speaker",
+	[
+		{
+			"key": "name",
+			"display": "Speaker name",
+			"type": "text",
+			"default": "Speaker name",
+			"required": false
+		},
+		{
+			"key": "detail-1",
+			"display": "Title",
+			"type": "text",
+			"default": "Optional speaker detail",
+			"required": false
+		},
+		["ds-rippling-mixins",
+			"colors",
+			"color-selector",
+			"font-bgtf"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [1, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+	["null", {
+		"mixins": ["dsx-mixins",
+			"set-su",
+			"safezone"
+		],
+		"opacity": ["animate",
+			["100%", 0],
+			["-500", 1]
+		]
+	}, [
+		["null", {
+			"layout": "stacked",
+			"align": ["$", ["var", "#align"]],
+			"units": {
+				"space": "100rw"
+			}
+		}, [
+			["null", {
+				"layout": "horizontal packed",
+				"align": "center",
+				"padding": [
+					"30su",
+					"35su",
+					"25su",
+					"35su"
+				],
+				"mask": {}
+			}, [
+				["null", {
+					"flex": {
+						"position": "fixed"
+					},
+					"padding": [
+						0,
+						"-20su"
+					],
+					"buffer": "matte",
+					"end": 1200
+				}, [
+					["null", {
+						"transform": [
+							["translate",
+								["animate",
+									[0, "-100rw", "easeInOutCubic"],
+									["+1200", 0]
+								],
+								0
+							]
+						]
+					}, [
+						["solid", {
+							"color": [1, 1, 1, 1]
+						}],
+						["asset", {
+							"file": "./media/ds-rippling-logo-r.svg",
+							"justify": "fill center",
+							"align": "right",
+							"rect": [
+								0,
+								0,
+								0,
+								"100rh"
+							]
+						}]
+					]]
+				]],
+				["null", {
+					"flex": {
+						"position": "fixed"
+					},
+					"end": 1200,
+					"effect": [
+						["buffer", {
+							"buffer-in": "matte"
+						}],
+						["false-color", {
+							"color-1": ["$", ["var", "gold"]],
+							"color-2": ["$", ["var", "#background"]]
+						}]
+					]
+				}],
+				["solid", {
+					"flex": {
+						"position": "fixed"
+					},
+					"start": 1200,
+					"color": ["$", ["var", "#background"]]
+				}],
+				["null", {
+					"layout": "horizontal packed",
+					"align": "center",
+					"gap": "42su",
+					"effect": [
+						["matte", {
+							"buffer-in": "matte",
+							"end": 1200
+						}]
+					]
+				}, [
+					["text", {
+						"enabled": ["$", ["exists", ["var", "name"]]],
+						"mixins": ["ds-rippling-mixins",
+							"text-bold"
+						],
+						"height": "45su",
+						"color": ["$", ["var", "#foreground"]],
+						"fit": true,
+						"string": ["$", ["var", "name"]],
+						"stagger": [200, 0],
+						"trim-descender": false,
+						"animations": [
+							{
+								"translate": [
+									"-100su",
+									0
+								]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+1200", 1]
+								],
+								"easing": "easeOutCubic",
+								"translate": [0, 0]
+							}
+						]
+					}],
+					["text", {
+						"enabled": ["$", ["exists", ["var", "detail-1"]]],
+						"font": ["$", ["var", "font-bgtf"]],
+						"height": "25su",
+						"measure": "cap-size",
+						"case": "uppercase",
+						"fit": true,
+						"color": ["$", ["var", "#foreground"]],
+						"string": ["$", ["var", "detail-1"]],
+						"stagger": [400, 0],
+						"trim-descender": false,
+						"animations": [
+							{
+								"translate": [
+									"-100su",
+									0
+								]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+1200", 1]
+								],
+								"easing": "easeOutCubic",
+								"translate": [0, 0]
+							}
+						]
+					}]
+				]]
+			]]
+		]]
+	]]
+]]

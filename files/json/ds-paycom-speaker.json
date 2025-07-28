@@ -1,0 +1,189 @@
+["ds-paycom-speaker",
+	[
+		{
+			"key": "name",
+			"display": "Speaker name",
+			"type": "text",
+			"default": "Speaker name",
+			"required": false
+		},
+		{
+			"key": "detail-1",
+			"display": "Title",
+			"type": "text",
+			"default": "Optional speaker detail",
+			"required": false
+		},
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [1, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": true,
+				"minimum": -100,
+				"maximum": 100
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"safezone",
+				"set-su",
+				"offset"
+			]
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"min-width": "800su",
+				"padding": [
+					"50su",
+					"200su",
+					"50su",
+					"250su"
+				]
+			}, [
+				["null", {
+					"flex": {
+						"position": "fixed"
+					},
+					"mask": {
+						"rect": [
+							"-50rh",
+							"40rh",
+							"130rh",
+							"130rh"
+						],
+						"radius": 1000,
+						"invert": true
+					}
+				}, [
+					["solid", {
+						"color": [1, 1, 1, 1],
+						"mask": {
+							"padding": [
+								0,
+								"-100rh",
+								0,
+								0
+							]
+						},
+						"path": [
+							[0, 0],
+							["50rh", "50rh"],
+							[0, "100rh"],
+							["-100rw", "100rh"],
+							["-100rw", 0]
+						],
+						"transform": [
+							["translate",
+								["animate",
+									[0, "-50rh", "easeOutExpo"],
+									["+1000", "100rw"],
+									["100%", "-50rh"],
+									["-1000", "100rw", "easeInExpo"]
+								],
+								0
+							]
+						] 
+					}]
+				]],
+				["null", {
+					"layout": "vertical packed",
+					"align": "top left",
+					"gap": "30su"
+				}, [
+					["text", {
+						"stagger": [400, -400],
+						"font": "./media/Bebas Neue Pro Bold.otf",
+						"height": "60su",
+						"measure": "letter-size",
+						"string": ["$",
+							["if",
+								["exists", ["var", "name"]],
+								["var", "name"],
+								"Name"
+							]
+						],
+						"color": "#004735",
+						"fit": true,
+						"justify": "left center",
+						"mask": {
+							"padding": [
+								"-100su",
+								0,
+								"-15su",
+								0
+							]
+						},
+						"transform": [
+							["translate",
+								0,
+								["animate",
+									[0, "100su", "easeOutExpo"],
+									["+1000", 0],
+									["100%", "100su"],
+									["-1000", 0, "easeInExpo"]
+								]
+							]
+						], 
+						"breakpoints": [
+							{
+								"enabled": ["$", ["not", ["exists", ["var", "name"]]]],
+								"opacity": 0
+							}
+						] 
+					}],
+					["text", {
+						"stagger": [400, -400],
+						"font": "./media/Bebas Neue Pro Regular.otf",
+						"height": "40su",
+						"measure": "letter-size",
+						"string": ["$",
+							["if",
+								["exists", ["var", "detail-1"]],
+								["var", "detail-1"],
+								"title"
+							]
+						],
+						"color": "#004735",
+						"fit": true,
+						"justify": "left center",
+						"mask": {
+							"padding": [
+								"-15su",
+								0,
+								"-100su",
+								0
+							]
+						},
+						"transform": [
+							["translate",
+								0,
+								["animate",
+									[0, "-100su", "easeOutExpo"],
+									["+1000", 0],
+									["100%", "-100su"],
+									["-1000", 0, "easeInExpo"]
+								]
+							]
+						],
+						"breakpoints": [
+							{
+								"enabled": ["$", ["not", ["exists", ["var", "detail-1"]]]],
+								"opacity": 0
+							}
+						] 
+					}]
+				]]
+			]]
+		]]
+	]
+]

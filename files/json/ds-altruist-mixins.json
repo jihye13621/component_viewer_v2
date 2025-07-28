@@ -1,0 +1,197 @@
+{
+	"params": {
+		"colors": [
+			{
+				"key": "white",
+				"display": "Color",
+				"type": "color",
+				"default": "#ffffff",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "black",
+				"display": "Color",
+				"type": "color",
+				"default": "#000000",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "blue",
+				"display": "Color",
+				"type": "color",
+				"default": "#5667FF",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "green",
+				"display": "Color",
+				"type": "color",
+				"default": "#01BC48",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "orange",
+				"display": "Color",
+				"type": "color",
+				"default": "#FF6624",
+				"required": false,
+				"private": true
+			}
+		],
+		"theme": [
+			{
+				"key": "theme",
+				"display": "Theme",
+				"type": "string",
+				"default": "white",
+				"options": [
+					{
+						"key": "white",
+						"display": "White"
+					},
+					{
+						"key": "black",
+						"display": "Black"
+					},
+					{
+						"key": "blue",
+						"display": "Blue"
+					},
+					{
+						"key": "green",
+						"display": "Green"
+					},
+					{
+						"key": "orange",
+						"display": "Orange"
+					}
+				],
+				"required": false
+			},
+			{
+				"key": "#fg",
+				"display": "Foreground",
+				"type": "color",
+				"default": [0, 0, 0, 1],
+				"required": false,
+				"private": true,
+				"script": ["$",
+					["switch", ["var", "theme"], ["object",
+						["array", "white", ["var", "black"]],
+						["array", "black", ["var", "white"]],
+						["array", "blue", ["var", "black"]],
+						["array", "green", ["var", "black"]],
+						["array", "orange", ["var", "black"]],
+						["array", "_", ["var", "black"]]
+					]]
+				]
+			},
+			{
+				"key": "#bg",
+				"display": "Background",
+				"type": "color",
+				"default": [1, 1, 1, 1],
+				"required": false,
+				"private": true,
+				"script": ["$",
+					["switch", ["var", "theme"], ["object",
+						["array", "white", ["var", "white"]],
+						["array", "black", ["var", "black"]],
+						["array", "blue", ["var", "blue"]],
+						["array", "green", ["var", "green"]],
+						["array", "orange", ["var", "orange"]],
+						["array", "_", ["var", "white"]]
+					]]
+				]
+			}
+		],
+		"custom-ease": {
+			"key": "custom-ease",
+			"display": "Ease",
+			"type": "object",
+			"default": [0.7, 0, 0, 1],
+			"required": false,
+			"private": true
+		},
+		"custom-ease-reverse": {
+			"key": "custom-ease-reverse",
+			"display": "Ease",
+			"type": "object",
+			"default": [1.0, 0, 0.3, 1],
+			"required": false,
+			"private": true
+		},
+		"custom-ease-2": {
+			"key": "custom-ease-2",
+			"display": "Ease",
+			"type": "object",
+			"default": [0.5, 0, 1, 0.7],
+			"required": false,
+			"private": true
+		},
+		"custom-ease-2-reverse": {
+			"key": "custom-ease-2-reverse",
+			"display": "Ease",
+			"type": "object",
+			"default": [0, 0.5, 0.3, 1],
+			"required": false,
+			"private": true
+		},
+		"font-regular": {
+			"key": "font-regular",
+			"display": "Font Regular",
+			"type": "string",
+			"default": "./media/KMR-Waldenburg-Regular.otf",
+			"required": false,
+			"private": true
+		},
+		"font-bold": {
+			"key": "font-bold",
+			"display": "Font Bold",
+			"type": "string",
+			"default": "./media/KMR-Waldenburg-SemiCondensedHeavy.otf",
+			"required": false,
+			"private": true
+		},
+		"font-serif": {
+			"key": "font-serif",
+			"display": "Font Serif",
+			"type": "string",
+			"default": "./media/Oceanic Text-Book.otf",
+			"required": false,
+			"private": true
+		}
+	},
+	"text": {
+		"leading": 0.1,
+		"measure": "letter-size",
+		"font": ["$", ["var", "font-regular"]]
+	},
+	"tight": {
+		"kerning": -0.03
+	},
+	"xlarge": {
+		"height": "200su",
+		"measure": "cap-size"
+	},
+	"large": {
+		"height": "120su",
+		"measure": "cap-size"
+	},
+	"medium": {
+		"height": "80su"
+	},
+	"small": {
+		"height": "45su"
+	},
+	"bold": {
+		"font": ["$", ["var", "font-bold"]]
+	},
+	"serif": {
+		"font": ["$", ["var", "font-serif"]]
+	}
+}

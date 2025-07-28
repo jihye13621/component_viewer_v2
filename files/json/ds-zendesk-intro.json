@@ -1,0 +1,449 @@
+[
+	"ds-zendesk-intro",
+	[
+		{
+			"key": "portrait",
+			"display": "Portrait",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": []
+		},
+		{
+			"key": "headline",
+			"display": "Headline",
+			"type": "textarea",
+			"default": "Headline",
+			"required": false
+		},
+		{
+			"key": "name",
+			"display": "Speaker name",
+			"type": "text",
+			"default": "Speaker name",
+			"required": false
+		},
+		{
+			"key": "detail-1",
+			"display": "Title",
+			"type": "text",
+			"default": "Optional Title",
+			"required": false
+		},
+		{
+			"key": "detail-2",
+			"display": "Company",
+			"type": "text",
+			"default": "Optional Company",
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"start": ["$", ["-", ["key", ["comp-timing"], "duration"], 1000]],
+			"buffer": "knockout"
+		}, [
+			["solid", {
+				"color": [1, 1, 1, 1],
+				"transform": [
+					["scale",
+						["animate",
+							["100%", 0.9],
+							["-1000", 1, [0.18, 0.87, 0.42, 1]]
+						],
+						["animate",
+							["100%", 0.8],
+							["-1000", 1, [0.18, 0.87, 0.42, 1]]
+						]
+					],
+					["translate",
+						["animate",
+							["100%", "-100rw"],
+							["-830", 0, [1, 0, 0.76, 0.66]]
+						],
+						0
+					]
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["eq", ["aspect"], 1]],
+						"transform": [
+							["scale",
+								["animate",
+									["100%", 0.9],
+									["-1000", 1, [0.18, 0.87, 0.42, 1]]
+								]
+							],
+							["translate",
+								["animate",
+									["100%", "-100rw"],
+									["-830", 0, [1, 0, 0.76, 0.66]]
+								],
+								0
+							]
+						]
+					},
+					{
+						"enabled": ["$", ["lt", ["aspect"], 1]],
+						"transform": [
+							["scale",
+								["animate",
+									["100%", 0.8],
+									["-1000", 1, [0.18, 0.87, 0.42, 1]]
+								],
+								["animate",
+									["100%", 0.9],
+									["-1000", 1, [0.18, 0.87, 0.42, 1]]
+								]
+							],
+							["translate",
+								["animate",
+									["100%", "-100rw"],
+									["-830", 0, [1, 0, 0.76, 0.66]]
+								],
+								0
+							]
+						]
+					}
+				]
+			}]
+		]],
+		["solid", {
+			"mixins": ["dsx-mixins",
+				"set-su"
+			],
+			"color": "#FFFCF6",
+			"effect": [
+				["matte", {
+					"start": ["$", ["-", ["key", ["comp-timing"], "duration"], 1000]],
+					"buffer-in": "knockout"
+				}]
+			],
+			"transform": [
+				["translate",
+					["animate",
+						["100%", "-400su"],
+						["-830", 0, [1, 0, 0.92, 0.54]]
+					],
+					0
+				]
+			]
+		}, [
+			["solid", {
+				"stagger": [1080, 0],
+				"color": "#16140C",
+				"z-index": 10,
+				"mixins": ["dsx-mixins",
+					"safezone"
+				],
+				"mask": {
+					"padding": [
+						["animate",
+							[0, 0, [0.14, 1, 0.34, 1]],
+							["+2250", "40su"]
+						],
+						["animate",
+							[1200, 0, [1, 0, 0.76, 0.7]],
+							["+1200", "100rw"]
+						],
+						["animate",
+							[0, 0, [0.14, 1, 0.34, 1]],
+							["+2250", "40su"]
+						],
+						0
+					]
+				}
+			}, [
+				["asset", {
+					"file": "./media/ds-zendesk-logo-animated-light.json",
+					"lottie-driver": ["animate",
+						[0, 0],
+						[
+							["$", ["to-relative-string", ["dur", "./media/ds-zendesk-logo-animated-light.json"]]],
+							1
+						]
+					],
+					"justify": "fit center",
+					"rect": [
+						0,
+						0,
+						"320su",
+						"320su"
+					],
+					"mute": true,
+					"hold": true,
+					"align": "center",
+					"transform": [
+						["translate",
+							["animate",
+								[2450, 0, [0.9, 0, 0.1, 1]],
+								["+1625", "-170su"]
+							],
+							0
+						]
+					]
+				}]
+			]],
+			["null", {
+				"mixins": ["dsx-mixins",
+					"safezone"
+				],
+				"layout": "vertical space-between",
+				"align": "left"
+			}, [
+				["null", {
+					"stagger": [2625, 0],
+					"flex": {
+						"position": "fixed"
+					},
+					"rect": [
+						0,
+						0,
+						"50rh",
+						"50rh"
+					],
+					"align": "bottom right",
+					"mask": {
+						"transform": true
+					},
+					"transform": [
+						["translate",
+							["animate",
+								[0, "100rw", [0.31, 0.22, 0, 1]],
+								["+2420", "-50rw"]
+							],
+							0
+						]
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["eq", ["aspect"], 1]],
+							"transform": [
+								["translate",
+									["animate",
+										[0, "100rw", [0.31, 0.22, 0, 1]],
+										["+2420", 0]
+									],
+									0
+								],
+								["scale",
+									0.75,
+									"100rw",
+									"100rh"
+								]
+							]
+						},
+						{
+							"enabled": ["$", ["lt", ["aspect"], 1]],
+							"transform": [
+								["translate",
+									["animate",
+										[0, "100rw", [0.31, 0.22, 0, 1]],
+										["+2420", 0]
+									],
+									0
+								],
+								["scale",
+									0.6,
+									"100rw",
+									"100rh"
+								]
+							]
+						}
+					]
+				}, [
+					["user-asset", {
+						"enabled": ["$", ["exists", ["var", "portrait"]]],
+						"stagger": [2625, 0],
+						"rect": [
+							0,
+							0,
+							"200rw",
+							"100rh"
+						],
+						"file": ["$", ["var", "portrait"]],
+						"mute": true,
+						"justify": "fill center",
+						"align": "center",
+						"transform": [
+							["translate",
+								["animate",
+									[0, "-80su", [0.31, 0.22, 0, 1]],
+									["+2420", 0]
+								],
+								0
+							]
+						]
+					}]
+				]],
+				["text", {
+					"enabled": ["$", ["exists", ["var", "headline"]]],
+					"stagger": [2850, 0],
+					"rect": [
+						0,
+						0,
+						"80rw",
+						"100rh"
+					],
+					"font": "./media/Feature Display-Bold.otf",
+					"string": ["$", ["var", "headline"]],
+					"height": "150su",
+					"leading": "10su",
+					"measure": "letter-size",
+					"color": "#16140C",
+					"animations": [
+						{
+							"translate": [
+								"300su",
+								0
+							]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+4100", 1]
+							],
+							"easing": [0.05, 0.93, 0, 1],
+							"ramp": 10,
+							"translate": [0, 0]
+						}
+					]
+				}],
+				["null", {
+					"enabled": ["$", ["or",
+						["exists", ["var", "name"]],
+						["exists", ["var", "detail-1"]],
+						["exists", ["var", "detail-2"]]
+					]],
+					"layout": "vertical packed",
+					"align": "center left",
+					"gap": "20su"
+				}, [
+					["text", {
+						"stagger": [4410, 0],
+						"enabled": ["$", ["exists", ["var", "name"]]],
+						"font": "./media/ZendeskSocial-Bold.otf",
+						"string": ["$", ["var", "name"]],
+						"height": "35su",
+						"leading": "10su",
+						"measure": "letter-size",
+						"color": "#16140C",
+						"animations": [
+							{
+								"translate": [
+									0,
+									"50su"
+								],
+								"mask": [
+									0,
+									0,
+									0,
+									0
+								]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+1800", 1]
+								],
+								"easing": [0, 0, 0, 1],
+								"ramp": -1,
+								"translate": [0, 0]
+							}
+						]
+					}],
+					["text", {
+						"stagger": [4580, 0],
+						"enabled": ["$", ["or",
+							["exists", ["var", "detail-1"]],
+							["exists", ["var", "detail-2"]]
+						]],
+						"font": "./media/ZendeskSocial-Regular.otf",
+						"string": ["$",
+							["join",
+								["compact", ["array",
+									["var", "detail-1"],
+									["var", "detail-2"]
+								]],
+								", "
+							]
+						],
+						"height": "35su",
+						"leading": "10su",
+						"measure": "letter-size",
+						"color": "#16140C",
+						"animations": [
+							{
+								"translate": [
+									0,
+									"50su"
+								],
+								"mask": [
+									0,
+									0,
+									0,
+									0
+								]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+1750", 1]
+								],
+								"easing": [0, 0, 0.08, 1],
+								"ramp": -1,
+								"translate": [0, 0]
+							}
+						]
+					}]
+				]],
+				["null", {
+					"flex": {
+						"height": "200su"
+					},
+					"stagger": [2300, 0],
+					"transform": [
+						["translate",
+							["animate",
+								[0, "120su", [0.57, 0, 0, 1]],
+								["+2960", 0]
+							],
+							0
+						]
+					]
+				}, [
+					["asset", {
+						"start": 2000,
+						"stagger": [3400, 0],
+						"file": "./media/ds-zendesk-logo-animated-dark.json",
+						"lottie-driver": ["animate",
+							[
+								0,
+								["$", ["/",
+									800,
+									["dur", "./media/ds-zendesk-logo-animated-dark.json"]
+								]]
+							],
+							[
+								["$", ["to-relative-string", ["-",
+									["dur", "./media/ds-zendesk-logo-animated-dark.json"],
+									800
+								]]],
+								1
+							]
+						],
+						"justify": "fit left center",
+						"hold": true,
+						"mute": true,
+						"effect": [
+							["false-color", {
+								"color-1": "#16140C",
+								"color-2": "#16140C"
+							}]
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

@@ -1,0 +1,151 @@
+[
+	"api-brandlive-abb-overlay",
+	[
+		{
+			"key": "text-1",
+			"display": "Text 1",
+			"type": "string",
+			"default": "text 1 here",
+			"required": false
+		},
+		{
+			"key": "text-2",
+			"display": "Text 2",
+			"type": "text",
+			"default": "text 2 here",
+			"required": false
+		},
+		{
+			"key": "font-1",
+			"display": "Font 1",
+			"type": "string",
+			"default": "./media/api-brandlive/Roboto-Bold.ttf",
+			"required": false
+		},
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": "#FFC494",
+			"required": false
+		},
+		{
+			"key": "color-2",
+			"display": "Color 2",
+			"type": "color",
+			"default": "#FFE1AF",
+			"required": false
+		},
+		{
+			"key": "text-color",
+			"display": "Text Color",
+			"type": "color",
+			"default": "#FFFFFF",
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-dsx-su"
+			]
+		}, [
+			["text", {
+				"enabled": ["$", ["exists", ["var", "text-1"]]],
+				"string": ["$", ["var", "text-1"]],
+				"font": ["$", ["var", "font-1"]],
+				"fit": true,
+				"measure": "letter-size",
+				"height": "55su",
+				"max-width": "380su",
+				"transform": [
+					["rotate", -0.25, 0, 0],
+					["translate", "70su", "380su"]
+				],
+				"opacity": ["animate",
+					[0, 0],
+					["+266", 1]
+				],
+				"animations": [
+					{
+						"translate": [0, "-150su"]
+					},
+					{
+						"mix": ["animate", 
+							[0, 0],
+							[1466, 1]
+						],
+						"translate": [0, 0],
+						"easing": "easeOutQuad"
+					}
+				]
+			}],
+			["solid", {
+				"rect": [0, 0, "40su", "380su"],
+				"color": ["$", ["var", "color-1"]],
+				"start": 266,
+				"transform": [
+					["scale",
+						["animate",
+							[0, 0, "easeOutQuad"],
+							["+666", 1.0]
+						],
+						1.0,
+						0, 0
+					]
+				]
+			}],
+			["solid", {
+				"rect": [0, 0, "700su", "40su"],
+				"color": ["$", ["var", "color-1"]],
+				"start": 133,
+				"align": "bottom right",
+				"transform": [
+					["scale",
+						["animate",
+							[0, 0, "easeOutQuad"],
+							["+666", 1.0, "easeOutQuad"],
+							["+3033", 1.04]
+						],
+						1.0,
+						"700su", "40su"
+					]
+				]
+			}],
+			["null", {
+				"rect": [0, 0, "900su", "205su"],
+				"align": "bottom right",
+				"padding": ["40su", 0]
+			}, [
+				["text", {
+					"enabled": ["$", ["exists", ["var", "text-2"]]],
+					"string": ["$", ["var", "text-2"]],
+					"font": ["$", ["var", "font-1"]],
+					"height": "50su",
+					"measure": "letter-size",
+					"start": 66,
+					"justify": "center left",
+					"opacity": ["animate",
+						[0, 0, "easeOutQuad"],
+						["+266", 1]
+					],
+					"animations": [
+						{
+							"translate": ["200su", 0]
+						},
+						{
+							"mix": ["animate", 
+								[0, 0],
+								[1866, 1]
+							],
+							"translate": [0, 0],
+							"easing": "easeOutQuad"
+						}
+					],
+					"case": "uppercase",
+					"kerning": 0.1
+				}]
+			]]
+		]]
+	]
+]

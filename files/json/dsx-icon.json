@@ -1,0 +1,96 @@
+[
+	"dsx-icon",
+	[
+		{
+			"key": "icon",
+			"display": "Icon",
+			"type": "string",
+			"default": "star",
+			"options": [
+				{
+					"key": "none",
+					"display": "None"
+				},
+				{
+					"key": "arrow-up-right",
+					"display": "Arrow"
+				},
+				{
+					"key": "clock",
+					"display": "Clock"
+				},
+				{
+					"key": "calendar",
+					"display": "Calendar"
+				},
+				{
+					"key": "envelope",
+					"display": "Envelope"
+				},
+				{
+					"key": "link",
+					"display": "Link"
+				},
+				{
+					"key": "pin",
+					"display": "Pin"
+				},
+				{
+					"key": "star",
+					"display": "Star"
+				},
+				{
+					"key": "twitter",
+					"display": "Twitter"
+				},
+				{
+					"key": "facebook",
+					"display": "Facebook"
+				},
+				{
+					"key": "instagram",
+					"display": "Instagram"
+				},
+				{
+					"key": "linked-in",
+					"display": "LinkedIn"
+				},
+				{
+					"key": "snapchat",
+					"display": "Snapchat"
+				},
+				{
+					"key": "threads",
+					"display": "Threads"
+				},
+				{
+					"key": "tiktok",
+					"display": "TikTok"
+				}
+			],
+			"required": false
+		},
+		{
+			"key": "color",
+			"display": "Color",
+			"type": "color",
+			"default": null,
+			"required": false
+		},
+		{
+			"key": "justify",
+			"display": "Justify",
+			"type": "string",
+			"default": "fit center",
+			"required": false
+		}
+	],
+	[
+		["asset", {
+			"enabled": ["$", ["neq", ["var", "icon"], "none"]],
+			"file": ["$", ["concat", "./media/dsx-icon-" , ["var", "icon"], ".svg"]],
+			"justify": ["$", ["var", "justify"]],
+			"svg-recolor": ["$", ["var", "color"]]
+		}]
+	]
+]

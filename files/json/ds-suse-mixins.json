@@ -1,0 +1,44 @@
+{
+	"params": {
+		"dark-green": {
+			"key": "dark-green",
+			"display": "Color",
+			"type": "color",
+			"default": "#0C322C",
+			"required": false,
+			"private": true 
+		},
+		"green": {
+			"key": "green",
+			"display": "Color",
+			"type": "color",
+			"default": "#30BA78",
+			"required": false,
+			"private": true 
+		},
+		"white": {
+			"key": "white",
+			"display": "Color",
+			"type": "color",
+			"default": "#F2F2F2",
+			"required": false,
+			"private": true 
+		},
+		"font-regular": {
+			"key": "font-regular",
+			"display": "Font Regular",
+			"type": "string",
+			"default": "./media/SUSE-Regular.ttf",
+			"required": false,
+			"private": true
+		},
+		"font-semibold": {
+			"key": "font-semibold",
+			"display": "Font SemiBold",
+			"type": "string",
+			"default": "./media/SUSE-SemiBold.ttf",
+			"required": false,
+			"private": true
+		}
+	}
+}

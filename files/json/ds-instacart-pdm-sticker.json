@@ -1,0 +1,158 @@
+[
+	"ds-instacart-pdm-sticker",
+	[
+		{
+			"key": "text-1",
+			"display": "Text 1",
+			"type": "string",
+			"default": null,
+			"required": false
+		},
+		{
+			"key": "text-2",
+			"display": "Text 2",
+			"type": "string",
+			"default": null,
+			"required": false,
+			"parameters": []
+		},
+		["ds-instacart-mixins",
+			"colors",
+			"font-sans-400",
+			"font-sans-600",
+			"theme"
+		]
+	],
+	[
+		["solid", {
+			"color": ["$", ["var", "#accent"]],
+			"rect": [
+				0,
+				0,
+				"100rw",
+				"100rh"
+			],
+			"radius": 10000,
+			"padding": [
+				"15su",
+				"15su"
+			],
+			"transform": [
+				["scale",
+					["animate",
+						[0, 0, "easeOutBack"],
+						["+700", 1]
+					]
+				],
+				["rotate", 0.015],
+				["scale",
+					["animate",
+						[0, 1, "easeInOutQuad"],
+						["+500", 1.1, "easeInOutQuad"],
+						["+500", 1],
+						"loop"
+					]
+				]
+			]
+		}, [
+			["solid", {
+				"stagger": [200, 0],
+				"color": ["$", ["var", "#foreground"]],
+				"radius": 10000,
+				"padding": [
+					"30su",
+					"30su"
+				],
+				"transform": [
+					["scale",
+						["animate",
+							[0, 0, "easeOutQuint"],
+							["+700", 1]
+						]
+					]
+				]
+			}, [
+				["text", {
+					"enabled": ["$", ["exists", ["var", "text-1"]]],
+					"rect": [
+						0,
+						0,
+						"100rw",
+						"60rh"
+					],
+					"stagger": [300, 0],
+					"measure": "letter-size",
+					"font": ["$", ["var", "font-sans-400"]],
+					"height": "50su",
+					"string": ["$", ["var", "text-1"]],
+					"color": ["$", ["var", "#background"]],
+					"boundary": "word",
+					"align": "center",
+					"justify": "center",
+					"animations": [
+						{
+							"mask": [0, 0, "-5su", 0],
+							"translate": [0, "80su"]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+400", 1]
+							],
+							"ramp": -1,
+							"easing": "easeOutQuad",
+							"translate": [0, 0]
+						}
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["exists", ["var", "text-2"]]],
+							"transform": [
+								["translate",
+									0,
+									["animate",
+										[500, 0, "easeInOutQuad"],
+										["+300", "-30rh"]
+									]
+								]
+							]
+						}
+					]
+				}],
+				["text", {
+					"enabled": ["$", ["exists", ["var", "text-2"]]],
+					"rect": [
+						0,
+						0,
+						"100rw",
+						"40rh"
+					],
+					"stagger": [800, 0],
+					"measure": "letter-size",
+					"font": ["$", ["var", "font-sans-400"]],
+					"height": "25su",
+					"string": ["$", ["var", "text-2"]],
+					"color": ["$", ["var", "#background"]],
+					"boundary": "word",
+					"align": "bottom center",
+					"justify": "center",
+					"animations": [
+						{
+							"mask": [0, 0, "-5su", 0],
+							"translate": [0, "80su"]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+400", 1]
+							],
+							"ramp": -1,
+							"easing": "easeOutQuad",
+							"translate": [0, 0]
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

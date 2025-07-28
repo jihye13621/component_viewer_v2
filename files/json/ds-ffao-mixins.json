@@ -1,0 +1,136 @@
+{
+	"params": {
+		"color-white": {
+			"key": "color-white",
+			"display": "Color",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		},
+		"color-black": {
+			"key": "color-black",
+			"display": "Color",
+			"type": "color",
+			"default": "#090909",
+			"required": false
+		},
+		"color-blue": {
+			"key": "color-blue",
+			"display": "Color",
+			"type": "color",
+			"default": "#DAECFC",
+			"required": false
+		},
+		"color-green": {
+			"key": "color-green",
+			"display": "Color",
+			"type": "color",
+			"default": "#3C5240",
+			"required": false
+		},
+		"color-red": {
+			"key": "color-red",
+			"display": "Color",
+			"type": "color",
+			"default": "#F06A48",
+			"required": false
+		},
+		"font-bold": {
+			"key": "font-bold",
+			"display": "Font Bold",
+			"type": "string",
+			"default": "./media/Roboto-Bold.ttf",
+			"required": false,
+			"private": true
+		},
+		"font-regular": {
+			"key": "font-regular",
+			"display": "Font Regular",
+			"type": "string",
+			"default": "./media/Roboto-Regular.ttf",
+			"required": false,
+			"private": true
+		},
+		"font-medium": {
+			"key": "font-medium",
+			"display": "Font Medium",
+			"type": "string",
+			"default": "./media/Roboto-Medium.ttf",
+			"required": false,
+			"private": true
+		},
+		"font-mono-regular": {
+			"key": "font-mono-regular",
+			"display": "Font Mono Regular",
+			"type": "string",
+			"default": "./media/RobotoMono-Regular.ttf",
+			"required": false,
+			"private": true
+		},
+		"font-mono-medium": {
+			"key": "font-mono-medium",
+			"display": "Font Mono Medium",
+			"type": "string",
+			"default": "./media/RobotoMono-Medium.ttf",
+			"required": false,
+			"private": true
+		},
+		"font-mono-bold": {
+			"key": "font-mono-bold",
+			"display": "Font Mono Bold",
+			"type": "string",
+			"default": "./media/RobotoMono-Bold.ttf",
+			"required": false,
+			"private": true
+		},
+		"theme-selector": [
+			{
+				"key": "theme-selector",
+				"display": "Color Scheme",
+				"type": "string",
+				"default": "green-black",
+				"options": [
+					{
+						"key": "green-black",
+						"display": "Green / Black"
+					},
+					{
+						"key": "orange-black",
+						"display": "Orange / Black"
+					},
+					{
+						"key": "blue-white",
+						"display": "Blue / White"
+					},
+					{
+						"key": "black",
+						"display": "Black"
+					},
+					{
+						"key": "white",
+						"display": "White"
+					}
+				],
+				"required": false
+			},
+			{
+				"key": "#theme",
+				"private": true,
+				"display": "Color Scheme",
+				"type": "object",
+				"default": [],
+				"required": false,
+				"script": ["$",
+					["switch", ["var", "theme-selector"], {
+						"green-black": ["#3C5240", "#090909", "#ffffff"],
+						"orange-black": ["#F06A48", "#090909", "#ffffff"],
+						"blue-white": ["#DAECFC", "#ffffff", "#090909"],
+						"black": ["#090909", "#090909", "#ffffff"],
+						"white": ["#ffffff", "#ffffff", "#090909"],
+						"_": ["#3C5240", "#090909", "#ffffff"]
+					}]
+				]
+			}
+		]
+	}
+}

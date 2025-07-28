@@ -1,0 +1,50 @@
+[
+	"ds-hubspot-watermark",
+	[
+		["dsx-mixins", ["boilerplate"]],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [7, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": true,
+				"minimum": -100,
+				"maximum": 100
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-dsx-su",
+				"safezone",
+				"offset"
+			]
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"max-width": "800nsu",
+				"align": ["$", ["var", "#align"]]
+			}, [
+				["asset", {
+					"mute": true,
+					"file": "./media/ds-hubspot-logo-white.svg",
+					"flex": {
+						"width": "200su",
+						"height": "300su"
+					},
+					"justify": ["$", ["concat", "fit ", ["var", "#align"]]],
+					"opacity": ["animate",
+						[0, 0],
+						["+250", 1],
+						["100%", 0],
+						["-250", 1]
+					]
+				}]
+			]]
+		]]
+	]
+]

@@ -1,0 +1,109 @@
+[
+	"ds-sbg-watermark-admin",
+	[
+		{
+			"key": "station",
+			"display": "Station",
+			"type": "string",
+			"options": [
+				{
+					"key": "wjla",
+					"display": "Washington DC (WJLA)"
+				},
+				{
+					"key": "wpec",
+					"display": "West Palm Beach (WPEC)"
+				},
+				{
+					"key": "wlos",
+					"display": "Asheville (WLOS)"
+				},
+				{
+					"key": "wpde",
+					"display": "Myrtle Beach (WPDE)"
+				},
+				{
+					"key": "wciv",
+					"display": "Charleston, SC (WCIV)"
+				},
+				{
+					"key": "wset",
+					"display": "Roanoke-Lynchburg (WSET)"
+				},
+				{
+					"key": "wwmt",
+					"display": "Grand Rapids (WWMT)"
+				},
+				{
+					"key": "wach",
+					"display": "Columbia, SC (WACH)"
+				},
+				{
+					"key": "wcti",
+					"display": "New Bern, NC (WCTI)"
+				},
+				{
+					"key": "wgxa",
+					"display": "Macon (WGXA)"
+				},
+				{
+					"key": "weyi",
+					"display": "Flint (WEYI)"
+				},
+				{
+					"key": "krcg",
+					"display": "Columbia, MO (KRCG)"
+				},
+				{
+					"key": "wtvc",
+					"display": "Chattanooga (WTVC)"
+				},
+				{
+					"key": "wcyb",
+					"display": "Tri-Cities (WCYB)"
+				},
+				{
+					"key": "wpbn",
+					"display": "Traverse City (WPBN)"
+				}
+			],
+			"default": "wjla",
+			"required": false
+		},
+		{
+			"key": "size",
+			"display": "Size",
+			"type": "number",
+			"default": 1.0,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"step": 0.05,
+				"minimum": 0.5,
+				"maximum": 1.5
+			}
+		},
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [9, 0, 0],
+			"ui": {
+				"grid": false,
+				"offset": true,
+				"minimum": -100,
+				"maximum": 100
+			},
+			"required": false
+		},
+		["ds-sbg-mixins", "do-safezone"]
+	],
+	[
+		["ds-sbg-watermark", {
+			"size": ["$", ["var", "size"]],
+			"do-safezone": ["$", ["var", "do-safezone"]],
+			"station": ["$", ["var", "station"]],
+			"position": ["$", ["var", "position"]]
+		}]
+	]
+]

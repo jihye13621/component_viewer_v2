@@ -1,0 +1,232 @@
+[
+	"ds4-logo",
+	[
+		{
+			"key": "logo",
+			"display": "Logo",
+			"type": "asset",
+			"default": "./media/capsule.svg",
+			"required": false
+		},
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "text",
+			"default": "Optional text",
+			"required": false
+		},
+		{
+			"key": "font-1",
+			"display": "Style",
+			"type": "fontstyle",
+			"default": {
+				"font": "./media/Inter-SemiBold.ttf",
+				"height": 45,
+				"leading": 0.25
+			},
+			"required": false,
+			"script": ["$",
+				["key-set",
+					["var", "font-1"],
+					"height",
+					["round", ["*", ["var", "size"], ["var", "font-1", "height"]]]
+				]
+			]
+		},
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		},
+		{
+			"key": "color-2",
+			"display": "Color 2",
+			"type": "color",
+			"default": "#E03467",
+			"required": false
+		},
+		{
+			"key": "background",
+			"display": "Background",
+			"type": "color",
+			"default": null,
+			"required": false
+		},
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": 5,
+			"required": false
+		},
+		{
+			"key": "size",
+			"display": "Size",
+			"type": "number",
+			"default": 1.0,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"step": 0.05,
+				"minimum": 0.5,
+				"maximum": 1.5
+			}
+		},
+		{
+			"key": "#sized",
+			"script": ["$", ["struct",
+				"logo-box",
+					["round",
+						["*",
+							["var", "size"],
+							["*", 0.3, ["min", ["width"], ["height"]]]
+						]
+					]
+			]],
+			"required": false,
+			"private": true
+		},
+		{
+			"key": "#align",
+			"type": "string",
+			"default": "center",
+			"required": false,
+			"private": true,
+			"script": ["$", ["switch", ["var", "position"], {
+				"1": "bottom left",
+				"2": "bottom center",
+				"3": "bottom right",
+				"4": "left",
+				"5": "center",
+				"6": "right",
+				"7": "top left",
+				"8": "top center",
+				"9": "top right",
+				"_": "center"
+			}]]
+		}
+	],
+	[
+		["dsx-background", {
+			"enabled": ["$", ["exists", ["var", "background"]]],
+			"color": ["$", ["var", "background"]]
+		}],
+		["dsx-padding", {
+			"position": ["$", ["var", "position"]]
+		}, [
+			["null", {
+				"align": ["$", ["var", "#align"]],
+				"layout": "vertical packed",
+				"gap": ["$", ["var", "font-1", "height"]]
+			}, [
+				["asset", {
+					"mute": true,
+					"file": ["$", ["var", "logo"]],
+					"justify": "fit center bottom",
+					"flex": {
+						"width": ["$", ["var", "#sized", "logo-box"]],
+						"height": ["$", ["var", "#sized", "logo-box"]]
+					},
+					"breakpoints": [
+						{
+							"enabled": ["$", ["gt", ["height"], ["width"]]],
+							"flex": {
+								"width": "50rw"
+							}
+						}
+					],
+					"opacity": ["animate", 
+						[0, 0,"easeOutQuad"],
+						["+500", 1],
+						["100%", 0],
+						["-400", 1, "easeInQuad"]
+					],
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[0, ["$", ["var", "font-1", "height"]], "easeOutQuad"],
+								["+500", 0],
+								["100%", ["$", ["*", 1, ["var", "font-1", "height"]]]],
+								["-400", 0, "easeInQuad"]
+							]
+						]
+					]
+				}],
+				["null", {
+					"flex": {
+						"shrink": true,
+						"width": "30cw"
+					},
+					"breakpoints": [
+						{
+							"enabled": ["$", ["gt", ["height"], ["width"]]],
+							"flex": {
+								"width": "50rw"
+							}
+						}
+					],
+					"opacity": ["animate", 
+						[200, 0,"easeOutQuad"],
+						["+500", 1],
+						["100%", null],
+						["-200", 0],
+						["-400", 1, "easeInQuad"]
+					],
+					"rect": [
+						0,
+						0,
+						"100rw",
+						["$", ["*", 0.5, ["var", "font-1", "height"]]]
+					]
+				}, [
+					["ds4-progbar-2", {
+						"handle": "progbar",
+						"color-1": ["$", ["var", "color-1"]],
+						"color-2": ["$", ["var", "color-2"]],
+						"transform": [
+							["translate",
+								0,
+								["animate",
+									[200, ["$", ["var", "font-1", "height"]], "easeOutQuad"],
+									["+500", 0],
+									["100%", null],
+									["-200", ["$", ["*", 1, ["var", "font-1", "height"]]]],
+									["-400", 0, "easeInQuad"]
+								]
+							]
+						]
+					}]
+				]],
+				["text", {
+					"string": ["$", ["var", "text"]],
+					"color": ["$", ["var", "color-1"]],
+					"case": "uppercase",
+					"justify": ["$", ["var", "#align"]],
+					"style": ["$", ["var", "font-1"]],
+					"boundary": "word",
+					"animations": [
+						{
+							"translate": [0, ["$", ["var", "font-1", "height"]]]
+						},
+						{
+							"mix": ["animate",
+								[400, 0],
+								["+500", 1],
+								["100%", null],
+								["-400", 0],
+								["-500", 1]
+							],
+							"ramp": 1.0,
+							"easing": "easeOutQuad",
+							"translate": [0, 0], 
+							"opacity": 1
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

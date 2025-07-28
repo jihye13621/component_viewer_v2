@@ -1,0 +1,15 @@
+[
+	"ds-servicenow-ai-intro",
+	[
+	],
+	[
+		["solid", {
+			"color": "#042D42"
+		}, [
+			["asset", {
+				"file": "./media/ds-servicenow-ai-intro.mp4",
+				"justify": "fill center"
+			}]
+		]]
+	]
+]

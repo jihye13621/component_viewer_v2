@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Component Viewer</title>
+  <!-- Removed Prism.js CSS since we're using our own JSON highlighting -->
+  <style>
+    body { font-family: sans-serif; background: #f0f0f0; padding: 2rem; }
+    .controls { 
+      margin-bottom: 2rem; 
+      display: flex; 
+      gap: 1rem; 
+      align-items: center;
+      background: #fff;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .view-options, .size-options {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .filter-section {
+      background: #fff;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      margin-bottom: 1rem;
+    }
+    .filter-section h4 {
+      margin: 0 0 0.5rem 0;
+      color: #666;
+    }
+    .filter-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 1rem;
+    }
+    .filter-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      white-space: nowrap;
+    }
+    .filter-item input[type="checkbox"] {
+      margin: 0;
+    }
+    .filter-item label {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      cursor: pointer;
+      font-size: 0.9em;
+    }
+    .filter-count {
+      color: #666;
+      font-size: 0.8em;
+    }
+    .btn {
+      padding: 0.5rem 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background: #fff;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn:hover {
+      background: #f0f0f0;
+    }
+    .btn.active {
+      background: #007bff;
+      color: white;
+      border-color: #0056b3;
+    }
+    .gif-container {
+      display: grid;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+    .gif-container.list-view {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem 3rem;
+    }
+    .gif-container.gallery-view {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1rem 3rem;
+    }
+    .gif-container.gallery-view.small {
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+    .gif-container.gallery-view.medium {
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+    .gif-block {
+      background: #fff; 
+      padding: 1rem; 
+      border-radius: 8px; 
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+    .gif-block img { 
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      cursor: pointer;
+    }
+    .gif-block.list-view img {
+      max-width: 100%;
+      max-height: 200px;
+    }
+    .gif-block.gallery-view.small img {
+      max-height: 150px;
+    }
+    .gif-block.gallery-view.medium img {
+      max-height: 250px;
+    }
+    .filename { 
+      margin: 0.5rem 0; 
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .filename:hover {
+      color: #007bff;
+    }
+    .copy-icon {
+      opacity: 0;
+      transition: opacity 0.2s;
+      font-size: 0.8em;
+    }
+    .filename:hover .copy-icon {
+      opacity: 1;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background: #fff;
+      padding: 1rem;
+      border-radius: 8px;
+      max-width: 90%;
+      max-height: 90vh;
+      position: relative;
+    }
+    .modal-close {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #666;
+      padding: 0.25rem;
+      line-height: 1;
+    }
+    .modal-close:hover {
+      color: #000;
+    }
+    .modal video {
+      max-width: 100%;
+      max-height: 80vh;
+      display: block;
+    }
+    .toast {
+      position: fixed;
+      bottom: 1rem;
+      right: 1rem;
+      background: #333;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      display: none;
+      z-index: 1001;
+    }
+    .accordion { 
+      cursor: pointer; 
+      background-color: #eee; 
+      padding: 0.5rem; 
+      border: none; 
+      width: 100%; 
+      text-align: left; 
+      font-size: 1rem; 
+      border-radius: 4px; 
+      transition: background-color 0.3s; 
+    }
+    .accordion:hover { background-color: #ddd; }
+    .panel {
+      padding: 0.5rem;
+      display: none;
+      background-color: #2d2d2d;
+      border-left: 2px solid #ccc;
+      margin-top: 0.5rem;
+      border-radius: 4px;
+      max-width: 100%;
+      overflow-x: hidden;
+      box-sizing: border-box;
+      word-break: normal;
+      width: 100%;
+    }
+    .panel pre, .panel code {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: auto;
+      white-space: pre;
+      box-sizing: border-box;
+      display: block;
+      padding: 1rem;
+    }
+    pre, code {
+      font-family: 'Fira Mono', 'Consolas', 'Menlo', 'Monaco', monospace;
+      font-size: 1em;
+      background: #2d2d2d;
+      color: #ccc;
+      border-radius: 6px;
+      padding: 1em;
+      line-height: 1.5;
+      margin: 0;
+    }
+    pre {
+      margin-bottom: 1em;
+    }
+    /* Prism Tomorrow-like colors for JSON */
+    .json-highlight {
+      background-color: #ffeb3b;
+      color: #000;
+      padding: 1px 2px;
+      border-radius: 2px;
+      font-weight: bold;
+      display: inline-block;
+    }
+    /* Minimal syntax coloring for JSON */
+    .token-string { color: #a5e844; }
+    .token-number { color: #f08d49; }
+    .token-boolean { color: #f08d49; }
+    .token-null { color: #f08d49; }
+    .token-key { color: #36a3d9; }
+    .gif-block.hidden {
+      display: none;
+    }
+    .filter-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    .filter-actions {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+    .filter-btn {
+      padding: 0.25rem 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background: #fff;
+      cursor: pointer;
+      font-size: 0.9em;
+      transition: all 0.2s;
+    }
+    .filter-btn:hover {
+      background: #f0f0f0;
+    }
+    .sort-select {
+      padding: 0.25rem 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background: #fff;
+      font-size: 0.9em;
+      cursor: pointer;
+    }
+    
+    #searchInput:focus,
+    #searchJsonInput:focus {
+      border-color: #007bff;
+      box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+    }
+    
+    #searchClear:hover,
+    #searchJsonClear:hover {
+      color: #000;
+    }
+    
+    .collapsible-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      padding: 0.5rem;
+      background: #f8f9fa;
+      border-radius: 4px;
+      margin-bottom: 0.5rem;
+      transition: background-color 0.2s;
+    }
+    
+    .collapsible-header:hover {
+      background: #e9ecef;
+    }
+    
+    .collapsible-header h4 {
+      margin: 0;
+      color: #495057;
+    }
+    
+    .collapsible-content {
+      transition: max-height 0.3s ease-out;
+      overflow: hidden;
+      max-height: 1000px;
+    }
+    
+    .collapsible-content.collapsed {
+      max-height: 0;
+    }
+    
+    .caret {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.2em;
+      height: 2.2em;
+      transition: transform 0.1s cubic-bezier(0.4,0.2,0.6,1), color 0.2s;
+      font-size: 2em;
+      color: #495057;
+      background: none;
+      border: none;
+      cursor: pointer;
+      margin-left: 0.5em;
+    }
+    .caret svg {
+      width: 1.2em;
+      height: 1.2em;
+      display: block;
+      stroke: #495057;
+      /* stroke-width: 2.5; */
+    }
+    .caret.rotated {
+      transform: rotate(180deg);
+      color: #282a36;
+    }
+    .caret:hover svg {
+      stroke: #f1fa8c;
+    }
+    
+    #noJsonSection {
+      margin-top: 2rem;
+    }
+    
+    #gifContainer {
+      min-height: 200px;
+    }
+
+    @media (max-width: 900px) {
+      .gif-container.list-view {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    pre, code, .panel {
+      background: #282a36 !important;
+      color: #f8f8f2 !important;
+      border-radius: 6px;
+      padding: 0em;
+      line-height: 1.5;
+      overflow-x: auto;
+      margin: 0;
+      display: block;
+      box-sizing: border-box;
+    }
+
+    .token-key { color: #8be9fd !important; }
+    .token-string { color: #f1fa8c !important; }
+    .token-number { color: #bd93f9 !important; }
+    .token-boolean { color: #ff79c6 !important; }
+    .token-null { color: #ffb86c !important; }
+
+    .json-highlight {
+      background-color: #ffb86c !important;
+      color: #282a36 !important;
+      padding: 1px 2px;
+      border-radius: 2px;
+      font-weight: bold;
+      display: inline-block;
+    }
+
+    /* --- More space between search bars --- */
+    .search-bar-row {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    /* --- Align and style the clear 'x' button --- */
+    #searchClear, #searchJsonClear {
+      position: absolute;
+      right: 0.7rem;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: #444;
+      font-size: 1.5rem;
+      display: none;
+      z-index: 2;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+    #searchClear:hover, #searchJsonClear:hover {
+      color: #ff5555;
+      font-size: 1.7rem;
+    }
+
+    .inline-code {
+      font-family: 'Fira Mono', 'Consolas', 'Menlo', 'Monaco', monospace;
+      background: #ececec;
+      color: #282a36;
+      border-radius: 4px;
+      padding: 0.1em 0.4em;
+      font-size: 0.95em;
+      margin-left: 0.2em;
+      margin-right: 0.2em;
+    }
+  </style>
+</head>
+<body>
+  <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+    <h1>Components</h1>
+    <div style="position: relative; flex: 1; max-width: 400px;">
+      <input 
+        type="text" 
+        id="searchInput" 
+        placeholder="Search components..." 
+        style="
+          width: 100%;
+          padding: 0.5rem 1rem;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          font-size: 1rem;
+          outline: none;
+          transition: border-color 0.2s;
+        "
+      />
+      <div id="searchClear" style="
+        position: absolute;
+        right: 0.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: #666;
+        font-size: 1.2rem;
+        display: none;
+      ">&times;</div>
+    </div>
+    &nbsp;
+    <div style="position: relative; flex: 1; max-width: 400px;">
+      <input 
+        type="text" 
+        id="searchJsonInput" 
+        placeholder="Search JSON..." 
+        style="
+          width: 100%;
+          padding: 0.5rem 1rem;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          font-size: 1rem;
+          outline: none;
+          transition: border-color 0.2s;
+        "
+      />
+      <div id="searchJsonClear" style="
+        position: absolute;
+        right: 0.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: #666;
+        font-size: 1.2rem;
+        display: none;
+      ">&times;</div>
+    </div>
+  </div>
+  
+  <div class="filter-section">
+    <div class="filter-header">
+      <h3>Filter by Company</h3>
+      <div class="filter-actions">
+        <select class="sort-select" id="sortSelect">
+          <option value="alpha" selected>Sort Alphabetically</option>
+          <option value="count">Sort by Count</option>
+        </select>
+        <button class="filter-btn" id="selectAll">Select All</button>
+        <button class="filter-btn" id="selectNone">Select None</button>
+      </div>
+    </div>
+    <div id="filterGrid"></div>
+  </div>
+
+  <div class="controls">
+    <div class="view-options">
+      <button class="btn active" data-view="list">List View</button>
+      <button class="btn" data-view="gallery">Gallery View</button>
+    </div>
+    <div class="size-options">
+      <button class="btn active" data-size="small">Small</button>
+      <button class="btn" data-size="medium">Medium</button>
+    </div>
+  </div>
+
+  <div id="gifContainer" class="gif-container list-view small"></div>
+  
+  <!-- Section for components without JSON files -->
+  <div class="filter-section" id="noJsonSection" style="display: none;">
+    <div class="collapsible-header" onclick="toggleCollapsible('no-json-section')">
+      <h4>No matching JSON file</h4>
+      <span class="caret rotated" id="no-json-caret"><svg viewBox="0 0 20 20"><polyline points="6 8 10 12 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+    </div>
+    <div class="collapsible-content collapsed" id="no-json-section">
+      <div id="noJsonContainer" class="gif-container list-view small"></div>
+    </div>
+  </div>
+
+  <!-- Modal for MP4 playback -->
+  <div id="videoModal" class="modal">
+    <div class="modal-content">
+      <button class="modal-close">&times;</button>
+      <video id="modalVideo" controls>
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">Copied to clipboard!</div>
+
+  <!-- Removed Prism.js scripts since we're using our own JSON highlighting -->
+
+  <script>
+    const viewButtons = document.querySelectorAll('[data-view]');
+    const sizeButtons = document.querySelectorAll('[data-size]');
+    const container = document.getElementById('gifContainer');
+    const filterGrid = document.getElementById('filterGrid');
+    const searchInput = document.getElementById('searchInput');
+    const searchClear = document.getElementById('searchClear');
+    const searchJsonInput = document.getElementById('searchJsonInput');
+    const searchJsonClear = document.getElementById('searchJsonClear');
+    let allFiles = [];
+    let jsonRawText = new Map();
+
+    function getTypeFromFilename(filename) {
+      const cleanFilename = filename.replace(/\s+📋$/, '').trim();
+      const match = cleanFilename.match(/^dsx?-([^-]+)(?:-|$)/);
+      return match ? match[1] : null;
+    }
+
+    function getOtherWordsFromFilename(filename) {
+      const cleanFilename = filename.replace(/\s+📋$/, '').trim();
+      const parts = cleanFilename.split('-');
+      const words = parts.slice(2);
+      return words;
+    }
+
+    function createFilters(files) {
+      const types = new Map();
+      const otherWords = new Map();
+      
+      files.forEach(file => {
+        const type = getTypeFromFilename(file.gif);
+        if (type) {
+          types.set(type, (types.get(type) || 0) + 1);
+        }
+        
+        getOtherWordsFromFilename(file.gif).forEach(word => {
+          otherWords.set(word, (otherWords.get(word) || 0) + 1);
+        });
+      });
+
+      const typeSortMethod = 'alpha'; 
+      const wordSortMethod = 'alpha'; 
+      
+      const sortedTypes = Array.from(types.entries())
+        .sort((a, b) => {
+          if (typeSortMethod === 'count') {
+            return b[1] - a[1];
+          } else {
+            return a[0].localeCompare(b[0]);
+          }
+        });
+
+      const sortedOtherWords = Array.from(otherWords.entries())
+        .sort((a, b) => {
+          if (wordSortMethod === 'count') {
+            return b[1] - a[1];
+          } else {
+            return a[0].localeCompare(b[0]);
+          }
+        });
+
+      const typeFilters = sortedTypes.map(([type, count]) => `
+        <div class="filter-item">
+          <input type="checkbox" id="filter-type-${type}" value="${type}" checked>
+          <label for="filter-type-${type}">
+            ${type}
+            <span class="filter-count">(${count})</span>
+          </label>
+        </div>
+      `).join('');
+
+      const otherWordFilters = sortedOtherWords.map(([word, count]) => `
+        <div class="filter-item">
+          <input type="checkbox" id="filter-word-${word}" value="${word}" checked>
+          <label for="filter-word-${word}">
+            ${word}
+            <span class="filter-count">(${count})</span>
+          </label>
+        </div>
+      `).join('');
+
+      filterGrid.innerHTML = `
+        <div class="filter-section">
+          <div class="collapsible-header" onclick="toggleCollapsible('types-section')">
+            <h4>Company Names <code class="inline-code">(ds-xxx-)</code></h4>
+            <span class="caret" id="types-caret"><svg viewBox="0 0 20 20"><polyline points="6 8 10 12 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </div>
+          <div class="collapsible-content" id="types-section">
+            <div class="filter-grid">${typeFilters}</div>
+          </div>
+        </div>
+                  <div class="filter-section">
+            <div class="filter-header">
+              <h3>Other Words</h3>
+              <div class="filter-actions">
+                <select class="sort-select" id="wordSortSelect">
+                  <option value="alpha" selected>Sort Alphabetically</option>
+                  <option value="count">Sort by Count</option>
+                </select>
+              </div>
+            </div>
+          <div class="collapsible-header" onclick="toggleCollapsible('words-section')">
+            <h4>Component Words <code class="inline-code">(ds-[company-name]-xxx-xxx)</code></h4>
+            <span class="caret" id="words-caret"><svg viewBox="0 0 20 20"><polyline points="6 8 10 12 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </div>
+          <div class="collapsible-content" id="words-section">
+            <div class="filter-grid">${otherWordFilters}</div>
+          </div>
+        </div>
+      `;
+
+      filterGrid.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+          updateVisibility();
+          saveFilterState();
+        });
+      });
+
+      document.getElementById('sortSelect').addEventListener('change', () => {
+        createFilters(files);
+      });
+
+      document.getElementById('wordSortSelect').addEventListener('change', () => {
+        createFilters(files);
+      });
+
+      document.getElementById('selectAll').addEventListener('click', () => {
+        filterGrid.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+          checkbox.checked = true;
+        });
+        updateVisibility();
+        saveFilterState();
+      });
+
+      document.getElementById('selectNone').addEventListener('click', () => {
+        filterGrid.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+          checkbox.checked = false;
+        });
+        updateVisibility();
+        saveFilterState();
+      });
+
+      loadFilterState();
+    }
+
+    function updateVisibility() {
+      document.querySelectorAll('.gif-block').forEach(block => {
+        applyVisibility(block);
+      });
+    }
+
+    function saveFilterState() {
+      const filterState = {
+        types: {},
+        words: {},
+        typeSort: document.getElementById('sortSelect').value,
+        wordSort: document.getElementById('wordSortSelect').value
+      };
+      
+      filterGrid.querySelectorAll('input[id^="filter-type-"]').forEach(checkbox => {
+        filterState.types[checkbox.value] = checkbox.checked;
+      });
+      
+      filterGrid.querySelectorAll('input[id^="filter-word-"]').forEach(checkbox => {
+        filterState.words[checkbox.value] = checkbox.checked;
+      });
+      
+      localStorage.setItem('filterState', JSON.stringify(filterState));
+    }
+
+    function loadFilterState() {
+      const savedState = localStorage.getItem('filterState');
+      if (savedState) {
+        const filterState = JSON.parse(savedState);
+        
+        if (filterState.typeSort) {
+          document.getElementById('sortSelect').value = filterState.typeSort;
+        }
+        if (filterState.wordSort) {
+          document.getElementById('wordSortSelect').value = filterState.wordSort;
+        }
+        
+        filterGrid.querySelectorAll('input[id^="filter-type-"]').forEach(checkbox => {
+          if (filterState.types && filterState.types.hasOwnProperty(checkbox.value)) {
+            checkbox.checked = filterState.types[checkbox.value];
+          }
+        });
+        
+        filterGrid.querySelectorAll('input[id^="filter-word-"]').forEach(checkbox => {
+          if (filterState.words && filterState.words.hasOwnProperty(checkbox.value)) {
+            checkbox.checked = filterState.words[checkbox.value];
+          }
+        });
+        
+        updateVisibility();
+      }
+    }
+
+    // Search functionality
+    function performSearch() {
+      const searchTerm = searchInput.value.toLowerCase().trim();
+      const searchJsonTerm = searchJsonInput.value.toLowerCase().trim();
+      
+
+      
+      // Show/hide clear buttons
+      searchClear.style.display = searchTerm ? 'block' : 'none';
+      searchJsonClear.style.display = searchJsonTerm ? 'block' : 'none';
+      
+          // Re-highlight all open JSON panels
+    rehighlightOpenJSONPanels();
+    
+    function rehighlightOpenJSONPanels() {
+      const searchJsonTerm = searchJsonInput.value.toLowerCase().trim();
+      const searchTerms = searchJsonTerm ? searchJsonTerm.split(/\s+/) : [];
+      
+      console.log('Rehighlighting JSON panels with terms:', searchTerms);
+      
+      document.querySelectorAll('.panel').forEach(panel => {
+        if (panel.style.display === 'block') {
+          const codeElement = panel.querySelector('code');
+          if (codeElement && !panel.innerHTML.includes('Error loading JSON')) {
+            const filename = panel.closest('.gif-block').querySelector('.filename').textContent.trim();
+            const cleanFilename = filename.replace(/\s*📋\s*/, '').trim();
+            const rawText = jsonRawText.get(cleanFilename);
+            
+            if (rawText) {
+              console.log(`Rehighlighting JSON for ${cleanFilename} with terms:`, searchTerms);
+              panel.innerHTML = formatJSON(rawText, searchTerms);
+              // Don't use Prism.js for JSON highlighting - use our own
+              // Prism.highlightElement(panel.querySelector('code'));
+              
+              // Highlighting is now done in formatJSON function
+            }
+          }
+        }
+      });
+    }
+      
+      document.querySelectorAll('.gif-block').forEach(block => {
+        const filename = block.querySelector('.filename').textContent.trim();
+        
+        // Split search term into individual words and check if ALL words are present
+        const searchWords = searchTerm.split(/\s+/).filter(word => word.length > 0);
+        const matchesSearch = searchTerm === '' || searchWords.every(word => 
+          filename.toLowerCase().includes(word)
+        );
+        
+        // Check JSON search
+        const matchesJsonSearch = searchJsonTerm === '' || checkJsonMatch(block, searchJsonTerm);
+        
+        // Store search match states on the block element
+        block.dataset.matchesSearch = matchesSearch;
+        block.dataset.matchesJsonSearch = matchesJsonSearch;
+        
+        // Apply both filter and search visibility
+        applyVisibility(block);
+      });
+    }
+
+    // Check if JSON content matches search term
+    function checkJsonMatch(block, searchTerm) {
+      const filename = block.querySelector('.filename').textContent.trim();
+      // Clean the filename by removing the copy icon emoji
+      const cleanFilename = filename.replace(/\s*📋\s*/, '').trim();
+      const rawText = jsonRawText.get(cleanFilename);
+      
+
+      
+      if (!rawText) {
+        return true; // If no JSON data loaded yet, don't filter it out
+      }
+      
+      // Convert JSON to string and search
+      const jsonString = JSON.stringify(JSON.parse(rawText)).toLowerCase();
+      const searchWords = searchTerm.split(/\s+/).filter(word => word.length > 0);
+      
+      const matches = searchWords.every(word => jsonString.includes(word));
+      
+
+      
+      return matches;
+    }
+
+    function applyVisibility(block) {
+      const filename = block.querySelector('.filename').textContent.trim();
+      const type = getTypeFromFilename(filename);
+      const words = getOtherWordsFromFilename(filename);
+      
+
+      
+      // Get current filter states
+      const typeFilters = {};
+      filterGrid.querySelectorAll('input[id^="filter-type-"]').forEach(checkbox => {
+        typeFilters[checkbox.value] = checkbox.checked;
+      });
+
+      const wordFilters = {};
+      filterGrid.querySelectorAll('input[id^="filter-word-"]').forEach(checkbox => {
+        wordFilters[checkbox.value] = checkbox.checked;
+      });
+      
+      // Check if any type filters are selected
+      const hasTypeFilters = Object.values(typeFilters).some(checked => checked);
+      const hasWordFilters = Object.values(wordFilters).some(checked => checked);
+      
+      // Check filter visibility
+      const typeAllowed = !hasTypeFilters || (type && typeFilters[type]);
+      const wordAllowed = !hasWordFilters || words.some(word => wordFilters[word]);
+      
+      // Check search visibility
+      const searchTerm = searchInput.value.toLowerCase().trim();
+      const searchWords = searchTerm.split(/\s+/).filter(word => word.length > 0);
+      const matchesSearch = searchTerm === '' || searchWords.every(word => 
+        filename.toLowerCase().includes(word)
+      );
+      
+      // Check JSON search visibility
+      const searchJsonTerm = searchJsonInput.value.toLowerCase().trim();
+      const matchesJsonSearch = searchJsonTerm === '' || checkJsonMatch(block, searchJsonTerm);
+      
+      // Show block only if it passes filters, component search, and JSON search
+      const shouldShow = typeAllowed && wordAllowed && matchesSearch && matchesJsonSearch;
+      
+
+      
+      block.style.display = shouldShow ? '' : 'none';
+    }
+
+    // Search event listeners
+    searchInput.addEventListener('input', performSearch);
+    searchJsonInput.addEventListener('input', performSearch);
+    
+    searchClear.addEventListener('click', () => {
+      searchInput.value = '';
+      searchClear.style.display = 'none';
+      performSearch();
+    });
+    
+    searchJsonClear.addEventListener('click', () => {
+      searchJsonInput.value = '';
+      searchJsonClear.style.display = 'none';
+      performSearch();
+    });
+
+    // Collapsible functionality
+    window.toggleCollapsible = function(sectionId) {
+      const content = document.getElementById(sectionId);
+      const caret = document.getElementById(sectionId.replace('-section', '-caret'));
+      
+      if (content.classList.contains('collapsed')) {
+        content.classList.remove('collapsed');
+        caret.classList.remove('rotated');
+      } else {
+        content.classList.add('collapsed');
+        caret.classList.add('rotated');
+      }
+    };
+
+
+
+    viewButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        viewButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        container.className = `gif-container ${btn.dataset.view}-view ${container.classList.contains('small') ? 'small' : 'medium'}`;
+        document.querySelectorAll('.gif-block').forEach(block => {
+          block.className = `gif-block ${btn.dataset.view}-view ${container.classList.contains('small') ? 'small' : 'medium'}`;
+        });
+        
+        // Update the no-json container as well
+        const noJsonContainer = document.getElementById('noJsonContainer');
+        if (noJsonContainer) {
+          noJsonContainer.className = `gif-container ${btn.dataset.view}-view ${container.classList.contains('small') ? 'small' : 'medium'}`;
+        }
+      });
+    });
+
+    sizeButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        sizeButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        container.className = `gif-container ${container.classList.contains('list-view') ? 'list-view' : 'gallery-view'} ${btn.dataset.size}`;
+        document.querySelectorAll('.gif-block').forEach(block => {
+          block.className = `gif-block ${block.classList.contains('list-view') ? 'list-view' : 'gallery-view'} ${btn.dataset.size}`;
+        });
+        
+        // Update the no-json container as well
+        const noJsonContainer = document.getElementById('noJsonContainer');
+        if (noJsonContainer) {
+          noJsonContainer.className = `gif-container ${noJsonContainer.classList.contains('list-view') ? 'list-view' : 'gallery-view'} ${btn.dataset.size}`;
+        }
+      });
+    });
+    
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.style.display = 'block';
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 2000);
+    }
+      
+    async function copyToClipboard(text) {
+      try {
+        await navigator.clipboard.writeText(text);
+        showToast('Copied to clipboard!');
+      } catch (err) {
+        showToast('Failed to copy');
+      }
+    }
+    const modal = document.getElementById('videoModal');
+    const modalVideo = document.getElementById('modalVideo');
+    const modalClose = document.querySelector('.modal-close');
+
+    function openModal(videoSrc) {
+      modalVideo.src = videoSrc;
+      modal.style.display = 'flex';
+      modalVideo.play();
+    }
+
+    function closeModal() {
+      modalVideo.pause();
+      modalVideo.src = '';
+      modal.style.display = 'none';
+    }
+
+    modalClose.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+
+    // Parser-based Prism.js-like JSON syntax highlighter
+    function syntaxHighlightJSON(jsonString) {
+      let result = '';
+      let inString = false;
+      let inKey = false;
+      let escape = false;
+      let buffer = '';
+      let expectingKey = false;
+      let expectingColon = false;
+      let expectingValue = false;
+      let i = 0;
+      while (i < jsonString.length) {
+        const char = jsonString[i];
+        if (inString) {
+          buffer += char;
+          if (escape) {
+            escape = false;
+          } else if (char === '\\') {
+            escape = true;
+          } else if (char === '"') {
+            // End of string
+            if (inKey) {
+              result += `<span class=\"token-key\">${buffer}</span>`;
+              inKey = false;
+              expectingColon = true;
+            } else {
+              result += `<span class=\"token-string\">${buffer}</span>`;
+              expectingValue = false;
+            }
+            buffer = '';
+            inString = false;
+          }
+          i++;
+          continue;
+        }
+        if (char === '"') {
+          // Start of string
+          inString = true;
+          buffer = '"';
+          // Look back to see if this is a key (if previous non-whitespace is { or ,)
+          let j = i - 1;
+          while (j >= 0 && /\s/.test(jsonString[j])) j--;
+          if (j >= 0 && (jsonString[j] === '{' || jsonString[j] === ',')) {
+            inKey = true;
+            expectingKey = false;
+          } else {
+            inKey = false;
+          }
+          i++;
+          continue;
+        }
+        if (expectingColon && char === ':') {
+          result += ':';
+          expectingColon = false;
+          expectingValue = true;
+          i++;
+          continue;
+        }
+        if (expectingValue) {
+          // Skip whitespace
+          if (/\s/.test(char)) {
+            result += char;
+            i++;
+            continue;
+          }
+          // Check for literals: true, false, null, number
+          if (char === 't' && jsonString.substr(i, 4) === 'true') {
+            result += '<span class="token-boolean">true</span>';
+            i += 4;
+            expectingValue = false;
+            continue;
+          }
+          if (char === 'f' && jsonString.substr(i, 5) === 'false') {
+            result += '<span class="token-boolean">false</span>';
+            i += 5;
+            expectingValue = false;
+            continue;
+          }
+          if (char === 'n' && jsonString.substr(i, 4) === 'null') {
+            result += '<span class="token-null">null</span>';
+            i += 4;
+            expectingValue = false;
+            continue;
+          }
+          // Number
+          const numMatch = jsonString.substr(i).match(/^-?\d+(?:\.\d+)?(?:[eE][+\-]?\d+)?/);
+          if (numMatch) {
+            result += `<span class=\"token-number\">${numMatch[0]}</span>`;
+            i += numMatch[0].length;
+            expectingValue = false;
+            continue;
+          }
+        }
+        // Not in string, not expecting value: just copy
+        result += char;
+        // After a colon, expect a value
+        if (char === ':') expectingValue = true;
+        // After a { or , expect a key
+        if (char === '{' || char === ',') expectingKey = true;
+        i++;
+      }
+      return result;
+    }
+
+    function formatJSON(rawText, searchTerms = []) {
+      // Use the raw JSON text as-is
+      let highlighted = syntaxHighlightJSON(rawText);
+      // Highlight search terms if any (outside of HTML tags)
+      if (searchTerms.length > 0) {
+        searchTerms.forEach(term => {
+          highlighted = highlighted.replace(new RegExp(`(>[^<]*)(${term})([^<]*<)`, 'gi'), (m, before, match, after) => {
+            return before + '<span class="json-highlight">' + match + '</span>' + after;
+          });
+        });
+      }
+      return `<pre><code>${highlighted}</code></pre>`;
+    }
+
+    fetch('/files')
+      .then(res => res.json())
+      .then(files => {
+        allFiles = files;
+        createFilters(files);
+        
+        // Pre-load all JSON data for searching
+        const jsonPromises = files
+          .filter(file => file.json)
+          .map(file => 
+            fetch(`./files/json/${file.json}.json`)
+              .then(res => res.text())
+              .then(text => { jsonRawText.set(file.gif, text); jsonData.set(file.gif, JSON.parse(text)); console.log(`Pre-loaded JSON for ${file.gif}`); })
+              .catch(err => {
+                console.log(`Failed to load JSON for ${file.gif}:`, err);
+              })
+          );
+        
+        // Wait for all JSON to load, then create components
+        Promise.all(jsonPromises).then(() => {
+          console.log('All JSON data loaded, creating components...');
+          
+          const filesWithJson = [];
+          const filesWithoutJson = [];
+          
+          files.forEach(file => {
+            if (file.json) {
+              filesWithJson.push(file);
+            } else {
+              filesWithoutJson.push(file);
+            }
+          });
+          
+          // Create components with JSON files
+          filesWithJson.forEach(file => {
+          const block = document.createElement('div');
+          block.className = 'gif-block list-view small';
+          
+          const jsonButton = file.json 
+            ? `<button class="accordion">Show JSON for ${file.gif}</button>
+               <div class="panel"></div>`
+            : `<div class="no-json">No matching JSON file found for ${file.gif}</div>`;
+
+          block.innerHTML = `
+            <img src="./files/gif/${file.gif}.gif" alt="${file.gif}" />
+            <div class="filename">
+              ${file.gif}
+              <span class="copy-icon">📋</span>
+            </div>
+            ${jsonButton}
+          `;
+  
+          const img = block.querySelector('img');
+          img.addEventListener('click', () => {
+            const mp4Path = `./files/mp4/${file.gif}.mp4`;
+            openModal(mp4Path);
+          });
+
+          const filename = block.querySelector('.filename');
+          filename.addEventListener('click', () => {
+            copyToClipboard(file.gif);
+          });
+  
+          if (file.json) {
+            const accordion = block.querySelector('.accordion');
+            const panel = block.querySelector('.panel');
+            let loaded = false;
+  
+            accordion.addEventListener('click', async () => {
+              panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+              if (!loaded) {
+                try {
+                  const rawText = jsonRawText.get(file.gif);
+                  const searchJsonTerm = searchJsonInput.value.toLowerCase().trim();
+                  const searchTerms = searchJsonTerm ? searchJsonTerm.split(/\s+/) : [];
+                  
+                  panel.innerHTML = formatJSON(rawText, searchTerms);
+                  // Don't use Prism.js for JSON highlighting - use our own
+                  // Prism.highlightElement(panel.querySelector('code'));
+                  
+                  loaded = true;
+                } catch (err) {
+                  panel.innerHTML = '<pre><code class="language-json">Error loading JSON</code></pre>';
+                }
+              } else {
+                // Re-highlight existing JSON with current search terms
+                const rawText = jsonRawText.get(file.gif);
+                const searchJsonTerm = searchJsonInput.value.toLowerCase().trim();
+                const searchTerms = searchJsonTerm ? searchJsonTerm.split(/\s+/) : [];
+                
+                panel.innerHTML = formatJSON(rawText, searchTerms);
+                // Don't use Prism.js for JSON highlighting - use our own
+                // Prism.highlightElement(panel.querySelector('code'));
+              }
+            });
+          }
+  
+          container.appendChild(block);
+        });
+        
+        // Create components without JSON files
+        if (filesWithoutJson.length > 0) {
+          document.getElementById('noJsonSection').style.display = 'block';
+          
+          filesWithoutJson.forEach(file => {
+            const block = document.createElement('div');
+            block.className = 'gif-block list-view small';
+            
+            block.innerHTML = `
+              <img src="./files/gif/${file.gif}.gif" alt="${file.gif}" />
+              <div class="filename">
+                ${file.gif}
+                <span class="copy-icon">📋</span>
+              </div>
+              <div class="no-json">No matching JSON file found for ${file.gif}</div>
+            `;
+    
+            const img = block.querySelector('img');
+            img.addEventListener('click', () => {
+              const mp4Path = `./files/mp4/${file.gif}.mp4`;
+              openModal(mp4Path);
+            });
+
+            const filename = block.querySelector('.filename');
+            filename.addEventListener('click', () => {
+              copyToClipboard(file.gif);
+            });
+            
+            document.getElementById('noJsonContainer').appendChild(block);
+          });
+        }
+        });
+      });
+  </script>
+</body>
+</html>

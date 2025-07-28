@@ -1,0 +1,57 @@
+{
+	"params": {
+		"colors": [
+			{
+				"key": "white",
+				"display": "White",
+				"type": "color",
+				"default": "#FFFFFF",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "black",
+				"display": "Black",
+				"type": "color",
+				"default": "#000000",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "red",
+				"display": "Red",
+				"type": "color",
+				"default": "#C90C0F",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "yellow",
+				"display": "Yellow",
+				"type": "color",
+				"default": "#FFE843",
+				"required": false,
+				"private": true
+			}
+		]
+	},
+	"text-captions": {
+		"font": "./media/Gotham-Medium.otf",
+		"measure": "letter-size",
+		"height": "60su",
+		"leading": "30su",
+		"kerning": -0.033
+	},
+	"text-regular": {
+		"font": "./media/Gotham-Medium.otf",
+		"height": "60su",
+		"leading": "45su",
+		"kerning": -0.033
+	},
+	"text-light": {
+		"font": "./media/Gotham-Book.otf",
+		"measure": "letter-size",
+		"height": "60su",
+		"leading": "45su"
+	}
+}

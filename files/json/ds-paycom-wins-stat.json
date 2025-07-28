@@ -1,0 +1,208 @@
+[
+	"ds-paycom-wins-stat",
+	[
+		{
+			"key": "stat",
+			"display": "Stat",
+			"type": "text",
+			"default": "98%",
+			"required": false
+		},
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "textarea",
+			"default": "Optional statistic details",
+			"required": false
+		},
+		{
+			"key": "#stat",
+			"display": "data",
+			"type": "object",
+			"default": 1000,
+			"required": false,
+			"private": true,
+			"script": ["$", 
+				["let",
+					[
+						["found", ["match", ["var", "stat"], ["regexp", "[\\d,]+"], ""]],
+						["segments", ["if",
+							["exists", ["var", "found"]],
+							["segment", ["var", "stat"], ["var", "found"]]
+						]]
+					],
+					["if",
+						["exists", ["var", "found"]],
+						["array",
+							["nth", ["var", "segments"], 0],
+							["floor",
+								["to-number",
+									["var", "found"]
+								]
+							],
+							["nth", ["var", "segments"], 2]
+						],
+						["array",
+							"",
+							0,
+							""
+						]
+					]
+				]
+			]
+		}
+	],
+	[
+		["null", {
+			"opacity": ["animate",
+				[0, 0],
+				["+500", 1],
+				["100%", 0],
+				["-500", 1]
+			]
+		}, [
+			["solid", {
+				"color": "#003E2D"
+			}],
+			["null", {
+				"mixins": ["dsx-mixins",
+					"set-su",
+					"safezone"
+				],
+				"layout": "vertical packed",
+				"align": "center",
+				"gap": "80su",
+				"effect": [
+					["shadow", {
+						"color": [0, 0, 0, 0.7],
+						"radius": "25su"
+					}]
+				]
+			}, [
+				["null", {
+					"enabled": ["$", ["exists", ["var", "stat"]]],
+					"layout": "stacked",
+					"align": "center"
+				}, [
+					["text", {
+						"font": "./media/Bebas Neue Pro Bold.otf",
+						"measure": "letter-size",
+						"height": "200su",
+						"color": "#70D44B",
+						"string": ["$", ["var", "stat"]],
+						"fit": true,
+						"transform": [
+							["translate",
+								0,
+								["animate",
+									[
+										0,
+										"100su",
+										"easeOutQuint"
+									],
+									["+1000", 0]
+								]
+							]
+						],
+						"animations": [
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+500", 1]
+								],
+								"opacity": 1
+							}
+						],
+						"breakpoints": [
+							{
+								"enabled": true,
+								"string": "",
+								"mutate": ["$$",
+									["let",
+										[
+											["start", ["$", ["key", ["comp-timing"], "start"]]],
+											["frame", ["current-frame"]],
+											["animate",
+												["ease",
+													["map",
+														["var", "frame"],
+														["var", "start"],
+														["+", ["var", "start"], 1000],
+														0,
+														1
+													],
+													"easeOutQuad"
+												]
+											]
+										],
+										["concat",
+											["$", ["nth", ["var", "#stat"], 0]],
+											["to-comma-string", ["floor",
+												["*",
+													["$", ["nth", ["var", "#stat"], 1]],
+													["var", "animate"]
+												]
+											]],
+											["$", ["nth", ["var", "#stat"], 2]]
+										]
+									]
+								]
+							}
+						]
+					}]
+				]],
+				["null", {
+					"enabled": ["$", ["exists", ["var", "text"]]],
+					"layout": "stacked",
+					"align": "center",
+					"max-width": "1200nsu",
+					"flex": {
+						"weight": 0.5
+					}
+				}, [
+					["text", {
+						"stagger": [
+							200,
+							0
+						],
+						"enabled": ["$", ["exists", ["var", "text"]]],
+						"font": "./media/Bebas Neue Pro Regular.otf",
+						"measure": "letter-size",
+						"height": "120su",
+						"leading": "30su",
+						"case": ["$",
+							["if",
+								["var", "do-uppercase"],
+								"uppercase"
+							]
+						],
+						"color": [1, 1, 1, 1],
+						"string": ["$", ["var", "text"]],
+						"justify": "center",
+						"boundary": "line",
+						"animations": [
+							{
+								"translate": [0, "50su"]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+1000", 1]
+								],
+								"easing": "easeOutQuint",
+								"ramp": 4,
+								"opacity": 1,
+								"translate": [0, 0]
+							}
+						]
+					}]
+				]]
+			]],
+			["ds-paycom-wins-shapes", {
+				"flex": {
+					"position": "fixed"
+				}
+			}]
+		]]
+	]
+]

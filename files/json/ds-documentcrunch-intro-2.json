@@ -1,0 +1,174 @@
+[
+	"ds-documentcrunch-intro-2",
+	[
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["justify", "fill"],
+				["motion", "none"]
+			]
+		},
+		{
+			"key": "headline",
+			"display": "Headline",
+			"default": "Headline",
+			"type": "text",
+			"required": false
+		},
+		{
+			"key": "subhead",
+			"display": "Subhead",
+			"default": "Subhead",
+			"type": "text",
+			"required": false
+		},
+		["ds-documentcrunch-mixins",
+			"font-medium",
+			"font-bold",
+			"darkmode"
+		]
+	],
+	[
+		["ds-documentcrunch-bg", {
+			"stripe": ["$", ["var", "#lightblue"]],
+			"animate-in": false
+		}, [
+			["null", {
+				"mixins": ["dsx-mixins",
+					"set-su",
+					"safezone"
+				]
+			}, [
+				["solid", {
+					"flex": {
+						"position": "fixed"
+					},
+					"color": ["$", ["var", "#bg"]]
+				}],
+				["null", {
+					"layout": "horizontal",
+					"gap": "150su",
+					"breakpoints": [
+						{
+							"enabled": ["$", ["lt", ["aspect"], 1]],
+							"layout": "vertical",
+							"gap": "100su",
+							"padding": [
+								0,
+								0,
+								"240su",
+								0
+							]
+						}
+					]
+				}, [
+					["null", {
+						"layout": "vertical packed",
+						"align": "top left",
+						"gap": "60su",
+						"padding": [
+							0,
+							0,
+							"240su",
+							0
+						],
+						"breakpoints": [
+							{
+								"enabled": ["$", ["lt", ["aspect"], 1]],
+								"padding": null
+							}
+					]
+					}, [
+						["text", {
+							"enabled": ["$", ["exists", ["var", "subhead"]]],
+							"flex": {
+								"height": "50su"
+							},
+							"stagger": [0, 0],
+							"font": ["$", ["var", "font-medium"]],
+							"string": ["$", ["var", "subhead"]],
+							"measure": "letter-size",
+							"height": "40su",
+							"fit": true,
+							"case": "uppercase",
+							"color": ["$", ["var", "#fg"]],
+							"animations": [
+								{
+									"translate": [
+										0,
+										"100su"
+									]
+								},
+								{
+									"mix": ["animate",
+										[0, 0],
+										["+1000", 1]
+									],
+									"easing": "easeOutCubic",
+									"translate": [0, 0],
+									"opacity": 1
+								}
+							]
+						}],
+						["text", {
+							"enabled": ["$", ["exists", ["var", "headline"]]],
+							"stagger": [200, 0],
+							"font": ["$", ["var", "font-bold"]],
+							"string": ["$", ["var", "headline"]],
+							"measure": "letter-size",
+							"height": "110su",
+							"leading": "10su",
+							"color": ["$", ["var", "#fg"]],
+							"animations": [
+								{
+									"translate": [
+										0,
+										"100su"
+									]
+								},
+								{
+									"mix": ["animate",
+										[0, 0],
+										["+1000", 1]
+									],
+									"easing": "easeOutCubic",
+									"translate": [0, 0],
+									"opacity": 1
+								}
+							]
+						}]
+					]],
+					["user-asset", {
+						"enabled": ["$", ["exists", ["var", "asset"]]],
+						"mask": {},
+						"file": ["$", ["var", "asset"]],
+						"justify": "fill center",
+						"mute": true,
+						"hold": true
+					}]
+				]],
+				["asset", {
+					"file": ["$",
+						["if",
+							["var", "darkmode"],
+							"./media/ds-documentcrunch-logo-white.png",
+							"./media/ds-documentcrunch-logo-dark.png"
+						]
+					],
+					"justify": "fit bottom left",
+					"rect": [
+						0,
+						0,
+						"260su",
+						"260su"
+					],
+					"align": "bottom left"
+				}]
+			]]
+		]]
+	]
+]

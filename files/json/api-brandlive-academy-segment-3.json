@@ -1,0 +1,391 @@
+[
+	"api-brandlive-academy-segment-3",
+	[
+		{
+			"key": "headline",
+			"display": "Headline",
+			"type": "string",
+			"default": "Townhall Takeaways",
+			"required": false
+		},
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "string",
+			"default": "Closing Remarks",
+			"required": false
+		},
+		{
+			"key": "font-1",
+			"display": "Font 1",
+			"default": "./media/api-brandlive/Poppins-Medium.ttf",
+			"type": "string",
+			"required": false
+		},
+		{
+			"key": "font-2",
+			"display": "Font 2",
+			"default": "./media/api-brandlive/Poppins-Regular.ttf",
+			"type": "string",
+			"required": false
+		},
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": "#09083F",
+			"required": false
+		},
+		{
+			"key": "color-2",
+			"display": "Color 2",
+			"type": "color",
+			"default": "#0B45AC",
+			"required": false
+		},
+		{
+			"key": "color-3",
+			"display": "Color 3",
+			"type": "color",
+			"default": "#FFBC1E",
+			"required": false
+		},
+		{
+			"key": "color-4",
+			"display": "Color 4",
+			"type": "color",
+			"default": "#ED0201",
+			"required": false
+		},
+		{
+			"key": "text-color-1",
+			"display": "Text Color 1",
+			"type": "color",
+			"default": "#FFFFFF",
+			"required": false
+		},
+		{
+			"key": "text-color-2",
+			"display": "Text Color 2",
+			"type": "color",
+			"default": "#FFFFFF",
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-dsx-su"
+			]
+		}, [
+			["solid", {   
+				"rect": [0, 0, "100rw", "100rh"],
+				"color": "#FFFFFF"
+			}], 
+			["null", {
+				"rect": ["12.5rw", 0, "25rw", "100rh"]
+			}, [
+				["api-brandlive-academy-segment-triangle", {
+					"mixins": ["api-brandlive-mixins", "triangle-transform"],
+					"colors": [
+						["$", ["var", "color-1"]],
+						["$", ["var", "color-3"]],
+						["$", ["var", "color-4"]],
+						["$", ["var", "color-1"]]
+					],
+					"value": [0, 933, 1666, 1933],
+					"rect": [0, 0, "100rw", "100rh"]
+				}],
+				["api-brandlive-academy-segment-triangle", {
+					"mixins": ["api-brandlive-mixins",
+						"triangle-transform"
+					],
+					"colors": [
+						["$", ["var", "color-2"]],
+						["$", ["var", "color-1"]],
+						["$", ["var", "color-3"]],
+						["$", ["var", "color-2"]]
+					],
+					"value": [0, 1033, 1766, 2033],
+					"stagger": [100, 0],
+					"rect": [0, "20rh", "100rw", "100rh"]
+				}],
+				["api-brandlive-academy-segment-triangle", {
+					"mixins": ["api-brandlive-mixins",
+						"triangle-transform"
+					],
+					"colors": [
+						["$", ["var", "color-3"]],
+						["$", ["var", "color-4"]],
+						["$", ["var", "color-2"]],
+						["$", ["var", "color-3"]]
+					],
+					"value": [0, 1023, 1866, 2133],
+					"stagger": [200, 0],
+					"rect": [0, "40rh", "100rw", "100rh"]
+				}],
+				["api-brandlive-academy-segment-triangle", {
+					"mixins": ["api-brandlive-mixins",
+						"triangle-transform"
+					],
+					"colors": [
+						["$", ["var", "color-1"]],
+						["$", ["var", "color-3"]],
+						["$", ["var", "color-4"]],
+						["$", ["var", "color-1"]]
+					],
+					"value": [0, 1123, 1966, 2233],
+					"stagger": [300, 0],
+					"rect": [0, "60rh", "100rw", "100rh"]
+				}]
+			]],
+			["null", {
+				"rect": ["37.5rw", "5rh", "25rw", "95rh"],
+				"start": 300
+			}, [
+				["api-brandlive-academy-segment-triangle", {
+					"mixins": ["api-brandlive-mixins",
+						"triangle-transform"
+					],
+					"colors": [
+						["$", ["var", "color-1"]],
+						["$", ["var", "color-3"]],
+						["$", ["var", "color-4"]],
+						["$", ["var", "color-1"]]
+					],
+					"value": [0, 933, 1666, 1933],
+					"rect": [0, 0, "100rw", "100rh"]
+				}],
+				["api-brandlive-academy-segment-triangle", {
+					"mixins": ["api-brandlive-mixins",
+						"triangle-transform"
+					],
+					"colors": [
+						["$", ["var", "color-3"]],
+						["$", ["var", "color-4"]],
+						["$", ["var", "color-2"]],
+						["$", ["var", "color-3"]]
+					],
+					"value": [0, 1033, 1766, 2033],
+					"stagger": [100, 0],
+					"rect": [0, "17rh", "100rw", "100rh"]
+				}],
+				["api-brandlive-academy-segment-triangle", {
+					"mixins": ["api-brandlive-mixins",
+						"triangle-transform"
+					],
+					"colors": [
+						["$", ["var", "color-2"]],
+						["$", ["var", "color-1"]],
+						["$", ["var", "color-4"]],
+						["$", ["var", "color-2"]]
+					],
+					"value": [0, 1023, 1866, 2133],
+					"stagger": [200, 0],
+					"rect": [0, "34rh", "100rw", "100rh"]
+				}],
+				["api-brandlive-academy-segment-triangle", {
+					"mixins": ["api-brandlive-mixins",
+						"triangle-transform"
+					],
+					"colors": [
+						["$", ["var", "color-3"]],
+						["$", ["var", "color-4"]],
+						["$", ["var", "color-2"]],
+						["$", ["var", "color-3"]]
+					],
+					"value": [0, 1123, 1966, 2233],
+					"stagger": [300, 0],
+					"rect": [0, "51rh", "100rw", "100rh"]
+				}]
+			]],
+			["null", {
+				"rect": ["62.5rw", 0, "25rw", "100rh"],
+				"start": 600
+			}, [
+				["api-brandlive-academy-segment-triangle", {
+					"mixins": ["api-brandlive-mixins",
+						"triangle-transform"
+					],
+					"colors": [
+						["$", ["var", "color-1"]],
+						["$", ["var", "color-3"]],
+						["$", ["var", "color-4"]],
+						["$", ["var", "color-1"]]
+					],
+					"value": [0, 933, 1666, 1933],
+					"rect": [0, 0, "100rw", "100rh"]
+				}],
+				["api-brandlive-academy-segment-triangle", {
+					"mixins": ["api-brandlive-mixins",
+						"triangle-transform"
+					],
+					"colors": [
+						["$", ["var", "color-2"]],
+						["$", ["var", "color-1"]],
+						["$", ["var", "color-3"]],
+						["$", ["var", "color-2"]]
+					],
+					"value": [0, 1033, 1766, 2033],
+					"stagger": [100, 0],
+					"rect": [0, "20rh", "100rw", "100rh"]
+				}],
+				["api-brandlive-academy-segment-triangle", {
+					"mixins": ["api-brandlive-mixins",
+						"triangle-transform"
+					],
+					"colors": [
+						["$", ["var", "color-3"]],
+						["$", ["var", "color-4"]],
+						["$", ["var", "color-2"]],
+						["$", ["var", "color-3"]]
+					],
+					"value": [0, 1023, 1866, 2133],
+					"stagger": [200, 0],
+					"rect": [0, "40rh", "100rw", "100rh"]
+				}],
+				["api-brandlive-academy-segment-triangle", {
+					"mixins": ["api-brandlive-mixins",
+						"triangle-transform"
+					],
+					"colors": [
+						["$", ["var", "color-1"]],
+						["$", ["var", "color-3"]],
+						["$", ["var", "color-4"]],
+						["$", ["var", "color-1"]]
+					],
+					"value": [0, 1123, 1966, 2233],
+					"stagger": [300, 0],
+					"rect": [0, "60rh", "100rw", "100rh"]
+				}]
+			]],
+			["solid", {
+				"start": 3166,
+				"path": [
+					[0, 0],
+					["100rw", 0],
+					["50rw", "-86rw"]
+				],
+				"color": ["$", ["var", "color-3"]],
+				"align": "center",
+				"transform": [
+					["translate", 
+						0,
+						["animate",
+							[0, "130rw", "easeInQuad"],
+							["+966", 0]
+						]
+					],
+					["scale", 2.0]
+				]
+			}],
+			["solid", {
+				"start": 3333,
+				"path": [
+					[0, 0],
+					["100rw", 0],
+					["50rw", "-86rw"]
+				],
+				"color": ["$", ["var", "color-1"]],
+				"align": "center",
+				"transform": [
+					["translate", 
+						0,
+						["animate",
+							[0, "130rw", "easeInQuad"],
+							["+700", "50rw"]
+						]
+					],
+					["scale", 2.0]
+				]
+			}],
+			["solid", {
+				"start": 3900,
+				"path": [
+					["8rw", "83rh"],
+					["30rw", "83rh"],
+					["19rw", "48rh"]
+				],
+				"color": ["$", ["var", "color-3"]],
+				"transform": [
+					["scale",
+						["animate",
+							[0, 0, "easeOutQuad"],
+							["+666", 1.0]
+						],
+						"21rw",
+						"83rh"
+					],
+					["rotate",
+						["animate",
+							["+666", 0, "easeInQuart"],
+							["+1000", 0.33]
+						],
+						"32rw",
+						"83rh"
+					]
+				]
+			}],
+			["solid", {
+				"start": 3900,
+				"rect": ["10rw", "47rh", "4rw", "4rw"],
+				"radius": "1000su",
+				"color": ["$", ["var", "color-2"]],
+				"transform": [
+					["scale",
+						["animate",
+							[0, 0, "easeOutQuad"],
+							["+266", 1.1],
+							["+60", 1.0]
+						]
+					]
+				]
+			}],
+			["solid", {
+				"start": 4100,
+				"rect": ["10rw", "39rh", "4rw", "4rw"],
+				"radius": "1000su",
+				"color": ["$", ["var", "color-2"]],
+				"transform": [
+					["scale",
+						["animate",
+							[0, 0, "easeOutQuad"],
+							["+266", 1.1],
+							["+60", 1.0]
+						]
+					],
+					["translate",
+						0,
+						["animate",
+							["+326", 0],
+							["+60", "12su", "easeInQuad"],
+							["+60", "-12su", "easeInQuad"],
+							["+60", 0]
+						]
+					]
+				]
+			}],
+			["solid", {
+				"start": 5566,
+				"rect": ["10rw", "39rh", "4rw", "4rw"],
+				"radius": "1000su",
+				"color": ["$", ["var", "color-4"]]
+			}],
+			["solid", {
+				"start": 5832,
+				"rect": ["10rw", "47rh", "4rw", "4rw"],
+				"radius": "1000su",
+				"color": ["$", ["var", "color-3"]]
+			}],
+			["api-brandlive-academy-segment-text", {
+				"headline": ["$", ["var", "headline"]],
+				"text": ["$", ["var", "text"]],
+				"font-1": ["$", ["var", "font-1"]],
+				"font-2": ["$", ["var", "font-2"]],
+				"text-color-1": ["$", ["var", "text-color-1"]],
+				"text-color-2": ["$", ["var", "text-color-2"]],
+				"start": 4000
+			}]
+		]]
+	]
+]

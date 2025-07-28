@@ -1,0 +1,117 @@
+[
+	"ds-hubspot-outro",
+	[
+		{
+			"key": "do-music",
+			"display": "Music",
+			"type": "bool",
+			"default": true,
+			"required": false
+		},
+		{
+			"key": "#gain",
+			"display": "Gain Calculation",
+			"type": "number",
+			"default": 0,
+			"required": false,
+			"private": true
+		}
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins", ["set-su", "safezone"]],
+			"color": ["linear-gradient",
+				0,
+				[0, "#00A7BA"],
+				[1, "#00BCA7"]
+			]
+		}, [
+			["asset", {
+				"file": "./media/ds-hubspot-logo-academy.mov",
+				"hold": true,
+				"justify": "fit center",
+				"align": "center",
+				"max-width": "1000su",
+				"breakpoints": [
+					{
+						"enabled": ["$", ["lte", ["aspect"], 1]],
+						"max-width": "800su"
+					}
+				]
+			}],
+			["null", {
+				"enabled": ["$", ["var", "do-music"]],
+				"-calc-safe-fade-in": ["$",
+					["set", "fade-in",
+						["min",
+							100,
+							["-", ["floor", ["/", ["key", ["comp-timing"], "duration"], 2]], 10]
+						]
+					]
+				],
+				"-calc-safe-fade-out": ["$",
+					["set", "fade-out",
+						["min",
+							1000,
+							["-", ["floor", ["/", ["key", ["comp-timing"], "duration"], 2]], 10]
+						]
+					]
+				]
+			}, [
+				["user-asset", {
+					"file": "./media/ds-hubspot-outro-academy.mp3",
+					"opacity": 0,
+					"loop": ["$", ["var", "loop"]],
+					"breakpoints": [
+						{
+							"enabled": ["$",
+								["or",
+									["gt", ["var", "fade-in"], 0],
+									["gt", ["var", "fade-out"], 0]
+								]
+							],
+							"gain-dopesheet": ["$",
+								["compact",
+									["array",
+										["if",
+											["gt", ["var", "fade-in"], 0],
+											["array",
+												["key", ["comp-timing"], "start"],
+												-96
+											],
+											null
+										],
+										["if",
+											["gt", ["var", "fade-in"], 0],
+											["array",
+												["+", ["key", ["comp-timing"], "start"], ["var", "fade-in"]],
+												["var", "#gain"]
+											],
+											null
+										],
+										["if",
+											["gt", ["var", "fade-out"], 0],
+											["array",
+												["-", ["+", ["key", ["comp-timing"], "start"], ["key", ["comp-timing"], "duration"]], ["var", "fade-out"]],
+												["var", "#gain"]
+											],
+											null
+										],
+										["if",
+											["gt", ["var", "fade-out"], 0],
+											["array",
+												["+", ["key", ["comp-timing"], "start"], ["key", ["comp-timing"], "duration"]],
+												-96
+											],
+											null
+										]
+									]
+								]
+							]
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

@@ -1,0 +1,146 @@
+[
+	"ds-instacart-sizzle-outro-alt",
+	[
+		{
+			"key": "headline",
+			"display": "Headline",
+			"type": "textarea",
+			"default": "Get free delivery on your first 3 orders",
+			"required": false
+		},
+		{
+			"key": "subhead",
+			"display": "Subhead",
+			"type": "text",
+			"default": "Visit instacart.com or download the app",
+			"required": false
+		},
+		{
+			"key": "size",
+			"display": "Size",
+			"type": "number",
+			"default": 1.0,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"step": 0.05,
+				"minimum": 0.5,
+				"maximum": 1.5
+			}
+		},
+		["ds-instacart-mixins",
+			"colors",
+			"font-sans-400",
+			"font-sans-600",
+			"font-sans-800",
+			"theme"
+		]
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins", "safezone", "set-su"],
+			"color": ["$", ["var", "#background"]]
+		}, [
+			["null", {
+				"layout": "vertical space-between",
+				"align": "center"
+			}, [
+				["null", {
+					"layout": "vertical",
+					"align": "center",
+					"gap": "50su",
+					"max-width": "1500nsu"
+				}, [
+					["null", {
+						"flex": {
+							"position": "fixed"
+						}
+					}, [
+						["asset", {
+							"file": "./media/ds-instacart-logo-outro-alt.json",
+							"justify": "fit center",
+							"replace-color": [
+								[
+									"#FAF1E5",
+									"#003D29",
+									0.1
+								]
+							],
+							"lottie-driver": ["animate",
+								[0, 0],
+								[
+									["$", ["to-relative-string", ["dur", "./media/ds-instacart-logo-outro-alt.json"]]],
+									1
+								]
+							]
+						}]
+					]],
+					["null", {
+						"enabled": ["$", ["or",
+							["exists", ["var", "headline"]],
+							["exists", ["var", "subhead"]]
+						]],
+						"layout": "vertical packed",
+						"align": "center",
+						"gap": "80su"
+					}, [
+						["text", {
+							"flex": {
+								"weight": 2
+							},
+							"enabled": ["$", ["exists", ["var", "headline"]]],
+							"stagger": [1400, 0],
+							"font": ["$", ["var", "font-sans-600"]],
+							"height": "110su",
+							"measure": "letter-size",
+							"leading": "10su",
+							"string": ["$", ["var", "headline"]],
+							"color": ["$", ["var", "#foreground"]],
+							"justify": "center",
+							"boundary": "line",
+							"animations": [
+								{
+									"mask": [0, 0, "-5su", 0],
+									"translate": [0, "150su"]
+								},
+								{
+									"mix": ["animate",
+										[0, 0],
+										["+1000", 1]
+									],
+									"easing": "easeOutCubic",
+									"translate": [0, 0]
+								}
+							]
+						}],
+						["text", {
+							"enabled": ["$", ["exists", ["var", "subhead"]]],
+							"stagger": [2000, 0],
+							"font": ["$", ["var", "font-sans-400"]],
+							"height": "50su",
+							"measure": "letter-size",
+							"string": ["$", ["var", "subhead"]],
+							"color": ["$", ["var", "#foreground"]],
+							"justify": "center",
+							"boundary": "line",
+							"animations": [
+								{
+									"mask": [0, 0, "-5su", 0],
+									"translate": [0, "150su"]
+								},
+								{
+									"mix": ["animate",
+										[0, 0],
+										["+1000", 1]
+									],
+									"easing": "easeOutQuad",
+									"translate": [0, 0]
+								}
+							]
+						}]
+					]]
+				]]
+			]]
+		]]
+	]
+]

@@ -1,0 +1,68 @@
+[
+	"ds-storyful-outro",
+	[
+		{
+			"key": "bg",
+			"display": "Background",
+			"type": "string",
+			"default": "blue",
+			"required": false,
+			"options": [
+				{
+					"key": "blue",
+					"display": "Blue"
+				},
+				{
+					"key": "video-grid",
+					"display": "Video Grid"
+				}
+			]
+		},
+		["ds-storyful-mixins",
+			"color-dark-blue"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		]
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			] 
+		}, [
+			["solid", {
+				"enabled": ["$", ["=", ["var", "bg"], "blue"]],
+				"flex": {
+					"position": "fixed"
+				},
+				"color": ["$", ["var", "color-dark-blue"]]
+			}],
+			["asset", {
+				"enabled": ["$", ["=", ["var", "bg"], "video-grid"]],
+				"flex": {
+					"position": "fixed"
+				},
+				"file": "./media/ds-storyful-outro-grid.mp4",
+				"mute": true,
+				"loop": true,
+				"justify": "fill center"
+			}],
+			["asset", {
+				"mixins": ["ds-storyful-mixins",
+					"logo-animation"
+				],
+				"max-width": "900su",
+				"align": "center",
+				"effect": [
+					["shadow", {
+						"enabled": ["$", ["=", ["var", "bg"], "video-grid"]],
+						"radius": "20su",
+						"color": [0, 0, 0, 0.7]
+					}]
+				]
+			}]
+		]]
+	]
+]

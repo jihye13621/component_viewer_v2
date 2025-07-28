@@ -1,0 +1,92 @@
+{
+	"looping-number-second": {
+		"transform": [
+			["translate",
+				0,
+				["animate",
+					[0, 0],
+					["+500", 0, "easeInOutCubic"],
+					["+500", "-100rh", "round"],
+					["+8500", "100rh", "easeInOutCubic"],
+					["+500", 0],
+					"loop"
+				]
+			]
+		]
+	},
+	"looping-number-ten": {
+		"transform": [
+			["translate",
+				0,
+				["animate",
+					[0, 0],
+					["+9500", 0, "easeInOutCubic"],
+					["+500", "-100rh", "round"],
+					["+49500", "100rh", "easeInOutCubic"],
+					["+500", 0],
+					"loop"
+				]
+			]
+		]
+	},
+	"looping-number-min": {
+		"transform": [
+			["translate",
+				0,
+				["animate",
+					[0, 0],
+					["+59500", 0, "easeInOutCubic"],
+					["+500", "-100rh", "round"],
+					["+539500", "100rh", "easeInOutCubic"],
+					["+500", 0],
+					"loop"
+				]
+			]
+		]
+	},
+	"looping-number-second-no-anim": {
+		"opacity": ["animate",
+			[0, 1, "holdIn"],
+			["+1000", 0, "holdIn"],
+			["+9000", 0, "holdIn"],
+			"loop"
+		]
+	},
+	"looping-number-ten-no-anim": {
+		"opacity": ["animate",
+			[0, 1, "holdIn"],
+			["+10000", 0, "holdIn"],
+			["+50000", 0, "holdIn"],
+			"loop"
+		]
+	},
+	"looping-number-min-no-anim": {
+		"opacity": ["animate",
+			[0, 1, "holdIn"],
+			["+60000", 0, "holdIn"],
+			["+540000", 0, "holdIn"],
+			"loop"
+		]
+	},
+	"looping-number-minten-no-anim": {
+		"opacity": ["animate",
+			[0, 1, "holdIn"],
+			["+600000", 0, "holdIn"],
+			["+5400000", 0, "holdIn"],
+			"loop"
+		]
+	},
+	"triangle-transform": {
+		"transform": [
+			["translate",
+				0,
+				["animate", 
+					[0, "100rh", "easeOutQuad"],
+					["+633", 0, "easeInOutQuad"],
+					["+1300", "10rh", "easeInQuad"],
+					["+966", "-150rh"]
+				]
+			]
+		]
+	}
+}

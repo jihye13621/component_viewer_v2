@@ -1,0 +1,81 @@
+[
+	"ds-aspect-headline",
+	[
+		{
+			"key": "icon",
+			"display": "Icon",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": []
+		},
+		{
+			"key": "headline",
+			"display": "Headline",
+			"type": "text",
+			"default": "Headline Text",
+			"required": false
+		},
+		["ds-aspect-mixins",
+			"colors",
+			"font-roobert"
+		]
+	],
+	[
+		["ds-aspect-bg", {
+			"theme": "raspberry"
+		}],
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			]
+		}, [
+			["null", {
+				"transform": [
+					["translate",
+						0,
+						["animate",
+							[0, "35su", "easeOutQuad"],
+							["+500", 0]
+						]
+					],
+					["scale",
+						["animate",
+							["100%", 1.25],
+							["-2000", 1, "easeInExpo"]
+						]
+					]
+				],
+				"layout": "horizontal packed",
+				"align": "center",
+				"gap": "40su"
+			}, [
+				["user-asset", {
+					"enabled": ["$",
+						["if",
+							["exists", ["var", "icon"]],
+							["exists", ["key", ["var", "icon"], "file"]],
+							false
+						]
+					],
+					"flex": {
+						"width": "80su"
+					},
+					"file": ["$", ["var", "icon"]],
+					"justify": "fit center"
+				}],
+				["text", {
+					"enabled": ["$", ["exists", ["var", "headline"]]],
+					"font": ["$", ["var", "font-roobert"]],
+					"height": "60su",
+					"color": [1, 1, 1, 1],
+					"measure": "letter-size",
+					"string": ["$", ["var", "headline"]],
+					"align": "left center",
+					"justify": "left center"
+				}]
+			]]
+		]]
+	]
+]

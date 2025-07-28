@@ -1,0 +1,236 @@
+[
+	"ds-tubi-text",
+	[
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "text",
+			"default": "1.4% of all tv viewership",
+			"required": false
+		},
+		{
+			"key": "detail",
+			"display": "Detail",
+			"type": "text",
+			"default": "Source: Nielsen The Gauge Report, Mar 2024",
+			"required": false
+		},
+		["ds-tubi-mixins",
+			"color-primary",
+			"color-secondary",
+			"font-light",
+			"font-black"
+		],
+		{
+			"key": "do-background",
+			"display": "Background",
+			"type": "bool",
+			"default": true,
+			"required": false
+		},
+		["dsx-mixins",
+			"boilerplate"
+		]
+	],
+	[
+		["solid", {
+			"mixins": [
+				["dsx-mixins", ["set-dsx-su", "safezone"]],
+				["ds-tubi-mixins", ["bg-gradient"]]
+			],
+			"breakpoints": [
+				{
+					"enabled": ["$", ["not", ["var", "do-background"]]],
+					"color": [0, 0, 0, 0]
+				}
+			]
+		}, [
+			["null", {
+				"stagger": [500, 0],
+				"transform": [
+					["translate",
+						["animate",
+							[0, 0, "easeInOutQuad"],
+							["+850", "100rw"]
+						],
+						0
+					]
+				]
+			}, [
+				["solid", {
+					"color": ["$", ["var", "color-hello-yellow"]],
+					"rect": [
+						0,
+						0,
+						"200su",
+						"200su"
+					],
+					"radius": 1000,
+					"align": "center left",
+					"transform": [
+						["scale",
+							["animate",
+								[0, 0, "easeOutQuad"],
+								["+500", 0.5],
+								["+850", 0],
+								["-400", 0.5, "easeInQuad"]
+							],
+							["animate",
+								[0, 0.8, "easeOutQuad"],
+								["+500", 1],
+								["+850", 0],
+								["-400", 1, "easeInQuad"]
+							]
+						],
+						["rotate",
+							0.02
+						],
+						["translate",
+							["animate",
+								[500, 0, "easeInOutQuad"],
+								["+850", "-50rw"]
+							],
+							0
+						]
+					]
+				}]
+			]],
+			["null", {
+				"buffer": "knockout"
+			}, [
+				["null", {
+					"stagger": [500, 0],
+					"transform": [
+						["translate",
+							["animate",
+								[0, 0, "easeInOutQuad"],
+								["+850", "100rw"]
+							],
+							0
+						]
+					]
+				}, [
+					["solid", {
+						"color": [1, 1, 1, 1],
+						"rect": [
+							["animate",
+								[500, "100su", "easeInOutQuad"],
+								["+850", 0]
+							],
+							0,
+							"100rw",
+							"100rh"
+						],
+						"transform": [
+							["translate",
+								"-100rw",
+								0
+							]
+						]
+					}],
+					["solid", {
+						"color": [1, 1, 1, 1],
+						"rect": [
+							0,
+							0,
+							"200su",
+							"200su"
+						],
+						"radius": 1000,
+						"align": "center left",
+						"transform": [
+							["scale",
+								["animate",
+									[0, 0, "easeOutQuad"],
+									["+500", 0.5],
+									["+850", 0],
+									["-400", 0.5, "easeInQuad"]
+								],
+								["animate",
+									[0, 0.8, "easeOutQuad"],
+									["+500", 1],
+									["+850", 0],
+									["-400", 1, "easeInQuad"]
+								]
+							],
+							["rotate",
+								0.02
+							],
+							["translate",
+								["animate",
+									[500, 0, "easeInOutQuad"],
+									["+850", "-50rw"]
+								],
+								0
+							]
+						]
+					}]
+				]]
+			]],
+			["matte", {
+				"flex": {
+					"position": "fixed"
+				},
+				"buffer-in": "knockout",
+				"mixins": ["dsx-mixins", ["safezone"]]
+			}, [
+				["null", {
+					"padding": [
+						0,
+						"100su"
+					]
+				}, [
+					["text", {
+						"stagger": [700, 0],
+						"mixins": ["ds-tubi-mixins", "text"],
+						"font": ["$", ["var", "font-black"]],
+						"height": "100su",
+						"string": ["$", ["var", "text"]],
+						"justify": "center",
+						"measure": "cap-size",
+						"leading": "10su",
+						"fit": true,
+						"case": "uppercase",
+						"color": ["$", ["var", "color-white"]],
+						"transform": [
+							["translate",
+								["animate",
+									[0, "100su", "easeOutQuad"],
+									["+600", 0]
+								],
+								0
+							]
+						]
+					}]
+				]]
+			]],
+			["text", {
+				"stagger": [750, 0],
+				"mixins": ["ds-tubi-mixins", "text"],
+				"font": ["$", ["var", "font-light"]],
+				"height": "40nsu",
+				"string": ["$", ["var", "detail"]],
+				"justify": "center bottom",
+				"leading": "10su",
+				"fit": true,
+				"color": ["$", ["var", "color-white"]],
+				"opacity": ["animate",
+					[0, 0],
+					["+250", 1]
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["gt", ["key", ["comp-timing"], "duration"], 3000]],
+						"stagger": [1000, -1000],
+						"opacity": ["animate",
+							[0, 0],
+							["+250", 1],
+							["100%", 0],
+							["-200", 1]
+						]
+					}
+				]
+			}]
+		]]
+	]
+]

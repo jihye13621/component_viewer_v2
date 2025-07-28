@@ -1,0 +1,256 @@
+[
+	"ds-hubspot-sandbox-callout",
+	[
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["justify", "fill"],
+				["motion", "none"]
+			]
+		},
+		{
+			"key": "headline",
+			"display": "Headline",
+			"type": "text",
+			"default": "Large callout text to mention something important.",
+			"required": false
+		},
+		{
+			"key": "subhead",
+			"display": "Subhead",
+			"type": "text",
+			"default": "Optional subhead",
+			"required": false
+		},
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": "#FEF4EA",
+			"required": false
+		},
+		{
+			"key": "color-2",
+			"display": "Color 2",
+			"type": "color",
+			"default": "#192733",
+			"required": false
+		},
+		["dsx-mixins",
+			"boilerplate-intro-outro"
+		]
+	],
+	[
+		["null", {
+			"buffer": "matte"
+		}, [
+			["solid", {
+				"color": "#ffffff",
+				"mask": {
+					"padding": [
+						["animate",
+							[0, "100rh", "easeOutCubic"],
+							[500, 0]
+						],
+						0,
+						["animate",
+							["100%", "100rh"],
+							["-350", 0, "easeInCubic"]
+						],
+						0
+					]
+				}
+			}]
+		]],
+		["solid", {
+			"enabled" : true,
+			"mixins": ["dsx-mixins",
+				"set-su", "safezone"
+			],
+			"color": ["$", ["var", "color-1"]],
+			"effect": [
+				["matte", {
+					"buffer-in": "matte",
+					"end": 500
+				}],
+				["matte", {
+					"buffer-in": "matte",
+					"start": ["$", ["-", ["key", ["comp-timing"], "duration"], 350]]
+				}]
+			]
+		}, [
+			["null", {
+				"layout": "horizontal",
+				"gap": "100nsu",
+				"breakpoints": [
+					{
+						"enabled": ["$", ["<=", ["aspect"], 1]],
+						"layout": "vertical packed",
+						"align": "center left",
+						"gap": "50nsu",
+						"padding": [0, 0, "100nsu", 0]
+					},
+					{
+						"enabled": ["$", ["<=", ["aspect"], 0.6]],
+						"gap": "75nsu"
+					}
+				]
+			}, [
+				["null", {
+					"enabled": ["$", ["exists", ["var", "asset"]]],
+					"flex": {
+						"width": "600nsu"
+					},
+					"breakpoints": 	[
+						{
+							"enabled": ["$", ["<=", ["aspect"], 1]],
+							"flex": {
+								"width": "100rw",
+								"grow": true
+							},
+							"order": 2
+						}
+					]
+				}, [
+					["solid", {
+						"stagger": [150, -150],
+						"opacity": ["animate",
+							[0,  0, "plateauIn"],
+							[550, 1]
+						],
+						"color": ["$", ["var", "color-2"]],
+						"radius": "20nsu",
+						"align": "right",
+						"transform": [
+							["translate",
+								0,
+								["animate",
+									[0, "80su", "easeOutCubic"],
+									[550, 0]
+								]
+							]
+						],
+						"mask": {
+							"transform": true,
+							"radius": "20nsu",
+							"padding": [
+								["animate",
+									[0, "75rh", "easeOutCubic"],
+									[550, 0]
+								],
+								["animate",
+									[0, "75rw", "easeOutCubic"],
+									[550, 0]
+								],
+								0,
+								0
+							]
+						}
+					}, [
+						["user-asset", {
+							"file": ["$", ["var", "asset"]],
+							"justify": "center fill",
+							"hold": true
+						}]
+					]]
+				]],
+				["null", {
+					"layout": "vertical packed",
+					"gap": "75su",
+					"align": "left center",
+					"breakpoints": 	[
+						{
+							"enabled": ["$", ["<=", ["aspect"], 1]],
+							"gap": "50su"
+						},
+						{
+							"enabled": ["$", ["<=", ["aspect"], 0.6]],
+							"gap": "75su"
+						}
+					]
+				}, [
+					["text", {
+						"enabled": ["$", ["exists", ["var", "headline"]]],
+						"stagger": [300, -300],
+						"mixins": ["ds-hubspot-mixins", "font-list-headline"],
+						"measure": "letter-size",
+						"color": ["$", ["var", "color-2"]],
+						"string": ["$", ["var", "headline"]],
+						"boundary": "line",
+						"height": "90su",
+						"leading": "10su",
+						"flex": {
+							"weight": 3
+						},
+						"animations": [
+							{
+								"mask": [0, 0, "-10su", 0],
+								"translate": [
+									0,
+									"150rh"
+								]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+1000", 1]
+								],
+								"easing": "easeOutCubic",
+								"translate": [0, 0]
+							}
+						],
+						"breakpoints": [
+							{
+								"enabled": ["$", ["not", ["exists", ["var", "asset"]]]],
+								"height": "120su"
+							}
+						]
+					}
+					],
+					["text", {
+						"enabled": ["$", ["exists", ["var", "subhead"]]],
+						"mixins": ["ds-hubspot-mixins", "font-text-small"],
+						"stagger": [1050, 0],
+						"measure": "letter-size",
+						"color": ["$", ["var", "color-2"]],
+						"string": ["$", ["var", "subhead"]],
+						"animations": [
+							{
+								"mask": [0, 0, "-5su", 0],
+								"translate": [
+									0,
+									"150rh"
+								]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+800", 1]
+								],
+								"easing": "easeOutCubic",
+								"translate": [0, 0]
+							}
+						]
+					}]
+				]]
+			]],
+			["asset", {
+				"file": "./media/ds-hubspot-logo-white.svg",
+				"align": "bottom right",
+				"justify": "fit bottom right",
+				"max-width": "250nsu",
+				"rect": [
+					0,
+					0,
+					"300nsu",
+					"200nsu"
+				],
+				"svg-recolor": "#192733"
+			}]
+		]]
+	]
+]

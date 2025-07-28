@@ -1,0 +1,35 @@
+[
+	"ds-hubspot-intro-mode",
+	[
+		{
+			"key": "headline",
+			"display": "Headline",
+			"type": "text",
+			"default": "Add a headline",
+			"required": false
+		},
+		["dsx-mixins", "boilerplate-intro-outro"],
+		{
+			"key": "do-transition-in",
+			"display": "Transition In",
+			"type": "bool",
+			"default": true,
+			"required": false
+		},
+		{
+			"key": "do-transition-out",
+			"display": "Transition Out",
+			"type": "bool",
+			"default": true,
+			"required": false
+		}
+	],
+	[
+		["ds-hubspot-intro", {
+			"size": ["$", ["var", "size"]],
+			"headline": ["$", ["var", "headline"]],
+			"do-transition-in": ["$", ["var", "do-transition-in"]],
+			"do-transition-out": ["$", ["var", "do-transition-out"]]
+		}]
+	]
+]

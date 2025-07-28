@@ -1,0 +1,39 @@
+[
+	"ds-impactdotcom-intro",
+	[
+		["ds-impactdotcom-mixins",
+			"color-primary"
+		],
+		{
+			"key": "dark-mode",
+			"display": "Dark Mode",
+			"type": "bool",
+			"default": false,
+			"required": false
+		}
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins", ["set-su", "safezone"]],
+			"color": ["$", ["var", "color-white"]],
+			"breakpoints": [
+				{
+					"enabled": ["$", ["var", "dark-mode"]],
+					"color": ["$", ["var", "color-black"]]
+				}
+			]
+		}, [
+			["asset", {
+				"file": "./media/ds-impactdotcom-logo.mp4",
+				"justify": "fit center",
+				"hold": true,
+				"breakpoints": [
+					{
+						"enabled": ["$", ["var", "dark-mode"]],
+						"file": "./media/ds-impactdotcom-logo-dark.mp4"
+					}
+				]
+			}]
+		]]
+	]
+]

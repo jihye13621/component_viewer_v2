@@ -1,0 +1,74 @@
+[
+	"ds-altruist-watermark",
+	[
+		["dsx-mixins",
+			"boilerplate"
+		],
+		["ds-altruist-mixins",
+			"colors"
+		],
+		{
+			"key": "light-dark",
+			"display": "Light/Dark",
+			"type": "bool",
+			"default": false,
+			"required": false
+		},
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [9, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": true,
+				"minimum": -100,
+				"maximum": 100
+			},
+			"required": false
+		},
+		{
+			"key": "#fg",
+			"display": "Foreground Color",
+			"type": "color",
+			"default": [1, 1, 1, 1],
+			"required": false,
+			"private": true,
+			"script": ["$",
+				["if",
+					["not", ["var", "light-dark"]],
+					["var", "white"],
+					["var", "black"]
+				]
+			]
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone",
+				"offset"
+			]
+		}, [
+			["asset", {
+				"file": "./media/ds-altruist-logo.svg",
+				"justify": ["$", ["concat", "fit ", ["var", "#align"]]],
+				"align": ["$", ["var", "#align"]],
+				"rect": [
+					0,
+					0,
+					"300su",
+					"300su"
+				],
+				"svg-recolor": ["$", ["var", "#fg"]],
+				"opacity": ["animate",
+					[0, 0, "easeOutSine"],
+					["+250", 1],
+					["100%", 0],
+					["-200", 1, "easeInSine"]
+				]
+			}]
+		]]
+	]
+]

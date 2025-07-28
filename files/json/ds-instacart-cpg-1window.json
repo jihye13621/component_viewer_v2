@@ -1,0 +1,279 @@
+[
+	"ds-instacart-cpg-1window",
+	[
+		{
+			"key": "bg-image",
+			"display": "Background",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+			],
+			"script": ["$", ["if",
+				["exists", ["var", "bg-image"]],
+				["var", "bg-image"],
+				"./media/image-wide.jpg"
+			]]
+		},
+		{
+			"key": "asset-1",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+			],
+			"script": ["$", ["if",
+				["exists", ["var", "asset-1"]],
+				["var", "asset-1"],
+				"./media/image-wide.jpg"
+			]]
+		},
+		{
+			"key": "asset-2",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+			]
+		},
+		{
+			"key": "asset-3",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+			]
+		},
+		{
+			"key": "#assets",
+			"display": "Asset",
+			"type": "object",
+			"default": [],
+			"required": false,
+			"script": ["$",
+				["compact", ["array",
+					["var", "asset-1"],
+					["var", "asset-2"],
+					["var", "asset-3"]
+				]]
+			]
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", "set-su-roi"],
+			"-": ["$", ["set", "#cycle",
+				["floor",
+					["/",
+						["key", ["comp-timing"], "duration"],
+						["length", ["var", "#assets"]]
+					]
+				]
+			]]
+		}, [
+			["user-asset", {
+				"file": ["$", ["var", "bg-image"]],
+				"justify": "fill center",
+				"mute": true
+			}],
+			["null", {
+				"radius": "10su",
+				"rect": [
+					0,
+					0,
+					"600su",
+					"600su"
+				],
+				"align": "center",
+				"transform": [
+					["scale",
+						["animate",
+							[0, 1],
+							["+200", 1, "easeOutQuint"],
+							["+150", 0.97, "easeInQuint"],
+							["+150", 1],
+							[
+								["$",
+									["to-relative-string", ["-",
+										["var", "#cycle"],
+										500
+									]]
+								],
+								1
+							],
+							"loop"
+						]
+					]
+				]
+			}, [
+				["null", {
+					"buffer": "masked",
+					"color": [0, 0, 0, 1]
+				}, [
+					["solid", {
+						"color": [1, 1, 1, 1],
+						"radius": "50su"
+					}]
+				]],
+				["for-each", {
+					"items": ["$", ["var", "#assets"]],
+					"radius": "100su",
+					"units": {
+						"zone": "600su"
+					},
+					"effect": [
+						["matte", {
+							"buffer-in": "masked"
+						}]
+					]
+				}, [
+					["null", {
+						"rect": [
+							0,
+							0,
+							"600su",
+							"605su"
+						],
+						"mask": {
+							"transform": true
+						},
+						"breakpoints": [
+							{
+								"enabled": ["$",
+									["and",
+										["gt", ["var", "count"], 1],
+										["eq", ["var", "index"], 0]
+									]
+								],
+								"transform": [
+									["translate",
+										0,
+										["$",
+											["array",
+												"animate",
+												["array",
+													["*",
+														["var", "#cycle"],
+														["var", "index"]
+													],
+													0
+												],
+												["array",
+													["to-relative-string", ["-",
+														["var", "#cycle"],
+														1000
+													]],
+													0,
+													"easeInOutQuint"
+												],
+												["array",
+													"+1000",
+													"-1zone",
+													"holdIn"
+												],
+												["array",
+													["-",
+														["*",
+															["var", "count"],
+															["var", "#cycle"]
+														],
+														1000
+													],
+													"1zone",
+													"easeInOutQuint"
+												],
+												["array",
+													"+1000",
+													0
+												]
+											]
+										]
+									]
+								]
+							},
+							{
+								"enabled": ["$", ["gt", ["var", "index"], 0]],
+								"transform": [
+									["translate",
+										0,
+										["$",
+											["array",
+												"animate",
+												["array",
+													["*",
+														["var", "#cycle"],
+														["var", "index"]
+													],
+													null
+												],
+												["array",
+													"-1000",
+													"1zone",
+													"easeInOutQuint"
+												],
+												["array",
+													"+1000",
+													0
+												],
+												["array",
+													["to-relative-string", ["-",
+														["var", "#cycle"],
+														1000
+													]],
+													0,
+													"easeInOutQuint"
+												],
+												["array",
+													"+1000",
+													"-1zone"
+												]
+											]
+										]
+									]
+								]
+							}
+						]
+					}, [
+						["user-asset", {
+							"mute": true,
+							"file": ["$", ["var", "item"]],
+							"justify": "fill center"
+						}]
+					]]
+				]],
+				["asset", {
+					"file": "./media/ds-instacart-cpg-plus.png",
+					"rect": [
+						"83rw",
+						"5rh",
+						"12rw",
+						"12rh"
+					],
+					"transform": [
+						["scale",
+							["animate",
+								[0, 1],
+								["+100", 1, "easeOutQuart"],
+								["+150", 0.8, "easeInQuart"],
+								["+150", 1],
+								[
+									["$",
+										["to-relative-string", ["-",
+											["var", "#cycle"],
+											400
+										]]
+									],
+									1
+								],
+								"loop"
+							]
+						]
+					]
+				}]
+			]]
+		]]
+	]
+]

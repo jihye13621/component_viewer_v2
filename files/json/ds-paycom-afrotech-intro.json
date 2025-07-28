@@ -1,0 +1,53 @@
+[
+	"ds-paycom-afrotech-intro",
+	[
+		{
+			"key": "#screen-diag",
+			"display": "Screen Diagonal",
+			"type": "number",
+			"default": 0,
+			"private": true,
+			"required": false,
+			"script": ["$", ["sqrt", ["+", ["*", ["width"], ["width"]], ["*", ["height"], ["height"]] ]]]
+		}
+	],
+	[
+		["solid", {
+			"start": ["$", ["-", ["key", ["comp-timing"], "duration"], 500]],
+			"color": [0, 0, 0, 1],
+			"buffer": "knockout-out"
+		}, [
+			["solid", {
+				"color": [1, 1, 1, 1],
+				"rect": [
+					0,
+					0,
+					["$", ["var", "#screen-diag"]],
+					["$", ["var", "#screen-diag"]]
+				],
+				"align": "center",
+				"radius": 10000,
+				"transform": [
+					["scale",
+						["animate",
+							[0, 1, "easeOutQuad"],
+							["100%", 0]
+						]
+					]
+				]
+			}]
+		]],
+		["null", {
+			"effect": [
+				["matte", {
+					"start": ["$", ["-", ["key", ["comp-timing"], "duration"], 500]],
+					"buffer-in": "knockout-out"
+				}]
+			]
+		}, [
+			["ds-paycom-afrotech-lockup", {
+
+			}]
+		]]
+	]
+]

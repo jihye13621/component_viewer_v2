@@ -1,0 +1,100 @@
+{
+	"params": {
+		"color-primary": {
+			"key": "color-primary",
+			"display": "Primary",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		},
+		"color-secondary": {
+			"key": "color-secondary",
+			"display": "Secondary",
+			"type": "color",
+			"default": "#000000",
+			"required": false
+		},
+		"color-secondary-private": {
+			"key": "color-secondary-private",
+			"display": "Secondary",
+			"type": "color",
+			"default": "#000000",
+			"required": false,
+			"private": true
+		},
+		"color-yellow": {
+			"key": "color-yellow",
+			"display": "Accent",
+			"type": "color",
+			"default": "#FCCF40",
+			"required": false
+		},
+		"color-yellow-light": {
+			"key": "color-yellow-light",
+			"display": "Accent",
+			"type": "color",
+			"default": "#FFECB3",
+			"required": false
+		},
+		"color-green": {
+			"key": "color-green",
+			"display": "Accent",
+			"type": "color",
+			"default": "#204A22",
+			"required": false
+		},
+		"color-green-light": {
+			"key": "color-green-light",
+			"display": "Accent",
+			"type": "color",
+			"default": "#D6F7DE",
+			"required": false
+		},
+		"font-headline": {
+			"key": "font-headline",
+			"display": "Font Headline",
+			"type": "string",
+			"default": "./media/SharpGroteskMedium20.otf",
+			"required": false,
+			"private": true
+		},
+		"font-body": {
+			"key": "font-body",
+			"display": "Font Body",
+			"type": "string",
+			"default": "./media/Söhne-Kräftig.otf",
+			"required": false,
+			"private": true
+		},
+		"font-thin": {
+			"key": "font-thin",
+			"display": "Font thin",
+			"type": "string",
+			"default": "./media/Söhne-Buch.otf",
+			"required": false,
+			"private": true
+		}
+	},
+	"text": {
+		"measure": "letter-size"
+	},
+	"text-headline": {
+		"font": ["$", ["var", "font-headline"]],
+		"height": "100su",
+		"leading": "10su"
+	},
+	"text-title": {
+		"font": ["$", ["var", "font-headline"]],
+		"height": "70su",
+		"leading": "10su"
+	},
+	"text-body": {
+		"font": ["$", ["var", "font-body"]],
+		"height": "55su",
+		"leading": "10su"
+	},
+	"text-label": {
+		"font": ["$", ["var", "font-body"]],
+		"height": "48su"
+	}
+}

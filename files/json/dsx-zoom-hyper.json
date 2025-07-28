@@ -1,0 +1,194 @@
+[
+	"dsx-zoom-hyper",
+	[
+		{
+			"key": "zoom-mode",
+			"display": "Target",
+			"type": "string",
+			"default": "screen",
+			"required": false,
+			"options": [
+				{
+					"key": "screen",
+					"display": "Screen"
+				},
+				{
+					"key": "b-roll",
+					"display": "B-Roll"
+				},
+				{
+					"key": "footage",
+					"display": "Footage"
+				}
+			]
+		},
+		{
+			"key": "zoom-speed",
+			"display": "Speed",
+			"type": "string",
+			"default": "fast",
+			"required": false,
+			"options": [
+				{
+					"key": "slow",
+					"display": "Slow"
+				},
+				{
+					"key": "fast",
+					"display": "Fast"
+				},
+				{
+					"key": "instant",
+					"display": "Instant"
+				}
+			],
+			"script": ["$",
+				["switch", ["var", "zoom-speed"], {
+					"slow": 1000,
+					"fast": 500,
+					"instant": 1
+				}]
+			]
+		},
+		{
+			"key": "rect-x",
+			"display": "X",
+			"type": "number",
+			"default": 50,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 0.05,
+				"minimum": 0.05,
+				"maximum": 100.0
+			},
+			"script": ["$",
+				["concat",
+					["var", "rect-x"],
+					["if",
+						["eq", ["var", "zoom-mode"], "screen"],
+						"cw",
+						"rw"
+					]
+				]
+			]
+		},
+		{
+			"key": "rect-y",
+			"display": "Y",
+			"type": "number",
+			"default": 50,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 0.05,
+				"minimum": 0.05,
+				"maximum": 100.0
+			},
+			"script": ["$",
+				["concat",
+					["var", "rect-y"],
+					["if",
+						["eq", ["var", "zoom-mode"], "screen"],
+						"ch",
+						"rh"
+					]
+				]
+			]
+		},
+		{
+			"key": "zoom",
+			"display": "Zoom",
+			"type": "number",
+			"default": 2,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 0.01,
+				"minimum": 1.0,
+				"maximum": 10.0
+			}
+		}
+	],
+	[
+		["null", {
+			"enabled": ["$", ["eq", ["var", "zoom-mode"], "screen"]],
+			"transform": [
+				["scale",
+					["animate",
+						[0, 1, "easeInOutQuad"],
+						[
+							["$", ["to-relative-string", ["var", "zoom-speed"]]],
+							["$", ["var", "zoom"]]
+						],
+						["100%", 1],
+						[
+							["$", ["to-relative-string", ["*", -1, ["var", "zoom-speed"]]]],
+							["$", ["var", "zoom"]],
+							"easeInOutQuad"
+						]
+					],
+					["$", ["var", "rect-x"]],
+					["$", ["var", "rect-y"]]
+				]
+			]
+		}, [
+			["compose", {
+			}]
+		]],
+		["null", {
+			"enabled": ["$", ["in", ["var", "zoom-mode"], "b-roll", "footage"]],
+			"script": ["$$",
+				["let",
+					[
+						["start", ["key", ["var", "self"], "start"]],
+						["end", ["key", ["var", "self"], "end"]],
+						["animate",
+							["ease",
+								["-",
+									["map",
+										["var", "frame"],
+										["var", "start"],
+										["+", ["var", "start"], ["$", ["var", "zoom-speed"]]],
+										0,
+										1
+									],
+									["map",
+										["var", "frame"],
+										["-", ["var", "end"], ["$", ["var", "zoom-speed"]]],
+										["var", "end"],
+										0,
+										1
+									]
+								],
+								"easeInOutQuad"
+							]
+						]
+					],
+					["live-transform",
+						["lookup-by-tag", ["$",
+							["if",
+								["eq", ["var", "zoom-mode"], "b-roll"],
+								"b-roll",
+								"clip"
+							]
+						]],
+						"scale",
+						["map",
+							["var", "animate"],
+							0,
+							1,
+							1,
+							["$", ["var", "zoom"]]
+						],
+						["$", ["var", "rect-x"]],
+						["$", ["var", "rect-y"]]
+					]
+				]
+			]
+		}]
+	]
+]

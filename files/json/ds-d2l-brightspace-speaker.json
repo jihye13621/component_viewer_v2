@@ -1,0 +1,296 @@
+[
+	"ds-d2l-brightspace-speaker",
+	[
+		["dsx-mixins",
+			"speaker"
+		],
+		["ds-d2l-mixins",
+			"color-white",
+			"color-black",
+			"fonts"
+		],
+		["ds-d2l-brightspace-mixins",
+			"color-selector"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [1, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		},
+		{
+			"key": "x-offset",
+			"display": "X Offset",
+			"type": "number",
+			"default": 0,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 0.5,
+				"minimum": -25.0,
+				"maximum": 25.0
+			}
+		},
+		{
+			"key": "y-offset",
+			"display": "Y Offset",
+			"type": "number",
+			"default": 0,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 0.5,
+				"minimum": -25.0,
+				"maximum": 25.0
+			}
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			],
+			"layout": "vertical packed",
+			"align": ["$", ["var", "#align"]],
+			"transform": [
+				["translate",
+					["$", ["concat", ["var", "x-offset"], "cw"]],
+					["$", ["concat", ["var", "y-offset"], "ch"]]
+				]
+			]
+		}, [
+			["null", {
+				"enabled": ["$", ["or",
+					["exists", ["var", "name"]],
+					["exists", ["var", "detail-1"]],
+					["exists", ["var", "detail-2"]]
+				]],
+				"layout": "vertical packed",
+				"align": "left",
+				"gap": "15su",
+				"padding": [
+					"25su",
+					"200su",
+					"25su",
+					"50su"
+				],
+				"mask": {}
+			}, [
+				["null", {
+					"flex": {
+						"position": "fixed"
+					}
+				}, [
+					["solid", {
+						"color": ["linear-gradient",
+							-0.25,
+							[0.6, ["$", ["rgba-set", ["var", "color-black"], "a", 0.6]]],
+							[0.95, ["$", ["rgba-set", ["var", "color-black"], "a", 0.1]]],
+							[1, ["$", ["rgba-set", ["var", "color-black"], "a", 0.0]]]
+						],
+						"transform": [
+							["translate",
+								["animate",
+									[0, "-100rw", "easeInOutQuad"],
+									["+900", 0],
+									["100%", "-100rw"],
+									["-900", 0, "easeInOutQuad"]
+								],
+								0
+							]
+						]
+					}]
+				]],
+				["text", {
+					"enabled": ["$", ["exists", ["var", "name"]]],
+					"stagger": [400, 0],
+					"font": ["$", ["var", "font-black"]],
+					"height": "45su",
+					"color": ["$", ["var", "color-white"]],
+					"case": "uppercase",
+					"measure": "letter-size",
+					"string": ["$", ["var", "name"]],
+					"transform": [
+						["translate",
+							["animate",
+								[0, "-100rw", "easeOutQuint"],
+								["+1400", 0],
+								["100%", "-100rw"],
+								["-1400", 0, "easeInQuint"]
+							],
+							0
+						],
+						["translate",
+							["animate",
+								[0, "-50su", "easeOutQuint"],
+								["+1400", 0],
+								["100%", "-50su"],
+								["-1400", 0, "easeInQuint"]
+							],
+							0
+						]
+					]
+				}],
+				["text", {
+					"enabled": ["$", ["or",
+						["exists", ["var", "detail-1"]],
+						["exists", ["var", "detail-2"]]
+					]],
+					"stagger": [400, 0],
+					"font": ["$", ["var", "font-medium"]],
+					"height": "30su",
+					"color": ["$", ["var", "color-white"]],
+					"case": "uppercase",
+					"measure": "letter-size",
+					"leading": "5su",
+					"string": ["$",
+						["join",
+							["compact", ["array",
+								["var", "detail-1"],
+								["var", "detail-2"]
+							]],
+							"\n"
+						]
+					],
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[0, "-100rh", "easeOutQuint"],
+								["+1400", 0],
+								["100%", "-100rh"],
+								["-1400", 0, "easeInQuint"]
+							]
+						],
+						["translate",
+							0,
+							["animate",
+								[0, "-20su", "easeOutQuint"],
+								["+1400", 0],
+								["100%", "-20su"],
+								["-1400", 0, "easeInQuint"]
+							]
+						]
+					],
+					"mask": {
+						"padding": [
+							"-2su",
+							0,
+							"-10su",
+							0
+						]
+					}
+				}],
+				["null", {
+					"flex": {
+						"position": "fixed"
+					}
+				}, [
+					["solid", {
+						"stagger": [100, 0],
+						"color": ["$", ["var", "#foreground"]],
+						"rect": [
+							0,
+							0,
+							"25su",
+							"100rh"
+						],
+						"align": "bottom",
+						"transform": [
+							["translate",
+								0,
+								["animate",
+									[0, "100rh", "easeInOutQuad"],
+									["+500", 0],
+									["100%", "-100rh"],
+									["-500", 0, "easeInOutQuad"]
+								]
+							]
+						]
+					}],
+					["solid", {
+						"stagger": [300, -300],
+						"color": ["linear-gradient",
+							-0.25,
+							[0.6, ["$", ["rgba-set", ["var", "color-white"], "a", 1.0]]],
+							[1, ["$", ["rgba-set", ["var", "color-white"], "a", 0.0]]]
+						],
+						"rect": [
+							0,
+							0,
+							"100rw",
+							"2su"
+						],
+						"mask": {
+							"rect": [
+								0,
+								0,
+								["animate",
+									[0, 0, "easeOutQuad"],
+									["+1000", "100rw"],
+									["100%", 0],
+									["-1000", "100rw", "easeInQuad"]
+								],
+								"100rh"
+							]
+						}
+					}],
+					["solid", {
+						"stagger": [0, 0],
+						"color": ["$", ["var", "color-white"]],
+						"rect": [
+							0,
+							0,
+							"2su",
+							["animate",
+								[0, 0, "easeInQuad"],
+								["+300", "100rh"],
+								["100%", 0],
+								["-300", "100rh", "easeOutQuad"]
+							]
+						],
+						"align": "bottom"
+					}],
+					["solid", {
+						"color": ["linear-gradient",
+							-0.25,
+							[0.6, ["$", ["rgba-set", ["var", "color-white"], "a", 1.0]]],
+							[1, ["$", ["rgba-set", ["var", "color-white"], "a", 0.0]]]
+						],
+						"rect": [
+							0,
+							0,
+							"100rw",
+							"2su"
+						],
+						"mask": {
+							"rect": [
+								0,
+								0,
+								["animate",
+									[0, 0, "easeInOutQuad"],
+									["+1000", "100rw"],
+									["100%", 0],
+									["-1000", "100rw", "easeInOutQuad"]
+								],
+								"100rh"
+							]
+						},
+						"align": "bottom"
+					}]
+				]]
+			]]
+		]]
+	]
+]

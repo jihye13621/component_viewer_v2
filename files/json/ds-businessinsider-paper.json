@@ -1,0 +1,185 @@
+[
+	"ds-businessinsider-paper",
+	[
+		{
+			"key": "logo",
+			"display": "Logo",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": []
+		},
+		{
+			"key": "headline",
+			"display": "Headline",
+			"type": "textarea",
+			"default": "Add a headline",
+			"required": false
+		},
+		{
+			"key": "date",
+			"display": "Date",
+			"type": "text",
+			"default": "Date",
+			"required": false
+		},
+		{
+			"key": "writer",
+			"display": "Writer",
+			"type": "text",
+			"default": "Writer",
+			"required": false
+		},
+		["ds-businessinsider-mixins",
+			"color-black",
+			"font-bold",
+			"font-medium"
+		],
+		["dsx-mixins", "boilerplate"],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [4, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		},
+		{
+			"key": "#seed",
+			"display": "Seed",
+			"type": "number",
+			"default": 0,
+			"required": false,
+			"private": true,
+			"script": ["$",
+				["if",
+					["exists", ["var", "headline"]],
+					["mod",
+						["random-from-seed", ["var", "headline"]],
+						15
+					],
+					0
+				]
+			]
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-su", "safezone"]]
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"max-width": "800su"
+			}, [
+				["null", {
+					"layout": "vertical packed",
+					"align": "left",
+					"padding": [
+						"50su",
+						"50su",
+						"20su",
+						"50su"
+					],
+					"gap": "30su"
+				}, [
+					["null", {
+						"flex": {
+							"position": "fixed"
+						}
+					}, [
+						["null", {
+							"buffer": "knockout"
+						}, [
+							["solid", {
+								"color": [0, 0, 0, 1]
+							}],
+							["solid", {
+								"color": [1, 1, 1, 1]
+							}],
+							["asset", {
+								"file": ["$",
+									["concat",
+										"./media/ds-businessinsider-paper-",
+										["+", ["var", "#seed"], 1],
+										".svg"
+									]
+								],
+								"justify": "fit top center",
+								"rect": [
+									0,
+									0,
+									"100rw",
+									"100rw"
+								],
+								"mask": {
+									"transform": true
+								},
+								"align": "bottom left",
+								"transform": [
+									["translate",
+										0,
+										"100rw"
+									],
+									["translate",
+										0,
+										-2
+									]
+								]
+							}]
+						]],
+						["matte", {
+							"buffer-in": "knockout"
+						}, [
+							["asset", {
+								"file": "./media/ds-businessinsider-paper-texture.mp4",
+								"justify": "top left",
+								"loop": true
+							}]
+						]]
+					]],
+					["user-asset", {
+						"enabled": ["$", ["exists", ["var", "logo"]]],
+						"file": ["$", ["var", "logo"]],
+						"justify": "fit center left",
+						"max-height": "70su"
+					}],
+					["text", {
+						"enabled": ["$", ["exists", ["var", "headline"]]],
+						"mixins": ["ds-businessinsider-mixins", "text"],
+						"font": ["$", ["var", "font-bold"]],
+						"color": ["$", ["var", "color-black"]],
+						"string": ["$", ["var", "headline"]],
+						"height": "60su",
+						"justify": "left"
+					}],
+					["text", {
+						"enabled": ["$", ["or",
+							["exists", ["var", "date"]],
+							["exists", ["var", "writer"]]
+						]],
+						"mixins": ["ds-businessinsider-mixins", "text"],
+						"font": ["$", ["var", "font-bold"]],
+						"color": ["$", ["concat", ["var", "color-black"], "B3"]],
+						"height": "30su",
+						"string": ["$",
+							["join",
+								["compact",
+									["array",
+										["var", "date"],
+										["var", "writer"]
+									]
+								],
+								" | "
+							]
+						],
+						"justify": "left"
+					}]
+				]]
+			]]
+		]]
+	]
+]

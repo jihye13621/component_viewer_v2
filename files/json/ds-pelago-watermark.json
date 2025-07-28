@@ -1,0 +1,87 @@
+[
+	"ds-pelago-watermark",
+	[
+		["ds-pelago-mixins",
+			"color-primary",
+			"color-secondary"
+		],
+		{
+			"key": "logo",
+			"display": "Logo",
+			"type": "string",
+			"default": "wordmark",
+			"required": false,
+			"options": [
+				{
+					"key": "wordmark",
+					"display": "Wordmark"
+				},
+				{
+					"key": "icon",
+					"display": "Icon"
+				}
+			]
+		},
+		{
+			"key": "dark-mode",
+			"display": "Dark Mode",
+			"type": "bool",
+			"default": false,
+			"required": false
+		},
+		["dsx-mixins", ["boilerplate"]],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [7, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["asset", {
+				"file": ["$", ["concat",
+					"./media/ds-pelago-logo-",
+					["var", "logo"],
+					".svg"
+				]],
+				"rect": [
+					0,
+					0,
+					"250su",
+					"150su"
+				],
+				"justify": ["$", ["concat", "fit ", ["var", "#align"]]],
+				"align": ["$", ["var", "#align"]],
+				"opacity": ["animate",
+					[0, 0, "easeOutQuad"],
+					["+250", 1],
+					["100%", 0],
+					["-200", 1, "easeInQuad"]
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["eq", ["var", "logo"], "icon"]],
+						"rect": [
+							0,
+							0,
+							"100su",
+							"100su"
+						]
+					},
+					{
+						"enabled": ["$", ["var", "dark-mode"]],
+						"svg-recolor": ["$", ["var", "color-jet-black"]]
+					}
+				]
+			}]
+		]]
+	]
+]

@@ -1,0 +1,54 @@
+[
+	"ds-peopleai-outro",
+	[
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins", ["set-su", "safezone"]],
+			"color": "#0068E4",
+			"transform": [
+				["translate",
+					["animate",
+						[0, "-100rw", "easeOutQuad"],
+						["+500", 0]
+					],
+					0
+				]
+			]
+		}, [
+			["asset", {
+				"file": "./media/ds-peopleai-outro.mp4",
+				"justify": "center fit",
+				"rect": [
+					0,
+					0,
+					"800su",
+					"400su"
+				],
+				"end": 2000,
+				"align": "center",
+				"hold": true,
+				"hold-location": "start"
+			}],
+			["asset", {
+				"file": "./media/ds-peopleai-outro.mp4",
+				"justify": "center fit",
+				"rect": [
+					0,
+					0,
+					"800su",
+					"400su"
+				],
+				"start": 2000,
+				"slip": 1000,
+				"align": "center",
+				"hold": true,
+				"opacity": ["animate",
+					["100%", null],
+					["-500", 0],
+					["-500", 1]
+				]
+			}]
+		]]
+	]
+]

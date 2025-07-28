@@ -1,0 +1,39 @@
+{
+	"params": {
+		"color-1": {
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": "#FEF9EF",
+			"required": false
+		},
+		"color-2": {
+			"key": "color-2",
+			"display": "Color 2",
+			"type": "color",
+			"default": "#3C3D42",
+			"required": false
+		},
+		"color-3": {
+			"key": "color-3",
+			"display": "Color 3",
+			"type": "color",
+			"default": "#C07858",
+			"required": false
+		}
+	},
+	"headline-2": {
+		"font": "./media/FTBase-Regular.ttf",
+		"height": "90su"
+	},
+	"text-1": {
+		"font": "./media/FTBase-Medium.ttf",
+		"height": "75su",
+		"leading": "5su"
+	},
+	"text-2": {
+		"font": "./media/FTBase-Regular.ttf",
+		"height": "60su",
+		"leading": "12su"
+	}
+}

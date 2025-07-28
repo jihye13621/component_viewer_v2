@@ -1,0 +1,139 @@
+[
+	"ds-valor-lite-watermark",
+	[
+		["dsx-mixins", ["watermark"]],
+		["ds-valor-lite-mixins", "color-1", "color-2", "color-3"],
+		["dsx-mixins", ["boilerplate"]],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [7, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"max-width": "800nsu",
+				"layout": "vertical packed match",
+				"align": ["$", ["var", "#align"]],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["exists", ["var", "text"]]],
+						"transform": [
+							["translate",
+								0,
+								["animate",
+									[700, "-80su", "easeInOutQuart"],
+									["+700", 0],
+									["100%", "-80su"],
+									["-800", 0, "easeInOutQuart"]
+								]
+							]
+						]
+					}
+				]
+			}, [
+				["solid", {
+					"enabled": ["$", ["exists", ["var", "text"]]],
+					"align": ["$", ["var", "#align"]],
+					"layout": "vertical packed",
+					"color": ["$", ["var", "color-3"]],
+					"padding": [
+						"17su",
+						"24su",
+						"15su",
+						"24su"
+					],
+					"stagger": [700, 0],
+					"mask": {
+						"padding": [
+							["animate",
+								[0, "100rh", "easeInOutQuart"],
+								["+700", 0],
+								["100%", "100rh"],
+								["-800", 0, "easeInOutQuart"]
+							],
+							0,
+							0,
+							0
+						]
+					}
+				}, [
+					["text", {
+						"mixins": ["ds-valor-lite-mixins", ["text-2"]],
+						"string": ["$", ["var", "text"]],
+						"case": "uppercase",
+						"color": ["$", ["var", "color-2"]],
+						"justify": ["$", ["var", "#align"]],
+						"boundary": "letter",
+						"stagger": [1000, -150],
+						"animations": [
+							{
+								"translate": [0, "-50su"]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									[500, 1],
+									["100%", 0],
+									["-800", 1]
+								],
+								"translate": [0, 0],
+								"opacity": 1,
+								"ramp": 1.5,
+								"easing": "easeOutQuart"
+							}
+						]
+					}]
+				]],
+				["solid", {
+					"layout": "vertical packed",
+					"color": ["$", ["var", "color-1"]],
+					"padding": [
+						"24su",
+						"24su",
+						"24su",
+						"24su"
+					],
+					"mask": {
+						"padding": [
+							0,
+							0,
+							["animate",
+								[0, "100rh", "easeInOutQuart"],
+								["+500", 0],
+								["100%", "100rh"],
+								["-800", 0, "easeInOutQuart"]
+							],
+							0
+						]
+					}
+				}, [
+					["asset", {
+						"mute": true,
+						"file": "./media/valor-logo-white.svg",
+						"flex": {
+							"width": "200su",
+							"height": "200su"
+						},
+						"justify": "fit center",
+						"breakpoints": [
+							{
+								"enabled": ["$", ["eq", ["var", "logo"], "./media/capsule.svg"]],
+								"svg-recolor": ["$", ["var", "color-2"]]
+							}
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

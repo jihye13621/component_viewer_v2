@@ -1,0 +1,57 @@
+[
+	"ds-braze-intro",
+	[
+		{
+			"key": "gradient-style",
+			"display": "BG Gradient",
+			"type": "string",
+			"default": "heat-2",
+			"required": false,
+			"options": [
+				{
+					"key": "heat-1",
+					"display": "Heat 1"
+				},
+				{
+					"key": "heat-2",
+					"display": "Heat 2"
+				},
+				{
+					"key": "heat-3",
+					"display": "Heat 3"
+				}
+			]
+		}
+	],
+	[
+		["ds-braze-bg", {
+			"animate-in": false,
+			"gradient-style": ["$", ["var", "gradient-style"]]
+		}, [
+			["null", {
+				"mixins": ["dsx-mixins",
+					"set-su",
+					"safezone"
+				],
+				"opacity": ["animate",
+					["100%", 0],
+					["-400", 1]
+				]
+			}, [
+				["asset", {
+					"file": "./media/ds-braze-logo-animated.mov",
+					"justify": "fit center",
+					"rect": [
+						0,
+						0,
+						"500su",
+						"500su"
+					],
+					"align": "center",
+					"hold": true,
+					"mute": true
+				}]
+			]]
+		]]
+	]
+]

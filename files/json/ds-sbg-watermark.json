@@ -1,0 +1,172 @@
+[
+	"ds-sbg-watermark",
+	[
+		{
+			"key": "station",
+			"display": "Station",
+			"type": "string",
+			"options": [
+				{
+					"key": "wjla",
+					"display": "Washington DC (WJLA)"
+				},
+				{
+					"key": "wjar",
+					"display": "NBC 10 (WJAR)"
+				},
+				{
+					"key": "wgme",
+					"display": "CBS 13 (WGME)"
+				},
+				{
+					"key": "kbak",
+					"display": "Bakersfield (KBAK)"
+				},
+				{
+					"key": "kutv",
+					"display": "2 News (KUTV)"
+				},
+				{
+					"key": "kval",
+					"display": "KVAL"
+				},
+				{
+					"key": "wach",
+					"display": "FOX57 (WACH)"
+				},
+				{
+					"key": "wpec",
+					"display": "CBS12 (WPEC)"
+				},
+				{
+					"key": "wstm",
+					"display": "CNY Central (WSTM)"
+				},
+				{
+					"key": "kboi",
+					"display": "2 Idaho News (KBOI)"
+				},
+				{
+					"key": "wtvc",
+					"display": "Fox Chattanooga (WTVC)"
+				},
+				{
+					"key": "ktul",
+					"display": "ABC 8 (KTUL)"
+				},
+				{
+					"key": "kokh",
+					"display": "Fox 25 (KOKH)"
+				},
+				{
+					"key": "kbfx",
+					"display": "Fox 58 (KBFX)"
+				},
+				{
+					"key": "wstq",
+					"display": "CW 6 (WSTQ)"
+				},
+				{
+					"key": "wtvh",
+					"display": "CBS 5 (WTVH)"
+				}
+			],
+			"default": "wjla",
+			"required": false,
+			"private": true,
+			"script": ["$",
+				["if",
+					["exists", ["gvar", "station"]],
+					["gvar", "station"],
+					["var", "station"]
+				]
+			]
+		},
+		["ds-sbg-mixins", "do-safezone"],
+		{
+			"key": "size",
+			"display": "Size",
+			"type": "number",
+			"default": 1.0,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"step": 0.05,
+				"minimum": 0.5,
+				"maximum": 1.5
+			}
+		},
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [9, 0, 0],
+			"ui": {
+				"grid": false,
+				"offset": true,
+				"minimum": -100,
+				"maximum": 100
+			},
+			"required": false
+		},
+		{
+			"key": "path-override",
+			"display": "Path Override",
+			"type": "string",
+			"default": "",
+			"required": false,
+			"private": true
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"offset"
+			]
+		}, [
+			["null", {
+				"mixins": ["ds-sbg-mixins",
+					"watermark-safezone"
+				]
+			}, [
+				["shadow", {
+					"radius": "20su",
+					"color": [0, 0, 0, 0.3],
+					"padding": [
+						0,
+						"30nsu",
+						0,
+						0
+					]
+				}, [
+					["asset", {
+						"rect": [
+							0,
+							0,
+							"300su",
+							"110su"
+						],
+						"align": "top right",
+						"file": ["$",
+							["if",
+								["exists", ["var", "path-override"]],
+								["var", "path-override"],
+								["concat",
+									"./media/ds-sbg-logo-",
+									["var", "station"],
+									["if",
+										["in", ["var", "station"], "abc", "cwtc", "komo", "kutv"],
+										".svg",
+										".png"
+									]
+								]
+							]
+						],
+						"justify": "fit top right"
+					}]
+				]]
+			]]
+		]]
+	]
+]

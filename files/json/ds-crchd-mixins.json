@@ -1,0 +1,133 @@
+{
+	"params": {
+		"color-primary": {
+			"key": "color-primary",
+			"display": "Color Primary",
+			"type": "color",
+			"default": "#6254B7",
+			"required": false
+		},
+		"color-secondary": {
+			"key": "color-secondary",
+			"display": "Color Secondary",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		},
+		"color-accent": {
+			"key": "color-accent",
+			"display": "Color Accent",
+			"type": "color",
+			"default": "#82368C",
+			"required": false
+		}
+	},
+	"font-prompt": {
+		"font": "./media/Montserrat-SemiBold.ttf",
+		"height": "100su"
+	},
+	"font-speaker-name": {
+		"font": "./media/Montserrat-SemiBold.ttf",
+		"height": "80su"
+	},
+	"font-speaker-detail": {
+		"font": "./media/Montserrat-Medium.ttf",
+		"height": "60su"
+	},
+	"font-captions": {
+		"font": "./media/Montserrat-Medium.ttf",
+		"height": "50su"
+	},
+	"font-watermark": {
+		"font": "./media/Poppins-Bold.ttf",
+		"height": "40su",
+		"leading": "5su",
+		"measure": "letter-size"
+	},
+	"speaker-boxes": {
+		"padding": [
+			"15su",
+			"30su",
+			"15su",
+			"30su"
+		],
+		"mask": {
+			"padding": [
+				0,
+				["animate",
+					[0, "100rw", "easeOutQuad"],
+					["+400", 0],
+					["100%", "100rw"],
+					["-400", 0, "easeInQuad"]
+				],
+				0,
+				0
+			]
+		},
+		"breakpoints": [
+			{
+				"enabled": ["$", ["eq", ["mod", ["nth", ["var", "position"], 0], 3], 1]],
+				"padding": [
+					"15su",
+					"30su",
+					"15su",
+					"100su"
+				]
+			},
+			{
+				"enabled": ["$", ["eq", ["mod", ["nth", ["var", "position"], 0], 3], 0]],
+				"padding": [
+					"15su",
+					"100su",
+					"15su",
+					"30su"
+				],
+				"mask": {
+					"padding": [
+						0,
+						0,
+						0,
+						["animate",
+							[0, "100rw", "easeOutQuad"],
+							["+400", 0],
+							["100%", "100rw"],
+							["-400", 0, "easeInQuad"]
+						]
+					]
+				}
+			}
+		]
+	},
+	"speaker-boxes-blind": {
+		"flex": {
+			"position": "fixed"
+		},
+		"transform": [
+			["translate",
+				["animate",
+					[0, 0, "easeOutQuad"],
+					["+400", "100rw"],
+					["100%", 0],
+					["-400", "100rw", "easeInQuad"]
+				],
+				0
+			]
+		],
+		"breakpoints": [
+			{
+				"enabled": ["$", ["eq", ["mod", ["nth", ["var", "position"], 0], 3], 0]],
+				"transform": [
+					["translate",
+						["animate",
+							[0, 0, "easeOutQuad"],
+							["+400", "-100rw"],
+							["100%", 0],
+							["-400", "-100rw", "easeInQuad"]
+						],
+						0
+					]
+				]
+			}
+		]
+	}
+}

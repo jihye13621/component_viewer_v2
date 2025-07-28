@@ -1,0 +1,150 @@
+[
+	"ds-netcelero-lite-quote",
+	[
+		["dsx-mixins", ["quote"]],
+		["ds-netcelero-lite-mixins", "color-1", "color-2", "color-3"],
+		["dsx-mixins", ["boilerplate"]],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": 1,
+			"required": false
+		}
+	],
+	[
+		["dsx-background", {
+			"enabled": ["$", ["exists", ["var", "background"]]],
+			"color": ["$", ["var", "background"]]
+		}],
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["solid", {
+				"mixins": ["ds-netcelero-lite-mixins", ["anchored-anim"]],
+				"color": ["$", ["var", "color-1"]],
+				"max-width": "800nsu",
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"gap": "40su",
+				"padding": [
+					"70su",
+					"80su"
+				],
+				"radius": "100su"
+			}, [
+				["for-each", {
+					"flex": {
+						"height": "50su"
+					},
+					"enabled": ["$",
+						["gt",
+							["var", "review"],
+							0
+						]
+					],
+					"layout": "horizontal packed",
+					"items": [1, 2, 3, 4, 5],
+					"gap": "30su",
+					"padding": [
+						"20su",
+						0,
+						"20su",
+						0
+					]
+				}, [
+					["dsx-icon", {
+						"flex": {
+							"width": "50su",
+							"height": "50su"
+						},
+						"icon": "star-open",
+						"color": ["$", ["var", "color-2"]],
+						"stagger": [
+							["$", ["*", 75, ["var", "index"]]],
+							["$", ["*", -50, ["var", "index"]]]
+						],
+						"opacity": ["animate",
+							[0, 0, "easeOutQuad"],
+							["+250", 1]
+						],
+						"transform": [
+							["rotate", 
+								["animate",
+									[0, -0.15, "easeOutCubic"],
+									["+400", 0]
+								]
+							]
+						],
+						"breakpoints": [
+							{
+								"enabled": ["$",
+									["gt",
+										["var", "review"],
+										["var", "index"]
+									]
+								],
+								"icon": "star"
+							}
+						]
+					}]
+				]],
+				["text", {
+					"enabled": ["$", ["exists", ["var", "quote"]]],
+					"mixins": ["ds-netcelero-lite-mixins", ["headline-1"]],
+					"string": ["$", ["concat", "“", ["var", "quote"], "”"]],
+					"justify": ["$", ["var", "#align"]],
+					"color": ["$", ["var", "color-3"]],
+					"boundary": "word",
+					"stagger": [0, -200],
+					"animations": [
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+1000", 1]
+							],
+							"opacity": 1,
+							"ramp": 2,
+							"easing": "easeOutQuad"
+						}
+					]
+				}],
+				["text", {
+					"enabled": ["$",
+						["or",
+							["exists", ["var", "detail-1"]],
+							["exists", ["var", "detail-2"]]
+						]
+					],
+					"mixins": ["ds-netcelero-lite-mixins", ["text-2"]],
+					"string": ["$", ["var", "detail-1"]],
+					"justify": ["$", ["var", "#align"]],
+					"color": ["$", ["var", "color-2"]],
+					"boundary": "word",
+					"stagger": [400, -400],
+					"animations": [
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+500", 1]
+							],
+							"opacity": 1
+						}
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["exists", "detail-2"]],
+							"string": ["$",
+								["concat",
+									["var", "detail-1"],
+									"\n",
+									["var", "detail-2"]
+								]
+							]
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

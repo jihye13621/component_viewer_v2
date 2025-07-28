@@ -1,0 +1,264 @@
+[
+	"ds-paycom-evergreen-speaker",
+	[
+		{
+			"key": "name",
+			"display": "Speaker name",
+			"type": "text",
+			"default": "Speaker name",
+			"required": false
+		},
+		{
+			"key": "detail-1",
+			"display": "Title",
+			"type": "text",
+			"default": "Title",
+			"required": false
+		},
+		{
+			"key": "detail-2",
+			"display": "Company",
+			"type": "text",
+			"default": "Company",
+			"required": false
+		},
+		["ds-paycom-mixins",
+			"font-regular",
+			"font-bold"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		]
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su"
+			],
+			"padding": [
+				0,
+				0,
+				["$", ["nth", ["safezone"], 2]],
+				0
+			],
+			"layout": "vertical packed",
+			"align": "bottom left"
+		}, [
+			["null", {
+				"enabled": ["$", ["or",
+					["exists", ["var", "name"]],
+					["exists", ["var", "detail-1"]],
+					["exists", ["var", "detail-2"]]
+				]],
+				"layout": "stacked",
+				"align": "bottom left",
+				"transform": [
+					["translate",
+						["animate",
+							["100%", "-100rw"],
+							["-500", "easeInQuad"]
+						],
+						0
+					]
+				]
+			}, [
+				["null", {
+					"flex": {
+						"position": "fixed"
+					},
+					"z-index": 100,
+					"rect": [
+						0,
+						0,
+						"350su",
+						"100rh"
+					],
+					"transform": [
+						["translate",
+							["animate",
+								[0, "-350su", "easeOutQuad"],
+								["+500", 0],
+								["100%", "+400su"],
+								["-500", "easeInQuad"]
+							],
+							0
+						]
+					]
+				}, [
+					["asset", {
+						"file": "./media/ds-paycom-evergreen-speaker-shape.png",
+						"align": "center",
+						"rect": [
+							0,
+							0,
+							"200su",
+							"200su"
+						]
+					}]
+				]],
+				["null", {
+					"layout": "vertical packed",
+					"align": "bottom left",
+					"mask": {}
+				}, [
+					["null", {
+						"flex": {
+							"position": "fixed"
+						},
+						"rect": [
+							0,
+							0,
+							["$", ["width"]],
+							["$", ["height"]]
+						]
+					}, [
+						["solid", {
+							"color": [0, 0, 0, 1],
+							"buffer": "knockout",
+							"end": ["$", ["+", 300, ["dur", "./media/ds-paycom-evergreen-transition-in-wide.mov"]]]
+						}, [
+							["null", {
+								"rect": ["$",
+									["let",
+										[
+											["asset", "./media/ds-paycom-evergreen-transition-in-wide.mov"]
+										],
+										["if",
+											["<", ["aspect"], ["aspect", ["var", "asset"]]],
+											["array",
+												0,
+												0,
+												["*", ["aspect", ["var", "asset"]], ["height"]],
+												["height"]
+											],
+											["array",
+												0,
+												0,
+												["width"],
+												["*", ["/", 1, ["aspect", ["var", "asset"]]], ["width"]]
+											]
+										]
+									]
+								],
+								"align": "center"
+							}, [
+								["solid", {
+									"stagger": [0, 0],
+									"color": [1, 1, 1, 1],
+									"mask": {
+										"padding": [
+											0,
+											["animate",
+												[100, "100rw"],
+												[
+													["$",
+														["to-relative-string",
+															["-",
+																["dur", "./media/ds-paycom-evergreen-transition-in-wide.mov"],
+																200
+															]
+														]
+													],
+													0
+												]
+											],
+											0,
+											0
+										]
+									}
+								}]
+							]]
+						]]
+					]],
+					["asset", {
+						"start": 0,
+						"flex": {
+							"position": "fixed"
+						},
+						"rect": [
+							0,
+							0,
+							["$", ["width"]],
+							["$", ["height"]]
+						],
+						"enabled": ["$", ["var", "animate-in"]],
+						"file": "./media/ds-paycom-evergreen-transition-in-wide.mov",
+						"justify": "fill center",
+						"z-index": 100,
+						"end": ["$", ["+", 300, ["dur", "./media/ds-paycom-evergreen-transition-in-wide.mov"]]]
+					}],
+					["asset", {
+						"file": "./media/ds-paycom-evergreen-bg-still.jpeg",
+						"justify": "fill top left",
+						"align": "bottom left",
+						"layout": "vertical packed",
+						"max-width": "90rw",
+						"effect": [
+							["matte", {
+								"enabled": ["$", ["var", "animate-in"]],
+								"buffer-in": "knockout",
+								"end": ["$", ["+", 300, ["dur", "./media/ds-paycom-evergreen-transition-in-wide.mov"]]]
+							}]
+						]
+					}, [
+						["null", {
+							"layout": "horizontal packed",
+							"align": "bottom"
+						}, [
+							["null", {
+								"layout": "stacked",
+								"align": "center",
+								"min-height": "120su",
+								"padding": [
+									"20su",
+									"100su",
+									"20su",
+									"350su"
+								]
+							}, [
+								["null", {
+									"layout": "horizontal packed",
+									"align": "bottom",
+									"gap": "20su"
+								}, [
+									["text", {
+										"enabled": ["$", ["exists", ["var", "name"]]],
+										"font": ["$", ["var", "font-bold"]],
+										"height": "80su",
+										"measure": "cap-size",
+										"justify": "center",
+										"case": "uppercase",
+										"fit": true,
+										"string": ["$", ["var", "name"]],
+										"color": [1, 1, 1, 1]
+									}],
+									["text", {
+										"enabled": ["$", ["or",
+											["exists", ["var", "detail-1"]],
+											["exists", ["var", "detail-2"]]
+										]],
+										"font": ["$", ["var", "font-regular"]],
+										"height": "30su",
+										"kerning": 0.2,
+										"measure": "cap-size",
+										"justify": "center",
+										"case": "uppercase",
+										"fit": true,
+										"string": ["$", ["join",
+											["compact", ["array",
+												["var", "detail-1"],
+												["var", "detail-2"]
+											]],
+											"/"
+										]],
+										"color": [1, 1, 1, 1]
+									}]
+								]]
+							]]
+						]]
+					]]
+				]]
+			]]
+		]]
+	]
+]

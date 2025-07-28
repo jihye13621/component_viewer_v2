@@ -1,0 +1,148 @@
+[
+	"ds-paycom-intro",
+	[
+		{
+			"key": "headline",
+			"display": "Headline",
+			"type": "text",
+			"default": "Title/Topic of Department Specific Video",
+			"required": false
+		},
+		{
+			"key": "#screen-diag",
+			"display": "Screen Diagonal",
+			"type": "number",
+			"default": 0,
+			"private": true,
+			"required": false,
+			"script": ["$", ["sqrt", ["+", ["*", ["width"], ["width"]], ["*", ["height"], ["height"]] ]]]
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", "safezone", "set-su"]
+		}, [
+			["solid", {
+				"flex": {
+					"position": "fixed"
+				},
+				"color": ["radial-gradient",
+					["50rw", "50rh"],
+					"50rh",
+					[0.95, [1, 1, 1, 1]],
+					[1, [1, 1, 1, 0]]
+				],
+				"radius": 1000000,
+				"rect": [
+					["$", ["*", -0.5, ["var", "#screen-diag"]]],
+					["$", ["*", -0.5, ["var", "#screen-diag"]]],
+					["$", ["*", 1, ["var", "#screen-diag"]]],
+					["$", ["*", 1, ["var", "#screen-diag"]]]
+				],
+				"transform": [
+					["scale",
+						["animate",
+							["100%", 0],
+							["-500", 2.2]
+						]
+					]
+				]
+			}],
+			["asset", {
+				"flex": {
+					"position": "fixed"
+				},
+				"file": "./media/ds-paycom-shape.svg",
+				"justify": "fit left top",
+				"rect": [
+					0,
+					"-800su",
+					"1600su",
+					"1600su"
+				],
+				"transform": [
+					["scale",
+						["animate",
+							[0, 0, "easeOutQuad"],
+							["+500", 1],
+							["100%", 0],
+							["-500", 1, "easeInQuad"]
+						],
+						0,
+						"50rh"
+					]
+				]
+			}],
+			["null", {
+				"max-width": "1100su",
+				"align": "center"
+			}, [
+				["null", {
+					"layout": "vertical packed",
+					"align": "left center",
+					"gap": "80su",
+					"transform": [
+						["scale",
+							["animate",
+								[0, 0.9],
+								["100%", 1.0]
+							]
+						]
+					]
+				}, [
+					["asset", {
+						"stagger": [0, -400],
+						"flex": {
+							"height": "90su"
+						},
+						"file": "./media/ds-paycom-logo.svg",
+						"justify": "fit center",
+						"mask": {},
+						"transform": [
+							["translate",
+								0,
+								["animate",
+									[0, "100su", "easeOutQuad"],
+									["+500", 0],
+									["100%", "100su"],
+									["-500", 0, "easeInQuad"]
+								]
+							]
+						]
+					}],
+					["text", {
+						"enabled": ["$", ["exists", ["var", "headline"]]],
+						"stagger": [0, -400],
+						"font": "./media/Bebas Neue Pro Bold.otf",
+						"height": "110su",
+						"measure": "letter-size",
+						"string": ["$", ["var", "headline"]],
+						"color": [0, 0, 0, 1],
+						"leading": "40su",
+						"justify": "left center",
+						"animations": [
+							{
+								"mask": [0, 0, 0, 0],
+								"translate": [
+									0,
+									"100rh"
+								]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+1000", 1],
+									["100%", 0],
+									["-1000", 1]
+								],
+								"ramp": 3,
+								"easing": "easeOutQuad",
+								"translate": [0, 0]
+							}
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

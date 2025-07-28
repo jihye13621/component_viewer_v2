@@ -1,0 +1,63 @@
+[
+	"ds-gong-text",
+	[
+		["dsx-mixins",
+			"text"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		["ds-gong-mixins",
+			"color-white",
+			"color-mid-purple",
+			"color-dark-purple",
+			"font-700"
+		],
+		{
+			"key": "dark-mode",
+			"display": "Dark Mode",
+			"type": "bool",
+			"default": false,
+			"required": false
+		}
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			],
+			"color": ["$", ["var", "color-mid-purple"]],
+			"breakpoints": [
+				{
+					"enabled": ["$", ["var", "dark-mode"]],
+					"color": ["$", ["var", "color-dark-purple"]]
+				}
+			]
+		}, [
+			["null", {
+				"align": "center"
+			}, [
+				["text", {
+					"enabled": ["$", ["exists", ["var", "text"]]],
+					"font": ["$", ["var", "font-700"]],
+					"measure": "letter-size",
+					"height": "80su",
+					"leading": "30su",
+					"string": ["$", ["var", "text"]],
+					"justify": "center",
+					"align": "center",
+					"color": ["$", ["var", "color-white"]],
+					"transform": [
+						["scale",
+							["animate",
+								[0, 0.9],
+								["100%", 1]
+							]
+						]
+					]
+				}]
+			]]
+		]]
+	]
+]

@@ -1,0 +1,287 @@
+[
+	"ds-appcues-tooltip",
+	[
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "text",
+			"default": "Tooltip text",
+			"required": false
+		},
+		{ 
+			"key": "color-1",
+			"display": "Color 1",
+			"default": "#F6F5FB",
+			"type": "color",
+			"required": false
+		},
+		{
+			"key": "color-2",
+			"display": "Color 2",
+			"default": "#5C45FF",
+			"type": "color",
+			"required": false
+		},
+		{
+			"key": "direction",
+			"display": "Direction",
+			"type": "string",
+			"default": "right",
+			"required": false,
+			"options": [
+				{
+					"key": "up",
+					"display": "Up"
+				},
+				{
+					"key": "down",
+					"display": "Down"
+				},
+				{
+					"key": "left",
+					"display": "Left"
+				},
+				{
+					"key": "right",
+					"display": "Right"
+				}
+			]
+		},
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [4, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		},
+		{
+			"key": "x-offset",
+			"display": "X Offset",
+			"type": "number",
+			"default": 0,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 0.5,
+				"minimum": -25.0,
+				"maximum": 25.0
+			}
+		},
+		{
+			"key": "y-offset",
+			"display": "Y Offset",
+			"type": "number",
+			"default": 0,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 0.5,
+				"minimum": -25.0,
+				"maximum": 25.0
+			}
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"max-width": "800su",
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"padding": ["40su", "40su"],
+				"opacity": ["animate", 
+					["100%", 0],
+					["-300", 1]
+				],
+				"transform": [
+					["scale", ["animate",
+						["100%", 0.9],
+						["-300", 1, "easeInQuad"]
+					]],
+					["translate",
+						["$", ["concat", ["var", "x-offset"], "cw"]],
+						["$", ["concat", ["var", "y-offset"], "ch"]]
+					]
+				]
+			}, [
+				["null", {
+					"flex": {
+						"position": "fixed"
+					},
+					"breakpoints": [
+						{
+							"enabled": ["$", ["eq", ["var", "direction"], "left"]],
+							"transform": [
+								["scale", -1, 1]
+							]
+						},
+						{
+							"enabled": ["$", ["eq", ["var", "direction"], "up"]],
+							"transform": [
+								["scale", 1, -1]
+							]
+						}
+					]
+				}, [
+					["null", {
+						"-": "DOT",
+						"rect": [0, 0, "40su", "40su"],
+						"transform": [
+							["translate",
+								["$", ["if", ["in", ["var", "direction"], "left", "right"], "200rh", 0 ]], 
+								["$", ["if", ["in", ["var", "direction"], "up", "down"], "200rh", 0 ]]
+							]
+						],
+						"breakpoints": [
+							{
+								"enabled": ["$", ["in", ["var", "direction"], "left", "right"]],
+								"align":"right center"
+							},
+							{
+								"enabled": ["$", ["in", ["var", "direction"], "up", "down"]],
+								"align":"bottom center"
+							}
+						]
+					}, [
+						["solid", {
+							"color": ["$", ["var", "color-2"]],
+							"radius": 10000,
+							"transform": [
+								["scale", 
+									["animate", 
+										[0, 0, "easeOutBounce"],
+										["+500", 1]
+									]
+								]
+							] 
+						}],
+						["solid", {
+							"align": "center",
+							"color": ["$", ["var", "color-2"]],
+							"rect": [0, 0, "100su", "100su"],
+							"radius": 10000,
+							"opacity": ["animate",
+								[0, 0.5, "easeOutQuad"],
+								["+500", 0],
+								["+250", 0],
+								"loop"
+							],
+							"transform": [
+								["scale", ["animate",
+									[0, 0, "easeOutQuad"],
+									["+500", 1],
+									["+250", 1],
+									"loop"
+								]]
+							]
+						}]
+					]],
+					["solid", {
+						"-": "POINTER-BOX BACKGROUND",
+						"color": ["$", ["var", "color-2"]],
+						"radius": "30su",
+						"breakpoints": [
+							{
+								"enabled": ["$", ["in", ["var", "direction"], "left", "right"]],
+								"align": "right"
+							},
+							{
+								"enabled": ["$", ["in", ["var", "direction"], "up", "down"]],
+								"align": "center"
+							}
+						],
+						"opacity": [
+							"animate",
+							[0, 0],
+							["+250", 1]
+						],
+						"transform": [["scale",
+							["animate",
+								[0, 0.75, "easeOutQuad"],
+								["+300", 1]
+							],
+							["$", ["if", ["in", ["var", "direction"], "up", "down"],
+								"50rw",
+								"100rw"
+							]], 
+							"50rh"
+						]]
+					}, [
+						["solid", {
+							"-": "POINTER-BOX ARROW",
+							"color": ["$", ["var", "color-2"]],
+							"rect": [0, 0, "40su", "40su"],
+							"transform": [
+								["rotate", 0.125],
+								["translate",
+									["$", ["if", ["in", ["var", "direction"], "left", "right"], "45rh", 0 ]], 
+									["$", ["if", ["in", ["var", "direction"], "up", "down"], "45rh", 0 ]]
+								]
+							],
+							"radius": "4su",
+							"breakpoints": [
+								{
+									"enabled": ["$", ["in", ["var", "direction"], "left", "right"]],
+									"align":"right center"
+								},
+								{
+									"enabled": ["$", ["in", ["var", "direction"], "up", "down"]],
+									"align":"bottom center"
+								}
+							]
+						}]
+					]]
+				]],
+				["text", {
+					"mixins": ["ds-appcues-mixins", "text-captions"],
+					"string": ["$", ["if", 
+						["exists", ["var", "text"]], 
+						["var", "text"],
+						"."
+					]],
+					"justify": "center",
+					"color": ["$", ["if", 
+						["exists", ["var", "text"]], 
+						["var", "color-1"], 
+						"#ffffff00"
+					]],
+					"padding": ["-40su", "-40su"],
+					"fit": true,
+					"background-padding": ["30su", "30su", "30su", "30su"],
+					"background-radius": "30su",
+					"opacity": [
+						"animate",
+						[0, 0],
+						["+250", 1]
+					],
+					"transform": [["scale",
+						["animate",
+							[0, 0.75, "easeOutQuad"],
+							["+250", 1]
+						],
+						["$", ["if", 
+							["eq", ["var", "direction"], "right"], 
+							"100rw", 
+							["if", 
+								["eq", ["var", "direction"], "left"], 
+								0, 
+								"50rw"
+							]
+						]],
+						"50rh"
+					]]
+				}]
+			]]
+		]]
+	]
+]

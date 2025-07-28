@@ -1,0 +1,64 @@
+[
+	"ds-unl-captions",
+	[
+		["dsx-mixins", "captions"],
+		["ds-unl-mixins", "color-primary", "color-secondary", "color-accent"],
+		["dsx-mixins", "boilerplate"],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [2, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"max-width": "800nsu",
+				"align": ["$", ["var", "#align"]],
+				"padding": [
+					"5su",
+					"20su",
+					"7su",
+					"20su"
+				]
+			}, [
+				["text", {
+					"mixins": ["ds-unl-mixins", ["font-captions"]],
+					"justify": ["$", ["var", "#align"]],
+					"transcript": ["$",
+						["transcript-split",
+							["var", "transcript"],
+							["max", 1, ["floor", ["/", 10, ["var", "size"]]]]
+						]
+					],
+					"color": ["$", ["rgba-set", ["var", "color-accent"], "a", 0.5]],
+					"background-color": ["$", ["var", "color-primary"]],
+					"background-padding": [
+						"5su",
+						"20su",
+						"7su",
+						"20su"
+					],
+					"animations": [
+						{
+							"mix": [[0, 0], [0.00001, 1]],
+							"color": ["$", ["var", "color-secondary"]]
+						},
+						{
+							"mix": [[0.99999, 0], [1.0, 1]],
+							"color": ["$", ["var", "color-accent"]]
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

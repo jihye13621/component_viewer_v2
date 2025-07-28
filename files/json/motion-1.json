@@ -1,0 +1,150 @@
+[
+    "motion-1",
+    [
+        {
+            "key": "start",
+            "display": "Start",
+            "type": "number",
+            "default": 0,
+            "required": false
+        },
+        {
+            "key": "duration",
+            "display": "Duration",
+            "type": "number",
+            "default": 4000,
+            "required": false
+        },
+        {
+            "key": "text",
+            "display": "Text",
+            "type": "text",
+            "default": "MOTION",
+            "required": false
+        },
+        {
+            "key": "color-1",
+            "display": "Color 1",
+            "type": "color",
+            "default": [0.4, 0.6, 1, 1],
+            "required": false
+        },
+        {
+            "key": "color-2",
+            "display": "Color 2",
+            "type": "color",
+            "default": [0.6, 0.4, 1, 1],
+            "required": false
+        }
+    ],
+    [
+        ["solid", {
+            "start": ["$", ["var", "start"]],
+            "duration": ["$", ["var", "duration"]],
+            "mixins": ["dsx-mixins", "set-su"],
+            "color": [0.05, 0.05, 0.1, 1],
+            "layout": "stacked",
+            "align": "center",
+            "rect": ["100rw", "100rh"]
+        }, [
+            ["null", {
+                "layout": "stacked",
+                "align": "center"
+            }, [
+                ["solid", {
+                    "rect": ["150su", "150su"],
+                    "color": ["linear-gradient",
+                        0.0,
+                        [0.0, [0.4, 0.6, 1, 1]],
+                        [1.0, [0.6, 0.4, 1, 1]]
+                    ],
+                    "mask": {
+                        "radius": "75su"
+                    },
+                    "opacity": ["animate",
+                        [0, 0, "easeInOutSine"],
+                        ["+500", 0.8],
+                        ["+3500", 0.8],
+                        ["+4000", 0]
+                    ]
+                }],
+                ["null", {
+                    "layout": "stacked",
+                    "align": "center"
+                }, [
+                    ["solid", {
+                        "color": ["$", ["var", "color-1"]],
+                        "rect": ["200su", "50su"],
+                        "transform": [
+                            ["translate",
+                                ["animate",
+                                    [0, "-800su", "easeInOutSine"],
+                                    ["+2000", 0]
+                                ],
+                                ["animate",
+                                    [0, "100su", "easeInOutSine"],
+                                    ["+1000", "-100su"],
+                                    ["+2000", 0]
+                                ]
+                            ],
+                            ["scale",
+                                ["animate",
+                                    [0, 1.2, "easeInOutSine"],
+                                    ["+1000", 0.8],
+                                    ["+2000", 1]
+                                ]
+                            ]
+                        ]
+                    }],
+                    ["solid", {
+                        "color": ["$", ["var", "color-2"]],
+                        "rect": ["200su", "50su"],
+                        "transform": [
+                            ["translate",
+                                ["animate",
+                                    [0, "800su", "easeInOutSine"],
+                                    ["+2000", 0]
+                                ],
+                                ["animate",
+                                    [0, "-100su", "easeInOutSine"],
+                                    ["+1000", "100su"],
+                                    ["+2000", 0]
+                                ]
+                            ],
+                            ["scale",
+                                ["animate",
+                                    [0, 0.8, "easeInOutSine"],
+                                    ["+1000", 1.2],
+                                    ["+2000", 1]
+                                ]
+                            ]
+                        ]
+                    }]
+                ]],
+                ["text", {
+                    "enabled": ["$", ["exists", ["var", "text"]]],
+                    "font": "./media/Barlow-Bold.ttf",
+                    "color": [1, 1, 1, 1],
+                    "string": ["$", ["var", "text"]],
+                    "justify": "center",
+                    "animations": [
+                        {
+                            "translate": [0, "20su"],
+                            "opacity": 0
+                        },
+                        {
+                            "mix": [
+                                "animate",
+                                [0, 0],
+                                ["+400", 1]
+                            ],
+                            "easing": "easeOutCubic",
+                            "translate": [0, 0],
+                            "opacity": 1
+                        }
+                    ]
+                }]
+            ]]
+        ]]
+    ]
+] 

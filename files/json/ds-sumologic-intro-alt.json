@@ -1,0 +1,95 @@
+[
+	"ds-sumologic-intro-alt",
+	[
+		{
+			"key": "headline",
+			"display": "Headline",
+			"type": "text",
+			"default": "National Intern Day",
+			"required": false
+		},
+		["ds-sumologic-mixins",
+			"color-white",
+			"color-blue",
+			"color-aqua",
+			"fonts"
+		],
+		["dsx-mixins",
+			"boilerplate-intro-outro"
+		]
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins", ["set-su-roi", "safezone"]],
+			"color": ["$", ["var", "color-blue"]],
+			"opacity": ["animate",
+				["100%", null],
+				["-500", 0],
+				["-1", 1, "round"]
+			]
+		}, [
+			["text", {
+				"font": ["$", ["var", "font-bold"]],
+				"height": "150su",
+				"leading": "20su",
+				"measure": "letter-size",
+				"color": ["$", ["var", "color-white"]],
+				"string": ["$", ["var", "headline"]],
+				"case": "uppercase",
+				"max-width": "1200nsu",
+				"justify": "left center",
+				"mask": {},
+				"transform": [
+					["translate",
+						["animate",
+							[0, "-100rw", "easeOutQuad"],
+							["+1000", 0]
+						],
+						0
+					]
+				]
+			}],
+			["asset", {
+				"file": "./media/ds-sumologic-logo.svg",
+				"justify": "fit left bottom",
+				"rect": [
+					0,
+					0,
+					"500su",
+					"300su"
+				],
+				"align": "bottom left"
+			}]
+		]],
+		["solid", {
+			"stagger": [0, -250],
+			"color": ["$", ["color-mix",
+				["var", "color-blue"],
+				["var", "color-aqua"],
+				0.5
+			]],
+			"transform": [
+				["translate",
+					0,
+					["animate",
+						["100%", "-100rh"],
+						["-1000", "100rh", "easeInOutQuad"]
+					]
+				]
+			]
+		}],
+		["solid", {
+			"stagger": [0, 0],
+			"color": ["$", ["var", "color-aqua"]],
+			"transform": [
+				["translate",
+					0,
+					["animate",
+						["100%", "-100rh"],
+						["-1000", "100rh", "easeInOutQuad"]
+					]
+				]
+			]
+		}]
+	]
+]

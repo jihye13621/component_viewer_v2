@@ -1,0 +1,153 @@
+{
+	"params": {
+		"colors": [
+			{
+				"key": "white",
+				"display": "White",
+				"private": true,
+				"type": "color",
+				"default": "#FFFFFF",
+				"required": false
+			},
+			{
+				"key": "black",
+				"display": "Black",
+				"private": true,
+				"type": "color",
+				"default": "#000000",
+				"required": false
+			},
+			{
+				"key": "gold",
+				"display": "Gold",
+				"private": true,
+				"type": "color",
+				"default": "#FDB71C",
+				"required": false
+			},
+			{
+				"key": "maroon",
+				"display": "Maroon",
+				"private": true,
+				"type": "color",
+				"default": "#502D3C",
+				"required": false
+			},
+			{
+				"key": "gray",
+				"display": "Gray",
+				"private": true,
+				"type": "color",
+				"default": "#3E3B3B",
+				"required": false
+			},
+			{
+				"key": "light-gray",
+				"display": "Light Gray",
+				"private": true,
+				"type": "color",
+				"default": "#9E9E9E",
+				"required": false
+			},
+			{
+				"key": "tan",
+				"display": "Tan",
+				"private": true,
+				"type": "color",
+				"default": "#F0E8DF",
+				"required": false
+			},
+			{
+				"key": "eggshell",
+				"display": "Eggshell",
+				"private": true,
+				"type": "color",
+				"default": "#F4F3EB",
+				"required": false
+			},
+			{
+				"key": "salmon",
+				"display": "Salmon",
+				"private": true,
+				"type": "color",
+				"default": "#E45353",
+				"required": false
+			}
+		],
+		"histu-icons": [
+			{
+				"key": "icon",
+				"display": "Icon",
+				"type": "string",
+				"default": "error",
+				"required": false,
+				"options": [
+					{
+						"key": "none",
+						"display": "None"
+					},
+					{
+						"key": "calendar",
+						"display": "Calendar"
+					},
+					{
+						"key": "credit-cards",
+						"display": "Credit Cards"
+					},
+					{
+						"key": "data-integration",
+						"display": "Data Integration"
+					},
+					{
+						"key": "error",
+						"display": "Error"
+					},
+					{
+						"key": "gear",
+						"display": "Gear"
+					}
+				]
+			},
+			{
+				"key": "#file",
+				"display": "File",
+				"type": "string",
+				"default": "./media/ds-rippling-histu-error.mov",
+				"required": false,
+				"private": true,
+				"script": ["$", ["switch", ["var", "icon"], {
+					"calendar": "./media/ds-rippling-histu-calendar.mov",
+					"credit-cards": "./media/ds-rippling-histu-credit-cards.mov",
+					"data-integration": "./media/ds-rippling-histu-data-integration.mov",
+					"error": "./media/ds-rippling-histu-error.mov",
+					"gear": "./media/ds-rippling-histu-gear.mov"
+				}]]
+			}
+		],
+		"text-regular": {
+			"key": "text-regular",
+			"display": "Text Regular",
+			"type": "string",
+			"default": "./media/Basel-Grotesk-Regular.ttf",
+			"required": false,
+			"private": true
+		},
+		"text-medium": {
+			"key": "text-medium",
+			"display": "Text Medium",
+			"type": "string",
+			"default": "./media/Basel-Grotesk-Medium.ttf",
+			"required": false,
+			"private": true
+		},
+		"text-bold": {
+			"key": "text-bold",
+			"display": "Text Bold",
+			"type": "string",
+			"default": "./media/Basel-Grotesk-Bold.ttf",
+			"required": false,
+			"private": true
+		}
+	}
+	
+}

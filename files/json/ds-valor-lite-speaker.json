@@ -1,0 +1,153 @@
+[
+	"ds-valor-lite-speaker",
+	[
+		["dsx-mixins", ["speaker"]],
+		["ds-valor-lite-mixins", "color-1", "color-2"],
+		["dsx-mixins", ["boilerplate"]],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [1, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"max-width": "800nsu",
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"gap": "80su"
+			}, [
+				["null", {
+					"enabled": ["$", ["exists", ["var", "name"]]],
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]]
+				}, [
+					["null", {
+						"flex": {
+							"position": "fixed"
+						},
+						"layout": "vertical packed",
+						"align": "bottom",
+						"padding": [
+							"0su",
+							"-20su",
+							"-20su",
+							"-20su"
+						]
+					}, [
+						["solid", {
+							"color": ["$", ["var", "color-2"]],
+							"rect": [
+								0,
+								0,
+								"100rw",
+								"50su"
+							],
+							"stagger": [400, 0],
+							"transform": [
+								["scale",
+									["animate",
+										[0, 0, "easeOutCubic"],
+										["+600", 1],
+										["100%", 0],
+										["-500", 1, "easeInCubic"]
+									],
+									1,
+									"100rw",
+									0
+								]
+							]
+						}]
+					]],
+					["text", {
+						"mixins": ["ds-valor-lite-mixins", ["headline-2"]],
+						"string": ["$", ["var", "name"]],
+						"case": "uppercase",
+						"color": ["$", ["var", "color-1"]],
+						"justify": ["$", ["var", "#align"]],
+						"boundary": "letter",
+						"animations": [
+							{
+								"translate": [
+									"100su",
+									0
+								]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+900", 1],
+									["100%", 0],
+									["-500", 1]
+								],
+								"ramp": 1.25,
+								"easing": "easeOutCubic",
+								"opacity": 1,
+								"translate": [0, 0]
+							}
+						]
+					}]
+				]],
+				["text", {
+					"enabled": ["$",
+						["or",
+							["exists", ["var", "detail-1"]],
+							["exists", ["var", "detail-2"]]
+						]
+					],
+					"mixins": ["ds-valor-lite-mixins", ["text-2"]],
+					"string": ["$", ["var", "detail-1"]],
+					"case": "uppercase",
+					"justify": ["$", ["var", "#align"]],
+					"color": ["$", ["var", "color-1"]],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["exists", ["var", "detail-2"]]],
+							"string": ["$",
+								["concat",
+									["var", "detail-1"],
+									["if",
+										["exists", ["var", "detail-1"]],
+										"\n",
+										""
+									],
+									["var", "detail-2"]
+								]
+							]
+						}
+					],
+					"boundary": "word",
+					"animations": [
+						{
+							"translate": [
+								"80su",
+								0
+							]
+						},
+						{
+							"mix": ["animate",
+								[800, 0],
+								["+800", 1],
+								["100%", 0],
+								["-500", 1]
+							],
+							"ramp": 1.5,
+							"easing": "easeOutCubic",
+							"opacity": 1,
+							"translate": [0, 0]
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

@@ -1,0 +1,45 @@
+[
+	"ds-inmoment-watermark",
+	[
+		["dsx-mixins", ["boilerplate"]],
+		{
+			"key": "dark-mode",
+			"display": "Dark Logo",
+			"type": "bool",
+			"default": false,
+			"required": false
+		},
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [7, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+            ["asset", {
+				"file": ["$", ["if", ["var", "dark-mode"],
+					"./media/ds-inmoment-logo-dark-color.svg",
+					"./media/ds-inmoment-logo-white-color.svg"
+				]],
+				"rect": [0, 0, "400su", "100su"],
+				"justify": ["$", ["concat", "fit ", ["var", "#align"]]],
+				"align": ["$", ["var", "#align"]],
+				"opacity": ["animate",
+					[0, 0, "easeOutSine"],
+					["+250", 1],
+					["100%", 0],
+					["-250", 1, "easeInSine"]
+				]
+			}]
+		]]
+	]
+]

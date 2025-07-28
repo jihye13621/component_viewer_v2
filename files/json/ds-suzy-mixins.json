@@ -1,0 +1,26 @@
+{
+	"font-intro": {
+		"font": "./media/Barlow-Bold.ttf",
+		"height": "175su"
+	},
+	"font-intro-subhead": {
+		"font": "./media/Barlow-Bold.ttf",
+		"height": "80su"
+	},
+	"font-captions": {
+		"font": "./media/Barlow-Bold.ttf",
+		"height": "59su"
+	},
+	"font-medium": {
+		"font": "./media/Barlow-Bold.ttf",
+		"height": "100su"
+	},
+	"font-small": {
+		"font": "./media/Barlow-Medium.ttf",
+		"height": "50su"
+	},
+	"font-tiny": {
+		"font": "./media/Barlow-SemiBold.ttf",
+		"height": "50su"
+	}
+}

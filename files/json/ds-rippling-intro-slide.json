@@ -1,0 +1,57 @@
+[
+	"ds-rippling-intro-slide",
+	[
+		["dsx-mixins",
+			"boilerplate"
+		],
+		["ds-rippling-mixins",
+			"colors",
+			"color-selector"
+		]
+	],
+	[
+		["null", {
+			"-": ["$", ["set", "#start-time", ["-", ["key", ["comp-timing"], "duration"], ["dur", "./media/ds-rippling-matte-r-slide.mov"]]]]
+		}, [
+			["null", {
+				"start": ["$", ["var", "#start-time"]],
+				"buffer": "matte"
+			}, [
+				["asset", {
+					"file": "./media/ds-rippling-matte-r-slide.mov",
+					"justify": "fill left",
+					"mute": true,
+					"hold": true
+				}]
+			]],
+			["solid", {
+				"mixins": ["dsx-mixins",
+					"set-su",
+					"safezone"
+				],
+				"justify": "fill center",
+				"color": ["$", ["var", "#background"]],
+				"effect": [
+					["matte", {
+						"start": ["$", ["var", "#start-time"]],
+						"buffer-in": "matte"
+					}]
+				]
+			}, [
+				["asset", {
+					"mute": true,
+					"file": "./media/ds-rippling-logo-animation.mov",
+					"justify": "fit center",
+					"stagger": [0, 0],
+					"hold": true,
+					"effect": [
+						["false-color", {
+							"color-1": ["$", ["var", "#foreground"]],
+							"color-2": ["$", ["var", "#foreground"]]
+						}]
+					]
+				}]
+			]]
+		]]
+	]
+]

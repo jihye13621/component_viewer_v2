@@ -1,0 +1,327 @@
+[
+	"ds-impactdotcom-webinar-callout-3",
+	[
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["gain", 0],
+				["motion", "none"]
+			]
+		},
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "textarea",
+			"default": "Title Text",
+			"required": false
+		},
+		{
+			"key": "do-background",
+			"display": "Background",
+			"type": "bool",
+			"default": true,
+			"required": false
+		},
+		["ds-impactdotcom-webinar-mixins",
+			"color-text",
+			"color-primary",
+			"color-accent",
+			"font-bold"
+		],
+		{
+			"key": "size",
+			"display": "Size",
+			"type": "number",
+			"default": 1.0,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"step": 0.05,
+				"minimum": 0.25,
+				"maximum": 2.0
+			}
+		},
+		{
+			"key": "#rad",
+			"display": "Radius",
+			"type": "number",
+			"default": 100,
+			"required": false,
+			"private": true,
+			"script": ["$", ["min", ["width"], ["height"]]]
+		}
+	],
+	[
+		["solid", {
+			"enabled": ["$", ["var", "do-background"]],
+			"color": ["$", ["var", "color-black"]],
+			"opacity": ["animate",
+				[0, 0, "easeOutQuad"],
+				["+250", 1],
+				["100%", 0],
+				["-200", 1, "easeInQuad"]
+			]
+		}],
+		["null", {
+			"mixins": ["dsx-mixins", "set-su", "safezone"]
+		}, [
+			["null", {
+				"enabled": ["$", ["exists", ["var", "asset"]]],
+				"flex": {
+					"position": "fixed"
+				},
+				"rect": [
+					0,
+					0,
+					"50rw",
+					"100rh"
+				],
+				"align": "center right",
+				"opacity": ["animate",
+					[0, 0],
+					["+500", 1]
+				],
+				"transform": [
+					["translate",
+						["animate",
+							[0, "-100rw", "easeOutQuint"],
+							["+1000", 0],
+							["100%", "100rw"],
+							["-500", 0, "easeInQuint"]
+						],
+						0
+					]
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["lte", ["aspect"], 1]],
+						"rect": [
+							0,
+							0,
+							"100rw",
+							"50rh"
+						],
+						"align": "center top",
+						"transform": [
+							["translate",
+								0,
+								["animate",
+									[0, "-100rw", "easeOutQuint"],
+									["+1000", 0],
+									["100%", "-100rw"],
+									["-500", 0, "easeInQuint"]
+								]
+							]
+						]
+					}
+				]
+			}, [
+				["user-asset", {
+					"file": ["$", ["var", "asset"]],
+					"mask": {},
+					"justify": "fill center"
+				}]
+			]],
+			["ds-impactdotcom-webinar-circle", {
+				"rect": [
+					0,
+					0,
+					"600nsu",
+					"600nsu"
+				],
+				"color-1": ["$", ["var", "color-accent"]],
+				"color-2": ["$", ["var", "color-gradient"]],
+				"circle-background": false,
+				"orbit": true,
+				"opacity": ["animate",
+					[0, 0],
+					["+400", 1],
+					["100%", 0],
+					["-400", 1]
+				],
+				"transform": [
+					["scale",
+						["animate",
+							[0, 0.5, "easeOutQuad"],
+							["+400", 1]
+						]
+					],
+					["translate",
+						["animate",
+							[800, "-25rw", "easeInOutQuad"],
+							["+400", "25rw"],
+							["100%", "-25rw"],
+							["-400", "25rw", "easeInQuad"]
+						],
+						0
+					]
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["lte", ["aspect"], 1]],
+						"align": "center left",
+						"transform": [
+							["scale",
+								["animate",
+									[0, 0.5, "easeOutQuad"],
+									["+400", 1]
+								]
+							],
+							["translate",
+								["animate",
+									[800, 0, "easeInOutQuad"],
+									["+400", "-50rw"],
+									["100%", 0],
+									["-400", "-50rw", "easeInQuad"]
+								],
+								0
+							]
+						]
+					}
+				]
+			}],
+			["ds-impactdotcom-webinar-circle", {
+				"stagger": [200, -100],
+				"rect": [
+					0,
+					0,
+					"600nsu",
+					"600nsu"
+				],
+				"color-1": ["$", ["var", "color-accent"]],
+				"color-2": ["$", ["var", "color-gradient"]],
+				"align": "bottom right",
+				"circle-background": false,
+				"orbit": true,
+				"opacity": ["animate",
+					[0, 0],
+					["+400", 1],
+					["100%", 0],
+					["-400", 1]
+				],
+				"transform": [
+					["scale",
+						["animate",
+							[0, 0.5, "easeOutQuad"],
+							["+400", 1]
+						]
+					],
+					["rotate",
+						0.3
+					],
+					["translate",
+						["animate",
+							[800, "25rw", "easeInOutQuad"],
+							["+400", "-25rw"],
+							["100%", "25rw"],
+							["-400", "-25rw", "easeInQuad"]
+						],
+						0
+					]
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["lte", ["aspect"], 1]],
+						"align": "bottom right",
+						"transform": [
+							["scale",
+								["animate",
+									[0, 0.5, "easeOutQuad"],
+									["+400", 1]
+								]
+							],
+							["translate",
+								["animate",
+									[800, 0, "easeInOutQuad"],
+									["+400", "50rw"],
+									["100%", 0],
+									["-400", "50rw", "easeInQuad"]
+								],
+								"50rh"
+							]
+						]
+					}
+				]
+			}],
+			["text", {
+				"enabled": ["$", ["exists", ["var", "text"]]],
+				"mixins": ["ds-impactdotcom-webinar-mixins",
+					"text"
+				],
+				"rect": [
+					0,
+					0,
+					"70rw",
+					"800su"
+				],
+				"align": "center",
+				"string": ["$", ["var", "text"]],
+				"color": ["$", ["var", "color-text"]],
+				"font": ["$", ["var", "font-bold"]],
+				"height": "115su",
+				"leading": "20su",
+				"justify": "center",
+				"boundary": "line",
+				"animations": [
+					{
+						"translate": [0, "100su"]
+					},
+					{
+						"mix": ["animate",
+							[0, 0],
+							["+800", 1]
+						],
+						"ramp": 1,
+						"easing": "easeOutCubic",
+						"opacity": 1,
+						"translate": [0, 0]
+					},
+					{
+						"mix": ["animate",
+							["100%", 1],
+							["-650", 0]
+						],
+						"ramp": 1,
+						"easing": "easeInCubic",
+						"opacity": 0,
+						"translate": [0, "-100su"]
+					}
+				],
+				"transform": [
+					["scale", 
+						["animate",
+							[400, 0.8, "easeInOutQuart"],
+							["+800", 1],
+							["100%", 0.8],
+							["-250", 0.8],
+							["-700", 1, "easeInOutCubic"]
+						]
+					],
+					["scale", 
+						["animate",
+							[0, 0.9],
+							["100%", 1]
+						]
+					]
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["lte", ["aspect"], 1]],
+						"rect": [
+							0,
+							"50rh",
+							"100rw",
+							"50rh"
+						],
+						"align": null,
+						"max-width": null
+					}
+				]
+			}]
+		]]
+	]
+]

@@ -1,0 +1,395 @@
+[
+	"api-brandlive-academy-segment-6",
+	[
+		{
+			"key": "headline",
+			"display": "Headline",
+			"type": "string",
+			"default": "2025 Projections",
+			"required": false
+		},
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "string",
+			"default": "Finance Team",
+			"required": false
+		},
+		{
+			"key": "font-1",
+			"display": "Font 1",
+			"type": "string",
+			"required": false
+		},
+		{
+			"key": "font-2",
+			"display": "Font 2",
+			"type": "string",
+			"required": false
+		},
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": "#FFFFFF",
+			"required": false
+		},
+		{
+			"key": "color-2",
+			"display": "Color 2",
+			"type": "color",
+			"default": "#09083F",
+			"required": false
+		},
+		{
+			"key": "color-3",
+			"display": "Color 3",
+			"type": "color",
+			"default": "#FFBC1E",
+			"required": false
+		},
+		{
+			"key": "color-4",
+			"display": "Color 4",
+			"type": "color",
+			"default": "#ED0201",
+			"required": false
+		},
+		{
+			"key": "color-5",
+			"display": "Color 5",
+			"type": "color",
+			"default": "#0B45AC",
+			"required": false
+		},
+		{
+			"key": "color-6",
+			"display": "Color 6",
+			"type": "color",
+			"default": "#FFF85C",
+			"required": false
+		},
+		{
+			"key": "gradient-1-left",
+			"display": "Gradient 1 Left",
+			"type": "color",
+			"default": "#FFFFFF",
+			"required": false
+		},
+		{
+			"key": "gradient-1-right",
+			"display": "Gradient 1 Right",
+			"type": "color",
+			"default": "#000000",
+			"required": false
+		},        
+		{
+			"key": "gradient-2-left",
+			"display": "Gradient 2 Left",
+			"type": "color",
+			"default": "#ED0201",
+			"required": false
+		},
+		{
+			"key": "gradient-2-right",
+			"display": "Gradient 2 Right",
+			"type": "color",
+			"default": "#FF6AE6",
+			"required": false
+		},
+		{
+			"key": "text-color-1",
+			"display": "Text Color 1",
+			"type": "color",
+			"default": "#FFFFFF",
+			"required": false
+		},
+		{
+			"key": "text-color-2",
+			"display": "Text Color 2",
+			"type": "color",
+			"default": "#FFFFFF",
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-dsx-su"
+			]
+		}, [
+			["solid", {
+				"rect": [0, 0, "100rw", "100rh"],
+				"color": ["$", ["var", "color-2"]]
+			}],
+			["solid", {
+				"rect": [0, 0, "100rh", "100rh"],
+				"align": "center",
+				"radius": "5000su",
+				"color": ["$", ["var", "color-1"]],
+				"end": 700,
+				"transform": [
+					["scale",
+						["animate",
+							[0, 0.01, "easeInQuad"],
+							["+400", 0.04, "easeInQuad"],
+							["+300", 1.0]
+						]
+					]
+				]
+			}],
+			["solid", {
+				"rect": [0, 0, "100rw", "100rh"],
+				"color": ["$", ["var", "color-1"]],
+				"start": 700,
+				"end": 3800
+			}],
+			["null", {
+				"buffer": "knockout"
+			}, [
+				["solid", {
+					"color": "#000000"
+				}],
+				["solid", {
+					"rect": ["28rw", "20rh", "28rw", "28rw"],
+					"radius": "1000su",
+					"start": 700,
+					"end": 3800,
+					"transform": [
+						["scale", 
+							["animate",
+								[0, 1.0, "easeOutQuad"],
+								["+2766", 1.4, "easeInQuad"],
+								["+333", 1.1]
+							]
+						]
+					],
+					"color": "#FFFFFF",
+					"//": "mask"
+				}]
+			]],
+			["null", {
+				"effect": [
+					["matte", {
+						"buffer-in": "knockout"
+					}]
+				],
+				"//": "circle-gradient"
+			}, [
+				["solid", {
+					"rect": [0, 0, "100rw", "100rh"],
+					"color": ["linear-gradient",
+						-0.25,
+						[0.0, ["$", ["var", "gradient-1-left"]]],
+						[1.0, ["$", ["var", "gradient-1-right"]]]
+					]
+				}]
+			]],
+			["solid", {
+				"path": [
+					["1260su", "800su"],
+					["1420su", "500su"],
+					["1580su", "800su"]
+				],
+				"color": ["$", ["var", "color-4"]],
+				"start": 700,
+				"end": 3800,
+				"transform": [
+					["rotate",
+						["animate", 
+							[0, 0, "easeOutQuad"],
+							["+3099", 1.027]
+						]
+					],
+					["translate",
+						["animate",
+							[0, 0, "easeOutQuad"],
+							["+3099", "900su"]
+						],
+						["animate",
+							[0, 0, "easeOutQuad"],
+							["+3099", "-400su"]
+						]
+					]
+				]
+			}],
+			["solid", {
+				"rect": ["28rw", "28rh", "5rw", "5rw"],
+				"color": ["$", ["var", "color-5"]],
+				"radius": "1000su",
+				"start": 700,
+				"end": 3800,
+				"transform": [
+					["translate",
+						["animate",
+							[0, 0, "easeOutQuad"],
+							["+2766", "-450su", "easeInQuad"],
+							["+333", "-200su"]
+						],
+						["animate",
+							[0, 0, "easeOutQuad"],
+							["+2766", "-200su", "easeInQuad"], 
+							["+333", "-100su"]
+						]
+					]
+				]
+			}],
+			["solid", {
+				"rect": ["50rw", "35rh", "13rw", "50rh"],
+				"color": ["$", ["var", "color-2"]],
+				"start": 700,
+				"end": 3800,
+				"transform": [
+					["rotate",
+						["animate",
+							[0, 0, "easeOutQuad"],
+							["+2766", -0.42]
+						]
+					],
+					["scale",
+						["animate",
+							[0, 1.0, "easeOutQuad"],
+							["+2766", 1.25, "easeInQuad"],
+							["+333", 1.0]
+						]
+					],
+					["translate",
+						["animate",
+							[0, 0, "easeOutQuad"],
+							["+2766", "900su", "easeInQuad"],
+							["+333", "200su"]
+						],
+						["animate",
+							[0, 0, "easeOutQuad"],
+							["+2766", "300su", "easeInQuad"],
+							["+333", "100su"]
+						]
+					]
+				]
+			}],
+			["solid", {
+				"rect": ["8rw", "60rh", "32rw", "32rw"],
+				"color": ["$", ["var", "color-3"]],
+				"start": 700,
+				"end": 3800,
+				"transform": [
+					["rotate",
+						["animate",
+							[0, 0, "easeOutQuad"],
+							["+3099", -0.4]
+						]
+					],
+					["translate",
+						["animate",
+							[0, 0, "easeOutQuad"],
+							["+3099", "-600su"]
+						],
+						["animate",
+							[0, 0, "easeOutQuad"],
+							["+3099", "200su"]
+						]
+					]
+				]
+			}],
+			["null", {
+				"start": 3800,
+				"transform": [
+					["rotate", 
+						["animate",
+							["+532", 0.01],
+							["+133", 0]
+						],
+						"42rw", "85rh"
+					]
+				]
+			}, [
+				["null", {
+					"transform": [
+						["rotate",
+							["animate",
+								[0, -0.128, "easeOutQuad"],
+								["+266", 0.02, "easeInQuad"],
+								["+266", 0.0]
+							],
+							"26rw", "726su"
+						],
+						["translate",
+							0,
+							["animate",
+								[0, 0, "easeOutQuad"],
+								["+266", "-200su", "easeInQuad"],
+								["+266", 0]
+							]
+						]
+					]
+				}, [
+					["solid", {
+						"rect": ["10rw", "70rh", "32rw", "15rh"],
+						"color": ["$", ["var", "color-6"]]
+					}],
+					["null", {
+						"buffer": "knockout"
+					}, [
+						["solid", {
+							"color": "#000000"
+						}],
+						["solid", {
+							"rect": ["15rw", "445su", "22rw", "22rw"],
+							"radius": "1000su",
+							"color": "#FFFFFF",
+							"//": "mask"
+						}]
+					]],
+					["null", {
+						"effect": [
+							["matte", {
+								"buffer-in": "knockout"
+							}]
+						],
+						"//": "circle-gradient"
+					}, [
+						["solid", {
+							"rect": [0, 0, "100rw", "100rh"],
+							"color": ["linear-gradient",
+								-0.25,
+								[0.0, ["$", ["var", "gradient-2-left"]]],
+								[1.0, ["$", ["var", "gradient-2-right"]]]
+							]
+						}]
+					]]
+				]]
+			]],
+			["solid", {
+				"start": 3800,
+				"rect": ["600su", "315su", "5rw", "5rw"],
+				"color": ["$", ["var", "color-5"]],
+				"radius": "1000su",
+				"transform": [
+					["translate",
+						0,
+						["animate",
+							[0, 0, "easeOutQuad"],
+							["+266", "-380su", "easeInQuad"],
+							["+400", 0, "easeOutQuad"],
+							["+200", "-100su", "easeInQuad"],
+							["+200", 0, "easeOutQuad"],
+							["+200", "-50su", "easeInQuad"],
+							["+200", 0, "easeOutQuad"],
+							["+200", "-25su", "easeInQuad"],
+							["+200", 0]
+						]
+					]
+				]
+			}],
+			["api-brandlive-academy-segment-text", {
+				"headline": ["$", ["var", "headline"]],
+				"text": ["$", ["var", "text"]],
+				"font-1": ["$", ["var", "font-1"]],
+				"font-2": ["$", ["var", "font-2"]],
+				"text-color-1": ["$", ["var", "text-color-1"]],
+				"text-color-2": ["$", ["var", "text-color-2"]],
+				"start": 4000
+			}]
+		]]
+	]
+]

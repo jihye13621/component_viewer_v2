@@ -1,0 +1,190 @@
+[
+	"ds-ryno-intro",
+	[
+		["dsx-mixins", "intro"],
+		["ds-ryno-mixins",
+			"color-primary",
+			"color-secondary",
+			"color-accent"
+		],
+		{
+			"key": "detail",
+			"display": "Detail",
+			"type": "text",
+			"default": "Optional detail text",
+			"required": false
+		},
+		{
+			"key": "style",
+			"display": "Style",
+			"type": "string",
+			"options": [
+				{
+					"key": "full",
+					"display": "Fullscreen"
+				},
+				{
+					"key": "half",
+					"display": "Halfscreen"
+				}
+			],
+			"default": "full",
+			"required": true
+		},
+		["dsx-mixins", "boilerplate-intro-outro"]
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su"]]
+		}, [
+			["ds-ryno-sidepanel",{
+				"split": ["$", ["var", "style"]]      
+			},[
+				["null", {
+				}, [
+					["null", {
+						"-": "TEXT-CONTAINER",
+						"layout": "vertical packed",
+						"align": "center left",
+						"gap": "80su",
+						"max-width": "1400nsu"
+					},[
+						["text", {
+							"enabled": ["$", ["exists", ["var", "detail"]]],
+							"stagger": [650, -900],
+							"mixins": ["ds-ryno-mixins",
+								"text",
+								"text-label"
+							],
+							"flex": {
+								"height": "45su"
+							},
+							"color": ["$", ["var", "color-accent"]],
+							"string": ["$", ["var", "detail"]],
+							"case": "uppercase",
+							"kerning": 0.02,
+							"opacity": ["animate", 
+								[0, 0], 
+								["+500", 1],
+								["100%", 0],
+								["-400", 1]
+							],
+							"fit": true,
+							"justify": "left center"
+						}],
+						["text", {
+							"enabled": ["$", ["exists", ["var", "headline"]]],
+							"stagger": [500, -500],
+							"mixins": ["ds-ryno-mixins",
+								"text",
+								"text-intro-headline"
+							],
+							"color": ["$", ["var", "color-primary"]],
+							"string": ["$", ["var", "headline"]],
+							"boundary": "line",
+							"animations": [
+								{
+									"opacity": 0,
+									"translate": [0, "120su"] 
+								},
+								{
+									"mix": ["animate",
+										[0, 0],
+										["+650", 1]
+									],
+									"easing": "easeOutCubic",
+									"ramp": 2,
+									"translate": [0, 0],
+									"opacity": 1
+								},
+								{
+									"mix": ["animate",
+										["100%", 1],
+										["-500", 0]
+									],
+									"easing": "easeInCubic",
+									"ramp": 2,
+									"translate": [0, "-100su"],
+									"opacity": 0
+								}
+							],
+							"justify": "left center",
+							"breakpoints": [
+								{
+									"enabled": ["$", ["eq",["var", "style"], "half"]],
+									"height": "90su"
+								},
+								{
+									"enabled": ["$", ["lte", ["aspect"], 1]],
+									"height": "100su"
+								}
+							]
+						}],
+						["text", {
+							"enabled": ["$", ["exists", ["var", "subhead"]]],
+							"stagger": [800, -400],
+							"mixins": ["ds-ryno-mixins",
+								"text",
+								"text-intro-subhead"
+							],
+							"flex": {
+								"weight": 0.5
+							},
+							"color": ["$", ["var", "color-secondary"]],
+							"string": ["$", ["var", "subhead"]],
+							"justify": "left center",
+							"animations": [
+								{
+									"opacity": 0,
+									"translate": [0, "60su"] 
+								},
+								{
+									"mix": ["animate",
+										[0, 0],
+										["+650", 1]
+									],
+									"easing": "easeOutCubic",
+									"ramp": 2,
+									"translate": [0, 0],
+									"opacity": 1
+								},
+								{
+									"mix": ["animate",
+										["100%", 1],
+										["-500", 0]
+									],
+									"easing": "easeInCubic",
+									"ramp": 2,
+									"translate": [0, "-50su"],
+									"opacity": 0
+								}
+							]
+						}]
+					]],
+					["asset", {
+						"stagger": [600, -300],
+						"file": "./media/ds-ryno-logo.svg",
+						"justify": "fit bottom center",
+						"align": "bottom right",
+						"max-width": "500nsu",
+						"rect": [0, 0, "300su", "300su"],
+						"opacity": ["animate",
+							[0, 0],
+							["+300", 1],
+							["100%", 0],
+							["-300", 1]
+						],
+						"breakpoints": [
+							{
+								"enabled": ["$", ["lte", ["aspect"], 1]],
+								"rect": [0, 0, "200su", "200su"]
+							}
+						]
+					}]  
+				]
+			]]
+		]]
+	]]
+
+		 
+]

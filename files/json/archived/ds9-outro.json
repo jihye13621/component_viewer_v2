@@ -1,0 +1,211 @@
+[
+	"ds9-outro",
+	[
+		{
+			"key": "logo",
+			"display": "Logo",
+			"type": "asset",
+			"default": "./media/capsule.svg",
+			"required": false
+		},
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "text",
+			"default": "Optional text",
+			"required": false
+		},
+		{
+			"key": "cta",
+			"display": "Call To Action",
+			"type": "text",
+			"default": "Your Call to Action appears here",
+			"required": false
+		},
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		},
+		{
+			"key": "color-2",
+			"display": "Color 2",
+			"type": "color",
+			"default": "#E03467",
+			"required": false
+		},
+		{
+			"key": "size",
+			"display": "Size",
+			"type": "number",
+			"default": 1.0,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"step": 0.05,
+				"minimum": 0.5,
+				"maximum": 1.5
+			}
+		},
+		{
+			"key": "#sized",
+			"script": ["$", ["struct",
+				"logo-box",
+					["round",
+						["*",
+							["var", "size"],
+							["*", 0.3, ["min", ["width"], ["height"]]]
+						]
+					]
+			]],
+			"required": false,
+			"private": true
+		}
+	],
+	[
+		["dsx-padding", {
+			"position": ["$", ["var", "position"]]
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"align": "center",
+				"gap": ["$", ["*", ["var", "size"], 100]]
+			}, [
+				["null", {
+					"layout": "vertical packed",
+					"align": "center"
+				}, [
+					["asset", {
+						"mute": true,
+						"file": ["$", ["var", "logo"]],
+						"justify": "fit center bottom",
+						"flex": {
+							"width": ["$", ["var", "#sized", "logo-box"]],
+							"height": ["$", ["var", "#sized", "logo-box"]]
+						},
+						"opacity": ["animate", 
+							[0, 0,"easeOutQuad"],
+							["+500", 1],
+							["100%", 0],
+							["-500", 1, "easeInQuad"]
+						],
+						"transform": [
+							["translate",
+								0,
+								["animate",
+									[0, ["$", ["*", ["var", "size"], 60]], "easeOutQuad"],
+									["+500", 0],
+									["100%", ["$", ["*", ["var", "size"], 60]]],
+									["-500", 0, "easeInQuad"]
+								]
+							]
+						]
+					}]
+				]],
+				["solid", {
+					"flex": {
+						"height": ["$", ["*", ["var", "size"], 5]],
+						"width": ["$", ["var", "#sized", "logo-box"]]
+					},
+					"stagger": [200, -200],
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[0, ["$", ["*", ["var", "size"], 60]], "easeOutQuad"],
+								["+500", 0],
+								["100%", ["$", ["*", ["var", "size"], 60]]],
+								["-500", 0, "easeInQuad"]
+							]
+						],
+						["scale",
+							["animate",
+								[0, 0, "easeOutQuad"],
+								["+500", 1],
+								["100%", 0],
+								["-500", 1, "easeInQuad"]
+							],
+							1
+						]
+					]
+				}],
+				["null", {
+					"layout": "vertical packed",
+					"align": "center"
+				}, [
+					["text", {
+						"mixins": ["ds9-mixins", ["headline-1", "animate-up"]],
+						"string": ["$", ["var", "text"]],
+						"justify": "center",
+						"stagger": [200, -200]
+					}]
+				]],
+				["null", {
+					"layout": "vertical packed",
+					"align": "center",
+					"padding": [
+						["$", ["*", ["var", "size"], 100]],
+						0,
+						["$", ["*", ["var", "size"], 100]],
+						0
+					],
+					"transform": [
+						["scale", ["animate",
+							["50%", null],
+							["-1000", 1.0, "easeInOutQuad"],
+							["+500", 1.1],
+							["+1000", 1.1, "easeInOutQuad"],
+							["+500", 1.0]
+						]]
+					]
+				}, [
+					["solid", {
+						"flex": {
+							"position": "fixed"
+						},
+						"color": [0, 0, 0, 0],
+						"stroke-color": ["$", ["var", "color-1"]],
+						"stroke": ["$", ["*", ["var", "size"], 5]],
+						"radius": ["$", ["*", ["var", "size"], 200]],
+						"rect": [
+							["animate",
+								[0, "50rw", "easeOutQuad"],
+								["+500", 0],
+								["100%", "50rw"],
+								["-500", 0, "easeInQuad"]
+							],
+							0,
+							["animate",
+								[0, 0, "easeOutQuad"],
+								["+500", "100rw"],
+								["100%", 0],
+								["-500", "100rw", "easeInQuad"]
+							],
+							"100rh"
+						]
+					}],
+					["null", {
+						"layout": "vertical packed",
+						"align": "center",
+						"padding": [
+							["$", ["*", ["var", "size"], 40]],
+							["$", ["*", ["var", "size"], 80]],
+							["$", ["*", ["var", "size"], 40]],
+							["$", ["*", ["var", "size"], 80]]
+						]
+					}, [
+						["text", {
+							"mixins": ["ds9-mixins", ["text-1", "animate-up"]],
+							"string": ["$", ["var", "cta"]],
+							"fit": true,
+							"justify": "center",
+							"stagger": [400, -400]
+						}]
+					]]
+				]]
+			]]
+		]]
+	]
+]

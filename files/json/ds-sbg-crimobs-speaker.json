@@ -1,0 +1,115 @@
+[
+	"ds-sbg-crimobs-speaker",
+	[
+		["dsx-mixins",
+			"speaker"
+		],
+		["ds-sbg-crimobs-mixins",
+			"color-crime-tape-yellow"
+		],
+		["dsx-mixins", "boilerplate"],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [0, 0, 0],
+			"required": false,
+			"ui": {
+				"grid": false,
+				"offset": true,
+				"minimum": -100,
+				"maximum": 100
+			}
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone",
+				"offset"
+			]
+		}, [
+			["null", {
+				"enabled": ["$", ["or",
+					["exists", ["var", "name"]],
+					["exists", ["var", "detail-1"]],
+					["exists", ["var", "detail-2"]]
+				]],
+				"layout": "vertical packed",
+				"align": "bottom left",
+				"gap": "30su",
+				"max-width": "800nsu",
+				"breakpoints": [
+					{
+						"enabled": ["$", ["eq", ["var", "shape"], "circle"]],
+						"gap": "-30su"
+					}
+				]
+			}, [
+				["null", {
+					"layout": "vertical packed",
+					"align": "center left",
+					"gap": "36su",
+					"mask": {
+						"padding": [
+							"-15su",
+							["animate",
+								[0, "100rw", "easeOutQuad"],
+								["+400", "-15su"]
+							],
+							"-15su",
+							["animate",
+								["100%", "100rw"],
+								["-400", "-15su", "easeInQuad"]
+							]
+						]
+					}
+				}, [
+					["text", {
+						"enabled": ["$", ["exists", ["var", "name"]]],
+						"font": "./media/Inter-Bold.ttf",
+						"string": ["$", ["truncate", ["var", "name"], 90]],
+						"height": "45su",
+						"measure": "cap-size",
+						"leading": "36su",
+						"color": [0, 0, 0, 1],
+						"case": "uppercase",
+						"boundary": "line",
+						"background-color": ["$", ["var", "color-crime-tape-yellow"]],
+						"background-padding": [
+							"15su",
+							"10su"
+						]
+					}],
+					["text", {
+						"enabled": ["$", ["or",
+							["exists", ["var", "detail-1"]],
+							["exists", ["var", "detail-2"]]
+						]],
+						"font": "./media/29lt-makina-regular.otf",
+						"string": ["$",
+							["join",
+								["compact", ["array",
+									["var", "detail-1"],
+									["var", "detail-2"]
+								]],
+								"\n"
+							]
+						],
+						"height": "35su",
+						"measure": "letter-size",
+						"leading": "32su",
+						"color": [0, 0, 0, 1],
+						"boundary": "line",
+						"background-color": ["$", ["var", "color-crime-tape-yellow"]],
+						"background-padding": [
+							"15su",
+							"10su"
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

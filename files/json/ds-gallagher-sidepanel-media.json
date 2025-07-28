@@ -1,0 +1,66 @@
+[
+	"ds-gallagher-sidepanel-media",
+	[
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["gain", 0],
+				["motion", "none"]
+			],
+			"script": ["$", ["if",
+				["exists", ["var", "asset"]],
+				["var", "asset"],
+				"./media/image-wide.jpg"	
+			]]
+		},
+		{
+			"key": "split",
+			"display": "Panel Size",
+			"type": "string", 
+			"options": [
+				{
+					"key": "default",
+					"display": "Default"
+				},
+				{
+					"key": "half",
+					"display": "Half-screen"
+				},
+				{
+					"key": "full",
+					"display": "Full-screen"
+				}
+			],
+			"default": "default",
+			"required": false
+		},
+		["dsx-mixins", 
+			"boilerplate"
+		]
+	],
+	[
+		["ds-gallagher-sidepanel", {
+			"mixins": ["dsx-mixins",
+				"set-su"
+			],
+			"split": ["$", ["var", "split"]],
+			"animate-camera": true,
+			"panel-alignment": "center"
+		}, [
+			["null", {
+				"layout": "stacked",
+				"align": "center"
+			}, [
+				["user-asset", {
+					"file": ["$", ["var", "asset"]],
+					"justify": "fit center",
+					"hold": true
+				}]
+			]]
+		]]
+	]
+]

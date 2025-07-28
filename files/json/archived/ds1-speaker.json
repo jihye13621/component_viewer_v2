@@ -1,0 +1,300 @@
+[
+	"ds1-speaker",
+	[
+		{
+			"key": "name",
+			"display": "Speaker name",
+			"type": "text",
+			"default": "Speaker name",
+			"required": false
+		},
+		{
+			"key": "detail-1",
+			"display": "Title",
+			"type": "text",
+			"default": "Optional speaker detail",
+			"required": false
+		},
+		{
+			"key": "detail-2",
+			"display": "Company",
+			"type": "text",
+			"default": "Optional speaker detail",
+			"required": false
+		},
+		{
+			"key": "font-1",
+			"display": "Style",
+			"type": "fontstyle",
+			"default": {
+				"font": "./media/Inter-SemiBold.ttf",
+				"height": 64
+			},
+			"required": false,
+			"script": ["$",
+				["key-set",
+					["var", "font-1"],
+					"height",
+					["round", ["*", ["var", "size"], ["var", "font-1", "height"]]]
+				]
+			]
+		},
+		{
+			"key": "font-2",
+			"display": "Style Detail",
+			"type": "fontstyle",
+			"default": {
+				"font": "./media/Inter-Medium.ttf",
+				"height": 40,
+				"leading": 0.1
+			},
+			"required": false,
+			"script": ["$",
+				["key-set",
+					["var", "font-2"],
+					"height",
+					["round", ["*", ["var", "size"], ["var", "font-2", "height"]]]
+				]
+			]
+		},
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": [0, 0, 0, 1],
+			"required": false
+		},
+		{
+			"key": "color-2",
+			"display": "Color 2",
+			"type": "color",
+			"default": [1, 1, 1, 1],
+			"required": false
+		},
+		{
+			"key": "color-3",
+			"display": "Color 3",
+			"type": "color",
+			"default": "#20FF79",
+			"default_": ["#9BFF20", "#20FF79", 0.75],
+			"required": false
+		},
+		{
+			"key": "background",
+			"display": "Background",
+			"type": "color",
+			"default": null,
+			"required": false
+		},
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": 1,
+			"required": false
+		},
+		{
+			"key": "size",
+			"display": "Size",
+			"type": "number",
+			"default": 1.0,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"step": 0.05,
+				"minimum": 0.5,
+				"maximum": 1.5
+			}
+		},
+		{
+			"key": "#sized",
+			"script": ["$", ["struct",
+				"padding-x", ["round", ["*", ["var", "size"], 20]],
+				"padding-y", ["round", ["*", ["var", "size"], 2]]
+			]],
+			"required": false,
+			"private": true
+		},
+		{
+			"key": "#align",
+			"type": "string",
+			"default": "center",
+			"required": false,
+			"private": true,
+			"script": ["$", ["switch", ["var", "position"], {
+				"1": "bottom left",
+				"2": "bottom center",
+				"3": "bottom right",
+				"4": "left",
+				"5": "center",
+				"6": "right",
+				"7": "top left",
+				"8": "top center",
+				"9": "top right",
+				"_": "center"
+			}]]
+		}
+	],
+	[
+		["dsx-background", {
+			"enabled": ["$", ["exists", ["var", "background"]]],
+			"color": ["$", ["var", "background"]]
+		}],
+		["dsx-padding", {
+			"position": ["$", ["var", "position"]],
+			"mask": {
+				"padding": [
+					0,
+					0,
+					0,
+					0
+				]
+			}
+		}, [
+			["solid", {
+				"layout": "vertical packed",
+				"color": ["$", ["var", "color-3"]],
+				"padding": [
+					0,
+					["$", ["var", "#sized", "padding-x"]],
+					0,
+					0
+				],
+				"mask": {
+					"padding": [
+						0,
+						["animate",
+							[0, "100rw", "easeInOutCubic"],
+							["+300", 0],
+							["100%", "100rw"],
+							["-300", 0, "easeInOutCubic"]
+						],
+						0,
+						0
+					]
+				}
+			}, [
+				["solid", {
+					"padding": [
+						["$", ["var", "#sized", "padding-y"]],
+						["$", ["var", "#sized", "padding-x"]],
+						["$", ["var", "#sized", "padding-y"]],
+						["$", ["var", "#sized", "padding-x"]]
+					],
+					"layout": "vertical packed",
+					"color": ["$", ["var", "color-2"]],
+					"mask": {
+						"padding": [
+							0,
+							["animate",
+								[100, "100rw", "easeInOutCubic"],
+								["+500", 0],
+								["100%", null],
+								["-100", "100rw"],
+								["-500", 0, "easeInOutCubic"]
+							],
+							0,
+							0
+						]
+					}
+				}, [
+					["text", {
+						"string": ["$", ["var", "name"]],
+						"justify": ["$", ["var", "#align"]],
+						"color": ["$", ["var", "color-1"]],
+						"style": ["$", ["var", "font-1"]],
+						"font": ["$", ["var", "font-1", "height"]],
+						"transform": [
+							["translate",
+								["animate",
+									[100, ["$", ["*", -0.5, ["var", "font-1", "height"]]], "easeOutQuart"],
+									["+500", 0],
+									["100%", null],
+									["-100", ["$", ["*", -0.5, ["var", "font-1", "height"]]]],
+									["-500", 0, "easeInQuart"]
+								],
+								0
+							]
+						]
+					}]
+				]]
+			]],
+			["solid", {
+				"layout": "vertical packed",
+				"color": ["$", ["var", "color-3"]],
+				"padding": [
+					0,
+					["$", ["var", "#sized", "padding-x"]],
+					0,
+					0
+				],
+				"mask": {
+					"padding": [
+						0,
+						["animate",
+							[100, "100rw", "easeInOutCubic"],
+							["+300", 0],
+							["100%", null],
+							["-100", "100rw"],
+							["-300", 0, "easeInOutCubic"]
+						],
+						0,
+						0
+					]
+				}
+			}, [
+				["solid", {
+					"enabled": ["$", ["exists", ["var", "detail-1"]]],
+					"padding": [
+						["$", ["*", 0.5, ["var", "#sized", "padding-x"]]],
+						["$", ["var", "#sized", "padding-x"]],
+						["$", ["*", 0.5, ["var", "#sized", "padding-x"]]],
+						["$", ["var", "#sized", "padding-x"]]
+					],
+					"color": ["$", ["var", "color-2"]],
+					"layout": "vertical packed",
+					"mask": {
+						"padding": [
+							0,
+							["animate",
+								[200, "100rw", "easeInOutCubic"],
+								["+500", 0],
+								["100%", null],
+								["-200", "100rw"],
+								["-500", 0, "easeInOutCubic"]
+							],
+							0,
+							0
+						]
+					}
+				}, [
+					["text", {
+						"string": ["$", ["var", "detail-1"]],
+						"justify": ["$", ["var", "#align"]],
+						"case": "uppercase",
+						"color": ["$", ["var", "color-1"]],
+						"style": ["$", ["var", "font-2"]],
+						"transform": [
+							["translate",
+								["animate",
+									[200, ["$", ["*", -0.5, ["var", "font-1", "height"]]], "easeOutQuart"],
+									["+500", 0],
+									["100%", null],
+									["-200", ["$", ["*", -0.5, ["var", "font-1", "height"]]]],
+									["-500", 0, "easeInQuart"]
+								],
+								0
+							]
+						],
+						"breakpoints": [
+							{
+								"enabled": ["$", ["exists", ["var", "detail-2"]]],
+								"string": ["$", ["concat", ["var", "detail-1"], "\n", ["var", "detail-2"]]]
+							}
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

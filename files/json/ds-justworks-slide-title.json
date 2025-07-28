@@ -1,0 +1,178 @@
+[
+	"ds-justworks-slide-title",
+	[
+		{
+			"key": "headline",
+			"display": "Headline",
+			"type": "text",
+			"default": "Mastering Payroll",
+			"required": false
+		},
+		{
+			"key": "subhead",
+			"display": "Subhead",
+			"type": "text",
+			"default": "Small Business Series",
+			"required": false
+		},
+		["ds-justworks-mkii-mixins",
+			"fonts",
+			"color-primary",
+			"color-blue-400"
+		],
+		{
+			"key": "color-mode",
+			"display": "Color Logo",
+			"type": "bool",
+			"default": false,
+			"required": false
+		},
+		{
+			"key": "dark-mode",
+			"display": "Dark Logo",
+			"type": "bool",
+			"default": false,
+			"required": false			
+		},
+		["dsx-mixins",
+			"boilerplate-intro-outro"
+		]
+	],
+	[
+		["null", {
+			"buffer": "matte"
+		}, [
+			["solid", {
+				"color": "#ffffff",
+				"mask": {
+					"padding": [
+						["animate",
+							[0, "100rh", "easeOutCubic"],
+							[500, 0]
+						],
+						0,
+						["animate",
+							["100%", "100rh"],
+							["-350", 0, "easeInCubic"]
+						],
+						0
+					]
+				}
+			}]
+		]],
+		["solid", {
+			"enabled" : true,
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			],
+			"color": ["$", ["var", "color-blue-400"]],
+			"effect": [
+				["matte", {
+					"buffer-in": "matte",
+					"end": 500
+				}],
+				["matte", {
+					"buffer-in": "matte",
+					"start": ["$", ["-", ["key", ["comp-timing"], "duration"], 350]]
+				}]
+			]
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"align": "center",
+				"gap": "25su"
+			}, [
+				["asset", {
+					"file": ["$", 
+						["if",
+							["var", "color-mode"],
+							"./media/ds-justworks-logo-white-color.svg",
+							"./media/ds-justworks-logo.svg"
+						]
+					],
+					"justify": "fit center",
+					"align": "center",
+					"flex": {
+						"height": "50su"
+					},
+					"breakpoints": [
+						{
+							"enabled": ["$", ["var", "dark-mode"] ],
+							"svg-recolor": "#050000"
+						},
+						{
+							"enabled": ["$", ["<=", ["aspect"], 1]],
+							"max-width": "250nsu"
+						}
+					] 
+				}],
+				["null", {
+					"layout": "vertical packed",
+					"align": "center",
+					"max-width": "1300nsu"
+				}, [
+					["text", {
+						"enabled": ["$", ["exists", ["var", "subhead"]]],
+						"stagger": [200, 0],
+						"color": ["$", ["var", "color-primary"]],
+						"string": ["$", ["var", "subhead"]],
+						"font": ["$", ["var", "font-regular"]],
+						"justify": "top center",
+						"height": "55su",
+						"animations": [
+							{
+								"mask": [0, 0, "-10su", 0],
+								"translate": [
+									0,
+									"150rh"
+								]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+800", 1]
+								],
+								"easing": "easeOutCubic",
+								"translate": [0, 0]
+							}
+						]
+					}],
+					["text", {
+						"enabled": ["$", ["exists", ["var", "headline"]]],
+						"stagger": [400, 0],
+						"color": ["$", ["var", "color-primary"]],
+						"font": ["$", ["var", "font-bold-display"]],
+						"align": "center",
+						"justify": "center",
+						"height": "200su",
+						"flex": {
+							"weight": 3
+						},
+						"leading": "-30su",
+						"string": ["$", ["var", "headline"]],
+						"boundary": "line",
+						"animations": [
+							{
+								"mask": [0, 0, "-10su", 0],
+								"translate": [
+									0,
+									"150rh"
+								]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+800", 1]
+								],
+								"easing": "easeOutCubic",
+								"ramp": 2,
+								"translate": [0, 0]
+							}
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

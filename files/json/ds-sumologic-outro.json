@@ -1,0 +1,26 @@
+[
+	"ds-sumologic-outro",
+	[
+		["ds-sumologic-mixins",
+			"color-blue"
+		]
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins", ["set-su"]],
+			"color": ["$", ["var", "color-blue"]]
+		}, [
+			["asset", {
+				"file": "./media/ds-sumologic-outro.mp4",
+				"justify": "fit center",
+				"cuts": [
+					[
+						8000,
+						2000
+					]
+				],
+				"hold": true
+			}]
+		]]
+	]
+]

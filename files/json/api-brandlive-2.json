@@ -1,0 +1,247 @@
+[
+	"api-brandlive-2",
+	[
+		{
+			"key": "font-1",
+			"display": "Font 1",
+			"type": "string",
+			"default": "./media/api-brandlive/AvantGardeGothicItcT-Demi.ttf",
+			"required": false
+		},
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "object",
+			"default": [
+				[
+					null,
+					"our"
+				],
+				[
+					"top 5",
+					"for"
+				],
+				[
+					"quarter 3"
+				]
+			],
+			"required": false
+		},
+		{
+			"key": "color-background-1",
+			"display": "Background 1",
+			"type": "color",
+			"default": [0, 0, 0, 1],
+			"required": false
+		},
+		{
+			"key": "color-background-2",
+			"display": "Background 2",
+			"type": "color",
+			"default": [0.9, 0.8, 0, 1],
+			"required": false
+		},
+		{
+			"key": "color-text-1",
+			"display": "Text",
+			"type": "color",
+			"default": [0, 0, 0, 1],
+			"required": false
+		},
+		{
+			"key": "color-text-2",
+			"display": "Text",
+			"type": "color",
+			"default": [1, 1, 1, 1],
+			"required": false
+		},
+		{
+			"key": "color-underline",
+			"display": "Underline",
+			"type": "color",
+			"default": [0.9, 0, 0.6, 1],
+			"required": false
+		}
+	],
+	[
+		["solid", {
+			"start": 0,
+			"duration": 6000,
+			"mixins": ["dsx-mixins", "set-su"],
+			"color": ["$", ["var", "color-background-1"]]
+		}, [
+			["solid", {
+				"color": ["$", ["var", "color-background-2"]],
+				"transform": [
+					["translate",
+						["animate",
+							[0, "100rw", "easeInOutCubic"],
+							["+1000", 0]
+						],
+						0
+					]
+				]
+			}],
+			["null", {
+				"padding": [
+					"200su",
+					"200su"
+				]
+			}, [
+				["null", {
+					"layout": "vertical stacked",
+					"align": "bottom left",
+					"padding": [
+						0,
+						"200su",
+						0,
+						"50su"
+					],
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[0, "-200su", "round"],
+								["+1000", 0]
+							]
+						]
+					]
+				}, [
+					["solid", {
+						"flex": {
+							"position": "fixed"
+						},
+						"color": ["$", ["var", "color-underline"]],
+						"rect": [
+							0,
+							["animate",
+								[500, "-10rh", "easeOutQuad"],
+								["+500", "100rh"]
+							],
+							["animate",
+								[500, "120rw", "holdOut"],
+								["+500", "100rw"]
+							],
+							["animate",
+								[0, 0, "easeInQuad"],
+								["+500", "100rh", "easeOutQuad"],
+								["+500", "40su"]
+							]
+						]
+					}],
+					["for-each", {
+						"items": ["$", ["var", "text"]],
+						"layout": "vertical packed",
+						"align": "bottom left",
+						"gap": "10su",
+						"padding": [
+							"50su",
+							0,
+							"20su",
+							0
+						]
+					}, [
+						["null", {
+							"layout": "horizontal packed",
+							"align": "bottom left",
+							"gap": "40su",
+							"opacity": ["animate",
+								[0, 0, "holdIn"],
+								["+500", 1]
+							]
+						}, [
+							["text", {
+								"enabled": ["$", ["exists", ["nth", ["var", "item"], 0]]],
+								"string": ["$", ["nth", ["var", "item"], 0]],
+								"color": ["$", ["var", "color-text-1"]],
+								"case": "uppercase",
+								"measure": "cap-size",
+								"font": ["$", ["var", "font-1"]],
+								"height": "100su",
+								"justify": "left",
+								"fit": true
+							}],
+							["text", {
+								"flex": {
+									"weight": 0.5
+								},
+								"enabled": ["$", ["exists", ["nth", ["var", "item"], 1]]],
+								"string": ["$", ["nth", ["var", "item"], 1]],
+								"color": [0, 0, 0, 0],
+								"case": "uppercase",
+								"measure": "cap-size",
+								"font": ["$", ["var", "font-1"]],
+								"height": "80su",
+								"justify": "left",
+								"fit": true,
+								"stroke": "4su",
+								"stroke-color": ["$", ["var", "color-text-1"]]
+							}]
+						]]
+					]],
+					["for-each", {
+						"items": ["$", ["var", "text"]],
+						"layout": "vertical packed",
+						"align": "bottom left",
+						"gap": "10su",
+						"padding": [
+							"50su",
+							0,
+							"20su",
+							0
+						],
+						"mask": {
+							"rect": [
+								0,
+								["animate",
+									[500, "-10rh", "easeOutQuad"],
+									["+500", "100rh"]
+								],
+								"100rw",
+								["animate",
+									[0, 0, "easeInQuad"],
+									["+500", "100rh", "easeOutQuad"],
+									["+500", "40su"]
+								]
+							]
+						}
+					}, [
+						["null", {
+							"layout": "horizontal packed",
+							"align": "bottom left",
+							"gap": "40su"
+						}, [
+							["text", {
+								"enabled": ["$", ["exists", ["nth", ["var", "item"], 0]]],
+								"string": ["$", ["nth", ["var", "item"], 0]],
+								"color": ["$", ["var", "color-text-1"]],
+								"case": "uppercase",
+								"measure": "cap-size",
+								"font": ["$", ["var", "font-1"]],
+								"height": "100su",
+								"justify": "left",
+								"fit": true
+							}],
+							["text", {
+								"flex": {
+									"weight": 0.5
+								},
+								"enabled": ["$", ["exists", ["nth", ["var", "item"], 1]]],
+								"string": ["$", ["nth", ["var", "item"], 1]],
+								"color": [0, 0, 0, 0],
+								"case": "uppercase",
+								"measure": "cap-size",
+								"font": ["$", ["var", "font-1"]],
+								"height": "80su",
+								"justify": "left",
+								"fit": true,
+								"stroke": "4su",
+								"stroke-color": ["$", ["var", "color-text-2"]]
+							}]
+						]]
+					]]
+				]]
+			]]
+		]]
+	]
+]

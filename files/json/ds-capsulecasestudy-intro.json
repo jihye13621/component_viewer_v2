@@ -1,0 +1,59 @@
+[
+	"ds-capsulecasestudy-intro",
+	[
+		["ds-capsulecasestudy-mixins",
+			"color-primary"
+		]
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins", ["set-su", "safezone"]],
+			"color": ["$", ["var", "color-white"]]
+		}, [
+			["null", {
+				"padding": [
+					"320su",
+					"320su"
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["lt", ["aspect"], 1.1]],
+						"padding": [
+							"100su",
+							"100su"
+						]
+					}
+				]
+			}, [
+				["asset", {
+					"file": "./media/capsule.svg",
+					"justify": "fit center",
+					"hold": true,
+					"svg-recolor": ["$", ["var", "color-black"]],
+					"transform": [
+						["scale", 
+							["animate",
+								[0, 2, "easeOutQuart"],
+								["+800", 1],
+								["100%", 2],
+								["-500", 1, "easeInQuart"]
+							]
+						],
+						["scale", 
+							["animate",
+								[0, 0.9],
+								["100%", 1]
+							]
+						]
+					],
+					"opacity": ["animate",
+						[0, 0, "linear"],
+						["+600", 1],
+						["100%", 0],
+						["-500", 1, "linear"]
+					]
+				}]
+			]]
+		]]
+	]
+]

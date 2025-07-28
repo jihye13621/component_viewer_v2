@@ -1,0 +1,381 @@
+[
+	"ds-mavenclinic-splitscreen",
+	[
+		{
+			"key": "asset-1",
+			"display": "Asset 1",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["gain", 0],
+				["justify", "fill"],
+				["motion", "none"]
+			]
+		},
+		{
+			"key": "headline-1",
+			"display": "Headline 1",
+			"type": "text",
+			"default": "Headline 1",
+			"required": false
+		},
+		{
+			"key": "text-1",
+			"display": "List 1",
+			"type": "textarea",
+			"default": "One\nTwo\nThree",
+			"required": false
+		},
+		{
+			"key": "asset-2",
+			"display": "Asset 2",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["gain", 0],
+				["justify", "fill"],
+				["motion", "none"]
+			]
+		},
+		{
+			"key": "headline-2",
+			"display": "Headline 2",
+			"type": "text",
+			"default": "Headline 2",
+			"required": false
+		},
+		{
+			"key": "text-2",
+			"display": "List 2",
+			"type": "textarea",
+			"default": "Four\nFive\nSix",
+			"required": false
+		},
+		{
+			"key": "#items",
+			"display": "Items",
+			"type": "object",
+			"default": [],
+			"required": false,
+			"private": true,
+			"script": ["$",
+				["array",
+					["array",
+						["var", "headline-1"],
+						["split",
+							["var", "text-1"],
+							"\n"
+						],
+						["var", "asset-1"]
+					],
+					["array",
+						["var", "headline-2"],
+						["split",
+							["var", "text-2"],
+							"\n"
+						],
+						["var", "asset-2"]
+					]
+				]
+			]
+		},
+		{
+			"key": "#dur",
+			"display": "Duration",
+			"type": "number",
+			"default": 1000,
+			"required": false,
+			"private": true,
+			"script": ["$",
+				["let",
+					[
+						["c",
+							["max",
+								["length",
+									["nth", ["nth", ["var", "#items"], 0], 1]
+								],
+								["length",
+									["nth", ["nth", ["var", "#items"], 1], 1]
+								]
+							]
+						]
+					],
+					["floor", ["/",
+						["-", ["key", ["comp-timing"], "duration"], 1000],
+						["var", "c"]
+					]]
+				]
+			]
+		},
+		["ds-mavenclinic-mixins",
+			"color-selector",
+			"font-brand-2"
+		]
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su"
+			]
+		}, [
+			["for-each", {
+				"items": ["$", ["var", "#items"]],
+				"layout": "horizontal",
+				"align": "center",
+				"breakpoints": [
+					{
+						"enabled": ["$", ["<=", ["aspect"], 1]],
+						"layout": "vertical"
+					}
+				]
+			}, [
+				["null", {
+					"padding": [
+						"100su",
+						"100su"
+					],
+					"enabled": ["$",
+						["or",
+							["exists", ["nth", ["var", "item"], 0]],
+							["exists", ["nth", ["var", "item"], 1]],
+							["exists", ["nth", ["var", "item"], 2]]
+						]
+					],
+					"-set-has-asset": ["$", ["set", "#has-asset", ["exists", ["nth", ["var", "item"], 2]]]]
+				}, [
+					["null", {
+						"flex": {
+							"position": "fixed"
+						},
+						"transform": [
+							["translate",
+								0,
+								["animate",
+									[
+										0,
+										["$",
+											["if",
+												["=", ["var", "index"], 0],
+												"100rh",
+												"-100rh"
+											]
+										],
+										"easeOutQuad"
+									],
+									["+700", 0]
+								]
+							]
+						],
+						"breakpoints": [
+							{
+								"enabled": ["$", ["<=", ["aspect"], 1]],
+								"transform": [
+									["translate",
+										["animate",
+											[
+												0,
+												["$",
+													["if",
+														["=", ["var", "index"], 0],
+														"100rw",
+														"-100rw"
+													]
+												],
+												"easeOutQuad"
+											],
+											["+700", 0]
+										],
+										0
+									]
+								]
+							}
+						]
+					}, [
+						["solid", {
+							"enabled": ["$", ["not", ["var", "#has-asset"]]],
+							"color": ["$", ["var", "#background"]]
+						}],
+						["user-asset", {
+							"enabled": ["$", ["var", "#has-asset"]],
+							"file": ["$", ["nth", ["var", "item"], 2]],
+							"justify": "fill center",
+							"mute": true,
+							"loop": true,
+							"mask": {}
+						}, [
+							["solid", {
+								"enabled": ["$", ["var", "#has-asset"]],
+								"color": [0, 0, 0, 0.3]
+							}]
+						]]
+						
+					]],
+					["null", {
+						"max-width": "1000su",
+						"layout": "vertical",
+						"align": "bottom center",
+						"gap": "80su",
+						"opacity": ["animate",
+							[0, 0],
+							["+600", 1],
+							["100%", 0],
+							["-600", 1]
+						]
+					}, [
+						["text", {
+							"font": ["$", ["var", "font-brand-2"]],
+							"height": "100su",
+							"leading": "10su",
+							"measure": "letter-size",
+							"color": ["$", ["var", "#foreground"]],
+							"string": ["$", ["nth", ["var", "item"], 0]],
+							"justify": "bottom center",
+							"align": "bottom center"
+						}],
+						["null", {
+							"rect": [
+								0,
+								0,
+								"100rw",
+								"120su"
+							],
+							"align": "top center"
+						}, [
+							["solid", {
+								"color": ["$", ["if",
+									["exists", ["var", "#has-asset"]],
+									["var", "#background"],
+									["var", "#foreground"]
+								]],
+								"radius": "20su",
+								"transform": [
+									["scale",
+										["animate",
+											[0, 0, "easeOutQuad"],
+											["+600", 1],
+											["100%", 0],
+											["-600", 1, "easeInQuad"]
+										]
+									]
+								]
+							}],
+							["for-each", {
+								"items": ["$",
+									["for-each",
+										["nth", ["var", "item"], 1],
+										["array",
+											["var", "item"],
+											["var", "#has-asset"]
+										]
+									]
+								],
+								"key": "item-sub",
+								"mask": {}
+							}, [
+								["text", {
+									"start": ["$",
+										["*",
+											["var", "index"],
+											["var", "#dur"]	
+										]
+									],
+									"duration": ["$",
+										["if",
+											["<", ["var", "index"], ["-", ["var", "count"], 1]],
+											["+", ["var", "#dur"], 1000],
+											["-",
+												["key", ["comp-timing"], "duration"],
+												["*",
+													["var", "index"],
+													["var", "#dur"]	
+												]
+											]
+										]
+									],
+									"font": ["$", ["var", "font-brand-2"]],
+									"height": "50su",
+									"measure": "letter-size",
+									"color": ["$", ["if",
+										["nth", ["var", "item-sub"], 1],
+										["var", "#foreground"],
+										["var", "#background"]
+									]],
+									"string": ["$", ["nth", ["var", "item-sub"], 0]],
+									"justify": "center",
+									"align": "center",
+									"fit": true,
+									"transform": [
+										["translate",
+											0,
+											["animate",
+												[
+													0,
+													["$",
+														["if",
+															[">", ["var", "index"], 0],
+															"120su"
+														]
+													],
+													"easeInOutQuad"
+												],
+												["+1000", 0],
+												[
+													["$",
+														["-",
+															["var", "#dur"],
+															0
+														]
+													],
+													0,
+													"easeInOutQuad"
+												],
+												[
+													"+1000",
+													["$",
+														["if",
+															["<", ["var", "index"], ["-", ["var", "count"], 1]],
+															"-120su"
+														]
+													]
+												]
+											]
+										]
+									],
+									"breakpoints": [
+										{
+											"enabled": ["$",
+												["<",
+													["-",
+														["var", "#dur"],
+														2000
+													],
+													0
+												]
+											],
+											"duration": ["$",
+												["if",
+													["<", ["var", "index"], ["-", ["var", "count"], 1]],
+													["var", "#dur"],
+													["-",
+														["key", ["comp-timing"], "duration"],
+														["*",
+															["var", "index"],
+															["var", "#dur"]	
+														]
+													]
+												]
+											],
+											"transform": null
+										}
+									]
+								}]
+							]]
+						]]
+					]]
+				]]
+			]]
+		]]
+	]
+]

@@ -1,0 +1,232 @@
+[
+	"ds-braze-media",
+	[
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["gain", 0],
+				["justify", "fit"],
+				["motion", "none"]
+			],
+			"script": ["$", ["if",
+				["exists", ["var", "asset"]],
+				["var", "asset"],
+				"./media/image-wide.jpg"	
+			]]
+		},
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "text",
+			"default": "Optional text",
+			"required": false
+		},
+		{
+			"key": "swap-sides",
+			"display": "Swap Sides",
+			"type": "bool",
+			"default": false,
+			"required": false
+		},
+		{
+			"key": "gradient-style",
+			"display": "BG Gradient",
+			"type": "string",
+			"default": "heat-2",
+			"required": false,
+			"options": [
+				{
+					"key": "heat-1",
+					"display": "Heat 1"
+				},
+				{
+					"key": "heat-2",
+					"display": "Heat 2"
+				},
+				{
+					"key": "heat-3",
+					"display": "Heat 3"
+				}
+			]
+		},
+		["ds-braze-mixins",
+			"color-dark-purple",
+			"color-red",
+			"font-bold"
+		]
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			]
+		}, [
+			["ds-braze-bg", {
+				"flex": {
+					"position": "fixed"
+				},
+				"gradient-style": ["$", ["var", "gradient-style"]],
+				"animate-in": false,
+				"animate-out": false,
+				"opacity": ["animate",
+					[0, 0],
+					["+400", 1],
+					["100%", 0],
+					["-400", 1]
+				]
+			}],
+			["null", {
+				"layout": ["$", ["if",
+					["lte", ["aspect"], 1],
+					"vertical packed center",
+					"horizontal packed center"
+				]],
+				"align": "center",
+				"gap": "40su",
+				"breakpoints": [
+					{
+						"enabled": ["$", ["lte", ["aspect"], 1]],
+						"gap": "60su"
+					}
+				]
+			}, [
+				["solid", {
+					"stagger": [150, -100],
+					"layout": "stacked",
+					"align": "center",
+					"radius": "30nsu",
+					"color": [1, 1, 1, 0.5],
+					"padding": [
+						"15nsu",
+						"15nsu"
+					],
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[0, "150rh", "easeOutCubic"],
+								["+800", 0],
+								["100%", "-150rh"],
+								["-800", 0, "easeInCubic"]
+							]
+						]
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["var", "swap-sides"]],
+							"order": 10
+						},
+						{
+							"enabled": ["$", ["lte", ["aspect"], 1]],
+							"transform": [
+								["translate",
+									0,
+									["animate",
+										[0, "200rh", "easeOutCubic"],
+										["+800", 0],
+										["100%", "-200rh"],
+										["-800", 0, "easeInCubic"]
+									]
+								]
+							]
+						}
+					]
+				}, [
+					["user-asset", {
+						"file": ["$", ["var", "asset"]],
+						"justify": "fit center",
+						"tags": ["b-roll"],
+						"mask": {
+							"radius": "20nsu"
+						}
+					}]
+				]],
+				["text", {
+					"enabled": ["$", ["exists", ["var", "text"]]],
+					"stagger": [150, -100],
+					"flex": {
+						"weight": 0.5
+					},
+					"font": ["$", ["var", "font-bold"]],
+					"measure": "letter-size",
+					"height": "80su",
+					"leading": "10su",
+					"color": [1, 1, 1, 1],
+					"string": ["$", ["var", "text"]],
+					"justify": "center left",
+					"boundary": "word",
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[0, "200su", "easeOutCubic"],
+								["+800", 0]
+							]
+						]
+					],
+					"animations": [
+						{
+							"translate": [0, "100su"],
+							"mask": [0, 0, 0, 0]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+800", 1]
+							],
+							"easing": "easeOutCubic",
+							"ramp": 1,
+							"opacity": 1,
+							"translate": [0, 0]
+						},
+						{
+							"mix": ["animate",
+								["100%", 1],
+								["-600", 0]
+							],
+							"easing": "easeInCubic",
+							"ramp": 2,
+							"opacity": 1,
+							"translate": [0, "-120su"]
+						}
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["and",
+								["=", ["aspect"], 1],
+								["=", ["var", "swap-sides"], false]
+							]],
+							"stagger": [450, -100]
+						},
+						{
+							"enabled": ["$", ["and",
+								["=", ["aspect"], 1],
+								["=", ["var", "swap-sides"], true]
+							]],
+							"stagger": [150, -450]
+						},
+						{
+							"enabled": ["$", ["and",
+								["<", ["aspect"], 1],
+								["=", ["var", "swap-sides"], false]
+							]],
+							"stagger": [550, -100]
+						},
+						{
+							"enabled": ["$", ["and",
+								["<", ["aspect"], 1],
+								["=", ["var", "swap-sides"], true]
+							]],
+							"stagger": [150, -550]
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

@@ -1,0 +1,210 @@
+[
+	"ds-aspect-speaker",
+	[
+		{
+			"key": "theme",
+			"display": "Theme",
+			"type": "string",
+			"default": "plum",
+			"options": [
+				{
+					"key": "plum",
+					"display": "Plum"
+				},
+				{
+					"key": "raspberry",
+					"display": "Raspberry"
+				}
+			],
+			"required": false
+		},
+		["dsx-mixins",
+			"speaker"
+		],
+		["ds-aspect-mixins",
+			"colors",
+			"font-wallop",
+			"font-roobert"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [1, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": true,
+				"minimum": -100,
+				"maximum": 100
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone",
+				"offset"
+			]
+		}, [
+			["null", {
+				"layout": "stacked",
+				"align": ["$", ["var", "#align"]],
+				"padding": [
+					0,
+					0,
+					0,
+					"40su"
+				]
+			}, [
+				["solid", {
+					"stagger": [300, -200],
+					"layout": "vertical packed",
+					"align": "left",
+					"color": ["$", ["var", "color-eggshell"]],
+					"radius": "10su",
+					"max-width": "1000su",
+					"effect": [
+						["shadow", {
+							"offset": ["5su", "5su"],
+							"color": [0.36, 0.03, 0.28, 0.2],
+							"radius": "15su"
+						}]
+					],
+					"mask": {
+						"padding": [
+							0,
+							["animate",
+								[0, "100rw", "easeInOutCubic"],
+								["+800", 0],
+								["100%", "100rw"],
+								["-650", 0, "easeInOutCubic"]
+							],
+							0,
+							"-40su"
+						],
+						"radius": "10su"
+					}
+				}, [
+					["null", {
+						"layout": "vertical packed",
+						"align": "left",
+						"padding": [
+							"30su",
+							"100su",
+							"30su",
+							"30su"
+						],
+						"gap": "20su",
+						"mask": {}
+					}, [
+						["text", {
+							"enabled": ["$", ["exists", ["var", "name"]]],
+							"stagger": [400, -300],
+							"font": ["$", ["var", "font-wallop"]],
+							"color": ["$", ["var", "color-black"]],
+							"measure": "letter-size",
+							"height": "50su",
+							"string": ["$", ["var", "name"]],
+							"transform": [
+								["translate",
+									["animate",
+										[0, "-100su", "easeOutCubic"],
+										["+1000", 0],
+										["100%", "-100su"],
+										["-500", 0, "easeInCubic"]
+									],
+									0
+								]
+							],
+							"opacity": ["animate",
+								[0, 0, "easeOutQuad"],
+								["+500", 1],
+								["100%", 0],
+								["-300", 1, "easeInQuad"]
+							]
+						}],
+						["text", {
+							"enabled": ["$", ["or",
+								["exists", ["var", "detail-1"]],
+								["exists", ["var", "detail-2"]]
+							]],
+							"stagger": [600, -200],
+							"font": ["$", ["var", "font-roobert"]],
+							"color": ["$", ["var", "color-gray"]],
+							"measure": "letter-size",
+							"height": "25su",
+							"string": ["$",
+								["join",
+									["compact",
+										["array",
+											["var", "detail-1"],
+											["var", "detail-2"]
+										]
+									],
+									" @ "
+								]
+							],
+							"transform": [
+								["translate",
+									["animate",
+										[0, "-100su", "easeOutCubic"],
+										["+1000", 0],
+										["100%", "-100su"],
+										["-500", 0, "easeInCubic"]
+									],
+									0
+								]
+							],
+							"opacity": ["animate",
+								[0, 0, "easeOutQuad"],
+								["+500", 1],
+								["100%", 0],
+								["-300", 1, "easeInQuad"]
+							]
+						}]
+					]],
+					["solid", {
+						"flex": {
+							"position": "fixed"
+						},
+						"color": ["$",
+							["if",
+								["=", ["var", "theme"], "plum"],
+								["var", "color-plum"],
+								["var", "color-raspberry"]
+							]
+						],
+						"rect": [
+							"-40su",
+							0,
+							"30su",
+							"100rh"
+						],
+						"radius": "10su",
+						"transform": [
+							["scale",
+								["animate",
+									[0, 0.5, "easeOutCubic"],
+									["+500", 1],
+									["100%", 0],
+									["-400", 1, "easeInCubic"]
+								]
+							]
+						],
+						"opacity": ["animate",
+							[0, 0, "easeOutQuad"],
+							["+300", 1],
+							["100%", 0],
+							["-300", 1, "easeInQuad"]
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

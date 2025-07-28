@@ -1,0 +1,41 @@
+[
+	"ds-ramp-intro",
+	[
+		["ds-ramp-mixins",
+			"colors",
+			"dark-mode-colors"
+		]
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su"]]
+		}, [
+			["solid", {
+				"mixins": ["dsx-mixins", ["safezone"]],
+				"color": ["$", ["var", "#color-bg"]],
+				"opacity": ["animate",
+					["100%", 0],
+					["-1000", 1, "easeInSine"]
+				]
+			},[
+				["false-color", {
+					"stagger": [0, -500],
+					"color-1": ["$", ["var", "#color-text"]],
+					"color-2": ["$", ["var", "#color-text"]],
+					"opacity": ["animate",
+						["100%", 0],
+						["-500", 1, "easeInSine"]
+					]
+				}, [
+					["asset", {
+						"file": "./media/ds-ramp-logo-animated.mov",
+						"hold": true,
+						"justify": "fit center",
+						"align": "center",
+						"max-width": "800nsu"
+					}]
+				]]
+			]]
+		]
+	]]
+]

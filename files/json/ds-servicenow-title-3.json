@@ -1,0 +1,113 @@
+[
+	"ds-servicenow-title-3",
+	[
+		["dsx-mixins",
+			"text"
+		],
+		{
+			"key": "color-change",
+			"display": "Color Change",
+			"type": "number",
+			"default": 1,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 1,
+				"minimum": 0,
+				"maximum": 10
+			}
+		},
+		{
+			"key": "swap-colors",
+			"display": "Swap Colors",
+			"type": "bool",
+			"default": false,
+			"required": false
+		},
+		["ds-servicenow-mixins",
+			"color-primary",
+			"color-black",
+			"color-green",
+			"font-extra-bold"
+		],
+		["dsx-mixins", 
+			"boilerplate"
+		]
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]],
+			"color": ["$", ["var", "color-green"]],
+			"transform": [
+				["translate",
+					["animate",
+						[0, "100cw", "easeInOutCubic"],
+						["+850", 0],
+						["100%", "-100cw"],
+						["-500", 0, "easeInCubic"]
+					],
+					0
+				]
+			]
+		}, [
+			["text", {
+				"enabled": ["$", ["exists", ["var", "text"]]],
+				"stagger": [300, 0],
+				"mixins": ["ds-servicenow-mixins",
+					"text"
+				],
+				"font": ["$", ["var", "font-extra-bold"]],
+				"height": "120su",
+				"justify": ["$", ["var", "#align"]],
+				"color": ["$", ["if",
+					["var", "swap-colors"],
+					["var", "color-black"],
+					["var", "color-primary"]
+				]],
+				"string": ["$", ["var", "text"]],
+				"boundary": "word",
+				"animations": [
+					{
+						"translate": [
+							"200su",
+							0
+						]
+					},
+					{
+						"indices": [
+							["$", ["var", "color-change"]],
+							30
+						],
+						"color": ["$", ["if",
+							["var", "swap-colors"],
+							["var", "color-primary"],
+							["var", "color-black"]
+						]]
+					},
+					{
+						"mix": ["animate",
+							[0, 0],
+							["+1000", 1]
+						],
+						"opacity": 1,
+						"easing": "easeOutCubic",
+						"translate": [0, 0]
+					},
+					{
+						"mix": ["animate",
+							["100%", 1],
+							["-700", 0]
+						],
+						"opacity": 0,
+						"easing": "easeInCubic",
+						"translate": [
+							"-150su",
+							0
+						]
+					}
+				]
+			}]
+		]]
+	]
+]

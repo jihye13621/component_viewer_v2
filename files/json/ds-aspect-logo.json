@@ -1,0 +1,64 @@
+[
+	"ds-aspect-logo",
+	[
+		{
+			"key": "theme",
+			"display": "Theme",
+			"type": "string",
+			"default": "light",
+			"options": [
+				{
+					"key": "plum",
+					"display": "Dark Plum"
+				},
+				{
+					"key": "light",
+					"display": "Light"
+				}
+			],
+			"required": false
+		},
+		["ds-aspect-mixins",
+			"colors"
+		]
+	],
+	[
+		["ds-aspect-bg", {
+			"theme": ["$", ["switch", ["var", "theme"], ["object",
+				["array", "plum", "plum"],
+				["array", "raspberry", "raspberry"],
+				["array", "light", "eggshell"]
+			]]]
+		}],
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			]
+		}, [
+			["asset", {
+				"rect": [
+					0,
+					0,
+					"700su",
+					"300su"
+				],
+				"align": "center",
+				"file": "./media/ds-aspect-logo-horiz-color.svg",
+				"justify": "fit center",
+				"svg-recolor": ["$", ["switch", ["var", "theme"], ["object",
+					["array", "plum", ["'", 1, 1, 1, 1]],
+					["array", "light", ["'", 0, 0, 0, 1]]
+				]]],
+				"transform": [
+					["scale",
+						["animate",
+							[0, 1.3, "easeOutQuart"],
+							["+900", 1]
+						]
+					]
+				]
+			}]
+		]]
+	]
+]

@@ -1,0 +1,222 @@
+[
+	"ds-hubspot-sandbox-metrics-stat",
+	[
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "text",
+			"default": "Optional statistic details",
+			"required": false
+		},
+		{
+			"key": "stat",
+			"display": "Stat",
+			"type": "text",
+			"default": "1000",
+			"required": false
+		},
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "string",
+			"default": null,
+			"required": false
+		},
+		{
+			"key": "start-frame",
+			"display": "Start Frame",
+			"type": "text",
+			"default": 0,
+			"required": false,
+			"private": true
+		},
+		{
+			"key": "direction",
+			"display": "Direction",
+			"type": "text",
+			"default": "vertical",
+			"required": false
+		},
+		{
+			"key": "#stat",
+			"display": "data",
+			"type": "object",
+			"default": 1000,
+			"required": false,
+			"private": true,
+			"script": ["$", 
+				["let",
+					[
+						["found", ["match", ["var", "stat"], ["regexp", "[\\d,]+"], ""]],
+						["segments", ["if",
+							["exists", ["var", "found"]],
+							["segment", ["var", "stat"], ["var", "found"]]
+						]]
+					],
+					["if",
+						["exists", ["var", "found"]],
+						["array",
+							["nth", ["var", "segments"], 0],
+							["floor",
+								["to-number",
+									["var", "found"]
+								]
+							],
+							["nth", ["var", "segments"], 2]
+						],
+						["array",
+							"",
+							0,
+							""
+						]
+					]
+				]
+			]
+		},
+		{
+			"key": "color-solaris",
+			"display": "Solaris",
+			"type": "color",
+			"default": "#FF5C35",
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", "set-su"],
+			"layout": ["$", ["var", "direction"]],
+			"align": "left",
+			"breakpoints": [
+				{
+					"enabled": ["$", ["=", ["var", "direction"], "horizontal"]],
+					"gap": "50su"
+				}
+			]
+		}, [
+			["null", {
+				"breakpoints": [
+					{
+						"enabled": ["$", ["=", ["var", "direction"], "horizontal"]],
+						"flex": {
+							"width": "100su"
+						}
+					}
+				]
+			}, [
+				["null", {
+					"enabled": ["$", ["exists", ["var", "asset"]]],
+					"rect": [
+						0,
+						0,
+						"100su",
+						"100su"
+					],
+					"align": "bottom left",
+					"breakpoints": [
+						{
+							"enabled": ["$", ["=", ["var", "direction"], "horizontal"]],
+							"align": "center left"
+						}
+					]
+				}, [
+					["user-asset", {
+						"file": ["$", ["var", "asset"]],
+						"justify": "fit center left",
+						"mute": true,
+						"hold": true
+					}]
+				]]
+			]],
+			["null", {
+				"flex": {
+					"height": "200su"
+				},
+				"breakpoints": [
+					{
+						"enabled": ["$", ["=", ["var", "direction"], "horizontal"]],
+						"flex": {
+						}
+					}
+				]
+			}, [
+				["text", {
+					"enabled": ["$", ["exists", ["var", "stat"]]],
+					"mixins": ["ds-hubspot-mixins",
+						"font-list-headline"
+					],
+					"measure": "letter-size",
+					"height": "110su",
+					"color": ["$", ["var", "color-solaris"]],
+					"string": ["$", ["var", "stat"]],
+					"fit": true,
+					"justify": "center left",
+					"breakpoints": [
+						{
+							"enabled": true,
+							"string": "",
+							"mutate": ["$$",
+								["let",
+									[
+										["start",
+											["$",
+												["+",
+													["key", ["comp-timing"], "start"],
+													["var", "start-frame"]
+												]
+											]
+										],
+										["frame", ["current-frame"]],
+										["animate",
+											["ease",
+												["map",
+													["var", "frame"],
+													["var", "start"],
+													["+", ["var", "start"], 600],
+													0,
+													1
+												],
+												"easeOutQuad"
+											]
+										]
+									],
+									["concat",
+										["$", ["nth", ["var", "#stat"], 0]],
+										["to-string", ["floor",
+											["*",
+												["$", ["nth", ["var", "#stat"], 1]],
+												["var", "animate"]
+											]
+										]],
+										["$", ["nth", ["var", "#stat"], 2]]
+									]
+								]
+							]
+						}
+					]
+				}]
+			]],
+			["null", {
+
+			}, [
+				["text", {
+					"enabled": ["$", ["exists", ["var", "text"]]],
+					"mixins": ["ds-hubspot-mixins",
+						"font-list"
+					],
+					"measure": "letter-size",
+					"height": "30su",
+					"leading": "14su",
+					"color": [0, 0, 0, 1],
+					"string": ["$", ["var", "text"]],
+					"justify": "top left",
+					"breakpoints": [
+						{
+							"enabled": ["$", ["=", ["var", "direction"], "horizontal"]],
+							"justify": "center left"
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

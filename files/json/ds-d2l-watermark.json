@@ -1,0 +1,90 @@
+[
+	"ds-d2l-watermark",
+	[
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "style",
+			"display": "Style",
+			"type": "string",
+			"default": "white",
+			"required": false,
+			"options": [
+				{
+					"key": "white",
+					"display": "White"
+				},
+				{
+					"key": "black",
+					"display": "Black"
+				},
+				{
+					"key": "ghost-white",
+					"display": "Ghost White"
+				},
+				{
+					"key": "ghost-black",
+					"display": "Ghost Black"
+				}
+			]
+		},
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [7, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			]
+		}, [
+			["asset", {
+				"max-width": "150su",
+				"file": "./media/ds-d2l-logo.svg",
+				"align": ["$", ["var", "#align"]],
+				"justify": ["$", ["concat", "fit ", ["var", "#align"]]],
+				"opacity": ["animate",
+					[0, 0],
+					["+500", 1],
+					["100%", 0],
+					["-500", 1]
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["=", ["var", "style"], "black"]],
+						"svg-recolor": "#000000"
+					},
+					{
+						"enabled": ["$", ["=", ["var", "style"], "ghost-white"]],
+						"opacity": ["animate",
+							[0, 0],
+							["+500", 0.33],
+							["100%", 0],
+							["-500", 0.33]
+						]
+					},
+					{
+						"enabled": ["$", ["=", ["var", "style"], "ghost-black"]],
+						"svg-recolor": "#000000",
+						"opacity": ["animate",
+							[0, 0],
+							["+500", 0.33],
+							["100%", 0],
+							["-500", 0.33]
+						]
+					}
+				]
+			}]
+		]]
+	]
+]

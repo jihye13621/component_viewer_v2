@@ -1,0 +1,104 @@
+[
+	"ds-sbg-watermark-accet-2",
+	[
+		{
+			"key": "station",
+			"display": "Station",
+			"type": "string",
+			"default": "Abilene_ABC_KTXS",
+			"options": [
+				{
+					"key": "Abilene_ABC_KTXS",
+					"display": "Abilene_ABC_KTXS"
+				},
+				{
+					"key": "Austin_CBS_KEYE",
+					"display": "Austin_CBS_KEYE"
+				},
+				{
+					"key": "Austin_Telemundo_NEYE",
+					"display": "Austin_Telemundo_NEYE"
+				},
+				{
+					"key": "Beaumont_CBS_KFDM",
+					"display": "Beaumont_CBS_KFDM"
+				},
+				{
+					"key": "Chattanooga_ABC_WTVC",
+					"display": "Chattanooga_ABC_WTVC"
+				},
+				{
+					"key": "Eugene_CBS_KVAL",
+					"display": "Eugene_CBS_KVAL"
+				},
+				{
+					"key": "Eugene_NBC_KMTR",
+					"display": "Eugene_NBC_KMTR"
+				},
+				{
+					"key": "GrandRapids_CBS_WWMT",
+					"display": "GrandRapids_CBS_WWMT"
+				},
+				{
+					"key": "Lincoln_ABC_FOX_KHGI_KFXL",
+					"display": "Lincoln_ABC_FOX_KHGI_KFXL"
+				},
+				{
+					"key": "Nashville_FOX_WZTV",
+					"display": "Nashville_FOX_WZTV"
+				},
+				{
+					"key": "OklahomaCity_KOKH_FOX",
+					"display": "OklahomaCity_KOKH_FOX"
+				},
+				{
+					"key": "TraverseCity_ABC_NBC_WPBN_WGTU",
+					"display": "TraverseCity_ABC_NBC_WPBN_WGTU"
+				},
+				{
+					"key": "Tulsa_ABC_KTUL",
+					"display": "Tulsa_ABC_KTUL"
+				}
+			]
+		},
+		{
+			"key": "size",
+			"display": "Size",
+			"type": "number",
+			"default": 1.0,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"step": 0.05,
+				"minimum": 0.5,
+				"maximum": 1.5
+			}
+		},
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [9, 0, 0],
+			"ui": {
+				"grid": false,
+				"offset": true,
+				"minimum": -100,
+				"maximum": 100
+			},
+			"required": false
+		},
+		["ds-sbg-mixins", "do-safezone"]
+	],
+	[
+		["ds-sbg-watermark", {
+			"size": ["$", ["var", "size"]],
+			"do-safezone": ["$", ["var", "do-safezone"]],
+			"position": ["$", ["var", "position"]],
+			"path-override": ["$", ["concat",
+				"./media/ds-sbg-accet-2-logos/",
+				["var", "station"],
+				".png"
+			]]
+		}]
+	]
+]

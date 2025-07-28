@@ -1,0 +1,156 @@
+[
+	"ds-galleri-outro",
+	[
+		["ds-galleri-mixins",
+			"font-medium"
+		]
+	],
+	[
+		["solid", {
+			"color": [1, 1, 1, 1]
+		}],
+		["solid", {
+			"mixins": ["dsx-mixins",
+				"set-su"
+			],
+			"layout": "vertical packed",
+			"gap": "50su",
+			"padding": [
+				"50su",
+				"50su"
+			],
+			"opacity": ["animate",
+				["100%", null],
+				["-100", 0],
+				["-500", 1]
+			]
+		}, [
+			["asset", {
+				"flex": {
+					"grow": true
+				}
+			}, [
+				["asset", {
+					"rect": [
+						0,
+						0,
+						"100rw",
+						"275su"
+					],
+					"file": "./media/ds-galleri-logo-animated-website.mp4",
+					"justify": "fit center",
+					"hold": true,
+					"mute": true,
+					"align": "center",
+					"mask": {
+						"padding": [
+							"2nsu",
+							"2nsu",
+							"2nsu",
+							"2nsu"
+						],
+						"transform": true
+					},
+					"script": ["$$",
+						["let",
+							[
+								["start", ["key", ["var", "self"], "start"]],
+								["end", ["key", ["var", "self"], "end"]],
+								["animate",
+									["ease",
+										["map",
+											["var", "frame"],
+											["+", ["var", "start"], 4000],
+											["+", ["var", "start"], 5000],
+											1,
+											0
+										],
+										"easeInOutQuad"
+									]
+								],
+								["size", ["$", ["size"]]],
+								["screen-center", ["/", ["height"], 2]],
+								["roi", ["key", ["var", "self"], "roi"]],
+								["roi-center", ["key", ["var", "roi"], "center"]],
+								["offset",
+									["-",
+										["var", "screen-center"],
+										["key", ["var", "roi-center"], "y"]
+									]
+								]
+							],
+							["do",
+								["live-transform",
+									["var", "self"],
+									"scale",
+									["+", 1, ["*", 0.5, ["var", "animate"]]]
+								],
+								["live-transform",
+									["var", "self"],
+									"translate",
+									0,
+									["*", ["var", "offset"], ["var", "animate"]]
+								]
+							]
+						]
+					]
+				}]
+			]],
+			["asset", {
+				"stagger": [5500, 0],
+				"flex": {
+					"weight": 10
+				},
+				"file": ["$",
+					["if",
+						[">", ["aspect"], 1],
+						"./media/ds-galleri-warnings-wide.png",
+						["if",
+							["=", ["aspect"], 1],
+							"./media/ds-galleri-warnings-square.png",
+							"./media/ds-galleri-warnings-vert.png"
+						]
+					]
+				],
+				"justify": "fit bottom center",
+				"align": "center",
+				"opacity": ["animate",
+					[0, 0],
+					["+500", 1]
+				]
+			}],
+			["null", {
+				"stagger": [2000, 0],
+				"flex": {
+					"height": "50su"
+				},
+				"layout": "horizontal",
+				"opacity": ["animate",
+					[0, 0],
+					["+500", 1]
+				],
+				"gap": "50su"
+			}, [
+				["text", {
+					"font": ["$", ["var", "font-medium"]],
+					"height": "22su",
+					"justify": "center left",
+					"color": "#404040",
+					"case": "uppercase",
+					"fit": true,
+					"string": "© 2025 Grail, Inc. All Rights Reserved. Galleri is a registered trademark of Grail, INC."
+				}],
+				["asset", {
+					"flex": {
+						"width": "150su"
+					},
+					"file": "./media/ds-galleri-grail-logo.svg",
+					"justify": "fit right center"
+				}]
+			]]
+		]],
+		["asset", {
+			"file": "./media/ds-galleri-outro-vo.mp3"
+		}]
+	]
+]

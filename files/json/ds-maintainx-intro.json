@@ -1,0 +1,193 @@
+[
+	"ds-maintainx-intro",
+	[
+		["dsx-mixins",
+			"headline"
+		]
+	],
+	[
+		["solid", {
+			"z-index": 10,
+			"path": [
+				[0, "40rw"],
+				["50rw", 0],
+				["100rw", "40rw"],
+				["100rw", "80rw"],
+				["50rw", "40rw"],
+				[0, "80rw"]
+			],
+			"color": "#246CFF",
+			"transform": [
+				["translate",
+					0,
+					["animate",
+						[0, "100rh"],
+						["+500", "-80rw"]
+					]
+				]
+			],
+			"start": ["$", ["-", ["key", ["comp-timing"], "duration"], 500]]
+		}],
+		["solid", {
+			"color": [1, 1, 1, 1],
+			"start": ["$", ["-", ["key", ["comp-timing"], "duration"], 500]],
+			"buffer": "knockout"
+		}, [
+			["solid", {
+				"path": [
+					[0, "40rw"],
+					["50rw", 0],
+					["100rw", "40rw"],
+					["100rw", "1000rw"],
+					[0, "1000rw"]
+				],
+				"color": [0, 0, 0, 1],
+				"transform": [
+					["translate",
+						0,
+						["animate",
+							[0, "100rh"],
+							["+500", "-80rw"]
+						]
+					]
+				]
+			}]
+		]],
+		["null", {
+			"effect": [
+				["matte", {
+					"start": ["$", ["-", ["key", ["comp-timing"], "duration"], 500]],
+					"buffer-in": "knockout"
+				}]
+			]
+		}, [
+			["asset", {
+				"file": ["$", "./media/ds-maintainx-bg.mp4"],
+				"justify": "fill center",
+				"loop": true,
+				"transform": [
+					["scale",
+						["animate",
+							[0, 1.5, "easeInOutQuint"],
+							["+500", 1.2],
+							["100%", 1]
+						]
+					]
+				]
+			}],
+			["null", {
+				"mixins": [
+					["dsx-mixins", "set-su"],
+					["ds-maintainx-mixins", "custom-safezone"]
+				]
+			}, [
+				["null", {
+					"layout": "vertical packed center",
+					"align": "center",
+					"gap": "50su",
+					"script": ["$$",
+						["let",
+							[
+								["start", ["+", ["key", ["var", "self"], "start"], 1000]],
+								["end", ["+", ["key", ["var", "self"], "start"], 2000]],
+								["child", ["nth", ["key", ["var", "self"], "children"], 0]],
+								["height", ["key", ["key", ["var", "self"], "roi"], "height"]],
+								["logo-height", ["key", ["key", ["var", "child"], "roi"], "height"]],
+								["offset", ["/",
+									["-",
+										["var", "height"],
+										["var", "logo-height"]
+									],
+									2
+								]],
+								["animation",
+									["ease",
+										["map",
+											["var", "frame"],
+											["var", "start"],
+											["var", "end"],
+											1,
+											0
+										],
+										"easeInOutQuint"
+									]
+								]
+							],
+							["live-transform",
+								["var", "self"],
+								"translate",
+								0,
+								["*", ["var", "offset"], ["var", "animation"]]
+							]
+						]
+					]
+				}, [
+					["asset", {
+						"flex": {
+							"height": "135su"
+						},
+						"file": ["$", "./media/ds-maintainx-logo.mov"],
+						"justify": "fit center",
+						"hold": true
+					}],
+					["text", {
+						"enabled": ["$", ["exists", ["var", "headline"]]],
+						"stagger": [1500, 0],
+						"font": "./media/Inter-Bold.ttf",
+						"height": "80su",
+						"justify": "center",
+						"measure": "letter-size",
+						"color": "#001E40",
+						"string": ["$", ["var", "headline"]],
+						"animations": [
+							{
+								"translate": [
+									0,
+									"100su"
+								]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+1000", 1]
+								],
+								"easing": "easeOutQuad",
+								"ramp": 1,
+								"opacity": 1,
+								"translate": [0, 0]
+							}
+						]
+					}],
+					["text", {
+						"enabled": ["$", ["exists", ["var", "subhead"]]],
+						"stagger": [1700, 0],
+						"font": "./media/Inter-Regular.ttf",
+						"height": "70su",
+						"justify": "center",
+						"measure": "letter-size",
+						"color": "#001E40",
+						"string": ["$", ["var", "subhead"]],
+						"animations": [
+							{
+								"translate": [
+									0,
+									"100su"
+								]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+1000", 1]
+								],
+								"easing": "easeOutQuad",
+								"ramp": 1,
+								"opacity": 1,
+								"translate": [0, 0]
+							}
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

@@ -1,0 +1,130 @@
+[
+	"ds-sbg-hsh-outro",
+	[
+		{
+			"key": "sponsor-1",
+			"display": "Sponsor 1",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": []
+		},
+		{
+			"key": "sponsor-2",
+			"display": "Sponsor 2",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": []
+		},
+		["ds-sbg-hsh-mixins",
+            "font-agency-bold"
+		]
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", "set-su-roi"]
+		}, [
+			["null", {
+				"opacity": ["animate",
+					[0, 0],
+					["+500", 1]
+				]
+			}, [
+				["asset", {
+					"file": "./media/ds-sbg-hsh-court.jpg",
+					"justify": "fill center",
+					"loop": true
+				}],
+				["null", {
+					"mixins": ["dsx-mixins", "safezone"],
+					"layout": "vertical packed",
+					"align": "center",
+					"gap": "40su",
+					"transform": [
+						["scale",
+							["animate",
+								[0, 2, "easeOutExpo"],
+								["+2000", 1]
+							]
+						]
+					]
+				}, [
+					["null", {
+						"layout": "vertical packed",
+						"align": "center",
+						"max-width": "1000su",
+						"flex": {
+							"weight": 3
+						},
+						"transform": [
+							["scale",
+								["animate",
+									[0, 1.5, "easeOutExpo"],
+									["+2500", 1]
+								]
+							]
+						]
+					}, [
+						["asset", {
+							"file": ["$", ["if",
+								["exists", ["var", "sponsor-1"]],
+								"./media/ds-sbg-hsh-logo-sponsor-color.svg",
+								"./media/ds-sbg-hsh-logo-color.svg"
+							]],
+							"justify": "fit center",
+							"hold": true
+						}, [
+							["null", {
+								"enabled": ["$", ["exists", ["var", "sponsor-1"]]],
+								"rect": [
+									0,
+									0,
+									"45rh",
+									"30rh"
+								],
+								"align": "top center",
+								"padding": [
+									"10su",
+									"10su"
+								]
+							}, [
+								["user-asset", {
+									"file": ["$", ["var", "sponsor-1"]],
+									"flex": {
+										"height": "200su"
+									},
+									"justify": "fit center"
+								}]
+							]]
+						]]
+					]],
+					["null", {
+						"enabled": ["$", ["exists", ["var", "sponsor-2"]]],
+						"layout": "horizontal packed",
+						"align": "center",
+						"gap": "40su"
+					}, [
+						["text", {
+							"font": ["$", ["var", "font-agency-bold"]],
+							"height": "30su",
+							"justify": "center",
+							"measure": "cap-size",
+							"case": "uppercase",
+							"fit": true,
+							"color": [1, 1, 1, 1],
+							"string": "Presented By"
+						}],
+						["user-asset", {
+							"file": ["$", ["var", "sponsor-2"]],
+							"flex": {
+								"width": "300su"
+							},
+							"justify": "fit center"
+						}]
+					]]
+				]]
+			]]
+		]]
+	]
+]

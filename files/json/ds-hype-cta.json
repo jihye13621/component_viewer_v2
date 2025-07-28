@@ -1,0 +1,47 @@
+[
+	"ds-hype-cta",
+	[	
+		["dsx-mixins", ["cta"]],
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		},
+		{
+			"key": "color-2",
+			"display": "Color 2",
+			"type": "color",
+			"default": "#C3FF51",
+			"required": false
+		},
+		["dsx-mixins", ["boilerplate"]]
+	],
+	[
+		["dsx-padding", {
+			"position": ["$", ["nth", ["var", "position"], 0]],
+			"mixins": ["dsx-mixins", ["set-su"]]
+		}, [
+			["null", {
+				"layout": "horizontal packed",
+				"align": "center",
+				"gap": "20su"
+			}, [
+				["dsx-icon", {
+					"flex": {
+						"width": "80su",
+						"height": "80su"
+					},
+					"icon": "arrow-up-right",
+					"color": ["$", ["var", "color-2"]]
+				}],
+				["text", {
+					"mixins": ["ds-hype-mixins", ["text-1"]],
+					"string": ["$", ["var", "text"]],
+					"justify": ["$", ["var", "#align"]]
+				}]
+			]]
+		]]
+	]
+]

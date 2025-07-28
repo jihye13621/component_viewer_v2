@@ -1,0 +1,108 @@
+[
+	"ds-sbg-watermark-accet",
+	[
+		{
+			"key": "station",
+			"display": "Station",
+			"type": "string",
+			"default": "accet-wics",
+			"options": [
+				{
+					"key": "accet-wics",
+					"display": "ChampSpring_ABC_WICS"
+				},
+				{
+					"key": "accet-wrsp",
+					"display": "ChampSpring_FOX_WRSP"
+				},
+				{
+					"key": "accet-wchs",
+					"display": "Charleston_WV_ABC-FOX_WCHS"
+				},
+				{
+					"key": "accet-krcg",
+					"display": "Columbia_MO_KRCG"
+				},
+				{
+					"key": "accet-whpc",
+					"display": "Harrisburg_CBS_WHP"
+				},
+				{
+					"key": "accet-wjac",
+					"display": "Johnstown_NBC_WJAC"
+				},
+				{
+					"key": "accet-wtvz",
+					"display": "Norfolk_MyTV_WTVZ"
+				},
+				{
+					"key": "accet-ktvo",
+					"display": "Ottumwa_ABC-CBS_KTVO"
+				},
+				{
+					"key": "accet-wpgh",
+					"display": "Pittsburgh_FOX_WPGH"
+				},
+				{
+					"key": "accet-khqa",
+					"display": "Quincy_CBS-ABC_KHQA"
+				},
+				{
+					"key": "accet-wrlh",
+					"display": "Richmond_FOX_WRLH"
+				},
+				{
+					"key": "accet-wset",
+					"display": "Roanoke_ABC_WSET"
+				},
+				{
+					"key": "accet-wsbt",
+					"display": "South Bend_CBS_WSBT"
+				},
+				{
+					"key": "accet-wcyb",
+					"display": "TriCities_NBC_WCYB"
+				},
+				{
+					"key": "accet-wolf",
+					"display": "Wilkes-Barre_FOX_WOLF"
+				}
+			]
+		},
+		{
+			"key": "size",
+			"display": "Size",
+			"type": "number",
+			"default": 1.0,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"step": 0.05,
+				"minimum": 0.5,
+				"maximum": 1.5
+			}
+		},
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [9, 0, 0],
+			"ui": {
+				"grid": false,
+				"offset": true,
+				"minimum": -100,
+				"maximum": 100
+			},
+			"required": false
+		},
+		["ds-sbg-mixins", "do-safezone"]
+	],
+	[
+		["ds-sbg-watermark", {
+			"size": ["$", ["var", "size"]],
+			"do-safezone": ["$", ["var", "do-safezone"]],
+			"station": ["$", ["var", "station"]],
+			"position": ["$", ["var", "position"]]
+		}]
+	]
+]

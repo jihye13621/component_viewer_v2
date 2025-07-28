@@ -1,0 +1,172 @@
+[
+	"ds-gofundme-progress",
+	[
+		{
+			"key": "title",
+			"display": "Title",
+			"type": "text",
+			"default": "Urgent Help for Trinette's Fire Recovery",
+			"required": false
+		},
+		{
+			"key": "amount",
+			"display": "Amount",
+			"type": "text",
+			"default": "$33,240 raised",
+			"required": false
+		},
+		{
+			"key": "progress",
+			"display": "Progress",
+			"type": "number",
+			"default": 50,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 1,
+				"minimum": 0,
+				"maximum": 100
+			}
+		},
+		["ds-gofundme-mixins",
+			"green",
+			"dark-green",
+			"font-bold"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [2, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": true,
+				"minimum": -100,
+				"maximum": 100
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone",
+				"offset"
+			],
+			"opacity": ["animate",
+				["100%", 0],
+				["-400", 1, "easeInQuad"]
+			]
+		}, [
+			["solid", {
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"gap": "20su",
+				"color": [1, 1, 1, 1],
+				"max-width": "1000nsu",
+				"radius": "35su",
+				"padding": [
+					"80su",
+					"80su"
+				],
+				"mask": {
+					"radius": "35su",
+					"padding": [
+						0,
+						["animate",
+							[0, "100rw", "easeInOutCubic"],
+							["+500", 0]
+						],
+						["animate",
+							[0, "100rh", "easeInOutCubic"],
+							["+500", 0]
+						],
+						0
+					]
+				}
+			}, [
+				["null", {
+					"layout": "vertical packed",
+					"align": "left",
+					"gap": "40su",
+					"opacity": ["animate",
+						[250, 0],
+						["+500", 1]
+					]
+				}, [
+					["null", {
+						"enabled": ["$", ["exists", ["var", "title"]]],
+						"flex": {
+							"height": "200su"
+						},
+						"min-height": "200su",
+						"layout": "stacked",
+						"align": "left"
+					}, [
+						["text", {
+							"font": ["$", ["var", "font-bold"]],
+							"measure": "letter-size",
+							"height": "70su",
+							"leading": 0.2,
+							"justify": "left",
+							"string": ["$", ["var", "title"]],
+							"color": [0, 0, 0, 1]
+						}]
+					]],
+					["null", {
+						"flex": {
+							"height": "40su"
+						},
+						"mask": {
+							"radius": 10000
+						}
+					}, [
+						["solid", {
+							"color": [0, 0, 0, 0.1]
+						}],
+						["solid", {
+							"stagger": [300, 0],
+							"color": ["linear-gradient",
+								-0.25,
+								[0, ["$", ["var", "green"]]],
+								[1, ["$", ["var", "dark-green"]]]
+							],
+							"mask": {
+								"radius": 1000,
+								"rect": [
+									0,
+									0,
+									["animate",
+										[0, 0, "easeOutCubic"],
+										[
+											"+2000",
+											["$",
+												["concat", ["var", "progress"], "rw"]
+											]
+										]
+									],
+									"100rh"
+								]
+							}
+						}]
+					]],
+					["text", {
+						"enabled": ["$", ["exists", ["var", "amount"]]],
+						"font": ["$", ["var", "font-bold"]],
+						"measure": "letter-size",
+						"height": "50su",
+						"leading": 0.2,
+						"justify": "left",
+						"string": ["$", ["var", "amount"]],
+						"color": [0, 0, 0, 1]
+					}]
+				]]
+			]]
+		]]
+	]
+]

@@ -1,0 +1,320 @@
+[
+	"ds-impactdotcom-webinar-testimonial",
+	[
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["gain", 0],
+				["justify", "fill"],
+				["motion", "none"]
+			]
+		},
+		["dsx-mixins",
+			"speaker"
+		],
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "textarea",
+			"default": "Optional text",
+			"required": false
+		},
+		{
+			"key": "do-background",
+			"display": "Background",
+			"type": "bool",
+			"default": true,
+			"required": false
+		},
+		["ds-impactdotcom-webinar-mixins",
+			"color-primary",
+			"color-text",
+			"color-accent",
+			"font-bold",
+			"font-medium",
+			"font-thin"
+		]
+	],
+	[
+		["solid", {
+			"enabled": ["$", ["var", "do-background"]],
+			"color": ["$", ["var", "color-black"]],
+			"opacity": ["animate",
+				[0, 0, "easeOutQuad"],
+				["+250", 1],
+				["100%", 0],
+				["-200", 1, "easeInQuad"]
+			]
+		}],
+		["user-asset", {
+			"enabled": ["$", ["exists", ["var", "asset"]]],
+			"file": ["$", ["var", "asset"]],
+			"justify": "fill center",
+			"mask": {
+				"transform": true
+			},
+			"transform": [
+				["scale",
+					["animate",
+						[500, 0.8, "easeInOutQuad"],
+						["+500", 1]
+					]
+				],
+				["translate",
+					0,
+					["animate",
+						[0, "-100rh", "easeOutQuad"],
+						["+500", 0],
+						["100%", "-100rh"],
+						["-500", 0, "easeInQuad"]
+					]
+				]
+			]
+		}],
+		["null", {
+			"mixins": ["dsx-mixins", "set-su", "safezone"],
+			"breakpoints": [
+				{
+					"enabled": ["$", ["lte", ["aspect"], 1]],
+					"layout": "vertical packed",
+					"align": "bottom",
+					"gap": "80su"
+				}
+			]
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"align": "top right",
+				"max-width": "700su",
+				"gap": "40su"
+			}, [
+				["ds-impactdotcom-webinar-lines", {
+					"enabled": ["$", ["gt", ["aspect"], 1]],
+					"stagger": [250, -500],
+					"flex": {
+						"position": "fixed"
+					},
+					"rect": [
+						0,
+						0,
+						"100nsu",
+						"100ch"
+					],
+					"align": "bottom left",
+					"order": 10,
+					"color-1": ["$", ["var", "color-accent"]],
+					"color-2": ["$", ["var", "color-gradient"]],
+					"lines": [
+						[0.0, 1, "top"]
+					],
+					"transform": [
+						["translate",
+							"-50su",
+							["animate",
+								[0, "-100rh", "easeOutQuad"],
+								["+1000", 0],
+								["100%", "-100rh"],
+								["-1000", 1, "easeInQuad"]
+							]
+						]
+					]
+				}],
+				["text", {
+					"enabled": ["$", ["exists", ["var", "text"]]],
+					"mixins": ["ds-impactdotcom-webinar-mixins",
+						"text"
+					],
+					"stagger": [500, -500],
+					"color": ["$", ["var", "color-text"]],
+					"string": ["$", ["var", "text"]],
+					"font": ["$", ["var", "font-medium"]],
+					"height": "50su",
+					"leading": "10su",
+					"boundary": "line",
+					"animations": [
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+1000", 1],
+								["100%", 0],
+								["-500", 1]
+							],
+							"ramp": 1,
+							"easing": "easeOutQuad",
+							"opacity": 1
+						}	
+					]
+				}]
+			]],
+			["null", {
+				"layout": "vertical packed",
+				"align": "left bottom",
+				"gap": "40su"
+			}, [
+				["ds-impactdotcom-webinar-lines", {
+					"enabled": ["$", ["lte", ["aspect"], 1]],
+					"flex": {
+						"position": "fixed"
+					},
+					"stagger": [250, -250],
+					"rect": [
+						0,
+						0,
+						"100nsu",
+						"100ch"
+					],
+					"align": "bottom left",
+					"order": 10,
+					"color-1": ["$", ["var", "color-accent"]],
+					"color-2": ["$", ["var", "color-gradient"]],
+					"lines": [
+						[0.0, 1, "top"]
+					],
+					"transform": [
+						["translate",
+							"-50su",
+							["animate",
+								[0, "-100rh", "easeOutQuad"],
+								["+1000", 0],
+								["100%", "-100rh"],
+								["-1000", 1, "easeInQuad"]
+							]
+						]
+					]
+				}],
+				["text", {
+					"stagger": [500, -150],
+					"enabled": ["$", ["exists", ["var", "name"]]],
+					"mixins": ["ds-impactdotcom-webinar-mixins",
+						"text"
+					],
+					"color": ["$", ["var", "color-text"]],
+					"string": ["$", ["var", "name"]],
+					"font": ["$", ["var", "font-bold"]],
+					"height": "50su",
+					"leading": "10su",
+					"boundary": "letter",
+					"animations": [
+						{
+							"translate": [
+								0,
+								"40su"
+							]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+650", 1]
+							],
+							"ramp": 0.2,
+							"easing": "easeOutQuad",
+							"translate": [0, 0],
+							"opacity": 1
+						},
+						{
+							"mix": ["animate",
+								["100%", 1],
+								["-400", 0]
+							],
+							"opacity": 0,
+							"easing": "easeInQuad",
+							"ramp": 0.5
+						}
+					]
+				}],
+				["null", {
+					"enabled": ["$", ["or",
+						["exists", ["var", "detail-1"]],
+						["exists", ["var", "detail-2"]]
+					]],
+					"layout": "vertical packed",
+					"align": "left center",
+					"gap": "20su"
+				}, [
+					["text", {
+						"stagger": [500, -200],
+						"enabled": ["$", ["exists", ["var", "detail-1"]]],
+						"mixins": ["ds-impactdotcom-webinar-mixins",
+							"text"
+						],
+						"color": ["$", ["var", "color-text"]],
+						"string": ["$", ["var", "detail-1"]],
+						"font": ["$", ["var", "font-medium"]],
+						"height": "40su",
+						"boundary": "letter",
+						"animations": [
+							{
+								"translate": [
+									0,
+									"40su"
+								]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+650", 1]
+								],
+								"ramp": 0.2,
+								"easing": "easeOutQuad",
+								"translate": [0, 0],
+								"opacity": 1
+							},
+							{
+								"mix": ["animate",
+									["100%", 1],
+									["-400", 0]
+								],
+								"opacity": 0,
+								"easing": "easeInQuad",
+								"ramp": 0.5
+							}
+						]
+					}],
+					["text", {
+						"stagger": [750, -250],
+						"enabled": ["$", ["exists", ["var", "detail-2"]]],
+						"mixins": ["ds-impactdotcom-webinar-mixins",
+							"text"
+						],
+						"color": ["$", ["var", "color-text"]],
+						"string": ["$", ["var", "detail-2"]],
+						"font": ["$", ["var", "font-medium"]],
+						"height": "40su",
+						"boundary": "letter",
+						"animations": [
+							{
+								"translate": [
+									0,
+									"40su"
+								]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+650", 1]
+								],
+								"ramp": 0.2,
+								"easing": "easeOutQuad",
+								"translate": [0, 0],
+								"opacity": 1
+							},
+							{
+								"mix": ["animate",
+									["100%", 1],
+									["-400", 0]
+								],
+								"opacity": 0,
+								"easing": "easeInQuad",
+								"ramp": 0.5
+							}
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

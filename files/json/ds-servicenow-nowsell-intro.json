@@ -1,0 +1,135 @@
+[
+	"ds-servicenow-nowsell-intro",
+	[
+		["dsx-mixins",
+			"intro"
+		],
+		["ds-servicenow-mixins",
+			"color-primary",
+			"color-secondary",
+			"color-accent",
+			"font-medium",
+			"font-black"
+		],
+		["dsx-mixins", 
+			"boilerplate-intro-outro"
+		]
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins", "set-su-roi"],
+			"color": ["$", ["var", "color-secondary"]],
+			"mask": {
+				"padding": [
+					["animate",
+						[0, "100rh", "easeInOutQuint"],
+						["+800", 0]
+					],
+					0,
+					0,
+					0
+				]
+			}
+		}, [
+			["asset", {
+				"file": "./media/ds-servicenow-wheel.png",
+				"justify": "fit center left",
+				"opacity": 0.15,
+				"transform": [
+					["scale", 1.7],
+					["translate",
+						"-30rw",
+						0
+					]
+				]
+			}],
+			["null", {
+				"mixins": ["dsx-mixins", ["safezone"]]
+			}, [
+				["asset", {
+					"file": "./media/ds-servicenow-nowsell-logo-animated-large.json",
+					"justify": "fit center",
+					"lottie-driver": 1,
+					"rect": [
+						0,
+						0,
+						"260nsu",
+						"300nsu"
+					]
+				}],
+				["null", {
+					"layout": "vertical packed",
+					"align": "center left",
+					"gap": "60su"
+				}, [
+					["text", {
+						"stagger": [500, 0],
+						"enabled": ["$", ["exists", ["var", "headline"]]],
+						"font": ["$", ["var", "font-black"]],
+						"height": "160su",
+						"leading": "10su",
+						"measure": "letter-size",
+						"justify": "left center",
+						"color": ["$", ["var", "color-accent"]],
+						"string": ["$", ["var", "headline"]],
+						"boundary": "line",
+						"animations": [
+							{
+								"mask": [0, 0, 0, 0],
+								"translate": [
+									0,
+									"220su"
+								]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+1000", 1]
+								],
+								"easing": "easeOutQuad",
+								"translate": [0, 0]
+							}
+						]
+					}],
+					["text", {
+						"stagger": [800, 0],
+						"enabled": ["$", ["exists", ["var", "subhead"]]],
+						"font": ["$", ["var", "font-medium"]],
+						"height": "55su",
+						"measure": "letter-size",
+						"justify": "left center",
+						"color": ["$", ["var", "color-primary"]],
+						"string": ["$", ["var", "subhead"]],
+						"animations": [
+							{
+								"mask": [0, 0, 0, 0],
+								"translate": [
+									0,
+									"100su"
+								]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+1000", 1]
+								],
+								"easing": "easeOutQuad",
+								"translate": [0, 0]
+							}
+						]
+					}]
+				]]
+			]],
+			["solid", {
+				"rect": [
+					0,
+					0,
+					"25nsu",
+					"100rh"
+				],
+				"color": ["$", ["var", "color-accent"]],
+				"align": "right center"
+			}]
+		]]
+	]
+]

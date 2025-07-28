@@ -1,0 +1,51 @@
+[
+	"ds-hubspot-crm",
+	[
+		["ds-hubspot-mixins",
+			"color-darkgreys",
+			"color-neutrals"
+		],
+		{
+			"key": "dark-mode",
+			"display": "Dark Mode",
+			"type": "bool",
+			"default": false,
+			"required": false
+		},
+		{
+			"key": "has-bg",
+			"display": "Background",
+			"type": "bool",
+			"default": true,
+			"required": false
+		}
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins", "set-su", "safezone"],
+			"color": ["$",
+				["if",
+					["not", ["var", "has-bg"]],
+					["array", 0, 0, 0, 0],
+					["if",
+						["var", "dark-mode"],
+						["var", "color-eclipse"],
+						["var", "color-oatmilk"]
+					]
+				]
+			]
+		}, [
+			["asset", {
+				"file": ["$",
+					["if",
+						["var", "dark-mode"],
+						"./media/ds-hubspot-crm-light.mov",
+						"./media/ds-hubspot-crm-dark.mov"
+					]
+				],
+				"justify": "fit center",
+				"hold": true
+			}]
+		]]
+	]
+]

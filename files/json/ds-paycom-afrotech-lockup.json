@@ -1,0 +1,143 @@
+[
+	"ds-paycom-afrotech-lockup",
+	[
+		{
+			"key": "#shape-dur",
+			"display": "Shape Dur",
+			"private": true,
+			"type": "number",
+			"default": 100,
+			"script": ["$", ["dur", "./media/ds-paycom-afrotech-shapes.mov"]]
+		},
+		{
+			"key": "#media-dur",
+			"display": "Media Dur",
+			"private": true,
+			"type": "number",
+			"default": 100,
+			"script": ["$", ["dur", "./media/ds-paycom-logo-animated.mov"]]
+		},
+		{
+			"key": "#shape-hold",
+			"display": "Shape Hold",
+			"private": true,
+			"type": "number",
+			"default": 3000
+		},
+		{
+			"key": "#media-hold",
+			"display": "Media Hold",
+			"private": true,
+			"type": "number",
+			"default": 4000
+		},
+		{
+			"key": "#shape-pivot",
+			"display": "Shape Pivot",
+			"private": true,
+			"type": "number",
+			"default": 100,
+			"script": ["$",
+				["let",
+					[
+						["dur", ["key", ["comp-timing"], "duration"]],
+						["remainder", ["-", ["var", "#shape-dur"], ["var", "#shape-hold"]]]
+					],
+					["-", ["var", "dur"], ["var", "remainder"]]
+				]
+			]
+		},
+		{
+			"key": "#media-pivot",
+			"display": "Media Pivot",
+			"private": true,
+			"type": "number",
+			"default": 100,
+			"script": ["$",
+				["let",
+					[
+						["dur", ["key", ["comp-timing"], "duration"]],
+						["remainder", ["-", ["var", "#media-dur"], ["var", "#media-hold"]]]
+					],
+					["-", ["var", "dur"], ["var", "remainder"]]
+				]
+			]
+		}
+	],
+	[
+		["null", {
+			"transform": [
+				["scale", 1.5]
+			]
+		}, [
+			["solid", {
+				"color": ["linear-gradient",
+					["$",
+						["if",
+							[">=", ["aspect"], 1],
+							0,
+							-0.25
+						]
+					],
+					[0.00, ["$", ["color-mix", "#024731", "#000000", 0.15]]],
+					[0.25, "#024731"],
+					[0.75, "#024731"],
+					[1.00, ["$", ["color-mix", "#024731", "#000000", 0.15]]]
+				]
+			}],
+			["asset", {
+				"file": "./media/ds-paycom-afrotech-shapes.mov",
+				"justify": "fill center",
+				"cuts": [
+					[
+						["$", ["var", "#shape-hold"]],
+						10000
+					]
+				],
+				"mute": true,
+				"hold": true,
+				"end": ["$", ["var", "#shape-pivot"]],
+				"breakpoints": [
+					{
+						"enabled":  ["$", ["<", ["aspect"], 1]],
+						"rotate": 0.25
+					}
+				]
+			}],
+			["asset", {
+				"file": "./media/ds-paycom-afrotech-shapes.mov",
+				"justify": "fill center",
+				"mute": true,
+				"hold": true,
+				"start": ["$", ["var", "#shape-pivot"]],
+				"slip": ["$", ["var", "#shape-hold"]],
+				"breakpoints": [
+					{
+						"enabled":  ["$", ["<", ["aspect"], 1]],
+						"rotate": 0.25
+					}
+				]
+			}],
+			["asset", {
+				"file": "./media/ds-paycom-logo-animated.mov",
+				"justify": "fit center",
+				"cuts": [
+					[
+						["$", ["var", "#media-hold"]],
+						10000
+					]
+				],
+				"hold": true,
+				"mute": true,
+				"end": ["$", ["var", "#media-pivot"]]
+			}],
+			["asset", {
+				"file": "./media/ds-paycom-logo-animated.mov",
+				"justify": "fit center",
+				"mute": true,
+				"slip": ["$", ["var", "#media-hold"]],
+				"start": ["$", ["var", "#media-pivot"]]
+			}]
+		]]
+	]
+]

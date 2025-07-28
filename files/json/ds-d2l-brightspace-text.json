@@ -1,0 +1,98 @@
+[
+	"ds-d2l-brightspace-text",
+	[
+		["dsx-mixins",
+			"text"
+		],
+		["ds-d2l-brightspace-mixins", 
+			"d2l-black",
+			"bright",
+			"color-selector",
+			"font-d2l-sans-bold"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "dark-mode",
+			"display": "Dark Mode",
+			"type": "bool",
+			"default": false,
+			"required": false
+		},
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [4, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": true,
+				"minimum": -100,
+				"maximum": 100
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone",
+				"offset"
+			]
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"max-width": "800nsu",
+				"mask": {
+				},
+				"padding": [
+					"40su",
+					"60su"
+				],
+				"transform": [
+					["translate",
+						0,
+						["animate",
+							[0, "+100rh", "easeOutQuint"],
+							[600, 0],
+							["100%", "+100rh"],
+							["-600", 0, "easeInQuint"]
+						]
+					]
+				]
+			}, [
+				["text", {
+					"string": ["$", ["var", "text"]],
+					"justify": ["$", ["var", "#align"]],
+					"height": "60su",
+					"leading": -0.03,
+					"stagger": [100, -300],
+					"color": ["$", 
+						["if",
+							["var", "dark-mode"],
+							["var", "white"],
+							["var", "d2l-black"]
+						]
+					],
+					"font": ["$", ["var", "font-d2l-sans-bold"]],
+					"background-color": ["$", 
+						["if",
+							["var", "dark-mode"],
+							["var", "#background"],
+							["var", "#foreground"]
+						]
+					],
+					"background-padding": [
+						"15su",
+						"15su"
+					],
+					"background-radius": "10su",
+					"boundary": "line"
+				}]
+			]]
+		]]
+	]
+]

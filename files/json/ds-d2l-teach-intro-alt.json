@@ -1,0 +1,43 @@
+[
+	"ds-d2l-teach-intro-alt",
+	[
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su"
+			]
+		}, [
+			["null", {
+				"duration": ["$", ["-", ["key", ["comp-timing"], "duration"], 800]]
+			}, [
+				["solid", {
+					"color": "#282828"
+				}],
+				["asset", {
+					"file": "./media/ds-d2l-tlpod.png",
+					"justify": "fit center",
+					"rect": [
+						"8rw",
+						"12rh",
+						["$",
+							["if",
+								[">", ["aspect"], 1],
+								"50rw",
+								"80rw"
+							]
+						],
+						"70rh"
+					]
+				}]
+			]],
+			["asset", {
+				"file": "./media/ds-d2l-transition.mov",
+				"justify": "fill center",
+				"hold": true,
+				"start": ["$", ["-", ["key", ["comp-timing"], "duration"], ["dur", "./media/ds-d2l-transition.mov"]]],
+				"z-index": 100
+			}]
+		]]
+	]
+]

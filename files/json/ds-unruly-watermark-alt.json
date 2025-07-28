@@ -1,0 +1,142 @@
+[
+	"ds-unruly-watermark-alt",
+	[
+		{
+			"key": "logo",
+			"display": "Logo",
+			"type": "asset",
+			"default": "./media/capsule.svg",
+			"global": "logo",
+			"required": false
+		},
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [5, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"layout": "horizontal packed match",
+				"max-width": "800nsu",
+				"align": ["$", ["var", "#align"]],
+				"gap": "60su"
+			}, [
+				["asset", {
+					"stagger": [150, -75],
+					"mute": true,
+					"file": "./media/ds-unruly-logo-horiz.svg",
+					"flex": {
+						"width": "300su",
+						"height": "300su"
+					},
+					"justify": "fit center right",
+					"opacity": ["animate",
+						[0, 0, "easeOutSine"],
+						["+350", 1],
+						["100%", 0],
+						["-350", 1, "easeInSine"]
+					],
+					"transform": [
+						["translate",
+							["animate",
+								[0, "50su", "easeOutCubic"],
+								["+550", 0],
+								["100%", "50su"],
+								["-350", 0, "easeInCubic"]
+							],
+							0
+						]
+					]
+				}],
+				["null", {
+					"align": "center",
+					"rect": [
+						0,
+						0,
+						"120su",
+						"120su"
+					],
+					"transform": [
+						["rotate",
+							0.125
+						]
+					]
+				}, [
+					["solid", {
+						"rect": [
+							0,
+							0,
+							"7su",
+							["animate",
+								[0, 0, "easeOutQuad"],
+								["+350", "100rh"],
+								["100%", 0],
+								["-350", "100rh", "easeInQuad"]
+							]
+						],
+						"align": "center"
+					}],
+					["solid", {
+						"rect": [
+							0,
+							0,
+							"7su",
+							["animate",
+								[0, 0, "easeOutQuad"],
+								["+350", "100rh"],
+								["100%", 0],
+								["-350", "100rh", "easeInQuad"]
+							]
+						],
+						"align": "center",
+						"transform": [
+							["rotate",
+								0.25
+							]
+						]
+					}]
+				]],
+				["asset", {
+					"stagger": [150, -75],
+					"mute": true,
+					"file": ["$", ["var", "logo"]],
+					"flex": {
+						"width": "300su",
+						"height": "300su"
+					},
+					"justify": "fit center left",
+					"opacity": ["animate",
+						[0, 0, "easeOutSine"],
+						["+350", 1],
+						["100%", 0],
+						["-350", 1, "easeInSine"]
+					],
+					"transform": [
+						["translate",
+							["animate",
+								[0, "-50su", "easeOutCubic"],
+								["+550", 0],
+								["100%", "-50su"],
+								["-350", 0, "easeInCubic"]
+							],
+							0
+						]
+					]
+				}]
+			]]
+		]]
+	]
+]

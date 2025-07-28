@@ -1,0 +1,67 @@
+{
+	"params": {
+		"color-primary": {
+			"key": "color-primary",
+			"display": "Primary",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		},
+		"color-secondary": {
+			"key": "color-secondary",
+			"display": "Secondary",
+			"type": "color",
+			"default": "#231f20",
+			"required": false
+		},
+		"color-accent": {
+			"key": "color-accent",
+			"display": "Accent",
+			"type": "color",
+			"default": "#134779",
+			"required": false
+		},
+		"color-blue-homebase": {
+			"key": "color-blue-homebase",
+			"display": "Accent",
+			"type": "color",
+			"default": "#29abe0",
+			"required": false
+		},
+		"font-medium": {
+			"key": "font-medium",
+			"display": "Font Medium",
+			"type": "string",
+			"default": "./media/Montserrat-Medium.ttf",
+			"required": false,
+			"private": true
+		},
+		"font-bold": {
+			"key": "font-bold",
+			"display": "Font Bold",
+			"type": "string",
+			"default": "./media/Montserrat-Bold.ttf",
+			"required": false,
+			"private": true
+		},
+		"font-black": {
+			"key": "font-black",
+			"display": "Font Black",
+			"type": "string",
+			"default": "./media/Montserrat-Black.ttf",
+			"required": false,
+			"private": true
+		},
+		"font-italic": {
+			"key": "font-italic",
+			"display": "Font Italic",
+			"type": "string",
+			"default": "./media/Montserrat-BoldItalic.ttf",
+			"required": false,
+			"private": true
+		}
+	},
+	"text": {
+		"measure": "letter-size"
+	}
+}

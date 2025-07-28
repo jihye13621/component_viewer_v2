@@ -1,0 +1,78 @@
+{
+	"font-captions": {
+		"font": "./media/Pinterest-Sans-Pro-Bold.otf",
+		"height": "80su"
+	},
+	"font-text": {
+		"font": "./media/Pinterest-Sans-Pro-Bold.otf",
+		"height": "85su"
+	},
+	"font-cta": {
+		"font": "./media/Pinterest-Sans-Pro-Bold.otf",
+		"height": "52su"
+	},
+	"font-overlay-small-bold": {
+		"font": "./media/Pinterest-Sans-Pro-Bold.otf",
+		"height": "42su"
+	},
+	"font-overlay-small": {
+		"font": "./media/Pinterest-Sans-Pro-Regular.otf",
+		"height": "42su"
+	},
+	"font-overlay-medium": {
+		"font": "./media/Pinterest-Sans-Pro-Regular.otf",
+		"height": "55su"
+	},
+	"font-outro": {
+		"font": "./media/Pinterest-Sans-Pro-Regular.otf",
+		"height": "70su"
+	},
+	"overlay-premiere?": {
+		"enabled": ["$",
+			["and",
+				["lt", ["aspect"], 0.9],
+				["safezone?"]
+			]
+		]
+	},
+	"overlay-idea?": {
+		"enabled": ["$",
+			["and",
+				["gte", ["aspect"], 0.9],
+				["safezone?"]
+			]
+		]
+	},
+	"overlay-padding": {
+		"breakpoints": [
+			{
+				"enabled": ["$",
+					["and",
+						["lt", ["aspect"], 0.9],
+						["safezone?"]
+					]
+				],
+				"padding": [
+					0,
+					0,
+					"40nsu",
+					0
+				]
+			},
+			{
+				"enabled": ["$",
+					["and",
+						["gte", ["aspect"], 0.9],
+						["safezone?"]
+					]
+				],
+				"padding": [
+					"60nsu",
+					0,
+					0,
+					0
+				]
+			}
+		]
+	}
+}

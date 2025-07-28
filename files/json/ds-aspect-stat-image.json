@@ -1,0 +1,232 @@
+[
+	"ds-aspect-stat-image",
+	[
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["justify", "fill"],
+				["motion", "none"]
+			]
+		},
+		{
+			"key": "stat",
+			"display": "Stat",
+			"type": "text",
+			"default": "100k",
+			"required": false
+		},
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "textarea",
+			"default": "Optional text",
+			"required": false
+		},
+		{
+			"key": "theme",
+			"display": "Theme",
+			"type": "string",
+			"default": "light",
+			"options": [
+				{
+					"key": "light",
+					"display": "Light"
+				},
+				{
+					"key": "light-plum",
+					"display": "Light Plum"
+				},
+				{
+					"key": "light-raspberry",
+					"display": "Light Raspberry"
+				},
+				{
+					"key": "plum",
+					"display": "Dark Plum"
+				},
+				{
+					"key": "raspberry",
+					"display": "Raspberry"
+				},
+				{
+					"key": "blueberry",
+					"display": "Blueberry"
+				},
+				{
+					"key": "aloe",
+					"display": "Aloe"
+				},
+				{
+					"key": "citron",
+					"display": "Citron"
+				},
+				{
+					"key": "clementine",
+					"display": "Clementine"
+				}
+			],
+			"required": false
+		},	
+		["ds-aspect-mixins",
+			"colors",
+			"font-wallop",
+			"font-roobert",
+			"font-roobert-regular"
+		]
+	],
+	[
+		["ds-aspect-bg", {
+			"theme-manual": ["$", ["switch", ["var", "theme"], ["object",
+				["array", "light", ["'", "#F8F7EF", "#F7397A"]],
+				["array", "light-plum", ["'", "#FCF5FB", "#8B0F71"]],
+				["array", "light-raspberry", ["'", "#FFF5F9", "#F7397A"]],
+				["array", "plum", ["'", "#8B0F71", "#F7397A"]],
+				["array", "raspberry", ["'", "#F7397A", "#F7397A"]],
+				["array", "blueberry", ["'", "#FAFAFE", "#546CEB"]],
+				["array", "aloe", ["'", "#F8FCFB", "#59DCC4"]],
+				["array", "citron", ["'", "#FFFCEB", "#D4A732"]],
+				["array", "clementine", ["'", "#FFF3EB", "#FBC3A0"]]
+			]]]
+		}],
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			]
+		}, [
+			["null", {
+				"layout": "horizontal",
+				"breakpoints": [
+					{
+						"enabled": ["$", ["<=", ["aspect"], 1]],
+						"layout": "vertical"
+					}
+				],
+				"gap": "100su"
+			}, [
+				["null", {
+					"align": "bottom left",
+					"layout": "vertical packed",
+					"gap": "50su"
+				}, [
+					["text", {
+						"enabled": ["$", ["exists", ["var", "stat"]]],
+						"font": ["$", ["var", "font-wallop"]],
+						"height": "250su",
+						"color": ["$", ["switch", ["var", "theme"], ["object",
+							["array", "light", "#F7397A"],
+							["array", "light-plum", "#8B0F71"],
+							["array", "light-raspberry", "#F7397A"],
+							["array", "plum", "#FFFFFF"],
+							["array", "raspberry", "#FFFFFF"],
+							["array", "blueberry", "#546CEB"],
+							["array", "aloe", "#40AD99"],
+							["array", "citron", "#D4A732"],
+							["array", "clementine", "#F4792B"]
+						]]],
+						"measure": "letter-size",
+						"string": ["$", ["var", "stat"]],
+						"align": "left",
+						"justify": "left",
+						"kerning": -0.03,
+						"boundary": "letter",
+						"animations": [
+							{
+								"translate": [
+									0,
+									"100su"
+								]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+1000", 1]
+								],
+								"easing": "easeOutCubic",
+								"opacity": 1,
+								"ramp": 3,
+								"translate": [0, 0]
+							}
+						]
+					}],
+					["text", {
+						"enabled": ["$", ["exists", ["var", "text"]]],
+						"stagger": [300, 0],
+						"font": ["$", ["var", "font-roobert-regular"]],
+						"height": "40su",
+						"leading": "15su",
+						"color": ["$", ["switch", ["var", "theme"], ["object",
+							["array", "light", "#0F0F0E"],
+							["array", "light-plum", "#5C0747"],
+							["array", "light-raspberry", "#891E42"],
+							["array", "plum", "#F1D3EA"],
+							["array", "raspberry", "#FEEBF2"],
+							["array", "blueberry", "#23317B"],
+							["array", "aloe", "#06604B"],
+							["array", "citron", "#98742D"],
+							["array", "clementine", "#AC5217"]
+						]]],
+						"measure": "letter-size",
+						"string": ["$", ["var", "text"]],
+						"align": "left",
+						"justify": "left",
+						"boundary": "line",
+						"animations": [
+							{
+								"translate": [
+									0,
+									"70su"
+								]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+1000", 1]
+								],
+								"easing": "easeOutCubic",
+								"opacity": 1,
+								"ramp": 2,
+								"translate": [0, 0]
+							}
+						]
+					}]
+				]],
+				["null", {
+					"enabled": ["$", ["exists", ["var", "asset"]]],
+					"flex": {
+						"weight": 0.8
+					},
+					"transform": [
+						["scale",
+							["animate",
+								[0, 0.8, "easeOutQuart"],
+								["+900", 1]
+							]
+						]
+					],
+					"effect": [
+						["shadow", {
+							"color": "#5C074733",
+							"offset": ["-4su", "10su"],
+							"radius": "20su"
+						}]
+					]
+				}, [
+					["user-asset", {
+						"file": ["$", ["var", "asset"]],
+						"justify": "fill center",
+						"mute": true,
+						"loop": true,
+						"mask": {
+							"radius": "20su"
+						}
+					}]
+				]]
+			]]
+		]]
+	]
+]

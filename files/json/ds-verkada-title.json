@@ -1,0 +1,101 @@
+[
+	"ds-verkada-title",
+	[
+		["dsx-mixins",
+			"text"
+		],
+		{
+			"key": "theme",
+			"display": "Color Theme",
+			"type": "string",
+			"default": "white",
+			"required": false,
+			"options": [
+				{
+					"key": "white",
+					"display": "White"
+				},
+				{
+					"key": "dark-blue",
+					"display": "Dark Blue"
+				},
+				{
+					"key": "black",
+					"display": "Black"
+				}
+			]
+		},
+		["ds-verkada-mixins",
+			"colors",
+			"fonts"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [5, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			],
+			"color": ["$", ["switch", ["var", "theme"], ["object",
+				["array", "dark-blue", ["var", "color-dark-blue"]],
+				["array", "black", ["var", "color-black"]],
+				["array", "white", ["var", "color-white"]]
+			]]]
+		}, [
+			["null", {
+				"enabled": ["$", ["exists", ["var", "text"]]],
+				"max-width": "1300nsu",
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"mask": {
+					"padding": [
+						"-10su",
+						0,
+						"-10su",
+						0
+					]
+				},
+				"transform": [
+					["translate",
+						0,
+						["animate",
+							[0, "115rh", "easeOutCubic"],
+							["+500", 0]
+						]
+					]
+				]
+			}, [
+				["text", {
+					"enabled": ["$", ["exists", ["var", "text"]]],
+					"font": ["$", ["var", "font-black"]],
+					"measure": "letter-size",
+					"leading": "10su",
+					"string": ["$", ["var", "text"]],
+					"color": ["$", ["switch", ["var", "theme"], ["object",
+						["array", "dark-blue", ["var", "color-white"]],
+						["array", "black", ["var", "color-white"]],
+						["array", "white", ["var", "color-black"]]
+					]]],
+					"height": "90su",
+					"trim-descender": false,
+					"justify": ["$", ["var", "#align"]],
+					"boundary": "word"
+				}]
+			]]
+		]]
+	]
+]

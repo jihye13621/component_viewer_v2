@@ -1,0 +1,107 @@
+["ds-paycom-outro",
+	[],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", "safezone", "set-su"]
+		}, [
+			["solid", {
+				"flex": {
+					"position": "fixed"
+				},
+				"color": ["linear-gradient",
+					-0.125,
+					[0.0, [1, 1, 1, 1]],
+					[0.02, [1, 1, 1, 0]]
+				],
+				"path": [
+					[0, 0],
+					["100rh", 0],
+					[0, "100rh"],
+					["-500rw", "100rh"],
+					["-500rw", 0]
+				],
+				"transform": [
+					["translate",
+						["animate",
+							[0, "-100rh", "easeOutExpo"],
+							["+1000", "100rw"]
+						],
+						0
+					],
+					["translate",
+						["animate",
+							[0, 0, "easeOutExpo"],
+							["+1000", "100rh"]
+						],
+						0
+					]
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["lt", ["aspect"], 1]],
+						"transform": [
+							["translate",
+								["animate",
+									[0, "-100rh", "easeOutExpo"],
+									["+1000", "150rw"]
+								],
+								0
+							],
+							["translate",
+								["animate",
+									[0, 0, "easeOutExpo"],
+									["+1000", "100rh"]
+								],
+								0
+							]
+						]
+					}
+				]
+			}],
+			["asset", {
+				"stagger": [200, 0],
+				"flex": {
+					"position": "fixed"
+				},
+				"file": "./media/ds-paycom-shape.svg",
+				"justify": "fit left top",
+				"rect": [
+					0,
+					0,
+					"100rh",
+					"100rh"
+				],
+				"transform": [
+					["scale",
+						["animate",
+							[0, 0, "easeOutQuad"],
+							["+500", 1.0],
+							["100%", 1.6]
+						],
+						0,
+						"50rh"
+					]
+				]
+			}],
+			["asset", {
+				"file": "./media/ds-paycom-logo-animated.json",
+				"justify": "fit center",
+				"lottie-driver": ["animate",
+					[0, 0],
+					[
+						["$", ["to-relative-string", ["dur", "./media/ds-paycom-logo-animated.json"]]],
+						1
+					]
+				],
+				"transform": [
+					["scale",
+						["animate",
+							[0, 0.9],
+							["100%", 1.0]
+						]
+					]
+				]
+			}]
+		]]
+	]
+]

@@ -1,0 +1,80 @@
+[
+	"ds-akamai-outro",
+	[
+		["ds-akamai-mixins",
+			"colors",
+			"font-bold",
+			"font-regular"
+		]
+	],
+	[
+		["null", {
+		}, [
+			["solid", {
+				"color": ["$", ["var", "color-navy-blue"]]
+			}],
+			["solid", {
+				"color": ["linear-gradient",
+					0.85,
+					[0, ["$", ["rgba-set", ["var", "color-blue"], "a", 0.5]]],
+					[0.2, ["$", ["rgba-set", ["var", "color-blue"], "a", 0]]]
+				]
+			}]
+		]],
+		["asset", {
+			"file": "./media/ds-akamai-grid-bg.png",
+			"justify": "fill center bottom",
+			"blend": "screen",
+			"transform": [
+				["scale",
+					-1,
+					1
+				],
+				["scale",
+					["animate",
+						[0, 1],
+						["100%", 1.1]
+					],
+					["animate",
+						[0, 1],
+						["100%", 1.2]
+					],
+					"20rw",
+					"0rh"
+				]
+			]
+		}],
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]],
+			"blend": "normal"
+		}, [
+			["asset", {
+				"file": "./media/ds-akamai-logo-animated.mov",
+				"justify": "fit center",
+				"align": "center",
+				"hold": true,
+				"transform": [
+					["scale",
+						["animate",
+							[0, 2, "easeOutQuad"],
+							["+500", 0.5]
+						]
+					]
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["lte", ["aspect"], 1]],
+						"transform": [
+							["scale",
+								["animate",
+									[0, 2, "easeOutQuad"],
+									["+500", 0.7]
+								]
+							]
+						]
+					}
+				]
+			}]
+		]]
+	]
+]

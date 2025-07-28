@@ -1,0 +1,192 @@
+[
+	"ds-suzy-speaker",
+	[
+		["dsx-mixins", ["speaker"]],
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": "#6924C2",
+			"required": false
+		},
+		{
+			"key": "color-2",
+			"display": "Color 2",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		},
+		{
+			"key": "color-3",
+			"display": "Color 3",
+			"type": "color",
+			"default": "#000000",
+			"required": false
+		},
+		["dsx-mixins", ["boilerplate"]],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [1, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"max-width": "700nsu",
+				"enabled": ["$",
+					["or",
+						["exists", ["var", "name"]],
+						["exists", ["var", "detail-1"]],
+						["exists", ["var", "detail-2"]]
+					]
+				],
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]]
+			}, [
+				["null", {
+					"layout": "vertical packed",
+					"align": "left", 
+					"mask": {
+						"radius": "5su",
+						"padding": [
+							["animate",
+								[0, "100rh", "easeInOutCubic"],
+								["+600", 0]
+							],
+							0,
+							["animate",
+								["100%", "100rh"],
+								["-500", 0, "easeInOutCubic"]
+							],
+							0
+						]
+					},
+					"padding": [
+						"60su",
+						0,
+						0,
+						0
+					]
+				}, [
+					["asset", {
+						"flex": {
+							"position": "fixed"
+						},
+						"file": "./media/ds-suzy-bg.png",
+						"justify": "fill top right"
+					}],
+					["solid", {
+						"layout": "vertical packed",
+						"align": ["$", ["var", "#align"]],
+						"stagger": [200, -200],
+						"color": ["$", ["var", "color-2"]],
+						"mask": {
+							"padding": [
+								["animate",
+									[0, "100rh", "easeInOutCubic"],
+									["+600", 0]
+								],
+								0,
+								0,
+								0
+							]
+						},
+						"padding": [
+							"30su",
+							"50su",
+							"50su",
+							"50su"
+						],
+						"gap": "40su"
+					}, [
+						["text", {
+							"enabled": ["$", ["exists", ["var", "name"]]],
+							"mixins": ["ds-suzy-mixins", ["font-medium"]],
+							"string": ["$", ["var", "name"]],
+							"justify": ["$", ["var", "#align"]],
+							"color": ["$", ["var", "color-1"]],
+							"fit": true,
+							"stagger": [700, 0],
+							"boundary": "letter",
+							"animations": [
+								{
+									"translate": [
+										0,
+										"30su"
+									]
+								},
+								{
+									"mix": ["animate",
+										[0, 0],
+										[500, 1]
+									],
+									"easing": "easeOutQuad",
+									"ramp": 0.6,
+									"opacity": 1,
+									"translate": [0, 0]
+								}
+							]
+						}],
+						["text", {
+							"enabled": ["$",
+								["or",
+									["exists", ["var", "detail-1"]],
+									["exists", ["var", "detail-2"]]
+								]
+							],
+							"mixins": ["ds-suzy-mixins", ["font-small"]],
+							"string": ["$", ["var", "detail-1"]],
+							"justify": ["$", ["var", "#align"]],
+							"color": ["$", ["var", "color-3"]],
+							"breakpoints": [
+								{
+									"enabled": ["$", ["exists", ["var", "detail-2"]]],
+									"string": ["$",
+										["concat",
+											["var", "detail-1"],
+											["if",
+												["exists", ["var", "detail-1"]],
+												"\n",
+												""
+											],
+											["var", "detail-2"]
+										]
+									]
+								}
+							],
+							"stagger": [900, 0],
+							"boundary": "word",
+							"animations": [
+								{
+									"translate": [
+										0,
+										"30su"
+									]
+								},
+								{
+									"mix": ["animate",
+										[0, 0],
+										[600, 1]
+									],
+									"easing": "easeOutQuad",
+									"ramp": 0.5,
+									"opacity": 1,
+									"translate": [0, 0]
+								}
+							]
+						}]
+					]]
+				]]
+			]]
+		]]
+	]
+]

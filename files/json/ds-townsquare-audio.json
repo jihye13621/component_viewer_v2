@@ -1,0 +1,29 @@
+[
+	"ds-townsquare-audio",
+	[
+		{
+			"key": "audio-file",
+			"display": "Audio",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["gain", 0]
+			]
+		},
+		{
+			"key": "loop",
+			"display": "Loop",
+			"type": "bool",
+			"default": false,
+			"required": false
+		}
+	],
+	[
+		["user-asset", {
+			"file": ["$", ["var", "audio-file"]],
+			"opacity": 0,
+			"loop": ["$", ["var", "loop"]]
+		}]
+	]
+]

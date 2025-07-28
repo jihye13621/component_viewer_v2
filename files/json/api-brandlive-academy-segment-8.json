@@ -1,0 +1,398 @@
+[
+	"api-brandlive-academy-segment-8",
+	[
+		{
+			"key": "headline",
+			"display": "Headline",
+			"type": "string",
+			"default": "New Features",
+			"required": false
+		},
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "string",
+			"default": "Product Updates",
+			"required": false
+		},
+		{
+			"key": "font-1",
+			"display": "Font 1",
+			"type": "string",
+			"required": false
+		},
+		{
+			"key": "font-2",
+			"display": "Font 2",
+			"type": "string",
+			"required": false
+		},
+		{
+			"key": "background-color",
+			"display": "Background Color",
+			"type": "color",
+			"default": "#FFFFFF",
+			"required": false
+		},
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": "#09083F",
+			"required": false
+		},
+		{
+			"key": "color-2",
+			"display": "Color 2",
+			"type": "color",
+			"default": "#0B45AC",
+			"required": false
+		},
+		{
+			"key": "color-3",
+			"display": "Color 3",
+			"type": "color",
+			"default": "#ED0201",
+			"required": false
+		},
+		{
+			"key": "color-4",
+			"display": "Color 4",
+			"type": "color",
+			"default": "#FFBC1E",
+			"required": false
+		},
+		{
+			"key": "gradient-top",
+			"display": "Gradient Left",
+			"type": "color",
+			"default": "#ED0201",
+			"required": false
+		},
+		{
+			"key": "gradient-bottom",
+			"display": "Gradient Right",
+			"type": "color",
+			"default": "#FF6AE6",
+			"required": false
+		},        
+		{
+			"key": "text-color-1",
+			"display": "Text Color 1",
+			"type": "color",
+			"default": "#0B45AC",
+			"required": false
+		},
+		{
+			"key": "text-color-2",
+			"display": "Text Color 2",
+			"type": "color",
+			"default": "#09083F",
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-dsx-su"
+			]
+		}, [
+			["solid", {
+				"rect": [0, 0, "100rw", "100rh"],
+				"color": ["$", ["var", "background-color"]]
+			}],
+			["null", {
+				"transform": [
+					["scale",
+						["animate",
+							[0, 1.83, "holdIn"],
+							["+1033", 0.92]
+						]
+					],
+					["translate",
+						["animate",
+							[0, "1080su", "holdIn"],
+							["+1033", "-100su"]
+						],
+						["animate",
+							[0, "650su", "holdIn"],
+							["+1033", "-40su"]
+						]
+					]
+				],
+				"end": 3800
+			}, [
+				["api-brandlive-academy-segment-8-shapes-1", {
+					"color-1": ["$", ["var", "color-1"]],
+					"color-2": ["$", ["var", "color-2"]],
+					"color-3": ["$", ["var", "color-3"]],
+					"color-4": ["$", ["var", "color-4"]],
+					"background-color": ["$", ["var", "background-color"]],
+					"gradient-top": ["$", ["var", "gradient-top"]],
+					"gradient-bottom": ["$", ["var", "gradient-bottom"]],
+					"//": "left 1"
+				}],
+				["api-brandlive-academy-segment-8-shapes-2", {
+					"color-1": ["$", ["var", "color-1"]],
+					"color-2": ["$", ["var", "color-2"]],
+					"color-3": ["$", ["var", "color-3"]],
+					"color-4": ["$", ["var", "color-4"]],
+					"background-color": ["$", ["var", "background-color"]],
+					"transform": [
+						["translate",
+							0,
+							"380su"
+						]
+					],
+					"start": 66,
+					"//": "left 2"
+				}],
+				["api-brandlive-academy-segment-8-shapes-1", {
+					"color-1": ["$", ["var", "color-1"]],
+					"color-2": ["$", ["var", "color-2"]],
+					"color-3": ["$", ["var", "color-3"]],
+					"color-4": ["$", ["var", "color-4"]],
+					"background-color": ["$", ["var", "background-color"]],
+					"gradient-top": ["$", ["var", "gradient-top"]],
+					"gradient-bottom": ["$", ["var", "gradient-bottom"]],
+					"transform": [
+						["translate",
+							0, "750su"
+						]
+					],
+					"start": 133,
+					"//": "left 3"
+				}],
+				["api-brandlive-academy-segment-8-shapes-2", {
+					"color-1": ["$", ["var", "color-1"]],
+					"color-2": ["$", ["var", "color-2"]],
+					"color-3": ["$", ["var", "color-3"]],
+					"color-4": ["$", ["var", "color-4"]],
+					"background-color": ["$", ["var", "background-color"]],
+					"transform": [
+						["translate",
+							0, "1130su"
+						]
+					],
+					"start": 200,
+					"//": "left 4"
+				}],
+				["api-brandlive-academy-segment-8-shapes-2", {
+					"color-1": ["$", ["var", "color-1"]],
+					"color-2": ["$", ["var", "color-2"]],
+					"color-3": ["$", ["var", "color-3"]],
+					"color-4": ["$", ["var", "color-4"]],
+					"background-color": ["$", ["var", "background-color"]],
+					"transform": [
+						["scale",
+							-1.0,
+							1.0
+						],
+						["translate",
+							"220su", 0
+						]
+					],
+					"start": 266,
+					"//": "right 1"
+				}],
+				["api-brandlive-academy-segment-8-shapes-1", {
+					"color-1": ["$", ["var", "color-1"]],
+					"color-2": ["$", ["var", "color-2"]],
+					"color-3": ["$", ["var", "color-3"]],
+					"color-4": ["$", ["var", "color-4"]],
+					"background-color": ["$", ["var", "background-color"]],
+					"gradient-top": ["$", ["var", "gradient-top"]],
+					"gradient-bottom": ["$", ["var", "gradient-bottom"]],
+					"transform": [
+						["scale",
+							-1.0,
+							1.0
+						],
+						["translate",
+							"220su", "380su"
+						]
+					],
+					"start": 333,
+					"//": "right 2"
+				}],
+				["api-brandlive-academy-segment-8-shapes-2", {
+					"color-1": ["$", ["var", "color-1"]],
+					"color-2": ["$", ["var", "color-2"]],
+					"color-3": ["$", ["var", "color-3"]],
+					"color-4": ["$", ["var", "color-4"]],
+					"background-color": ["$", ["var", "background-color"]],
+					"transform": [
+						["scale",
+							-1.0,
+							1.0
+						],
+						["translate",
+							"220su", "750su"
+						]
+					],
+					"start": 400,
+					"//": "right 3"
+				}],
+				["api-brandlive-academy-segment-8-shapes-1", {
+					"color-1": ["$", ["var", "color-1"]],
+					"color-2": ["$", ["var", "color-2"]],
+					"color-3": ["$", ["var", "color-3"]],
+					"color-4": ["$", ["var", "color-4"]],
+					"background-color": ["$", ["var", "background-color"]],
+					"gradient-top": ["$", ["var", "gradient-top"]],
+					"gradient-bottom": ["$", ["var", "gradient-bottom"]],
+					"transform": [
+						["scale",
+							-1.0,
+							1.0
+						],
+						["translate",
+							"220su", "1130su"
+						]
+					],
+					"start": 466,
+					"//": "right 4"
+				}]
+			]],
+			["solid", {
+				"start": 3800,
+				"rect": [
+					"200su", 
+					["animate",
+						["+1333", "955su", "easeInOutQuad"],
+						["+133", "680su"],
+						["+66", "720su"],
+						["+1900", "720su", "easeInOutQuad"],
+						["+333", "975su"],
+						["+66", "955su"]
+					], 
+					"230su", 
+					["animate",
+						["+1333", "235su", "easeInOutQuad"],
+						["+133", "510su"],
+						["+66", "470su"],
+						["+1900", "470su", "easeInOutQuad"],
+						["+333", "215su"], 
+						["+66", "235su"]
+					]
+				],
+				"color": ["$", ["var", "color-3"]],
+				"transform": [
+					["scale",
+						["animate",
+							[0, 0, "easeInOutQuad"],
+							["+266", 1.0]
+						]
+					],
+					["translate",
+						0,
+						["animate",
+							[0, 0, "easeOutQuad"],
+							["+266", "-80su"],
+							["+166", 0],
+							["+66", "-10su"],
+							["+66", 0]
+						]	
+					]
+				]
+			}],
+			["solid", {
+				"start": 4133,
+				"end": 6333,
+				"rect": ["460su", "50rh", "230su", "230su"],
+				"radius": "1000su",
+				"color": ["$", ["var", "color-1"]],
+				"transform": [
+					["scale",
+						["animate",
+							["+833", 0, "easeInOutQuad"],
+							["+200", 1.06],
+							["+66", 1.0]
+						]
+					], 
+					["translate",
+						0,
+						["animate",
+							["+833", 0, "easeInOutQuad"],
+							["+200", "-20su"],
+							["+66", 0, "easeOutQuad"],
+							["+66", "-20su", "easeInQuad"],
+							["+66", 0]
+						]
+					]
+				]
+			}],
+			["solid", {
+				"start": 6333,
+				"rect": ["460su", "50rh", "230su", "230su"],
+				"radius": "1000su",
+				"color": ["$", ["var", "color-3"]]
+			}],
+			["solid", {
+				"start": 7000,
+				"rect": ["460su", "50rh", "230su", "230su"],
+				"radius": "1000su",
+				"color": ["$", ["var", "color-2"]]
+			}],
+			["solid", {
+				"start": 4000,
+				"rect": ["460su", "965su", "230su", "230su"],
+				"radius": "1000su",
+				"color": ["$", ["var", "color-1"]],
+				"transform": [
+					["scale",
+						["animate",
+							[0, 0, "easeInOutQuad"],
+							["+266", 1.06],
+							["+66", 1.0]	
+						]
+					]
+				]
+			}],
+			["solid", {
+				"start": 6666,
+				"end": 7666,
+				"rect": ["460su", "965su", "230su", "230su"],
+				"radius": "1000su",
+				"color": ["$", ["var", "color-4"]]
+			}],
+			["solid", {
+				"start": 4366,
+				"path": [
+					["700su", "50rh"],
+					["935su", "1190su"],
+					["1170su", "50rh"]
+				],
+				"transform": [
+					["scale",
+						["animate",
+							[0, 0, "easeInOutQuad"],
+							["+166", 0.62],
+							["+166", 0.62],
+							["+66", 0.59, "easeInOutQuad"],
+							["+200", 1.0]
+						],
+						"935su", "955su"
+					],
+					["rotate",
+						["animate", 
+							["+2000", 0, "easeInOutQuad"],
+							["+466", 0.5]
+						],
+						"935su", "955su"
+					]
+				],
+				"color": ["$", ["var", "color-1"]]
+			}],
+			["api-brandlive-academy-segment-text", {
+				"headline": ["$", ["var", "headline"]],
+				"text": ["$", ["var", "text"]],
+				"font-1": ["$", ["var", "font-1"]],
+				"font-2": ["$", ["var", "font-2"]],
+				"text-color-1": ["$", ["var", "text-color-1"]],
+				"text-color-2": ["$", ["var", "text-color-2"]],
+				"start": 4000
+			}]
+		]]
+	]
+]

@@ -1,0 +1,179 @@
+[
+	"ds-gong-stat",
+	[
+		{
+			"key": "stat",
+			"display": "Number",
+			"type": "text",
+			"default": "+30%",
+			"required": false,
+			"script": ["$", 
+				["if",
+					["var", "do-count-up"],
+					["let",
+						[
+							["found", ["match", ["var", "stat"], ["regexp", "[\\d,]+"], ""]],
+							["segments", ["if",
+								["exists", ["var", "found"]],
+								["segment", ["var", "stat"], ["var", "found"]]
+							]]
+						],
+						["if",
+							["exists", ["var", "found"]],
+							["do",
+								["set", "prefix", ["nth", ["var", "segments"], 0]],
+								["set", "postfix", ["nth", ["var", "segments"], 2]],
+								["floor",
+									["to-number",
+										["var", "found"]
+									]
+								]
+							],
+							["do",
+								["set", "prefix", ""],
+								["set", "postfix", ""],
+								0
+							]
+						]
+					],
+					["var", "stat"]
+				]
+			]
+		},
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "text",
+			"default": "response rate",
+			"required": false
+		},
+		{
+			"key": "color-white",
+			"display": "Color",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		},
+		{
+			"key": "do-count-up",
+			"display": "Count Up",
+			"type": "bool",
+			"default": true,
+			"required": false
+		},
+		["ds-gong-mixins",
+			"font-700",
+			"font-400"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [0, 0, 0],
+			"required": false,
+			"ui": {
+				"grid": false,
+				"offset": true,
+				"minimum": -100,
+				"maximum": 100
+			}
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone",
+				"offset-screen"
+			]
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"align": "center",
+				"gap": "50su",
+				"max-width": "1200su",
+				"opacity": ["animate",
+					[0, 0, "easeOutQuad"],
+					["+400", 1],
+					["100%", 0],
+					["-400", 1, "easeInQuad"]
+				],
+				"transform": [
+					["translate",
+						0,
+						["animate",
+							[0, "80su", "easeOutQuad"],
+							["+800", 0]
+						]
+					]
+				]
+			}, [
+				["text", {
+					"enabled": ["$", ["exists", ["var", "stat"]]],
+					"font": ["$", ["var", "font-700"]],
+					"measure": "letter-size",
+					"height": "220su",
+					"kerning": -0.02,
+					"color": ["$", ["var", "color-white"]],
+					"string": ["$", ["var", "stat"]],
+					"fit": true,
+					"justify": "center",
+					"breakpoints": [
+						{
+							"enabled": ["$", ["var", "do-count-up"]],
+							"string": "",
+							"mutate": ["$$",
+								["let",
+									[
+										["start", ["$", ["var", "start"]]],
+										["end", ["$", ["var", "end"]]],
+										["frame", ["current-frame"]],
+										["animate",
+											["ease",
+												["map",
+													["var", "frame"],
+													["var", "start"],
+													["+", ["var", "start"], 800],
+													0,
+													1
+												],
+												"easeOutQuad"
+											]
+										]
+									],
+									["concat",
+										["$", ["var", "prefix"]],
+										["to-string", ["floor",
+											["*",
+												["$", ["var", "stat"]],
+												["var", "animate"]
+											]
+										]],
+										["$", ["var", "postfix"]]
+									]
+								]
+							]
+						}
+					]
+				}],
+				["text", {
+					"enabled": ["$", ["exists", ["var", "text"]]],
+					"font": ["$", ["var", "font-700"]],
+					"height": "90su",
+					"color": ["$", ["var", "color-white"]],
+					"string": ["$", ["var", "text"]],
+					"justify": "center",
+					"mask": {
+						"padding": [
+							"-50rh",
+							0
+						]
+					}
+				}]
+			]]
+		]]
+	]
+]

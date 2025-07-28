@@ -1,0 +1,75 @@
+[
+	"ds-sothebys-captions",
+	[
+		["dsx-mixins",
+			"captions"
+		],
+		["ds-sothebys-mixins",
+			"color-primary",
+			"color-secondary",
+			"font-headline"
+		],
+		["dsx-mixins",
+			"boilerplate-captions"
+		],
+		{
+			"key": "max-words",
+			"display": "Words",
+			"type": "number",
+			"default": 6,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 1,
+				"minimum": 1,
+				"maximum": 12
+			}
+		},
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [2, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"max-width": "800nsu",
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]]
+			}, [
+				["shadow", {
+					"offset": ["3su", "3su"],
+					"radius": "2su",
+					"color": ["$", ["rgba-set", ["var", "color-secondary"], "a", 0.6]]
+				}, [
+					["text", {
+						"mixins": ["ds-sothebys-mixins",
+							"text"
+						],
+						"font": ["$", ["var", "font-headline"]],
+						"height": "55su",
+						"leading": "16su",
+						"justify": ["$", ["var", "#align"]],
+						"transcript": ["$",
+							["transcript-split",
+								["var", "transcript"],
+								["var", "max-words"]
+							]
+						],
+						"color": ["$", ["var", "color-primary"]]
+					}]
+				]]
+			]]
+		]]
+	]
+]

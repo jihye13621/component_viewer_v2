@@ -1,0 +1,40 @@
+[
+	"ds-sbg-watermark-wpec",
+	[
+		{
+			"key": "size",
+			"display": "Size",
+			"type": "number",
+			"default": 1.0,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"step": 0.05,
+				"minimum": 0.5,
+				"maximum": 1.5
+			}
+		},
+		["ds-sbg-mixins", "do-safezone"],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [0, 0, 0],
+			"required": false,
+			"ui": {
+				"grid": false,
+				"offset": true,
+				"minimum": -100,
+				"maximum": 100
+			}
+		}
+	],
+	[
+		["ds-sbg-watermark", {
+			"size": ["$", ["var", "size"]],
+			"do-safezone": ["$", ["var", "do-safezone"]],
+			"station": "wpec",
+			"position": ["$", ["var", "position"]]
+		}]
+	]
+]

@@ -1,0 +1,178 @@
+[
+	"ds-aspect-intro-alt",
+	[
+		{
+			"key": "theme",
+			"display": "Theme",
+			"type": "string",
+			"default": "plum",
+			"options": [
+				{
+					"key": "plum",
+					"display": "Plum"
+				},
+				{
+					"key": "raspberry",
+					"display": "Raspberry"
+				},
+				{
+					"key": "light-plum",
+					"display": "Light Plum"
+				},
+				{
+					"key": "light-raspberry",
+					"display": "Light Raspberry"
+				}
+			],
+			"required": false
+		},
+		["dsx-mixins",
+			"boilerplate"
+		],
+		["ds-aspect-mixins",
+			"colors"
+		]
+	],
+	[
+		["solid", {
+			"color": ["$", ["switch", ["var", "theme"], ["object",
+				["array", "plum", ["var", "color-eggshell"]],
+				["array", "raspberry", ["var", "color-eggshell"]],
+				["array", "light-plum", ["var", "color-plum"]],
+				["array", "light-raspberry", ["var", "color-raspberry"]]
+			]]],
+			"opacity": ["animate",
+				["100%", 0],
+				["-600", 1, "easeInQuad"]
+			]
+		}],
+		["solid", {
+			"color": [1, 1, 1, 1],
+			"buffer": "knockout",
+			"mixins": ["dsx-mixins",
+				"set-su"
+			],
+			"start": ["$", ["-", ["key", ["comp-timing"], "duration"], 1000, 33]]
+		}, [
+			["asset", {
+				"file": "./media/ds-aspect-icon-outline.svg",
+				"justify": "fit center",
+				"replace-color": [
+					[
+						[1, 1, 1, 1],
+						[0, 0, 0, 1]
+					]
+				],
+				"rect": [
+					0,
+					0,
+					"20rw",
+					"400su"
+				],
+				"align": "center",
+				"transform": [
+					["scale",
+						["animate",
+							[0, 1, "easeOutCubic"],
+							[
+								"+1533",
+								["$",
+									["if",
+										[">", ["aspect"], 1],
+										7,
+										["if",
+											["=", ["aspect"], 1],
+											9,
+											12
+										]
+									]
+								]
+							]
+						]
+					]
+				]
+			}]
+		]],
+		["solid", {
+			"color": ["$", ["switch", ["var", "theme"], ["object",
+				["array", "plum", ["var", "color-plum"]],
+				["array", "raspberry", ["var", "color-raspberry"]],
+				["array", "light-plum", ["var", "color-eggshell"]],
+				["array", "light-raspberry", ["var", "color-eggshell"]]
+			]]],
+			"effect": [
+				["matte", {
+					"buffer-in": "knockout",
+					"start": ["$", ["-", ["key", ["comp-timing"], "duration"], 1000, 33]]
+				}]
+			]
+		}],
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su"
+			]
+		}, [
+			["asset", {
+				"file": "./media/ds-aspect-logo-global-intro.json",
+				"justify": "fit center",
+				"rect": [
+					0,
+					0,
+					"65rw",
+					"70rh"
+				],
+				"align": "center",
+				"lottie-driver": ["animate",
+					[
+						["$",
+							["-",
+								["key", ["comp-timing"], "duration"],
+								["dur", "./media/ds-aspect-logo-global-intro.json"],
+								66
+							]
+						],
+						0
+					],
+					[
+						["$",
+							["-",
+								["key", ["comp-timing"], "duration"],
+								66
+							]
+						],
+						1
+					]
+				],
+				"replace-color": [
+					[
+						[1, 0, 0, 1],
+						["$", ["switch", ["var", "theme"], ["object",
+							["array", "plum", ["var", "color-eggshell"]],
+							["array", "raspberry", ["var", "color-eggshell"]],
+							["array", "light-plum", ["var", "color-plum"]],
+							["array", "light-raspberry", ["var", "color-raspberry"]]
+						]]]
+					],
+					[
+						[0, 1, 0, 1],
+						["$", ["switch", ["var", "theme"], ["object",
+							["array", "plum", ["var", "color-eggshell"]],
+							["array", "raspberry", ["var", "color-eggshell"]],
+							["array", "light-plum", ["var", "color-plum"]],
+							["array", "light-raspberry", ["var", "color-raspberry"]]
+						]]]
+					],
+					[
+						[0, 0, 1, 1],
+						["$", ["switch", ["var", "theme"], ["object",
+							["array", "plum", ["var", "color-plum"]],
+							["array", "raspberry", ["var", "color-raspberry"]],
+							["array", "light-plum", ["var", "color-eggshell"]],
+							["array", "light-raspberry", ["var", "color-eggshell"]]
+						]]]
+					]
+				]
+			}]
+		]]
+	]
+]

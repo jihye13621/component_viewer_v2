@@ -1,0 +1,33 @@
+[
+	"ds-equinix-bumper",
+	[
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su"]]
+		}, [
+			["asset", {
+				"enabled": ["$", ["lte", ["aspect"], 1]],
+				"file": "./media/ds-equinix-bumper.mov",
+				"justify": "fill center",
+				"hold": true,
+				"effect": [
+					["blur", {
+						"radius": 25
+					}]
+				]
+			}],
+			["asset", {
+				"file": "./media/ds-equinix-bumper.mov",
+				"justify": "fill center",
+				"hold": true,
+				"breakpoints": [
+					{
+						"enabled": ["$", ["lte", ["aspect"], 1]],
+						"justify": "fit center"
+					}
+				]
+			}]
+		]]
+	]
+]

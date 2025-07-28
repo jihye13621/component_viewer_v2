@@ -1,0 +1,172 @@
+[
+	"ds-sbg-crimobs-circle",
+	[
+		{
+			"key": "color-circle",
+			"display": "Color",
+			"type": "color",
+			"default": "#bb0a1e",
+			"required": false
+		},
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [0, 0, 0],
+			"required": false,
+			"ui": {
+				"grid": false,
+				"offset": true,
+				"minimum": -100,
+				"maximum": 100
+			}
+		},
+		{
+			"key": "size",
+			"display": "Size",
+			"type": "number",
+			"default": 1,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 0.01,
+				"minimum": 0.0,
+				"maximum": 1.0
+			}
+		},
+		{
+			"key": "angle",
+			"display": "Angle",
+			"type": "number",
+			"default": 0,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 0.01,
+				"minimum": 0.0,
+				"maximum": 1.0
+			}
+		},
+		{
+			"key": "aspect",
+			"display": "Aspect",
+			"type": "number",
+			"default": 1,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 0.01,
+				"minimum": 0.0,
+				"maximum": 3.0
+			}
+		}
+	],
+	[
+		["null", {
+			"-set-asset-time-": ["$", ["set", "#asset-dur", ["dur", "./media/ds-sbg-crimobs-circle.json"]]],
+			"mixins": ["dsx-mixins",
+				"set-su"
+			]
+		}, [
+			["null", {
+				"rect": [
+					0,
+					0,
+					0,
+					0
+				],
+				"align": "center",
+				"transform": [
+					["scale",
+						1,
+						["$", ["var", "aspect"]]
+					],
+					["rotate",
+						["$", ["var", "angle"]]
+					],
+					["scale",
+						["$", ["var", "size"]]
+					],
+					["translate",
+						["$",
+							["concat",
+								["*", 0.5, ["nth", ["var", "position"], 1]],
+								"cw"
+							]
+						],
+						["$",
+							["concat",
+								["*", -0.5, ["nth", ["var", "position"], 2]],
+								"ch"
+							]
+						]
+					]
+				]
+			}, [
+				["asset", {
+					"rect": [
+						"-250su",
+						"-250su",
+						"500su",
+						"500su"
+					],
+					"file": "./media/ds-sbg-crimobs-circle.json",
+					"justify": "fit center left",
+					"effect": [
+						["false-color", {
+							"color-1": ["$", ["var", "color-circle"]],
+							"color-2": ["$", ["var", "color-circle"]]
+						}]
+					],
+					"lottie-driver": 1,
+					"breakpoints": [
+						{
+							"enabled": ["$",
+								["gt",
+									["key", ["comp-timing"], "duration"],
+									["var", "#asset-dur"]
+								]
+							],
+							"lottie-driver": ["animate",
+								[0, 0],
+								[
+									["$", ["to-relative-string",
+										["var", "#asset-dur"]
+									]],
+									1
+								]
+							]
+						},
+						{
+							"enabled": ["$",
+								["gt",
+									["key", ["comp-timing"], "duration"],
+									["*", 2, ["var", "#asset-dur"]]
+								]
+							],
+							"lottie-driver": ["animate",
+								[0, 0],
+								[
+									["$", ["to-relative-string",
+										["var", "#asset-dur"]
+									]],
+									1
+								],
+								["100%", 0],
+								[
+									["$", ["to-relative-string",
+										["*", -0.5, ["var", "#asset-dur"]]
+									]],
+									1
+								]
+							]
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

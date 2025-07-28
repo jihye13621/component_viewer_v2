@@ -1,0 +1,317 @@
+[
+	"api-brandlive-abb-bumper",
+	[
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"script": ["$", ["if",
+				["exists", ["var", "asset"]],
+				["var", "asset"],
+				"./media/api-brandlive/Onboarding-placeholder2.mp4"	
+			]]
+		},
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": "#FFC494",
+			"required": false
+		},
+		{
+			"key": "color-2",
+			"display": "Color 2",
+			"type": "color",
+			"default": "#C8A3D7",
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-dsx-su"
+			]
+		}, [
+			["null", {
+				"buffer": "knockout1"
+			}, [
+				["solid", {
+					"color": "#000000"
+				}],
+				["solid", {
+					"rect": [0, 0, "100rw", "100rh"],
+					"transform": [
+						["scale",
+							["animate",
+								[0, 0.1, "easeOutQuad"],
+								["+433", 1.0]
+							],
+							["animate",
+								[0, 0.6, "easeOutQuad"],
+								["+433", 1.0]
+							]
+						]
+					],
+					"color": "#FFFFFF",
+					"//": "mask"
+				}]
+			]],
+			["matte", {
+				"buffer-in": "knockout1"
+			}, [
+				["asset", {
+					"file": "./media/api-brandlive/Onboarding-placeholder1.mp4",
+					"rect": [0, 0, "100rw", "100rh"],
+					"transform": [
+						["scale", 
+							["animate", 
+								[0, 0.75, "easeOutQuad"],
+								["+433", 0.9],
+								["+2500", 1.0]
+							]
+						]
+					],
+					"effect": [
+						["false-color", {
+							"color-1": ["$", ["var", "color-1"]],
+							"color-2": "#ffffff"
+						}]
+					],
+					"//": "back center"
+				}]
+			]],
+			["null", {
+				"buffer": "knockout2"
+			}, [
+				["solid", {
+					"color": "#000000"
+				}],
+				["solid", {
+					"rect": [0, 0, "100rw", "100rh"],
+					"transform": [
+						["scale",
+							["animate",
+								[0, 0.07, "easeOutQuad"],
+								["+1200", 0.8], 
+								["+2233", 1.0]
+							],
+							["animate",
+								[0, 0.55, "easeOutQuad"],
+								["+1200", 0.8],
+								["+2233", 1.0]
+							]
+						]
+					],
+					"color": "#FFFFFF",
+					"//": "mask"
+				}]
+			]],
+			["matte", {
+				"buffer-in": "knockout2"
+			}, [
+				["user-asset", {
+					"file": ["$", ["var", "asset"]],
+					"rect": [0, 0, "100rw", "100rh"],
+					"transform": [
+						["scale", 
+							["animate", 
+								[0, 0.7, "easeOutQuad"],
+								["+433", 0.8],
+								["+2800", 1.0]
+							]
+						]
+					],
+					"end": 2833,
+					"//": "front center"
+				}],
+				["user-asset", {
+					"file": ["$", ["var", "asset"]],
+					"rect": [0, 0, "100rw", "100rh"],
+					"transform": [
+						["scale", 
+							["animate", 
+								[0, 0.7, "easeOutQuad"],
+								["+433", 0.8],
+								["+2800", 1.0]
+							]
+						]
+					],
+					"opacity": ["animate",
+						["+333", 1.0, "easeOutQuad"],
+						["+100", 0]
+					],
+					"blend": "screen",
+					"effect": [
+						["false-color", {
+							"color-1": ["$", ["var", "color-1"]],
+							"color-2": ["$", ["var", "color-2"]]
+						}]
+					],
+					"end": 433,
+					"//": "front center tinted"
+				}],
+				["user-asset", {
+					"file": ["$", ["var", "asset"]],
+					"rect": [0, 0, "100rw", "100rh"],
+					"transform": [
+						["scale", 
+							["animate", 
+								[0, 0.7, "easeOutQuad"],
+								["+433", 0.8],
+								["+2800", 1.0]
+							]
+						]
+					],
+					"effect": [
+						["false-color", {
+							"color-1": ["$", ["var", "color-1"]],
+							"color-2": "#ffffff"
+						}]
+					],
+					"opacity": ["animate",
+						[0, 0, "holdIn"],
+						["+2833", 1]
+					],
+					"//": "front center tinted end"
+				}]
+			]],
+			["null", {
+				"rect": ["-400su", "970su", "1600su", "90su"],
+				"//": "bottom left film roll",
+				"start": 466,
+				"transform": [
+					["scale",
+						["animate",
+							[0, 1.0, "easeOutQuad"],
+							["+2000", 1.2]
+						],
+						"100rw", "100rh"
+					],
+					["translate",
+						["animate",
+							["+2300", 0, "easeInCubic"],
+							["+200", "-1200su"]
+						],
+						0
+					]
+				]
+			}, [
+				["api-brandlive-abb-film-roll-repeater", {
+					"opacity": [
+						"animate",
+							[0, 0, "holdIn"],
+							["+2200", 1.0]
+						
+					],
+					"blend": "screen"
+				}],
+				["api-brandlive-abb-film-roll-repeater", {
+					"end": 2200,
+					"mask": {
+						"padding": [
+							0,
+							0,
+							0,
+							["animate",
+								[0, "100rw", "easeOutQuad"],
+								["+1800", 0]
+							]
+						]
+					},
+					"blend": "screen",
+					"effect": [
+						["false-color",{
+							"color-1": ["$", ["var", "color-1"]],
+							"color-2": "#ffffff"
+						}]
+					]
+				}]
+			]],
+			["null", {
+				"rect": ["450su", "370su", "2400su", "130su"],
+				"start": 266,
+				"end": 2800,
+				"transform": [
+					["scale",
+						["animate",
+							[0, 0.8, "easeOutQuad"],
+							["+3000", 1.0]
+						],
+						"100rw", 0
+					],
+					["translate",
+						["animate",
+							[0, 0, "easeOutQuad"],
+							["+3000", "500su"]
+						],
+						["animate",
+							[0, 0, "easeOutQuad"],
+							["+3000", "-50su"]
+						]
+					]
+				]
+			}, [
+				["api-brandlive-abb-film-roll-repeater-2", {
+					"effect": [
+							["false-color", {
+								"color-1": ["$", ["var", "color-1"]],
+								"color-2": ["$", ["hue-shift", ["var", "color-1"], -0.05]]
+							}]
+						],
+					"end": 2733,
+					"blend": "screen"
+				}],
+				["api-brandlive-abb-film-roll-repeater-2", {
+					"start": 2433,
+					"blend": "screen"
+				}]
+			]],
+			["null", {
+				"rect": ["350su", "200su", "4000su", "240su"],
+				"start": 300,
+				"end": 3000,
+				"transform": [
+					["scale",
+						["animate",
+							[0, 0.8, "easeOutQuad"],
+							["+3000", 1.0]
+						],
+						"100rw", 0
+					],
+					["translate",
+						["animate",
+							[0, 0, "easeOutQuad"],
+							["+3000", "750su"]
+						],
+						["animate",
+							[0, 0, "easeOutQuad"],
+							["+3000", "-50su"]
+						]
+					]
+				]
+			}, [
+				["api-brandlive-abb-film-roll-repeater-2", {
+					"effect": [
+						["false-color", {
+							"color-1": ["$", ["var", "color-1"]],
+							"color-2": "#ffffff"
+						}]
+					],
+					"opacity": ["animate",
+						[0, 0, "holdIn"],
+						["+2433", 1.0]
+					],
+					"blend": "screen"
+				}],
+				["api-brandlive-abb-film-roll-repeater-2", {
+					"start": 0,
+					"end": 2433,
+					"blend": "screen"
+				}]
+			]]
+		]
+	]
+	]
+]

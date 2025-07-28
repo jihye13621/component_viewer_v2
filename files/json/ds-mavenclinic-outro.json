@@ -1,0 +1,227 @@
+[
+	"ds-mavenclinic-outro",
+	[
+		{
+			"key": "headline",
+			"display": "Headline",
+			"type": "text",
+			"default": "Shape the future of healthcare with us.",
+			"required": false
+		},
+		{
+			"key": "highlight-start",
+			"display": "Highlight Start",
+			"type": "number",
+			"default": 1,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 1,
+				"minimum": 1,
+				"maximum": 10
+			}
+		},
+		{
+			"key": "highlight-length",
+			"display": "Highlight Length",
+			"type": "number",
+			"default": 1,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 1,
+				"minimum": 0,
+				"maximum": 10
+			}
+		},
+		{
+			"key": "text-legal",
+			"display": "Legal",
+			"type": "textarea",
+			"default": "",
+			"required": false
+		},
+		["ds-mavenclinic-mixins",
+			"color-selector",
+			"font-brand-2",
+			"font-brand-5"
+		],
+		["dsx-mixins",
+			"boilerplate-intro-outro"
+		]
+	],
+	[
+		["null", {
+		}, [
+			["solid", {
+				"stagger": [0, 0],
+				"end": 1400,
+				"color": ["$", ["var", "#foreground"]],
+				"transform": [
+					["translate",
+						["animate",
+							[0, "100rw", "easeInOutQuart"],
+							["+1000", 0]
+						],
+						0
+					]
+				]
+			}],
+			["solid", {
+				"stagger": [100, 0],
+				"end": 1400,
+				"color": ["$", ["var", "#accent"]],
+				"transform": [
+					["translate",
+						["animate",
+							[0, "100rw", "easeInOutQuart"],
+							["+1000", 0]
+						],
+						0
+					]
+				]
+			}],
+			["solid", {
+				"stagger": [200, 0],
+				"end": 1400,
+				"color": ["$", ["var", "#accent-text"]],
+				"transform": [
+					["translate",
+						["animate",
+							[0, "100rw", "easeInOutQuart"],
+							["+1000", 0]
+						],
+						0
+					]
+				]
+			}],
+			["solid", {
+				"stagger": [400, 0],
+				"color": ["$", ["var", "#background"]],
+				"transform": [
+					["translate",
+						["animate",
+							[0, "100rw", "easeInOutQuart"],
+							["+1000", 0]
+						],
+						0
+					]
+				]
+			}]
+		]],
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			]
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"align": "center",
+				"gap": "80nsu",
+				"max-width": "1200nsu"
+			},[
+				["asset", {
+					"flex": {
+						"height": "300su"
+					},
+					"stagger": [1100, -100],
+					"file": "./media/ds-mavenclinic-logo-primary-horizontal.svg",
+					"justify": "fit bottom center",
+					"align": "bottom right",
+					"opacity": ["animate",
+						[0, 0],
+						["+350", 1]
+					],
+					"replace-color": [
+						[
+							[1, 1, 1, 1],
+							["$", ["var", "#foreground"]]
+						]
+					]
+				}],
+				["text", {
+					"enabled": ["$", ["exists", ["var", "headline"]]],
+					"stagger": [1200, -100],
+					"font": ["$", ["var", "font-brand-2"]],
+					"height": "60su",
+					"leading": "10su",
+					"measure": "letter-size",
+					"color": ["$", ["var", "#foreground"]],
+					"string": ["$", ["var", "headline"]],
+					"justify": "center",
+					"boundary": "word",
+					"animations": [
+						{
+							"opacity": 0,
+							"translate": [0, "60su"] 
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+650", 1]
+							],
+							"easing": "easeOutCubic",
+							"ramp": 2,
+							"translate": [0, 0],
+							"opacity": 1              
+						}
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$", [">", ["var", "highlight-length"], 0]],
+							"animations": [
+								{
+									"opacity": 0,
+									"translate": [0, "60su"] 
+								},
+								{
+									"mix": ["animate",
+										[0, 0],
+										["+650", 1]
+									],
+									"easing": "easeOutCubic",
+									"ramp": 2,
+									"translate": [0, 0],
+									"opacity": 1              
+								},
+								{
+									"mix": ["animate",
+										[400, 0],
+										["+600", 1]
+									],
+									"indices": [
+										["$", ["-", ["var", "highlight-start"], 1]],
+										["$", ["var", "highlight-length"]]
+									],
+									"color": ["$", ["var", "#accent"]],
+									"easing": "easeOutQuad"
+								}
+							]
+						}
+					]
+				}]
+			]],
+			["text", {
+				"stagger": [1350, -200],
+				"enabled": ["$", ["exists", ["var", "text-legal"]]],
+				"font": ["$", ["var", "font-brand-5"]],
+				"height": "32nsu",
+				"leading": "5nsu",
+				"measure": "letter-size",
+				"color": ["$", ["var", "#foreground"]],
+				"string": ["$", ["var", "text-legal"]],
+				"justify": "bottom center",
+				"align": "bottom center",
+				"boundary": "word",
+				"max-width": "800nsu",
+				"opacity": ["animate",
+					[0, 0, "easeOutQuad"],
+					["+500", 1]
+				]
+			}]
+		]]
+	]
+]

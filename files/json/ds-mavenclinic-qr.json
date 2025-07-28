@@ -1,0 +1,118 @@
+[
+	"ds-mavenclinic-qr",
+	[
+		{
+			"key": "asset",
+			"display": "QR Code",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [],
+			"script": ["$", ["if",
+				["exists", ["var", "asset"]],
+				["var", "asset"],
+				"./media/ds-mavenclinic-qr.svg"	
+			]]
+		},
+		{
+			"key": "theme",
+			"display": "Logo Color",
+			"type": "string",
+			"default": "lightest-green",
+			"required": false,
+			"options": [
+				{
+					"key": "lightest-green",
+					"display": "Lightest Green"
+				},
+				{
+					"key": "maven-green",
+					"display": "Maven Green"
+				},
+				{
+					"key": "forest-green",
+					"display": "Forest Green"
+				}
+			]
+		},
+		{
+			"key": "opacity-override",
+			"display": "Opacity",
+			"type": "number",
+			"default": 0.7,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"step": 0.05,
+				"minimum": 0.0,
+				"maximum": 1.0
+			}
+		},
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [3, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": true,
+				"minimum": -100,
+				"maximum": 100
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone",
+				"offset"
+			]
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"max-width": "800nsu",
+				"align": ["$", ["var", "#align"]]
+			}, [
+				["asset", {
+					"file": ["$", ["var", "asset"]],
+					"flex": {
+						"width": "150su",
+						"height": "150su"
+					},
+					"hold": true,
+					"mute": true,
+					"justify": ["$", ["concat", "fit ", ["var", "#align"]]],
+					"opacity": ["animate",
+						[0, 0],
+						["+250", ["$", ["var", "opacity-override"]]],
+						["100%", 0],
+						["-150", ["$", ["var", "opacity-override"]]]
+					],
+					"effect": [
+						["false-color", {
+							"color-1": ["$", ["switch", ["var", "theme"], {
+								"lightest-green": "#F5FFF9",
+								"maven-green": "#028C74",
+								"forest-green": "#013126"
+							}]],
+							"color-2": ["$", ["switch", ["var", "theme"], {
+								"lightest-green": "#F5FFF9",
+								"maven-green": "#028C74",
+								"forest-green": "#013126"
+							}]]
+						}],
+						["shadow", {
+							"color": [0, 0, 0, 0.25],
+							"radius": "30su"
+						}]
+					]
+				}]
+			]]
+		]]
+	]
+]

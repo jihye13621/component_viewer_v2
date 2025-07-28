@@ -1,0 +1,59 @@
+[
+	"ds-paycom-evergreen-outro",
+	[
+		["ds-paycom-mixins",
+			"green",
+			"font-regular",
+			"font-bold"
+		]
+	],
+	[
+		["ds-paycom-evergreen-bg", {
+			"mixins": ["dsx-mixins",
+				"set-su"
+			],
+			"animate-out": false
+		}, [
+			["null", {
+				"mixins": ["dsx-mixins",
+					"safezone"
+				],
+				"layout": "stacked",
+				"align": "center"
+			}, [
+				["asset", {
+					"file": "./media/ds-paycom-sales-logo-animated.json",
+					"justify": "fit center",
+					"lottie-driver": ["animate",
+						[0, 0],
+						[
+							["$", ["to-relative-string", ["dur", "./media/ds-paycom-sales-logo-animated.json"]]],
+							1
+						]
+					],
+					"flex": {
+						"height": "120su"
+					},
+					"transform": [
+						["scale",
+							["animate",
+								[0, 0.9],
+								["100%", 1]
+							]
+						]
+					],
+					"effect": [
+						["shadow", {
+							"color": [0, 0, 0, 0.75],
+							"radius": "20su",
+							"offset": [
+								"4su",
+								"20su"
+							]
+						}]
+					]
+				}]
+			]]
+		]]
+	]
+]

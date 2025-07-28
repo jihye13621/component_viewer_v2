@@ -1,0 +1,283 @@
+[
+	"ds-hubspot-sandbox-metrics",
+	[
+		{
+			"key": "headline",
+			"display": "Headline",
+			"type": "text",
+			"default": "Add a headline",
+			"required": false
+		},
+		{
+			"key": "asset-1",
+			"display": "Asset 1",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": []
+		},
+		{
+			"key": "stat-1",
+			"display": "Stat 1",
+			"type": "text",
+			"default": "11%",
+			"required": false
+		},
+		{
+			"key": "detail-1",
+			"display": "Detail 1",
+			"type": "text",
+			"default": "Improvement in unplanned downtime",
+			"required": false
+		},
+		{
+			"key": "asset-2",
+			"display": "Asset 2",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": []
+		},
+		{
+			"key": "stat-2",
+			"display": "Stat 2",
+			"type": "text",
+			"default": "22%",
+			"required": false
+		},
+		{
+			"key": "detail-2",
+			"display": "Detail 2",
+			"type": "text",
+			"default": "Increase in MTBF (mean time between failures)",
+			"required": false
+		},
+		{
+			"key": "asset-3",
+			"display": "Asset 3",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": []
+		},
+		{
+			"key": "stat-3",
+			"display": "Stat 3",
+			"type": "text",
+			"default": "33%",
+			"required": false
+		},
+		{
+			"key": "detail-3",
+			"display": "Detail 3",
+			"type": "text",
+			"default": "Decrease in MTTR (mean time to repair)",
+			"required": false
+		},
+		{
+			"key": "asset-4",
+			"display": "Asset 4",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": []
+		},
+		{
+			"key": "stat-4",
+			"display": "Stat 4",
+			"type": "text",
+			"default": "",
+			"required": false
+		},
+		{
+			"key": "detail-4",
+			"display": "Detail 4",
+			"type": "text",
+			"default": "",
+			"required": false
+		},
+		{
+			"key": "color-solaris",
+			"display": "Solaris",
+			"type": "color",
+			"default": "#FF5C35",
+			"required": false
+		},
+		{
+			"key": "color-oatmilk",
+			"display": "oatmilk",
+			"type": "color",
+			"default": "#FEF4EA",
+			"required": false
+		},
+		["ds-hubspot-mixins",
+			"font-text-large",
+			"theme"
+		]
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins", 
+				"set-su",
+				"safezone"
+			],
+			"color": ["$", ["var", "color-oatmilk"]]
+		}, [
+			["null", {
+				"layout": "vertical",
+				"gap": "50su"
+			}, [
+				["null", {
+					"flex": {
+						"height": "200su"
+					},
+					"max-width": "1200nsu"
+				}, [
+					["text", {
+						"mixins": ["ds-hubspot-mixins",
+							"font-text-large"
+						],
+						"enabled": ["$", ["exists", ["var", "headline"]]],
+						"measure": "letter-size",
+						"height": "70su",
+						"leading": "20su",
+						"color": [0, 0, 0, 1],
+						"string": ["$", ["var", "headline"]],
+						"justify": "center left",
+						"breakpoints": [
+							{
+								"enabled": ["$", ["<", ["aspect"], 1]],
+								"justify": "center"
+							}
+						]
+					}]
+				]],
+				["null", {
+				}, [
+					["for-each", {
+						"items": ["$", ["compact", ["array",
+							["if",
+								["exists", ["var", "stat-1"]],
+								["array", ["var", "stat-1"], ["var", "detail-1"], ["var", "asset-1"]]
+							],
+							["if",
+								["exists", ["var", "stat-2"]],
+								["array", ["var", "stat-2"], ["var", "detail-2"], ["var", "asset-2"]]
+							],
+							["if",
+								["exists", ["var", "stat-3"]],
+								["array", ["var", "stat-3"], ["var", "detail-3"], ["var", "asset-3"]]
+							],
+							["if",
+								["exists", ["var", "stat-4"]],
+								["array", ["var", "stat-4"], ["var", "detail-4"], ["var", "asset-4"]]
+							]
+						]]],
+						"layout": "horizontal",
+						"breakpoints": [
+							{
+								"enabled": ["$", ["lte", ["aspect"], 1]],
+								"layout": "vertical"
+							}
+						]
+					}, [
+						["null", {
+						}, [
+							["ds-hubspot-sandbox-metrics-stat", {
+								"stat": ["$", ["nth", ["var", "item"], 0]],
+								"text": ["$", ["nth", ["var", "item"], 1]],
+								"asset": ["$", ["nth", ["var", "item"], 2]],
+								"start-frame": ["$", ["*", 400, ["var", "index"]]],
+								"opacity": ["animate",
+									[
+										["$", ["*", 400, ["var", "index"]]],
+										0,
+										"easeOutQuad"
+									],
+									[
+										"+500",
+										1
+									]
+								],
+								"transform": [
+									["translate",
+										0,
+										["animate",
+											[
+												["$", ["*", 400, ["var", "index"]]],
+												"200su",
+												"easeOutCubic"
+											],
+											[
+												"+800",
+												0
+											]
+										]
+									]
+								],
+								"breakpoints": [
+									{
+										"enabled": ["$", ["lte", ["aspect"], 1]],
+										"direction": "horizontal",
+										"transform": [
+											["translate",
+												0,
+												["animate",
+													[
+														["$", ["*", 400, ["var", "index"]]],
+														"80su",
+														"easeOutCubic"
+													],
+													[
+														"+800",
+														0
+													]
+												]
+											]
+										]
+									}
+								]
+							}]
+						]],
+						["null", {
+							"enabled": ["$", ["<", ["var", "index"], ["-", ["var", "count"], 1]]],
+							"flex": {
+								"width": "80nsu"
+							},
+							"breakpoints": [
+								{
+									"enabled": ["$", ["lte", ["aspect"], 1]],
+									"flex": {
+										"height": "80nsu"
+									}
+								}
+							]
+						}, [
+							["solid", {
+								"rect": [
+									0,
+									0,
+									"4nsu",
+									"100rh"
+								],
+								"color": [0, 0, 0, 0.1],
+								"align": "center",
+								"breakpoints": [
+									{
+										"enabled": ["$", ["lte", ["aspect"], 1]],
+										"rect": [
+											0,
+											0,
+											"100rw",
+											"4nsu"
+										]
+									}
+								]
+							}]
+						]]
+					]]
+				]]
+			]]
+		]]
+	]
+]

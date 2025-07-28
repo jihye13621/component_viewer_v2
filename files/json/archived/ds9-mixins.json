@@ -1,0 +1,52 @@
+{
+	"headline-1": {
+		"style": {
+			"font": "./media/Inter-Regular.ttf",
+			"height": 120
+		},
+		"color": ["$", ["var", "color-1"]]
+	},
+	"headline-2": {
+		"style": {
+			"font": "./media/Inter-Regular.ttf",
+			"height": 85
+		},
+		"color": ["$", ["var", "color-1"]]
+	},
+	"text-1": {
+		"style": {
+			"font": "./media/Inter-Regular.ttf",
+			"height": 65
+		},
+		"color": ["$", ["var", "color-1"]]
+	},
+	"text-2": {
+		"style": {
+			"font": "./media/Inter-Regular.ttf",
+			"height": 50
+		},
+		"color": ["$", ["var", "color-1"]]
+	},
+	"animate-up": {
+		"boundary": "word",
+		"animations": [
+			{
+				"translate": [
+					0,
+					["$", ["*", ["var", "size"], 60]]
+				]
+			},
+			{
+				"mix": ["animate",
+					[0, 0],
+					["+500", 1],
+					["100%", 0],
+					["-500", 1]
+				],
+				"easing": "easeOutQuad",
+				"opacity": 1,
+				"translate": [0, 0]
+			}
+		]
+	}
+}

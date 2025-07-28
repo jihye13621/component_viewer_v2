@@ -1,0 +1,116 @@
+[
+	"api-brandlive-2-center",
+	[
+		{
+			"key": "font-1",
+			"display": "Font 1",
+			"type": "string",
+			"default": "./media/api-brandlive/AvantGardeGothicItcT-Demi.ttf",
+			"required": false
+		},
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "object",
+			"default": [
+				"strategic",
+				"insights"
+			],
+			"required": false
+		},
+		{
+			"key": "color-background-1",
+			"display": "Background 1",
+			"type": "color",
+			"default": [0, 0, 0, 1],
+			"required": false
+		},
+		{
+			"key": "color-background-2",
+			"display": "Background 2",
+			"type": "color",
+			"default": [0.9, 0.8, 0, 1],
+			"required": false
+		},
+		{
+			"key": "color-text-1",
+			"display": "Text",
+			"type": "color",
+			"default": [0, 0, 0, 1],
+			"required": false
+		}
+	],
+	[
+		["solid", {
+			"start": 0,
+			"duration": 6000,
+			"mixins": ["dsx-mixins", "set-su"],
+			"color": ["$", ["var", "color-background-1"]]
+		}, [
+			["solid", {
+				"color": ["$", ["var", "color-background-2"]],
+				"transform": [
+					["translate",
+						["animate",
+							[0, "100rw", "easeInOutCubic"],
+							["+1000", 0]
+						],
+						0
+					]
+				]
+			}],
+			["null", {
+				"padding": [
+					"200su",
+					"200su"
+				]
+			}, [
+				["null", {
+					"layout": "vertical stacked",
+					"align": "center",
+					"stagger": [200, 0],
+					"opacity": ["animate",
+						[200, 0],
+						["+350", 1]
+					],
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[0, "300su", "easeOutBack"],
+								["+1000", 0]
+							]
+						]
+					]
+				}, [
+					["for-each", {
+						"items": ["$", ["var", "text"]],
+						"layout": "vertical packed",
+						"align": "left",
+						"gap": "10su"
+					}, [
+						["text", {
+							"enabled": ["$", ["exists", ["var", "item"]]],
+							"string": ["$", ["var", "item"]],
+							"color": ["$", ["var", "color-text-1"]],
+							"case": "uppercase",
+							"measure": "cap-size",
+							"font": ["$", ["var", "font-1"]],
+							"height": "100su",
+							"justify": "left",
+							"fit": true,
+							"breakpoints": [
+								{
+									"enabled": ["$", ["eq", 1, ["mod", ["var", "index"], 2]]],
+									"stroke": "4su",
+									"stroke-color": ["$", ["var", "color-text-1"]],
+									"color": [0, 0, 0, 0]
+								}
+							]
+						}]
+					]]
+				]]
+			]]
+		]]
+	]
+]

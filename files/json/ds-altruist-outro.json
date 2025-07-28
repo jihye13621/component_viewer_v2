@@ -1,0 +1,136 @@
+[
+	"ds-altruist-outro",
+	[
+		{
+			"key": "headline",
+			"display": "Headline",
+			"type": "text",
+			"default": "Add a headline",
+			"required": false
+		},
+		{
+			"key": "legal",
+			"display": "Legal",
+			"type": "textarea",
+			"default": "Add legal text",
+			"required": false
+		},
+		["ds-altruist-mixins",
+			"custom-ease",
+			"colors",
+			"theme",
+			"font-regular",
+			"font-bold"
+		]
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins",
+				"set-su-roi",
+				"safezone"
+			],
+			"color": ["$", ["var", "#bg"]]
+		}, [
+			["null", {
+				"layout": "vertical",
+				"align": "top left"
+			}, [
+				["null", {
+					"flex": {
+						"grow": true
+					},
+					"layout": "vertical packed",
+					"align": "top left",
+					"gap": "16su",
+					"min-width": "100rw",
+					"padding": [
+						"55su",
+						0,
+						0,
+						0
+					],
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[0, "100roih", ["$", ["var", "custom-ease"]]],
+								["+1400", 0]
+							]
+						]
+					]
+				}, [
+					["solid", {
+						"flex": {
+							"position": "fixed"
+						},
+						"rect": [
+							0,
+							0,
+							"100rw",
+							"25su"
+						],
+						"color": ["$", ["var", "#fg"]]
+					}],
+					["text", {
+						"mixins": ["ds-altruist-mixins",
+							"text",
+							"tight",
+							"xlarge",
+							"bold"
+						],
+						"color": ["$", ["var", "#fg"]],
+						"string": ["$", ["var", "headline"]]
+					}]
+				]],
+				["null", {
+					"stagger": [500, 0],
+					"flex": {
+						"position": "fixed"
+					},
+					"layout": "vertical packed",
+					"align": "bottom left",
+					"gap": "16su",
+					"min-width": "100rw",
+					"padding": [
+						"24su",
+						0,
+						0,
+						0
+					],
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[0, "50roih", ["$", ["var", "custom-ease"]]],
+								["+1400", 0]
+							]
+						]
+					]
+				}, [
+					["solid", {
+						"flex": {
+							"position": "fixed"
+						},
+						"rect": [
+							0,
+							0,
+							"100rw",
+							"6su"
+						],
+						"color": ["$", ["var", "#fg"]]
+					}],
+					["text", {
+						"mixins": ["ds-altruist-mixins",
+							"text"
+						],
+						"font": ["$", ["var", "font-regular"]],
+						"height": "15su",
+						"measure": "letter-size",
+						"color": ["$", ["var", "#fg"]],
+						"string": ["$", ["var", "legal"]]
+					}]
+				]]
+			]]
+		]]
+	]
+]

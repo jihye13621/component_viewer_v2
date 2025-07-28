@@ -1,0 +1,71 @@
+[
+	"ds-impactdotcom-webinar-orbit",
+	[
+		{
+			"key": "stroke",
+			"display": "Stroke",
+			"type": "number",
+			"default": "4nsu",
+			"required": false
+		},
+		{
+			"key": "orbit",
+			"display": "Orbit",
+			"type": "number",
+			"default": 0,
+			"required": false
+		},
+		{
+			"key": "radius",
+			"display": "Radius",
+			"type": "number",
+			"default": 1,
+			"required": false
+		},
+		{
+			"key": "color",
+			"display": "Color",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"rect": [
+				0,
+				0,
+				"100rw",
+				"100rw"
+			],
+			"align": "center",
+			"transform": [
+				["rotate", ["$", ["var", "orbit"]]],
+				["scale", ["$", ["var", "radius"]]]
+			]
+		}, [
+			["solid", {
+				"radius": 10000,
+				"color": [0, 0, 0, 0],
+				"stroke": ["$", ["var", "stroke"]],
+				"stroke-color": ["$", ["var", "color"]]
+			}],
+			["solid", {
+				"radius": 10000,
+				"stroke": ["$", ["var", "color"]],
+				"rect": [
+					0,
+					0,
+					["$", ["var", "stroke"]],
+					["$", ["var", "stroke"]]
+				],
+				"align": "center right",
+				"transform": [
+					["scale",
+						10
+					]
+				]
+			}]
+		]]
+	]
+]

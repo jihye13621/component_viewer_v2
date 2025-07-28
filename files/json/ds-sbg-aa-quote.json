@@ -1,0 +1,197 @@
+[
+	"ds-sbg-aa-quote",
+	[
+		{
+			"key": "quote",
+			"display": "Quote",
+			"type": "text",
+			"default": "Add quote text",
+			"required": false
+		},
+		{
+			"key": "detail-1",
+			"display": "Source",
+			"type": "text",
+			"default": "Quote source",
+			"required": false
+		},
+		{
+			"key": "detail-2",
+			"display": "Source Details",
+			"type": "text",
+			"default": "",
+			"required": false
+		},
+		["ds-sbg-aa-mixins",
+			"colors",
+			"color-selector",
+			"font-toroka-black",
+			"font-toroka-medium"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [4, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": true,
+				"minimum": -100,
+				"maximum": 100
+			},
+			"private": true,
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			],
+			"mask": {
+				"transform": true
+			},
+			"transform": [
+				["translate",
+					["animate",
+						[0, "100rw", "easeInOutCubic"],
+						["+800", 0],
+						["100%", "100rw"],
+						["-800", 0, "easeInOutCubic"]
+					],
+					0
+				]
+			],
+			"script": ["$$",
+				["let",
+					[
+						["start", ["key", ["var", "self"], "start"]],
+						["end", ["key", ["var", "self"], "end"]],
+						["width", ["key", ["key", ["var", "self"], "roi"], "width"]],
+						["animate-in",
+							["ease",
+								["map",
+									["var", "frame"],
+									["+", ["var", "start"], 0],
+									["+", ["var", "start"], 800],
+									0,
+									1
+								],
+								"easeInOutCubic"
+							]
+						],
+						["animate-out",
+							["ease",
+								["map",
+									["var", "frame"],
+									["-", ["var", "end"], 800],
+									["var", "end"],
+									0,
+									1
+								],
+								"easeInOutCubic"
+							]
+						],
+						["animation", ["-", ["var", "animate-in"], ["var", "animate-out"]]]
+					],
+					["live-transform",
+						["lookup-by-tag", "clip"],
+						"translate",
+						["*", -1, ["var", "animation"], ["var", "width"]],
+						0
+					]
+				]
+			]
+		}, [
+			["solid", {
+				"flex": {
+					"position": "fixed"
+				},
+				"color": ["$", ["var", "#background"]]
+			}],
+			["null", {
+				"max-width": "1400nsu",
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"gap": "50su",
+				"mixins": ["dsx-mixins",
+					"offset"
+				]
+			}, [
+				["text", {
+					"flex": {
+						"weight": 3
+					},
+					"enabled": ["$", ["exists", ["var", "quote"]]],
+					"font": ["$", ["var", "font-toroka-black"]],
+					"measure": "cap-size",
+					"height": "70su",
+					"leading": "30su",
+					"string": ["$", ["var", "quote"]],
+					"color": ["$", ["var", "#foreground"]],
+					"justify": ["$", ["var", "#align"]],
+					"boundary": "word",
+					"animations": [
+						{
+							"mix": ["animate",
+								[0, 0, "easeOutQuad"],
+								["+1500", 1]
+							],
+							"easing": "round",
+							"ramp": 0.1,
+							"opacity": 1
+						}
+					]
+				}],
+				["solid", {
+					"stagger": [1400, 0],
+					"color": ["$", ["var", "#foreground"]],
+					"enabled": ["$", ["exists", ["var", "detail-1"]]],
+					"padding": [
+						"30su",
+						"30su"
+					],
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]],
+					"gap": "20su",
+					"mask": {
+						"padding": [
+							0,
+							["animate",
+								[0, "100rw", "easeOutQuad"],
+								["+300", 0]
+							],
+							0,
+							0
+						],
+						"radius": "30su"
+					}
+				}, [
+					["text", {
+						"enabled": ["$", ["exists", ["var", "detail-1"]]],
+						"font": ["$", ["var", "font-toroka-black"]],
+						"measure": "cap-size",
+						"height": "35su",
+						"leading": "10su",
+						"string": ["$", ["var", "detail-1"]],
+						"color": ["$", ["var", "#background"]],
+						"justify": ["$", ["var", "#align"]]
+					}],
+					["text", {
+						"enabled": ["$", ["exists", ["var", "detail-2"]]],
+						"font": ["$", ["var", "font-toroka-medium"]],
+						"measure": "cap-size",
+						"height": "30su",
+						"string": ["$", ["var", "detail-2"]],
+						"color": ["$", ["var", "#background"]],
+						"justify": ["$", ["var", "#align"]]
+					}]
+				]]
+			]]
+		]]
+	]
+]

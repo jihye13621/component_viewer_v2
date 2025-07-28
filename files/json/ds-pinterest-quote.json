@@ -1,0 +1,126 @@
+[
+	"ds-pinterest-quote",
+	[
+		{
+			"key": "asset",
+			"display": "Background",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["gain", 0],
+				["justify", "fill"],
+				["motion", "none"]
+			],
+			"script": ["$", ["if",
+				["exists", ["var", "asset"]],
+				["var", "asset"],
+				"./media/ds-pinterest-image.jpg"
+			]]
+		},
+		["dsx-mixins",
+			"text"
+		],
+		["ds-pinterest-mixins",
+			"colors",
+			"font-pinterest-bold",
+			"font-pinterest-regular"
+		],
+		{
+			"key": "legal",
+			"display": "Fine Print",
+			"type": "text",
+			"default": "",
+			"required": false
+		},
+		["dsx-mixins",
+			"boilerplate"
+		]
+	],
+	[
+		["user-asset", {
+			"mixins": ["dsx-mixins",
+				"set-su"
+			],
+			"loop": true,
+			"file": ["$", ["var", "asset"]],
+			"justify": "fill center"
+		}, [
+			["solid", {
+				"color": [0, 0, 0, 0.2]
+			}],
+			["null", {
+				"mixins": ["dsx-mixins",
+					"safezone"
+				],
+				"effect": [
+					["shadow", {
+						"color": [0, 0, 0, 0.25],
+						"radius": "20su"
+					}]
+				]
+			}, [
+				["null", {
+					"enabled": ["$", ["exists", ["var", "text"]]],
+					"layout": "vertical packed",
+					"align": "center"
+				}, [
+					["text", {
+						"string": ["$", ["var", "text"]],
+						"color": ["$", ["var", "color-white"]],
+						"justify": "center",
+						"font": "./media/Pinterest-Sans-Pro-Bold.otf",
+						"measure": "letter-size",
+						"height": "90su",
+						"kerning": -0.04,
+						"boundary": "line",
+						"leading": "10su",
+						"animations": [
+							{
+								"translate": [
+									0,
+									"80su"
+								]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+1000", 1]
+								],
+								"easing": "easeOutQuint",
+								"ramp": 3.5,
+								"translate": [0, 0]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+1000", 1]
+								],
+								"easing": "plateauIn",
+								"ramp": 3.5,
+								"opacity": 1
+							}
+						]
+					}]
+				]],
+				["null", {
+					"stagger": [500, 0],
+					"enabled": ["$", ["exists", ["var", "legal"]]],
+					"layout": "vertical packed",
+					"align": "bottom center",
+					"opacity": ["animate",
+						[0, 0],
+						["+1200", 1]
+					]
+				}, [
+					["text", {
+						"string": ["$", ["var", "legal"]],
+						"justify": "center",
+						"font": "./media/Pinterest-Sans-Pro-Regular.otf",
+						"height": "30su"
+					}]
+				]]
+			]]
+		]]
+	]
+]

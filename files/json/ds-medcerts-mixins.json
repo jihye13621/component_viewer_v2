@@ -1,0 +1,64 @@
+{
+	"params": {
+		"color-primary": {
+			"key": "color-primary",
+			"display": "Color Primary",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		},
+		"color-secondary": {
+			"key": "color-secondary",
+			"display": "Color Secondary",
+			"type": "color",
+			"default": "#000000",
+			"required": false
+		},
+		"color-accent": {
+			"key": "color-accent",
+			"display": "Accent",
+			"type": "color",
+			"default": "#465CA9",
+			"required": false
+		}
+	},
+	"font-normal": {
+		"font": "./media/OpenSans-Regular.ttf",
+		"height": "50su"
+	},
+	"font-captions": {
+		"font": "./media/TTNorms-Bold.otf",
+		"height": "60su"
+	},
+	"font-intro-large": {
+		"font": "./media/TTNorms-ExtraBold.otf",
+		"height": "120su"
+	},
+	"font-intro-small": {
+		"font": "./media/TTNorms-Regular.otf",
+		"height": "50su",
+		"breakpoints": [
+			{
+				"enabled": ["$",
+					["and",
+						["lte", ["aspect"], 1],
+						["gte", ["aspect"], 0.6]
+					]
+				],
+				"height": "40su"
+			}
+		]
+	},
+	"font-title": {
+		"font": "./media/OpenSans-ExtraBold.ttf",
+		"height": "100su"
+	},
+	"font-watermark": {
+		"font": "./media/TTNorms-Regular.otf",
+		"height": "50su"
+	},
+	"font-text": {
+		"font": "./media/TTNorms-Regular.otf",
+		"height": "70su"
+	}
+}

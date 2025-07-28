@@ -1,0 +1,108 @@
+[
+	"ds-sbg-fnr-media",
+	[
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["gain", 0],
+				["justify", "fill"]
+			],
+			"script": ["$", ["if",
+				["exists", ["var", "asset"]],
+				["var", "asset"],
+				"./media/image-wide.jpg"	
+			]]
+		},
+		{
+			"key": "credit",
+			"display": "Credit",
+			"type": "string",
+			"default": "",
+			"required": false
+		},
+		["ds-sbg-fnr-mixins",
+			"font-body"
+		]
+	],
+	[
+		["null", {
+			"buffer": "knockout-in",
+			"end": 500
+		}, [
+			["asset", {
+				"file": "./media/ds-sbg-fnr-matte.mp4",
+				"justify": "fill center",
+				"rotate": 0.25,
+				"hold": true
+			}]
+		]],
+		["null", {
+			"buffer": "knockout-out",
+			"start": ["$", ["-", ["key", ["comp-timing"], "duration"], 500]]
+		}, [
+			["solid", {
+				"color": [1, 1, 1, 1]
+			}],
+			["asset", {
+				"file": "./media/ds-sbg-fnr-matte.mp4",
+				"justify": "fill center",
+				"rotate": 0.25,
+				"hold": true,
+				"effect": [
+					["false-color", {
+						"color-1": [1, 1, 1, 1],
+						"color-2": [0, 0, 0, 1]
+					}]
+				]
+			}]
+		]],
+		["asset", {
+			"mixins": ["dsx-mixins", "safezone", "set-su-roi"],
+			"file": "./media/ds-sbg-fnr-grass.jpg",
+			"justify": "fill center",
+			"effect": [
+				["matte", {
+					"buffer-in": "knockout-in",
+					"start": 0,
+					"end": 500
+				}],
+				["matte", {
+					"buffer-in": "knockout-out",
+					"start": ["$", ["-", ["key", ["comp-timing"], "duration"], 500]] 
+				}]
+			]
+		}, [
+			["user-asset", {
+				"file": ["$", ["var", "asset"]],
+				"justify": "fill center",
+				"mask": {}
+			}, [
+				["shadow", {
+					"enabled": ["$", ["exists", ["var", "credit"]]],
+					"offset": ["4su", "4su"],
+					"radius": "10su",
+					"align": "bottom left",
+					"padding": [
+						"30su",
+						"30su"
+					]
+				}, [
+					["text", {
+						"font": ["$", ["var", "font-body"]],
+						"height": "30su",
+						"justify": "bottom left",
+						"measure": "cap-size",
+						"case": "uppercase",
+						"color": [1, 1, 1, 1],
+						"string": ["$", ["var", "credit"]],
+						"align": "bottom left"
+					}]
+				]]
+			]]
+		]]
+	]
+]

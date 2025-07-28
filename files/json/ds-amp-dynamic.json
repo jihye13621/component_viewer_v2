@@ -1,0 +1,87 @@
+[
+	"ds-amp-dynamic",
+	[
+		["dsx-mixins",
+			"captions"
+		],
+		["ds-amp-mixins",
+			"color-primary",
+			"color-secondary",
+			"font-headline"
+		],
+		["dsx-mixins",
+			"boilerplate-captions"
+		],
+		{
+			"key": "max-words",
+			"display": "Words",
+			"type": "number",
+			"default": 8,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 1,
+				"minimum": 1,
+				"maximum": 12
+			}
+		},
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [5, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": true,
+				"minimum": -100,
+				"maximum": 100
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", 
+				"set-dsx-su",
+				"safezone",
+				"offset"
+			]
+		}, [
+			["null", {
+				"max-width": "800nsu",
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]]
+			}, [
+				["text", {
+					"mixins": ["ds-amp-mixins",
+						"text",
+						"text-title"
+					],
+					"justify": ["$", ["var", "#align"]],
+					"transcript": ["$",
+						["transcript-split",
+							["var", "transcript"],
+							["var", "max-words"]
+						]
+					],
+					"color": ["$", ["var", "color-primary"]],
+					"stroke": "13su",
+					"stroke-color": ["$", ["var", "color-secondary"]],
+					"animations": [
+						{
+							"opacity": 0,
+							"scale": 0
+						},
+						{
+							"mix": [[0, 0], [0.5, 1]],
+							"opacity": 1,
+							"scale": 1,
+							"easing": "easeOutBack"
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

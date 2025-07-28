@@ -1,0 +1,448 @@
+[
+	"api-brandlive-5",
+	[
+		{
+			"key": "text-1",
+			"display": "Text 1",
+			"type": "string",
+			"default": "Introducing",
+			"required": false
+		},
+		{
+			"key": "text-2",
+			"display": "Text 2",
+			"type": "string",
+			"default": "Lucas Parker",
+			"required": false
+		},
+		{
+			"key": "text-3",
+			"display": "Text 3",
+			"type": "string",
+			"default": "Text 3",
+			"required": false
+		},
+		{
+			"key": "text-4",
+			"display": "Text 4",
+			"type": "string",
+			"default": "from",
+			"required": false
+		},
+		{
+			"key": "font-1",
+			"display": "Font 1",
+			"type": "string",
+			"default": "./media/Lora-Regular.ttf",
+			"required": false
+		},
+		{
+			"key": "font-2",
+			"display": "Font 2",
+			"type": "string",
+			"default": "./media/api-brandlive/Founders-Grotesk-Regular.otf",
+			"required": false
+		},
+		{
+			"key": "font-3",
+			"display": "Font 3",
+			"type": "string",
+			"default": "./media/Archivo_ExtraCondensed-ExtraBold.ttf",
+			"required": false
+		},
+		{
+			"key": "logo",
+			"display": "Logo",
+			"type": "asset",
+			"default": "./media/api-brandlive/topo-logo.png",
+			"required": false
+		},
+		{
+			"key": "image",
+			"display": "Image",
+			"type": "asset",
+			"default": null,
+			"required": false
+		},
+		{
+			"key": "color-background",
+			"display": "Color Background",
+			"type": "color",
+			"default": "#373543",
+			"required": false
+		},
+		{
+			"key": "color-foreground",
+			"display": "Color Foreground",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		},
+		{
+			"key": "color-accent",
+			"display": "Color Accent",
+			"type": "color",
+			"default": "#d89482",
+			"required": false
+		},
+		{
+			"key": "#randomizer",
+			"display": "Randomizer",
+			"type": "object",
+			"default": [],
+			"required": false,
+			"private": true,
+			"script": ["$",
+				["let",
+					[
+						["items",
+							["array",
+								["object",
+									["array",
+										"filename",
+										"./media/api-brandlive/topo1.png"
+									],
+									["array",
+										"rectangle",
+										["array", "100su", "100su", "100rw", "102rh"]
+									],
+									["array",
+										"scale",
+										1.0
+									]
+								],
+								["object",
+									["array",
+										"filename",
+										"./media/api-brandlive/topo2.png"
+									],
+									["array",
+										"rectangle",
+										["array", "100su", "100su", "100rw", "100rh"]
+									],
+									["array",
+										"scale",
+										1.0
+									]
+								],
+								["object",
+									["array",
+										"filename",
+										"./media/api-brandlive/topo3.png"
+									],
+									["array",
+										"rectangle",
+										["array", "100su", "200su", "100rw", "100rh"]
+									],
+									["array",
+										"scale",
+										1.0
+									]
+								],
+								["object",
+									["array",
+										"filename",
+										"./media/api-brandlive/topo4.png"
+									],
+									["array",
+										"rectangle",
+										["array", "100su", "100su", "100rw", "100rh"]
+									],
+									["array",
+										"scale",
+										1.0
+									]
+								],
+								["object",
+									["array",
+										"filename",
+										"./media/api-brandlive/topo5.png"
+									],
+									["array",
+										"rectangle",
+										["array", 0, "200su", "100rw", "100rh"]
+									],
+									["array",
+										"scale",
+										1.1
+									]
+								],
+								["object",
+									["array",
+										"filename",
+										"./media/api-brandlive/topo6.png"
+									],
+									["array",
+										"rectangle",
+										["array", "80su", 0, "100rw", "100rh"]
+									],
+									["array",
+										"scale",
+										1.0
+									]
+								]
+							]
+						],
+						["count",
+							["length",
+								["var", "items"]
+							]
+						]
+					],
+					["nth",
+						["var", "items"],
+						["random-int", 0, ["var", "count"]]
+					]
+				]
+			]
+		}
+	],
+	[
+		["solid", {
+			"start": 0,
+			"duration": 7000,
+			"color": ["$", ["var", "color-background"]],
+			"mixins": ["dsx-mixins", "set-su"],
+			"padding": [
+				0,
+				"-200su",
+				0,
+				0
+			]
+		}, [
+			["null", {
+				"transform": [
+					["translate",
+						["animate",
+							[1500, 0, "easeInOutQuad"],
+							["+500", -200]
+						],
+						0
+					],
+					["scale",
+						["animate",
+							[0, 1.2, "easeInOutQuad"],
+							["+600", 1]
+						]
+					]
+				]
+			}, [
+				["asset", {
+					"flex": {
+						"position": "fixed"
+					},
+					"file": ["$", ["key", ["var", "#randomizer"], "filename"]],
+					"justify": "bottom right",
+					"rect": ["$", ["key", ["var", "#randomizer"], "rectangle"]],
+					"transform": [
+						["scale", ["$", ["key", ["var", "#randomizer"], "scale"]]]
+					]
+				}],
+				["solid", {
+					"color": ["$", ["rgba-set", ["var", "color-background"], "a", 0.9]]
+				}],
+				["null", {
+					"enabled": ["$", ["exists", ["var", "image"]]],
+					"rect": [
+						["animate",
+							[1500, "100rw", "easeInOutQuad"],
+							["+700", "65rw"]
+						],
+						["animate",
+							[2500, -100, "easeInOutQuad"],
+							["+500", 0]
+						],
+						"25rw",
+						"45rh"
+					]
+				}, [
+					["asset", {
+						"file": ["$", ["var", "image"]],
+						"justify": "fit top"
+					}]
+				]],
+				["null", {
+					"layout": "vertical packed",
+					"align": "top left",
+					"gap": "80su",
+					"padding": [
+						"350su",
+						0,
+						"110su",
+						0
+					]
+				}, [
+					["null", {
+						"layout": "vertical packed",
+						"align": "center left",
+						"gap": "100su",
+						"padding": [
+							0,
+							"30cw",
+							0,
+							"400su"
+						]
+					}, [
+						["text", {
+							"font": ["$", ["var", "font-2"]],
+							"height": "50su",
+							"kerning": 0.02,
+							"case": "uppercase",
+							"string": ["$", ["var", "text-1"]],
+							"color": ["$", ["var", "color-foreground"]],
+							"boundary": "line",
+							"animations": [
+								{
+									"translate": [
+										0,
+										"50su"
+									]
+								},
+								{
+									"mix": ["animate",
+										[600, 0],
+										["+400", 1]
+									],
+									"easing": "easeOutQuad",
+									"opacity": 1,
+									"translate": [0, 0]
+								}
+							]
+						}],
+						["text", {
+							"font": ["$", ["var", "font-1"]],
+							"height": "180su",
+							"justify": "center left",
+							"string": ["$", ["var", "text-2"]],
+							"color": ["$", ["var", "color-foreground"]],
+							"boundary": "letter",
+							"kerning": 0.01,
+							"min-height": "150su",
+							"animations": [
+								{
+									"translate": [
+										0,
+										"200su"
+									]
+								},
+								{
+									"mix": ["animate",
+										[0, 0],
+										["+1000", 1]
+									],
+									"easing": "easeOutQuad",
+									"opacity": 1,
+									"translate": [0, 0]
+								}
+							]
+						}]
+					]],
+					["null", {
+						"layout": "horizontal packed",
+						"align": "center left",
+						"gap": "50su",
+						"flex": {
+							"weight": 0.3
+						}
+					}, [
+						["solid", {
+							"flex": {
+								"weight": 2,
+								"height": "7su",
+								"width": ["$", ["-", ["width"], 800]]
+							},
+							"color": ["$", ["var", "color-accent"]],
+							"transform": [
+								["translate",
+									["animate",
+										[100, "-100rw", "easeOutQuad"],
+										["+650", 0]
+									],
+									"-6su"
+								]
+							]
+						}],
+						["text", {
+							"font": ["$", ["var", "font-2"]],
+							"height": "30su",
+							"string": ["$", ["var", "text-4"]],
+							"case": "uppercase",
+							"justify": "top left",
+							"color": ["$", ["var", "color-foreground"]],
+							"boundary": "line",
+							"animations": [
+								{
+									"translate": [
+										"-40su",
+										0
+									]
+								},
+								{
+									"mix": ["animate",
+										[700, 0],
+										["+400", 1]
+									],
+									"easing": "easeOutQuad",
+									"opacity": 1,
+									"translate": [0, 0]
+								}
+							]
+						}],
+						["asset", {
+							"enabled": ["$", ["exists", ["var", "logo"]]],
+							"file": ["$", ["var", "logo"]],
+							"justify": "fit top center",
+							"flex": {
+								"width": "250su",
+								"height": "80su"
+							},
+							"opacity": ["animate",
+								[900, 0, "easeOutQuad"],
+								["+400", 1]
+							],
+							"transform": [
+								["translate",
+									0,
+									["animate",
+										[900, "80su", "easeOutCubic"],
+										["+400", 0]
+									]
+								]
+							]
+						}],
+						["text", {
+							"enabled": ["$", ["not", ["exists", ["var", "logo"]]]],
+							"font": ["$", ["var", "font-3"]],
+							"height": "70su",
+							"flex": {
+								"width": "500su",
+								"height": "300su"
+							},
+							"justify": "left",
+							"string": ["$", ["var", "text-3"]],
+							"color": ["$", ["var", "color-foreground"]],
+							"boundary": "line",
+							"animations": [
+								{
+									"translate": [
+										0,
+										"80su"
+									]
+								},
+								{
+									"mix": ["animate",
+										[900, 0],
+										["+400", 1]
+									],
+									"easing": "easeOutQuad",
+									"opacity": 1,
+									"translate": [0, "-5su"]
+								}
+							]
+						}]
+					]]
+				]]
+			]]
+		]]
+	]
+]

@@ -1,0 +1,1076 @@
+[
+	"motion-intro-vid-reg-mask-padding-media",
+	[
+		{
+			"key": "name",
+			"display": "Speaker name",
+			"type": "text",
+			"default": "Sarah Han"
+		},
+		{
+			"key": "title",
+			"display": "Title",
+			"type": "text",
+			"default": "Lorem ipsum dolor sit amet"
+		},
+		{
+			"key": "subtitle",
+			"display": "Subtitle",
+			"type": "text",
+			"default": "consectetur adipiscing elit"
+		},
+		["motion-intro-sh-mixins",
+			"fonts",
+			"colors",
+			"animations"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		]
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su"
+			],
+			"padding": [
+				0,
+				0,
+				[
+					"$",
+					[
+						"nth",
+						["safezone"],
+						2
+					]
+				],
+				0
+			],
+			"layout": "vertical packed",
+			"align": "center"
+		},
+		[
+			["solid", {
+				"color": [
+					"$",
+					[
+						"var",
+						"color-bg-gradient"
+					]
+				],
+				"rect": [
+					"1000su",
+					"1000su"
+				],
+				"padding": [
+					"60su",
+					"60su"
+				],
+				"align": "center",
+				"effect": [
+					["shadow", {
+						"color": [
+							0,
+							0,
+							0,
+							0.3
+						],
+						"offset": [
+							0,
+							5
+						],
+						"blur": 20
+					}
+				]]
+			}, [
+				["solid", {
+					"layout": "packed"
+				}, [
+					["null", {
+						"layout-": "packed"
+					}, [
+						["asset", {
+							"flex": {
+								"position": "fixed",
+								"left": "0",
+								"top": "0",
+								"transform": ["translate", "-50%", "-50%"]
+							},
+							"file": "./media/motion-asset-test/CPP.jpg",
+							"justify": "fill center",
+							"mask": {
+								"padding": [
+									"200su",
+									"250su",
+									"250su",
+									"250su"
+								]
+							},
+							"mask-": {
+								"rect": ["266.67su", "83.33su"],
+								"position": ["533.33su", "166.67su"]
+							},
+							"transform": [
+								["translate",
+									["animate",
+										[0, "266.67su", "easeInOutQuad"],
+										["+1000", 0]
+									],
+									["animate",
+										[0, "83.33su", "easeInOutQuad"],
+										["+1000", 0]
+									]
+								],
+								["scale",
+									["animate",
+										[0, 0.5, "easeInOutQuad"],
+										["+1000", 1]
+									]
+								]
+							]
+						}]
+					]],
+					["solid", {
+						"layout": "packed"
+					}, [
+						["asset", {
+							"flex": {
+								"position": "absolute",
+								"left": "50%",
+								"top": "0",
+								"transform": ["translate", "-50%", "-50%"]
+							},
+							"file": "./media/motion-asset-test/CPP.jpg",
+							"justify": "fill center",
+							"mask": {
+								"padding": [
+									"250su",
+									"250su",
+									"250su",
+									"250su"
+								]
+							},
+							"rect": ["800su", "250su"],
+							"transform": [
+								["translate",
+									["animate",
+										[0, "-266.67su", "easeInOutQuad"],
+										["+1000", 0]
+									],
+									["animate",
+										[0, "-83.33su", "easeInOutQuad"],
+										["+1000", 0]
+									]
+								],
+								["scale",
+									["animate",
+										[0, 0.5, "easeInOutQuad"],
+										["+1000", 1]
+									]
+								]
+							]
+						}]
+					]],
+					["solid", {
+						"layout": "packed"
+					}, [
+						["asset", {
+							"flex": {
+								"position": "fixed",
+								"right": "50%",
+								"top": "50%",
+								"transform": ["translate", "50%", "-50%"]
+							},
+							"file": "./media/motion-asset-test/CPP.jpg",
+							"justify": "fill center",
+							"mask": {
+								"padding": [
+									"250su",
+									"200su",
+									"250su",
+									"200su"
+								]
+							},
+							"rect-": ["0su", "800su"],
+							"rect": ["250su", "800su"],
+							"transform": [
+								["translate",
+									["animate",
+										[0, 0, "easeInOutQuad"],
+										["+1000", 0]
+									],
+									["animate",
+										[0, "-83.33su", "easeInOutQuad"],
+										["+1000", 0]
+									]
+								],
+								["scale",
+									["animate",
+										[0, 0.5, "easeInOutQuad"],
+										["+1000", 1]
+									]
+								]
+							]
+						}]
+					]],
+					["solid", {
+						"layout": "packed"
+					}, [
+						["asset", {
+							"flex": {
+								"position": "absolute",
+								"left": "0",
+								"top": "50%",
+								"transform": ["translate", "50%", "-50%"]
+							},
+							"file": "./media/motion-asset-test/CPP.jpg",
+							"justify": "fill center",
+							"mask": {
+								"padding": [
+									"250su",
+									"250su",
+									"250su",
+									"250su"
+								]
+							},
+							"transform": [
+								["translate",
+									["animate",
+										[0, "250su", "easeInOutQuad"],
+										["+1000", 0]
+									],
+									["animate",
+										[0, "-83.33su", "easeInOutQuad"],
+										["+1000", 0]
+									]
+								],
+								["scale",
+									["animate",
+										[0, 0.5, "easeInOutQuad"],
+										["+1000", 1]
+									]
+								]
+							]
+						}]
+					]],
+					["solid", {
+						"layout-": "packed",
+						"mask-": {
+							"rect": ["266.67su", "83.33su"],
+							"position": ["533.33su", "83.33su"]
+						}
+					}, [
+						["asset", {
+							"farright": true,
+							"flex": {
+								"position": "fixed",
+								"left": "50%",
+								"top": "50%",
+								"transform": ["translate", "-50%", "-50%"]
+							},
+							"file": "./media/motion-asset-test/CPP.jpg",
+							"rect": ["800su", "250su"],
+							"justify": "fill center",
+							"mask": {
+								"padding": [
+									"250su",
+									"250su",
+									"250su",
+									"250su"
+								]
+							},
+							"transform": [
+								["translate",
+									["animate",
+										[0, "266.67su", "easeInOutQuad"],
+										["+1000", 0]
+									],
+									["animate",
+										[0, 0, "easeInOutQuad"],
+										["+1000", 0]
+									]
+								],
+								["scale",
+									["animate",
+										[0, 0.5, "easeInOutQuad"],
+										["+1000", 1]
+									]
+								]
+							]
+						}]
+					]],
+					["solid", {
+						"layout": "packed"
+					}, [
+						["asset", {
+							"center": "questionmark",
+							"flex": {
+								"position": "absolute",
+								"right": "0",
+								"top": "50%",
+								"transform": ["translate", "50%", "50%"]
+							},
+							"file": "./media/motion-asset-test/CPP.jpg",
+							"justify": "fill center",
+							"mask": {
+								"padding": [
+									"250su",
+									"250su",
+									"250su",
+									"250su"
+								]
+							},
+							"mask-": {
+								"rect": ["266.67su", "83.33su"],
+								"position": [0, "166.67su"]
+							},
+							"rect": ["800su", "250su"],
+							"transform": [
+								["translate",
+									["animate",
+										[0, "-266.67su", "easeInOutQuad"],
+										["+1000", 0]
+									],
+									["animate",
+										[0, "83.33su", "easeInOutQuad"],
+										["+1000", 0]
+									]
+								],
+								["scale",
+									["animate",
+										[0, 0.5, "easeInOutQuad"],
+										["+1000", 1]
+									]
+								]
+							]
+						}]
+					]],
+					["solid", {
+						"layout": "packed"
+					}, [
+						["asset", {
+							"centerWithA": true,
+							"flex": {
+								"position": "fixed",
+								"left": "0",
+								"bottom": "0",
+								"transform": ["translate", "50%", "-50%"]
+							},
+							"file": "./media/motion-asset-test/CPP.jpg",
+							"justify": "fill center",
+							"mask": {
+								"padding": [
+									"250su",
+									"250su",
+									"250su",
+									"250su"
+								]
+							},
+							"rect": ["800su", "250su"],
+							"transform": [
+								["translate",
+									["animate",
+										[0, "-266.67su", "easeInOutQuad"],
+										["+1000", 0]
+									],
+									["animate",
+										[0, 0, "easeInOutQuad"],
+										["+1000", 0]
+									]
+								],
+								["scale",
+									["animate",
+										[0, 0.5, "easeInOutQuad"],
+										["+1000", 1]
+									]
+								]
+							]
+						}]
+					]],
+					["solid", {
+						"layout": "packed"
+					}, [
+						["asset", {
+							"flex": {
+								"position": "fixed",
+								"left": "50%",
+								"bottom": "0",
+								"transform": ["translate", "-50%", "-50%"]
+							},
+							"file": "./media/motion-asset-test/CPP.jpg",
+							"justify": "fill center",
+							"mask": {
+								"padding": [
+									"250su",
+									"250su",
+									"250su",
+									"250su"
+								]
+							},
+							"rect": ["800su", "250su"],
+							"transform": [
+								["translate",
+									["animate",
+										[0, 0, "easeInOutQuad"],
+										["+1000", 0]
+									],
+									["animate",
+										[0, 0, "easeInOutQuad"],
+										["+1000", 0]
+									]
+								],
+								["scale",
+									["animate",
+										[0, 0.5, "easeInOutQuad"],
+										["+1000", 1]
+									]
+								]
+							]
+						}]
+					]],
+					["solid", {
+						"layout": "horizontal packed",
+						"transform": [
+							["translate",
+								["animate",
+									[0, "266.67su", "easeInOutQuad"],
+									["+1000", 0]
+								],
+								["animate",
+									[0, 0, "easeInOutQuad"],
+									["+1000", 0]
+								]
+							],
+							["scale",
+								["animate",
+									[0, 0.5, "easeInOutQuad"],
+									["+1000", 1]
+								]
+							]
+						]
+					}, [
+						["asset", {
+							"overlapOnBottomRight": true,
+							"flex": {
+								"position": "absolute"
+							},
+							"file": "./media/motion-asset-test/CPP.jpg",
+							"justify": "fill center",
+							"mask": {
+								"padding": [
+									"250su",
+									"200su",
+									"250su",
+									"200su"
+								]
+							},
+							"rect": ["800su", "250su"],
+							"transform": [
+								["translate",
+									["animate",
+										[0, "266.67su", "easeInOutQuad"],
+										["+1000", 0]
+									],
+									["animate",
+										[0, 0, "easeInOutQuad"],
+										["+1000", 0]
+									]
+								],
+								["scale",
+									["animate",
+										[0, 0.5, "easeInOutQuad"],
+										["+1000", 1]
+									]
+								]
+							]
+						}]
+					]]
+				]],
+				["null", {
+					"layout": "grid",
+					"columns": 3,
+					"rows": 3,
+					"cell-width": "266.67su",
+					"cell-height": "83.33su"
+				}, [
+					["null", {
+						"layout": "stacked"
+					}, [
+						["asset", {
+							"flex": {
+								"position": "fixed",
+								"left": "-300su",
+								"top": "-300su"
+							},
+							"file": "./media/motion-asset-test/CPP.jpg",
+							"rect": ["800su", "250su"],
+							"justify": "fill center",
+							"mask": {
+								"padding": [
+									"0",
+									"533.33su",
+									"166.67su",
+									"0"
+								]
+							},
+							"transform": [
+								["translate",
+									["animate",
+										[0, "300su", "easeInOutQuad"],
+										["+1000", 0]
+									],
+									["animate",
+										[0, "300su", "easeInOutQuad"],
+										["+1000", 0]
+									]
+								],
+								["scale",
+									["animate",
+										[0, 0.5, "easeInOutQuad"],
+										["+1000", 1]
+									]
+								]
+							]
+						}]
+					]],
+					["null", {
+						"layout": "stacked"
+					}, [
+						["asset", {
+							"flex": {
+								"position": "fixed",
+								"left": "50%",
+								"top": "-300su"
+							},
+							"file": "./media/motion-asset-test/CPP.jpg",
+							"rect": ["800su", "250su"],
+							"justify": "fill center",
+							"mask": {
+								"padding": [
+									"266.67su",
+									"266.67su",
+									"166.67su",
+									"0"
+								]
+							},
+							"transform": [
+								["translate",
+									["animate",
+										[0, "-50%", "easeInOutQuad"],
+										["+1000", 0]
+									],
+									["animate",
+										[0, "300su", "easeInOutQuad"],
+										["+1000", 0]
+									]
+								],
+								["scale",
+									["animate",
+										[0, 0.5, "easeInOutQuad"],
+										["+1000", 1]
+									]
+								]
+							]
+						}]
+					]],
+					["null", {
+						"layout": "stacked"
+					}, [
+						["asset", {
+							"flex": {
+								"position": "fixed",
+								"right": "-300su",
+								"top": "-300su"
+							},
+							"file": "./media/motion-asset-test/CPP.jpg",
+							"rect": ["800su", "250su"],
+							"justify": "fill center",
+							"mask": {
+								"padding": [
+									"533.33su",
+									"0",
+									"166.67su",
+									"0"
+								]
+							},
+							"transform": [
+								["translate",
+									["animate",
+										[0, "-300su", "easeInOutQuad"],
+										["+1000", 0]
+									],
+									["animate",
+										[0, "300su", "easeInOutQuad"],
+										["+1000", 0]
+									]
+								],
+								["scale",
+									["animate",
+										[0, 0.5, "easeInOutQuad"],
+										["+1000", 1]
+									]
+								]
+							]
+						}]
+					]],
+					["null", {
+						"layout": "stacked"
+					}, [
+						["asset", {
+							"flex": {
+								"position": "fixed",
+								"left": "-300su",
+								"top": "50%"
+							},
+							"file": "./media/motion-asset-test/CPP.jpg",
+							"rect": ["800su", "250su"],
+							"justify": "fill center",
+							"mask": {
+								"padding": [
+									"0",
+									"533.33su",
+									"83.33su",
+									"83.33su"
+								]
+							},
+							"transform": [
+								["translate",
+									["animate",
+										[0, "300su", "easeInOutQuad"],
+										["+1000", 0]
+									],
+									["animate",
+										[0, "-50%", "easeInOutQuad"],
+										["+1000", 0]
+									]
+								],
+								["scale",
+									["animate",
+										[0, 0.5, "easeInOutQuad"],
+										["+1000", 1]
+									]
+								]
+							]
+						}]
+					]],
+					["null", {
+						"layout": "stacked"
+					}, [
+						["asset", {
+							"flex": {
+								"position": "fixed",
+								"left": "50%",
+								"top": "50%"
+							},
+							"file": "./media/motion-asset-test/CPP.jpg",
+							"rect": ["800su", "250su"],
+							"justify": "fill center",
+							"mask": {
+								"padding": [
+									"266.67su",
+									"266.67su",
+									"83.33su",
+									"83.33su"
+								]
+							},
+							"transform": [
+								["translate",
+									["animate",
+										[0, "-50%", "easeInOutQuad"],
+										["+1000", 0]
+									],
+									["animate",
+										[0, "-50%", "easeInOutQuad"],
+										["+1000", 0]
+									]
+								],
+								["scale",
+									["animate",
+										[0, 0.5, "easeInOutQuad"],
+										["+1000", 1]
+									]
+								]
+							]
+						}]
+					]],
+					["null", {
+						"layout": "stacked"
+					}, [
+						["asset", {
+							"flex": {
+								"position": "fixed",
+								"right": "-300su",
+								"top": "50%"
+							},
+							"file": "./media/motion-asset-test/CPP.jpg",
+							"rect": ["800su", "250su"],
+							"justify": "fill center",
+							"mask": {
+								"padding": [
+									"533.33su",
+									"0",
+									"83.33su",
+									"83.33su"
+								]
+							},
+							"transform": [
+								["translate",
+									["animate",
+										[0, "-300su", "easeInOutQuad"],
+										["+1000", 0]
+									],
+									["animate",
+										[0, "-50%", "easeInOutQuad"],
+										["+1000", 0]
+									]
+								],
+								["scale",
+									["animate",
+										[0, 0.5, "easeInOutQuad"],
+										["+1000", 1]
+									]
+								]
+							]
+						}]
+					]],
+					["null", {
+						"layout": "stacked"
+					}, [
+						["asset", {
+							"flex": {
+								"position": "fixed",
+								"left": "-300su",
+								"bottom": "-300su"
+							},
+							"file": "./media/motion-asset-test/CPP.jpg",
+							"rect": ["800su", "250su"],
+							"justify": "fill center",
+							"mask": {
+								"padding": [
+									"0",
+									"533.33su",
+									"0",
+									"166.67su"
+								]
+							},
+							"transform": [
+								["translate",
+									["animate",
+										[0, "300su", "easeInOutQuad"],
+										["+1000", 0]
+									],
+									["animate",
+										[0, "-300su", "easeInOutQuad"],
+										["+1000", 0]
+									]
+								],
+								["scale",
+									["animate",
+										[0, 0.5, "easeInOutQuad"],
+										["+1000", 1]
+									]
+								]
+							]
+						}]
+					]],
+					["null", {
+						"layout": "stacked"
+					}, [
+						["asset", {
+							"flex": {
+								"position": "fixed",
+								"left": "50%",
+								"bottom": "-300su"
+							},
+							"file": "./media/motion-asset-test/CPP.jpg",
+							"rect": ["800su", "250su"],
+							"justify": "fill center",
+							"mask": {
+								"padding": [
+									"266.67su",
+									"266.67su",
+									"0",
+									"166.67su"
+								]
+							},
+							"transform": [
+								["translate",
+									["animate",
+										[0, "-50%", "easeInOutQuad"],
+										["+1000", 0]
+									],
+									["animate",
+										[0, "-300su", "easeInOutQuad"],
+										["+1000", 0]
+									]
+								],
+								["scale",
+									["animate",
+										[0, 0.5, "easeInOutQuad"],
+										["+1000", 1]
+									]
+								]
+							]
+						}]
+					]],
+					["null", {
+						"layout": "stacked"
+					}, [
+						["asset", {
+							"flex": {
+								"position": "fixed",
+								"right": "-300su",
+								"bottom": "-300su"
+							},
+							"file": "./media/motion-asset-test/CPP.jpg",
+							"rect": ["800su", "250su"],
+							"justify": "fill center",
+							"mask": {
+								"padding": [
+									"533.33su",
+									"0",
+									"0",
+									"166.67su"
+								]
+							},
+							"transform": [
+								["translate",
+									["animate",
+										[0, "-300su", "easeInOutQuad"],
+										["+1000", 0]
+									],
+									["animate",
+										[0, "-300su", "easeInOutQuad"],
+										["+1000", 0]
+									]
+								],
+								["scale",
+									["animate",
+										[0, 0.5, "easeInOutQuad"],
+										["+1000", 1]
+									]
+								]
+							]
+						}]
+					]]
+				]],
+				["null", {
+					"layout": "packed",
+					"align": "center",
+					"gap-": "30su",
+					"padding": [
+						0,
+						"50su",
+						0,
+						0
+					]
+				}, [
+					["text", {
+						"string": [
+							"$",
+							[
+								"var",
+								"name"
+							]
+						],
+						"color": [
+							"$",
+							[
+								"var",
+								"color-text"
+							]
+						],
+						"font": [
+							"$",
+							[
+								"var",
+								"font-bold"
+							]
+						],
+						"fit": true,
+						"measure": "letter-size",
+						"height": "80su",
+						"stagger": [
+							1500,
+							0
+						],
+						"transform": [
+							"$",
+							[
+								"var",
+								"anim-loop-name"
+							]
+						],
+						"opacity": [
+							"$",
+							[
+								"var",
+								"fade-in"
+							]
+						],
+						"effect": [
+							[
+								"shadow",
+								{
+									"color": [
+										"$",
+										[
+											"var",
+											"color-shadow"
+										]
+									],
+									"offset": [
+										0,
+										0
+									],
+									"blur": 20
+								}
+							]
+						]
+					}],
+					["text", {
+						"string": [
+							"$",
+							[
+								"var",
+								"title"
+							]
+						],
+						"enabled": [
+							"$",
+							[
+								"exists",
+								[
+									"var",
+									"title"
+								]
+							]
+						],
+						"color": [
+							"$",
+							[
+								"var",
+								"color-text"
+							]
+						],
+						"font": [
+							"$",
+							[
+								"var",
+								"font-medium"
+							]
+						],
+						"fit": true,
+						"height": "40su",
+						"stagger": [
+							2000,
+							0
+						],
+						"measure": "letter-size",
+						"boundary": "letter",
+						"transform": ["$",
+							[
+								"var",
+								"anim-loop-title"
+							]
+						],"opacity": ["$",
+							[
+								"var",
+								"fade-in"
+							]
+						],
+						"effect": [
+							["shadow", {
+								"color": ["$",
+									[
+										"var",
+										"color-shadow"
+									]
+								],
+								"offset": [
+									0,
+									0
+								],
+								"blur": 15
+							}
+						]]
+					}],
+					["text", {
+						"string": [
+							"$",
+							[
+								"var",
+								"subtitle"
+							]
+						],
+						"enabled": [
+							"$",
+							[
+								"exists",
+								[
+									"var",
+									"subtitle"
+								]
+							]
+						],
+						"color": [
+							"$",
+							[
+								"var",
+								"color-text"
+							]
+						],
+						"font": [
+							"$",
+							[
+								"var",
+								"font-medium"
+							]
+						],
+						"fit": true,
+						"height": "40su",
+						"stagger": [
+							2500,
+							0
+						],
+						"measure": "letter-size",
+						"boundary": "letter",
+						"transform": [
+							"$",
+							[
+								"var",
+								"anim-loop-subtitle"
+							]
+						],
+						"opacity": [
+							"$",
+							[
+								"var",
+								"fade-in"
+							]
+						],
+						"effect": [
+							[
+								"shadow",
+								{
+									"color": [
+										"$",
+										[
+											"var",
+											"color-shadow"
+										]
+									],
+									"offset": [
+										0,
+										0
+									],
+									"blur": 15
+								}
+							]
+						]}
+					]]
+				]]
+			]
+		]]
+	]
+]

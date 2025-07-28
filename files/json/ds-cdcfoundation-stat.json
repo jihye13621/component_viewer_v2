@@ -1,0 +1,105 @@
+[
+	"ds-cdcfoundation-stat",
+	[
+		["dsx-mixins", ["stat"]],
+		["ds-cdcfoundation-mixins", "color-1", "color-2"],
+		["dsx-mixins", ["boilerplate"]],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [5, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"enabled": ["$",
+					["or",
+						["exists", ["var", "stat"]],
+						["exists", ["var", "text"]]
+					]
+				],
+				"layout": "vertical packed",
+				"max-width": "800nsu",
+				"align": ["$", ["var", "#align"]],
+				"gap": "10su"
+			}, [
+				["text", {
+					"enabled": ["$", ["var", "stat"]],
+					"mixins": ["ds-cdcfoundation-mixins", ["font-stat"]],
+					"string": ["$", ["var", "stat"]],
+					"justify": ["$", ["var", "#align"]],
+					"color": ["$", ["var", "color-1"]],
+					"boundary": "letter",
+					"animations": [
+						{
+							"translate": [0, "70su"]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+600", 1],
+								["100%", 0],
+								["-330", 1]
+							],
+							"opacity": 1,
+							"translate": [0, 0],
+							"easing": "easeOutCubic"
+						}
+					]
+				}],
+				["null", {
+					"enabled": ["$", ["var", "text"]],
+					"layout": "vertical packed",
+					"padding": [
+						0,
+						"24su",
+						"2su",
+						"24su"
+					]
+				}, [
+					["text", {
+						"stagger": [250, -100],
+						"mixins": ["ds-cdcfoundation-mixins", ["font-stat-text"]],
+						"string": ["$", ["var", "text"]],
+						"justify": ["$", ["var", "#align"]],
+						"color": ["$", ["var", "color-2"]],
+						"background-color": ["$", ["var", "color-1"]],
+						"background-padding": [
+							0,
+							"24su",
+							"2su",
+							"24su"
+						],
+						"boundary": "line",
+						"animations": [
+							{
+								"translate": [0, "30su"]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+750", 1],
+									["100%", 0],
+									["-500", 1]
+								],
+								"opacity": 1,
+								"translate": [0, 0],
+								"ramp": 0.5,
+								"easing": "easeOutQuad"
+							}
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

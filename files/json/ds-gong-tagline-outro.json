@@ -1,0 +1,116 @@
+[
+	"ds-gong-tagline-outro",
+	[
+		["dsx-mixins",
+			"boilerplate"
+		],
+		["ds-gong-mixins",
+			"color-white",
+			"color-mid-purple",
+			"color-dark-purple",
+			"font-700"
+		],
+		{
+			"key": "dark-mode",
+			"display": "Dark Mode",
+			"type": "bool",
+			"default": false,
+			"required": false
+		},
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "text",
+			"default": "The Revenue AI Platform",
+			"required": false,
+			"private": true
+		},
+		{
+			"key": "logo",
+			"display": "Logo",
+			"type": "asset",
+			"default": "./media/ds-gong-logo.png",
+			"required": false,
+			"private": true
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			]
+		}, [
+			["solid", {
+				"flex": {
+					"position": "fixed"
+				},
+				"color": ["$", ["var", "color-mid-purple"]],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["var", "dark-mode"]],
+						"color": ["$", ["var", "color-dark-purple"]]
+					}
+				]
+			}],
+			["null", {
+				"layout": "stacked",
+				"align": "center"
+			}, [
+				["text", {
+					"font": ["$", ["var", "font-700"]],
+					"measure": "letter-size",
+					"height": "80su",
+					"leading": "30su",
+					"string": ["$", ["var", "text"]],
+					"justify": "center",
+					"align": "center",
+					"color": ["$", ["var", "color-white"]],
+					"opacity": ["animate", 
+						[0, 0, "easeOutQuint"],
+						["+500", 1],
+						["+500", 1],
+						["+250", 0, "easeOutQuint"]
+					],
+					"transform": [
+						["scale",
+							["animate",
+								[0, 0, "easeOutQuint"],
+								["+500", 1],
+								["+500", 1],
+								["+250", 1.25, "easeOutQuint"]
+							]
+						]
+					]
+				}]
+			]],
+			["user-asset", {
+				"stagger": [1250, 0],
+				"file": ["$", ["var", "logo"]],
+				"justify": "fit center",
+				"rect": [
+					0,
+					0,
+					"600su",
+					"600su"
+				],
+				"align": "center",
+				"mute": true,
+				"opacity": ["animate", 
+					[0, 0, "easeOutQuint"],
+					["+500", 1],
+					["100%", 0],
+					["-500", 1, "easeOutQuint"]
+				],
+				"transform": [
+					["scale",
+						["animate",
+							[0, 0.5, "easeOutQuint"],
+							["+500", 1]
+						]
+					]
+				]
+			}]
+		]]
+	]
+]

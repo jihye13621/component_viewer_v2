@@ -1,0 +1,560 @@
+[
+	"ds-servicenow-ai-meet",
+	[
+		{
+			"key": "headline",
+			"display": "Headline",
+			"type": "text",
+			"default": "Headline",
+			"required": false
+		},
+		{
+			"key": "subhead",
+			"display": "Subhead",
+			"type": "text",
+			"default": "Subhead",
+			"required": false
+		},
+		{
+			"key": "details",
+			"display": "Details",
+			"type": "text",
+			"default": "Details",
+			"required": false
+		},
+		{
+			"key": "action-1",
+			"display": "Flow Actions",
+			"type": "text",
+			"default": "Action",
+			"required": false
+		},
+		{
+			"key": "action-2",
+			"display": "RAG",
+			"type": "text",
+			"default": "Action",
+			"required": false
+		},
+		{
+			"key": "action-3",
+			"display": "Scripts",
+			"type": "text",
+			"default": "Action",
+			"required": false
+		},
+		{
+			"key": "action-4",
+			"display": "Skills",
+			"type": "text",
+			"default": "Action",
+			"required": false
+		},
+		{
+			"key": "action-5",
+			"display": "Sub Flow",
+			"type": "text",
+			"default": "Action",
+			"required": false
+		},
+		{
+			"key": "#items",
+			"display": "Items",
+			"type": "object",
+			"default": [],
+			"required": false,
+			"private": true,
+			"script": ["$",
+				["array",
+					["array", ["var", "action-1"], "Flow actions", "ds-servicenow-ai-flow.svg"],
+					["array", ["var", "action-2"], "Retrieval Augmented Generation", "ds-servicenow-ai-rag.svg"],
+					["array", ["var", "action-3"], "Scripts", "ds-servicenow-ai-scripts.svg"],
+					["array", ["var", "action-4"], "Skills", "ds-servicenow-ai-sparkle.svg"],
+					["array", ["var", "action-5"], "Sub Flow", "ds-servicenow-ai-subflow.svg"]
+				]
+			]
+		},
+		{
+			"key": "#zone",
+			"display": "Zone",
+			"type": "number",
+			"default": 110,
+			"required": false,
+			"private": true
+		},
+		["ds-servicenow-mixins",
+			"font-regular",
+			"font-medium",
+			"font-bold",
+			"font-black"
+		],
+		{
+			"key": "color-primary",
+			"display": "Primary",
+			"type": "color",
+			"default": "#F7F7F7",
+			"required": false,
+			"private": true
+		},
+		{
+			"key": "color-accent",
+			"display": "Accent",
+			"type": "color",
+			"default": "#62D84E",
+			"required": false,
+			"private": true
+		}
+	],
+	[
+		["solid", {
+			"layout": "horizontal",
+			"mixins": ["dsx-mixins",
+				"set-su-roi",
+				"safezone"
+			],
+			"gap": "100su",
+			"color": "#042D42"
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"gap": "40su",
+				"flex": {
+					"weight": 0.6
+				}
+			}, [
+				["null", {
+					"flex": {
+						"height": "130su"
+					},
+					"enabled": ["$", ["exists", ["var", "headline"]]],
+					"layout": "stacked",
+					"padding": [
+						0,
+						"-100rw",
+						0,
+						0
+					]
+				}, [
+					["text", {
+						"font": ["$", ["var", "font-black"]],
+						"height": "120su",
+						"leading": -0.2,
+						"color": "#ffffff",
+						"string": ["$", ["var", "headline"]],
+						"fit": true,
+						"justify": "left",
+						"animations": [
+							{
+								"mask": [
+									0,
+									0,
+									0,
+									0
+								],
+								"translate": [
+									0,
+									"150su"
+								]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+500", 1]
+								],
+								"easing": "easeOutQuad",
+								"translate": [0, 0]
+							}
+						]
+					}]
+				]],
+				["null", {
+					"flex": {
+						"height": "300su"
+					},
+					"padding": [
+						0,
+						0,
+						"-40su",
+						0
+					]
+				}, [
+					["asset", {
+						"stagger": [1000, 0],
+						"file": "./media/ds-servicenow-ai-robot.svg",
+						"justify": "fit bottom center",
+						"mask": {},
+						"transform": [
+							["translate",
+								0,
+								["animate",
+									[0, "100rh", "easeOutQuad"],
+									["+1000", 0]
+								]
+							]
+						]
+					}]
+				]],
+				["null", {
+					"padding": [
+						"40su",
+						"40su"
+					],
+					"flex": {
+						"grow": true
+					},
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[0, "100roih", "easeOutQuad"],
+								["+1000", 0]
+							]
+						]
+					]
+				}, [
+					["solid", {
+						"flex": {
+							"position": "fixed"
+						},
+						"color": ["linear-gradient",
+							0.0,
+							[0, "#24C1CF22"],
+							[0.75, "#24C1CF00"]
+						],
+						"stroke": "2su",
+						"stroke-color": ["linear-gradient",
+							0.0,
+							[0, "#5DD659"],
+							[1, "#24C1CF00"]
+						]
+					}],
+					["null", {
+						"layout": "vertical packed"
+					}, [
+						["text", {
+							"flex": {
+								"height": "70su"
+							},
+							"enabled": ["$", ["exists", ["var", "subhead"]]],
+							"stagger": [400, 0],
+							"font": ["$", ["var", "font-black"]],
+							"height": "60su",
+							"leading": -0.2,
+							"fit": true,
+							"case": "uppercase",
+							"color": ["$", ["var", "color-accent"]],
+							"string": ["$", ["var", "subhead"]],
+							"justify": "left",
+							"animations": [
+								{
+									"mask": [
+										0,
+										0,
+										0,
+										0
+									],
+									"translate": [
+										0,
+										"70su"
+									]
+								},
+								{
+									"mix": ["animate",
+										[0, 0],
+										["+500", 1]
+									],
+									"easing": "easeOutQuad",
+									"translate": [0, 0]
+								}
+							]
+						}],
+						["text", {
+							"enabled": ["$", ["exists", ["var", "details"]]],
+							"stagger": [600, 0],
+							"font": ["$", ["var", "font-medium"]],
+							"height": "30su",
+							"leading": -0.1,
+							"color": ["$", ["var", "color-primary"]],
+							"string": ["$", ["var", "details"]],
+							"justify": "left",
+							"animations": [
+								{
+									"translate": [
+										0,
+										"70su"
+									]
+								},
+								{
+									"mix": ["animate",
+										[0, 0],
+										["+1000", 1]
+									],
+									"easing": "easeOutQuad",
+									"opacity": 1,
+									"translate": [0, 0]
+								}
+							]
+						}]
+					]]
+				]]
+			]],
+			["for-each", {
+				"items": ["$", ["var", "#items"]],
+				"align": "center",
+				"rect": [
+					0,
+					0,
+					"100rw",
+					["$",
+						["concat",
+							["*",
+								["length", ["var", "#items"]],
+								["var", "#zone"]
+							],
+							"su"
+						]
+					]
+				]
+			}, [
+				["null", {
+					"rect": [
+						0,
+						["$",
+							["concat",
+								["*",
+									["var", "index"],
+									["var", "#zone"]
+								],
+								"su"
+							]
+						],
+						"100rw",
+						["$", ["concat", ["var", "#zone"], "su"]]
+					],
+					"padding": [
+						"5su",
+						0
+					]
+				}, [
+					["null", {
+						"stagger": [
+							["$",
+								["*",
+									["var", "index"],
+									100
+								]
+							],
+							0
+						],
+						"mask": {
+							"radius": "10su",
+							"padding": [
+								0,
+								["animate",
+									[0, "100rw", "easeInOutQuad"],
+									["+1000", 0]
+								],
+								0,
+								0
+							]
+						},
+						"padding": [
+							0,
+							0,
+							0,
+							["$", ["concat", ["var", "#zone"], "su"]]
+						]
+					}, [
+						["solid", {
+							"color": [0, 0, 0, 0],
+							"radius": "10su",
+							"stroke": "2su",
+							"flex": {
+								"position": "fixed"
+							},
+							"stroke-color": "#24C1CF44"
+						}],
+						["solid", {
+							"rect": [
+								0,
+								0,
+								"35rw",
+								"100rh"
+							],
+							"path": [
+								["-10su", "1rh"],
+								["100rw", "1rh"],
+								["113rw", "50rh"],
+								["100rw", "99rh"],
+								["-10su", "99rh"]
+							],
+							"stroke": "2su",
+							"color": ["linear-gradient",
+								-0.25,
+								[0, ["$", ["rgba-set", "#5DD659", "a", 0.5]]],
+								[1, ["$", ["rgba-set", "#24C1CF", "a", 0.0]]]
+							],
+							"stroke-color": ["linear-gradient",
+								-0.25,
+								[0, "#5DD659"],
+								[1, "#24C1CF"]
+							]
+						}],
+						["solid", {
+							"rect": [
+								0,
+								0,
+								"100rh",
+								"100rh"
+							],
+							"color": ["linear-gradient",
+								-0.125,
+								[0, "#5DD659"],
+								[1, "#24C1CF"]
+							],
+							"flex": {
+								"position": "fixed"
+							},
+							"padding": [
+								"20rw",
+								"20rh"
+							]
+						}, [
+							["asset", {
+								"file": ["$", ["concat",
+									"./media/",
+									["nth", ["var", "item"], 2]
+								]],
+								"justify": "fit center"
+							}]
+						]],
+						["null", {
+							"flex": {
+								"position": "fixed"
+							},
+							"padding": [
+								0,
+								0,
+								0,
+								"100rh"
+							]
+						}, [
+							["null", {
+								"rect": [
+									0,
+									0,
+									"35rw",
+									"100rh"
+								],
+								"padding": [
+									0,
+									"20su"
+								]
+							}, [
+								["text", {
+									"enabled": ["$", ["exists", ["nth", ["var", "item"], 1]]],
+									"stagger": [
+										["$",
+											["+",
+												["*",
+													["var", "index"],
+													100
+												],
+												300
+											]
+										],
+										0
+									],
+									"font": ["$", ["var", "font-bold"]],
+									"height": "28su",
+									"leading": -0.2,
+									"string": ["$", ["nth", ["var", "item"], 1]],
+									"justify": "center left",
+									"animations": [
+										{
+											"mask": [
+												0,
+												0,
+												0,
+												0
+											],
+											"translate": [
+												0,
+												"40su"
+											]
+										},
+										{
+											"mix": ["animate",
+												[0, 0],
+												["+500", 1]
+											],
+											"easing": "easeOutQuad",
+											"translate": [0, 0]
+										}
+									]
+								}]
+							]],
+							["null", {
+								"rect": [
+									"35rw",
+									0,
+									"65rw",
+									"100rh"
+								],
+								"padding": [
+									0,
+									"20su",
+									0,
+									"13rw"
+								]
+							}, [
+								["text", {
+									"enabled": ["$", ["exists", ["nth", ["var", "item"], 0]]],
+									"stagger": [
+										["$",
+											["+",
+												["*",
+													["var", "index"],
+													100
+												],
+												700
+											]
+										],
+										0
+									],
+									"font": ["$", ["var", "font-medium"]],
+									"height": "24su",
+									"leading": -0.2,
+									"string": ["$", ["nth", ["var", "item"], 0]],
+									"justify": "center left",
+									"animations": [
+										{
+											"mask": [
+												0,
+												0,
+												0,
+												0
+											],
+											"translate": [
+												0,
+												"40su"
+											]
+										},
+										{
+											"mix": ["animate",
+												[0, 0],
+												["+500", 1]
+											],
+											"easing": "easeOutQuad",
+											"translate": [0, 0]
+										}
+									]
+								}]
+							]]
+						]]
+					]]
+				]]
+			]]
+		]]
+	]
+]

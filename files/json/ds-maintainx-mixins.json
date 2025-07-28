@@ -1,0 +1,26 @@
+{
+	"params": {
+		"color-light-blue": {
+			"key": "color-light-blue",
+			"display": "Color",
+			"type": "color",
+			"default": "#246CFF",
+			"required": false,
+			"private": true
+		}
+	},
+	"custom-safezone": {
+		"padding": ["$",
+			["if",
+				["<", ["aspect"], 1],
+				["array",
+					["nth", ["safezone"], 0],
+					["nth", ["safezone"], 3],
+					["nth", ["safezone"], 2],
+					["nth", ["safezone"], 3]
+				],
+				["safezone"]
+			]
+		]
+	}
+}

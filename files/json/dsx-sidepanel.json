@@ -1,0 +1,229 @@
+[
+	"dsx-sidepanel",
+	[
+		{
+			"key": "background-color",
+			"display": "Background Color",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		},
+		{
+			"key": "translate-camera",
+			"display": "Translate Camera",
+			"type": "bool",
+			"default": false,
+			"required": false
+		},
+		{
+			"key": "animate",
+			"display": "Animate",
+			"type": "bool",
+			"default": true,
+			"required": false
+		},
+		{
+			"key": "animate-in-dur",
+			"display": "Animate In Duration",
+			"type": "number",
+			"default": 1000,
+			"required": false
+		},
+		{
+			"key": "animate-in-ease",
+			"display": "Animate In Ease",
+			"type": "string",
+			"default": "easeInOutCubic",
+			"required": false
+		},
+		{
+			"key": "animate-out-dur",
+			"display": "Animate In Duration",
+			"type": "number",
+			"default": 1000,
+			"required": false
+		},
+		{
+			"key": "animate-out-ease",
+			"display": "Animate Out Ease",
+			"type": "string",
+			"default": "easeInOutCubic",
+			"required": false
+		},
+		{
+			"key": "mode",
+			"display": "Mode",
+			"type": "string",
+			"default": "half",
+			"options": [
+				{
+					"key": "half",
+					"display": "Half"
+				},
+				{
+					"key": "full",
+					"display": "Full"
+				}
+			]
+		}
+	],
+	[
+		["solid", {
+			"color": ["$", ["var", "background-color"]],
+			"slot": "default",
+			"breakpoints": [
+				{
+					"enabled": ["$", [">", ["aspect"], 1]],
+					"rect": [
+						0,
+						0,
+						["$",
+							["if",
+								["=", ["var", "mode"], "half"],
+								"50rw",
+								"100rw"
+							]
+						],
+						"100rh"
+					],
+					"align": "right",
+					"padding": ["$",
+						["array",
+							["nth", ["safezone"], 0],
+							["nth", ["safezone"], 1],
+							["nth", ["safezone"], 2],
+							["if",
+								["=", ["var", "mode"], "half"],
+								"80nsu",
+								["nth", ["safezone"], 3]
+							]
+						]
+					],
+					"transform": [
+						["translate",
+							["$", ["var", "animate"]],
+							["animate",
+								[0, "100rw", ["$", ["var", "animate-in-ease"]]],
+								[
+									["$", ["to-relative-string", ["var", "animate-in-dur"]]],
+									0
+								],
+								["100%", "100rw"],
+								[
+									["$", ["to-relative-string", ["*", -1, ["var", "animate-out-dur"]]]],
+									0,
+									["$", ["var", "animate-out-ease"]]
+								]
+							],
+							0
+						]
+					]
+				},
+				{
+					"enabled": ["$", ["<=", ["aspect"], 1]],
+					"rect": [
+						0,
+						0,
+						"100rw",
+						["$",
+							["if",
+								["=", ["var", "mode"], "half"],
+								"50rh",
+								"100rh"
+							]
+						]
+					],
+					"align": "bottom",
+					"padding": ["$",
+						["array",
+							["if",
+								["=", ["var", "mode"], "half"],
+								"80nsu",
+								["nth", ["safezone"], 0]
+							],
+							["nth", ["safezone"], 1],
+							["nth", ["safezone"], 2],
+							["nth", ["safezone"], 3]
+						]
+					],
+					"transform": [
+						["translate",
+							["$", ["var", "animate"]],
+							0,
+							["animate",
+								[
+									0,
+									"100rh",
+									["$", ["var", "animate-in-ease"]]
+								],
+								[
+									["$", ["to-relative-string", ["var", "animate-in-dur"]]],
+									0
+								],
+								["100%", "100rh"],
+								[
+									["$", ["to-relative-string", ["*", -1, ["var", "animate-out-dur"]]]],
+									0,
+									["$", ["var", "animate-out-ease"]]
+								]
+							]
+						]
+					]
+				},
+				{
+					"enabled": ["$", ["var", "translate-camera"]],
+					"script": ["$$",
+						["let",
+							[
+								["start", ["key", ["var", "self"], "start"]],
+								["end", ["key", ["var", "self"], "end"]],
+								["width", ["/", ["key", ["key", ["var", "self"], "roi"], "width"], 2]],
+								["height", ["/", ["key", ["key", ["var", "self"], "roi"], "height"], 2]],
+								["animate-in",
+									["ease",
+										["map",
+											["var", "frame"],
+											["+", ["var", "start"], 0],
+											["+", ["var", "start"], ["$", ["var", "animate-in-dur"]]],
+											0,
+											1
+										],
+										["$", ["var", "animate-in-ease"]]
+									]
+								],
+								["animate-out",
+									["ease",
+										["map",
+											["var", "frame"],
+											["-", ["var", "end"], ["$", ["var", "animate-out-dur"]]],
+											["var", "end"],
+											0,
+											1
+										],
+										["$", ["var", "animate-out-ease"]]
+									]
+								],
+								["animation", ["-", ["var", "animate-in"], ["var", "animate-out"]]]
+							],
+							["if",
+								[">", ["aspect"], 1],
+								["live-transform",
+									["lookup-by-tag", "clip"],
+									"translate",
+									["*", -1, ["var", "animation"], ["var", "width"]],
+									0
+								],
+								["live-transform",
+									["lookup-by-tag", "clip"],
+									"translate",
+									0,
+									["*", -1, ["var", "animation"], ["var", "height"]]
+								]
+							]
+						]
+					]
+				}
+			]
+		}]
+	]
+]

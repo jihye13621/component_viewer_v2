@@ -1,0 +1,57 @@
+{
+	"params": {
+		"color-light": {
+			"key": "color-light",
+			"display": "Color Light",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		},
+		"color-dark": {
+			"key": "color-dark",
+			"display": "Color Dark",
+			"type": "color",
+			"default": "#3A0068",
+			"required": false
+		},
+		"color-accent": {
+			"key": "color-accent",
+			"display": "Color Accent",
+			"type": "color",
+			"default": "#ADF0FF",
+			"required": false
+		}
+	},
+	"font-intro": {
+		"font": "./media/Colfax-Black.otf",
+		"height": "300su"
+	},
+	"font-display": {
+		"font": "./media/Colfax-Black.otf",
+		"height": "200su",
+		"leading": -0.2
+	},
+	"font-headline": {
+		"font": "./media/Colfax-Black.otf",
+		"height": "140su"
+	},
+	"font-title": {
+		"font": "./media/Colfax-Black.otf",
+		"height": "80su",
+		"leading": -0.2
+	},
+	"font-body": {
+		"font": "./media/Colfax-Bold.otf",
+		"height": "72su"
+	},
+	"font-body-small": {
+		"font": "./media/Colfax-Bold.otf",
+		"height": "48su" 
+	},
+	"font-label": {
+		"font": "./media/Colfax-Regular.otf",
+		"height": "56su",
+		"leading": 0.1,
+		"case": "normal" 
+	}
+}

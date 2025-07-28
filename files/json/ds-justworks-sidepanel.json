@@ -1,0 +1,256 @@
+[
+	"ds-justworks-sidepanel",
+	[
+		{
+			"key": "image",
+			"display": "Image",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [],
+			"script": ["$", ["if",
+				["exists", ["var", "image"]],
+				["var", "image"],
+				"./media/image-wide.jpg"	
+			]]
+		},
+		{
+			"key": "detail-1",
+			"display": "Detail 1",
+			"type": "text",
+			"default": "Federal Taxes",
+			"required": false
+		},
+		{
+			"key": "detail-2",
+			"display": "Detail 2",
+			"type": "text",
+			"default": "State Taxes",
+			"required": false
+		},
+		{
+			"key": "detail-3",
+			"display": "Detail 3",
+			"type": "text",
+			"default": "Medicare",
+			"required": false
+		},
+		{
+			"key": "detail-4",
+			"display": "Detail 4",
+			"type": "text",
+			"default": "Other deductions...",
+			"required": false
+		},
+		["ds-justworks-mkii-mixins",
+			"fonts",
+			"color-primary",
+			"color-secondary"
+		]
+	],
+	[
+		["null", {
+			"mask": {
+				"padding": [
+					0,
+					0,
+					["animate",
+						["100%", "100rh"],
+						["-350", 0, "easeInCubic"]
+					],
+					0
+				]
+			}
+		}, [
+			["null", {
+				"align": "right",
+				"transform": [
+					["scale",
+						["animate",
+							[0, 0.9, "easeOutCubic"],
+							["+600", 1]
+						]
+					],
+					["translate",
+						["animate",
+							[1000, 0, "easeOutCubic"],
+							["+600", "25rw"]
+						],
+						0
+					]
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["<=", ["aspect"], 1]],
+						"transform": [
+							["scale",
+								["animate",
+									[0, 0.9, "easeOutCubic"],
+									["+600", 1]
+								]
+							],
+							["translate",
+								0,
+								["animate",
+									[1000, 0, "easeOutCubic"],
+									["+600", "25rh"]
+								]
+							]
+						]
+					}
+				]
+			}, [
+				["null", {
+					"opacity": ["animate",
+						[0,  0, "easeOutCubic"],
+						["+200", 1]
+					]
+				}, [
+					["user-asset", {
+						"file": ["$", ["var", "image"]],
+						"mute": true,
+						"hold": true,
+						"justify": "center fill"
+					}]
+				]]
+			]],
+			["solid", {
+				"mixins": ["dsx-mixins", "set-su"],
+				"color": ["$", ["var", "color-primary"]],
+				"rect": [0,0,"50rw","100rh"],
+				"padding": [
+					["$", ["nth", ["safezone"], 0]],
+					"80su",
+					["$", ["nth", ["safezone"], 2]],
+					["$", ["nth", ["safezone"], 3]]
+				],
+				"mask": {
+					"padding": [
+						0,
+						["animate",
+							[1000, "100rw", "easeOutCubic"],
+							["+600", 0]
+						],
+						0,
+						0
+					]
+				},
+				"breakpoints": [
+					{
+						"enabled": ["$", ["<=", ["aspect"], 1]],
+						"rect": [
+							0,
+							0,
+							"100rw",
+							"50rh"
+						],
+						"mask": {
+							"padding": [
+									0,
+									0,
+									["animate",
+										[1000, "100rh", "easeOutCubic"],
+										["+600", 0]
+									],
+									0
+								]
+							},
+						"padding": [
+							["$", ["nth", ["safezone"], 0]],
+							["$", ["nth", ["safezone"], 1]],
+							"25su",
+							["$", ["nth", ["safezone"], 3]]
+						]
+					}
+				]
+			}, [
+				["null", {
+					"layout": "vertical packed",
+					"align": "center left",
+					"gap": "125su",
+					"stagger": [1000, 0],
+					"transform": [
+						["translate",
+							["animate",
+								[0, "100rw", "easeOutCubic"],
+								["+1000", 0]
+							],
+							0
+						]
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["=", ["aspect"], 1]],
+							"gap": "20su"
+						},
+						{
+							"enabled": ["$", ["<", ["aspect"], 1]],
+							"gap": "75su"
+						}
+					]
+				}, [
+					["text", {
+						"enabled": ["$", ["exists", ["var", "detail-1"]]],
+						"mixins": ["ds-justworks-mixins",
+							"text"
+						],
+						"stagger": [1200, 0],
+						"color": ["$", ["var", "color-secondary"]],
+						"string": ["$", ["var", "detail-1"]],
+						"font": ["$", ["var", "font-bold"]],
+						"height": "75su",
+						"opacity": ["animate",
+							[0,  0, "easeOutCubic"],
+							["+600", 1]
+						]
+					}],
+					["text", {
+						"enabled": ["$", ["exists", ["var", "detail-2"]]],
+						"mixins": ["ds-justworks-mixins",
+							"text"
+						],
+						"stagger": [1300, 0],
+						"color": ["$", ["var", "color-secondary"]],
+						"string": ["$", ["var", "detail-2"]],
+						"font": ["$", ["var", "font-bold"]],
+						"height": "75su",
+						"opacity": ["animate",
+							[0,  0, "easeOutCubic"],
+							["+600", 1]
+						]
+					}],
+					["text", {
+						"enabled": ["$", ["exists", ["var", "detail-3"]]],
+						"mixins": ["ds-justworks-mixins",
+							"text"
+						],
+						"stagger": [1400, 0],
+						"color": ["$", ["var", "color-secondary"]],
+						"string": ["$", ["var", "detail-3"]],
+						"font": ["$", ["var", "font-bold"]],
+						"height": "75su",
+						"opacity": ["animate",
+							[0,  0, "easeOutCubic"],
+							["+600", 1]
+						]
+					}],
+					["text", {
+						"enabled": ["$", ["exists", ["var", "detail-4"]]],
+						"mixins": ["ds-justworks-mixins",
+							"text"
+						],
+						"stagger": [1500, 0],
+						"color": ["$", ["var", "color-secondary"]],
+						"string": ["$", ["var", "detail-4"]],
+						"font": ["$", ["var", "font-bold"]],
+						"height": "75su",
+						"opacity": ["animate",
+							[0,  0, "easeOutCubic"],
+							["+600", 1]
+						]
+					}]	
+				]]
+			]]
+		]]
+	]
+]

@@ -1,0 +1,212 @@
+[
+	"ds-mercury-headline",
+	[
+		["dsx-mixins",
+			"headline"
+		],
+		["ds-mercury-mixins",
+			"color-primary",
+			"color-midtone",
+			"font-headline",
+			"font-body"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "gradient-size",
+			"display": "Gradient",
+			"type": "number",
+			"default": 1.0,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"step": 0.05,
+				"minimum": 0,
+				"maximum": 2
+			},
+			"script": ["$",
+				["*",
+					200,
+					["var", "gradient-size"]
+				]
+			]
+		},
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [7, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins", "set-dsx-su"],
+			"color": ["linear-gradient",
+				0.0,
+				[0.0, ["$", ["var", "color-midtone"]]],
+				[0.4, ["$", ["rgba-set", ["var", "color-midtone"], "a", 0.95]]],
+				[1.0, ["$", ["rgba-set", ["var", "color-midtone"], "a", 0.0]]]
+			],
+			"layout": "vertical packed",
+			"align": ["$", ["var", "#align"]],
+			"padding": [
+				0,
+				0,
+				["$",
+					["concat",
+						["var", "gradient-size"],
+						"su"
+					]
+				],
+				0
+			],
+			"opacity": ["animate",
+				[0, 0],
+				["+600", 1],
+				["100%", 0],
+				["-600", 1]
+			],
+			"breakpoints": [
+				{
+					"enabled": ["$",
+						["lte",
+							["nth", ["var", "position"], 0],
+							3
+						]
+					],
+					"padding": [
+						["$",
+							["concat",
+								["var", "gradient-size"],
+								"su"
+							]
+						],
+						0,
+						0,
+						0
+					],
+					"color": ["linear-gradient",
+						0.5,
+						[0.0, ["$", ["var", "color-midtone"]]],
+						[0.5, ["$", ["rgba-set", ["var", "color-midtone"], "a", 0.95]]],
+						[1.0, ["$", ["rgba-set", ["var", "color-midtone"], "a", 0.0]]]
+					]
+				},
+				{
+					"enabled": ["$",
+						["and",
+							["lte",
+								["nth", ["var", "position"], 0],
+								6
+							],
+							["gte",
+								["nth", ["var", "position"], 0],
+								4
+							]
+						]
+					],
+					"padding": [
+						["$",
+							["concat",
+								["/", ["var", "gradient-size"], 2],
+								"su"
+							]
+						],
+						0,
+						["$",
+							["concat",
+								["/", ["var", "gradient-size"], 2],
+								"su"
+							]
+						],
+						0
+					],
+					"color": ["linear-gradient",
+						0.0,
+						[0.0, ["$", ["rgba-set", ["var", "color-midtone"], "a", 0.0]]],
+						[0.3, ["$", ["rgba-set", ["var", "color-midtone"], "a", 0.95]]],
+						[0.7, ["$", ["rgba-set", ["var", "color-midtone"], "a", 0.95]]],
+						[1.0, ["$", ["rgba-set", ["var", "color-midtone"], "a", 0.0]]]
+					]
+				}
+			]
+		}, [
+			["null", {
+				"mixins": ["dsx-mixins", "safezone"],
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"min-width": "100rw",
+				"gap": "40su"
+			}, [
+				["text", {
+					"enabled": ["$", ["exists", ["var", "subhead"]]],
+					"mixins": ["ds-mercury-mixins",
+						"text",
+						"text-label"
+					],
+					"string": ["$", ["var", "subhead"]],
+					"justify": ["$", ["var", "#align"]],
+					"color": ["$", ["var", "color-primary"]],
+					"stagger": [750, -200],
+					"animations": [
+						{
+							"translate": [
+								"-250su",
+								0
+							]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+750", 1],
+								["100%", 0],
+								["-600", 1]
+							],
+							"easing": "easeOutCubic",
+							"translate": [0, 0],
+							"opacity": 1,
+							"ramp": 2
+						}
+					]
+				}],
+				["text", {
+					"enabled": ["$", ["exists", ["var", "headline"]]],
+					"mixins": ["ds-mercury-mixins",
+						"text",
+						"text-headline"
+					],
+					"string": ["$", ["var", "headline"]],
+					"justify": ["$", ["var", "#align"]],
+					"color": ["$", ["var", "color-primary"]],
+					"stagger": [450, -300],
+					"animations": [
+						{
+							"translate": [
+								"-250su",
+								0
+							]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+750", 1],
+								["100%", 0],
+								["-600", 1]
+							],
+							"easing": "easeOutCubic",
+							"translate": [0, 0],
+							"opacity": 1,
+							"ramp": 2
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

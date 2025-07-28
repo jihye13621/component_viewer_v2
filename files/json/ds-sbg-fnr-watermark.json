@@ -1,0 +1,171 @@
+[
+	"ds-sbg-fnr-watermark",
+	[
+		["ds-sbg-fnr-mixins",
+			"show"
+		],
+		{
+			"key": "sponsor",
+			"display": "Sponsor",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": []
+		},
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [0, 0, 0],
+			"required": false,
+			"ui": {
+				"grid": false,
+				"offset": true,
+				"minimum": -100,
+				"maximum": 100
+			}
+		},
+		["ds-sbg-mixins", "do-safezone"]
+	],
+	[
+		["null", {
+			"mixins": [
+				["dsx-mixins",
+					"set-su-roi",
+					"offset"
+				],
+				["ds-sbg-mixins", "watermark-safezone"]
+			]
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"mask": {
+					"padding": [
+						0,
+						0,
+						["animate",
+							[0, "100rh", "easeOutQuad"],
+							["+500", 0],
+							["100%", "100rh"],
+							["-500", 0, "easeInQuad"]
+						],
+						0
+					]
+				}
+			}, [
+				["solid", {
+					"flex": {
+						"position": "fixed"
+					},
+					"color": ["linear-gradient",
+						0.25,
+						[0, "#636363"],
+						[0.4, [1, 1, 1, 1]],
+						[0.6, [1, 1, 1, 1]],
+						[1, "#636363"]
+					]
+				}],
+				["solid", {
+					"flex": {
+						"position": "fixed"
+					},
+					"rect": [
+						0,
+						0,
+						"100rw",
+						"100rw"
+					],
+					"radius": 10000,
+					"color": [1, 1, 1, 0.1],
+					"transform": [
+						["scale",
+							2,
+							1.5
+						],
+						["translate",
+							0,
+							["animate",
+								[0, "-120rw", "easeOutQuad"],
+								["+500", "-100rw"]
+							]
+						]
+					]
+				}],
+				["null", {
+					"flex": {
+						"height": "150su"
+					},
+					"layout": "stacked",
+					"align": "center",
+					"padding": [
+						"40su",
+						"40su"
+					],
+					"units": {
+						"grid": "100rh"
+					}
+				}, [
+					["asset", {
+						"file": ["$",
+							["if",
+								["eq", ["var", "show"], "fnr"],
+								"./media/ds-sbg-fnr-logo.svg",
+								"./media/ds-sbg-tnl-logo.svg"
+							]
+						],
+						"justify": "fit center",
+						"svg-recolor": [0, 0, 0, 1],
+						"breakpoints": [
+							{
+								"enabled": ["$", ["exists", ["var", "sponsor"]]],
+								"transform": [
+									["translate",
+										0,
+										["animate",
+											[2000, 0, "easeInOutQuad"],
+											["+500", "1grid"]
+										]
+									]
+								]
+							}
+						]
+					}],
+					["user-asset", {
+						"enabled": ["$", ["exists", ["var", "sponsor"]]],
+						"file": ["$", ["var", "sponsor"]],
+						"justify": "fit center",
+						"svg-recolor": [0, 0, 0, 1],
+						"transform": [
+							["translate",
+								0,
+								["animate",
+									[2000, "-1grid", "easeInOutQuad"],
+									["+500", 0]
+								]
+							]
+						]
+					}]
+				]],
+				["solid", {
+					"flex": {
+						"position": "fixed"
+					},
+					"color": [0, 0, 0, 0],
+					"stroke": "4su",
+					"stroke-color": "#BEBEBE",
+					"rect": [
+						0,
+						0,
+						"100rw",
+						["animate",
+							[0, 0, "easeOutQuad"],
+							["+500", "100rh"],
+							["100%", 0],
+							["-500", "100rh", "easeInQuad"]
+						]
+					]
+				}]
+			]]
+		]]
+	]
+]

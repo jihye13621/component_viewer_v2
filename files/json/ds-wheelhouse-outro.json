@@ -1,0 +1,293 @@
+[
+	"ds-wheelhouse-outro",
+	[
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "text",
+			"default": "Optional text",
+			"required": false
+		},
+		{
+			"key": "cta",
+			"display": "CTA",
+			"type": "text",
+			"default": "Add a call to action",
+			"required": false
+		},
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": "#8E8E8E",
+			"required": false
+		},
+		{
+			"key": "color-2",
+			"display": "Color 2",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		},
+		{
+			"key": "color-3",
+			"display": "Color 3",
+			"type": "color",
+			"default": "#00FF02",
+			"required": false
+		},
+		{
+			"key": "color-4",
+			"display": "Color 4",
+			"type": "color",
+			"default": "#000000",
+			"required": false
+		},
+		["dsx-mixins", ["boilerplate-intro-outro"]]
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-su"]]
+		}, [
+			["solid", {
+				"enabled": ["$", ["exists", ["var", "text"]]],
+				"mixins": ["dsx-mixins", ["safezone"]],
+				"color": ["$", ["var", "color-2"]],
+				"mask": {}
+			}, [
+				["asset", {
+					"mute": true,
+					"file": "./media/ds-wheelhouse-bubble.png",
+					"justify": "fit center",
+					"rect": [
+						0,
+						0,
+						"1000su",
+						"1000su"
+					],
+					"transform": [
+						["translate",
+							"-600su",
+							"-400su"
+						],
+						["rotate",
+							["animate",
+								[0, -0.1],
+								["100%", 0]
+							],
+							"50rw",
+							"50rh"
+						]
+					]
+				}],
+				["asset", {
+					"mute": true,
+					"file": "./media/ds-wheelhouse-bubble.png",
+					"justify": "fit center",
+					"align": "bottom right",
+					"rect": [
+						0,
+						0,
+						"1000su",
+						"1000su"
+					],
+					"transform": [
+						["translate",
+							"600su",
+							"400su"
+						],
+						["rotate",
+							["animate",
+								[0, 0],
+								["100%", -0.08]
+							],
+							"50rw",
+							"50rh"
+						]
+					]
+				}],
+				["null", {
+					"layout": "vertical packed",
+					"align": "center",
+					"gap": "20su"
+				}, [
+					["null", {
+						"flex": {
+							"width": "700su",
+							"height": "600su"
+						},
+						"layout": "vertical stacked",
+						"align": "center",
+						"stagger": [0, 0],
+						"transform": [
+							["translate",
+								["animate",
+									[0, "-100su", "easeOutCubic"],
+									["+500", 0]
+								],
+								0
+							],
+							["scale",
+								["animate",
+									[600, 1, "easeInOutQuart"],
+									["+400", 0.85]
+								]
+							]
+						]
+					}, [
+						["asset", {
+							"mute": true,
+							"file": "./media/ds-wheelhouse-logo-white.svg",
+							"justify": "fit center",
+							"svg-recolor": ["$", ["var", "color-1"]],
+							"opacity": ["animate",
+								[500, null],
+								["+200", 1],
+								["+200", 0]
+							],
+							"mask": {
+								"padding": [
+									0,
+									["animate",
+										[0, "100rw", "easeOutQuad"],
+										["+500", 0]
+									],
+									0,
+									0
+								]
+							}
+						}],
+						["asset", {
+							"mute": true,
+							"file": "./media/ds-wheelhouse-logo-white.svg",
+							"justify": "fit center",
+							"svg-recolor": ["$", ["var", "color-3"]],
+							"opacity": ["animate",
+								[500, null],
+								["+200", 1],
+								["+200", 0]
+							],
+							"stagger": [100, -100],
+							"mask": {
+								"padding": [
+									0,
+									["animate",
+										[0, "100rw", "easeOutQuad"],
+										["+500", 0]
+									],
+									0,
+									0
+								]
+							}
+						}],
+						["asset", {
+							"mute": true,
+							"file": "./media/ds-wheelhouse-logo.svg",
+							"justify": "fit center",
+							"stagger": [200, -200],
+							"mask": {
+								"padding": [
+									0,
+									["animate",
+										[0, "100rw", "easeOutQuad"],
+										["+500", 0]
+									],
+									0,
+									0
+								]
+							}
+						}]
+					]],
+					["text", {
+						"enabled": ["$", ["exists", ["var", "text"]]],
+						"mixins": ["ds-wheelhouse-mixins", ["font-medium"]],
+						"max-width": "1000nsu",
+						"align": "center",
+						"string": ["$", ["var", "text"]],
+						"justify": "center",
+						"color": ["$", ["var", "color-1"]],
+						"boundary": "word",
+						"stagger": [400, -400],
+						"animations": [
+							{
+								"translate": [
+									"-30su",
+									0
+								]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+500", 1]
+								],
+								"easing": "easeOutQuad",
+								"ramp": 0.5,
+								"opacity": 1,
+								"translate": [0, 0]
+							}
+						]
+					}]
+				]],
+				["null", {
+					"padding": [
+						0, 
+						0,
+						"30su",
+						0
+					]
+				}, [
+					["solid", {
+						"color": ["$", ["var", "color-2"]],
+						"stroke": "3su",
+						"stroke-color": ["$", ["var", "color-4"]],
+						"radius": "50su",
+						"layout": "vertical packed",
+						"align": "bottom center",
+						"padding": [
+							"20su",
+							"60su"
+						],
+						"stagger": [800, 0],
+						"transform": [
+							["scale",
+								["animate",
+									[0, 0, "easeOutBack"],
+									["+500", 1]
+								]
+							]
+						]
+					}, [
+						["text", {
+							"enabled": ["$", ["exists", ["var", "text"]]],
+							"mixins": ["ds-wheelhouse-mixins", ["font-xSmall"]],
+							"max-width": "1000nsu",
+							"align": "center",
+							"string": ["$", ["var", "cta"]],
+							"justify": "center",
+							"color": ["$", ["var", "color-4"]],
+							"boundary": "word",
+							"stagger": [900, 0],
+							"animations": [
+								{
+									"translate": [
+										0,
+										"30su"
+									]
+								},
+								{
+									"mix": ["animate",
+										[0, 0],
+										["+500", 1]
+									],
+									"easing": "easeOutQuad",
+									"opacity": 1,
+									"translate": [0, 0]
+								}
+							]
+						}]
+					]]
+				]]
+			]]
+		]]
+	]
+]

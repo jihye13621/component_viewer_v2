@@ -1,0 +1,375 @@
+[
+	"ds-pinterest-pin-cluster",
+	[
+		{
+			"key": "asset-1",
+			"display": "Asset 1",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [],
+			"script": ["$", ["if",
+				["exists", ["var", "asset-1"]],
+				["var", "asset-1"],
+				"./media/image-wide.jpg"	
+			]]
+		},
+		{
+			"key": "asset-2",
+			"display": "Asset 2",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [],
+			"script": ["$", ["if",
+				["exists", ["var", "asset-2"]],
+				["var", "asset-2"],
+				"./media/image-tall.jpg"	
+			]]
+		},
+		{
+			"key": "asset-3",
+			"display": "Asset 3",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [],
+			"script": ["$", ["if",
+				["exists", ["var", "asset-3"]],
+				["var", "asset-3"],
+				"./media/image-wide.jpg"	
+			]]
+		},
+		{
+			"key": "title",
+			"display": "Title",
+			"type": "text",
+			"default": "My CEO Era",
+			"required": false
+		},
+		{
+			"key": "pins",
+			"display": "Pins",
+			"type": "text",
+			"default": "73 Pins",
+			"required": false
+		},
+		["ds-pinterest-mixins",
+			"colors",
+			"font-pinterest-regular",
+			"font-pinterest-bold"
+		]
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			],
+			"color": [1, 1, 1, 1]
+		}, [
+			["null", {
+				"rect": [
+					0,
+					0,
+					"900su",
+					"700su"
+				],
+				"align": "center"
+			}, [
+				["null", {
+					"start": 4800,
+					"layout": "vertical packed",
+					"align": "bottom left",
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[0, "-30su", "easeOutQuad"],
+								["+200", "20su"]
+							]
+						]
+					],
+					"gap": "10su"
+				}, [
+					["text", {
+						"enabled": ["$", ["exists", ["var", "title"]]],
+						"font": ["$", ["var", "font-pinterest-bold"]],
+						"justify": "left",
+						"string": ["$", ["var", "title"]],
+						"height": "55su",
+						"fit": true,
+						"color": [0, 0, 0, 1]
+					}],
+					["text", {
+						"enabled": ["$", ["exists", ["var", "pins"]]],
+						"font": ["$", ["var", "font-pinterest-regular"]],
+						"justify": "left",
+						"string": ["$", ["var", "pins"]],
+						"height": "30su",
+						"fit": true,
+						"color": [0, 0, 0, 1]
+					}]
+				]],
+				["null", {
+					"duration": 4400,
+					"rect": [
+						0,
+						0,
+						"500su",
+						"700su"
+					],
+					"align": "top center",
+					"transform": [
+						["scale",
+							["animate",
+								[0, 0.9, "easeOutCubic"],
+								["+250", 1],
+								["+750", 1, "easeInOutCubic"],
+								["+500", 0.75]
+							]
+						],
+						["translate",
+							["animate",
+								["1000", 0, "easeInOutCubic"],
+								["+500", "-200su"],
+								["+2400", "-200su", "easeInOutQuad"],
+								["+500", 0]
+							],
+							["animate",
+								["1000", 0, "easeInOutCubic"],
+								["+500", "-100su"],
+								["+2400", "-100su", "easeInOutQuad"],
+								["+500", 0]
+							]
+						]
+					]
+				}, [
+					["ds-pinterest-pin-cluster-item", {
+						"asset": ["$", ["var", "asset-1"]],
+						"trigger": 500
+					}]
+				]],
+				["null", {
+					"start": 1000,
+					"duration": 3400,
+					"rect": [
+						0,
+						0,
+						"500su",
+						"700su"
+					],
+					"align": "top center",
+					"transform": [
+						["scale",
+							["animate",
+								[0, 0, "easeOutCubic"],
+								["+450", 1],
+								["+750", 1, "easeInOutCubic"],
+								["+500", 0.75]
+							]
+						],
+						["translate",
+							["animate",
+								["1200", 0, "easeInOutCubic"],
+								["+500", "200su"],
+								["+1200", "200su", "easeInOutQuad"],
+								["+500", 0]
+							],
+							["animate",
+								["1200", 0, "easeInOutCubic"],
+								["+500", "100su"],
+								["+1200", "100su", "easeInOutQuad"],
+								["+500", 0]
+							]
+						]
+					]
+				}, [
+					["ds-pinterest-pin-cluster-item", {
+						"asset": ["$", ["var", "asset-2"]],
+						"trigger": 800
+					}]
+				]],
+				["null", {
+					"start": 4400,
+					"rect": [
+						0,
+						0,
+						"500su",
+						["animate",
+							[0, "700su", "easeInOutQuad"],
+							["+400", "600su"]
+						]
+					],
+					"align": "top center",
+					"transform": [
+						["translate",
+							["animate",
+								[0, 0, "easeInOutQuad"],
+								["+400", "200su"]
+							],
+							0
+						]
+					],
+					"mask": {
+						"transform": true,
+						"padding": [
+							0,
+							0,
+							"50rh",
+							0
+						]
+					}
+				}, [
+					["user-asset", {
+						"rect": [
+							0,
+							0,
+							"500su",
+							"400su"
+						],
+						"align": "top right",
+						"file": ["$", ["var", "asset-1"]],
+						"justify": "fill center",
+						"mask": {
+							"radius": "40su"
+						}
+					}]
+				]],
+				["null", {
+					"start": 4400,
+					"rect": [
+						0,
+						0,
+						"500su",
+						["animate",
+							[0, "700su", "easeInOutQuad"],
+							["+400", "600su"]
+						]
+					],
+					"align": "top center",
+					"transform": [
+						["translate",
+							["animate",
+								[0, 0, "easeInOutQuad"],
+								["+400", "200su"]
+							],
+							0
+						]
+					],
+					"mask": {
+						"transform": true,
+						"padding": [
+							"50rh",
+							0,
+							0,
+							0
+						]
+					}
+				}, [
+					["user-asset", {
+						"rect": [
+							0,
+							0,
+							"500su",
+							"400su"
+						],
+						"align": "bottom right",
+						"file": ["$", ["var", "asset-2"]],
+						"justify": "fill center",
+						"mask": {
+							"radius": "40su"
+						}
+					}]
+				]],
+				["null", {
+					"start": 4400,
+					"rect": [
+						0,
+						0,
+						"500su",
+						["animate",
+							[0, "700su", "easeInOutQuad"],
+							["+400", "600su"]
+						]
+					],
+					"align": "top center",
+					"transform": [
+						["translate",
+							["animate",
+								[0, 0, "easeInOutQuad"],
+								["+400", "200su"]
+							],
+							0
+						]
+					]
+				}, [
+					["solid", {
+						"rect": [
+							0,
+							0,
+							"100rw",
+							"10su"
+						],
+						"align": "center right"
+					}]
+				]],
+				["null", {
+					"start": 2400,
+					"rect": [
+						0,
+						0,
+						"500su",
+						["animate",
+							[2000, "700su", "easeInOutQuad"],
+							["+400", "600su"]
+						]
+					],
+					"align": "top center",
+					"transform": [
+						["scale",
+							["animate",
+								[0, 0, "easeOutCubic"],
+								["+450", 1]
+							]
+						],
+						["translate",
+							["animate",
+								[2000, 0, "easeInOutQuad"],
+								["+400", "-200su"]
+							],
+							0
+						]
+					]
+				}, [
+					["solid", {
+						"start": 2200,
+						"color": [1, 1, 1, 1],
+						"inset": [
+							0,
+							"40su",
+							0,
+							"40su"
+						]
+					}],
+					["ds-pinterest-pin-cluster-item", {
+						"asset": ["$", ["var", "asset-3"]],
+						"trigger": 700,
+						"mask": {
+							"transform": true,
+							"padding": [
+								0,
+								["animate",
+									[2000, 0, "easeInOutQuad"],
+									["+400", "50su"]
+								],
+								-10000,
+								0
+							]
+						}
+					}]
+				]]
+			]]
+		]]
+	]
+]

@@ -1,0 +1,110 @@
+[
+	"ds-peopleai-intro",
+	[
+		{
+			"key": "#screen-size",
+			"display": "Screen Size",
+			"type": "number",
+			"default": 100,
+			"private": true,
+			"required": false,
+			"script": ["$",
+				["let",
+					[
+						["width", ["width"]],
+						["height", ["height"]]
+					],
+					["sqrt",
+						["+",
+							["*", ["var", "width"], ["var", "width"]],
+							["*", ["var", "height"], ["var", "height"]]
+						]
+					]
+				]
+			]
+		},
+		{
+			"key": "#screen-angle",
+			"display": "Screen Angle",
+			"type": "number",
+			"default": 100,
+			"private": true,
+			"required": false,
+			"script": ["$",
+				["*",
+					-1,
+					["/",
+						["atan",
+							["height"],
+							["width"]
+						],
+						["tau"]
+					]
+				]
+			]
+		}
+	],
+	[
+		["null", {
+			"buffer": "knockout"
+		}, [
+			["solid", {
+				"rect": [
+					0,
+					0,
+					["$", ["var", "#screen-size"]],
+					["$", ["var", "#screen-size"]]
+				],
+				"align": "center",
+				"transform": [
+					["translate",
+						0,
+						["animate",
+							["100%", ["$", ["*", -1, ["var", "#screen-size"]]]],
+							["-1000", 0, "easeInQuad"]
+						]
+					],
+					["rotate", ["$", ["var", "#screen-angle"]]],
+					["scale", 1.1]
+				],
+				"color": ["linear-gradient",
+					0,
+					[
+						0.99,
+						[1, 1, 1, 1]
+					],
+					[
+						1,
+						[0, 0, 0, 1]
+					]
+				]
+			}]
+		]],
+		["matte", {
+			"buffer-in": "knockout"
+		}, [
+			["solid", {
+				"mixins": ["dsx-mixins", ["set-su", "safezone"]],
+				"color": [1, 1, 1, 1]
+			}, [
+				["asset", {
+					"file": "./media/ds-peopleai-logo-animated.mp4",
+					"justify": "center fit",
+					"rect": [
+						0,
+						0,
+						"800su",
+						"800su"
+					],
+					"align": "center",
+					"hold": true,
+					"opacity": ["animate",
+						["100%", null],
+						["-1000", 0],
+						["-1000", 1]
+					]
+				}]
+			]]
+		]]
+	]
+]

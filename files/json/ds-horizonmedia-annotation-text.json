@@ -1,0 +1,234 @@
+[
+	"ds-horizonmedia-annotation-text",
+	[
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "textarea",
+			"default": "Add text",
+			"required": false
+		},
+		{
+			"key": "text-direction",
+			"display": "Text Direction",
+			"type": "string",
+			"default": "top",
+			"options": [
+				{
+					"key": "top",
+					"display": "Top"
+				},
+				{
+					"key": "right",
+					"display": "Right"
+				},
+				{
+					"key": "bottom",
+					"display": "Bottom"
+				},
+				{
+					"key": "left",
+					"display": "Left"
+				}
+			]
+		},
+		{
+			"key": "color-1",
+			"display": "Color",
+			"type": "color",
+			"default": "#0A9BCF",
+			"required": false
+		},
+		{
+			"key": "color-2",
+			"display": "Color",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		},
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [0, 0, 0],
+			"required": false,
+			"ui": {
+				"grid": false,
+				"offset": true,
+				"minimum": -100,
+				"maximum": 100
+			}
+		},
+		{
+			"key": "hide-background",
+			"display": "Hide Background",
+			"type": "bool",
+			"default": false,
+			"required": false
+		},
+		["ds-horizonmedia-mixins",
+			"font-regular"
+		]
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", "set-su"]
+		}, [
+			["null", {
+				"rect": [
+					0,
+					0,
+					0,
+					0
+				],
+				"effect": [
+					["shadow", {
+						"offset": ["2su", "2su"],
+						"radius": "10su",
+						"color": [0, 0, 0, 0.2]
+					}]
+				],
+				"align": "center",
+				"transform": [
+					["scale",
+						["animate",
+							[0, 0, "easeOutQuint"],
+							["+500", 1],
+							["100%", 0],
+							["-500", 1, "easeInQuint"]
+						],
+						0,
+						0
+					],
+					["translate",
+						["$",
+							["concat",
+								["*", 0.5, ["nth", ["var", "position"], 1]],
+								"cw"
+							]
+						],
+						["$",
+							["concat",
+								["*", -0.5, ["nth", ["var", "position"], 2]],
+								"ch"
+							]
+						]
+					]
+				]
+			}, [
+				["solid", {
+					"rect": [
+						0,
+						0,
+						"50su",
+						"50su"
+					],
+					"color": ["$", ["var", "color-1"]],
+					"skip": ["$", ["var", "hide-background"]],
+					"align": "center",
+					"transform": [
+						["rotate", 0.125],
+						["scale",
+							["$",
+								["if",
+									["in", ["var", "text-direction"], "top", "bottom"],
+									0.75,
+									1
+								]
+							],
+							["$",
+								["if",
+									["in", ["var", "text-direction"], "left", "right"],
+									0.75,
+									1
+								]
+							]
+						]
+					]
+				}],
+				["null", {
+					"breakpoints": [
+						{
+							"enabled": ["$", ["eq", ["var", "text-direction"], "top"]],
+							"rect": [
+								"-200su",
+								"-400su",
+								"400su",
+								"400su"
+							]
+						},
+						{
+							"enabled": ["$", ["eq", ["var", "text-direction"], "right"]],
+							"rect": [
+								0,
+								"-200su",
+								"400su",
+								"400su"
+							]
+						},
+						{
+							"enabled": ["$", ["eq", ["var", "text-direction"], "bottom"]],
+							"rect": [
+								"-200su",
+								0,
+								"400su",
+								"400su"
+							]
+						},
+						{
+							"enabled": ["$", ["eq", ["var", "text-direction"], "left"]],
+							"rect": [
+								"-400su",
+								"-200su",
+								"400su",
+								"400su"
+							]
+						}
+					]
+				}, [
+					["solid", {
+						"enabled": ["$", ["exists", ["var", "text"]]],
+						"skip": ["$", ["var", "hide-background"]],
+						"color": ["$", ["var", "color-1"]],
+						"layout": "stacked",
+						"radius": "20su",
+						"padding": [
+							"25su",
+							"25su"
+						],
+						"breakpoints": [
+							{
+								"enabled": ["$", ["eq", ["var", "text-direction"], "top"]],
+								"align": "bottom center"
+							},
+							{
+								"enabled": ["$", ["eq", ["var", "text-direction"], "right"]],
+								"align": "left center"
+							},
+							{
+								"enabled": ["$", ["eq", ["var", "text-direction"], "bottom"]],
+								"align": "top center"
+							},
+							{
+								"enabled": ["$", ["eq", ["var", "text-direction"], "left"]],
+								"align": "right center"
+							}
+						]
+					}, [
+						["text", {
+							"enabled": ["$", ["exists", ["var", "text"]]],
+							"stagger": [500, 0],
+							"font": ["$", ["var", "font-regular"]],
+							"height": "50su",
+							"color": ["$", ["var", "color-2"]],
+							"measure": "letter-size",
+							"justify": "center",
+							"align": "center",
+							"string": ["$", ["var", "text"]]
+						}]
+					]]
+				]]
+			]]
+		]]
+	]
+]

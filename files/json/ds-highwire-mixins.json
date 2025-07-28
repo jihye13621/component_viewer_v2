@@ -1,0 +1,120 @@
+{
+	"params": {
+		"colors": [
+			{
+				"key": "color-white",
+				"display": "Color",
+				"type": "color",
+				"default": "#f8f8f8",
+				"required": false
+			},
+			{
+				"key": "color-black",
+				"display": "Color",
+				"type": "color",
+				"default": "#34353e",
+				"required": false
+			},
+			{
+				"key": "color-yellow",
+				"display": "Color",
+				"type": "color",
+				"default": "#fec32e",
+				"required": false
+			}
+		]
+	},
+	"font-headline": {
+		"font": "./media/RobotoCondensed-Medium.ttf",
+		"measure": "letter-size",
+		"height": "115su",
+		"leading": "20su"
+	},
+	"font-text-intro": {
+		"font": "./media/Roboto-Medium.ttf",
+		"measure": "letter-size",
+		"height": "50su",
+		"leading": "20su"
+	},
+	"font-captions": {
+		"font": "./media/Roboto-Medium.ttf",
+		"measure": "letter-size",
+		"height": "55su",
+		"leading": "8su"
+	},
+	"font-speaker-name": {
+		"font": "./media/Roboto-Medium.ttf",
+		"measure": "letter-size",
+		"height": "60su",
+		"leading": "10su"
+	},
+	"font-text": {
+		"font": "./media/Roboto-Medium.ttf",
+		"measure": "letter-size",
+		"height": "65su",
+		"leading": "20su"
+	},
+	"font-title": {
+		"font": "./media/RobotoCondensed-SemiBold.ttf",
+		"measure": "cap-size",
+		"height": "115su",
+		"leading": "20su",
+		"kerning": -0.04
+	},
+	"blinky": {
+		"opacity": ["animate",
+			[0, 0, "holdIn"],
+			["+50", 1, "holdIn"],
+			["+50", 0, "holdIn"],
+			["+50", 1, "holdIn"],
+			["+50", 0, "holdIn"],
+			["+50", 1, "holdIn"],
+			["+50", 0, "holdIn"],
+			["+100", 1, "holdIn"],
+			["+100", 0, "holdIn"],
+			["+100", 1]
+		]
+	},
+	"anchored-anim": {
+		"opacity": ["animate",
+			[0, 0, "easeOutSine"],
+			[100, 1],
+			["100%", 0],
+			["-100", 1, "easeInSine"]
+		],
+		"transform": [
+			["scale",
+				["animate",
+					[0, 0.8, "easeOutCubic"],
+					[250, 1],
+					["100%", 0.8],
+					["-250", 1, "easeInCubic"]
+				],
+				["$", ["switch", ["nth", ["var", "position"], 0], {
+					"1": 0,
+					"2": "50rw",
+					"3": "100rw",
+					"4": 0,
+					"5": "50rw",
+					"6": "100rw",
+					"7": 0,
+					"8": "50rw",
+					"9": "100rw",
+					"_": 0
+				}]],
+				["$", ["switch", ["nth", ["var", "position"], 0], {
+					"1": "100rh",
+					"2": "100rh",
+					"3": "100rh",
+					"4": "50rh",
+					"5": "50rh",
+					"6": "50rh",
+					"7": 0,
+					"8": 0,
+					"9": 0,
+					"_": 0
+				}]]
+			]
+		]
+	}
+}

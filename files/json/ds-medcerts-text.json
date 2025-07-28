@@ -1,0 +1,74 @@
+[
+	"ds-medcerts-text",
+	[
+		["dsx-mixins", ["text"]],
+		["ds-medcerts-mixins", "color-primary", "color-secondary"],
+		["dsx-mixins", ["boilerplate"]],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [4, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["solid", {
+				"max-width": "800nsu",
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"color": ["$", ["rgba-set", ["var", "color-primary"], "a", 0.8]],
+				"padding": [
+					"28su",
+					"38su",
+					"34su",
+					"38su"
+				],
+				"mask": {
+					"padding": [
+						["animate",
+							[0, "100rh", "easeInOutCubic"],
+							["+500", 0]
+						],
+						0,
+						["animate",
+							["100%", "100rh"],
+							["-500", 0, "easeInOutCubic"]
+						],
+						0
+					]
+				}
+			}, [
+				["text", {
+					"stagger": [300, 0],
+					"mixins": ["ds-medcerts-mixins", ["font-text"]],
+					"string": ["$", ["var", "text"]],
+					"justify": ["$", ["var", "#align"]],
+					"color": ["$", ["var", "color-secondary"]],
+					"boundary": "word",
+					"animations": [
+						{
+							"translate": [0, "50su"]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+650", 1] 
+							],
+							"translate": [0, 0],
+							"opacity": 1,
+							"easing": "easeOutCubic"
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

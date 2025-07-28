@@ -1,0 +1,278 @@
+[
+	"ds-highwire-outro",
+	[
+		["ds-highwire-mixins",
+			"colors"
+		],
+		{
+			"key": "#diamond",
+			"display": "Diamond",
+			"type": "number",
+			"default": 100,
+			"private": true,
+			"required": false,
+			"script": ["$",
+				["let",
+					[
+						["width", ["width"]],
+						["height", ["height"]]
+					],
+					["sqrt",
+						["+",
+							["*", ["var", "width"], ["var", "width"]],
+							["*", ["var", "height"], ["var", "height"]]
+						]
+					]
+				]
+			]
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", "set-su"]
+		}, [
+			["null", {
+				"rect": [
+					0,
+					0,
+					["$", ["var", "#diamond"]],
+					["$", ["var", "#diamond"]]
+				],
+				"align": "center",
+				"transform": [
+					["rotate", 0.125]
+				]
+			}, [
+				["solid", {
+					"stagger": [0, 0],
+					"color": ["$", ["var", "color-yellow"]],
+					"blend": "multiply",
+					"end": 2000,
+					"transform": [
+						["scale",
+							["animate",
+								[0, 0, "easeOutQuad"],
+								["+1000", 1]
+							]
+						]
+					]
+				}],
+				["solid", {
+					"stagger": [300, 0],
+					"color": ["$", ["var", "color-yellow"]],
+					"transform": [
+						["scale",
+							["animate",
+								[0, 0, "easeOutQuad"],
+								["+1000", 1]
+							]
+						]
+					]
+				}],
+				["solid", {
+					"stagger": [200, 0],
+					"color": [0, 0, 0, 0],
+					"stroke": "4su",
+					"stroke-color": ["$", ["var", "color-black"]],
+					"transform": [
+						["scale",
+							["animate",
+								[0, 0, "easeOutExpo"],
+								["+3000", 0.65]
+							]
+						]
+					]
+				}]
+			]],
+			["null", {
+
+			}, [
+				["null", {
+					"mixins": ["ds-highwire-mixins", "blinky"],
+					"transform": [
+						["scale",
+							["animate",
+								[0, 0.0, "easeOutExpo"],
+								["+3000", 1]
+							]
+						]	
+					]
+				}, [
+					["solid", {
+						"stagger": [0, 0],
+						"end": 1000,
+						"rect": [
+							0,
+							0,
+							"5su",
+							"200su"
+						],
+						"align": "center",
+						"color": ["$", ["var", "color-black"]]
+					}],
+					["solid", {
+						"stagger": [0, 0],
+						"end": 1000,
+						"rect": [
+							0,
+							0,
+							"200su",
+							"5su"
+						],
+						"align": "center",
+						"color": ["$", ["var", "color-black"]]
+					}],
+					["solid", {
+						"stagger": [0, 0],
+						"start": 500,
+						"end": 1000,
+						"rect": [
+							0,
+							0,
+							"5su",
+							"200su"
+						],
+						"align": "center",
+						"color": ["$", ["var", "color-black"]],
+						"transform": [
+							["translate",
+								0,
+								"400su"
+							]
+						]
+					}],
+					["solid", {
+						"stagger": [0, 0],
+						"start": 500,
+						"end": 1000,
+						"rect": [
+							0,
+							0,
+							"5su",
+							"200su"
+						],
+						"align": "center",
+						"color": ["$", ["var", "color-black"]],
+						"transform": [
+							["translate",
+								0,
+								"-400su"
+							]
+						]
+					}],
+					["solid", {
+						"stagger": [0, 0],
+						"start": 0,
+						"end": 400,
+						"rect": [
+							0,
+							0,
+							"200su",
+							"5su"
+						],
+						"align": "center",
+						"color": ["$", ["var", "color-black"]],
+						"transform": [
+							["translate",
+								"400su",
+								0
+							]
+						]
+					}],
+					["solid", {
+						"stagger": [0, 0],
+						"start": 0,
+						"end": 400,
+						"rect": [
+							0,
+							0,
+							"200su",
+							"5su"
+						],
+						"align": "center",
+						"color": ["$", ["var", "color-black"]],
+						"transform": [
+							["translate",
+								"-400su",
+								0
+							]
+						]
+					}]
+				]],
+				["asset", {
+					"stagger": [400, 0],
+					"mixins": ["ds-highwire-mixins", "blinky"],
+					"rect": [
+						0,
+						0,
+						"400su",
+						"400su"
+					],
+					"justify": "fit center",
+					"align": "center",
+					"svg-recolor": ["$", ["var", "color-black"]],
+					"file": "./media/ds-highwire-icon.svg",
+					"transform": [
+						["scale",
+							["animate",
+								[0, 0.8, "easeOutExpo"],
+								["+2000", 1]
+							]
+						]
+					]
+				}]
+			]],
+			["null", {
+				"rect": [
+					0,
+					0,
+					["$", ["var", "#diamond"]],
+					["$", ["var", "#diamond"]]
+				],
+				"align": "center",
+				"transform": [
+					["rotate", 0.125]
+				]
+			}, [
+				["solid", {
+					"stagger": [2000, 0],
+					"color": ["$", ["var", "color-black"]],
+					"transform": [
+						["scale",
+							["animate",
+								[0, 0, "easeOutQuad"],
+								["+1000", 1]
+							]
+						]
+					]
+				}]
+			]],
+			["null", {
+
+			}, [
+				["asset", {
+					"start": 2000,
+					"mixins": ["ds-highwire-mixins", "blinky"],
+					"rect": [
+						0,
+						0,
+						"800su",
+						"800su"
+					],
+					"justify": "fit center",
+					"align": "center",
+					"svg-recolor": ["$", ["var", "color-yellow"]],
+					"file": "./media/ds-highwire-logo.svg",
+					"transform": [
+						["scale",
+							["animate",
+								[0, 0.8, "easeOutQuad"],
+								["+1000", 1]
+							]
+						]
+					]
+				}]
+			]]
+		]]
+	]
+]

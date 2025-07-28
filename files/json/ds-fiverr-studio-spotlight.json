@@ -1,0 +1,110 @@
+[
+	"ds-fiverr-studio-spotlight",
+	[
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "text",
+			"default": "Studio Spotlight",
+			"required": false
+		},
+		["ds-fiverr-mixins",
+			"font-bold"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [1, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["solid", {
+			"color": ["linear-gradient",
+				0.5,
+				[0.5, [0, 0, 0, 0]],
+				[0.01, [0, 0, 0, 0.9]]
+			],
+			"opacity": ["animate",
+				[0, 0],
+				["+500", 1]
+			],
+			"breakpoints": [
+				{
+					"enabled": ["$", ["in", ["nth", ["var", "position"], 0], 7, 8, 9]],
+					"color": ["linear-gradient",
+						0,
+						[0.5, [0, 0, 0, 0]],
+						[0.01, [0, 0, 0, 0.9]]
+					]
+				},
+				{
+					"enabled": ["$", ["eq", ["nth", ["var", "position"], 0], 4]],
+					"color": ["linear-gradient",
+						0.75,
+						[0.5, [0, 0, 0, 0]],
+						[0.01, [0, 0, 0, 0.9]]
+					]
+				},
+				{
+					"enabled": ["$", ["eq", ["nth", ["var", "position"], 0], 6]],
+					"color": ["linear-gradient",
+						0.25,
+						[0.5, [0, 0, 0, 0]],
+						[0.01, [0, 0, 0, 0.9]]
+					]
+				}
+			]
+		}],
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			],
+			"align": ["$", ["var", "#align"]]
+		}, [
+			["text", {
+				"enabled": ["$", ["exists", ["var", "text"]]],
+				"font": ["$", ["var", "font-bold"]],
+				"height": "85su",
+				"leading": "10su",
+				"kerning": -0.05,
+				"measure": "letter-size",
+				"string": ["$", ["concat", ["var", "text"], "."]],
+				"color": "#D0F7E6",
+				"justify": ["$", ["var", "#align"]],
+				"boundary": "letter",
+				"animations": [
+					{
+						"indices": [-1, 1],
+						"translate": [
+							0,
+							["animate",
+								[0, 0, "easeOutQuad"],
+								["+300", "-30su", "easeOutBounce"],
+								["+1000", 0]
+							]
+						]
+					}
+				],
+				"transform": [
+					["translate",
+						0,
+						["animate",
+							[0, "50su", "easeOutQuad"],
+							["+300", 0]
+						]
+					]
+				]
+			}]
+		]]
+	]
+]

@@ -1,0 +1,100 @@
+[
+	"ds-sbg-aa-watermark",
+	[
+		{
+			"key": "logo",
+			"display": "Logo",
+			"type": "string",
+			"default": "icon",
+			"options": [
+				{
+					"key": "icon",
+					"display": "Icon"
+				},
+				{
+					"key": "icon-circle",
+					"display": "Icon Circle"
+				},
+				{
+					"key": "logo",
+					"display": "Logo"
+				},
+				{
+					"key": "logo-color",
+					"display": "Logo Color"
+				}
+			],
+			"required": false
+		},
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [7, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": true,
+				"minimum": -100,
+				"maximum": 100
+			},
+			"required": false
+		},
+		["ds-sbg-mixins",
+			"do-safezone"
+		]
+	],
+	[
+		["null", {
+			"mixins": [
+				["dsx-mixins",
+					"set-su",
+					"offset"
+				],
+				["ds-sbg-mixins",
+					"watermark-safezone"
+				]
+			]
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"max-width": "300su",
+				"gap": "20su",
+				"breakpoints": [
+					{
+						"enabled": ["$", ["eq", ["aspect"], 1]],
+						"max-width": "250su"
+					},
+					{
+						"enabled": ["$", ["or",
+							["=", ["var", "logo"], "icon"],
+							["=", ["var", "logo"], "icon-circle"]
+						]],
+						"max-width": "125su"
+					}
+				]
+			}, [
+				["asset", {
+					"file": ["$",
+						["switch", ["var", "logo"], {
+							"icon-circle": "./media/ds-sbg-america-icon-circle.svg",
+							"icon": "./media/ds-sbg-america-icon.svg",
+							"logo": "./media/ds-sbg-america-logo.svg",
+							"logo-color": "./media/ds-sbg-america-logo-color.svg"
+						}]
+					],
+					"justify": "fit center",
+					"opacity": ["animate",
+						[0, 0],
+						["+250", 1],
+						["100%", 0],
+						["-250", 1]
+					]
+				}]
+			]]
+		]]
+	]
+]

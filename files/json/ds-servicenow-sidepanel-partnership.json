@@ -1,0 +1,90 @@
+[
+	"ds-servicenow-sidepanel-partnership",
+	[
+		{
+			"key": "partner",
+			"display": "Partner",
+			"type": "text",
+			"default": "Partner",
+			"required": false
+		},
+		{
+			"key": "split",
+			"display": "Panel Size",
+			"type": "string", 
+			"options": [
+				{
+					"key": "default",
+					"display": "Default"
+				},
+				{
+					"key": "half",
+					"display": "Half-screen"
+				},
+				{
+					"key": "full",
+					"display": "Full-screen"
+				}
+			],
+			"default": "default",
+			"required": false
+		},
+		["ds-servicenow-mixins",
+			"color-primary",
+			"color-secondary",
+			"color-accent",
+			"font-extra-bold"
+		],
+		["dsx-mixins", 
+			"boilerplate"
+		]
+	],
+	[
+		["ds-servicenow-sidepanel", {
+			"mixins": ["dsx-mixins", ["set-dsx-su"]],
+			"split": ["$", ["var", "split"]],
+			"animate-camera": true,
+			"color-primary": ["$", ["var", "color-primary"]],
+			"color-secondary": ["$", ["var", "color-secondary"]],
+			"color-accent": ["$", ["var", "color-accent"]]
+		}, [
+			["text", {
+				"stagger": [600, 0],
+				"enabled": ["$", ["exists", ["var", "partner"]]],
+				"mixins": ["ds-servicenow-mixins",
+					"text"
+				],
+				"font": ["$", ["var", "font-extra-bold"]],
+				"height": "100su",
+				"leading": "20su",
+				"color": ["$", ["var", "color-accent"]],
+				"string": ["$", ["concat",
+					["var", "partner"],
+					" works with ServiceNow"
+				]],
+				"boundary": "word",
+				"animations": [
+					{
+						"indices": [-1, 1],
+						"color": ["$", ["var", "color-primary"]]
+					},
+					{
+						"translate": [
+							"100su",
+							0
+						]
+					},
+					{
+						"mix": ["animate",
+							[0, 0],
+							["+1000", 1]
+						],
+						"easing": "easeOutQuad",
+						"opacity": 1,
+						"translate": [0, 0]
+					}
+				]
+			}]
+		]]
+	]
+]

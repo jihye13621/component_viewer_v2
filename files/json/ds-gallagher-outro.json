@@ -1,0 +1,44 @@
+[
+	"ds-gallagher-outro",
+	[
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			],
+			"color": ["linear-gradient",
+				0.0,
+				[0.0, "#b4ceea"],
+				[0.3, "#87b4e0"]
+			],
+			"opacity": ["animate",
+				[0, 0, "easeOutQuad"],
+				["+800", 1]
+			]
+		}, [
+			["asset", {
+				"stagger": [400, 0],
+				"file": "./media/ds-gallagher-logo.png",
+				"justify": "center fit",
+				"align": "center",
+                "transform": [
+                    ["scale",
+						["$", ["gt", ["aspect"], 1.0]],
+                        0.75
+					],
+					["scale", [
+                        "animate",
+                        [0, 2, "easeOutExpo"],
+                        ["+2000", 0.8]                                            
+                    ]]
+                ],
+                "opacity": ["animate",
+                    [0, 0, "easeInOutQuad"],
+                    ["+1000", 1]
+                ]
+			}]
+		]]
+	]
+]

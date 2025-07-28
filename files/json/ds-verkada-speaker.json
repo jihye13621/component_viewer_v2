@@ -1,0 +1,134 @@
+[
+	"ds-verkada-speaker",
+	[
+		{
+			"key": "name",
+			"display": "Name",
+			"type": "text",
+			"default": "Name",
+			"required": false
+		},
+		{
+			"key": "detail-1",
+			"display": "Job Title",
+			"type": "text",
+			"default": "Job Title",
+			"required": false
+		},
+		{
+			"key": "detail-2",
+			"display": "Company",
+			"type": "text",
+			"default": "Company Name",
+			"required": false
+		},
+		["dsx-mixins", 
+			"boilerplate"
+		],
+		["ds-verkada-mixins", 
+			"colors",
+			"fonts"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [1, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"safezone",
+				"set-su"
+			]
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"gap": "35su",
+				"align": ["$", ["var", "#align"]],
+				"max-width": "1200nsu",
+				"effect": [
+					["shadow", {
+						"offset": ["2su", "2su"],
+						"radius": "10su",
+						"color": [0, 0, 0, 0.4]
+					}]
+				]
+			}, [
+				["text", {
+					"enabled": ["$", ["exists", ["var", "name"]]],
+					"font": ["$", ["var", "font-black"]],
+					"measure": "letter-size",
+					"string": ["$", ["var", "name"]],
+					"color": ["$", ["var", "color-white"]],
+					"height": "55su",
+					"justify": ["$", ["var", "#align"]],
+					"animations": [
+						{
+							"translate": [0, "70su"]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+800", 1],
+								["100%", 0],
+								["-800", 1]
+							],
+							"translate": [0, 0],
+							"opacity": 1,
+							"ramp": 1.5,
+							"easing": "easeOutCubic"
+						}
+					]
+				}],
+				["text", {
+					"enabled": ["$",
+						["or",
+							["exists", ["var", "detail-1"]],
+							["exists", ["var", "detail-2"]]
+						]
+					],
+					"stagger": [200, -200],
+					"font": ["$", ["var", "font-medium"]],
+					"measure": "letter-size",
+					"string": ["$",
+						["join",
+							["compact", ["array",
+								["var", "detail-1"],
+								["var", "detail-2"]
+							]],
+							"\n"
+						]
+					],
+					"color": ["$", ["var", "color-white"]],
+					"height": "45su",
+					"leading": "10su",
+					"justify": ["$", ["var", "#align"]],
+					"animations": [
+						{
+							"translate": [0, "60su"]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+800", 1],
+								["100%", 0],
+								["-800", 1]
+							],
+							"translate": [0, 0],
+							"opacity": 1,
+							"ramp": 1.5,
+							"easing": "easeOutCubic"
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

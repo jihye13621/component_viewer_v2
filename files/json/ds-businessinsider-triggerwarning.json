@@ -1,0 +1,106 @@
+[
+	"ds-businessinsider-triggerwarning",
+	[
+		{
+			"key": "headline",
+			"display": "Headline",
+			"type": "text",
+			"default": "Sensitive Content",
+			"required": false
+		},
+		{
+			"key": "subhead",
+			"display": "Subhead",
+			"type": "text",
+			"default": "This video may contain graphic or violent content.",
+			"required": false
+		},
+		["ds-businessinsider-mixins",
+			"color-white",
+			"font-bold",
+			"font-regular"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		]
+	],
+	[
+		["null", {
+		}, [
+			["composite-blur", {
+				"radius": 40,
+				"background": [0, 0, 0, 1],
+				"opacity": ["animate",
+					[0, 0, "easeOutSine"],
+					["+600", 1],
+					["100%", 0],
+					["-600", 1, "easeInSine"]
+				]
+			}, [
+				["solid", {
+					"color": [0, 0, 0, 0.5]
+				}]
+			]]
+		]],
+		["shadow", {
+			"enabled": ["$",
+				["or",
+					["exists", ["var", "headline"]],
+					["exists", ["var", "subhead"]]
+				]
+			],
+			"stagger": [400, -400],
+			"mixins": ["dsx-mixins", "set-dsx-su", "safezone"],
+			"layout": "vertical packed",
+			"align": ["$", ["var", "#align"]],
+			"gap": "50su",
+			"max-width": "1200nsu",
+			"radius": "5nsu",
+			"offset": ["2nsu", "2nsu"],
+			"color": [0, 0, 0, 0.5],
+			"opacity": ["animate",
+				[0, 0, "easeOutSine"],
+				["+500", 1],
+				["100%", 0],
+				["-500", 1, "easeInSine"]
+			]
+		}, [
+			["asset", {
+				"flex": {
+					"width": "220su"
+				},
+				"file": "./media/ds-businessinsider-eye.mov",
+				"justify": "fit center",
+				"hold": true,
+				"start": 400
+			}],
+			["text", {
+				"enabled": ["$", ["exists", ["var", "headline"]]],
+				"mixins": ["ds-businessinsider-mixins",
+					"text"
+				],
+				"font": ["$", ["var", "font-bold"]],
+				"height": "110su",
+				"kerning": "-0.01nsu",
+				"color": ["$", ["var", "color-white"]],
+				"string": ["$", ["var", "headline"]],
+				"justify": ["$", ["var", "#align"]],
+				"trim-descender": false
+			}],
+			["text", {
+				"enabled": ["$", ["exists", ["var", "subhead"]]],
+				"mixins": ["ds-apollo-mixins",
+					"text"
+				],
+				"font": ["$", ["var", "font-regular"]],
+				"height": "70su",
+				"leading": "10su",
+				"kerning": "-0.01nsu",
+				"color": ["$", ["var", "color-white"]],
+				"string": ["$", ["var", "subhead"]],
+				"justify": ["$", ["var", "#align"]],
+				"trim-descender": false
+			}]
+		]]
+	]
+]

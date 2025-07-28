@@ -1,0 +1,96 @@
+[
+	"ds-hubspot-api-bg",
+	[
+		["ds-hubspot-mixins",
+			"color-primary"
+		],
+		["ds-hubspot-api-mixins",
+			"transition-select"
+		],
+		{
+			"key": "#screen-diag",
+			"display": "Screen Diagonal",
+			"type": "number",
+			"default": 0,
+			"private": true,
+			"required": false,
+			"script": ["$", ["sqrt", ["+", ["*", ["width"], ["width"]], ["*", ["height"], ["height"]] ]]]
+		}
+	],
+	[
+		["solid", {
+			"enabled": ["$", ["<>", ["var", "transition-select"], "none"]],
+			"color": [1, 1, 1, 1],
+			"buffer": "knockout-in",
+			"breakpoints": [
+				{
+					"enabled": ["$", ["=", ["var", "transition-select"], "pill"]],
+					"color": [0, 0, 0, 1]
+				}
+			]
+		}, [
+			["solid", {
+				"radius": 10000,
+				"breakpoints": [
+					{
+						"enabled": ["$", ["=", ["var", "transition-select"], "circle"]],
+						"color": [0, 0, 0, 1],
+						"rect": [
+							0,
+							0,
+							["$", ["var", "#screen-diag"]],
+							["$", ["var", "#screen-diag"]]
+						],
+						"align": "center",
+						"transform": [
+							["scale",
+								["animate",
+									[0, 1, "easeInCubic"],
+									["+700", 0]
+								]
+							]
+						]
+					},
+					{
+						"enabled": ["$", ["=", ["var", "transition-select"], "pill"]],
+						"color": [1, 1, 1, 1],
+						"rect": [
+							0,
+							0,
+							["$", ["var", "#screen-diag"]],
+							["$", ["*", 2, ["var", "#screen-diag"]]]
+						],
+						"transform": [
+							["translate",
+								["$",
+									["/", ["-", ["width"], ["var", "#screen-diag"]], 2]
+								],
+								["$",
+									["/", ["-", ["height"], ["var", "#screen-diag"]], 2]
+								]
+							],
+							["scale",
+								["animate",
+									[0, 0, "easeOutCubic"],
+									["+700", 1]
+								],
+								["$", ["/", ["width"], 2]],
+								["$", ["/", ["height"], 1]]
+							]
+						]
+					}
+				]
+			}]
+		]],
+		["solid", {
+			"color": ["$", ["var", "color-solaris"]],
+			"effect": [
+				["matte", {
+					"enabled": ["$", ["<>", ["var", "transition-select"], "none"]],
+					"end": 1000,
+					"buffer-in": "knockout-in"
+				}]
+			]
+		}]
+	]
+]

@@ -1,0 +1,100 @@
+[
+	"ds-impactdotcom-circle",
+	[
+		{
+			"key": "text-1",
+			"display": "Text",
+			"type": "text",
+			"default": "Stat",
+			"required": false
+		},
+		{
+			"key": "text-2",
+			"display": "Text",
+			"type": "text",
+			"default": "text",
+			"required": false
+		},
+		{
+			"key": "stroke",
+			"display": "Stroke",
+			"type": "number",
+			"default": 0,
+			"required": false
+		},
+		{
+			"key": "color-bg",
+			"display": "Color BG",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		},
+		{
+			"key": "color-fg",
+			"display": "Color FG",
+			"type": "color",
+			"default": "#000000",
+			"required": false
+		},
+		{
+			"key": "color-stroke",
+			"display": "Color Stroke",
+			"type": "color",
+			"default": "#000000",
+			"required": false
+		},
+		["ds-impactdotcom-mixins",
+			"font-headline",
+			"font-body"
+		]
+	],
+	[
+		["solid", {
+			"rect": [
+				0,
+				0,
+				"100rw",
+				"100rh"
+			],
+			"radius": "1000su",
+			"stroke": ["$", ["var", "stroke"]],
+			"stroke-color": ["$", ["var", "color-stroke"]],
+			"color": ["$", ["var", "color-bg"]]
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"align": "center",
+				"gap": "20su",
+				"padding": [
+					"40su",
+					"70su"
+				]
+			}, [
+				["text", {
+					"enabled": ["$", ["exists", ["var", "text-1"]]],
+					"mixins": ["ds-impactdotcom-mixins",
+						"text",
+						"text-title"
+					],
+					"color": ["$", ["var", "color-fg"]],
+					"string": ["$", ["var", "text-1"]],
+					"justify": "center",
+					"measure": "letter-size",
+					"trim-descender": true
+				}],
+				["text", {
+					"enabled": ["$", ["exists", ["var", "text-2"]]],
+					"mixins": ["ds-impactdotcom-mixins",
+						"text",
+						"text-label"
+					],
+					"color": ["$", ["var", "color-fg"]],
+					"string": ["$", ["var", "text-2"]],
+					"justify": "center",
+					"measure": "letter-size",
+					"trim-descender": true
+				}]
+			]]
+		]]
+	]
+]

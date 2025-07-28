@@ -1,0 +1,240 @@
+[
+	"ds-justworks-slide-info",
+	[
+		{
+			"key": "headline",
+			"display": "Headline",
+			"type": "text",
+			"default": "Collect Employee Info",
+			"required": false
+		},
+		{
+			"key": "detail-1",
+			"display": "Item 1",
+			"type": "text",
+			"default": "Names",
+			"required": false
+		},
+		{
+			"key": "detail-2",
+			"display": "Item 2",
+			"type": "text",
+			"default": "Addresses",
+			"required": false
+		},
+		{
+			"key": "detail-3",
+			"display": "Item 3",
+			"type": "text",
+			"default": "Social Security Number",
+			"required": false
+		},
+		{
+			"key": "detail-4",
+			"display": "Item 4",
+			"type": "text",
+			"default": "Tax Withholding Information",
+			"required": false
+		},
+		["ds-justworks-mkii-mixins",
+			"fonts",
+			"color-primary",
+			"color-secondary",
+			"color-blue-400"
+		],
+		{
+			"key": "color-mode",
+			"display": "Color Logo",
+			"type": "bool",
+			"default": false,
+			"required": false
+		},
+		{
+			"key": "dark-mode",
+			"display": "Dark Logo",
+			"type": "bool",
+			"default": true,
+			"required": false			
+		}
+	],
+	[
+		["null", {
+			"buffer": "matte"
+		}, [
+			["solid", {
+				"color": "#ffffff",
+				"mask": {
+					"padding": [
+						["animate",
+							[0, "100rh", "easeOutCubic"],
+							[500, 0]
+						],
+						0,
+						["animate",
+							["100%", "100rh"],
+							["-350", 0, "easeInCubic"]
+						],
+						0
+					]
+				}
+			}]
+		]],
+		["solid", {
+			"mixins": ["dsx-mixins", ["set-su", "safezone"]],
+			"color": ["$", ["var", "color-primary"]],
+			"effect": [
+				["matte", {
+					"buffer-in": "matte",
+					"end": 500
+				}],
+				["matte", {
+					"buffer-in": "matte",
+					"start": ["$", ["-", ["key", ["comp-timing"], "duration"], 350]]
+				}]
+			]
+		}, [
+			["null", {
+				"layout": "horizontal packed",
+				"padding": ["50su", 0, "100su", 0],
+				"gap": "60su",
+				"breakpoints": [
+					{
+						"enabled": ["$", ["<=", ["aspect"], 1]],
+						"layout": "vertical packed"
+					},
+					{
+						"enabled": ["$", ["<=", ["aspect"], 0.6]],
+						"padding": [0, 0, "200su", 0]
+					}
+				]
+			}, [
+				["solid", {
+					"flex": {
+						"weight": 1.5
+					},
+					"breakpoints": [
+						{
+							"enabled": ["$", ["<=", ["aspect"], 1]],
+							"flex": {
+								"weight": 1
+							}
+						},
+						{
+							"enabled": ["$", ["<=", ["aspect"], 0.6]],
+							"flex": {
+								"weight": 2
+							}
+						}
+					]
+				}, [
+					["text", {
+						"enabled": ["$", ["exists", ["var", "headline"]]],
+						"string": ["$", ["var", "headline"]],
+						"color": ["$", ["var", "color-secondary"]],
+						"font": ["$", ["var", "font-bold-display"]],
+						"height": "100su",
+						"measure": "cap-size",
+						"leading": "42su",
+						"justify": "bottom left",
+						"breakpoints": [
+							{
+								"enabled": ["$", ["<=", ["aspect"], 1]],
+								"justify": "fit left"
+							}
+						],
+						"animations": [
+							{
+								"mask": [0, 0, "-10su", 0],
+								"translate": [
+									0,
+									"150rh"
+								]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+800", 1]
+								],
+								"easing": "easeOutCubic",
+								"translate": [0, 0]
+							}
+						]
+					}]
+				]],
+				["for-each", {
+					"items": ["$",
+						["compact",
+							["array", 
+								["var", "detail-1"],
+								["var", "detail-2"],
+								["var", "detail-3"],
+								["var", "detail-4"]
+							]
+						]
+					],
+					"layout": "vertical space-between",
+					"breakpoints": [
+						{
+							"enabled": ["$", [">", ["aspect"], 1]],
+							"padding": [0, 0, "-16su", 0]
+						}
+					]
+				}, [
+					["text", {
+						"enabled": ["$", ["exists", ["var", "item"]]],
+						"string": ["$", ["var", "item"]],
+						"color": ["$", ["var", "color-blue-400"]],
+						"font": ["$", ["var", "font-bold"]],
+						"height": "90su",
+						"stagger": [
+							["$", ["+", 400, ["*", ["var", "index"], 200]]],
+							0
+						],
+						"animations": [
+							{
+								"mask": [0, 0, "-10su", 0],
+								"translate": [
+									0,
+									"150rh"
+								]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+800", 1]
+								],
+								"easing": "easeOutCubic",
+								"translate": [0, 0],
+								"ramp": 2
+							}
+						],
+						"breakpoints": [
+							{
+								"enabled": ["$", ["<=", ["aspect"], 1]],
+								"height": "80su"
+							}
+						]
+					}]
+				]]
+			]],
+			["asset", {
+				"file": ["$", 
+					["if",
+						["var", "color-mode"],
+						"./media/ds-justworks-logo-j-white-color.svg",
+						"./media/ds-justworks-logo-j-white.svg"
+					]
+				],
+				"align": "bottom right",
+				"justify": "fit bottom right",
+				"max-width": "30nsu",
+				"breakpoints": [
+					{
+						"enabled": ["$", ["var", "dark-mode"] ],
+						"svg-recolor": "#050000"
+					}
+				]
+			}]
+		]]
+	]
+]

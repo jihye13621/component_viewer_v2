@@ -1,0 +1,174 @@
+{
+	"params": {
+		"colors": [
+			{
+				"key": "white",
+				"display": "White",
+				"private": true,
+				"type": "color",
+				"default": "#F6F5FB",
+				"required": false
+			},
+			{
+				"key": "corporate-purple",
+				"display": "Corporate Purple",
+				"private": true,
+				"type": "color",
+				"default": "#291758",
+				"required": false
+			},
+			{
+				"key": "bright-purple",
+				"display": "Bright Purple",
+				"private": true,
+				"type": "color",
+				"default": "#795DE9",
+				"required": false
+			},
+			{
+				"key": "light-purple",
+				"display": "Light Purple",
+				"private": true,
+				"type": "color",
+				"default": "#E3DDF3",
+				"required": false
+			}
+		],
+		"dark-mode-colors": [
+			{
+				"key": "dark-mode",
+				"display": "Dark Mode",
+				"type": "bool",
+				"default": true,
+				"required": false
+			},
+			{
+				"key": "#color-text",
+				"display": "Color Text",
+				"private": true,
+				"type": "color",
+				"default": "#F6F5FB",
+				"required": false,
+				"script": ["$", ["if", ["var", "dark-mode"], ["var", "white"], ["var", "corporate-purple"]]]
+			},
+			{
+				"key": "#color-bg",
+				"display": "Color Background",
+				"private": true,
+				"type": "color",
+				"default": "#F6F5FB",
+				"required": false,
+				"script": ["$", ["if", ["var", "dark-mode"], ["var", "corporate-purple"], ["var", "light-purple"]]]
+			}
+		]
+	},
+	"font-headline": {
+		"font": "./media/BradfordLL-Book.otf",
+		"measure": "letter-size",
+		"height": "115su",
+		"leading": "20su"
+	},
+	"font-text-intro": {
+		"font": "./media/ProximaNova.otf",
+		"measure": "letter-size",
+		"height": "40su",
+		"leading": "20su"
+	},
+	"font-text-outro": {
+		"font": "./media/ProximaNova.otf",
+		"measure": "letter-size",
+		"height": "50su",
+		"leading": "20su"
+	},
+	"font-captions-box": {
+		"font": "./media/ProximaNova.otf",
+		"measure": "letter-size",
+		"height": "70su",
+		"leading": "20su"
+	},
+	"font-captions-outline": {
+		"font": "./media/ProximaNova.otf",
+		"measure": "letter-size",
+		"height": "70su",
+		"leading": "10su"
+	},
+	"font-speaker-name": {
+		"font": "./media/BradfordLL-Book.otf",
+		"measure": "letter-size",
+		"height": "60su",
+		"leading": "10su"
+	},
+	"font-text-list": {
+		"font": "./media/ProximaNova.otf",
+		"measure": "letter-size",
+		"height": "35su",
+		"leading": "14su"
+	},
+	"font-quote-detail": {
+		"font": "./media/ProximaNova.otf",
+		"measure": "letter-size",
+		"height": "37su",
+		"leading": "15su"
+	},
+	"font-quote-blur": {
+		"font": "./media/ProximaNova.otf",
+		"measure": "letter-size",
+		"height": "60su",
+		"leading": "30su",
+		"kerning": 0.02
+	},
+	"font-quote-blur-detail": {
+		"font": "./media/ProximaNova.otf",
+		"measure": "letter-size",
+		"height": "30su",
+		"leading": "15su"
+	},
+	"font-text": {
+		"font": "./media/ProximaNova.otf",
+		"measure": "letter-size",
+		"height": "65su",
+		"leading": "20su"
+	},
+	"anchored-anim": {
+		"opacity": ["animate",
+			[0, 0, "easeOutSine"],
+			[100, 1],
+			["100%", 0],
+			["-100", 1, "easeInSine"]
+		],
+		"transform": [
+			["scale",
+				["animate",
+					[0, 0.8, "easeOutCubic"],
+					[250, 1],
+					["100%", 0.8],
+					["-250", 1, "easeInCubic"]
+				],
+				["$", ["switch", ["nth", ["var", "position"], 0], {
+					"1": 0,
+					"2": "50rw",
+					"3": "100rw",
+					"4": 0,
+					"5": "50rw",
+					"6": "100rw",
+					"7": 0,
+					"8": "50rw",
+					"9": "100rw",
+					"_": 0
+				}]],
+				["$", ["switch", ["nth", ["var", "position"], 0], {
+					"1": "100rh",
+					"2": "100rh",
+					"3": "100rh",
+					"4": "50rh",
+					"5": "50rh",
+					"6": "50rh",
+					"7": 0,
+					"8": 0,
+					"9": 0,
+					"_": 0
+				}]]
+			]
+		]
+	}
+}

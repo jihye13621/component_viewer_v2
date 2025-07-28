@@ -1,0 +1,166 @@
+{
+	"params": {
+		"color-selector": [
+			{
+				"key": "color-selector",
+				"display": "Colors",
+				"type": "string",
+				"default": "maven",
+				"options": [
+					{
+						"key": "white-1",
+						"display": "White 1"
+					},
+					{
+						"key": "white-2",
+						"display": "White 2"
+					},
+					{
+						"key": "lightest",
+						"display": "Lightest"
+					},
+					{
+						"key": "natural",
+						"display": "Natural"
+					},
+					{
+						"key": "light",
+						"display": "Light"
+					},
+					{
+						"key": "fresh",
+						"display": "Fresh"
+					},
+					{
+						"key": "maven",
+						"display": "Maven"
+					},
+					{
+						"key": "deep",
+						"display": "Deep"
+					},
+					{
+						"key": "deepest",
+						"display": "Deepest"
+					}
+				]
+			},
+			{
+				"key": "#foreground",
+				"display": "Foreground",
+				"private": true,
+				"default": "#ffffff",
+				"script": ["$",
+					["switch", ["var", "color-selector"], {
+						"white-1": "#71D1B5",
+						"white-2": "#028C74",
+						"lightest": "#028C74",
+						"natural": "#013126",
+						"light": "#028C74",
+						"fresh": "#013126",
+						"maven": "#F5FFF9",
+						"deep": "#F5FFF9",
+						"deepest": "#71D1B5"
+					}]
+				]
+			},
+			{
+				"key": "#background",
+				"display": "Background",
+				"private": true,
+				"default": "#ffffff",
+				"script": ["$",
+					["switch", ["var", "color-selector"], {
+						"white-1": "#FFFFFF",
+						"white-2": "#FFFFFF",
+						"lightest": "#F5FFF9",
+						"natural": "#EDE9E3",
+						"light": "#DDF0E2",
+						"fresh": "#71D1B5",
+						"maven": "#028C74",
+						"deep": "#035748",
+						"deepest": "#013126"
+					}]
+				]
+			},
+			{
+				"key": "#accent",
+				"display": "Accent",
+				"private": true,
+				"default": "#ffffff",
+				"script": ["$",
+					["switch", ["var", "color-selector"], {
+						"white-1": "#035748",
+						"white-2": "#013126",
+						"lightest": "#58EDA2",
+						"natural": "#71D1B5",
+						"light": "#013126",
+						"fresh": "#EDE9E3",
+						"maven": "#58EDA2",
+						"deep": "#58EDA2",
+						"deepest": "#58EDA2"
+					}]
+				]
+			},
+			{
+				"key": "#accent-text",
+				"display": "Accent Text",
+				"private": true,
+				"default": "#ffffff",
+				"script": ["$",
+					["switch", ["var", "color-selector"], {
+						"white-1": "#FFFFFF",
+						"white-2": "#FFFFFF",
+						"lightest": "#013126",
+						"natural": "#013126",
+						"light": "#F5FFF9",
+						"fresh": "#013126",
+						"maven": "#013126",
+						"deep": "#013126",
+						"deepest": "#013126"
+					}]
+				]
+			}
+		],
+		"font-brand-1": {
+			"key": "font-brand-1",
+			"display": "Font 1",
+			"type": "string",
+			"default": "./media/IvarHeadline-Regular.otf",
+			"required": false,
+			"private": true
+		},
+		"font-brand-2": {
+			"key": "font-brand-2",
+			"display": "Font 2",
+			"type": "string",
+			"default": "./media/HelveticaNowDisplay-Lt.otf",
+			"required": false,
+			"private": true
+		},
+		"font-brand-3": {
+			"key": "font-brand-3",
+			"display": "Font 3",
+			"type": "string",
+			"default": "./media/Basis-Grotesque-Mono-Pro-Regular.otf",
+			"required": false,
+			"private": true
+		},
+		"font-brand-4": {
+			"key": "font-brand-4",
+			"display": "Font 4",
+			"type": "string",
+			"default": "./media/HelveticaNowDisplayMedium.otf",
+			"required": false,
+			"private": true
+		},
+		"font-brand-5": {
+			"key": "font-brand-5",
+			"display": "Font 5",
+			"type": "string",
+			"default": "./media/HelveticaNowDisplay-LtIt.otf",
+			"required": false,
+			"private": true
+		}
+	}
+}

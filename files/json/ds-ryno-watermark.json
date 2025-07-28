@@ -1,0 +1,97 @@
+[
+	"ds-ryno-watermark",
+	[
+		{
+			"key": "logo",
+			"display": "Logo",
+			"type": "string",
+			"default": "wordmark",
+			"required": false,
+			"options": [
+				{
+					"key": "wordmark",
+					"display": "Wordmark"
+				},
+				{
+					"key": "icon",
+					"display": "icon"
+				},
+				{
+					"key": "balcasmart",
+					"display": "BalcaSmart"
+				},
+				{
+					"key": "terrasmart",
+					"display": "TerraSmart"
+				},
+				{
+					"key": "roof",
+					"display": "Roof"
+				}
+			]
+		},
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [7, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su"]]
+		}, [
+			["null", {
+				"mixins": ["dsx-mixins", ["safezone"]]
+			}, [
+				[ "asset", {
+					"justify": ["$", ["concat", "fit ", ["var", "#align"]]],
+					"align": ["$", ["var", "#align"]],
+					"max-width": "800su",
+					"max-height": "200su",
+					"opacity": ["animate",
+						[0, 0],
+						["+250", 1],
+						["100%", 0],
+						["-200", 1]
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["eq", ["var", "logo"], "wordmark"]],
+							"file": "./media/ds-ryno-logo-wordmark.svg",
+							"rect": [0,0, "500su", "100su"]
+						},
+						{
+							"enabled": ["$", ["eq", ["var", "logo"], "icon"]],
+							"file": "./media/ds-ryno-logo-icon.svg",
+							"rect": [0,0, "500su", "100su"]
+						},
+						{
+							"enabled": ["$", ["eq", ["var", "logo"], "balcasmart"]],
+							"file": "./media/ds-ryno-logo-balcasmart.svg",
+							"rect": [0,0, "500su", "70su"]
+						},
+						{
+							"enabled": ["$", ["eq", ["var", "logo"], "terrasmart"]],
+							"file": "./media/ds-ryno-logo-terrasmart.svg",
+							"rect": [0,0, "500su", "70su"]
+						},
+						{
+							"enabled": ["$", ["eq", ["var", "logo"], "roof"]],
+							"file": "./media/ds-ryno-logo-roof.svg",
+							"rect": [0,0, "500su", "70su"]
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

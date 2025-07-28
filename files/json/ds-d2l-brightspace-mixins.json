@@ -1,0 +1,124 @@
+{
+	"params": {
+		"white": {
+			"key": "white",
+			"display": "White",
+			"type": "color",
+			"default": "#ffffff",
+			"private": true,
+			"required": false
+		},
+		"d2l-black": {
+			"key": "d2l-black",
+			"display": "Black",
+			"type": "color",
+			"default": "#131820",
+			"private": true,
+			"required": false
+		},
+		"bright": {
+			"key": "#do-bright",
+			"display": "Bright",
+			"type": "bool",
+			"default": true,
+			"private": true,
+			"required": false
+		},
+		"color-selector": [
+			{
+				"key": "color-selector",
+				"display": "Colors",
+				"type": "string",
+				"default": "fire",
+				"options": [
+					{
+						"key": "earth",
+						"display": "Earth"
+					},
+					{
+						"key": "wind",
+						"display": "Wind"
+					},
+					{
+						"key": "fire",
+						"display": "Fire"
+					}
+				]
+			},
+			{
+				"key": "#foreground",
+				"display": "Foreground",
+				"private": true,
+				"default": "#ffffff",
+				"script": ["$",
+					["if",
+						["var", "#do-bright"],
+						["switch", ["var", "color-selector"], {
+							"earth": "#62d159",
+							"wind": "#45a5db",
+							"fire": "#ef7541"
+						}],
+						["switch", ["var", "color-selector"], {
+							"earth": "#0D6506",
+							"wind": "#0A6291",
+							"fire": "#A73504"
+						}]
+					]
+				]
+			},
+			{
+				"key": "#background",
+				"display": "Background",
+				"private": true,
+				"default": "#ffffff",
+				"script": ["$",
+					["if",
+						["var", "#do-bright"],
+						["switch", ["var", "color-selector"], {
+							"earth": "#208718",
+							"wind": "#0072a3",
+							"fire": "#c74c18"
+						}],
+						["switch", ["var", "color-selector"], {
+							"earth": "#032F00",
+							"wind": "#032C46",
+							"fire": "#541900"
+						}]
+					]
+				]
+			}
+		],
+		"font-stanley-regular": {
+			"key": "font-stanley-regular",
+			"display": "Font Stanley Regular",
+			"type": "string",
+			"default": "./media/Stanley-Regular.otf",
+			"required": false,
+			"private": true
+		},
+		"font-stanley-bold": {
+			"key": "font-stanley-bold",
+			"display": "Font Stanley Bold",
+			"type": "string",
+			"default": "./media/Stanley-Bold.otf",
+			"required": false,
+			"private": true
+		},
+		"font-d2l-sans-regular": {
+			"key": "font-d2l-sans-regular",
+			"display": "Font D2L Sans Regular",
+			"type": "string",
+			"default": "./media/D2LSans-Regular.otf",
+			"required": false,
+			"private": true
+		},
+		"font-d2l-sans-bold": {
+			"key": "font-d2l-sans-bold",
+			"display": "Font D2L Sans Bold",
+			"type": "string",
+			"default": "./media/D2LSans-Bold.otf",
+			"required": false,
+			"private": true
+		}
+	}
+}

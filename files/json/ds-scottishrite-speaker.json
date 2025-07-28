@@ -1,0 +1,163 @@
+[
+	"ds-scottishrite-speaker",
+	[
+		{
+			"key": "name",
+			"display": "Speaker name",
+			"type": "text",
+			"default": "Speaker name",
+			"required": false
+		},
+		{
+			"key": "detail-1",
+			"display": "Title",
+			"type": "text",
+			"default": "Optional speaker detail",
+			"required": false
+		},
+		["ds-scottishrite-mixins",
+			"color-primary",
+			"color-brush",
+			"font-headline",
+			"font-body"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [1, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"buffer": "knockout"
+			}, [
+				["blur", {
+					"radius": ["animate",
+						[400, "50su"],
+						["+1", 0],
+						["100%", null],
+						["-400", 0],
+						["+1", "50su"]
+					],
+					"transform": [
+						["scale",
+							1.5
+						]
+					]
+				}, [
+					["solid", {
+						"color": [1, 1, 1, 1],
+						"transform": [
+							["translate",
+								["animate",
+									[0, "-100rw"],
+									["+400", 0],
+									["100%", "100rw"],
+									["-400", 0]
+								],
+								0
+							]
+						]
+					}]
+				]]
+			]],
+			["matte", {
+				"buffer-in": "knockout"
+			}, [
+				["null", {
+					"enabled": ["$",
+						["or",
+							["exists", ["var", "name"]],
+							["exists", ["var", "detail-1"]]
+						]
+					],
+					"layout": "vertical packed",
+					"max-width": "600nsu",
+					"align": ["$", ["var", "#align"]],
+					"gap": "20su"
+				}, [
+					["asset", {
+						"flex": {
+							"position": "fixed"
+						},
+						"rect": [
+							0,
+							0,
+							"2000su",
+							"700su"
+						],
+						"align": "top right",
+						"file": "./media/ds-scottishrite-brush-stroke.svg",
+						"justify": "fit right top",
+						"svg-recolor": ["$", ["var", "color-brush"]],
+						"transform": [
+							["translate",
+								"320su",
+								"-110su"
+							]
+						],
+						"breakpoints": [
+							{
+								"enabled": ["$",
+									["or",
+										["eq", ["nth", ["var", "position"], 0], 9],
+										["eq", ["nth", ["var", "position"], 0], 6],
+										["eq", ["nth", ["var", "position"], 0], 3]
+									]
+								],
+								"justify": "fit left top",
+								"align": "top left",
+								"transform": [
+									["scale",
+										-1,
+										1
+									],
+									["translate",
+										"-320su",
+										"-110su"
+									]
+								]
+							}
+						]
+					}],
+					["text", {
+						"enabled": ["$", ["exists", ["var", "name"]]],
+						"mixins": ["ds-scottishrite-mixins",
+							"text",
+							"text-headline"
+						],
+						"trim-descender": false,
+						"color": ["$", ["var", "color-primary"]],
+						"string": ["$", ["var", "name"]],
+						"justify": ["$", ["var", "#align"]],
+						"fit": true
+					}],
+					["text", {
+						"enabled": ["$", ["exists", ["var", "detail-1"]]],
+						"mixins": ["ds-scottishrite-mixins",
+							"text",
+							"text-label"
+						],
+						"trim-descender": false,
+						"string": ["$", ["var", "detail-1"]],
+						"color": ["$", ["var", "color-primary"]],
+						"justify": ["$", ["var", "#align"]],
+						"fit": true
+					}]
+				]]
+			]]
+		]]
+	]
+]

@@ -1,0 +1,162 @@
+[
+	"ds-crchd-watermark",
+	[
+		{
+			"key": "theme",
+			"display": "Theme",
+			"type": "string",
+			"default": "blue",
+			"required": false,
+			"options": [
+				{
+					"key": "blue",
+					"display": "Blue"
+				},
+				{
+					"key": "dark-blue",
+					"display": "Dark Blue"
+				},
+				{
+					"key": "green",
+					"display": "Green"
+				},
+				{
+					"key": "cranberry",
+					"display": "Cranberry"
+				}
+			]
+		},
+		{
+			"key": "entity",
+			"display": "Entity",
+			"type": "string",
+			"default": "crchd",
+			"options": [
+				{
+					"key": "crchd",
+					"display": "CRCHD"
+				},
+				{
+					"key": "cche",
+					"display": "CCHE"
+				},
+				{
+					"key": "none",
+					"display": "None"
+				}
+			],
+			"required": false
+		},
+		["dsx-mixins", "boilerplate"],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [7, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		},
+		{
+			"key": "#color",
+			"display": "Color",
+			"type": "color",
+			"default": "#007BBD",
+			"required": false,
+			"private": true,
+			"script": ["$", ["switch", ["var", "theme"], {
+				"blue": "#007BBD",
+				"dark-blue": "#1a5e86",
+				"green": "#3c989e",
+				"cranberry": "#bb0e3d",
+				"_": "#007BBD"
+			}]]
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su"]]
+		}, [
+			["solid", {
+				"color": ["$", ["var", "#color"]],
+				"rect": [
+					0,
+					0,
+					"100rw",
+					"200su"
+				],
+				"padding": [
+					"30su",
+					"60su"
+				],
+				"transform": [
+					["translate",
+						0,
+						["animate",
+							[0, "-100rh", "easeInOutQuad"],
+							["+500", 0],
+							["100%", "-100rh"],
+							["-500", 0, "easeInOutQuad"]
+						]
+					]
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$",
+							["lte",
+								["nth", ["var", "position"], 0],
+								3
+							]
+						],
+						"align": "bottom",
+						"transform": [
+							["translate",
+								0,
+								["animate",
+									[0, "100rh", "easeInOutQuad"],
+									["+500", 0],
+									["100%", "100rh"],
+									["-500", 0, "easeInOutQuad"]
+								]
+							]
+						]
+					}
+				]
+			}, [
+				["null", {
+					"layout": "horizontal space-between",
+					"align": "center"
+				}, [
+					["asset", {
+						"mute": true,
+						"file": "./media/ds-crchd-logo-nih.svg",
+						"justify": "fit center left",
+						"max-height": "70nsu"
+					}],
+					["text", {
+						"enabled": ["$", ["<>", ["var", "entity"], "none"]],
+						"mixins": ["ds-crchd-mixins", "font-watermark"],
+						"string": ["$",
+							["if",
+								["=", ["var", "entity"], "crchd"],
+								"Center to Reduce Cancer\nHealth Disparities",
+								"Center for Cancer\nHealth Equity"
+							]
+						],
+						"color": "#ffffff",
+						"justify": "right",
+						"max-width": "400nsu",
+						"breakpoints": [
+							{
+								"enabled": ["$", ["<", ["aspect"], 1]],
+								"height": "30su"
+							}
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

@@ -1,0 +1,133 @@
+[
+	"ds-rippling-histu-intro",
+	[
+		{
+			"key": "headline",
+			"display": "Headline",
+			"type": "textarea",
+			"default": "The Future of a $150b Empire",
+			"required": false
+		},
+		["dsx-mixins",
+			"boilerplate"
+		],
+		["ds-rippling-histu-mixins",
+			"colors",
+			"text-regular",
+			"text-bold"
+		]
+	],
+	[
+		["ds-rippling-histu-squares", {
+			"blur": false,
+			"opacity": ["animate",
+				["100%", 0],
+				["-350", 1, "easeOutQuad"]
+			]
+		}],
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			]
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"rect": [
+					0,
+					0,
+					"500nsu",
+					"125nsu"
+				],
+				"transform": [
+					["translate",
+						0,
+						["animate", 
+							["100%", "-200rh"],
+							["-200", "50su", "easeInOutQuad"],
+							["-150", 0, "easeOutQuad"]
+						]
+					]
+				]
+			}, [
+				["asset", {
+					"file": "./media/ds-rippling-histu-logo-animated.mov",
+					"justify": "fit top left"
+				}]
+			]],
+			["null", {
+				"layout": "horizontal space-between",
+				"align": "bottom center",
+				"gap": "50su",
+				"transform": [
+					["translate",
+						0,
+						["animate", 
+							["100%", "200rh"],
+							["-150", "-50su", "easeInOutQuad"],
+							["-200", 0, "easeOutQuad"]
+						]
+					]
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["<=", ["aspect"], 1]],
+						"layout": "vertical packed"
+					}
+				]
+			}, [
+				["text", {
+					"enabled": ["$", ["exists", ["var", "headline"]]],
+					"font": ["$", ["var", "text-bold"]],
+					"string": ["$", ["var", "headline"]],
+					"color": ["$", ["var", "white"]],
+					"case": "uppercase",
+					"measure": "cap-size",
+					"align": "left",
+					"height": "75su",
+					"leading": "20su",
+					"justify": "left",
+					"boundary": "line",
+					"animations": [
+						{
+							"translate": [
+								0,
+								"30su"
+							],
+							"opacity": 0
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+1000", 1]
+							],
+							"easing": "easeOutQuart",
+							"ramp": 1.25,
+							"opacity": 1,
+							"translate": [0, 0]
+						}
+					]
+				}],
+				["asset", {
+					"file": "./media/ds-rippling-logo-white.svg",
+					"flex": {
+						"width": "250nsu"
+					},
+					"svg-recolor":  ["$", ["var", "gold"]],
+					"justify": "fit bottom right",
+					"align": "bottom right",
+					"rect": [
+						0,
+						0,
+						"250nsu",
+						"50nsu"
+					],
+					"opacity": ["animate",
+						[0, 0, "easeOutQuad"],
+						["+350", 1]
+					]
+				}]
+			]]
+		]]
+	]
+]

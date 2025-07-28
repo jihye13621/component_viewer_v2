@@ -1,0 +1,61 @@
+[
+	"ds-appcues-outro",
+	[
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"default": "#F6F5FB",
+			"type": "color",
+			"required": false
+		},
+		{
+			"key": "color-2",
+			"display": "Color 2",
+			"default": "#5C45FF",
+			"type": "color",
+			"required": false
+		},
+		["dsx-mixins", "boilerplate-intro-outro"]
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su"]]  
+		}, [
+			["solid", {
+				"mixins": ["dsx-mixins", ["safezone"]],
+				"color": ["$", ["var", "color-2"]],
+				"rect": [
+					["animate",
+						[0, "100cw", "easeInOutCubic"],
+						["+600", 0]
+					],
+					0,
+					"100cw",
+					"100ch"
+				]
+			}, [
+				["false-color", {
+					"layout": "vertical packed",
+					"align": "center",
+					"color-1": ["$", ["var", "color-1"]],
+					"color-2": ["$", ["var", "color-1"]]
+				}, [
+					["asset", {
+						"rect": [0, 0, "1000su", "100rh"],
+						"max-width": "100rw",
+						"align": "center",
+						"file": "./media/ds-appcues-logo-animated-alpha-white.mov",
+						"justify": "fit center",
+						"hold": true
+					}]
+				]]
+			]],
+			["ds-appcues-shove-video", {
+				"-": "no children, just some params and a node to run the script",
+				"type": "in",
+				"size": "full",
+				"direction": "left"
+			}]
+		]
+	]]		 
+]

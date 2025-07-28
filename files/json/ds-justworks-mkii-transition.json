@@ -1,0 +1,125 @@
+[
+	"ds-justworks-mkii-transition",
+	[
+		["ds-justworks-mkii-mixins",
+			"color-blue-400",
+			"color-yellow-200",
+			"color-yellow-600",
+			"color-yellow-700",
+			"fonts"
+		],
+		["dsx-mixins", "boilerplate-intro-outro"]
+	],
+	[
+		["null",{
+			"mixins": ["dsx-mixins", ["set-su"]],
+			"mask": {
+				"padding": [
+					0,
+					0,
+					["animate",
+						[0, "100rh", "easeOutQuad"],
+						["+500", 0]
+					],
+					["animate",
+						["100%", "100rw"],
+						["-500", 0, "easeInOutQuad"]
+					]
+				]
+			}
+		}, [
+			["solid", {
+				"mixins": ["dsx-mixins", ["safezone"]],
+				"duration": ["$",
+					["+",
+						["round", ["/", ["-", ["key", ["comp-timing"], "duration"], 500], 3]],
+						500
+					]
+				],
+				"color": ["$", ["var", "color-blue-400"]],
+				"transform": [
+					["translate",
+						["animate",
+							["100%", "-50rw"],
+							["-500", 0, "easeInOutQuad"]
+						],
+						["animate",
+							[0, "-200su", "easeOutQuad"],
+							["+500", 0]
+						]
+					]
+				]
+			}, [
+				["text", {
+					"mixins": ["ds-justworks-mkii-mixins", "text"],
+					"font": ["$", ["var", "font-bold"]],
+					"height": "300su",
+					"leading": "20su",
+					"string": "Bravo",
+					"color": ["$", ["var", "color-yellow-200"]],
+					"align": "center",
+					"justify": "center",
+					"fit": true
+				}]
+			]],
+			["solid", {
+				"mixins": ["dsx-mixins", ["safezone"]],
+				"start": ["$", ["round", ["/", ["-", ["key", ["comp-timing"], "duration"], 500], 3]]],
+				"duration": ["$",
+					["+",
+						["round", ["/", ["-", ["key", ["comp-timing"], "duration"], 500], 3]],
+						500
+					]
+				],
+				"color": ["$", ["var", "color-yellow-700"]],
+				"transform": [
+					["translate",
+						["animate",
+							[0, "100rw", "easeOutQuad"],
+							["+500", 0]
+						],
+						0
+					]
+				]
+			}, [
+				["text", {
+					"mixins": ["ds-justworks-mkii-mixins", "text"],
+					"font": ["$", ["var", "font-bold"]],
+					"height": "300su",
+					"leading": "20su",
+					"string": "Amazing",
+					"color": ["$", ["var", "color-yellow-200"]],
+					"align": "center",
+					"justify": "center",
+					"fit": true
+				}]
+			]],
+			["solid", {
+				"mixins": ["dsx-mixins", ["safezone"]],
+				"start": ["$", ["*", 2, ["round", ["/", ["-", ["key", ["comp-timing"], "duration"], 500], 3]]]],
+				"color": ["$", ["var", "color-yellow-600"]],
+				"transform": [
+					["translate",
+						0,
+						["animate",
+							[0, "100rw", "easeOutQuad"],
+							["+500", 0]
+						]
+					]
+				]
+			}, [
+				["text", {
+					"mixins": ["ds-justworks-mkii-mixins", "text"],
+					"font": ["$", ["var", "font-bold"]],
+					"height": "300su",
+					"leading": "20su",
+					"string": "Wonderful!",
+					"color": ["$", ["var", "color-yellow-200"]],
+					"align": "center",
+					"justify": "center",
+					"fit": true
+				}]
+			]]
+		]]
+	]
+]

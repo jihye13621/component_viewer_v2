@@ -1,0 +1,73 @@
+[
+	"ds-hubspot-api-text-type-1",
+	[
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "text",
+			"default": "Tired of 6-month rollouts?",
+			"required": false
+		},
+		["dsx-mixins",
+			"boilerplate"
+		]
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			],
+			"align": "center"
+		}, [
+			["null", {
+			}, [
+				["text", {
+					"mixins": ["ds-hubspot-mixins",
+						"font-bold"
+					],
+					"color": [1, 1, 1, 1],
+					"measure": "letter-size",
+					"justify": "center",
+					"align": "center",
+					"string": ["$", ["var", "text"]],
+					"height": "80su",
+					"leading": 0.25,
+					"boundary": "letter",
+					"animations": [
+						{
+							"mix": ["animate",
+								[0, 0.0],
+								["+750", 1]
+							],
+							"opacity": 1,
+							"easing": "plateauIn",
+							"ramp": 0.01
+						}
+					],
+					"transform": [
+						["scale",
+							["animate",
+								[0, 1.15, "easeOutCubic"],
+								["100%", null],
+								["-300", 1]
+							]
+						],
+						["translate",
+							["animate",
+								["100%", "-60su"],
+								["-300", 0, "easeInCubic"]
+							],
+							0
+						]
+					]
+				}]
+			]]
+		]],
+		["asset", {
+			"file": "./media/ds-hubspot-typing-sfx.m4a",
+			"duration": 750,
+			"gain": 2
+		}]
+	]
+]

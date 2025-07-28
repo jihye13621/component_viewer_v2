@@ -1,0 +1,258 @@
+[
+	"ds-impactdotcom-webinar-title-alt",
+	[
+		{
+			"key": "headline",
+			"display": "Headline",
+			"type": "text",
+			"default": "Headline Text",
+			"required": false
+		},
+		{
+			"key": "subhead",
+			"display": "Text",
+			"type": "text",
+			"default": "Optional Text",
+			"required": false
+		},
+		{
+			"key": "number",
+			"display": "Number",
+			"type": "text",
+			"default": "01",
+			"required": false
+		},
+		{
+			"key": "do-background",
+			"display": "Background",
+			"type": "bool",
+			"default": true,
+			"required": false
+		},
+		["ds-impactdotcom-webinar-mixins",
+			"color-primary",
+			"color-accent",
+			"font-bold",
+			"font-medium"
+		],
+		{
+			"key": "size",
+			"display": "Size",
+			"type": "number",
+			"default": 1.0,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"step": 0.05,
+				"minimum": 0.25,
+				"maximum": 2.0
+			}
+		}
+	],
+	[
+		["solid", {
+			"enabled": ["$", ["var", "do-background"]],
+			"color": ["$", ["var", "color-black"]],
+			"opacity": ["animate",
+				[0, 0, "easeOutQuad"],
+				["+250", 1],
+				["100%", 0],
+				["-200", 1, "easeInQuad"]
+			]
+		}],
+		["null", {
+			"mixins": ["dsx-mixins", "set-su", "safezone"]
+		}, [
+			["null", {
+				"layout": "vertical space-between",
+				"padding": [
+					0,
+					0,
+					0,
+					"80nsu"
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["lte", ["aspect"], 1]],
+						"layout": "vertical packed",
+						"align": "center left",
+						"gap": "100su"
+					}
+				]
+			}, [
+				["ds-impactdotcom-webinar-lines", {
+					"flex": {
+						"position": "fixed"
+					},
+					"rect": [
+						0,
+						0,
+						"100nsu",
+						"100ch"
+					],
+					"align": "bottom left",
+					"order": 10,
+					"color-1": ["$", ["var", "color-accent"]],
+					"color-2": ["$", ["var", "color-gradient"]],
+					"lines": [
+						[0.0, 1, "top"]
+					],
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[0, "-100rh", "easeOutQuad"],
+								["+800", 0],
+								["100%", "-100rh"],
+								["-800", 0, "easeInQuad"]
+							]
+						]
+					]
+				}],
+				["text", {
+					"enabled": ["$", ["and",
+						["lte", ["aspect"], 1],
+						["exists", ["var", "number"]]
+					]],
+					"mixins": ["ds-impactdotcom-webinar-mixins",
+						"text"
+					],
+					"flex": {
+						"height": "300su"
+					},
+					"string": ["$", ["var", "number"]],
+					"font": ["$", ["var", "font-bold"]],
+					"color": [0, 0, 0, 0],
+					"height": "200su",
+					"fit": true,
+					"stroke": "4nsu",
+					"stroke-color": ["$", ["var", "color-white"]],
+					"trim-descender": false,
+						"mask": {},
+						"transform": [
+							["translate",
+								0,
+								["animate",
+									[0, "-100rh", "easeOutQuad"],
+									["+500", 0],
+									["100%", "-100rh"],
+									["-500", 0, "easeInQuad"]
+								]
+							]
+						]
+				}],
+				["null", {
+					"layout": "horizontal space-between",
+					"breakpoints": [
+						{
+							"enabled": ["$", ["lte", ["aspect"], 1]],
+							"order": 10
+						}
+					]
+				}, [
+					["text", {
+						"enabled": ["$", ["exists", ["var", "subhead"]]],
+						"mixins": ["ds-impactdotcom-webinar-mixins",
+							"text"
+						],
+						"string": ["$", ["var", "subhead"]],
+						"font": ["$", ["var", "font-medium"]],
+						"height": "50su",
+						"leading": "10su",
+						"justify": "bottom left",
+						"boundary": "line",
+						"animations": [
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+1000", 1],
+									["100%", 0],
+									["-500", 1]
+								],
+								"easing": "easeOutQuad",
+								"opacity": 1
+							}
+						]
+					}],
+					["text", {
+						"enabled": ["$", ["and",
+							["gt", ["aspect"], 1],
+							["exists", ["var", "number"]]
+						]],
+						"mixins": ["ds-impactdotcom-webinar-mixins",
+							"text"
+						],
+						"string": ["$", ["var", "number"]],
+						"font": ["$", ["var", "font-bold"]],
+						"color": [0, 0, 0, 0],
+						"height": "280su",
+						"stroke": "4su",
+						"fit": true,
+						"stroke-color": ["$", ["var", "color-white"]],
+						"trim-descender": false,
+						"mask": {},
+						"transform": [
+							["translate",
+								0,
+								["animate",
+									[0, "-100rh", "easeOutQuad"],
+									["+500", 0],
+									["100%", "-100rh"],
+									["-500", 0, "easeInQuad"]
+								]
+							]
+						]
+					}]
+				]],
+				["text", {
+					"enabled": ["$", ["exists", ["var", "headline"]]],
+					"mixins": ["ds-impactdotcom-webinar-mixins",
+						"text"
+					],
+					"string": ["$", ["var", "headline"]],
+					"font": ["$", ["var", "font-medium"]],
+					"height": "220su",
+					"leading": "20su",
+					"justify": "bottom left",
+					"color": ["linear-gradient",
+						-0.25,
+						[
+							0.0,
+							["$", ["var", "color-accent"]]
+						],
+						[
+							1.0,
+							["$", ["var", "color-gradient"]]
+						]
+					],
+					"boundary": "letter",
+					"animations": [
+						{
+							"translate": [0, "150su"]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+1000", 1]
+							],
+							"opacity": 1,
+							"translate": [0, 0],
+							"easing": "easeOutCubic",
+							"ramp": 1.5
+						},
+						{
+							"mix": ["animate",
+								["100%", 1],
+								["-800", 0]
+							],
+							"opacity": 0,
+							"translate": [0, "-100su"],
+							"easing": "easeInCubic",
+							"ramp": 1.5
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

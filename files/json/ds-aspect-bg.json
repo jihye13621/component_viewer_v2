@@ -1,0 +1,85 @@
+[
+	"ds-aspect-bg",
+	[
+		["ds-aspect-mixins",
+			"colors"
+		],
+		{
+			"key": "theme",
+			"display": "Theme",
+			"type": "string",
+			"default": "eggshell",
+			"options": [
+				{
+					"key": "eggshell",
+					"display": "Eggshell"
+				},
+				{
+					"key": "raspberry",
+					"display": "Raspberry"
+				},
+				{
+					"key": "Plum",
+					"display": "Plum"
+				}
+			]
+		},
+		{
+			"key": "theme-manual",
+			"display": "Theme Manual",
+			"private": true,
+			"type": "object",
+			"default": null
+		}
+	],
+	[
+		["solid", {
+			"color": ["$",
+				["if",
+					["=", ["var", "theme"], "eggshell"],
+					["var", "color-eggshell"],
+					["if",
+						["=", ["var", "theme"], "raspberry"],
+						["var", "color-raspberry"],
+						["var", "color-plum"]
+					]
+				]	
+			],
+			"breakpoints": [
+				{
+					"enabled": ["$", ["exists", ["var", "theme-manual"]]],
+					"color": ["$", ["nth", ["var", "theme-manual"], 0]]
+				}
+			]
+		}],
+		["asset", {
+			"rect": [
+				0,
+				0,
+				["$", ["width"]],
+				["$", ["height"]]
+			],
+			"justify": "fill center",
+			"mask": {},
+			"file": ["$",
+				["if",
+					["=", ["var", "theme"], "raspberry"],
+					"./media/ds-aspect-gridlines-light.json",
+					"./media/ds-aspect-gridlines-dark.json"
+				]	
+			],
+			"breakpoints": [
+				{
+					"enabled": ["$", ["exists", ["var", "theme-manual"]]],
+					"file": "./media/ds-aspect-gridlines-light.json",
+					"replace-color": [
+						[
+							[1,0.611764705882,0.756862745098,1],
+							["$", ["nth", ["var", "theme-manual"], 1]]
+						]
+					]
+				}
+			]
+		}]
+	]
+]

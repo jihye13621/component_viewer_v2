@@ -1,0 +1,184 @@
+[
+	"ds-voltage-lite-quote",
+	[
+		["dsx-mixins", ["quote"]],
+		["ds-voltage-lite-mixins", "color-1", "color-2", "color-3"],
+		["dsx-mixins", ["boilerplate"]],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": 4,
+			"required": false
+		}
+	],
+	[
+		["dsx-background", {
+			"enabled": ["$", ["exists", ["var", "background"]]],
+			"color": ["$", ["var", "background"]]
+		}],
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"max-width": "800nsu",
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"gap": "70su"
+			}, [
+				["solid", {
+					"mixins": ["ds-voltage-lite-mixins", ["scale-3step"]],
+					"flex": {
+						"weight": 0.3
+					},
+					"color": ["$", ["var", "color-3"]],
+					"radius": "80su",
+					"layout": "horizontal packed",
+					"align": ["$", ["var", "#align"]],
+					"padding": [
+						"40su",
+						"60su"
+					],
+					"stagger": [0, -150]
+				}, [
+					["dsx-icon", {
+						"enabled": ["$",
+							["eq",
+								["var", "review"],
+								0
+							]
+						],
+						"flex": {
+							"width": "75su",
+							"height": "75su"
+						},
+						"icon": "quote",
+						"color": ["$", ["var", "color-2"]]
+					}],
+					["for-each", {
+						"enabled": ["$",
+							["gt",
+								["var", "review"],
+								0
+							]
+						],
+						"layout": "horizontal packed",
+						"items": [1, 2, 3, 4, 5],
+						"gap": "40su"
+					}, [
+						["dsx-icon", {
+							"flex": {
+								"width": "75su",
+								"height": "75su"
+							},
+							"icon": "star-open",
+							"color": ["$", ["var", "color-2"]],
+							"stagger": [
+								["$", ["+", 50, ["*", 50, ["var", "index"]]]],
+								["$", ["-", ["*", -50, ["var", "index"]], 100]]
+							],
+							"transform": [
+								["scale",
+									["animate", 
+										[0, 0, "round"],
+										["+50", 0.33, "round"],
+										["+50", 0.67, "round"],
+										["+50", 1],
+										["100%", 0],
+										["-50", 0.33, "round"],
+										["-50", 0.67, "round"],
+										["-50", 1, "round"]
+									]
+								]
+							],
+							"breakpoints": [
+								{
+									"enabled": ["$",
+										["gt",
+											["var", "review"],
+											["var", "index"]
+										]
+									],
+									"icon": "star"
+								}
+							]
+						}]
+					]]
+				]],
+				["null", {
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]],
+					"padding": [
+						0,
+						0,
+						"-20su",
+						0
+					]
+				}, [
+					["text", {
+						"mixins": ["ds-voltage-lite-mixins", ["font-headline", "anim-body"]],
+						"case": "uppercase",
+						"string": ["$", ["var", "quote"]],
+						"justify": ["$", ["var", "#align"]],
+						"color": [0, 0, 0, 0],
+						"stroke-color": ["$", ["var", "color-3"]],
+						"boundary": "word",
+						"stagger": [150, -50]
+					}]
+				]],
+				["solid", {
+					"mixins": ["ds-voltage-lite-mixins", ["scale-3step"]],
+					"enabled": ["$",
+						["eq",
+							["var", "review"],
+							0
+						]
+					],
+					"flex": {
+						"weight": 0.3
+					},
+					"color": ["$", ["var", "color-3"]],
+					"radius": "80su",
+					"layout": "horizontal packed",
+					"align": ["$", ["var", "#align"]],
+					"padding": [
+						"40su",
+						"60su"
+					],
+					"stagger": [350, -50]
+				}, [
+					["dsx-icon", {
+						"flex": {
+							"width": "75su",
+							"height": "75su"
+						},
+						"icon": "quote",
+						"color": ["$", ["var", "color-2"]]
+					}]
+				]],
+				["text", {
+					"mixins": ["ds-voltage-lite-mixins", ["font-label", "anim-subhead"]],
+					"string": ["$", ["var", "detail-1"]],
+					"justify": ["$", ["var", "#align"]],
+					"color": [0, 0, 0, 0],
+					"stroke-color": ["$", ["var", "color-3"]],
+					"case": "uppercase",
+					"boundary": "word",
+					"stagger": [450, 0],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["exists", "detail-2"]],
+							"string": ["$",
+								["concat",
+									["var", "detail-1"],
+									"\n",
+									["var", "detail-2"]
+								]
+							]
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

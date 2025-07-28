@@ -1,0 +1,85 @@
+[
+	"ds-tipalti-watermark",
+	[
+		["ds-tipalti-mixins",
+			"colors"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "dark-mode",
+			"display": "Dark Logo",
+			"type": "bool",
+			"default": false,
+			"required": false
+		},
+		{
+			"key": "shadow",
+			"display": "Shadow",
+			"type": "bool",
+			"default": false,
+			"required": false
+		},
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [7, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false,
+			"private": true
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			]
+		}, [
+			["null", {
+				"layout": "horizontal packed",
+				"align": ["$", ["var", "#align"]]
+			}, [
+				["asset", {
+					"flex": {
+						"width": "300su",
+						"height": "300su"
+					},
+					"file": "./media/ds-tipalti-logo.svg",
+					"mute": true,
+					"justify": ["$", ["concat", "fit ", ["var", "#align"]]],
+					"svg-recolor": ["$",
+						["if", ["var", "dark-mode"],
+							["var", "off-black"],
+							["var", "white"]
+						]
+					],
+					"effect": [
+						["shadow", {
+							"enabled": ["$", ["var", "shadow"]],
+							"radius": "25su",
+							"color": ["$",
+								["if",
+									["var", "dark-mode"],
+									["'", 1, 1, 1, 0.5],
+									["'", 0, 0, 0, 0.5]
+								]
+							]
+						}]
+					],
+					"opacity": ["animate",
+						[0, 0, "easeOutQuad"],
+						["+350", 1],
+						["100%", 0],
+						["-350", 1, "easeInQuad"]
+					]
+				}]
+			]]
+		]]
+	]
+]

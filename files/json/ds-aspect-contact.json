@@ -1,0 +1,399 @@
+[
+	"ds-aspect-contact",
+	[
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["motion", "none"]
+			],
+			"script": ["$", ["if",
+				["exists", ["var", "asset"]],
+				["var", "asset"],
+				"./media/image-wide.jpg"	
+			]]
+		},
+		{
+			"key": "name",
+			"display": "Name",
+			"type": "text",
+			"default": "Name",
+			"required": false
+		},
+		{
+			"key": "pronouns",
+			"display": "Pronouns",
+			"type": "text",
+			"default": "He/Him/His",
+			"required": false
+		},
+		{
+			"key": "email",
+			"display": "Email",
+			"type": "text",
+			"default": "user@aspect.com",
+			"required": false
+		},
+		{
+			"key": "phone",
+			"display": "Phone",
+			"type": "text",
+			"default": "(000)-000-0000",
+			"required": false
+		},
+		{
+			"key": "theme",
+			"display": "Theme",
+			"type": "string",
+			"default": "light",
+			"options": [
+				{
+					"key": "plum",
+					"display": "Dark Plum"
+				},
+				{
+					"key": "light",
+					"display": "Light"
+				}
+			],
+			"required": false
+		},
+		{
+			"key": "#contact-items",
+			"display": "Contact Items",
+			"private": true,
+			"type": "object",
+			"default": [],
+			"required": false,
+			"script": ["$",
+				["compact", ["array",
+					["if",
+						["exists", ["var", "email"]],
+						["array", "Email", ["var", "email"]]
+					],
+					["if",
+						["exists", ["var", "phone"]],
+						["array", "Phone", ["var", "phone"]]
+					]
+				]]
+			]
+		},
+		["ds-aspect-mixins",
+			"colors",
+			"font-wallop",
+			"font-roobert"
+		]
+	],
+	[
+		["ds-aspect-bg", {
+			"theme": ["$", ["switch", ["var", "theme"], ["object",
+				["array", "plum", "plum"],
+				["array", "raspberry", "raspberry"],
+				["array", "light", "eggshell"]
+			]]]
+		}],
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			]
+		}, [
+			["null", {
+				"layout": "horizontal",
+				"gap": "100su",
+				"breakpoints": [
+					{
+						"enabled": ["$",
+							["<", ["aspect"], 1]
+						],
+						"layout": "vertical"
+					}
+				]
+			}, [
+				["null", {
+					"layout": "vertical"
+				}, [
+					["null", {
+						"layout": "vertical packed",
+						"align": "top left",
+						"gap": "80su"
+					}, [
+						["text", {
+							"enabled": ["$", ["exists", ["var", "name"]]],
+							"font": ["$", ["var", "font-wallop"]],
+							"height": "160su",
+							"color": ["$", ["switch", ["var", "theme"], ["object",
+								["array", "plum", "#ffffff"],
+								["array", "light", "#0f0f0e"]
+							]]],
+							"measure": "letter-size",
+							"string": ["$", ["var", "name"]],
+							"align": "left center",
+							"justify": "left center",
+							"boundary": "word",
+							"animations": [
+								{
+									"translate": [
+										0,
+										"100su"
+									]
+								},
+								{
+									"mix": ["animate",
+										[0, 0],
+										["+800", 1]
+									],
+									"easing": "easeOutCubic",
+									"ramp": 2,
+									"opacity": 1,
+									"translate": [0, 0]
+								}
+							]
+						}],
+						["text", {
+							"enabled": ["$", ["exists", ["var", "pronouns"]]],
+							"stagger": [100, -100],
+							"flex": {
+								"height": "50su"
+							},
+							"font": ["$", ["var", "font-wallop"]],
+							"height": "40su",
+							"color": ["$", ["switch", ["var", "theme"], ["object",
+								["array", "plum", "#ae5da4"],
+								["array", "light", "#c9ccc3"]
+							]]],
+							"measure": "letter-size",
+							"string": ["$", ["var", "pronouns"]],
+							"align": "left center",
+							"justify": "left center",
+							"fit": true,
+							"boundary": "word",
+							"animations": [
+								{
+									"translate": [
+										0,
+										"50su"
+									]
+								},
+								{
+									"mix": ["animate",
+										[0, 0],
+										["+800", 1]
+									],
+									"easing": "easeOutCubic",
+									"ramp": 2,
+									"opacity": 1,
+									"translate": [0, 0]
+								}
+							]
+						}]
+					]],
+					["for-each", {
+						"layout": "vertical packed",
+						"items": ["$", ["var", "#contact-items"]],
+						"flex": {
+							"height": ["$",
+								["concat",
+									["*",
+										["length", ["var", "#contact-items"]],
+										150
+									],
+									"su"
+								]
+							]
+						}
+					}, [
+						["null", {
+							"rect": [
+								0,
+								0,
+								"100rw",
+								"150su"
+							]
+						}, [
+							["solid", {
+								"color": ["$", ["switch", ["var", "theme"], ["object",
+									["array", "plum", "#fbf5fb"],
+									["array", "light", "#f7cfe0"]
+								]]],
+								"radius": 10000,
+								"rect": [
+									0,
+									0,
+									"150su",
+									"150su"
+								],
+								"transform": [
+									["scale",
+										0.7
+									]
+								],
+								"opacity": ["animate",
+									[0, 0, "easeOutQuad"],
+									["+500", 1]
+								]
+							}, [
+								["asset", {
+									"file": ["$",
+										["if",
+											["=", ["nth", ["var", "item"], 0], "Phone"],
+											"./media/ds-aspect-icon-phone.svg",
+											"./media/ds-aspect-icon-email.svg"
+										]
+									],
+									"justify": "fit center",
+									"replace-color": [
+										[
+											[1, 1, 1, 1],
+											["$", ["switch", ["var", "theme"], ["object",
+												["array", "plum", "#dea1d9"],
+												["array", "light", "#e44f7b"]
+											]]]
+										]
+									],
+									"transform": [
+										["scale",
+											0.4
+										]
+									]
+								}]
+							]],
+							["null", {
+								"padding": [
+									0,
+									0,
+									0,
+									"150su"
+								],
+								"layout": "vertical",
+								"align": "left",
+								"gap": "20su"
+							}, [
+								["text", {
+									"enabled": ["$", ["exists", ["nth", ["var", "item"], 0]]],
+									"font": ["$", ["var", "font-roobert"]],
+									"height": "25su",
+									"color": ["$", ["switch", ["var", "theme"], ["object",
+										["array", "plum", "#cf8dc9"],
+										["array", "light", "#84877c"]
+									]]],
+									"measure": "letter-size",
+									"string": ["$", ["nth", ["var", "item"], 0]],
+									"justify": "bottom left",
+									"opacity": ["animate",
+										[0, 0, "easeOutQuad"],
+										["+500", 1]
+									]
+								}],
+								["text", {
+									"enabled": ["$", ["exists", ["nth", ["var", "item"], 1]]],
+									"font": ["$", ["var", "font-roobert"]],
+									"height": "34su",
+									"color": ["$", ["switch", ["var", "theme"], ["object",
+										["array", "plum", "#ffffff"],
+										["array", "light", "#0f0f0e"]
+									]]],
+									"measure": "letter-size",
+									"string": ["$", ["nth", ["var", "item"], 1]],
+									"justify": "top left",
+									"boundary": "line",
+									"animations": [
+										{
+											"translate": ["-30su", 0]
+										},
+										{
+											"mix": ["animate",
+												[0, 0],
+												["+800", 1]
+											],
+											"easing": "easeOutQuad",
+											"ramp": 2,
+											"opacity": 1,
+											"translate": [0, 0]
+										}
+									]
+								}]
+							]]
+						]]
+					]]
+				]],
+				["null", {
+					"layout": "vertical",
+					"gap": "15su"
+				}, [
+					["null", {
+						"transform": [
+							["scale",
+								["animate",
+									[0, 0.8, "easeOutQuart"],
+									["+500", 1]
+								]
+							]
+						],
+						"effect": [
+							["shadow", {
+								"color": "#5C07471A",
+								"offset": ["-3su", "1su"],
+								"radius": "3su"
+							}]
+						]
+					}, [
+						["user-asset", {
+							"file": ["$", ["var", "asset"]],
+							"justify": "fill center",
+							"mute": true,
+							"hold": true,
+							"mask": {
+								"radius": "20su"
+							}
+						}]
+					]],
+					["solid", {
+						"flex": {
+							"height": "150su"
+						},
+						"color": ["$", ["switch", ["var", "theme"], ["object",
+							["array", "plum", "#541346"],
+							["array", "light", "#eaeae5"]
+						]]],
+						"radius": "20su",
+						"transform": [
+							["scale",
+								["animate",
+									[0, 0.8, "easeOutQuart"],
+									["+500", 1]
+								]
+							]
+						]
+					}, [
+						["asset", {
+							"rect": [
+								0,
+								0,
+								"240su",
+								"80su"
+							],
+							"align": "center",
+							"file": "./media/ds-aspect-logo-horiz-color.svg",
+							"justify": "fit center",
+							"breakpoints": [
+								{
+									"enabled": ["$", ["=", ["var", "theme"], "light"]],
+									"replace-color": [
+										[
+											[1, 1, 1, 1],
+											[0, 0, 0, 1]
+										]
+									]
+								}
+							]
+						}]
+					]]
+				]]
+			]]
+		]]
+	]
+]

@@ -1,0 +1,169 @@
+{
+	"params": {
+		"color-primary": {
+			"key": "color-primary",
+			"display": "Color",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		},
+		"color-secondary": {
+			"key": "color-secondary",
+			"display": "Color",
+			"type": "color",
+			"default": "#000000",
+			"required": false
+		},
+		"color-blue-200": {
+			"key": "color-blue-200",
+			"display": "Color",
+			"type": "color",
+			"default": "#EFF9FF",
+			"required": false
+		},
+		"color-blue-400": {
+			"key": "color-blue-400",
+			"display": "Color",
+			"type": "color",
+			"default": "#43a9ff",
+			"required": false
+		},
+		"color-blue-500": {
+			"key": "color-blue-500",
+			"display": "Color",
+			"type": "color",
+			"default": "#4944E0",
+			"required": false
+		},
+		"color-blue-600": {
+			"key": "color-blue-600",
+			"display": "Color",
+			"type": "color",
+			"default": "#0075de",
+			"required": false
+		},
+		"color-blue-800": {
+			"key": "color-blue-800",
+			"display": "Color",
+			"type": "color",
+			"default": "#360fa7",
+			"required": false
+		},
+		"color-green-800": {
+			"key": "color-green-800",
+			"display": "Color",
+			"type": "color",
+			"default": "#005312",
+			"required": false
+		},
+		"color-purple-100": {
+			"key": "color-purple-100",
+			"display": "Color",
+			"type": "color",
+			"default": "#EAE4FE",
+			"required": false
+		},
+		"color-purple-500": {
+			"key": "color-purple-500",
+			"display": "Color",
+			"type": "color",
+			"default": "#7E66CC",
+			"required": false
+		},
+		"color-purple-600": {
+			"key": "color-purple-600",
+			"display": "Color",
+			"type": "color",
+			"default": "#6f35eb",
+			"required": false
+		},
+		"color-purple-700": {
+			"key": "color-purple-700",
+			"display": "Color",
+			"type": "color",
+			"default": "#5010d8",
+			"required": false
+		},
+		"color-yellow-200": {
+			"key": "color-yellow-200",
+			"display": "Color",
+			"type": "color",
+			"default": "#ffdd81",
+			"required": false
+		},
+		"color-yellow-400": {
+			"key": "color-yellow-400",
+			"display": "Color",
+			"type": "color",
+			"default": "#ffbd0a",
+			"required": false
+		},
+		"color-yellow-600": {
+			"key": "color-yellow-600",
+			"display": "Color",
+			"type": "color",
+			"default": "#d67b00",
+			"required": false
+		},
+		"color-yellow-700": {
+			"key": "color-yellow-700",
+			"display": "Color",
+			"type": "color",
+			"default": "#9e4203",
+			"required": false
+		},
+		"color-yellow-800": {
+			"key": "color-yellow-800",
+			"display": "Color",
+			"type": "color",
+			"default": "#753000",
+			"required": false
+		},
+		"color-orange-200": {
+			"key": "color-orange-200",
+			"display": "Color",
+			"type": "color",
+			"default": "#fdf1ec",
+			"required": false
+		},
+		"fonts": [
+			{
+				"key": "font-regular",
+				"display": "Font Regular",
+				"type": "string",
+				"default": "./media/Oately-Regular.otf",
+				"private": true,
+				"required": false
+			},
+			{
+				"key": "font-bold",
+				"display": "Font Bold",
+				"type": "string",
+				"default": "./media/Oately-Bold.otf",
+				"private": true,
+				"required": false
+			},
+			{
+				"key": "font-bold-display",
+				"display": "Font Bold Display",
+				"type": "string",
+				"default": "./media/Oately-BoldDisplay.otf",
+				"private": true,
+				"required": false
+			}
+		]
+	},
+	"text": {
+		"measure": "letter-size"
+	},
+	"text-headline": {
+		"font": "./media/Oately-Regular.otf",
+		"height": "120su",
+		"leading": "10su"
+	},
+	"text-subhead": {
+		"font": "./media/Oately-Bold.otf",
+		"height": "70su",
+		"leading": "10su"
+	}
+}

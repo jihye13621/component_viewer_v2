@@ -1,0 +1,232 @@
+[
+	"ds-braze-supergraphic",
+	[
+		{
+			"key": "graphic-style",
+			"display": "Style",
+			"type": "string",
+			"default": "graphic-1",
+			"required": false,
+			"options": [
+				{
+					"key": "graphic-1",
+					"display": "Graphic 1"
+				},
+				{
+					"key": "graphic-2",
+					"display": "Graphic 2"
+				},
+				{
+					"key": "graphic-3",
+					"display": "Graphic 3"
+				},
+				{
+					"key": "graphic-4",
+					"display": "Graphic 4"
+				},
+				{
+					"key": "graphic-5",
+					"display": "Graphic 5"
+				}
+			]
+		},
+		{
+			"key": "color-style",
+			"display": "Color",
+			"type": "string",
+			"default": "purple-gradient-1",
+			"required": false,
+			"options": [
+				{
+					"key": "orange-gradient-1",
+					"display": "Orange Gradient 1"
+				},
+				{
+					"key": "orange-gradient-2",
+					"display": "Orange Gradient 2"
+				},
+				{
+					"key": "orange-gradient-3",
+					"display": "Orange Gradient 3"
+				},
+				{
+					"key": "pink-gradient-1",
+					"display": "Pink Gradient 1"
+				},
+				{
+					"key": "pink-gradient-2",
+					"display": "Pink Gradient 2"
+				},
+				{
+					"key": "pink-gradient-3",
+					"display": "Pink Gradient 3"
+				},
+				{
+					"key": "purple-gradient-1",
+					"display": "Purple Gradient 1"
+				},
+				{
+					"key": "purple-gradient-2",
+					"display": "Purple Gradient 2"
+				},
+				{
+					"key": "purple-gradient-3",
+					"display": "Purple Gradient 3"
+				},
+				{
+					"key": "orange",
+					"display": "Orange"
+				},
+				{
+					"key": "dark-orange",
+					"display": "Red"
+				},
+				{
+					"key": "pink",
+					"display": "Pink"
+				},
+				{
+					"key": "dark-pink",
+					"display": "Dark Pink"
+				},
+				{
+					"key": "purple",
+					"display": "Purple"
+				},
+				{
+					"key": "dark-purple",
+					"display": "Dark Purple"
+				}
+			]
+		},
+		{
+			"key": "gradient-style",
+			"display": "Gradient",
+			"type": "string",
+			"default": "heat-1",
+			"required": false,
+			"options": [
+				{
+					"key": "heat-1",
+					"display": "Heat 1"
+				},
+				{
+					"key": "heat-2",
+					"display": "Heat 2"
+				},
+				{
+					"key": "heat-3",
+					"display": "Heat 3"
+				}
+			]
+		},
+		["ds-braze-mixins",
+			"color-lighter-purple",
+			"color-light-purple",
+			"color-dark-purple",
+			"color-pink",
+			"color-orange",
+			"color-red",
+			"color-light-blue"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "#supergraphic-file",
+			"display": "Supergraphic File",
+			"type": "asset",
+			"default": "./media/ds-brave-supergraphic-1-bw.mov",
+			"required": false,
+			"script": ["$",
+				["switch", ["var", "graphic-style"], {
+					"graphic-1": "./media/ds-brave-supergraphic-1-bw.mov",
+					"graphic-2": "./media/ds-brave-supergraphic-2-bw.mov",
+					"graphic-3": "./media/ds-brave-supergraphic-3-bw.mov",
+					"graphic-4": "./media/ds-brave-supergraphic-4-bw.mov",
+					"graphic-5": "./media/ds-brave-supergraphic-5-bw.mov",
+					"_": "./media/ds-brave-supergraphic-1-bw.mov"
+				}]
+			]
+		},
+		{
+			"key": "#foreground",
+			"display": "Foreground",
+			"private": true,
+			"default": "#ffffff",
+			"script": ["$",
+				["switch", ["var", "color-style"], {
+					"orange-gradient-1": "#FFA524",
+					"orange-gradient-2": "#FFA524",
+					"orange-gradient-3": "#FFA524",
+					"pink-gradient-1": "#FFA4FB",
+					"pink-gradient-2": "#FFA4FB",
+					"pink-gradient-3": "#FFA4FB",
+					"purple-gradient-1": "#801ED7",
+					"purple-gradient-2": "#801ED7",
+					"purple-gradient-3": "#801ED7",
+					"light-orange": "#FFD4BC",
+					"orange": "#FFA524",
+					"dark-orange": "#E9371F",
+					"light-pink": "#F8D3E8",
+					"pink": "#FFA4FB",
+					"dark-pink": "#91186E",
+					"light-purple": "#C9C4FF",
+					"purple": "#801ED7",
+					"dark-purple": "#300266",
+					"_": "#E9371F"
+				}]
+			]
+		},
+		{
+			"key": "#background",
+			"display": "Background",
+			"private": true,
+			"default": "#ffffff",
+			"script": ["$",
+				["switch", ["var", "color-style"], {
+					"orange-gradient-1": "#E9371F",
+					"orange-gradient-2": "#91186E",
+					"orange-gradient-3": "#801ED7",
+					"pink-gradient-1": "#E9371F",
+					"pink-gradient-2": "#91186E",
+					"pink-gradient-3": "#801ED7",
+					"purple-gradient-1": "#E9371F",
+					"purple-gradient-2": "#91186E",
+					"purple-gradient-3": "#300266",
+					"light-orange": "#FFD4BC",
+					"orange": "#FFA524",
+					"dark-orange": "#E9371F",
+					"light-pink": "#F8D3E8",
+					"pink": "#FFA4FB",
+					"dark-pink": "#91186E",
+					"light-purple": "#C9C4FF",
+					"purple": "#801ED7",
+					"dark-purple": "#300266",
+					"_": "#FFA4FB"
+				}]
+			]
+		}
+	],
+	[
+		["asset", {
+			"file": ["$", ["var", "#supergraphic-file"]],
+			"start": 300,
+			"flex": {
+				"position": "fixed"
+			},
+			"justify": "fit center",
+			"cuts": [
+				[550, 100000]
+			],
+			"hold": true,
+			"mute": true,
+			"effect": [
+				["false-color", {
+					"color-1": ["$", ["var", "#foreground"]],
+					"color-2": ["$", ["var", "#background"]]
+				}
+			]]
+		}]
+	]
+]

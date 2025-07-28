@@ -1,0 +1,51 @@
+{
+	"params": {
+		"color-1": {
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		},
+		"color-2": {
+			"key": "color-2",
+			"display": "Color 2",
+			"type": "color",
+			"default": "#032d42",
+			"required": false
+		},
+		"color-3": {
+			"key": "color-3",
+			"display": "Color 3",
+			"type": "color",
+			"default": "#62d84e",
+			"required": false
+		}
+	},
+	"headline-0": {
+		"font": "./media/gilroy-bold.ttf",
+		"height": "250su",
+		"leading": "-60su",
+		"kerning": -0.01
+	},
+	"headline-1": {
+		"font": "./media/gilroy-bold.ttf",
+		"height": "150su",
+		"kerning": -0.01,
+		"leading": -0.1
+	},
+	"headline-2": {
+		"font": "./media/gilroy-semibold.ttf",
+		"height": "70su",
+		"kerning": -0.01,
+		"leading": -0.05
+	},
+	"text-1": {
+		"font": "./media/gilroy-regular.ttf",
+		"height": "90su"
+	},
+	"text-2": {
+		"font": "./media/gilroy-regular.ttf",
+		"height": "50su"
+	}
+}

@@ -1,0 +1,74 @@
+[
+	"ds-sothebys-captions-alt-4",
+	[
+		["dsx-mixins",
+			"captions",
+			"boilerplate-captions"
+		],
+		["ds-sothebys-mixins",
+			"font-toggle"
+		],
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"default": "#ffffff",
+			"type": "color",
+			"required": false
+		},
+		{
+			"key": "max-words",
+			"display": "Words",
+			"type": "number",
+			"default": 8,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 1,
+				"minimum": 1,
+				"maximum": 12
+			}
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			],
+			"align": ["$", ["var", "#align"]]
+		}, [
+			["text", {
+				"mixins": ["ds-sothebys-mixins",
+					"font-toggle"
+				],
+				"color": ["$", ["var", "color-1"]],
+				"height": "100su",
+				"measure": "letter-size",
+				"boundary": "word",
+				"transcript": ["$",
+					["transcript-split",
+						["var", "transcript"],
+						["var", "max-words"]
+					]
+				],
+				"justify": ["$", ["var", "#align"]],
+				"animations": [
+					{
+						"mask": [0, 0, 0, 0],
+						"translate": [
+							0,
+							"150rh"
+						]
+					},
+					{
+						"mix": [[0, 0], [0.5, 1]],
+						"easing": "easeOutCubic",
+						"translate": [0, 0]
+					}
+				]
+			}]
+		]]
+	]
+]
+

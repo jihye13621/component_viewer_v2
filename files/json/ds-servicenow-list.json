@@ -1,0 +1,210 @@
+[
+	"ds-servicenow-list",
+	[
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["gain", 0],
+				["justify", "fill"],
+				["motion", "none"]
+			]
+		},
+		{
+			"key": "list-title",
+			"display": "Title",
+			"type": "text",
+			"default": "List Title",
+			"required": false
+		},
+		{
+			"key": "items",
+			"display": "Items",
+			"type": "textarea",
+			"default": "This is a list\nAdd a line break for new items\nIt's that easy :)",
+			"required": false
+		},
+		{
+			"key": "split",
+			"display": "Panel Size",
+			"type": "string", 
+			"options": [
+				{
+					"key": "default",
+					"display": "Default"
+				},
+				{
+					"key": "half",
+					"display": "Half-screen"
+				},
+				{
+					"key": "full",
+					"display": "Full-screen"
+				}
+			],
+			"default": "default",
+			"required": false
+		},
+		["ds-servicenow-mixins",
+			"color-primary",
+			"color-secondary",
+			"color-accent"
+		],
+		["dsx-mixins", "boilerplate"],
+		{
+			"key": "animate-all",
+			"display": "Animate All",
+			"type": "bool",
+			"default": true,
+			"required": false
+		}
+	],
+	[
+		["ds-servicenow-sidepanel", {
+			"mixins": ["dsx-mixins", ["set-dsx-su"]],
+			"split": ["$", ["var", "split"]],
+			"panel-alignment": "top left",
+			"animate-camera": true,
+			"color-primary": ["$", ["var", "color-primary"]],
+			"color-secondary": ["$", ["var", "color-secondary"]],
+			"color-accent": ["$", ["var", "color-accent"]]
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"align": "top left",
+				"gap": "100su",
+				"breakpoints": [
+					{
+						"enabled": ["$", ["lt", ["aspect"], 1.1]],
+						"gap": "25su"
+					}
+				]
+			}, [
+				["user-asset", {
+					"flex": {
+						"todo:": "if this is weight, at vertical layouts, this behaves strangely",
+						"height": "400su"
+					},
+					"enabled": ["$", ["exists", ["var", "asset"]]],
+					"file": ["$", ["var", "asset"]],
+					"justify": "fill center",
+					"mask": {},
+					"breakpoints": [
+						{
+							"enabled": ["$", ["and",
+								["lte", ["var", "aspect"], 1],
+								["eq", ["var", "split"], "full"]
+							]],
+							"flex": {
+								"height": "600su"
+							}
+						}
+					]
+				}],
+				["text", {
+					"stagger": [600, 0],
+					"enabled": ["$", ["exists", ["var", "list-title"]]],
+					"mixins": ["ds-servicenow-mixins", ["font-list-title"]],
+					"string": ["$", ["var", "list-title"]],
+					"height": "140su",
+					"justify": "top left",
+					"color": ["$", ["var", "color-accent"]],
+					"boundary": "word",
+					"animations": [
+						{
+							"translate": [
+								"100su",
+								0
+							]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+600", 1]
+							],
+							"ease": "easeOutCubic",
+							"opacity": 1,
+							"translate": [0, 0]
+						}
+					]
+				}],
+				["for-each", {
+					"flex": {
+						"weight": 3
+					},
+					"items": ["$", ["split", ["var", "items"]]],
+					"layout": "vertical packed",
+					"align": "top left",
+					"gap": "30su"
+				}, [
+					["null", {
+						"enabled": ["$", ["exists", ["var", "item"]]],
+						"layout": "vertical packed",
+						"align": "center left",
+						"breakpoints": [
+							{
+								"enabled": ["$", ["var", "animate-all"]],
+								"stagger": [
+									["$", 
+										["+",
+											1000,
+											["*",
+												["var", "index"],
+												500
+											]
+										]
+									],
+									0
+								],
+								"opacity": ["animate",
+									[0, 0],
+									["+500", 1]
+								],
+								"transform": [
+									["translate",
+										0,
+										["animate",
+											[0, "100su", "easeOutQuad"],
+											["+500", 0]
+										]
+									]
+								]
+							},
+							{
+								"enabled": ["$", ["and",
+									["not", ["var", "animate-all"]],
+									["eq", ["var", "index"], ["-", ["var", "count"], 1]]
+								]],
+								"stagger": [1000, 0],
+								"opacity": ["animate",
+									[0, 0],
+									["+500", 1]
+								],
+								"transform": [
+									["translate",
+										0,
+										["animate",
+											[0, "100su", "easeOutQuad"],
+											["+500", 0]
+										]
+									]
+								]
+							}
+						]
+					}, [
+						["text", {
+							"mixins": ["ds-servicenow-mixins", ["font-list"]],
+							"string": ["$", ["var", "item"]],
+							"height": "60su",
+							"justify": "top left",
+							"color": ["$", ["var", "color-primary"]]
+						}]
+					]]
+				]]
+			]]
+		]]
+	]
+]

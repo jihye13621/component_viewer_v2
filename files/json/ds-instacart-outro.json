@@ -1,0 +1,151 @@
+[
+	"ds-instacart-outro",
+	[
+		["dsx-mixins", "intro"],
+		{
+			"key": "legal",
+			"display": "Legal",
+			"type": "textarea",
+			"default": "*Free delivery on your first $10+ order with one retailer. Orders containing alcohol will be charged a $0.01 Alcohol Delivery Fee. Fees, taxes, and/or tips may apply. Delivery subject to availability. Instacart and/or certain retailers may not be available in all zip codes. Additional terms apply. The retailer names and logos above are trademarks of each respective retailer.",
+			"required": false,
+			"private": true
+		},
+		{
+			"key": "size",
+			"display": "Size",
+			"type": "number",
+			"default": 1.0,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"step": 0.05,
+				"minimum": 0.5,
+				"maximum": 1.5
+			}
+		},
+		["ds-instacart-mixins",
+			"colors",
+			"font-sans-400",
+			"font-sans-600",
+			"font-sans-800",
+			"theme"
+		]
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins", "safezone", "set-su"],
+			"color": ["$", ["var", "#background"]]
+		}, [
+			["null", {
+				"layout": "vertical space-between",
+				"align": "center"
+			}, [
+				["null", {
+					"layout": "vertical",
+					"align": "center",
+					"gap": "50su"
+				}, [
+					["null", {
+						"transform": [
+							["translate",
+								0,
+								["animate",
+									[1250, "100rh", "easeInOutQuad"],
+									["+350", 0]
+								]
+							]
+						]
+					}, [
+						["asset", {
+							"file": ["$",
+								["if",
+									["eq", ["var", "theme"], "cashew"],
+									"./media/ds-instacart-logo-dark.mov",
+									"./media/ds-instacart-logo-light.mov"
+								]
+							],
+							"justify": "fit center",
+							"hold": true
+						}],
+						["solid", {
+							"enabled": false,
+							"color": ["$", ["var", "#foreground"]]
+						}]
+					]],
+					["text", {
+						"enabled": ["$", ["exists", ["var", "headline"]]],
+						"stagger": [1400, 0],
+						"measure": "letter-size",
+						"font": ["$", ["var", "font-sans-600"]],
+						"height": "100su",
+						"string": ["$", ["var", "headline"]],
+						"color": ["$", ["var", "#foreground"]],
+						"justify": "center",
+						"boundary": "line",
+						"animations": [
+							{
+								"mask": [0, 0, "-5su", 0],
+								"translate": [0, "150su"]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+1000", 1]
+								],
+								"easing": "easeOutQuad",
+								"translate": [0, 0]
+							}
+						]
+					}],
+					["null", {
+						
+					}, [
+						["text", {
+							"enabled": ["$", ["exists", ["var", "subhead"]]],
+							"stagger": [2000, 0],
+							"measure": "letter-size",
+							"font": ["$", ["var", "font-sans-400"]],
+							"height": "50su",
+							"string": ["$", ["var", "subhead"]],
+							"color": ["$", ["var", "#foreground"]],
+							"justify": "center",
+							"boundary": "line",
+							"animations": [
+								{
+									"mask": [0, 0, "-5su", 0],
+									"translate": [0, "150su"]
+								},
+								{
+									"mix": ["animate",
+										[0, 0],
+										["+1000", 1]
+									],
+									"easing": "easeOutQuad",
+									"translate": [0, 0]
+								}
+							]
+						}]
+					]]
+				]],
+				["null", {
+					"enabled": ["$", ["exists", ["var", "legal"]]],
+					"flex": {
+						"weight": 0.15
+					},
+					"layout": "vertical packed",
+					"align": "bottom center"
+				}, [
+					["text", {
+						"measure": "letter-size",
+						"font": ["$", ["var", "font-sans-400"]],
+						"height": "20nsu",
+						"leading": "10nsu",
+						"string": ["$", ["var", "legal"]],
+						"color": ["$", ["var", "#foreground"]],
+						"justify": "center"
+					}]
+				]]
+			]]
+		]]
+	]
+]

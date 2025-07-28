@@ -1,0 +1,166 @@
+[
+    "smooth-reveal",
+    [
+        {
+            "key": "start",
+            "display": "Start",
+            "type": "number",
+            "default": 0,
+            "required": false
+        },
+        {
+            "key": "duration",
+            "display": "Duration",
+            "type": "number",
+            "default": 4000,
+            "required": false
+        },
+        {
+            "key": "text",
+            "display": "Text",
+            "type": "text",
+            "default": "STYLISH",
+            "required": false
+        },
+        ["ds-sojern-mixins",
+            "colors",
+            "fonts"
+        ],
+        ["dsx-mixins",
+            "boilerplate"
+        ]
+    ],
+    [
+        ["null", {
+            "mixins": ["dsx-mixins", 
+                "set-su",
+                "safezone"
+            ]
+        }, [
+            ["solid", {
+                "start": ["$", ["var", "start"]],
+                "duration": ["$", ["var", "duration"]],
+                "color": [0.05, 0.05, 0.1, 1],
+                "layout": "stacked",
+                "align": "center",
+                "rect": ["100rw", "100rh"]
+            }, [
+                ["null", {
+                    "layout": "stacked",
+                    "align": "center",
+                    "stagger": [200, -200]
+                }, [
+                    ["text", {
+                        "string": ["$", ["var", "text"]],
+                        "font": ["$", ["var", "text-semibold"]],
+                        "measure": "letter-size",
+                        "height": "160su",
+                        "color": [0.2, 0.8, 1, 1],
+                        "justify": "center",
+                        "opacity": ["animate",
+                            [0, 0, "easeOutQuint"],
+                            ["+800", 1],
+                            ["100%", 1]
+                        ],
+                        "transform": [
+                            ["translate",
+                                ["animate",
+                                    [0, "-300su", "easeOutQuint"],
+                                    ["+800", 0]
+                                ],
+                                0
+                            ],
+                            ["scale",
+                                ["animate",
+                                    [0, 1.5, "easeOutQuint"],
+                                    ["+800", 1]
+                                ]
+                            ],
+                            ["rotate",
+                                ["animate",
+                                    [0, -15, "easeOutQuint"],
+                                    ["+800", 0]
+                                ]
+                            ]
+                        ]
+                    }],
+                    ["text", {
+                        "string": ["$", ["var", "text"]],
+                        "font": ["$", ["var", "text-semibold"]],
+                        "measure": "letter-size",
+                        "height": "160su",
+                        "color": [1, 0.2, 0.8, 0.7],
+                        "justify": "center",
+                        "opacity": ["animate",
+                            [0, 0, "easeOutQuint"],
+                            ["+1200", 0.7],
+                            ["100%", 0.7]
+                        ],
+                        "transform": [
+                            ["translate",
+                                ["animate",
+                                    [0, "300su", "easeOutQuint"],
+                                    ["+1200", 0]
+                                ],
+                                0
+                            ],
+                            ["scale",
+                                ["animate",
+                                    [0, 0.8, "easeOutQuint"],
+                                    ["+1200", 1]
+                                ]
+                            ],
+                            ["rotate",
+                                ["animate",
+                                    [0, 15, "easeOutQuint"],
+                                    ["+1200", 0]
+                                ]
+                            ]
+                        ]
+                    }],
+                    ["text", {
+                        "string": ["$", ["var", "text"]],
+                        "font": ["$", ["var", "text-semibold"]],
+                        "measure": "letter-size",
+                        "height": "160su",
+                        "color": [0.8, 0.2, 1, 0.5],
+                        "justify": "center",
+                        "opacity": ["animate",
+                            [0, 0, "easeOutQuint"],
+                            ["+1600", 0.5],
+                            ["100%", 0.5]
+                        ],
+                        "transform": [
+                            ["translate",
+                                ["animate",
+                                    [0, 0, "easeOutQuint"],
+                                    ["+1600", "200su"],
+                                    ["+2400", 0]
+                                ],
+                                ["animate",
+                                    [0, 0, "easeOutQuint"],
+                                    ["+1600", "-200su"],
+                                    ["+2400", 0]
+                                ]
+                            ],
+                            ["scale",
+                                ["animate",
+                                    [0, 0, "easeOutQuint"],
+                                    ["+1600", 1.2],
+                                    ["+2400", 1]
+                                ]
+                            ],
+                            ["rotate",
+                                ["animate",
+                                    [0, 0, "easeOutQuint"],
+                                    ["+1600", 360],
+                                    ["+2400", 0]
+                                ]
+                            ]
+                        ]
+                    }]
+                ]]
+            ]]
+        ]]
+    ]
+] 

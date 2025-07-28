@@ -1,0 +1,92 @@
+[
+	"ds-servicenow-nowsell-outro",
+	[
+		["ds-servicenow-mixins",
+			"color-secondary",
+			"color-accent"
+		]
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins", ["set-su-roi"]],
+			"color": ["$", ["var", "color-secondary"]],
+			"mask": {
+				"padding": [
+					0,
+					0,
+					0,
+					["animate",
+						[0, "100rw", "easeInOutQuint"],
+						["+800", 0]
+					]
+				]
+			}
+		}, [
+			["asset", {
+				"file": "./media/ds-servicenow-wheel.png",
+				"justify": "fit center left",
+				"opacity": 0.15,
+				"transform": [
+					["rotate",
+						["animate",
+							[0, -0.5, "easeOutQuart"],
+							["+100%", 0]
+						]
+					],
+					["scale", 1.7],
+					["translate",
+						"-30rw",
+						0
+					]
+				]
+			}],
+			["null", {
+				"mixins": ["dsx-mixins", ["safezone"]]
+			}, [
+				["asset", {
+					"stagger": [500, 0],
+					"file": "./media/ds-servicenow-nowsell-logo-animated-large.json",
+					"justify": "fit center",
+					"lottie-driver": ["animate",
+						[0, 0],
+						[
+							["$", ["to-relative-string", ["dur", "./media/ds-servicenow-nowsell-logo-animated-large.json"]]],
+							1
+						]
+					],
+					"rect": [
+						0,
+						0,
+						"40rw",
+						"40rh"
+					],
+					"align": "center",
+					"breakpoints": [
+						{
+							"enabled": ["$", ["lte", ["aspect"], 1]],
+							"rect": [
+								0,
+								0,
+								"60rw",
+								"40rh"
+							]
+						}
+					]
+				}]
+			]],
+			["solid", {
+				"rect": [
+					0,
+					0,
+					["animate",
+						[0, 0, "easeInOutQuad"],
+						["+500", "25nsu"]
+					],
+					"100rh"
+				],
+				"color": ["$", ["var", "color-accent"]],
+				"align": "right center"
+			}]
+		]]
+	]
+]

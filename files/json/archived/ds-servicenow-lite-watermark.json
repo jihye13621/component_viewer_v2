@@ -1,0 +1,118 @@
+[
+	"ds-servicenow-lite-watermark",
+	[
+		["dsx-mixins", ["watermark"]],
+		["ds-servicenow-lite-mixins", "color-1", "color-2"],
+		["dsx-mixins", ["boilerplate"]],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": 7,
+			"required": false
+		}
+	],
+	[
+		["dsx-background", {
+			"enabled": ["$", ["exists", ["var", "background"]]],
+			"color": ["$", ["var", "background"]]
+		}],
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"max-width": "800nsu",
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"gap": "0su"
+			}, [
+				["solid", {
+					"layout": "vertical packed",
+					"padding": [
+						"17su",
+						"24su",
+						"15su",
+						"24su"
+					],
+					"color": ["$", ["var", "color-1"]],
+					"mask": {
+						"padding": [
+							0,
+							0,
+							["animate",
+								[0, "100rh", "easeInOutQuart"],
+								["+500", 0],
+								["100%", "100rh"],
+								["-800", 0, "easeInOutQuart"]
+							],
+							0
+						]
+					}
+				}, [
+					["asset", {
+						"mute": true,
+						"file": "./media/servicenow-logo-color.svg",
+						"flex": {
+							"width": "200su",
+							"height": "200su"
+						},
+						"justify": "fit center"
+					}]
+				]],
+				["solid", {
+					"enabled": ["$", ["exists", ["var", "text"]]],
+					"align": ["$", ["var", "#align"]],
+					"layout": "vertical packed",
+					"color": ["$", ["var", "color-2"]],
+					"padding": [
+						"17su",
+						"24su",
+						"15su",
+						"24su"
+					],
+					"stagger": [700, 0],
+					"mask": {
+						"padding": [
+							0,
+							0,
+							["animate",
+								[0, "100rh", "easeInOutQuart"],
+								["+700", 0],
+								["100%", "100rh"],
+								["-800", 0, "easeInOutQuart"]
+							],
+							0
+						]
+					}
+				}, [
+					["text", {
+						"mixins": ["ds-servicenow-lite-mixins", ["text-2"]],
+						"string": ["$", ["var", "text"]],
+						"case": "uppercase",
+						"color": ["$", ["var", "color-1"]],
+						"justify": ["$", ["var", "#align"]],
+						"boundary": "letter",
+						"stagger": [1000, -150],
+						"animations": [
+							{
+								"translate": [0, "-50su"]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									[500, 1],
+									["100%", 0],
+									["-800", 1]
+								],
+								"translate": [0, 0],
+								"opacity": 1,
+								"ramp": 1.5,
+								"easing": "easeOutQuart"
+							}
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

@@ -1,0 +1,465 @@
+[
+	"ds-paycom-wins-speaker",
+	[
+		{
+			"key": "name",
+			"display": "Speaker name",
+			"type": "text",
+			"default": "Speaker name",
+			"required": false
+		},
+		{
+			"key": "detail-1",
+			"display": "Title",
+			"type": "text",
+			"default": "Optional speaker detail",
+			"required": false
+		},
+		{
+			"key": "detail-2",
+			"display": "Company",
+			"type": "text",
+			"default": "",
+			"required": false
+		},
+		{
+			"key": "detail-offset",
+			"display": "Detail Offset",
+			"type": "number",
+			"default": 0,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 0.1,
+				"minimum": -50.0,
+				"maximum": 50.0
+			}
+		},
+		{
+			"key": "theme",
+			"display": "Theme",
+			"type": "string",
+			"default": "white",
+			"options": [
+				{
+					"key": "white",
+					"display": "White"
+				},
+				{
+					"key": "light-green",
+					"display": "Light Green"
+				},
+				{
+					"key": "green",
+					"display": "Green"
+				},
+				{
+					"key": "dark-green",
+					"display": "Dark Green"
+				}
+			],
+			"required": false
+		},
+		{
+			"key": "#theme",
+			"display": "Theme",
+			"type": "color",
+			"default": [1, 1, 1, 1],
+			"private": true,
+			"script": ["$",
+				["switch", ["var", "theme"], {
+					"white": "#FFFFFF",
+					"light-green": "#00B451",
+					"green": "#008542",
+					"dark-green": "#024731",
+					"_": "#FFFFFF"
+				}]
+			]
+		},
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [8, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": true,
+				"minimum": -100,
+				"maximum": 100
+			},
+			"required": false
+		},
+		{
+			"key": "arrow-1",
+			"display": "Arrow",
+			"type": "string",
+			"default": "none",
+			"options": [
+				{
+					"key": "none",
+					"display": "None"
+				},
+				{
+					"key": "one",
+					"display": "One"
+				},
+				{
+					"key": "two",
+					"display": "Two"
+				},
+				{
+					"key": "three",
+					"display": "Three"
+				},
+				{
+					"key": "four",
+					"display": "Four"
+				},
+				{
+					"key": "five",
+					"display": "Five"
+				}
+			],
+			"required": false
+		},
+		{
+			"key": "arrow-position-1",
+			"display": "Arrow Position",
+			"type": "position",
+			"default": [0, 0, 0],
+			"required": false,
+			"ui": {
+				"grid": false,
+				"offset": true,
+				"minimum": -100,
+				"maximum": 100
+			}
+		},
+		{
+			"key": "arrow-size-1",
+			"display": "Arrow Size",
+			"type": "number",
+			"default": 1,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 0.01,
+				"minimum": 0.0,
+				"maximum": 3.0
+			}
+		},
+		{
+			"key": "arrow-2",
+			"display": "Arrow",
+			"type": "string",
+			"default": "none",
+			"options": [
+				{
+					"key": "none",
+					"display": "None"
+				},
+				{
+					"key": "one",
+					"display": "One"
+				},
+				{
+					"key": "two",
+					"display": "Two"
+				},
+				{
+					"key": "three",
+					"display": "Three"
+				},
+				{
+					"key": "four",
+					"display": "Four"
+				},
+				{
+					"key": "five",
+					"display": "Five"
+				}
+			],
+			"required": false
+		},
+		{
+			"key": "arrow-position-2",
+			"display": "Arrow Position",
+			"type": "position",
+			"default": [0, 0, 0],
+			"required": false,
+			"ui": {
+				"grid": false,
+				"offset": true,
+				"minimum": -100,
+				"maximum": 100
+			}
+		},
+		{
+			"key": "arrow-size-2",
+			"display": "Arrow Size",
+			"type": "number",
+			"default": 1,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 0.01,
+				"minimum": 0.0,
+				"maximum": 3.0
+			}
+		}
+	],
+	[
+		["null", {
+			"enabled": ["$", ["or",
+				["exists", ["var", "name"]],
+				["exists", ["var", "detail-1"]],
+				["exists", ["var", "detail-2"]]
+			]],
+			"mixins": ["dsx-mixins",
+				"set-su-roi",
+				"safezone"
+			],
+			"layout": "stacked",
+			"align": ["$", ["var", "#align"]],
+			"opacity": ["animate",
+				["100%", 0],
+				["-500", 1]
+			]
+		}, [
+			["null", {
+				"rect": ["$",
+					["array",
+						["concat", ["*", 2, ["nth", ["var", "position"], 1]], "nsu"],
+						["concat", ["*", -2, ["nth", ["var", "position"], 2]], "nsu"],
+						"100rw",
+						"100rh"
+					]
+				],
+				"layout": "stacked"
+			}, [
+				["for-each", {
+					"flex": {
+						"position": "fixed"
+					},
+					"enabled": ["$",
+						["or",
+							["<>", ["var", "arrow-1"], "none"],
+							["<>", ["var", "arrow-2"], "none"]
+						]
+					],
+					"padding": [
+						0,
+						"-200su"
+					],
+					"items": ["$",
+						["array",
+							["array",
+								["var", "arrow-1"],
+								["var", "arrow-position-1"],
+								["var", "arrow-size-1"]
+							],
+							["array",
+								["var", "arrow-2"],
+								["var", "arrow-position-2"],
+								["var", "arrow-size-2"]
+							]
+						]
+					],
+					"effect": [
+						["false-color", {
+							"color-1": ["$", ["var", "#theme"]],
+							"color-2": ["$", ["var", "#theme"]]
+						}]
+					]
+				}, [
+					["null", {
+						"enabled": ["$",
+							["<>",
+								["nth", ["var", "item"], 0],
+								"none"
+							]
+						],
+						"rect": [
+							0,
+							0,
+							"200su",
+							"200su"
+						],
+						"align": ["$",
+							["if",
+								["=", ["var", "index"], 0],
+								"center left",
+								"center right"
+							]
+						]
+					}, [
+						["asset", {
+							"rect": [
+								["$",
+									["concat",
+										["*", 0.5, ["nth", ["nth", ["var", "item"], 1], 1]],
+										"cw"
+									]
+								],
+								["$",
+									["concat",
+										["*", -0.5, ["nth", ["nth", ["var", "item"], 1], 2]],
+										"ch"
+									]
+								],
+								"200su",
+								"200su"
+							],
+							"file": ["$", ["switch",
+								["nth", ["var", "item"], 0],
+								{
+									"one": "./media/ds-paycom-wins-arrow-1.mov",
+									"two": "./media/ds-paycom-wins-arrow-2.mov",
+									"three": "./media/ds-paycom-wins-arrow-3.mov",
+									"four": "./media/ds-paycom-wins-arrow-4.mov",
+									"five": "./media/ds-paycom-wins-arrow-5.mov",
+									"_": "./media/ds-paycom-wins-arrow-1.mov"
+								}
+							]],
+							"hold": true,
+							"mute": true,
+							"justify": "fit center",
+							"transform": [
+								["scale",
+									["$", ["nth", ["var", "item"], 2]]
+								]
+							],
+							"script": ["$$",
+								["let",
+									[
+										["roi", ["key", ["var", "self"], "roi"]],
+										["roi-center", ["key", ["var", "roi"], "center"]],
+										["screen-center",
+											["array",
+												["/", ["width"], 2],
+												["/", ["height"], 2]
+											]
+										]
+									],
+									["live-transform",
+										["var", "self"],
+										"rotate",
+										["/",
+											["*",
+												-1,
+												["atan",
+													["-",
+														["nth", ["var", "screen-center"], 0],
+														["key", ["var", "roi-center"], "x"]
+													],
+													["-",
+														["nth", ["var", "screen-center"], 1],
+														["key", ["var", "roi-center"], "y"]
+													]
+												]
+											],
+											["tau"]
+										]
+									]
+								]
+							]
+						}]
+					]]
+				]],
+				["null", {
+					"layout": "vertical packed",
+					"align": "center",
+					"gap": "60su"
+				}, [
+					["text", {
+						"enabled": ["$", ["exists", ["var", "name"]]],
+						"font": "./media/Northwell Alt.ttf",
+						"height": "300su",
+						"measure": "letter-size",
+						"fit": true,
+						"string": ["$", ["var", "name"]],
+						"color": ["$", ["var", "#theme"]],
+						"boundary": "letter",
+						"trim-descender": ["$", 
+							["let",
+								[
+									["found", ["match", ["var", "name"], ["regexp", "[fgjpqyz]"], ""]]
+								],
+								["if",
+									["exists", ["var", "found"]],
+									false,
+									true
+								]
+							]
+						],
+						"animations": [
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+1000", 1]
+								],
+								"easing": "round",
+								"opacity": 1
+							}
+						]
+					}],
+					["null", {
+						"enabled": ["$", ["or",
+							["exists", ["var", "detail-1"]],
+							["exists", ["var", "detail-2"]]
+						]],
+						"layout": "vertical packed",
+						"align": "center",
+						"gap": "20su",
+						"transform": [
+							["translate",
+								["$", ["concat", ["var", "detail-offset"], "roiw"]],
+								0
+							]
+						]
+					}, [
+						["text", {
+							"stagger": [400, 0],
+							"font": "./media/Bebas Neue Pro Regular.otf",
+							"height": "55su",
+							"measure": "letter-size",
+							"string": ["$", ["join",
+								["compact", ["array",
+									["var", "detail-1"],
+									["var", "detail-2"]
+								]],
+								"\n"
+							]],
+							"justify": "center",
+							"color": ["$", ["var", "#theme"]],
+							"boundary": "line",
+							"animations": [
+								{
+									"translate": [
+										0,
+										"20su"
+									]
+								},
+								{
+									"mix": ["animate",
+										[0, 0],
+										["+1000", 1]
+									],
+									"easing": "easeOutQuad",
+									"opacity": 1,
+									"translate": [0, 0]
+								}
+							]
+						}]
+					]]
+				]]
+			]]
+		]]
+	]
+]

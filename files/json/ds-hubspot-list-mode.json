@@ -1,0 +1,35 @@
+[
+	"ds-hubspot-list-mode",
+	[
+		{
+			"key": "headline",
+			"display": "Headline",
+			"type": "text",
+			"default": "",
+			"required": false
+		},
+		{
+			"key": "items",
+			"display": "Items",
+			"type": "textarea",
+			"default": "This is a list\nAdd a line break for new items\nIt's that easy :)",
+			"required": false
+		},
+		["dsx-mixins", "boilerplate"],
+		{
+			"key": "animate-all",
+			"display": "Animate All",
+			"type": "bool",
+			"default": true,
+			"required": false
+		}
+	],
+	[
+		["ds-hubspot-list", {
+			"headline": ["$", ["var", "headline"]],
+			"items": ["$", ["var", "items"]],
+			"size": ["$", ["var", "size"]],
+			"animate-all": ["$", ["var", "animate-all"]]
+		}]
+	]
+]

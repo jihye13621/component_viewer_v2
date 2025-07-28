@@ -1,0 +1,98 @@
+[
+	"ds-paycom-greenlight-outro",
+	[
+		{
+			"key": "#fg-asset",
+			"display": "Foreground Asset",
+			"private": true,
+			"type": "string",
+			"default": "./media/ds-paycom-greenlight-outro-logo-1.mov"
+		},
+		{
+			"key": "#bg-asset",
+			"display": "Background Asset",
+			"private": true,
+			"type": "string",
+			"default": "./media/ds-paycom-greenlight-outro.mp4"
+		}
+	],
+	[
+		["null", {
+			"opacity": ["animate",
+				[0, 0],
+				["+500", 1]
+			]
+		}, [
+			["asset", {
+				"file": ["$", ["var", "#bg-asset"]],
+				"justify": "fill center",
+				"mute": true,
+				"hold": true,
+				"end": 1166,
+				"breakpoints": [
+					{
+						"enabled":  ["$", ["<", ["aspect"], 1]],
+						"rotate": 0.25
+					}
+				]
+			}],
+			["asset", {
+				"file": ["$", ["var", "#bg-asset"]],
+				"justify": "fill center",
+				"mute": true,
+				"loop": true,
+				"start": 1166,
+				"cuts": [
+					[
+						0,
+						1166
+					],
+					[
+						6966,
+						1000000
+					]
+				],
+				"breakpoints": [
+					{
+						"enabled":  ["$", ["<", ["aspect"], 1]],
+						"rotate": 0.25
+					}
+				]
+			}],
+			["null", {
+				"rect": [
+					0,
+					0,
+					"50rw",
+					"50rh"
+				],
+				"align": "center"
+			}, [
+				["asset", {
+					"file": ["$", ["var", "#fg-asset"]],
+					"justify": "fit center",
+					"hold": true,
+					"mute": true,
+					"end": 2966
+				}],
+				["asset", {
+					"file": ["$", ["var", "#fg-asset"]],
+					"justify": "fit center",
+					"loop": true,
+					"mute": true,
+					"start": 2966,
+					"cuts": [
+						[
+							0,
+							2966
+						],
+						[
+							6833,
+							1000000
+						]
+					]
+				}]
+			]]
+		]]
+	]
+]

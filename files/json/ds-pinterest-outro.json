@@ -1,0 +1,86 @@
+[
+	"ds-pinterest-outro",
+	[
+		["dsx-mixins",
+			"text"
+		],
+		["ds-pinterest-mixins",
+			"colors",
+			"font-pinterest-bold",
+			"font-pinterest-regular"
+		]
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			],
+			"color": ["$", ["var", "color-white"]]
+		}, [
+			["null", {
+				"enabled": ["$", ["exists", ["var", "text"]]],
+				"align": "center",
+				"max-width": "1300su",
+				"end": 3000,
+				"opacity": ["animate",
+					[0, 1],
+					["100%", 0],
+					["-400", 1, "plateauOut"]
+				],
+				"transform": [
+					["scale",
+						["animate",
+							[0, 1.2, "easeOutCubic"],
+							["+500", 1]
+						]
+					],
+					["scale",
+						["animate",
+							[0, 1],
+							["100%", 0.95]
+						]
+					],
+					["translate",
+						["animate",
+							["100%", "-50su"],
+							["-400", 0, "easeInQuart"]
+						],
+						0
+					]
+				]
+			}, [
+				["text", {
+					"string": ["$", ["var", "text"]],
+					"font": "./media/Pinterest-Sans-Pro-Bold.otf",
+					"measure": "letter-size",
+					"height": "120su",
+					"color": ["$", ["var", "color-black"]],
+					"kerning": -0.04,
+					"leading": "5su",
+					"justify": "center"
+				}]
+			]],
+			["asset", {
+				"file": "./media/ds-pinterest-pushpin-wipe-long-1.mov",
+				"justify": "fit center",
+				"hold": true,
+				"transform": [
+					["translate",
+						["animate",
+							[0, "50su", "easeOutQuart"],
+							["+400", 0]
+						],
+						0
+					]
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["exists", ["var", "text"]]],
+						"start": 3000
+					}
+				]
+			}]
+		]]
+	]
+]

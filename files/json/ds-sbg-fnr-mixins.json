@@ -1,0 +1,37 @@
+{
+	"params": {
+		"show": {
+			"key": "show",
+			"display": "Show",
+			"type": "string",
+			"default": "fnr",
+			"options": [
+				{
+					"key": "fnr",
+					"display": "Friday Night Rivals"
+				},
+				{
+					"key": "tnl",
+					"display": "Thursday Night Lights"
+				}
+			],
+			"requird": false
+		},
+		"font-headline": {
+			"key": "font-headline",
+			"display": "Font Headline",
+			"type": "string",
+			"default": "./media/rustico.otf",
+			"required": false,
+			"private": true
+		},
+		"font-body": {
+			"key": "font-body",
+			"display": "Font Body",
+			"type": "string",
+			"default": "./media/din_bold.ttf",
+			"required": false,
+			"private": true
+		}
+	}
+}

@@ -1,0 +1,353 @@
+[
+	"ds-pelago-media",
+	[
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["gain", 0],
+				["justify", "fill"],
+				["motion", "none"]
+			],
+			"script": ["$", ["if",
+				["exists", ["var", "asset"]],
+				["var", "asset"],
+				"./media/image-tall.jpg"	
+			]]
+		},
+		["ds-pelago-mixins",
+			"color-primary",
+			"color-secondary",
+			"color-accent",
+			"font-headline",
+			"font-body"
+		],
+		{
+			"key": "theme",
+			"display": "Theme",
+			"type": "string",
+			"default": "yellow",
+			"required": false,
+			"options": [
+				{
+					"key": "yellow",
+					"display": "Yell-O"
+				},
+				{
+					"key": "cerulean",
+					"display": "Cerulean"
+				},
+				{
+					"key": "maroon",
+					"display": "Maroon"
+				},
+				{
+					"key": "moss-green",
+					"display": "Moss Green"
+				},
+				{
+					"key": "punch-pink",
+					"display": "Punch Pink"
+				},
+				{
+					"key": "black",
+					"display": "Jet Black"
+				}
+			]
+		},
+		{
+			"key": "#path",
+			"display": "Path",
+			"type": "string",
+			"default": "default path for seed",
+			"private": true,
+			"script": ["$",
+				["let",
+					[
+						["p", ["if",
+							["exists", ["var", "asset"]],
+							["split",
+								["if",
+									["eq", ["type-of", ["var", "asset"]], "string"],
+									["var", "asset"],
+									["key", ["var", "asset"], "file"]
+								],
+								"/"
+							]
+						]]
+					],
+					["if",
+						["exists", ["var", "p"]],
+						["nth", ["var", "p"], ["-", ["length", ["var", "p"]], 1]]
+					]
+				]
+			]
+		},
+		{
+			"key": "#colors",
+			"display": "Colors",
+			"type": "object",
+			"default": ["#FAE355", "#FFF4DC"],
+			"private": true,
+			"script": ["$",
+				["switch", ["var", "theme"], {
+					"yellow": ["#FAE355", "#FFF4DC"],
+					"cerulean": ["#A4BDFF", "#FFF4DC"],
+					"maroon": ["#722F49", "#DDF1C4"],
+					"moss-green": ["#4D6525", "#E8EEFF"],
+					"punch-pink": ["#EEBCFF", "#E8EEFF"],
+					"black": ["#212633", "#FAE355"],
+					"_": ["#FAE355", "#FFF4DC"]
+				}]
+			]
+		},
+		{
+			"key": "#unit",
+			"display": "Unit",
+			"type": "number",
+			"default": 100,
+			"private": true,
+			"script": ["$",
+				["min", ["width"], ["height"]]
+			]
+		},
+		{
+			"key": "#seed-1",
+			"display": "Seed",
+			"type": "number",
+			"default": 0.9,
+			"private": true,
+			"script": ["$",
+				["if",
+					["exists", ["var", "#path"]],
+					["/", ["mod", ["char-code", ["var", "#path"], 0], 50], 50],
+					0.9
+				]
+			]
+		},
+		{
+			"key": "#seed-2",
+			"display": "Seed",
+			"type": "number",
+			"default": 0.5,
+			"private": true,
+			"script": ["$",
+				["if",
+					["exists", ["var", "#path"]],
+					["/", ["mod", ["char-code", ["var", "#path"], 1], 50], 50],
+					0.5
+				]
+			]
+		}
+	],
+	[
+		["solid", {
+			"color": ["$", ["nth", ["var", "#colors"], 1]]
+		}, [
+			["user-asset", {
+				"enabled": ["$", ["exists", ["var", "asset"]]],
+				"file": ["$", ["var", "asset"]],
+				"justify": "fill center"
+			}]
+		]],
+		["solid", {
+			"flex": {
+				"position": "fixed"
+			},
+			"color": [1, 1, 1, 1],
+			"buffer": "knockout"
+		}, [
+			["solid", {
+				"rect": [
+					0,
+					0,
+					["$", ["var", "#unit"]],
+					["$", ["var", "#unit"]]
+				],
+				"color": [0, 0, 0, 1],
+				"align": "center",
+				"radius": ["$", ["var", "#unit"]],
+				"transform": [
+					["scale",
+						["$", ["+",
+							0.5,
+							["*", 
+								["var", "#seed-2"],
+								0.4
+							]
+						]],
+						["$", ["+", 
+							0.8,
+							["*",
+								["var", "#seed-1"],
+								0.4
+							]
+						]]
+					],
+					["scale",
+						["$", ["if", 
+							["eq", ["aspect"], 1],
+							1.2,
+							["if",
+								["gt", ["aspect"], 1],
+									["aspect"],
+									["/", 1, ["aspect"]
+							]]
+						]]
+					],
+					["rotate",
+						["animate",
+							[0, -0.2, "easeOutQuart"],
+							["+1000", ["$", ["+", 0.0, ["*", ["var", "#seed-2"], 0.25]]]],
+							["100%", ["$", ["+", 0.15, ["*", ["var", "#seed-1"], 0.05]]]],
+							["-800", ["$", ["+", 0.0, ["*", ["var", "#seed-2"], 0.25]]], "easeInQuart"]
+						]
+					],
+					["rotate",
+						["animate",
+							[0, 0],
+							["100%", 0.05]
+						]
+					],
+					["translate",
+						["animate",
+							[0, ["$", ["*", ["var", "#unit"], ["+", 0.2, ["*", ["var", "#seed-1"], 1.5]]]], "easeOutQuart"],
+							["+1000", "10rw"],
+							["100%", ["$", ["*", -1, 0.5, ["var", "#unit"], ["+", 0.2, ["*", ["var", "#seed-2"], 1.5]]]]],
+							["-800", "20rw", "easeInQuart"]
+						],
+						["animate",
+							[0, ["$", ["*", ["var", "#unit"], ["+", 0.4, ["*", ["var", "#seed-2"], 1.5]]]], "easeOutQuart"],
+							["+1000", "10rh"],
+							["100%", ["$", ["*", -1, 0.5, ["var", "#unit"], ["+", 0.4, ["*", ["var", "#seed-1"], 1.5]]]]],
+							["-1000", "20rh", "easeInQuart"]
+						]
+					],
+					["translate",
+						["animate",
+							[0, 0],
+							["100%", "-5rw"]
+						],
+						["animate",
+							[0, 0],
+							["100%", "-5rh"]
+						]
+					]
+				]
+			}],
+			["solid", {
+				"rect": [
+					0,
+					0,
+					["$", ["var", "#unit"]],
+					["$", ["var", "#unit"]]
+				],
+				"color": [0, 0, 0, 1],
+				"align": "center",
+				"radius": ["$", ["var", "#unit"]],
+				"transform": [
+					["scale",
+						["$", 
+							["*",
+								["+",
+									0.5,
+									["*", 
+										["var", "#seed-2"],
+										0.4
+									]
+								],
+								["+",
+									0.7,
+									["*", 
+										["var", "#seed-2"],
+										0.2
+									]
+								]
+							]
+						],
+						["$", 
+							["*",
+								["+",
+									0.8,
+									["*", 
+										["var", "#seed-1"],
+										0.4
+									]
+								],
+								["+",
+									0.5,
+									["*", 
+										["var", "#seed-1"],
+										0.2
+									]
+								]
+							]
+						]
+					],
+					["scale",
+						["$", ["if", 
+							["eq", ["aspect"], 1],
+							1.2,
+							["if",
+								["gt", ["aspect"], 1],
+									["aspect"],
+									["/", 1, ["aspect"]
+							]]
+						]]
+					],
+					["rotate",
+						["animate",
+							[0, -0.2, "easeOutQuart"],
+							["+1000", ["$", ["+", 0.05, ["*", ["var", "#seed-2"], 0.25]]]],
+							["100%", ["$", ["+", 0.25, ["*", ["var", "#seed-1"], 0.05]]]],
+							["-800", ["$", ["+", 0.05, ["*", ["var", "#seed-2"], 0.25]]], "easeInQuart"]
+						]
+					],
+					["rotate",
+						["animate",
+							[0, 0],
+							["100%", 0.05]
+						]
+					],
+					["translate",
+						["animate",
+							[0, ["$", ["*", -1, ["var", "#unit"], ["+", 0.2, ["*", ["var", "#seed-2"], 1.5]]]], "easeOutQuart"],
+							["+1000", "-20rw"],
+							["100%", ["$", ["*", 0.5, ["var", "#unit"], ["+", 0.2, ["*", ["var", "#seed-1"], 1.5]]]]],
+							["-800", "-20rw", "easeInQuart"]
+						],
+						["animate",
+							[0, ["$", ["*", -1, ["var", "#unit"], ["+", 0.4, ["*", ["var", "#seed-1"], 1.5]]]], "easeOutQuart"],
+							["+1000", "-10rh"],
+							["100%", ["$", ["*", 0.5, ["var", "#unit"], ["+", 0.4, ["*", ["var", "#seed-2"], 1.5]]]]],
+							["-1000", "-10rh", "easeInQuart"]
+						]
+					],
+					["translate",
+						["animate",
+							[0, 0],
+							["100%", "5rw"]
+						],
+						["animate",
+							[0, 0],
+							["100%", "5rh"]
+						]
+					]
+				]
+			}]
+		]],
+		["matte", {
+			"flex": {
+				"position": "fixed"
+			},
+			"buffer-in": "knockout"
+		}, [
+			["solid", {
+				"color": ["$", ["nth", ["var", "#colors"], 0]]
+			}]
+		]]
+	]
+]

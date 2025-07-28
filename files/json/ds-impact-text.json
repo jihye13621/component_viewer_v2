@@ -1,0 +1,113 @@
+[
+	"ds-impact-text",
+	[
+		["dsx-mixins",
+			"text"
+		],
+		["ds-impact-mixins",
+			"color-primary",
+			"color-secondary",
+			"color-accent",
+			"font-headline",
+			"font-body"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [4, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["solid", {
+				"max-width": "800nsu",
+				"mixins": ["ds-impact-mixins", ["scale-2step"]],
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"color": ["$", ["rgba-set", ["var", "color-secondary"], "a", 0.5]],
+				"padding": [
+					"44su",
+					"64su",
+					"44su",
+					"64su"
+				]
+			}, [
+				["text", {
+					"mixins": ["ds-impact-mixins", ["text-body"]],
+					"string": ["$", ["var", "text"]],
+					"case": "uppercase",
+					"measure": "cap-size",
+					"height": "40su",
+					"leading": "20su",
+					"justify": ["$", ["var", "#align"]],
+					"stroke-color": ["$", ["var", "color-accent"]],
+					"color": [0, 0, 0, 0],
+					"boundary": "word",
+					"stagger": [0, 0],
+					"animations": [
+						{
+							"stroke": "3su",
+							"scale": 0.5
+						},
+						{
+							"opacity": 1,
+							"mix": ["animate",
+								[0, 0],
+								["+300", 1]
+							],
+							"easing": "round"
+						},
+						{
+							"scale": 0.75,
+							"mix": ["animate",
+								[150, 0],
+								["+300", 1]
+							],
+							"easing": "round"
+						},
+						{
+							"mix": ["animate",
+								[300, 0],
+								["+300", 1]
+							],
+							"easing": "round",
+							"color": ["$", ["var", "color-primary"]],
+							"scale": 1,
+							"stroke": 0
+						},
+						{
+							"scale": 0.75,
+							"color": [0, 0, 0, 0],
+							"stroke": "3su",
+							"easing": "round",
+							"mix": ["animate",
+								["100%", null],
+								["-100", 1],
+								["-300", 0]
+							]
+						},
+						{
+							"opacity": 0,
+							"easing": "round",
+							"mix": ["animate",
+								["100%", 1],
+								["-300", 0]
+							]
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

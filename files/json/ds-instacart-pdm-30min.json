@@ -1,0 +1,95 @@
+[
+	"ds-instacart-pdm-30min",
+	[
+		["ds-instacart-mixins",
+			"colors",
+			"theme"
+		],
+		{
+			"key": "#screen-diag",
+			"display": "Screen Diagonal",
+			"type": "number",
+			"default": 100,
+			"private": true,
+			"required": false,
+			"script": ["$",
+				["let",
+					[
+						["width", ["/", ["width"], 2]],
+						["height", ["height"]]
+					],
+					["*",
+						["sqrt",
+							["+",
+								["*", ["var", "width"], ["var", "width"]],
+								["*", ["var", "height"], ["var", "height"]]
+							]
+						],
+						2
+					]
+				]
+			]
+		},
+		{
+			"key": "#screen-size",
+			"display": "Screen Size",
+			"type": "number",
+			"default": 100,
+			"private": true,
+			"required": false,
+			"script": ["$",
+				["max", ["width"], ["height"]]
+			]
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", "set-su"]
+		}, [
+			["null", {
+				"buffer": "knockout"
+			}, [
+				["solid", {
+					"radius": 100000,
+					"rect": [
+						0,
+						0,
+						["$", ["var", "#screen-diag"]],
+						["$", ["var", "#screen-diag"]]
+					],
+					"align": "bottom center",
+					"transform": [
+						["scale",
+							["animate",
+								[0, 0, "easeOutQuad"],
+								["+500", 1]
+							]
+						],
+						["translate",
+							0,
+							["$", ["/", ["var", "#screen-diag"], 2]]
+						]
+					]
+				}]
+			]],
+			["matte", {
+				"buffer-in": "knockout"
+			}, [
+				["false-color", {
+					"color-1": ["$", ["var", "#foreground"]],
+					"color-2": ["$", ["var", "#background"]]
+				}, [
+					["solid", {
+						"color": [0, 0, 0, 1]
+					}],
+					["asset", {
+						"file-": "./media/ds-instacart-30min.mp4",
+						"file": "./media/ds-instacart-30min.json",
+						"justify": "fill center",
+						"loop": true
+					}]
+				]]
+			]]
+		]]
+	]
+]

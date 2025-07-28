@@ -1,0 +1,147 @@
+[
+	"api-brandlive-nintendo-look-01",
+	[
+		{
+			"key": "headline",
+			"display": "Headline",
+			"type": "string",
+			"default": "Dylan Hawke",
+			"required": false
+		},
+		{
+			"key": "detail-1",
+			"display": "Detail 1",
+			"type": "text",
+			"default": "Featuring",
+			"required": false
+		},
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": "#E60012",
+			"required": false
+		},
+		{
+			"key": "font-1",
+			"display": "Font 1",
+			"type": "string",
+			"default": "./media/api-brandlive/Prompt-ExtraBoldItalic.ttf",
+			"required": false
+		},
+		{
+			"key": "font-2",
+			"display": "Font 2",
+			"type": "string",
+			"default": "./media/api-brandlive/Prompt-MediumItalic.ttf",
+			"required": false
+		},
+		{
+			"key": "text-color-1",
+			"display": "Text Color 1",
+			"type": "color",
+			"default": "#E60012",
+			"required": false
+		},
+		{
+			"key": "text-color-2",
+			"display": "Text Color 2",
+			"type": "color",
+			"default": "#000000",
+			"required": false
+		}
+	],
+	[
+		["asset", {
+			"-": ["$",
+				["set", "hsvcolor", ["rgb-to-hsv", ["var", "color-1"]]]
+			],
+			"file": "./media/api-brandlive/nintendo_look_01.mp4",
+			"justify": "fill center",
+			"effect": [
+				["hue", {
+					"hue": ["$", ["nth", ["var", "hsvcolor"], 0]]
+				}]
+			],
+			"loop": true
+		}],
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-dsx-su",
+				"safezone"
+			]
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"padding": ["120su", "40rw", 0, "100su"],
+				"gap": "45su"
+			}, [
+				["text", {
+					"enabled": ["$", ["exists", ["var", "headline"]]],
+					"font": ["$", ["var", "font-1"]],
+					"start": 4500,
+					"measure": "letter-size",
+					"string": ["$", ["var", "headline"]],
+					"color": ["$", ["var", "text-color-1"]],
+					"boundary": "letter",
+					"opacity": ["animate",
+						[0, 0, "holdIn"],
+						["+1500", 1]
+					],
+					"height": "120su",
+					"case": "uppercase",
+					"transform": [
+						["translate",
+							["animate",
+								["+1500", "500su", "easeOutQuad"],
+								["+1000", 0]
+							],
+							0
+						]
+					],
+					"animations": [
+						{
+							"translate": ["800su", 0]
+						},
+						{
+							"mix": ["animate", 
+								[0, 0],
+								[3000, 1]
+							],
+							"translate": [0, 0],
+							"easing": "easeInOutQuad"
+						}
+					]
+				}],
+				["text", {
+					"enabled": ["$", ["exists", ["var", "detail-1"]]],
+					"font": ["$", ["var", "font-2"]],
+					"start": 4500,
+					"stagger": [500, 0],
+					"measure": "letter-size",
+					"string": ["$", ["var", "detail-1"]],
+					"color": ["$", ["var", "text-color-2"]],
+					"boundary": "letter",
+					"opacity": ["animate",
+						[0, 0, "holdIn"],
+						["+1500", 1]
+					],
+					"height": "65su",
+					"animations": [
+						{
+							"translate": ["2000su", 0]
+						},
+						{
+							"mix": ["animate", 
+								[0, 0],
+								[3000, 1]
+							],
+							"translate": [0, 0],
+							"easing": "easeInOutQuad"
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

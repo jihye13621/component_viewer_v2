@@ -1,0 +1,131 @@
+[
+	"ds-sbg-crimobs-redacted",
+	[
+		{
+			"key": "color",
+			"display": "Color",
+			"type": "color",
+			"default": "#000000",
+			"required": false
+		},
+		{
+			"key": "rect-x",
+			"display": "X",
+			"type": "number",
+			"default": 40,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 0.05,
+				"minimum": 0.05,
+				"maximum": 100.0
+			}
+		},
+		{
+			"key": "rect-y",
+			"display": "Y",
+			"type": "number",
+			"default": 40,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 0.05,
+				"minimum": 0.05,
+				"maximum": 100.0
+			}
+		},
+		{
+			"key": "rect-z",
+			"display": "Width",
+			"type": "number",
+			"default": 20,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 0.05,
+				"minimum": 0.05,
+				"maximum": 100.0
+			}
+		},
+		{
+			"key": "rect-w",
+			"display": "Height",
+			"type": "number",
+			"default": 10,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 0.05,
+				"minimum": 0.05,
+				"maximum": 100.0
+			}
+		},
+		{
+			"key": "angle",
+			"display": "Angle",
+			"type": "number",
+			"default": 0,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 0.01,
+				"minimum": 0.0,
+				"maximum": 1.0
+			}
+		},
+		{
+			"key": "do-video",
+			"display": "Video Censor",
+			"type": "bool",
+			"default": true,
+			"required": false
+		},
+		{
+			"key": "do-audio",
+			"display": "Audio Censor",
+			"type": "bool",
+			"default": false,
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", "set-su"]
+		}, [
+			["null", {
+				"enabled": ["$", ["var", "do-video"]],
+				"rect": [
+					["$", ["concat", ["var", "rect-x"], "cw"]],
+					["$", ["concat", ["var", "rect-y"], "ch"]],
+					["$", ["concat", ["var", "rect-z"], "cw"]],
+					["$", ["concat", ["var", "rect-w"], "ch"]]
+				],
+				"transform": [
+					["rotate",
+						["$", ["var", "angle"]]
+					]
+				]
+			}, [
+				["solid", {
+					"color": ["$", ["var", "color"]]
+				}]
+			]],
+			["asset", {
+				"file": "./media/1000khz.wav",
+				"gain": ["$",
+					["if",
+						["var", "do-audio"],
+						0,
+						-100
+					]
+				],
+				"loop": false
+			}]
+		]]
+	]
+]

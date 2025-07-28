@@ -1,0 +1,39 @@
+[
+	"ds-paycom-wins-outro",
+	[
+
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			],
+			"color": "#003E2D",
+			"opacity": ["animate",
+				[0, 0],
+				["+500", 1]
+			]
+		}, [
+			["asset", {
+				"start": 300,
+				"file": "./media/ds-paycom-wins-logo.mov",
+				"justify": "fit center",
+				"hold": true,
+				"mute": true,
+				"rect": [
+					0,
+					0,
+					"80rw",
+					"60rh"
+				],
+				"align": "center"
+			}],
+			["ds-paycom-wins-shapes", {
+				"flex": {
+					"position": "fixed"
+				}
+			}]
+		]]
+	]
+]

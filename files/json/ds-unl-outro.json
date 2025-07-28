@@ -1,0 +1,191 @@
+[
+	"ds-unl-outro",
+	[
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "text",
+			"default": "Optional text",
+			"required": false
+		},
+		["ds-unl-mixins", "color-primary", "color-secondary"],
+		["dsx-mixins", "boilerplate-intro-outro"],
+		{
+			"key": "do-transition-in",
+			"display": "Transition In",
+			"type": "bool",
+			"default": true,
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su"]]
+		}, [
+			["solid", {
+				"mixins": ["dsx-mixins", ["safezone"]],
+				"color": ["$", ["var", "color-secondary"]],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["var", "do-transition-in"]],
+						"start":  ["$",
+							["if",
+								["gt", ["aspect"], 1.0],
+								950,
+								800
+							]
+						]
+					}
+				]
+			}, [
+				["asset", {
+					"mute": true,
+					"file": "./media/ds-unl-logo.svg",
+					"align": "center",
+					"justify": "fit center",
+					"transform": [
+						["scale",
+							["animate",
+								[0, 1.0],
+								["100%", 0.9]
+							]
+						]
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["gt", ["aspect"], 1.0]],
+							"transform": [
+								["scale",
+									["animate",
+										[0, 0.7],
+										["100%", 0.6]
+									]
+								]
+							]
+						}
+					]
+				}],
+				["text", {
+					"enabled": ["$", ["exists", ["var", "text"]]],
+					"mixins": ["ds-unl-mixins", ["font-outro"]],
+					"string": ["$", ["var", "text"]],
+					"color": ["$", ["var", "color-primary"]],
+					"rect": [
+						0,
+						0,
+						"100rw",
+						"300su"
+					],
+					"align": "bottom",
+					"justify": "top center",
+					"boundary": "word",
+					"animations": [
+						{
+							"translate": [
+								0,
+								"40su"
+							]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+400", 1]
+							],
+							"easing": "easeOutQuad",
+							"opacity": 1,
+							"translate": [0, 0]
+						}
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["var", "do-transition-in"]],
+							"stagger": [500, 0]
+						},
+						{
+							"enabled": ["$", ["gt", ["aspect"], 1.0]],
+							"justify": "center"
+						}
+					]
+				}]
+			]],
+			["null", {
+				"enabled": ["$", ["var", "do-transition-in"]],
+				"duration": 1600,
+				"transform": [
+					["scale",
+						["$",
+							["if",
+								["gt", ["aspect"], 1.0],
+								2.5,
+								1.5
+							]
+						],
+						["animate",
+							[0, "50rh"],
+							["+1600", "-100rh"]
+						],
+						"50rh"
+					],
+					["translate",
+						["animate",
+							[0, "-50rh", "easeInQuad"],
+							["+1500", "300rh"]
+						],
+						0
+					]
+				]
+			}, [
+				["solid", {
+					"color": ["$", ["var", "color-secondary"]],
+					"path": [
+						[0, 0],
+						["50rh", "50rh"],
+						[0, "100rh"],
+						["-100rh", "100rh"],
+						["-50rh", "50rh"],
+						["-100rh", 0]
+					]
+				}],
+				["solid", {
+					"color": "#F5F1E7",
+					"path": [
+						["-10rh", 0],
+						["40rh", "50rh"],
+						["-10rh", "100rh"],
+						["-70rh", "100rh"],
+						["-20rh", "50rh"],
+						["-70rh", 0],
+						["-90rh", 0],
+						["-40rh", "50rh"],
+						["-90rh", "100rh"],
+						["-120rh", "100rh"],
+						["-70rh", "50rh"],
+						["-120rh", 0]
+					]
+				}],
+				["solid", {
+					"color": "#C7C8CA",
+					"path": [
+						["-40rh", 0],
+						["10rh", "50rh"],
+						["-40rh", "100rh"],
+						["-50rh", "100rh"],
+						["0rh", "50rh"],
+						["-50rh", 0]
+					]
+				}],
+				["solid", {
+					"color": ["$", ["var", "color-primary"]],
+					"path": [
+						["-50rh", 0],
+						["0rh", "50rh"],
+						["-50rh", "100rh"],
+						["-70rh", "100rh"],
+						["-20rh", "50rh"],
+						["-70rh", 0]
+					]
+				}]
+			]]
+		]]
+	]
+]

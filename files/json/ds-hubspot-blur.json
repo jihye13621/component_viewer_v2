@@ -1,0 +1,147 @@
+[
+	"ds-hubspot-blur",
+	[
+		{
+			"key": "rect-x",
+			"display": "X",
+			"type": "number",
+			"default": 0,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 0.05,
+				"minimum": 0.05,
+				"maximum": 100.0
+			},
+			"script": ["$",
+				["concat",
+					["var", "rect-x"],
+					"cw"
+				]
+			]
+		},
+		{
+			"key": "rect-y",
+			"display": "Y",
+			"type": "number",
+			"default": 0,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 0.05,
+				"minimum": 0.05,
+				"maximum": 100.0
+			},
+			"script": ["$",
+				["concat",
+					["var", "rect-y"],
+					"ch"
+				]
+			]
+		},
+		{
+			"key": "rect-z",
+			"display": "Width",
+			"type": "number",
+			"default": 30,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 0.05,
+				"minimum": 0.05,
+				"maximum": 100.0
+			},
+			"script": ["$",
+				["concat",
+					["var", "rect-z"],
+					"cw"
+				]
+			]
+		},
+		{
+			"key": "rect-w",
+			"display": "Height",
+			"type": "number",
+			"default": 30,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 0.05,
+				"minimum": 0.05,
+				"maximum": 100.0
+			},
+			"script": ["$",
+				["concat",
+					["var", "rect-w"],
+					"ch"
+				]
+			]
+		},
+		{
+			"key": "radius",
+			"display": "Blur Strength",
+			"type": "number",
+			"default": 10,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 0.05,
+				"minimum": 0.05,
+				"maximum": 20.0
+			}
+		},
+		{
+			"key": "preview",
+			"display": "Outline",
+			"type": "bool",
+			"default": false,
+			"required": false
+		},
+		["ds-hubspot-mixins",
+			"color-primary"
+		]
+	],
+	[
+		["null", {
+			"buffer": "knockout"
+		}, [
+			["solid", {
+				"color": [1, 1, 1, 1],
+				"rect": [
+					["$", ["var", "rect-x"]],
+					["$", ["var", "rect-y"]],
+					["$", ["var", "rect-z"]],
+					["$", ["var", "rect-w"]]
+				]
+			}]
+		]],
+		["matte", {
+			"buffer-in": "knockout"
+		}, [
+			["composite-blur", {
+				"radius": ["$", ["var", "radius"]]
+			}]
+		]],
+		["null", {
+			"enabled": ["$", ["var", "preview"]],
+			"rect": [
+				["$", ["var", "rect-x"]],
+				["$", ["var", "rect-y"]],
+				["$", ["var", "rect-z"]],
+				["$", ["var", "rect-w"]]
+			]
+		}, [
+			["solid", {
+				"stagger": [175, -175],
+				"stroke": 5,
+				"stroke-color": ["$", ["var", "color-solaris"]],
+				"color": [0, 0, 0, 0]
+			}]
+		]]
+	]
+]

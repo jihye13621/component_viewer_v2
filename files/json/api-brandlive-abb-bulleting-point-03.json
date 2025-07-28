@@ -1,0 +1,194 @@
+[
+	"api-brandlive-abb-bulleting-point-03",
+	[
+		{
+			"key": "title-1",
+			"display": "Title 1",
+			"type": "string",
+			"default": "Title 1",
+			"required": false
+		},
+		{
+			"key": "caption-1",
+			"display": "Caption 1",
+			"type": "text",
+			"default": "Optional caption 1 text here",
+			"required": false
+		},
+		{
+			"key": "caption-2",
+			"display": "Caption 2",
+			"type": "text",
+			"default": "Optional caption 2 text here",
+			"required": false
+		},
+		{
+			"key": "font-1",
+			"display": "Font 1",
+			"type": "string",
+			"default": "./media/api-brandlive/Roboto-LightItalic.ttf",
+			"required": false
+		},
+		{
+			"key": "font-2",
+			"display": "Font 2",
+			"type": "string",
+			"default": "./media/api-brandlive/Roboto-Regular.ttf",
+			"required": false
+		},
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": "#FFE1AF",
+			"required": false
+		},
+		{
+			"key": "color-2",
+			"display": "Color 2",
+			"type": "color",
+			"default": "#C8A3D7",
+			"required": false
+		},
+		{
+			"key": "text-color-1",
+			"display": "Text Color 1",
+			"type": "color",
+			"default": "#000000",
+			"required": false
+		},
+		{
+			"key": "text-color-2",
+			"display": "Text Color 2",
+			"type": "color",
+			"default": "#FFFFFF",
+			"required": false
+		},
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"script": ["$", ["if",
+				["exists", ["var", "asset"]],
+				["var", "asset"],
+				"./media/image-wide.jpg"	
+			]]
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-dsx-su"
+			]
+		}, [
+			["solid", {
+				"rect": [0, "1000su", "1050su", "350su"],
+				"color": ["$", ["var", "color-2"]]
+			}],
+			["user-asset", {
+				"file": ["$", ["var", "asset"]],
+				"rect": [0, 0, "100rw", "100rh"],
+				"transform": [
+					["translate",
+						"-500su", "80su"
+					],
+					["scale", 
+						["animate",
+							[0, 0.75, "easeInOutQuad"],
+							["+1433", 1.0]
+						]
+					]
+				],
+				"start": 33,
+				"mask": {
+					"padding": [
+						0, 
+						["animate",
+							["+266", "100rw", "easeOutCubic"],
+							["+666", "62rw", "easeInOutCubic"]
+						],
+						0,
+						0
+					]
+				}
+			}],
+			["null", {
+				"rect": [
+					"100su",
+					"90su",
+					"800su",
+					"70su"
+				]
+			}, [
+				["solid", {
+					"rect": [0, 0, "100rw", "100rh"],
+					"color": ["$", ["var", "color-1"]],
+					"transform": [
+						["scale",
+							1.0,
+							["animate",
+								["+800", 0, "easeOutCubic"],
+								["+366", 1.0]
+							],
+							0, "100rh"
+						]
+					]
+				}],
+				["text", {
+					"enabled": ["$", ["exists", ["var", "title-1"]]],
+					"font": ["$", ["var", "font-1"]],
+					"string": ["$", ["var", "title-1"]],
+					"justify": "center",
+					"height": "50su",
+					"measure": "letter-size",
+					"fit": true,
+					"case": "uppercase",
+					"color": ["$", ["var", "text-color-1"]],
+					"opacity": ["animate",
+						[0, 0, "easeInOutCubic"],
+						["+366", 1.0]
+					],
+					"start": 433
+				}]
+			]],
+			["null", {
+				"rect": ["50rw", "288su", "50rw", "800su"],
+				"padding": [0, "150su", 0, "210su"],
+				"start": 733
+			}, [
+				["null", {
+					"rect": [0, 0, "100rw", "50rh"]
+				}, [
+					["text", {
+						"enabled": ["$", ["exists", ["var", "caption-1"]]],
+						"height": "90su",
+						"measure": "letter-size",
+						"leading": "0.05",
+						"font": ["$", ["var", "font-2"]],
+						"string": ["$", ["var", "caption-1"]],
+						"color": ["$", ["var", "text-color-2"]],
+						"kerning": 0.01,
+						"justify": "center left"                    
+					}]
+				]],
+				["null", {
+					"rect": [0, "50rh", "100rw", "50rh"]
+				}, [
+					["text", {
+						"enabled": ["$", ["exists", ["var", "caption-2"]]],
+						"height": "90su",
+						"measure": "letter-size",
+						"leading": "0.05",
+						"font": ["$", ["var", "font-2"]],
+						"string": ["$", ["var", "caption-2"]],
+						"color": ["$", ["var", "text-color-2"]],
+						"kerning": 0.01,
+						"justify": "center left"
+					}]
+				]]
+			]]
+		]]
+	]
+]

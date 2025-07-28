@@ -1,0 +1,147 @@
+[
+	"ds-hubspot-annotation",
+	[
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [0, 0, 0],
+			"ui": {
+				"grid": false,
+				"offset": true,
+				"minimum": -100,
+				"maximum": 100
+			},
+			"required": false
+		},
+		{
+			"key": "dimensions",
+			"display": "Dimensions",
+			"type": "position",
+			"default": [0, 20, 20],
+			"ui": {
+				"grid": false,
+				"offset": true,
+				"minimum": 0,
+				"maximum": 100
+			},
+			"required": false
+		},
+		{
+			"key": "thickness",
+			"display": "Thickness",
+			"type": "number",
+			"default": 10,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 0.05,
+				"minimum": 0.05,
+				"maximum": 20.0
+			},
+			"script": ["$",
+				["concat",
+					["var", "thickness"],
+					"su"
+				]
+			],
+			"private": true
+		},
+		["ds-hubspot-mixins",
+			"color-primary"
+		]
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su"
+			]
+		}, [
+			["null", {
+				"rect": ["$", ["array",
+					["concat",
+						["+", 50, ["*", 0.5, ["nth", ["var", "position"], 1]]],
+						"cw"
+					],
+					["concat",
+						["+", 50, ["*", -0.5, ["nth", ["var", "position"], 2]]],
+						"ch"
+					],
+					["concat",
+						["nth", ["var", "dimensions"], 1],
+						"cw"
+					],
+					["concat",
+						["nth", ["var", "dimensions"], 2],
+						"ch"
+					]
+				]]
+			}, [
+				["solid", {
+					"stagger": [175, -175],
+					"color": ["$", ["var", "color-solaris"]],
+					"rect": [
+						0,
+						0,
+						["animate",
+							[0, 0, "easeOutQuart"],
+							["+175", "100rw"],
+							["100%", 0],
+							["-175", "100rw", "easeInQuart"]
+						],
+						["$", ["var", "thickness"]]
+					]
+				}],
+				["solid", {
+					"stagger": [0, 0],
+					"color": ["$", ["var", "color-solaris"]],
+					"rect": [
+						0,
+						0,
+						["$", ["var", "thickness"]],
+						["animate",
+							[0, 0, "easeInQuart"],
+							["+175", "100rh"],
+							["100%", 0],
+							["-175", "100rh", "easeOutQuart"]
+						]
+					],
+					"align": "top right"
+				}],
+				["solid", {
+					"stagger": [175, -175],
+					"color": ["$", ["var", "color-solaris"]],
+					"rect": [
+						0,
+						0,
+						["animate",
+							[0, 0, "easeOutQuart"],
+							["+175", "100rw"],
+							["100%", 0],
+							["-175", "100rw", "easeInQuart"]
+						],
+						["$", ["var", "thickness"]]
+					],
+					"align": "bottom right"
+				}],
+				["solid", {
+					"stagger": [0, 0],
+					"color": ["$", ["var", "color-solaris"]],
+					"rect": [
+						0,
+						0,
+						["$", ["var", "thickness"]],
+						["animate",
+							[0, 0, "easeInQuart"],
+							["+175", "100rh"],
+							["100%", 0],
+							["-175", "100rh", "easeOutQuart"]
+						]
+					],
+					"align": "bottom left"
+				}]
+			]]
+		]]
+	]
+]

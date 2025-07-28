@@ -1,0 +1,282 @@
+[
+	"ds-paycom-evergreen-sidepanel",
+	[
+		{
+			"key": "translate-camera",
+			"display": "Translate Camera",
+			"type": "bool",
+			"default": true,
+			"required": false
+		},
+		{
+			"key": "switch",
+			"display": "Switch Side",
+			"type": "bool",
+			"default": false,
+			"required": false
+		},
+		{
+			"key": "#direction",
+			"display": "Direction",
+			"type": "string",
+			"default": "horizontal",
+			"required": false,
+			"private": true,
+			"script": ["$",
+				["if",
+					["<=", ["aspect"], 1],
+					"vertical",
+					"horizontal"
+				]
+			]
+		}
+	],
+	[
+		["null", {
+			"rect": ["$",
+				["let",
+					[
+						["r", ["rect-solve",
+							["size", "./media/ds-paycom-evergreen-sidepanel-in.mp4"],
+							["dim-to-rect", ["size"]],
+							"fit"
+						]],
+						["rr",
+							["if",
+								["=", ["var", "#direction"], "vertical"],
+								["array",
+									["nth", ["var", "r"], 0],
+									["nth", ["var", "r"], 1],
+									["width"],
+									["/", ["nth", ["var", "r"], 3], 1.5]
+								],
+								["var", "r"]
+							]
+						]
+					],
+					["var", "rr"]
+				]
+			],
+			"breakpoints": [
+				{
+					"enabled": ["$", ["and",
+						["=", ["var", "#direction"], "horizontal"],
+						["not", ["var", "switch"]]
+					]],
+					"align": "left center",
+					"transform": [
+						["translate",
+							["animate",
+								[0, "-50rw", "easeInOutQuad"],
+								["+1000", 0],
+								["100%", "-50rw"],
+								["-1000", 0, "easeInOutQuad"]
+							],
+							0
+						]
+					],
+					"mask": {
+						"transform": true,
+						"padding": [
+							0,
+							["animate",
+								[0, "50rw", "easeInOutQuad"],
+								["+1000", 0],
+								["100%", "50rw"],
+								["-1000", 0, "easeInOutQuad"]
+							],
+							0,
+							0
+						]
+					}
+				},
+				{
+					"enabled": ["$", ["and",
+						["=", ["var", "#direction"], "vertical"],
+						["not", ["var", "switch"]]
+					]],
+					"align": "bottom center",
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[0, "50rh", "easeInOutQuad"],
+								["+1000", 0],
+								["100%", "50rh"],
+								["-1000", 0, "easeInOutQuad"]
+							]
+						]
+					],
+					"mask": {
+						"transform": true,
+						"padding": [
+							["animate",
+								[0, "50rh", "easeInOutQuad"],
+								["+1000", 0],
+								["100%", "50rh"],
+								["-1000", 0, "easeInOutQuad"]
+							],
+							0,
+							0,
+							0
+						]
+					}
+				},
+				{
+					"enabled": ["$", ["and",
+						["=", ["var", "#direction"], "horizontal"],
+						["var", "switch"]
+					]],
+					"align": "right center",
+					"transform": [
+						["translate",
+							["animate",
+								[0, "50rw", "easeInOutQuad"],
+								["+1000", 0],
+								["100%", "50rw"],
+								["-1000", 0, "easeInOutQuad"]
+							],
+							0
+						]
+					],
+					"mask": {
+						"transform": true,
+						"padding": [
+							0,
+							0,
+							0,
+							["animate",
+								[0, "50rw", "easeInOutQuad"],
+								["+1000", 0],
+								["100%", "50rw"],
+								["-1000", 0, "easeInOutQuad"]
+							]
+						]
+					}
+				},
+				{
+					"enabled": ["$", ["and",
+						["=", ["var", "#direction"], "vertical"],
+						["var", "switch"]
+					]],
+					"align": "top center",
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[0, "-50rh", "easeInOutQuad"],
+								["+1000", 0],
+								["100%", "-50rh"],
+								["-1000", 0, "easeInOutQuad"]
+							]
+						]
+					],
+					"mask": {
+						"transform": true,
+						"padding": [
+							0,
+							0,
+							["animate",
+								[0, "50rh", "easeInOutQuad"],
+								["+1000", 0],
+								["100%", "50rh"],
+								["-1000", 0, "easeInOutQuad"]
+							],
+							0
+						]
+					}
+				},
+				{
+					"enabled": ["$", ["var", "translate-camera"]],
+					"script": ["$$",
+						["let",
+							[
+								["start", ["key", ["var", "self"], "start"]],
+								["end", ["key", ["var", "self"], "end"]],
+								["width", ["/", ["key", ["key", ["var", "self"], "roi"], "width"], 2]],
+								["height", ["/", ["key", ["key", ["var", "self"], "roi"], "height"], 2]],
+								["animate-in",
+									["ease",
+										["map",
+											["var", "frame"],
+											["var", "start"],
+											["+", ["var", "start"], 1000],
+											0,
+											1
+										],
+										"easeInOutQuad"
+									]
+								],
+								["animate-out",
+									["ease",
+										["map",
+											["var", "frame"],
+											["-", ["var", "end"], 1000],
+											["var", "end"],
+											0,
+											1
+										],
+										"easeInOutQuad"
+									]
+								],
+								["animation", ["-", ["var", "animate-in"], ["var", "animate-out"]]]
+							],
+							["if",
+								["$", ["=", ["var", "#direction"], "horizontal"]],
+								["live-transform",
+									["lookup-by-tag", "clip"],
+									"translate",
+									["*",
+										["$", ["if",
+											["var", "switch"],
+											-1,
+											1
+										]],
+										["var", "animation"],
+										["var", "width"]
+									],
+									0
+								],
+								["live-transform",
+									["lookup-by-tag", "clip"],
+									"translate",
+									0,
+									["*",
+										["$", ["if",
+											["var", "switch"],
+											1,
+											-1
+										]],
+										["var", "animation"],
+										["var", "height"]
+									]
+								]
+							]
+						]
+					]
+				}
+			]
+		}, [
+			["asset", {
+				"file": "./media/ds-paycom-evergreen-sidepanel-in.mp4",
+				"justify": "fill center",
+				"hold": true,
+				"end": ["$", ["-",
+					["key", ["comp-timing"], "duration"],
+					["dur", "./media/ds-paycom-evergreen-sidepanel-out.mp4"]
+				]]
+			}],
+			["asset", {
+				"file": "./media/ds-paycom-evergreen-sidepanel-out.mp4",
+				"justify": "fill center",
+				"start": ["$", ["-",
+					["key", ["comp-timing"], "duration"],
+					["dur", "./media/ds-paycom-evergreen-sidepanel-out.mp4"]
+				]]
+			}],
+			["null", {
+				"slot": "default"
+			}]
+		]]
+	]
+]

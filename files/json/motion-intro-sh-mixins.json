@@ -1,0 +1,354 @@
+{
+	"params": {
+	  "fonts": [
+		{
+		  "key": "font-bold",
+		  "type": "string",
+		  "default": "./media/Poppins-SemiBold.ttf",
+		  "private": true
+		},
+		{
+		  "key": "font-medium",
+		  "default": "./media/Poppins-Regular.ttf",
+		  "type": "string",
+		  "private": true
+		}
+	  ],
+	  "colors": [
+		{
+		  "key": "color-bg-gradient",
+		  "type": "color",
+		  "default": [
+			"linear-gradient",
+			0,
+			[
+			  0.0,
+			  "#1a1a2e"
+			],
+			[
+			  0.5,
+			  "#16213e"
+			],
+			[
+			  1.0,
+			  "#0f3460"
+			]
+		  ],
+		  "private": true
+		},
+		{
+		  "key": "color-text",
+		  "type": "color",
+		  "default": "#FFFFFF",
+		  "private": true
+		},
+		{
+		  "key": "color-shadow",
+		  "type": "color",
+		  "default": [
+			0,
+			0,
+			0,
+			0.5
+		  ],
+		  "private": true
+		}
+	  ],
+	  "animations": [
+		{
+		  "key": "anim-loop-name",
+		  "type": "transform",
+		  "default": [
+			[
+			  "translate",
+			  [
+				"animate",
+				[
+				  0,
+				  "100su",
+				  "easeInOutQuad"
+				],
+				[
+				  "+500",
+				  0
+				]
+			  ],
+			  [
+				"animate",
+				[
+				  0,
+				  "20su",
+				  "easeInOutQuad"
+				],
+				[
+				  "+500",
+				  0
+				],
+				[
+				  "+1000",
+				  "-20su",
+				  "easeInOutQuad"
+				],
+				[
+				  "+1500",
+				  "20su",
+				  "easeInOutQuad"
+				],
+				[
+				  "+2000",
+				  0
+				]
+			  ],
+			  [
+				"animate",
+				[
+				  "+4000",
+				  0
+				],
+				[
+				  "+1000",
+				  "100su",
+				  "easeInOutQuad"
+				]
+			  ]
+			],
+			[
+			  "scale",
+			  [
+				"animate",
+				[
+				  0,
+				  0.8,
+				  "easeInOutBack"
+				],
+				[
+				  "+500",
+				  1.1
+				],
+				[
+				  "+200",
+				  1
+				]
+			  ],
+			  [
+				"animate",
+				[
+				  "+4000",
+				  1
+				],
+				[
+				  "+1000",
+				  0.8,
+				  "easeInOutQuad"
+				]
+			  ]
+			]
+		  ],
+		  "private": true
+		},
+		{
+		  "key": "anim-loop-title",
+		  "type": "transform",
+		  "default": [
+			[
+			  "translate",
+			  [
+				"animate",
+				[
+				  0,
+				  "-60su",
+				  "easeInOutQuad"
+				],
+				[
+				  "+500",
+				  "0su"
+				]
+			  ],
+			  [
+				"animate",
+				[
+				  0,
+				  "15su",
+				  "easeInOutQuad"
+				],
+				[
+				  "+500",
+				  0
+				],
+				[
+				  "+1000",
+				  "-15su",
+				  "easeInOutQuad"
+				],
+				[
+				  "+1500",
+				  "15su",
+				  "easeInOutQuad"
+				],
+				[
+				  "+2000",
+				  0
+				]
+			  ],
+			  [
+				"animate",
+				[
+				  "+4000",
+				  0
+				],
+				[
+				  "+1000",
+				  "60su",
+				  "easeInOutQuad"
+				]
+			  ]
+			],
+			[
+			  "scale",
+			  [
+				"animate",
+				[
+				  0,
+				  0.9,
+				  "easeInOutBack"
+				],
+				[
+				  "+500",
+				  1.05
+				],
+				[
+				  "+200",
+				  1
+				]
+			  ],
+			  [
+				"animate",
+				[
+				  "+4000",
+				  1
+				],
+				[
+				  "+1000",
+				  0.9,
+				  "easeInOutQuad"
+				]
+			  ]
+			]
+		  ],
+		  "private": true
+		},
+		{
+		  "key": "anim-loop-subtitle",
+		  "type": "transform",
+		  "default": [
+			[
+			  "translate",
+			  [
+				"animate",
+				[
+				  0,
+				  "-60su",
+				  "easeInOutQuad"
+				],
+				[
+				  "+500",
+				  "0su"
+				]
+			  ],
+			  [
+				"animate",
+				[
+				  0,
+				  "10su",
+				  "easeInOutQuad"
+				],
+				[
+				  "+500",
+				  0
+				],
+				[
+				  "+1000",
+				  "-10su",
+				  "easeInOutQuad"
+				],
+				[
+				  "+1500",
+				  "10su",
+				  "easeInOutQuad"
+				],
+				[
+				  "+2000",
+				  0
+				]
+			  ],
+			  [
+				"animate",
+				[
+				  "+4000",
+				  0
+				],
+				[
+				  "+1000",
+				  "60su",
+				  "easeInOutQuad"
+				]
+			  ]
+			],
+			[
+			  "scale",
+			  [
+				"animate",
+				[
+				  0,
+				  0.9,
+				  "easeInOutBack"
+				],
+				[
+				  "+500",
+				  1.05
+				],
+				[
+				  "+200",
+				  1
+				]
+			  ],
+			  [
+				"animate",
+				[
+				  "+4000",
+				  1
+				],
+				[
+				  "+1000",
+				  0.9,
+				  "easeInOutQuad"
+				]
+			  ]
+			]
+		  ],
+		  "private": true
+		},
+		{
+		  "key": "fade-in",
+		  "type": "opacity",
+		  "default": [
+			"animate",
+			[
+			  0,
+			  0,
+			  "easeInOutQuad"
+			],
+			[
+			  "+500",
+			  1
+			]
+		  ],
+		  "private": true
+		}
+	  ]
+	},
+	"half-opacity": {
+	  "opacity": 0.5
+	}
+}
+  

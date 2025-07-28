@@ -1,0 +1,223 @@
+[
+	"ds-businessinsider-stat",
+	[
+		{
+			"key": "value",
+			"display": "Value",
+			"type": "text",
+			"default": "1000",
+			"required": false,
+			"script": ["$", 
+				["if",
+					["var", "do-count-up"],
+					["let",
+						[
+							["found", ["match", ["var", "value"], ["regexp", "[\\d,]+"], ""]],
+							["segments", ["if",
+								["exists", ["var", "found"]],
+								["segment", ["var", "value"], ["var", "found"]]
+							]]
+						],
+						["if",
+							["exists", ["var", "found"]],
+							["do",
+								["set", "prefix", ["nth", ["var", "segments"], 0]],
+								["set", "postfix", ["nth", ["var", "segments"], 2]],
+								["floor",
+									["to-number",
+										["var", "found"]
+									]
+								]
+							],
+							["do",
+								["set", "prefix", ""],
+								["set", "postfix", ""],
+								0
+							]
+						]
+					],
+					["var", "value"]
+				]
+			]
+		},
+		{
+			"key": "details",
+			"display": "Details",
+			"type": "text",
+			"default": "Optional details",
+			"required": false
+		},
+		{
+			"key": "theme",
+			"display": "Color",
+			"type": "string",
+			"default": "white",
+			"required": false,
+			"options": [
+				{
+					"key": "white",
+					"display": "White"
+				},
+				{
+					"key": "black",
+					"display": "Black"
+				},
+				{
+					"key": "light-blue",
+					"display": "Light Blue"
+				},
+				{
+					"key": "red",
+					"display": "Red"
+				},
+				{
+					"key": "green",
+					"display": "Green"
+				}
+			]
+		},
+		{
+			"key": "do-count-up",
+			"display": "Count Up",
+			"type": "bool",
+			"default": true,
+			"required": false
+		},
+		["ds-businessinsider-mixins",
+			"color-white",
+			"font-bold",
+			"font-medium"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "#color",
+			"display": "Color",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false,
+			"private": true,
+			"script": ["$", ["switch", ["var", "theme"], {
+				"white": "#ffffff",
+				"black": "#000000",
+				"light-blue": "#2EB8FF",
+				"red": "#E62828",
+				"green": "#00896A",
+				"_": "#FFFFFF"
+			}]]
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", "set-su", "safezone"],
+			"enabled": ["$", ["exists", ["or", ["var", "value"], ["var", "details"]]]]
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"gap": "40su",
+				"align": ["$", ["var", "#align"]],
+				"max-width": "1000su",
+				"padding": ["20su", "20su"],
+				"opacity": [ "animate",
+					["100%", 0],
+					["-500", 1]
+				]
+			}, [
+				["text", {
+					"enabled": ["$", ["exists", ["var", "value"]]],
+					"measure": "letter-size",
+					"font": ["$", ["var", "font-bold"]],
+					"kerning": -0.02,
+					"height": "200su",
+					"string": ["$", ["var", "value"]],
+					"fit": true,
+					"color": ["$", ["var", "#color"]],
+					"opacity": ["animate",
+						[0, 0, "easeOutQuad"],
+						["+500", 1]
+					],
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[0, "80su", "easeOutCubic"],
+								["+700", 0]
+							]
+						]
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["var", "do-count-up"]],
+							"string": "",
+							"mutate": ["$$",
+								["let",
+									[
+										["start", ["$", ["var", "start"]]],
+										["end", ["$", ["var", "end"]]],
+										["frame", ["current-frame"]],
+										["animate",
+											["ease",
+												["map",
+													["var", "frame"],
+													["var", "start"],
+													["+", ["var", "start"], 700],
+													0,
+													1
+												],
+												"easeOutCubic"
+											]
+										]
+									],
+									["concat",
+										["$", ["var", "prefix"]],
+										["to-string", ["floor",
+											["*",
+												["$", ["var", "value"]],
+												["var", "animate"]
+											]
+										]],
+										["$", ["var", "postfix"]]
+									]
+								]
+							]
+						}
+					]
+				}],
+				["text", {
+					"enabled": ["$", ["exists", ["var", "details"]]],
+					"measure": "letter-size",
+					"font": ["$", ["var", "font-medium"]],
+					"color": ["$", ["var", "#color"]],
+					"height": "50su",
+					"string": ["$", ["var", "details"]],
+					"justify": ["$", ["var", "#align"]],
+					"stagger": [250, 0],
+					"opacity": [ "animate",
+						[0, 0, "easeOutQuad"],
+						["+500", 1]
+					],
+					"boundary": "line",
+					"animations": [
+						{
+							"opacity": 0,
+							"translate": [
+								0,
+								"50rh"
+							]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+500", 1]
+							],
+							"easing": "easeOutQuad",
+							"translate": [0, 0],
+							"opacity": 1
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

@@ -1,0 +1,340 @@
+[
+	"motion-intro-sh",
+	[
+		{
+			"key": "name",
+			"display": "Speaker name",
+			"type": "text",
+			"default": "Sarah Han"
+		},
+		{
+			"key": "title",
+			"display": "Title",
+			"type": "text",
+			"default": "Lorem ipsum dolor sit amet"
+		},
+		{
+			"key": "subtitle",
+			"display": "Subtitle",
+			"type": "text",
+			"default": "consectetur adipiscing elit"
+		},
+		["motion-intro-sh-mixins",
+			"fonts",
+			"colors",
+			"animations"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		]
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su"
+			],
+			"padding": [
+				0,
+				0,
+				[
+					"$",
+					[
+						"nth",
+						["safezone"],
+						2
+					]
+				],
+				0
+			],
+			"layout": "vertical packed",
+			"align": "bottom left"
+		},
+		[
+			["solid", {
+				"color": [
+					"$",
+					[
+						"var",
+						"color-bg-gradient"
+					]
+				],
+				"rect": [
+					0,
+					0,
+					"800su",
+					"250su"
+				],
+				"padding": [
+					"40su",
+					"60su"
+				],
+				"align": "bottom right",
+				"stagger": [
+					200,
+					-300
+				],
+				"effect": [
+					["shadow", {
+						"color": [
+							0,
+							0,
+							0,
+							0.3
+						],
+						"offset": [
+							0,
+							5
+						],
+						"blur": 20
+					}
+				]]
+			}, [
+				["asset", {
+					"flex": {
+						"position": "fixed"
+					},
+					"file": "./media/api-brandlive/nintendo_look_03.mp4",
+					"justify": "fill center",
+					"blend-": "overlay",
+					"mask-": {
+						"transform": false,
+						"padding-": [
+							0,
+							["animate",
+								[0, "100rw"],
+								["+1000", 0]
+							],
+							0,
+							0
+						]
+					},
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[0, "300rh"],
+								["+2000", 0]
+							]
+						]
+					]
+				}],
+				["null", {
+					"layout": "vertical packed",
+					"align": "center left",
+					"gap": "30su",
+					"padding": [
+						0,
+						"50su",
+						0,
+						0
+					]
+				}, [
+					["text", {
+						"string": [
+							"$",
+							[
+								"var",
+								"name"
+							]
+						],
+						"color": [
+							"$",
+							[
+								"var",
+								"color-text"
+							]
+						],
+						"font": [
+							"$",
+							[
+								"var",
+								"font-bold"
+							]
+						],
+						"fit": true,
+						"measure": "letter-size",
+						"height": "80su",
+						"stagger": [
+							1500,
+							0
+						],
+						"transform": [
+							"$",
+							[
+								"var",
+								"anim-loop-name"
+							]
+						],
+						"opacity": [
+							"$",
+							[
+								"var",
+								"fade-in"
+							]
+						],
+						"effect": [
+							[
+								"shadow",
+								{
+									"color": [
+										"$",
+										[
+											"var",
+											"color-shadow"
+										]
+									],
+									"offset": [
+										0,
+										0
+									],
+									"blur": 20
+								}
+							]
+						]
+					}],
+					["text", {
+						"string": [
+							"$",
+							[
+								"var",
+								"title"
+							]
+						],
+						"enabled": [
+							"$",
+							[
+								"exists",
+								[
+									"var",
+									"title"
+								]
+							]
+						],
+						"color": [
+							"$",
+							[
+								"var",
+								"color-text"
+							]
+						],
+						"font": [
+							"$",
+							[
+								"var",
+								"font-medium"
+							]
+						],
+						"fit": true,
+						"height": "40su",
+						"stagger": [
+							2000,
+							0
+						],
+						"measure": "letter-size",
+						"boundary": "letter",
+						"transform": ["$",
+							[
+								"var",
+								"anim-loop-title"
+							]
+						],"opacity": ["$",
+							[
+								"var",
+								"fade-in"
+							]
+						],
+						"effect": [
+							["shadow", {
+								"color": ["$",
+									[
+										"var",
+										"color-shadow"
+									]
+								],
+								"offset": [
+									0,
+									0
+								],
+								"blur": 15
+							}
+						]]
+					}],
+					["text", {
+						"string": [
+							"$",
+							[
+								"var",
+								"subtitle"
+							]
+						],
+						"enabled": [
+							"$",
+							[
+								"exists",
+								[
+									"var",
+									"subtitle"
+								]
+							]
+						],
+						"color": [
+							"$",
+							[
+								"var",
+								"color-text"
+							]
+						],
+						"font": [
+							"$",
+							[
+								"var",
+								"font-medium"
+							]
+						],
+						"fit": true,
+						"height": "40su",
+						"stagger": [
+							2500,
+							0
+						],
+						"measure": "letter-size",
+						"boundary": "letter",
+						"transform": [
+							"$",
+							[
+								"var",
+								"anim-loop-subtitle"
+							]
+						],
+						"opacity": [
+							"$",
+							[
+								"var",
+								"fade-in"
+							]
+						],
+						"effect": [
+							[
+								"shadow",
+								{
+									"color": [
+										"$",
+										[
+											"var",
+											"color-shadow"
+										]
+									],
+									"offset": [
+										0,
+										0
+									],
+									"blur": 15
+								}
+							]
+						]}
+					]]
+				]]
+			]
+		]]
+	]
+]

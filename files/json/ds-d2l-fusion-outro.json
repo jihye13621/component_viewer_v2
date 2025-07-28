@@ -1,0 +1,20 @@
+[
+	"ds-d2l-fusion-outro",
+	[],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			],
+			"color": [0, 0, 0, 1]
+		}, [
+			["asset", {
+				"file": "./media/ds-d2l-fusion-bumper.mp4",
+				"justify": "fit center",
+				"mute": true,
+				"hold": true
+			}]
+		]]
+	]
+]

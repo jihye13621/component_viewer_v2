@@ -1,0 +1,205 @@
+[
+	"ds-impact-quote",
+	[
+		["dsx-mixins",
+			"quote"
+		],
+		["ds-impact-mixins",
+			"color-primary",
+			"color-secondary",
+			"color-accent",
+			"font-headline",
+			"font-body"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [5, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"max-width": "800nsu",
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"gap": "70su"
+			}, [
+				["solid", {
+					"mixins": ["ds-impact-mixins", ["scale-3step"]],
+					"flex": {
+						"weight": 0.3
+					},
+					"color": ["$", ["var", "color-accent"]],
+					"radius": "80su",
+					"layout": "horizontal packed",
+					"align": ["$", ["var", "#align"]],
+					"padding": [
+						"40su",
+						"60su"
+					],
+					"stagger": [0, -150]
+				}, [
+					["dsx-icon", {
+						"enabled": ["$",
+							["eq",
+								["var", "review"],
+								0
+							]
+						],
+						"flex": {
+							"width": "75su",
+							"height": "75su"
+						},
+						"icon": "quote",
+						"color": ["$", ["var", "color-secondary"]]
+					}],
+					["for-each", {
+						"enabled": ["$",
+							["gt",
+								["var", "review"],
+								0
+							]
+						],
+						"layout": "horizontal packed",
+						"items": [1, 2, 3, 4, 5],
+						"gap": "40su"
+					}, [
+						["dsx-icon", {
+							"flex": {
+								"width": "75su",
+								"height": "75su"
+							},
+							"icon": "star-open",
+							"color": ["$", ["var", "color-secondary"]],
+							"stagger": [
+								["$", ["+", 50, ["*", 50, ["var", "index"]]]],
+								["$", ["-", ["*", -50, ["var", "index"]], 100]]
+							],
+							"transform": [
+								["scale",
+									["animate", 
+										[0, 0, "round"],
+										["+50", 0.33, "round"],
+										["+50", 0.67, "round"],
+										["+50", 1],
+										["100%", 0],
+										["-50", 0.33, "round"],
+										["-50", 0.67, "round"],
+										["-50", 1, "round"]
+									]
+								]
+							],
+							"breakpoints": [
+								{
+									"enabled": ["$",
+										["gt",
+											["var", "review"],
+											["var", "index"]
+										]
+									],
+									"icon": "star"
+								}
+							]
+						}]
+					]]
+				]],
+				["null", {
+					"enabled": ["$", ["exists", ["var", "quote"]]],
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]]
+				}, [
+					["text", {
+						"mixins": ["ds-impact-mixins",
+							"text",
+							"text-headline",
+							"anim-body"
+						],
+						"case": "uppercase",
+						"measure": "cap-size",
+						"height": "100su",
+						"string": ["$", ["var", "quote"]],
+						"justify": ["$", ["var", "#align"]],
+						"color": [0, 0, 0, 0],
+						"stroke-color": ["$", ["var", "color-accent"]],
+						"boundary": "word",
+						"stagger": [150, -50]
+					}]
+				]],
+				["solid", {
+					"mixins": ["ds-impact-mixins", ["scale-3step"]],
+					"enabled": ["$",
+						["eq",
+							["var", "review"],
+							0
+						]
+					],
+					"flex": {
+						"weight": 0.3
+					},
+					"color": ["$", ["var", "color-accent"]],
+					"radius": "80su",
+					"layout": "horizontal packed",
+					"align": ["$", ["var", "#align"]],
+					"padding": [
+						"40su",
+						"60su"
+					],
+					"stagger": [350, -50]
+				}, [
+					["dsx-icon", {
+						"flex": {
+							"width": "75su",
+							"height": "75su"
+						},
+						"icon": "quote",
+						"color": ["$", ["var", "color-secondary"]]
+					}]
+				]],
+				["text", {
+					"enabled": ["$",
+						["or",
+							["var", "detail-1"],
+							["var", "detail-2"]
+						]
+					],
+					"mixins": ["ds-impact-mixins",
+						"text",
+						"text-label",
+						"anim-subhead"
+					],
+					"string": ["$", ["var", "detail-1"]],
+					"justify": ["$", ["var", "#align"]],
+					"color": [0, 0, 0, 0],
+					"stroke-color": ["$", ["var", "color-accent"]],
+					"case": "uppercase",
+					"boundary": "word",
+					"stagger": [450, 0],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["exists", "detail-2"]],
+							"string": ["$",
+								["concat",
+									["var", "detail-1"],
+									"\n",
+									["var", "detail-2"]
+								]
+							]
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

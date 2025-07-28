@@ -1,0 +1,173 @@
+[
+	"ds-sothebys-annotation",
+	[
+		["dsx-mixins",
+			"text"
+		],
+		["ds-sothebys-mixins",
+			"color-primary",
+			"font-body"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "direction",
+			"display": "Direction",
+			"type": "string",
+			"default": "down",
+			"required": false,
+			"options": [
+				{
+					"key": "up",
+					"display": "Up"
+				},
+				{
+					"key": "down",
+					"display": "Down"
+				}
+			]
+		},
+		{
+			"key": "line-length",
+			"display": "Length",
+			"type": "number",
+			"default": 10,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 0.5,
+				"minimum": 2,
+				"maximum": 50.0
+			}
+		},
+		{
+			"key": "y-pos",
+			"display": "Y Position",
+			"type": "number",
+			"default": 0,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 0.5,
+				"minimum": -25.0,
+				"maximum": 25.0
+			}
+		},
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [4, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"max-width": "500nsu",
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]]
+			}, [
+				["text", {
+					"enabled": ["$", ["exists", ["var", "text"]]],
+					"mixins": ["ds-sothebys-mixins",
+						"text",
+						"text-body"
+					],
+					"string": ["$", ["var", "text"]],
+					"justify": "center",
+					"color": ["$", ["var", "color-primary"]],
+					"leading": "10su",
+					"padding": [
+						"-40su",
+						0
+					],
+					"opacity": ["animate",
+						[0, 0],
+						["+300", 1],
+						["100%", 0],
+						["-250", 1]
+					],
+					"transform": [
+						["translate",
+							0,
+							["$", ["concat", ["var", "y-pos"], "ch"]]
+						]
+					]
+				}, [
+					["null", {
+						"breakpoints": [
+							{
+								"enabled": ["$", ["eq", ["var", "direction"], "up"]],
+								"transform": [
+									["scale", 1, -1]
+								]
+							}
+						]
+					}, [
+						["solid", {
+							"color": ["$", ["var", "color-primary"]],
+							"rect": [
+								0,
+								0,
+								"8su",
+								["$", ["concat", ["var", "line-length"], "ch"]]
+							],
+							"align": "bottom center",
+							"transform": [
+								["scale",
+									1,
+									["animate",
+										[0, 0, "easeOutQuad"],
+										["+450", 1]
+									],
+									0,
+									0
+								],
+								["translate",
+									0,
+									"100rh"
+								]
+							]
+						}, [
+							["solid", {
+								"stagger": [300, 0],
+								"color": ["$", ["var", "color-primary"]],
+								"rect": [
+									0,
+									0,
+									"30su",
+									"30su"
+								],
+								"align": "bottom center",
+								"radius": "30su",
+								"opacity": ["animate",
+									[0, 0, "easeOutSine"],
+									["+150", 1]
+								],
+								"transform": [
+									["scale",
+										["animate",
+											[0, 0, "easeOutQuad"],
+											["+250", 1]
+										]
+									],
+									["translate", 0, "15su"]
+								]
+							}]
+						]]
+					]]
+				]]
+			]]
+		]]
+	]
+]

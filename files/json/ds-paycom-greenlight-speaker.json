@@ -1,0 +1,132 @@
+[
+	"ds-paycom-greenlight-intro",
+	[
+		["dsx-mixins",
+			"speaker"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [1, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": true,
+				"minimum": -100,
+				"maximum": 100
+			},
+			"private": true,
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"enabled": ["$", ["or",
+				["exists", ["var", "name"]],
+				["exists", ["var", "detail-1"]],
+				["exists", ["var", "detail-2"]]
+			]],
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone",
+				"offset"
+			],
+			"opacity": ["animate",
+				[0, 0],
+				["+500", 1],
+				["100%", 0],
+				["-500", 1]
+			],
+			"layout": "stacked",
+			"align": ["$", ["var", "#align"]]
+		}, [
+			["null", {
+				"layout": "horizontal packed",
+				"align": "top",
+				"gap": "60su",
+				"effect": [
+					["shadow", {
+						"color": [0, 0, 0, 1],
+						"radius": "20su"
+					}],
+					["shadow", {
+						"color": [0, 0, 0, 1],
+						"radius": "20su"
+					}]
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["<=", ["aspect"], 1]],
+						"gap": "30su"
+					}
+				]
+			}, [
+				["text", {
+					"enabled": ["$", ["exists", ["var", "name"]]],
+					"font": "./media/Bebas Neue Pro Bold.otf",
+					"height": "110su",
+					"measure": "cap-size",
+					"case": "uppercase",
+					"fit": true,
+					"string": ["$", ["var", "name"]],
+					"color": "#00B451",
+					"breakpoints": [
+						{
+							"enabled": ["$", ["<=", ["aspect"], 1]],
+							"height": "60su"
+						}
+					]
+				}],
+				["null", {
+					"enabled": ["$", ["or",
+						["exists", ["var", "detail-1"]],
+						["exists", ["var", "detail-2"]]
+					]],
+					"layout": "vertical packed",
+					"align": "left center",
+					"gap": "20su",
+					"breakpoints": [
+						{
+							"enabled": ["$", ["<=", ["aspect"], 1]],
+							"gap": "10su"
+						}
+					]
+				}, [
+					["text", {
+						"font": "./media/Bebas Neue Pro Regular.otf",
+						"height": "55su",
+						"measure": "letter-size",
+						"fit": true,
+						"string": ["$", ["var", "detail-1"]],
+						"justify": "left",
+						"color": "#FEFFFE",
+						"breakpoints": [
+							{
+								"enabled": ["$", ["<=", ["aspect"], 1]],
+								"height": "30su"
+							}
+						]
+					}],
+					["text", {
+						"font": "./media/Bebas Neue Pro Regular.otf",
+						"height": "55su",
+						"measure": "letter-size",
+						"fit": true,
+						"string": ["$", ["var", "detail-2"]],
+						"justify": "left",
+						"color": "#FEFFFE",
+						"breakpoints": [
+							{
+								"enabled": ["$", ["<=", ["aspect"], 1]],
+								"height": "30su"
+							}
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

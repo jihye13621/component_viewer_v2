@@ -1,0 +1,523 @@
+[
+	"ds-commvault-intro-stride",
+	[
+		{
+			"key": "episode",
+			"display": "Episode",
+			"type": "text",
+			"default": "01",
+			"required": false
+		},
+		["ds-commvault-mixins",
+			"color-primary",
+			"font-headline",
+			"font-body",
+			"font-light",
+			"font-semibold"
+		]
+	],
+	[
+		["asset", {
+			"file": "./media/ds-commvault-intro-strive.mp3"
+		}],
+		["asset", {
+			"mixins": ["dsx-mixins", "set-su", "safezone"],
+			"file": "./media/ds-commvault-intro-strive-1.mp4",
+			"justify": "fill center"
+		}, [
+			["text", {
+				"end": 865,
+				"blend": "overlay",
+				"font": ["$", ["var", "font-light"]],
+				"height": "1000su",
+				"leading": "10su",
+				"justify": "center",
+				"align": "center",
+				"case": "uppercase",
+				"measure": "cap-size",
+				"color": ["$", ["var", "color-primary"]],
+				"string": "SECURITY",
+				"opacity": ["animate",
+					[0, 0],
+					["+300", 1]
+				]
+			}]
+		]],
+		["asset", {
+			"mixins": ["dsx-mixins", "set-su", "safezone"],
+			"start": ["$",
+				["dur", "./media/ds-commvault-intro-strive-1.mp4"]
+			],
+			"file": "./media/ds-commvault-intro-strive-2.mp4",
+			"justify": "fill center"
+		}, [
+			["blur", {
+				"radius": ["animate",
+					[0, "30su"],
+					["+150", 0]
+				],
+				"opacity": ["animate",
+					[0, 0],
+					["+100", 1]
+				]
+			}, [
+				["text", {
+					"font": ["$", ["var", "font-semibold"]],
+					"height": "80su",
+					"leading": "10su",
+					"justify": "center",
+					"kerning": 0.6,
+					"align": "center",
+					"case": "uppercase",
+					"measure": "cap-size",
+					"color": ["$", ["var", "color-primary"]],
+					"string": "TECHNOLOGY",
+					"fit": true,
+					"boundary": "line",
+					"transform": [
+						["scale",
+							["animate",
+								[700, 0.85, "easeOutQuad"],
+								["+70", 1],
+								["+1", 0.85, "holdIn"],
+								["+50", 0.75],
+								["100%", 0]
+							]
+						],
+						["translate",
+							["animate",
+								[0, "10rw", "holdIn"],
+								["+380", 0]
+							],
+							0
+						]
+					]
+				}]
+			]]
+		]],
+		["asset", {
+			"start": ["$", ["+",
+				["dur", "./media/ds-commvault-intro-strive-1.mp4"],
+				["dur", "./media/ds-commvault-intro-strive-2.mp4"]
+			]],
+			"file": "./media/ds-commvault-intro-strive-3.mp4",
+			"justify": "fill center"
+		}],
+		["solid", {
+			"mixins": ["dsx-mixins", "set-su"],
+			"start": ["$", ["+",
+				["dur", "./media/ds-commvault-intro-strive-1.mp4"],
+				["dur", "./media/ds-commvault-intro-strive-2.mp4"],
+				["dur", "./media/ds-commvault-intro-strive-3.mp4"]
+			]],
+			"color": [0, 0, 0, 1],
+			"padding": [
+				["$", ["nth", ["safezone"], 0]],
+				["$", ["nth", ["safezone"], 1]],
+				["$", ["nth", ["safezone"], 2]],
+				0
+			]
+		}, [
+			["asset", {
+				"file": "./media/ds-commvault-intro-strive-4.mp4",
+				"justify": "fill right",
+				"align": "center left",
+				"max-height": "1200su",
+				"mask": {
+					"padding": [
+						0,
+						["animate",
+							[0, "75rw", "easeOutCubic"],
+							["+450", 0]
+						],
+						0,
+						0
+					]
+				},
+				"padding": [
+					0,
+					"40su",
+					"40su",
+					["$", ["nth", ["safezone"], 3]]
+				]
+			}, [
+				["text", {
+					"font": ["$", ["var", "font-light"]],
+					"height": "150su",
+					"leading": "10su",
+					"justify": "bottom right",
+					"align": "bottom right",
+					"case": "uppercase",
+					"measure": "cap-size",
+					"color": ["$", ["var", "color-primary"]],
+					"string": "RESILIENCE",
+					"fit": true
+				}]
+			]]
+		]],
+		["asset", {
+			"start": ["$", ["+",
+				["dur", "./media/ds-commvault-intro-strive-1.mp4"],
+				["dur", "./media/ds-commvault-intro-strive-2.mp4"],
+				["dur", "./media/ds-commvault-intro-strive-3.mp4"],
+				["dur", "./media/ds-commvault-intro-strive-4.mp4"]
+			]],
+			"file": "./media/ds-commvault-intro-strive-5.mp4",
+			"justify": "fill center"
+		}],
+		["asset", {
+			"mixins": ["dsx-mixins", "set-su", "safezone"],
+			"start": ["$", ["+",
+				["dur", "./media/ds-commvault-intro-strive-1.mp4"],
+				["dur", "./media/ds-commvault-intro-strive-2.mp4"],
+				["dur", "./media/ds-commvault-intro-strive-3.mp4"],
+				["dur", "./media/ds-commvault-intro-strive-4.mp4"],
+				["dur", "./media/ds-commvault-intro-strive-5.mp4"]
+			]],
+			"file": "./media/ds-commvault-intro-strive-6.mp4",
+			"justify": "fill center"
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"align": "center"
+			}, [
+				["null", {
+					"layout": "vertical packed",
+					"justify": "center",
+					"align": "left",
+					"gap": "50su",
+					"opacity": 0.85
+				}, [
+					["text", {
+						"flex": {
+							"weight": 1.5
+						},
+						"font": ["$", ["var", "font-body"]],
+						"height": "250su",
+						"leading": "10su",
+						"justify": "top left",
+						"align": "top left",
+						"measure": "cap-size",
+						"color": ["$", ["var", "color-primary"]],
+						"string": "&",
+						"trim-descenders": false,
+						"mask": {
+							"padding": [
+								"-5su",
+								0
+							]
+						},
+						"transform": [
+							["translate",
+								["animate",
+									[0, "-100rw", "easeOutCubic"],
+									["+300", 0]
+								],
+								0
+							]
+						]
+					}],
+					["null", {
+						"layout":"vertical packed",
+						"gap": "40su",
+						"align": "left",
+						"breakpoints": [
+							{
+								"enabled": ["$", ["gt", ["aspect"], 1.0]],
+								"padding": [
+									0,
+									0,
+									0,
+									"250su"
+								]
+							}
+						]
+					}, [
+						["text", {
+							"stagger": [175, 0],
+							"font": ["$", ["var", "font-light"]],
+							"height": "150su",
+							"leading": "10su",
+							"measure": "cap-size",
+							"color": ["$", ["var", "color-primary"]],
+							"string": "VIRTUAL",
+							"fit": true,
+							"mask": {},
+							"transform": [
+								["translate",
+									0,
+									["animate",
+										[0, "-102rh", "easeOutCubic"],
+										["+450", 0]
+									]
+								]
+							]
+						}],
+						["text", {
+							"stagger": [300, 0],
+							"font": ["$", ["var", "font-light"]],
+							"height": "150su",
+							"leading": "10su",
+							"measure": "cap-size",
+							"color": ["$", ["var", "color-primary"]],
+							"string": "EDUCATION",
+							"fit": true,
+							"mask": {},
+							"transform": [
+								["translate",
+									0,
+									["animate",
+										[0, "-102rh", "easeOutCubic"],
+										["+450", 0]
+									]
+								]
+							]
+						}]
+					]]
+				]]
+			]]
+		]],
+		["solid", {
+			"mixins": ["dsx-mixins", "set-su"],
+			"start": ["$", ["+",
+				["dur", "./media/ds-commvault-intro-strive-1.mp4"],
+				["dur", "./media/ds-commvault-intro-strive-2.mp4"],
+				["dur", "./media/ds-commvault-intro-strive-3.mp4"],
+				["dur", "./media/ds-commvault-intro-strive-4.mp4"],
+				["dur", "./media/ds-commvault-intro-strive-5.mp4"],
+				["dur", "./media/ds-commvault-intro-strive-6.mp4"]
+			]],
+			"color": [0, 0, 0, 1]
+		}, [
+			["colorize", {
+				"brightness": ["animate",
+					[0, 0, "easeOutQuad"],
+					["+160", 0.5],
+					["+100", 0],
+					["100%", 0.2],
+					["-160", 0.5],
+					["-160", 0]
+				],
+				"contrast": ["animate",
+					[0, 1, "easeOutQuad"],
+					["+160", 1.5],
+					["+100", 1],
+					["100%", 1.5],
+					["-160", 1.5],
+					["-160", 1]
+				],
+				"transform": [
+					["scale",
+						["animate",
+							[0, 0, "easeOutQuad"],
+							["+160", 1],
+							["100%", 0],
+							["-160", 1]
+						],
+						["animate",
+							[0, 0, "easeOutQuad"],
+							["+160", 0.02],
+							["+100", 1],
+							["100%", 0],
+							["-160", 0.02],
+							["-160", 1]
+						]
+					]
+				]
+			}, [
+				["asset", {
+					"mixins": ["dsx-mixins", "safezone"],
+					"file": "./media/ds-commvault-intro-strive-7.mp4",
+					"justify": "fill center",
+					"loop": true
+				}, [
+					["null", {
+						"layout": "vertical packed",
+						"gap": "40su",
+						"align": "center"
+					}, [
+						["shadow", {
+							"radius": "10su",
+							"layout":"vertical packed",
+							"color": "#ED92FD"
+						}, [
+							["blur", {
+								"layout":"vertical packed",
+								"radius": ["animate",
+									[0, "15su"],
+									["+1000", 0]
+								]
+							}, [
+								["text", {
+									"stagger": [300, 0],
+									"font": ["$", ["var", "font-light"]],
+									"height": "140su",
+									"leading": "10su",
+									"kerning": ["animate",
+										[0, 0.3, "easeOutCubic"],
+										["+1200", 0.15]
+									],
+									"align": "center",
+									"measure": "cap-size",
+									"color": "#ED92FD",
+									"string": "STRIVE",
+									"fit": true,
+									"transform": [
+										["translate",
+											0,
+											["animate",
+												[0, "-1.2rh", "easeOutCubic"],
+												["+450", 0]
+											]
+										]
+									]
+								}]
+							]]
+						]],
+						["null", {
+							"layout":"vertical packed",
+							"align": "center",
+							"gap": "15su"
+						}, [
+							["text", {
+								"stagger": [1000, 0],
+								"font": ["$", ["var", "font-headline"]],
+								"height": "27su",
+								"leading": "10su",
+								"kerning": -0.01,
+								"justify": "center",
+								"align": "center",
+								"measure": "letter-size",
+								"trim-descender": false,
+								"color": ["$", ["var", "color-primary"]],
+								"string": "Security, technology, resilience, IT and Virtual Education",
+								"mask": {},
+								"transform": [
+									["translate",
+										0,
+										["animate",
+											[0, "-102rh", "easeOutCubic"],
+											["+450", 0]
+										]
+									]
+								]
+							}],
+							["null", {
+								"layout": "horizontal packed",
+								"gap": "20su",
+								"align": "center",
+								"mask": {}
+							}, [
+								["text", {
+									"stagger": [1200, 0],
+									"font": ["$", ["var", "font-headline"]],
+									"height": "27su",
+									"leading": "10su",
+									"kerning": -0.01,
+									"justify": "center",
+									"align": "center",
+									"measure": "letter-size",
+									"trim-descender": false,
+									"color": ["$", ["var", "color-primary"]],
+									"string": "Presented by",
+									"transform": [
+										["translate",
+											0,
+											["animate",
+												[0, "-102rh", "easeOutCubic"],
+												["+450", 0]
+											]
+										]
+									]
+								}],
+								["asset", {
+									"stagger": [1200, 0],
+									"file": "./media/ds-commvault-logo-collaborative.png",
+									"justify": "fit center",
+									"max-width": "400su",
+									"transform": [
+										["translate",
+											0,
+											["animate",
+												[0, "-102rh", "easeOutCubic"],
+												["+450", 0]
+											]
+										]
+									]
+								}]
+							]],
+							["text", {
+								"enabled": ["$", ["exists", ["var", "episode"]]],
+								"stagger": [1300, 0],
+								"font": ["$", ["var", "font-body"]],
+								"height": "33su",
+								"leading": "10su",
+								"justify": "center",
+								"align": "center",
+								"case": "uppercase",
+								"measure": "cap-size",
+								"color": ["$", ["var", "color-primary"]],
+								"string": ["$", ["concat", "EPISODE ", ["var", "episode"]]],
+								"boundary": "letter",
+								"animations": [
+									{
+										"mix": ["animate",
+											[0, 0],
+											["+330", 1]
+										],
+										"opacity": 1,
+										"ramp": 0.01
+									}
+								]
+							}]
+						]]
+					]],
+					["null", {
+						"layout":"horizontal packed",
+						"gap": "5su",
+						"align": "bottom right"
+					}, [
+						["text", {
+							"stagger": [1700, 0],
+							"font": ["$", ["var", "font-headline"]],
+							"height": "30su",
+							"leading": "10su",
+							"justify": "center",
+							"align": "center",
+							"measure": "letter-size",
+							"color": ["$", ["var", "color-primary"]],
+							"string": "hosted by",
+							"opacity": ["animate",
+								[0, 0],
+								["+100", 1]
+							]
+						}],
+						["text", {
+							"stagger": [1800, 0],
+							"font": ["$", ["var", "font-body"]],
+							"height": "26su",
+							"leading": "10su",
+							"justify": "center",
+							"align": "center",
+							"case": "uppercase",
+							"measure": "cap-size",
+							"color": "#A556BD",
+							"string": "Darren Thomson",
+							"boundary": "letter",
+							"animations": [
+								{
+									"mix": ["animate",
+										[0, 0],
+										["+250", 1]
+									],
+									"opacity": 1,
+									"ramp": 0.01
+								}
+							]
+						}]
+					]]
+				]]
+			]]
+		]]
+	]
+]

@@ -1,0 +1,323 @@
+[
+	"ds-sojern-list",
+	[
+		{
+			"key": "items",
+			"display": "List Items",
+			"type": "textarea",
+			"default": "Item 1\nItem 2\nItem 3",
+			"required": false
+		},
+		{
+			"key": "icon-style",
+			"display": "Icon",
+			"type": "string",
+			"default": "triangle",
+			"required": false,
+			"options": [
+				{
+					"key": "triangle",
+					"display": "Triangle"
+				},
+				{
+					"key": "check",
+					"display": "Check"
+				},
+				{
+					"key": "x",
+					"display": "X"
+				}
+			]
+		},
+		["dsx-mixins",
+			"boilerplate"
+		],
+		["ds-sojern-mixins",
+			"colors",
+			"darkmode",
+			"fonts"
+		],
+		{
+			"key": "do-fullscreen",
+			"display": "Fullscreen",
+			"type": "bool",
+			"default": false,
+			"required": false
+		}
+	],
+	[
+		["dsx-sidepanel", {
+			"mixins": ["dsx-mixins",
+				"set-su"
+			],
+			"background-color": [0, 0, 0, 0],
+			"mode": ["$", 
+				["if", 
+					["var", "do-fullscreen"],
+					"full",
+					"half"
+				]
+			],
+			"translate-camera": ["$", ["not", ["var", "do-fullscreen"]]]
+		}, [
+			["null", {
+				"flex": {
+					"position": "fixed"
+				},
+				"padding": [0, "-50su", 0, 0],
+				"transform": [
+					["translate",
+						["animate",
+							["100%", "50su"],
+							["-500", 0]
+						],
+						0
+					]
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["<=", ["aspect"], 1]],
+						"padding": ["$", 
+							["if",
+								["var", "do-fullscreen"],
+								["array", "-50su", 0, "-50su", 0],
+								["array", 0, 0, "-50su", 0]
+							]
+						],
+						"transform": [
+							["translate",
+								0,
+								["animate",
+									["100%", "50su"],
+									["-500", 0]
+								]
+							]
+						]
+					}
+				]
+			}, [
+				["solid", {
+					"color": ["$", ["var", "#bg"]],
+					"radius": "50nsu",
+					"transform": [
+						["translate",
+							["animate",
+								[0, "50rw", "easeOutQuad"],
+								["+1000", 0]
+							],
+							0
+						]
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["var", "do-fullscreen"]],
+							"inset": [
+								0,
+								0,
+								0,
+								"-50su"
+							]
+						},
+						{
+							"enabled": ["$", ["<=", ["aspect"], 1]],
+							"transform": [
+								["translate",
+									0,
+									["animate",
+										[0, "50rh", "easeOutQuad"],
+										["+1000", 0]
+									]
+								]
+							]
+						}
+					]
+				}, [
+					["null", {
+						"flex" : {
+							"position": "fixed"
+						},
+						"mask": {
+							"radius": "50nsu"
+						}
+					}, [
+						["null", {
+							"align": "bottom left",
+							"rect": [0,0,0,0],
+							"transform": [
+								["scale", 0.6]
+							],
+							"breakpoints": [
+								{
+									"enabled": ["$", ["=", ["aspect"], 1]],
+									"transform": [
+										["scale", 0.5]
+									]
+								}
+							]
+						}, [
+							["asset", {
+								"slip": 250,
+								"file": "./media/ds-sojern-triangles-01.mov",
+								"hold": true,
+								"mute": true,
+								"justify": "fit bottom left",
+								"align": "center",
+								"rect": [
+									0,
+									0,
+									"567nsu",
+									"724nsu"
+								],
+								"transform": [
+									["translate", 
+										"50nsu",
+										["animate",
+											[0, "-200nsu", "easeOutQuad"],
+											["100%", "-240nsu"]
+										]
+									]
+								]
+							}]
+						]],
+						["null", {
+							"align": "top right",
+							"rect": [0, 0, 0, 0],
+							"transform": [
+								["scale", 0.6]
+							],
+							"breakpoints": [
+								{
+									"enabled": ["$", ["=", ["aspect"], 1]],
+									"transform": [
+										["scale", 0.5]
+									]
+								}
+							]
+						}, [
+							["asset", {
+								"file": "./media/ds-sojern-triangles-03.mov",
+								"hold": true,
+								"mute": true,
+								"align": "center",
+								"rect": [
+									0,
+									0,
+									"567nsu",
+									"463nsu"
+								],
+								"transform": [
+									["translate", 
+										"-200nsu",
+										["animate",
+											[0, "75nsu", "easeOutQuad"],
+											["100%", "25nsu"]
+										]
+									]
+								]
+							}]
+						]]
+					]]
+				]]
+			]],
+			["null", {
+				"layout": "vertical packed",
+				"align": "center",
+				"gap": "80su"
+			}, [
+				["for-each", {
+					"items": ["$", ["split",
+						["var", "items"],
+						"\n"
+					]],
+					"layout": "vertical packed",
+					"align": "top left",
+					"gap": "50su",
+					"breakpoints": [
+						{
+							"enabled": ["$", ["=", ["aspect"], 1]],
+							"gap": "30su"
+						}
+					]
+				}, [
+					["null", {
+						"stagger": [
+							["$",
+								["+",
+									["*",
+										["var", "index"],
+										400
+									],
+									800
+								]
+							],
+							0
+						],
+						"align": "center",
+						"layout": "horizontal packed",
+						"gap": "30su",
+						"transform": [
+							["scale", 
+								["animate",
+									[0, 0, [0.2, 1.33, 0.5, 1]],
+									["+500", 1]
+								]
+							]
+						]
+					}, [
+						["null", {
+							"flex": {
+								"width": "46su",
+								"height": "46su"
+							},
+							"color": ["$", ["var", "#fg"]],
+							"radius": 10000
+						}, [
+							["asset", {
+								"file": ["$", ["switch", ["var", "icon-style"], {
+									"triangle": "./media/ds-sojern-triangle.svg",
+									"check": "./media/ds-sojern-check-circle.svg",
+									"x": "./media/ds-sojern-x-circle.svg"
+								}]],
+								"justify": "fit center",
+								"align": "center",
+								"replace-color": [
+									[
+										"#000000",
+										["$", ["var", "#bg"]]
+									]
+								]
+							}]
+						]],
+						["text", {
+							"font": ["$", ["var", "text-regular"]],
+							"color": ["$", ["var", "#fg"]],
+							"measure": "letter-size",
+							"height": "65su",
+							"justify": "left",
+							"string": ["$", 
+								["if",
+									["=",
+										["char-code", ["var", "item"], 0],
+										42
+									],
+									["substring",
+										["var", "item"],
+										1,
+										["length", ["var", "item"]]
+									],
+									["var", "item"]
+								]	
+							],
+							"breakpoints": [
+								{
+									"enabled": ["$", ["=", ["aspect"], 1]],
+									"height": "55su"
+								}
+							]
+						}]
+					]]
+				]]
+			]]
+		]]
+	]
+]

@@ -1,0 +1,53 @@
+[
+	"dsx-logo-watermark",
+	[
+		{
+			"key": "logo",
+			"display": "Logo",
+			"type": "asset",
+			"default": "./media/capsule.svg",
+			"required": false
+		},
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [7, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"max-width": "800nsu",
+				"align": ["$", ["var", "#align"]]
+			}, [
+				["user-asset", {
+					"mute": true,
+					"file": ["$", ["var", "logo"]],
+					"flex": {
+						"width": "500su",
+						"height": "500su"
+					},
+					"justify": ["$", ["concat", "fit ", ["var", "#align"]]],
+					"opacity": ["animate", 
+						[0, 0],
+						["+350", 1],
+						["100%", 0],
+						["-350", 1]
+					]
+				}]
+			]]
+		]]
+	]
+]

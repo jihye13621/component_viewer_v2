@@ -1,0 +1,169 @@
+["ds-paycom-headline",
+	[
+		{
+			"key": "subhead",
+			"display": "Subhead",
+			"type": "text",
+			"default": "Q2 Earnings",
+			"required": false
+		},
+		{
+			"key": "headline",
+			"display": "Headline",
+			"type": "text",
+			"default": "3 Takeaways",
+			"required": false
+		}
+	],
+	[
+		["solid", {
+			"color": [1, 1, 1, 1],
+			"buffer": "master-matte"
+		}, [
+			["solid", {
+				"path": [
+					[0, 0],
+					["50rh", "50rh"],
+					[0, "100rh"],
+					["-100rw", "100rh"],
+					["-100rw", 0]
+				],
+				"color": [0, 0, 0, 1],
+				"transform": [
+					["translate",
+						["animate",
+							["100%", "100rw"],
+							["-500", "-50rh", "easeInOutQuad"]
+						],
+						0
+					]
+				]
+			}]
+		]],
+		["null", {
+			"effect": [
+				["matte", {
+					"buffer-in": "master-matte"
+				}]
+			]
+		}, [
+			["asset", {
+				"file": "./media/ds-paycom-bg.mp4",
+				"hold": true,
+				"mute": true,
+				"justify": "fill center"
+			}],
+			["null", {
+				"start": 2000,
+				"mixins": ["dsx-mixins", "safezone", "set-su"]
+			}, [
+				["asset", {
+					"file": "./media/ds-paycom-transition.json",
+					"justify": "fit center",
+					"lottie-driver": ["animate",
+						[0, 0],
+						[
+							["$", ["to-relative-string", ["dur", "./media/ds-paycom-logo-animated.json"]]],
+							1
+						]
+					],
+					"buffer": "matte"
+				}],
+				["null", {
+					"layout": "vertical packed",
+					"align": "left center",
+					"gap": "30su",
+					"padding": [
+						0,
+						0,
+						0,
+						"300su"
+					],
+					"buffer": "text",
+					"breakpoints": [
+						{
+							"enabled": ["$", ["lte", ["aspect"], 1]],
+							"padding": [
+								0,
+								0,
+								0,
+								0
+							],
+							"align": "center"
+						}
+					]
+				}, [
+					["text", {
+						"enabled": ["$", ["exists", ["var", "subhead"]]],
+						"stagger": [0, -400],
+						"font": "./media/Bebas Neue Pro Regular.otf",
+						"height": "70su",
+						"measure": "letter-size",
+						"string": ["$", ["var", "subhead"]],
+						"case": "uppercase",
+						"color": "#004735",
+						"leading": "40su",
+						"fit": true,
+						"justify": "left center",
+						"breakpoints": [
+							{
+								"enabled": ["$", ["lte", ["aspect"], 1]],
+								"height": "40su"
+							}
+						]
+					}],
+					["text", {
+						"enabled": ["$", ["exists", ["var", "headline"]]],
+						"stagger": [0, -400],
+						"font": "./media/Bebas Neue Pro Bold Italic.otf",
+						"height": "160su",
+						"measure": "letter-size",
+						"string": ["$", ["var", "headline"]],
+						"case": "uppercase",
+						"color": "#004735",
+						"leading": "40su",
+						"fit": true,
+						"justify": "left center",
+						"breakpoints": [
+							{
+								"enabled": ["$", ["lte", ["aspect"], 1]],
+								"height": "100su"
+							}
+						]
+					}]
+				]],
+				["null", {
+					"end": 1500,
+					"effect": [
+						["buffer", {
+							"buffer-in": "matte"
+						}]
+					]
+				}],
+				["null", {
+					"start": 550,
+					"effect": [
+						["buffer", {
+							"buffer-in": "text"
+						}],
+						["false-color", {
+							"color-1": [1, 1, 1, 1],
+							"color-2": [1, 1, 1, 1]
+						}]
+					]
+				}],
+				["null", {
+					"end": 1500,
+					"effect": [
+						["buffer", {
+							"buffer-in": "text"
+						}],
+						["matte", {
+							"buffer-in": "matte"
+						}]
+					]
+				}]
+			]]
+		]]
+	]
+]

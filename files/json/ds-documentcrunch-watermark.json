@@ -1,0 +1,68 @@
+[
+	"ds-documentcrunch-watermark",
+	[
+		["ds-documentcrunch-mixins",
+			"darkmode"
+		],
+		{
+			"key": "do-dropshadow",
+			"display": "Shadow",
+			"type": "bool",
+			"default": false,
+			"required": false
+		},
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [9, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": true,
+				"minimum": -100,
+				"maximum": 100
+			}
+		}
+	],
+	[
+		
+		["null",{
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone",
+				"offset"
+			]
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["var", "do-dropshadow"]],
+						"effect": [
+							["shadow", {
+								"radius": "30su",
+								"color": [0, 0, 0, 0.5]
+							}]
+						]
+					}
+				]
+			},[
+				["asset", {
+					"file": ["$",
+						["if",
+							["var", "darkmode"],
+							"./media/ds-documentcrunch-logo-white.png",
+							"./media/ds-documentcrunch-logo-dark.png"
+						]
+					],
+					"max-width": "300su",
+					"justify": "fit center"
+				}]
+			]]
+		]]
+	]
+]

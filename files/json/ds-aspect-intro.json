@@ -1,0 +1,189 @@
+[
+	"ds-aspect-intro",
+	[
+		{
+			"key": "headline",
+			"display": "Headline",
+			"type": "text",
+			"default": "WorkforceOS",
+			"required": false
+		},
+		{
+			"key": "subhead",
+			"display": "Subhead",
+			"type": "text",
+			"default": "Beta Release | Fall 2024",
+			"required": false
+		},
+		{
+			"key": "logo",
+			"display": "Logo",
+			"type": "string",
+			"default": "default",
+			"options": [
+				{
+					"key": "default",
+					"display": "Default"
+				},
+				{
+					"key": "wfx",
+					"display": "WFX"
+				}
+			],
+			"required": false
+		},
+		["ds-aspect-mixins",
+			"colors",
+			"font-wallop",
+			"font-roobert"
+		]
+	],
+	[
+		["ds-aspect-bg", {
+		}],
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			],
+			"layout": "horizontal packed",
+			"align": "center",
+			"gap": "50su",
+			"transform": [
+				["scale",
+					["animate",
+						["100%", 1.25],
+						["-2000", 1, "easeInExpo"]
+					]
+				]
+			],
+			"script": ["$$",
+				["let",
+					[
+						["start", ["key", ["var", "self"], "start"]],
+						["end", ["key", ["var", "self"], "end"]],
+						["icon", ["nth", ["key", ["var", "self"], "children"], 0]],
+						["text", ["nth", ["key", ["var", "self"], "children"], 1]],
+						["icon-width", ["key", ["key", ["var", "icon"], "roi"], "width"]],
+						["text-width", ["key", ["key", ["var", "text"], "roi"], "width"]],
+						["animate-in",
+							["ease",
+								["map",
+									["var", "frame"],
+									["+", ["var", "start"], 1000],
+									["+", ["var", "start"], 2000],
+									1,
+									0
+								],
+								"easeInOutExpo"
+							]
+						]
+					],
+					["live-transform",
+						["var", "self"],
+						"translate",
+						["*",
+							["var", "animate-in"],
+							["/",
+								["var", "text-width"],
+								2
+							]
+						],
+						0
+					]
+				]
+			]
+		}, [
+			["asset", {
+				"file": ["$",
+					["if",
+						["=", ["var", "logo"], "default"],
+						"./media/ds-aspect-icon-animated.mov",
+						"./media/ds-aspect-icon-new.png"
+					]
+				],
+				"justify": "fit center",
+				"mute": true,
+				"hold": true,
+				"flex": {
+					"width": "220su"
+				}
+			}],
+			["null", {
+				"layout": "vertical packed",
+				"align": "left center",
+				"gap": "40su"
+			}, [
+				["asset", {
+					"stagger": [1600, 0],
+					"flex": {
+						"height": "45su"
+					},
+					"file": "./media/ds-aspect-logo.svg",
+					"justify": "fit left center",
+					"opacity": ["animate",
+						[0, 0, "plateauIn"],
+						["+500", 1]
+					],
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[0, "10su", "easeOutQuad"],
+								["+500", 0]
+							]
+						]
+					]
+				}],
+				["text", {
+					"enabled": ["$", ["exists", ["var", "headline"]]],
+					"stagger": [1700, 0],
+					"font": ["$", ["var", "font-wallop"]],
+					"height": "100su",
+					"color": ["$", ["var", "color-black"]],
+					"measure": "letter-size",
+					"string": ["$", ["var", "headline"]],
+					"align": "left center",
+					"justify": "left center",
+					"opacity": ["animate",
+						[0, 0, "plateauIn"],
+						["+500", 1]
+					],
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[0, "10su", "easeOutQuad"],
+								["+500", 0]
+							]
+						]
+					]
+				}],
+				["text", {
+					"enabled": ["$", ["exists", ["var", "subhead"]]],
+					"stagger": [1800, 0],
+					"font": ["$", ["var", "font-roobert"]],
+					"height": "27su",
+					"color": ["$", ["var", "color-gray"]],
+					"measure": "letter-size",
+					"string": ["$", ["var", "subhead"]],
+					"align": "left center",
+					"justify": "left center",
+					"opacity": ["animate",
+						[0, 0, "plateauIn"],
+						["+500", 1]
+					],
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[0, "10su", "easeOutQuad"],
+								["+500", 0]
+							]
+						]
+					]
+				}]
+			]]
+		]]
+	]
+]

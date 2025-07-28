@@ -1,0 +1,81 @@
+{
+	"params": {
+		"colors": [
+			{
+				"key": "color-blue",
+				"display": "Blue",
+				"type": "color",
+				"default": "#009cde",
+				"private": true,
+				"required": false
+			},
+			{
+				"key": "color-navy-blue",
+				"display": "Navy Blue",
+				"type": "color",
+				"default": "#002856",
+				"private": true,
+				"required": false
+			},
+			{
+				"key": "color-orange",
+				"display": "Orange",
+				"type": "color",
+				"default": "#ff9933",
+				"private": true,
+				"required": false
+			},
+			{
+				"key": "color-white",
+				"display": "White",
+				"type": "color",
+				"default": "#ffffff",
+				"private": true,
+				"required": false
+			},
+			{
+				"key": "color-black",
+				"display": "Black",
+				"type": "color",
+				"default": "#000000",
+				"private": true,
+				"required": false
+			}
+		],
+		"font-bold": {
+			"key": "font-bold",
+			"display": "Font Bold",
+			"type": "string",
+			"default": "./media/Roboto-Bold.ttf",
+			"required": false,
+			"private": true
+		},
+		"font-regular": {
+			"key": "font-regular",
+			"display": "Font Regular",
+			"type": "string",
+			"default": "./media/Roboto-Regular.ttf",
+			"required": false,
+			"private": true
+		},
+		"font-light": {
+			"key": "font-light",
+			"display": "Font Light",
+			"type": "string",
+			"default": "./media/RobotoFlex-200.ttf",
+			"required": false,
+			"private": true
+		},
+		"font-italic": {
+			"key": "font-italic",
+			"display": "Font Italic",
+			"type": "string",
+			"default": "./media/Roboto-LightItalic.ttf",
+			"required": false,
+			"private": true
+		}
+	},
+	"text": {
+		"measure": "letter-size"
+	}
+}

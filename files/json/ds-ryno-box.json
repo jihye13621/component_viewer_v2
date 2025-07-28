@@ -1,0 +1,163 @@
+[
+	"ds-ryno-box",
+	[
+		["ds-ryno-mixins", "color-primary"],
+		{
+			"key": "#weight",
+			"display": "Weight",
+			"type": "string",
+			"private": true,
+			"default": 5,
+			"required": false
+		},
+		{
+			"key": "draw-out",
+			"display": "Draw Out",
+			"type": "bool",
+			"default": false,
+			"required": false
+		}
+	],[
+		["solid", {
+			"-": "TOP",
+			"color": ["$", ["var", "color-primary"]],
+			"rect": [0, 0, "100rw", ["$", ["var", "#weight"]]],
+			"mask": {
+				"padding": [
+					0,
+					["animate", [0, "50rw", "easeInCubic"], ["+400", 0]],
+					0,
+					["animate", [0, "50rw", "easeInCubic"], ["+400", 0]]
+				]
+			},
+			"breakpoints": [
+				{
+					"enabled": ["$", ["var", "draw-out"]],
+					"mask": {
+						"padding": [
+							0,
+							["animate", 
+								[0, "50rw", "easeInCubic"], 
+								["+400", 0]
+							],
+							0,
+							["animate", 
+								[0, "50rw", "easeInCubic"],
+								["+400", 0],
+								["100%", "100rw"],
+								["-450", 0, "easeOutCubic"]
+							]
+						]
+					}
+				}
+			]
+		}],
+		["solid", {
+			"-": "LEFT",
+			"color": ["$", ["var", "color-primary"]],
+			"rect": [0, 0, ["$", ["var", "#weight"]], "100rh"],
+			"mask": {
+				"padding": [
+					0,
+					0,
+					["animate", [400, "100rh"], ["+100", 0]],
+					0
+				]
+			},
+			"breakpoints": [
+				{
+					"enabled": ["$", ["var", "draw-out"]],
+					"mask": {
+						"padding": [
+							0,
+							0,
+							["animate", 
+								[400, "100rh"], 
+								["+100", 0],
+								["100%", "100rh"],
+								["-900", 0, "easeInCubic"],
+								["+450", "100rh"]
+							],
+							["$", ["-", 0, ["var", "#weight"]]]
+						]
+					}
+				}
+			]
+		}],
+		["solid", {
+			"-": "RIGHT",
+			"color": ["$", ["var", "color-primary"]],
+			"rect": ["100rw", 0, ["$", ["var", "#weight"]], "100rh"],
+			"transform": [
+				["translate", 
+					["$", ["-", 0, ["var", "#weight"]]],
+					0
+				]
+			],
+			"mask": {
+				"padding": [
+					0,
+					0,
+					["animate", [400, "100rh"], ["+100", 0]],
+					["$", ["-", 0, ["var", "#weight"]]]
+				]
+			},
+			"breakpoints": [
+				{
+					"enabled": ["$", ["var", "draw-out"]],
+					"mask": {
+						"padding": [
+							0,
+							0,
+							["animate", 
+								[400, "100rh"], 
+								["+100", 0],
+								["100%", "100rh"],
+								["-300", 0, "easeOutCubic"]
+							],
+							["$", ["-", 0, ["var", "#weight"]]]
+						]
+					}
+				}
+			]
+		}],
+		["null", {
+			"-": "BOTTOM",
+			"rect": [0, "100rh", "100rw", ["$", ["var", "#weight"]]],
+			"transform": [
+				["translate", 
+					0, 
+					["$", ["-", 0, ["var", "#weight"]]]
+				]
+			],
+			"mask": {
+				"invert": true,
+				"padding": [
+					["$", ["-", -1, ["var", "#weight"]]],
+					["animate", [500, 0, "easeOutCubic"], ["+450", "50rw"]],
+					0,
+					["animate", [500, 0, "easeOutCubic"], ["+450", "50rw"]]
+				]
+			}
+		}, [
+			["solid", {
+				"color": ["$", ["var", "color-primary"]],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["var", "draw-out"]],
+						"mask": {
+							"padding": [
+								0, 0, 0,
+								["animate", 
+									["100%", "100rw"], 
+									["-900", 0, "easeInCubic"],
+									["+600", "100rw"]
+								]
+							]
+						}
+					}
+				]
+			}]
+		]]
+	]
+]

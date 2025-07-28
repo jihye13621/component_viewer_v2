@@ -1,0 +1,170 @@
+[
+	"ds-servicenow-sidepanel-list",
+	[
+		{
+			"key": "headline",
+			"display": "Headline",
+			"type": "text",
+			"default": "Add Headline",
+			"required": false
+		},
+		{
+			"key": "items",
+			"display": "Items",
+			"type": "textarea",
+			"default": "Item 1\nItem 2\nItem 3",
+			"required": false
+		},
+		{
+			"key": "split",
+			"display": "Panel Size",
+			"type": "string", 
+			"options": [
+				{
+					"key": "default",
+					"display": "Default"
+				},
+				{
+					"key": "half",
+					"display": "Half-screen"
+				},
+				{
+					"key": "full",
+					"display": "Full-screen"
+				}
+			],
+			"default": "default",
+			"required": false
+		},
+		["ds-servicenow-mixins",
+			"color-primary",
+			"color-accent",
+			"color-black",
+			"font-semibold",
+			"font-regular"
+		],
+		["dsx-mixins", 
+			"boilerplate"
+		]
+	],
+	[
+		["ds-servicenow-sidepanel", {
+			"mixins": ["dsx-mixins", ["set-dsx-su"]],
+			"split": ["$", ["var", "split"]],
+			"animate-camera": true,
+			"dark-mode": false,
+			"stripe": false,
+			"panel-alignment": "center",
+			"color-primary": ["$", ["var", "color-primary"]],
+			"color-accent": ["$", ["var", "color-accent"]]
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"gap": "100su",
+				"max-width": "80rw",
+				"breakpoints": [
+					{
+						"enabled": ["$", ["lte", ["aspect"], 1]],
+						"gap": "80su"
+					}
+				]
+			}, [
+				["text", {
+					"stagger": [600, 0],
+					"enabled": ["$", ["exists", ["var", "headline"]]],
+					"mixins": ["ds-servicenow-mixins",
+						"text"
+					],
+					"flex": {
+						"height": "300su"
+					},
+					"font": ["$", ["var", "font-semibold"]],
+					"height": "80su",
+					"leading": "22su",
+					"color": ["$", ["var", "color-black"]],
+					"string": ["$", ["var", "headline"]],
+					"transform": [
+						["translate",
+							["animate",
+								[0, "100rw", "easeOutQuad"],
+								["+500", 0]
+							],
+							0
+						]
+					]
+				}],
+				["for-each", {
+					"items": ["$", ["split", ["var", "items"]]],
+					"layout": "vertical packed",
+					"align": "left",
+					"gap": "80su",
+					"breakpoints": [
+						{
+							"enabled": ["$", ["lte", ["aspect"], 1]],
+							"gap": "60su"
+						}
+					]
+				}, [
+					["null", {
+						"layout": "horizontal packed",
+						"gap": "50su"
+					}, [
+						["solid", {
+							"stagger": [
+								["$", ["+", 1000, ["*", ["var", "index"], 500]]],
+								0
+							],
+							"rect": [
+								0,
+								"10su",
+								"15su",
+								"15su"
+							],
+							"flex": {
+								"width": "15su"
+							},
+							"radius": 1000,
+							"color": ["$", ["var", "color-accent"]],
+							"transform": [
+								["scale",
+									["animate",
+										[0, 0, "easeOutElastic"],
+										["+500", 1]
+									]
+								]
+							]
+						}],
+						["text", {
+							"stagger": [
+								["$", ["+", 1000, ["*", ["var", "index"], 500]]],
+								0
+							],
+							"enabled": ["$", ["var", "item"]],
+							"mixins": ["ds-servicenow-mixins",
+								"text"
+							],
+							"font": ["$", ["var", "font-regular"]],
+							"height": "50su",
+							"leading": "20su",
+							"color": ["$", ["var", "color-black"]],
+							"string": ["$", ["var", "item"]],
+							"opacity": ["animate",
+								[0, 0, "easeOutQuad"],
+								["+500", 1]
+							],
+							"transform": [
+								["translate",
+									["animate",
+										[0, "100su", "easeOutQuad"],
+										["+500", 0]
+									],
+									0
+								]
+							]
+						}]
+					]]
+				]]
+			]]
+		]]
+	]
+]

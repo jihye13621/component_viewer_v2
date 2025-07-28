@@ -1,0 +1,243 @@
+[
+	"ds-instacart-sizzle-flip",
+	[
+		{
+			"key": "text-1",
+			"display": "Text 1",
+			"type": "text",
+			"default": "Launched gamified quests",
+			"required": false
+		},
+		{
+			"key": "asset-1",
+			"display": "Asset 1",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["motion", "none"]
+			],
+			"script": ["$", ["if",
+				["exists", ["var", "asset-1"]],
+				["var", "asset-1"],
+				"./media/image-wide.jpg"	
+			]]
+		},
+		{
+			"key": "text-2",
+			"display": "Text 2",
+			"type": "text",
+			"default": "",
+			"required": false
+		},
+		{
+			"key": "asset-2",
+			"display": "Asset 2",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["motion", "none"]
+			]
+		},
+		{
+			"key": "text-3",
+			"display": "Text 3",
+			"type": "text",
+			"default": "",
+			"required": false
+		},
+		{
+			"key": "asset-3",
+			"display": "Asset 3",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["motion", "none"]
+			]
+		},
+		["dsx-mixins",
+			"boilerplate"
+		],
+		["ds-instacart-mixins",
+			"colors",
+			"font-sans-800",
+			"theme"
+		],
+		{
+			"key": "#items",
+			"display": "Items",
+			"private": true,
+			"type": "object",
+			"default": [],
+			"required": false,
+			"script": ["$",
+				["compact", ["array",
+					["if",
+						["exists", ["var", "asset-1"]],
+						["array",
+							["var", "text-1"],
+							["var", "asset-1"]
+						]
+					],
+					["if",
+						["exists", ["var", "asset-2"]],
+						["array",
+							["var", "text-2"],
+							["var", "asset-2"]
+						]
+					],
+					["if",
+						["exists", ["var", "asset-3"]],
+						["array",
+							["var", "text-3"],
+							["var", "asset-3"]
+						]
+					]
+				]]
+			]
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su"
+			],
+			"set-dur": ["$",
+				["set",
+					"#dur",
+					["-",
+						["key", ["comp-timing"], "duration"],
+						250
+					]
+				]
+			]
+		}, [
+			["for-each", {
+				"items": ["$", ["var", "#items"]]
+			}, [
+				["user-asset", {
+					"start": ["$",
+						["+",
+							0,
+							["-",
+								["*",
+									["var", "index"],
+									["floor", ["/",
+										["var", "#dur"],
+										["length", ["var", "#items"]]
+									]]
+								]
+							]
+						]
+					],
+					"end": ["$",
+						["+",
+							250,
+							["*",
+								["+", ["var", "index"], 1],
+								["floor", ["/",
+									["var", "#dur"],
+									["length", ["var", "#items"]]
+								]]
+							]
+						]
+					],
+					"mask": {
+						"transform": true
+					},
+					"file": ["$", ["nth", ["var", "item"], 1]],
+					"justify": "fill center",
+					"mute": true,
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[0, "100rh", "easeOutQuad"],
+								["+250", 0],
+								["100%", "-100rh"],
+								["-250", 0, "easeInQuad"]
+							]
+						]
+					]
+				}],
+				["null", {
+					"enabled": ["$", ["exists", ["nth", ["var", "item"], 0]]],
+					"layout": "vertical packed",
+					"align": "bottom left",
+					"mixins": ["dsx-mixins",
+						"safezone"
+					],
+					"start": ["$",
+						["+",
+							["if",
+								[">", ["var", "index"], 0],
+								-250,
+								0
+							],
+							["-",
+								["*",
+									["var", "index"],
+									["floor", ["/",
+										["var", "#dur"],
+										["length", ["var", "#items"]]
+									]]
+								]
+							]
+						]
+					],
+					"end": ["$",
+						["*",
+							["+", ["var", "index"], 1],
+							["floor", ["/",
+								["var", "#dur"],
+								["length", ["var", "#items"]]
+							]]
+						]
+					]
+				}, [
+					["text", {
+						"font": ["$", ["var", "font-sans-800"]],
+						"measure": "letter-size",
+						"height": "160su",
+						"leading": "20su",
+						"justify": "bottom left",
+						"string": ["$", ["nth", ["var", "item"], 0]],
+						"color": ["$", ["var", "#foreground"]],
+						"boundary": "line",
+						"animations": [
+							{
+								"mask": [
+									0,
+									0,
+									"-10su",
+									0
+								],
+								"translate": [0, "220su"]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+700", 1]
+								],
+								"easing": "easeOutQuint",
+								"ramp": -1,
+								"translate": [0, 0]
+							},
+							{
+								"mix": ["animate",
+									["100%", 1],
+									["-700", 0]
+								],
+								"easing": "easeInQuint",
+								"ramp": -1,
+								"translate": [0, "-220su"]
+							}
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

@@ -1,0 +1,60 @@
+[
+	"ds-arrows-lite-dynamic",
+	[
+		["dsx-mixins", ["captions"]],
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		},
+		["dsx-mixins", ["boilerplate"]],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": 5,
+			"required": false
+		}
+	],
+	[
+		["dsx-background", {
+			"enabled": ["$", ["exists", ["var", "background"]]],
+			"color": ["$", ["var", "background"]]
+		}],
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"max-width": "800nsu",
+				"align": ["$", ["var", "#align"]]
+			}, [
+				["text", {
+					"mixins": ["ds-arrows-lite-mixins", ["headline-2"]],
+					"justify": ["$", ["var", "#align"]],
+					"transcript": ["$",
+						["transcript-split",
+							["var", "transcript"],
+							["max", 1, ["floor", ["/", 10, ["var", "size"]]]]
+						]
+					],
+					"color": ["$", ["var", "color-1"]],
+					"animations": [
+						{
+							"opacity": 0.5
+						},
+						{
+							"mix": [[0, 0], [0.25, 1]],
+							"opacity": 1
+						},
+						{
+							"mix": [[0.75, 0], [1.0, 1]],
+							"opacity": 0.5
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

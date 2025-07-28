@@ -1,0 +1,56 @@
+[
+	"ds-capsule-watermark",
+	[
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [7, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		},
+		{
+			"key": "dropshadow",
+			"display": "Dropshadow",
+			"type": "bool",
+			"default": false,
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["shadow", {
+				"skip": ["$", ["not", ["var", "dropshadow"]]],
+				"layout": "vertical packed",
+				"max-width": "800nsu",
+				"align": ["$", ["var", "#align"]],
+				"color": [0, 0, 0, 0.5],
+				"offset": ["5su", "5su"],
+				"radius": "10su"
+			}, [
+				["asset", {
+					"file": "./media/ds-scottishrite-wordmark-no-tagline.svg",
+					"flex": {
+						"width": "300su",
+						"height": "300su"
+					},
+					"justify": ["$", ["concat", "fit ", ["var", "#align"]]],
+					"opacity": ["animate",
+						[0, 0],
+						["+350", 1],
+						["100%", 0],
+						["-350", 1]
+					]
+				}]
+			]]
+		]]
+	]
+]

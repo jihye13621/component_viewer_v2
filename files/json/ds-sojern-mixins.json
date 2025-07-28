@@ -1,0 +1,120 @@
+{
+	"params": {
+		"colors": [
+			{
+				"key": "off-white",
+				"display": "Color",
+				"private": true,
+				"type": "color",
+				"default": "#F8F8F8",
+				"required": false
+			},
+			{
+				"key": "orange",
+				"display": "Color",
+				"private": true,
+				"type": "color",
+				"default": "#e35f3e",
+				"required": false
+			},
+			{
+				"key": "dark-blue",
+				"display": "Color",
+				"private": true,
+				"type": "color",
+				"default": "#26374E",
+				"required": false
+			},
+			{
+				"key": "steel",
+				"display": "Color",
+				"private": true,
+				"type": "color",
+				"default": "#647D94",
+				"required": false
+			},
+			{
+				"key": "tan",
+				"display": "Color",
+				"private": true,
+				"type": "color",
+				"default": "#F1ECE8",
+				"required": false
+			}
+		],
+		"darkmode": [
+			{
+				"key": "darkmode",
+				"display": "Dark Mode",
+				"type": "bool",
+				"default": false,
+				"required": false
+			},
+			{
+				"key": "#fg",
+				"display": "Foreground",
+				"type": "color",
+				"default": [0, 0, 0, 0],
+				"required": false,
+				"private": true,
+				"script": ["$",
+					["if",
+						["var", "darkmode"],
+						["var", "off-white"],
+						["var", "dark-blue"]
+					]
+				]
+			},
+			{
+				"key": "#bg",
+				"display": "Background",
+				"type": "color",
+				"default": [0, 0, 0, 0],
+				"required": false,
+				"private": true,
+				"script": ["$",
+					["if",
+						["var", "darkmode"],
+						["var", "dark-blue"],
+						["var", "off-white"]
+					]
+				]
+			}
+		],
+		"fonts": [
+			{
+				"key": "text-regular",
+				"display": "Text Regular",
+				"type": "string",
+				"default": "./media/Inter-Regular.ttf",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "text-medium",
+				"display": "Text Medium",
+				"type": "string",
+				"default": "./media/Inter-Medium.ttf",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "text-semibold",
+				"display": "Text Semibold",
+				"type": "string",
+				"default": "./media/Inter-SemiBold.ttf",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "text-bold",
+				"display": "Text Bold",
+				"type": "string",
+				"default": "./media/Inter-Bold.ttf",
+				"required": false,
+				"private": true
+			}
+		]
+		
+	}
+}

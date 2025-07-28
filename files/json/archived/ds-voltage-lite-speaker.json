@@ -1,0 +1,111 @@
+[
+	"ds-voltage-lite-speaker",
+	[
+		["dsx-mixins", ["speaker"]],
+		["ds-voltage-lite-mixins", "color-1", "color-3"],
+		["dsx-mixins", ["boilerplate"]],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": 1,
+			"required": false
+		}
+	],
+	[
+		["dsx-background", {
+			"enabled": ["$", ["exists", ["var", "background"]]],
+			"color": ["$", ["var", "background"]]
+		}],
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"max-width": "800nsu",
+				"layout": "vertical packed match",
+				"align": ["$", ["var", "#align"]],
+				"gap": "14su"
+			}, [
+				["null", {
+					"flex": {
+						"shrink": true,
+						"height": "54su"
+					}
+				}, [
+					["solid", {
+						"rect": [
+							0,
+							0,
+							"54su",
+							"54su"
+						],
+						"color": ["$", ["var", "color-3"]],
+						"align": ["$", ["var", "#align"]],
+						"radius": "27su",
+						"transform": [
+							["scale",
+								["animate",
+									[0, 0, "easeOutCubic"],
+									["+100", 1],
+									["100%", 0],
+									["-100", 1, "easeInCubic"]
+								]
+							]
+						]
+					}]
+				]],
+				["null", {
+					"flex": {
+						"weight": 0.5
+					},
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]],
+					"padding": [
+						"38su",
+						0,
+						"28su",
+						0
+					]
+				}, [
+					["text", {
+						"mixins": ["ds-voltage-lite-mixins", ["font-label", "anim-subhead"]],
+						"string": ["$", ["var", "detail-1"]],
+						"case": "uppercase",
+						"justify": ["$", ["var", "#align"]],
+						"stroke-color": ["$", ["var", "color-3"]],
+						"color": [0, 0, 0, 0],
+						"boundary": "word",
+						"stagger": [300, -200]
+					}]
+				]],
+				["text", {
+					"mixins": ["ds-voltage-lite-mixins", ["font-headline", "anim-headline"]],
+					"string": ["$", ["var", "name"]],
+					"justify": ["$", ["var", "#align"]],
+					"case": "uppercase",
+					"stroke-color": ["$", ["var", "color-3"]],
+					"color": [0, 0, 0, 0],
+					"boundary": "word"
+				}],
+				["null", {
+					"flex": {
+						"weight": 0.5
+					},
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]]
+				}, [
+					["text", {
+						"mixins": ["ds-voltage-lite-mixins", ["font-label", "anim-subhead"]],
+						"string": ["$", ["var", "detail-2"]],
+						"case": "uppercase",
+						"justify": ["$", ["var", "#align"]],
+						"stroke-color": ["$", ["var", "color-3"]],
+						"color": [0, 0, 0, 0],
+						"boundary": "word",
+						"stagger": [400, -100]
+					}]
+				]]
+			]]
+		]]
+	]
+]

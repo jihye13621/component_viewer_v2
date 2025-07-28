@@ -1,0 +1,39 @@
+[
+	"ds-hubspot-api-outro-1",
+	[
+		{
+			"key": "text-1",
+			"display": "Text 1",
+			"type": "textarea",
+			"default": "Add Text",
+			"required": false
+		},
+		["ds-hubspot-api-mixins",
+			"animation-select",
+			"transition-select"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		]
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			]
+		}, [
+			["ds-hubspot-api-bg", {
+				"flex": {
+					"position": "fixed"
+				},
+				"transition-select": ["$", ["var", "transition-select"]]
+			}],
+			["ds-hubspot-api-text", {
+				"start": 500,
+				"text": ["$", ["var", "text-1"]],
+				"animation-select": ["$", ["var", "animation-select"]]
+			}]
+		]]
+	]
+]

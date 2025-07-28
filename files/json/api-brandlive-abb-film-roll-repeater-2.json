@@ -1,0 +1,137 @@
+[
+	"api-brandlive-abb-film-roll-repeater-2",
+	[
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"script": ["$", ["if",
+				["exists", ["var", "asset"]],
+				["var", "asset"],
+				"./media/api-brandlive/Onboarding-placeholder1.mp4"	
+			]]
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-dsx-su"
+			]
+		}, [
+			["null", {
+				"layout": "horizontal packed",
+				"gap": "15su"
+			}, [
+				["asset", {
+					"file": ["$", ["var", "asset"]],
+					"transform": [
+						["scale",
+							["animate",
+								[0, 0, "easeOutCubic"],
+								["+333", 1.0]
+							]
+						]
+					]
+				}],
+				["asset", {
+					"file": ["$", ["var", "asset"]],
+					"transform": [
+						["scale",
+							["animate",
+								[0, 0, "easeOutCubic"],
+								["+333", 1.0]
+							]
+						]
+					],
+					"stagger": [66, 0]
+				}],
+				["asset", {
+					"file": ["$", ["var", "asset"]],
+					"transform": [
+						["scale",
+							["animate",
+								[0, 0, "easeOutCubic"],
+								["+333", 1.0]
+							]
+						]
+					],
+					"stagger": [133, 0]
+				}],
+				["asset", {
+					"file": ["$", ["var", "asset"]],
+					"transform": [
+						["scale",
+							["animate",
+								[0, 0, "easeOutCubic"],
+								["+333", 1.0]
+							]
+						]
+					],
+					"stagger": [200, 0]
+				}],
+				["asset", {
+					"file": ["$", ["var", "asset"]],
+					"transform": [
+						["scale",
+							["animate",
+								[0, 0, "easeOutCubic"],
+								["+333", 1.0]
+							]
+						]
+					],
+					"stagger": [266, 0]
+				}],
+				["asset", {
+					"file": ["$", ["var", "asset"]],
+					"transform": [
+						["scale",
+							["animate",
+								[0, 0, "easeOutCubic"],
+								["+333", 1.0]
+							]
+						]
+					],
+					"stagger": [333, 0]
+				}],
+				["asset", {
+					"file": ["$", ["var", "asset"]],
+					"transform": [
+						["scale",
+							["animate",
+								[0, 0, "easeOutCubic"],
+								["+333", 1.0]
+							]
+						]
+					],
+					"stagger": [400, 0]
+				}],
+				["asset", {
+					"file": ["$", ["var", "asset"]],
+					"transform": [
+						["scale",
+							["animate",
+								[0, 0, "easeOutCubic"],
+								["+333", 1.0]
+							]
+						]
+					],
+					"stagger": [466, 0]
+				}],
+				["asset", {
+					"file": ["$", ["var", "asset"]],
+					"transform": [
+						["scale",
+							["animate",
+								[0, 0, "easeOutCubic"],
+								["+333", 1.0]
+							]
+						]
+					],
+					"stagger": [533, 0]
+				}]
+			]]
+		]]
+	]
+]

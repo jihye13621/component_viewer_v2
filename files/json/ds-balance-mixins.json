@@ -1,0 +1,76 @@
+{
+	"params": {
+		"color-primary": {
+			"key": "color-primary",
+			"display": "Primary",
+			"type": "color",
+			"default": "#ffffff",
+			"global": "color-primary",
+			"required": false
+		},
+		"color-secondary": {
+			"key": "color-secondary",
+			"display": "Secondary",
+			"type": "color",
+			"default": "#151718",
+			"global": "color-secondary",
+			"required": false
+		},
+		"color-accent": {
+			"key": "color-accent",
+			"display": "Accent",
+			"type": "color",
+			"default": "#FC3030",
+			"global": "color-accent",
+			"required": false
+		},
+		"font-headline": {
+			"key": "font-headline",
+			"display": "Font Headline",
+			"type": "string",
+			"default": "./media/EBGaramond-Regular.ttf",
+			"global": "font-headline",
+			"required": false,
+			"private": true
+		},
+		"font-body": {
+			"key": "font-body",
+			"display": "Font Body",
+			"type": "string",
+			"default": "./media/DMSans-Medium.ttf",
+			"global": "font-body",
+			"required": false,
+			"private": true
+		}
+	},
+	"text": {
+		"measure": "letter-size"
+	},
+	"text-display": {
+		"font": ["$", ["var", "font-headline"]],
+		"height": "150su",
+		"leading": "10su",
+		"kerning": -0.01
+	},
+	"text-headline": {
+		"font": ["$", ["var", "font-headline"]],
+		"height": "120su",
+		"leading": "10su",
+		"kerning": -0.01
+	},
+	"text-title": {
+		"font": ["$", ["var", "font-headline"]],
+		"height": "90su",
+		"leading": "10su"
+	},
+	"text-body": {
+		"font": ["$", ["var", "font-body"]],
+		"height": "65su",
+		"leading": "10su"
+	},
+	"text-label": {
+		"font": ["$", ["var", "font-body"]],
+		"height": "40su",
+		"leading": "10su"
+	}
+}

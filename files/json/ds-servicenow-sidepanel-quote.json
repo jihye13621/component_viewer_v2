@@ -1,0 +1,182 @@
+[
+	"ds-servicenow-sidepanel-quote",
+	[
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["gain", 0],
+				["justify", "fit"],
+				["motion", "none"]
+			]
+		},
+		{
+			"key": "quote",
+			"display": "Quote",
+			"type": "text",
+			"default": "Add quote text",
+			"required": false
+		},
+		{
+			"key": "detail-1",
+			"display": "Source",
+			"type": "text",
+			"default": "Quote source",
+			"required": false
+		},
+		{
+			"key": "detail-2",
+			"display": "Details",
+			"type": "text",
+			"default": "Optional source details",
+			"required": false
+		},
+		{
+			"key": "detail-3",
+			"display": "Details",
+			"type": "text",
+			"default": "Optional source details",
+			"required": false
+		},
+		{
+			"key": "split",
+			"display": "Panel Size",
+			"type": "string", 
+			"options": [
+				{
+					"key": "default",
+					"display": "Default"
+				},
+				{
+					"key": "half",
+					"display": "Half-screen"
+				},
+				{
+					"key": "full",
+					"display": "Full-screen"
+				}
+			],
+			"default": "default",
+			"required": false
+		},
+		["ds-servicenow-mixins",
+			"color-primary",
+			"color-secondary",
+			"color-accent",
+			"font-extra-bold",
+			"font-black",
+			"font-medium"
+		],
+		["dsx-mixins", 
+			"boilerplate"
+		]
+	],
+	[
+		["ds-servicenow-sidepanel", {
+			"mixins": ["dsx-mixins", ["set-dsx-su"]],
+			"split": ["$", ["var", "split"]],
+			"animate-camera": true,
+			"color-primary": ["$", ["var", "color-primary"]],
+			"color-secondary": ["$", ["var", "color-secondary"]],
+			"color-accent": ["$", ["var", "color-accent"]]
+		}, [
+			["user-asset", {
+				"enabled": ["$", ["exists", ["var", "asset"]]],
+				"flex": {
+					"height": "150su"
+				},
+				"file": ["$", ["var", "asset"]],
+				"justify": "fit center",
+				"mask": {}
+			}],
+			["null", {
+				"stagger": [1000, 0],
+				"layout": "vertical packed",
+				"align": "center left",
+				"gap": "50su",
+				"opacity": ["animate",
+					[0, 0, "easeOutQuad"],
+					["+600", 1]
+				],
+				"transform": [
+					["translate",
+						0,
+						["animate",
+							[0, "100su", "easeOutQuad"],
+							["+600", 0]
+						]
+					]
+				]
+			}, [
+				["asset", {
+					"enabled": ["$", ["exists", ["var", "quote"]]],
+					"flex": {
+						"width": "60su",
+						"height": "60su"
+					},
+					"file": "./media/ds-servicenow-icon-quote.svg",
+					"justify": "fit center",
+					"svg-recolor": ["$", ["var", "color-primary"]]
+				}],
+				["text", {
+					"enabled": ["$", ["exists", ["var", "quote"]]],
+					"mixins": ["ds-servicenow-mixins",
+						"text"
+					],
+					"font": ["$", ["var", "font-extra-bold"]],
+					"height": "60su",
+					"leading": "15su",
+					"color": ["$", ["var", "color-primary"]],
+					"string": ["$", ["var", "quote"]]
+				}],
+				["null", {
+					"enabled": ["$", ["or",
+						["exists", ["var", "detail-1"]],
+						["exists", ["var", "detail-2"]],
+						["exists", ["var", "detail-3"]]
+					]],
+					"flex": {
+						"weight": 0.5
+					},
+					"layout": "vertical packed",
+					"align": "center left",
+					"gap": "15su"
+				}, [
+					["text", {
+						"enabled": ["$", ["exists", ["var", "detail-1"]]],
+						"mixins": ["ds-servicenow-mixins",
+							"text"
+						],
+						"font": ["$", ["var", "font-black"]],
+						"height": "40su",
+						"color": ["$", ["var", "color-accent"]],
+						"string": ["$", ["var", "detail-1"]]
+					}],
+					["text", {
+						"enabled": ["$", ["exists", ["var", "detail-2"]]],
+						"mixins": ["ds-servicenow-mixins",
+							"text"
+						],
+						"font": ["$", ["var", "font-medium"]],
+						"height": "33su",
+						"color": ["$", ["var", "color-primary"]],
+						"string": ["$", ["var", "detail-2"]]
+					}],
+					["text", {
+						"enabled": ["$", ["exists", ["var", "detail-3"]]],
+						"mixins": ["ds-servicenow-mixins",
+							"text"
+						],
+						"font": ["$", ["var", "font-medium"]],
+						"height": "33su",
+						"color": ["$", ["var", "color-primary"]],
+						"string": ["$", ["var", "detail-3"]]
+					}]
+				]]
+			]]
+		]]
+	]
+]

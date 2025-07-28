@@ -1,0 +1,115 @@
+[
+	"ds-crchd-speaker",
+	[
+		["dsx-mixins", "speaker"],
+		["ds-crchd-mixins", "color-secondary", "color-accent"],
+		["dsx-mixins", "boilerplate"],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [1, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su"]],
+			"padding": [
+				["$", ["nth", ["safezone"], 0]],
+				0,
+				["$", ["nth", ["safezone"], 2]],
+				0
+			]
+		}, [
+			["null", {
+				"max-width": "800nsu",
+				"enabled": ["$",
+					["or",
+						["exists", ["var", "name"]],
+						["exists", ["var", "detail-1"]],
+						["exists", ["var", "detail-2"]]
+					]
+				],
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["in", ["nth", ["var", "position"], 0], 1, 2, 3]],
+						"transform": [
+							["translate",
+								0,
+								"-120nsu"
+							]
+						]
+					}
+				]
+			}, [
+				["solid", {
+					"stagger": [0, 0],
+					"mixins": ["ds-crchd-mixins", "speaker-boxes"],
+					"enabled": ["$", ["exists", ["var", "name"]]],
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]],
+					"color": ["$", ["var", "color-accent"]]
+				}, [
+					["text", {
+						"mixins": ["ds-crchd-mixins", ["font-speaker-name"]],
+						"string": ["$", ["var", "name"]],
+						"justify": "left",
+						"color": ["$", ["var", "color-secondary"]]
+					}],
+					["solid", {
+						"mixins": ["ds-crchd-mixins", "speaker-boxes-blind"],
+						"stagger": [100, -100],
+						"color": ["$", ["var", "color-secondary"]]
+					}]
+				]],
+				["solid", {
+					"mixins": ["ds-crchd-mixins", "speaker-boxes"],
+					"stagger": [100, -100],
+					"enabled": ["$", ["exists", ["var", "detail-1"]]],
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]],
+					"color": ["$", ["var", "color-secondary"]]
+				}, [
+					["text", {
+						"mixins": ["ds-crchd-mixins", ["font-speaker-detail"]],
+						"string": ["$", ["var", "detail-1"]],
+						"justify": "left",
+						"color": ["$", ["var", "color-accent"]]
+					}],
+					["solid", {
+						"mixins": ["ds-crchd-mixins", "speaker-boxes-blind"],
+						"stagger": [200, -200],
+						"color": ["$", ["var", "color-accent"]]
+					}]
+				]],
+				["solid", {
+					"mixins": ["ds-crchd-mixins", "speaker-boxes"],
+					"stagger": [200, -200],
+					"enabled": ["$", ["exists", ["var", "detail-2"]]],
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]],
+					"color": ["$", ["var", "color-secondary"]]
+				}, [
+					["text", {
+						"mixins": ["ds-crchd-mixins", ["font-speaker-detail"]],
+						"string": ["$", ["var", "detail-2"]],
+						"justify": "left",
+						"color": ["$", ["var", "color-accent"]]
+					}],
+					["solid", {
+						"mixins": ["ds-crchd-mixins", "speaker-boxes-blind"],
+						"stagger": [300, -300],
+						"color": ["$", ["var", "color-accent"]]
+					}]
+				]]
+			]]
+		]]
+	]
+]

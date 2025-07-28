@@ -1,0 +1,20 @@
+[
+	"ds-justworks-watermark",
+	[
+		["dsx-mixins", "boilerplate"]
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["asset", {
+				"file": "./media/ds-justworks-logo-close.mov",
+				"justify": "fit bottom right",
+				"hold": true,
+				"align": "bottom right",
+				"max-width": "800nsu",
+				"rect": [0, 0, "500su", "500su"]
+			}]
+		]]
+	]
+]

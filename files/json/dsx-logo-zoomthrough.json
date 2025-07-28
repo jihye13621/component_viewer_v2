@@ -1,0 +1,88 @@
+[
+	"dsx-logo-zoomthrough",
+	[
+		{
+			"key": "logo",
+			"display": "Logo",
+			"type": "asset",
+			"default": "./media/capsule.svg",
+			"required": false
+		},
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [0, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"private": true,
+			"required": false
+		},
+		{
+			"key": "#scale-anchor",
+			"type": "object",
+			"required": false,
+			"private": true,
+			"default": ["scale", 15, 15],
+			"script": ["$", ["switch", ["nth", ["var", "position"], 0], {
+				"1": ["25rw", "75rh"],
+				"2": ["50rw", "75rh"],
+				"3": ["75rw", "75rh"],
+				"4": ["25rw", "50rh"],
+				"6": ["75rw", "50rh"],
+				"7": ["25rw", "25rh"],
+				"8": ["50rw", "25rh"],
+				"9": ["75rw", "25rh"],
+				"_": ["50rw", "50rh"]
+			}]] 
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"max-width": "800nsu",
+				"align": ["$", ["var", "#align"]],
+				"opacity": [ "animate",
+						[0, 0],
+						["+100", 1],
+						["+500", 1],
+						["+500", 0]
+					]
+			}, [
+				["user-asset", {
+					"mute": true,
+					"file": ["$", ["var", "logo"]],
+					"flex": {
+						"width": "500su",
+						"height": "500su"
+					},
+					"justify": ["$", ["concat", "fit ", ["var", "#align"]]],
+					"transform": [
+						["scale",
+							["animate",
+								[0, 1],
+								["+600", 1, "easeInQuad"],
+								["+500", 15]
+							],
+							["animate",
+								[0, 1],
+								["+600", 1, "easeInQuad"],
+								["+500", 15]
+							],
+							["$", ["nth", ["var", "#scale-anchor"], 0]],
+							["$", ["nth", ["var", "#scale-anchor"], 1]]
+						]
+					]
+				}]
+			]]
+		]]
+	]
+]

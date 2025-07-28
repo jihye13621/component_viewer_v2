@@ -1,0 +1,121 @@
+[
+	"ds-sbg-wjar-location",
+	[
+		{
+			"key": "location",
+			"display": "Location",
+			"type": "text",
+			"default": "Location",
+			"required": false
+		},
+		["ds-sbg-mixins",
+			"color-fg",
+			"font-body"
+		],
+		["dsx-mixins", "boilerplate"],
+		{
+			"key": "#color-brand",
+			"display": "Color Brand",
+			"type": "color",
+			"default": "#1F3F66",
+			"required": false,
+			"private": true
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-su", "safezone"]]
+		}, [
+			["null", {
+				"enabled": ["$", ["exists", ["var", "location"]]],
+				"rect": [
+					0,
+					0,
+					"100rw",
+					"60su"
+				],
+				"layout": "horizontal packed match",
+				"gap": "20su"
+			}, [
+				["dsx-icon", {
+					"flex": {
+						"width": "50su"
+					},
+					"icon": "pin",
+					"opacity": ["animate",
+						[0, 0, "easeOutSine"],
+						["+400", 1]
+					],
+					"transform": [
+						["scale",
+							["animate",
+								[0, 0, "easeOutBack"],
+								["+400", 1],
+								["100%", 0],
+								["-400", 1, "easeInBack"]
+							]
+						]
+					]
+				}],
+				["solid", {
+					"stagger": [300, -100],
+					"color": ["$", ["var", "#color-brand"]],
+					"layout": "vertical packed",
+					"align": "center",
+					"padding": [
+						"4su",
+						"15su",
+						0,
+						"15su"
+					],
+					"mask": {
+						"padding": [
+							0,
+							["animate",
+								[0, "100rw", "easeInOutCubic"],
+								["+500", 0],
+								["100%", "100rw"],
+								["-500", 0, "easeInOutCubic"]
+							],
+							0,
+							0
+						],
+						"radius": "8su"
+					}
+				}, [
+					["text", {
+						"mixins": ["ds-sbg-mixins",
+							"text",
+							"text-label"
+						],
+						"stagger": [300, -100],
+						"kerning": 0.1,
+						"justify": "center left",
+						"color": ["$", ["var", "color-fg"]],
+						"string": ["$", ["var", "location"]],
+						"case": "uppercase",
+						"measure": "cap-size",
+						"fit": true,
+						"transform": [
+							["translate",
+								["animate",
+									[0, "-25rw", "easeOutQuad"],
+									["+500", 0],
+									["100%", "-25rw"],
+									["-500", 0, "easeInOutCubic"]
+								],
+								0
+							]
+						],
+						"opacity": ["animate",
+							[0, 0, "easeOutSine"],
+							["+500", 1],
+							["100%", 0],
+							["-500", 1, "easeInSine"]
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

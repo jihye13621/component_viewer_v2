@@ -1,0 +1,41 @@
+[
+    "working-animation",
+    [
+        {
+            "key": "color-background",
+            "display": "Background",
+            "type": "color",
+            "default": [0, 0, 0, 1],
+            "required": false
+        },
+        {
+            "key": "color-shape",
+            "display": "Shape",
+            "type": "color",
+            "default": [1, 0, 0, 1],
+            "required": false
+        }
+    ],
+    [
+        ["solid", {
+            "start": 0,
+            "duration": 4000,
+            "mixins": ["dsx-mixins", "set-su"],
+            "color": ["$", ["var", "color-background"]]
+        }, [
+            ["solid", {
+                "color": ["$", ["var", "color-shape"]],
+                "rect": ["200su", "200su"],
+                "transform": [
+                    ["translate",
+                        ["animate",
+                            [0, "800su", "easeInOutQuad"],
+                            ["+2000", 0]
+                        ],
+                        0
+                    ]
+                ]
+            }]
+        ]]
+    ]
+] 

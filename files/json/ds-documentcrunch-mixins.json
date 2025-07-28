@@ -1,0 +1,91 @@
+{
+	"params": {
+		"font-regular": {
+			"key": "font-regular",
+			"display": "Font Regular",
+			"type": "string",
+			"default": "./media/Roboto-Regular.ttf",
+			"required": false,
+			"private": false
+		},
+		"font-medium": {
+			"key": "font-medium",
+			"display": "Font Medium",
+			"type": "string",
+			"default": "./media/Roboto-Medium.ttf",
+			"required": false,
+			"private": false
+		},
+		"font-bold": {
+			"key": "font-bold",
+			"display": "Font Bold",
+			"type": "string",
+			"default": "./media/Roboto-Bold.ttf",
+			"required": false,
+			"private": false
+		},
+		"darkmode": [
+			{
+				"key": "darkmode",
+				"display": "Dark Mode",
+				"type": "bool",
+				"default": true,
+				"required": false
+			},
+			{
+				"key": "#darkblue",
+				"display": "Dark Blue",
+				"type": "color",
+				"default": "#204D84",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "#lightblue",
+				"display": "Light Blue",
+				"type": "color",
+				"default": "#7FC7F9",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "#white",
+				"display": "White",
+				"type": "color",
+				"default": [1, 1, 1, 1],
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "#fg",
+				"display": "Foreground",
+				"type": "color",
+				"default": [0, 0, 0, 0],
+				"required": false,
+				"private": true,
+				"script": ["$",
+					["if",
+						["var", "darkmode"],
+						["var", "#white"],
+						["var", "#darkblue"]
+					]
+				]
+			},
+			{
+				"key": "#bg",
+				"display": "Background",
+				"type": "color",
+				"default": [0, 0, 0, 0],
+				"required": false,
+				"private": true,
+				"script": ["$",
+					["if",
+						["var", "darkmode"],
+						["var", "#darkblue"],
+						["var", "#white"]
+					]
+				]
+			}
+		]
+	}
+}

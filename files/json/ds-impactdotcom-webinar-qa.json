@@ -1,0 +1,393 @@
+[
+	"ds-impactdotcom-webinar-qa",
+	[
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["gain", 0],
+				["motion", "none"]
+			]
+		},
+		{
+			"key": "do-background",
+			"display": "Background",
+			"type": "bool",
+			"default": true,
+			"required": false
+		},
+		["ds-impactdotcom-webinar-mixins",
+			"color-accent",
+			"color-primary",
+			"font-bold"
+		],
+		{
+			"key": "#rad",
+			"display": "Radius",
+			"type": "number",
+			"default": 100,
+			"required": false,
+			"private": true,
+			"script": ["$",
+				["min", ["width"], ["height"]]
+			]
+		},
+		{
+			"key": "#max-rad",
+			"display": "Radius",
+			"type": "number",
+			"default": 100,
+			"required": false,
+			"private": true,
+			"script": ["$",
+				["max", ["width"], ["height"]]
+			]
+		}
+	],
+	[
+		["solid", {
+			"enabled": ["$", ["var", "do-background"]],
+			"color": ["$", ["var", "color-black"]],
+			"opacity": ["animate",
+				[0, 0, "easeOutQuad"],
+				["+250", 1],
+				["100%", 0],
+				["-200", 1, "easeInQuad"]
+			]
+		}],
+		["null", {
+			"mixins": ["dsx-mixins", "set-su"]
+		}, [
+			["ds-impactdotcom-webinar-lines", {
+				"stagger": [400, 0],
+				"color-1": ["$", ["var", "color-accent"]],
+				"color-2": ["$", ["var", "color-gradient"]],
+				"opacity": ["animate",
+					[0, 0, "easeOutQuad"],
+					["+350", 1],
+					["100%", 0],
+					["-300", 1, "easeInQuad"]
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["gt", ["aspect"], 1]],
+						"transform": [
+							["translate",
+								["animate",
+									[0, "-150su", "easeOutCubic"],
+									["+800", 0],
+									["100%", "100su"],
+									["-600", 0, "easeInCubic"]
+								],
+								0
+							]
+						],
+						"lines": [
+							[0.5],
+							[0.7],
+							[0.85],
+							[0.90]
+						]
+					},
+					{
+						"enabled": ["$", ["lte", ["aspect"], 1]],
+						"transform": [
+							["translate",
+								0,
+								["animate",
+									[0, "600su", "easeOutCubic"],
+									["+800", "300su"],
+									["100%", 0],
+									["-600", "300su", "easeInCubic"]
+								]
+							],
+							["translate",
+								0,
+								["animate",
+									[0, "100su"],
+									["100%", 0]
+								]
+							]
+						],
+						"lines": [
+							[0.05, 0.3, "bottom"],
+							[0.25, 0.4, "bottom"],
+							[0.5, 0.55, "bottom"],
+							[0.80, 0.15, "bottom"],
+							[0.90, 0.35, "bottom"]
+						]
+					}
+				]
+			}],
+			["text", {
+				"mixins": ["ds-impactdotcom-webinar-mixins",
+					"text"
+				],
+				"align": "center",
+				"string": "Q&A",
+				"font": ["$", ["var", "font-bold"]],
+				"height": "400su",
+				"measure": "cap-size",
+				"justify": "bottom left",
+				"fit": true,
+				"color": ["linear-gradient",
+					-0.25,
+					[
+						0.0,
+						["$", ["var", "color-accent"]]
+					],
+					[
+						1.0,
+						["$", ["var", "color-gradient"]]
+					]
+				],
+				"boundary": "letter",
+				"animations": [
+					{
+						"mix": ["animate",
+							[0, 0],
+							["+500", 1],
+							["100%", 0],
+							["-400", 1]
+						],
+						"opacity": 1
+					}
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["gt", ["aspect"], 1]],
+						"transform": [
+							["rotate",
+								-0.25,
+								0,
+								"100rh"
+							],
+							["translate",
+								"500su",
+								["animate",
+									[0, 0],
+									["100%", "100su"]
+								]
+							]
+						]
+					},
+					{
+						"enabled": ["$", ["eq", ["aspect"], 1]],
+						"align": "top center",
+						"justify": "top center",
+						"transform": [
+							["translate",
+								["animate",
+									[0, "50su"],
+									["100%", "-50su"]
+								],
+								"-20su"
+							]
+						]
+					},
+					{
+						"enabled": ["$", ["and",
+							["lt", ["aspect"], 1],
+							["gte", ["aspect"], 0.6]
+						]],
+						"align": "top center",
+						"justify": "top center",
+						"transform": [
+							["translate",
+								["animate",
+									[0, "50su"],
+									["100%", "-50su"]
+								],
+								"30su"
+							]
+						]
+					},
+					{
+						"enabled": ["$", ["lt", ["aspect"], 0.6]],
+						"align": "top center",
+						"justify": "top center",
+						"transform": [
+							["translate",
+								["animate",
+									[0, "50su"],
+									["100%", "-50su"]
+								],
+								"80su"
+							]
+						]
+					}
+				]
+			}],
+			["null", {
+				"mixins": ["dsx-mixins", "safezone"]
+			}, [
+				["ds-impactdotcom-webinar-circle", {
+					"stagger": [200, -100],
+					"rect": [
+						0,
+						0,
+						["$", ["*", ["var", "#rad"], 0.7]],
+						["$", ["*", ["var", "#rad"], 0.7]]
+					],
+					"asset": ["$", ["var", "asset"]],
+					"opacity": ["animate",
+						[0, 0, "easeOutQuad"],
+						["+350", 1],
+						["100%", 0],
+						["-300", 1, "easeInQuad"]
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["gt", ["aspect"], 1]],
+							"align": "bottom right",
+							"transform": [
+								["translate",
+									["animate",
+										[0, ["$", ["*", ["var", "#rad"], -0.45]], "easeOutCubic"],
+										["+1000", ["$", ["*", ["var", "#rad"], -0.3]]],
+										["100%", ["$", ["*", ["var", "#rad"], -0.15]]],
+										["-600", ["$", ["*", ["var", "#rad"], -0.3]], "easeInCubic"]
+									],
+									0
+								]
+							]
+						},
+						{
+							"enabled": ["$", ["eq", ["aspect"], 1]],
+							"align": "bottom center",
+							"transform": [
+								["translate",
+									0,
+									["animate",
+										[0, ["$", ["*", ["var", "#rad"], 0.4]], "easeOutCubic"],
+										["+1000", ["$", ["*", ["var", "#rad"], 0]]],
+										["100%", ["$", ["*", ["var", "#rad"], -0.3]]],
+										["-600", ["$", ["*", ["var", "#rad"], 0]], "easeInCubic"]
+									]
+								]
+							]
+						},
+						{
+							"enabled": ["$", ["and",
+								["lt", ["aspect"], 1],
+								["gte", ["aspect"], 0.6]
+							]],
+							"align": "bottom center",
+							"transform": [
+								["translate",
+									0,
+									["animate",
+										[0, ["$", ["*", ["var", "#rad"], 0.2]], "easeOutCubic"],
+										["+1000", ["$", ["*", ["var", "#rad"], -0.2]]],
+										["100%", ["$", ["*", ["var", "#rad"], -0.3]]],
+										["-600", ["$", ["*", ["var", "#rad"], -0.2]], "easeInCubic"]
+									]
+								]
+							]
+						},
+						{
+							"enabled": ["$", ["lt", ["aspect"], 0.6]],
+							"align": "bottom center",
+							"transform": [
+								["translate",
+									0,
+									["animate",
+										[0, ["$", ["*", ["var", "#rad"], 0]], "easeOutCubic"],
+										["+1000", ["$", ["*", ["var", "#rad"], -0.6]]],
+										["100%", ["$", ["*", ["var", "#rad"], -0.9]]],
+										["-600", ["$", ["*", ["var", "#rad"], -0.6]], "easeInCubic"]
+									]
+								]
+							]
+						}
+					]
+				}],
+				["ds-impactdotcom-webinar-circle", {
+					"rect": [
+						0,
+						0,
+						["$", ["*", ["var", "#rad"], 0.7]],
+						["$", ["*", ["var", "#rad"], 0.7]]
+					],
+					"orbit": true,
+					"color-1": ["$", ["var", "color-gradient"]],
+					"color-2": ["$", ["var", "color-accent"]],
+					"opacity": ["animate",
+						[0, 0, "easeOutQuad"],
+						["+350", 1],
+						["100%", 0],
+						["-300", 1, "easeInQuad"]
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["gt", ["aspect"], 1]],
+							"align": "bottom right",
+							"transform": [
+								["translate",
+									["animate",
+										[0, "-600su", "easeOutCubic"],
+										["+1000", 0],
+										["100%", "125su"],
+										["-600", 0, "easeInCubic"]
+									],
+									0
+								]
+							]
+						},
+						{
+							"enabled": ["$", ["eq", ["aspect"], 1]],
+							"align": "bottom center",
+							"transform": [
+								["translate",
+									0,
+									["animate",
+										[0, "1000su", "easeOutCubic"],
+										["+1000", "600su"],
+										["100%", "300su"],
+										["-600", "600su", "easeInCubic"]
+									]
+								]
+							]
+						},
+						{
+							"enabled": ["$", ["and",
+								["lt", ["aspect"], 1],
+								["gte", ["aspect"], 0.6]
+							]],
+							"align": "bottom center",
+							"transform": [
+								["translate",
+									0,
+									["animate",
+										[0, "800su", "easeOutCubic"],
+										["+1000", "400su"],
+										["100%", "100su"],
+										["-600", "400su", "easeInCubic"]
+									]
+								]
+							]
+						},
+						{
+							"enabled": ["$", ["lt", ["aspect"], 0.6]],
+							"align": "bottom center",
+							"transform": [
+								["translate",
+									0,
+									["animate",
+										[0, "500su", "easeOutCubic"],
+										["+1000", 0],
+										["100%", "-250su"],
+										["-600", 0, "easeInCubic"]
+									]
+								]
+							]
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

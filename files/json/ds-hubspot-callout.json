@@ -1,0 +1,354 @@
+[
+	"ds-hubspot-callout",
+	[
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["gain", 0],
+				["justify", "fill"],
+				["motion", "none"]
+			]
+		},
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "text",
+			"default": "Add text",
+			"required": false
+		},
+		["ds-hubspot-mixins",
+			"color-primary",
+			"color-secondary",
+			"color-darkgreys",
+			"color-neutrals"
+		],
+		["dsx-mixins", "boilerplate"],
+		["ds-hubspot-mixins", "dark-mode"],
+		{
+			"key": "animate-camera",
+			"display": "Animate Camera",
+			"type": "bool",
+			"default": true,
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", "set-su"]
+		}, [
+			["solid", {
+				"color": ["$", ["var", "color-oatmilk"]],
+				"rect": [
+					0,
+					0,
+					"40rw",
+					"100rh"
+				],
+				"align": "right",
+				"transform": [
+					["translate",
+						0,
+						["animate",
+							[0, "150rh", "easeOutCubic"],
+							["+650", 0],
+							["100%", "150rh"],
+							["-500", 0, "easeInCubic"]
+						]
+					]
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["=", ["aspect"], 1]],
+						"rect": [
+							0,
+							0,
+							"50rw",
+							"100rh"
+						]
+					},	
+					{
+						"enabled": ["$", ["<", ["aspect"], 1]],
+						"rect": [
+							0,
+							0,
+							"100rw",
+							"50rh"
+						],
+						"align": "bottom",
+						"transform": [
+							["translate",
+								["animate",
+									[0, "150rw", "easeOutCubic"],
+									["+650", 0],
+									["100%", "150rw"],
+									["-500", 0, "easeInCubic"]
+								],
+								0
+							]
+						]
+					},
+					{
+						"enabled": ["$", ["var", "dark-mode"]],
+						"color": ["$", ["var", "color-eclipse"]]
+					},
+					{
+						"enabled": ["$", ["var", "animate-camera"]],
+						"script": ["$$",
+							["let",
+								[
+									["start", ["+", ["key", ["var", "self"], "start"], 400]],
+									["end", ["-", ["key", ["var", "self"], "end"], 300]],
+									["width", ["key", ["key", ["var", "self"], "roi"], "width"]],
+									["animate-in",
+										["ease",
+											["map",
+												["var", "frame"],
+												["var", "start"],
+												["+", ["var", "start"], 1000],
+												0,
+												1
+											],
+											"easeInOutCubic"
+										]
+									],
+									["animate-out",
+										["ease",
+											["map",
+												["var", "frame"],
+												["-", ["var", "end"], 1000],
+												["var", "end"],
+												0,
+												1
+											],
+											"easeInOutCubic"
+										]
+									],
+									["animation", ["-", ["var", "animate-in"], ["var", "animate-out"]]]
+								],
+								["live-transform",
+									["lookup-by-tag", "clip"],
+									"translate",
+									["*", -1, ["var", "animation"], ["/", ["var", "width"], 2]],
+									0
+								]
+							]	
+						]
+					}
+				]
+			}, [
+				["solid", {
+					"rect": [
+						0,
+						"-65rw",
+						"130rw",
+						"130rw"
+					],
+					"radius": "100rw",
+					"color": ["$", ["var", "color-oatmilk"]],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["<", ["aspect"], 1]],
+							"rect": [
+								"-65rw",
+								0,
+								"130rw",
+								"130rw"
+							]
+						},
+						{
+							"enabled": ["$", ["var", "dark-mode"]],
+							"color": ["$", ["var", "color-eclipse"]]
+						}
+					]
+				}],
+				["false-color", {
+					"color-1": ["$", ["var", "color-chapati"]],
+					"color-2": ["$", ["var", "color-chapati"]],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["var", "dark-mode"]],
+							"color-1": ["$", ["var", "color-darkmatter"]],
+							"color-2": ["$", ["var", "color-darkmatter"]]
+						}
+					]
+				}, [
+					["asset", {
+						"file": "./media/ds-hubspot-icon-lines.mov",
+						"loop": true,
+						"justify": "fit bottom center",
+						"breakpoints": [
+							{
+								"enabled": ["$", ["<", ["aspect"], 1]],
+								"rect": [
+									0,
+									0,
+									"100rh",
+									"100rh"
+								],
+								"align": "bottom right",
+								"justify": "fit bottom right",
+								"transform": [
+									["rotate",
+										0.25,
+										"100rw",
+										"100rh"
+									],
+									["scale",
+										-1,
+										1,
+										"100rw",
+										"100rh"
+									]
+								]
+							}
+						]
+					}]
+				]],
+				["false-color", {
+					"color-1": ["$", ["var", "color-berlin-bus"]],
+					"color-2": ["$", ["var", "color-berlin-bus"]],
+					"z-index": 10
+				}, [
+					["asset", {
+						"rect": [
+							"-60nsu",
+							"60rh",
+							"100nsu",
+							"100nsu"
+						],
+						"file": "./media/ds-hubspot-icon-dots.mov",
+						"loop": true,
+						"justify": "fit bottom center",
+						"breakpoints": [
+							{
+								"enabled": ["$", ["<", ["aspect"], 1]],
+								"rect": [
+									"87rw",
+									"70rh",
+									"100nsu",
+									"100nsu"
+								]
+							}
+						]
+					}],
+					["asset", {
+						"start": 1000,
+						"rect": [
+							"60rw",
+							"30su",
+							"100nsu",
+							"100nsu"
+						],
+						"file": "./media/ds-hubspot-icon-dots.mov",
+						"loop": true,
+						"justify": "fit bottom center",
+						"breakpoints": [
+							{
+								"enabled": ["$", ["<", ["aspect"], 1]],
+								"rect": [
+									"10rw",
+									"-60nsu",
+									"100nsu",
+									"100nsu"
+								]
+							}
+						]
+					}]
+				]],
+				["null", {
+					"layout": "vertical",
+					"align": "center",
+					"gap": "50su",
+					"padding": [
+						["$", ["nth", ["safezone"], 0]],
+						["$", ["nth", ["safezone"], 1]],
+						["$", ["nth", ["safezone"], 2]],
+						"80nsu"
+					],
+					"transform": [
+						["translate",
+							0,	
+							["animate",
+								[0, "400su", "easeOutCubic"],
+								["+650", 0]
+							]
+						]
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["<", ["aspect"], 1]],
+							"layout": "horizontal",
+							"transform": [
+								["translate",
+									["animate",
+										[0, "400su", "easeOutCubic"],
+										["+650", 0]
+									],
+									0
+								]
+							],
+							"padding": [
+								"80nsu",
+								["$", ["nth", ["safezone"], 1]],
+								["$", ["nth", ["safezone"], 2]],
+								["$", ["nth", ["safezone"], 3]]
+							]
+						}
+					]
+				}, [
+					["null", {
+						"enabled": ["$", ["exists", ["var", "asset"]]],
+						"breakpoints": [
+							{
+								"enabled": ["$", ["<", ["aspect"], 1]],
+								"order": 2
+							}
+						]
+					}, [
+						["user-asset", {
+							"file": ["$", ["var", "asset"]],
+							"justify": "fill center",
+							"mask": {}
+						}]
+					]],
+					["text", {
+						"stagger": [400, 0],
+						"enabled": ["$", ["exists", ["var", "text"]]],
+						"mixins": ["ds-hubspot-mixins", "font-text-large"],
+						"color": ["$", ["var", "color-eclipse"]],
+						"measure": "letter-size",
+						"string": ["$", ["var", "text"]],
+						"justify": "center",
+						"animations": [
+							{
+								"translate": [
+									0,
+									"100su"
+								]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+800", 1]
+								],
+								"easing": "easeOutCubic",
+								"translate": [0, 0],
+								"opacity": 1
+							}
+						],
+						"breakpoints": [
+							{
+								"enabled": ["$", ["var", "dark-mode"]],
+								"color": ["$", ["var", "color-oatmilk"]]
+							}
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

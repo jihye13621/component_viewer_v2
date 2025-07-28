@@ -1,0 +1,246 @@
+[
+	"ds6-stat",
+	[
+		{
+			"key": "stat",
+			"display": "Stat",
+			"type": "text",
+			"default": "Add a statistic",
+			"required": false
+		},
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "text",
+			"default": "Optional statistic details",
+			"required": false
+		},
+		{
+			"key": "font-1",
+			"display": "Style",
+			"type": "fontstyle",
+			"default": {
+				"font": "./media/Archivo_ExtraCondensed-ExtraBold.ttf",
+				"height": 100
+			},
+			"required": false,
+			"script": ["$",
+				["key-set",
+					["var", "font-1"],
+					"height",
+					["round", ["*", ["var", "size"], ["var", "font-1", "height"]]]
+				]
+			]
+		},
+		{
+			"key": "font-2",
+			"display": "Style",
+			"type": "fontstyle",
+			"default": {
+				"font": "./media/Archivo_ExtraCondensed-Medium.ttf",
+				"height": 50
+			},
+			"required": false,
+			"script": ["$",
+				["key-set",
+					["var", "font-2"],
+					"height",
+					["round", ["*", ["var", "size"], ["var", "font-2", "height"]]]
+				]
+			]
+		},
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": "#202425",
+			"required": false
+		},
+		{
+			"key": "color-2",
+			"display": "Color 2",
+			"type": "color",
+			"default": "#FFE400",
+			"required": false
+		},
+		{
+			"key": "background",
+			"display": "Background",
+			"type": "color",
+			"default": null,
+			"required": false
+		},
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": 2,
+			"required": false
+		},
+		{
+			"key": "size",
+			"display": "Size",
+			"type": "number",
+			"default": 1.0,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"step": 0.05,
+				"minimum": 0.5,
+				"maximum": 1.5
+			}
+		},
+		{
+			"key": "#align",
+			"type": "string",
+			"default": "center",
+			"required": false,
+			"private": true,
+			"script": ["$", ["switch", ["var", "position"], {
+				"1": "bottom left",
+				"2": "bottom center",
+				"3": "bottom right",
+				"4": "left",
+				"5": "center",
+				"6": "right",
+				"7": "top left",
+				"8": "top center",
+				"9": "top right",
+				"_": "center"
+			}]]
+		}
+	],
+	[
+		["dsx-background", {
+			"enabled": ["$", ["exists", ["var", "background"]]],
+			"color": ["$", ["var", "background"]]
+		}],
+		["dsx-padding", {
+			"position": ["$", ["var", "position"]]
+		}, [
+			["ds6-boxes", {
+				"flex": {
+					"position": "fixed"
+				},
+				"offset": [
+					["$", ["*", -0.2, ["var", "font-1", "height"]]],
+					["$", ["*", 0.2, ["var", "font-1", "height"]]]
+				],
+				"anchor-in": [
+					0,
+					0
+				],
+				"anchor-out": [
+					"100rw",
+					"100rh"
+				],
+				"color-bg": ["$", ["var", "color-1"]],
+				"color-fg": ["$", ["var", "color-2"]]
+			}],
+			["null", {
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"padding": [
+					["$", ["*", 0.2, ["var", "font-1", "height"]]],
+					["$", ["*", 0.2, ["var", "font-1", "height"]]],
+					["$", ["*", 0.2, ["var", "font-1", "height"]]],
+					["$", ["*", 0.2, ["var", "font-1", "height"]]]
+				]
+			}, [
+				["text", {
+					"string": ["$", ["var", "stat"]],
+					"justify": ["$", ["var", "#align"]],
+					"color": ["$", ["var", "color-1"]],
+					"style": ["$", ["var", "font-1"]],
+					"boundary": "word",
+					"animations": [
+						{
+							"translate": [
+								0,
+								["$", ["*", -1, ["var", "font-2", "height"]]]
+							]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+500", 1]
+							],
+							"ramp": 1.0,
+							"opacity": 1,
+							"easing": "easeOutQuad",
+							"translate": [
+								0,
+								0
+							]
+						},
+						{
+							"mix": ["animate",
+								["100%", null],
+								["-100", 1],
+								["-300", 0]
+							],
+							"ramp": 1.0,
+							"opacity": 0,
+							"easing": "easeInQuad",
+							"translate": [
+								0,
+								["$", ["*", 1, ["var", "font-2", "height"]]]
+							]
+						}
+					]
+				}],
+				["text", {
+					"string": ["$", ["var", "text"]],
+					"justify": ["$", ["switch", ["var", "position"], {
+						"1": "left",
+						"3": "right",
+						"4": "left",
+						"6": "right",
+						"7": "left",
+						"9": "right",
+						"_": "center"
+					}]],
+					"color": ["$", ["var", "color-1"]],
+					"style": ["$", ["var", "font-2"]],
+					"boundary": "word",
+					"animations": [
+						{
+							"translate": [
+								0,
+								["$", ["*", -1, ["var", "font-2", "height"]]]
+							]
+						},
+						{
+							"mix": ["animate",
+								[100, 0],
+								["+500", 1]
+							],
+							"ramp": 1.0,
+							"opacity": 1,
+							"easing": "easeOutQuad",
+							"translate": [
+								0,
+								0
+							]
+						},
+						{
+
+							"mix": ["animate",
+								["100%", null],
+								["-100", 1],
+								["-300", 0]
+							],
+							"ramp": 1.0,
+							"opacity": 0,
+							"easing": "easeInQuad",
+							"translate": [
+								0,
+								["$", ["*", 1, ["var", "font-2", "height"]]]
+							]
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

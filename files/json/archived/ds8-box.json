@@ -1,0 +1,104 @@
+[
+	"ds8-box",
+	[
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": "#F2DF99",
+			"required": false
+		},
+		{
+			"key": "radius",
+			"display": "Radius",
+			"type": "scalar",
+			"default": 50,
+			"required": false
+		},
+		{
+			"key": "timing",
+			"display": "Timing",
+			"type": "point",
+			"default": [0, 0],
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"stagger": ["$", ["var", "timing"]],
+			"mask": {
+				"padding": [
+					0,
+					["animate",
+						[0, "50rw", "easeOutQuad"],
+						[500, 0],
+						["100%", "50rw"],
+						["-500", 0, "easeInQuad"]
+					],
+					0,
+					["animate",
+						[0, "50rw", "easeOutQuad"],
+						[500, 0],
+						["100%", "50rw"],
+						["-500", 0, "easeInQuad"]
+					]
+				],
+				"radius": ["$", ["var", "radius"]]
+			}
+		}, [
+			["null", {
+				"stagger": ["$", ["var", "timing"]],
+				"padding": [
+					["$", ["*", -0.95, ["var", "radius"]]],
+					["animate",
+						[0, 0, "easeOutQuad"],
+						[500, ["$", ["*", -0.95, ["var", "radius"]]]],
+						["100%", 0],
+						["-500", ["$", ["*", -0.95, ["var", "radius"]]], "easeInQuad"]
+					],
+					["$", ["*", -0.95, ["var", "radius"]]],
+					["animate",
+						[0, 0, "easeOutQuad"],
+						[500, ["$", ["*", -0.95, ["var", "radius"]]]],
+						["100%", 0],
+						["-500", ["$", ["*", -0.95, ["var", "radius"]]], "easeInQuad"]
+					]
+				]
+			}, [
+				["solid", 	{
+					"stagger": ["$", ["var", "timing"]],
+					"color": [0, 0, 0, 0],
+					"stroke": ["animate",
+						[0, 0, "easeOutQuad"],
+						[50, ["$", ["var", "radius"]]],
+						["100%", 0],
+						["-50", ["$", ["var", "radius"]], "easeInQuad"]
+					],
+					"radius": ["animate",
+						[0, 0, "easeOutQuad"],
+						[50, ["$", ["*", 2.0, ["var", "radius"]]]],
+						["100%", 0],
+						["-50", ["$", ["*", 2.0, ["var", "radius"]]], "easeInQuad"]
+					],
+					"stroke-color": ["$", ["var", "color-1"]],
+					"rect": [
+						["animate",
+							[0, "50rw", "easeOutQuad"],
+							[500, 0],
+							["100%", "50rw"],
+							["-500", 0, "easeInQuad"]
+						],
+						0,
+						["animate",
+							[0, 0, "easeOutQuad"],
+							[500, "100rw"],
+							["100%", 0],
+							["-500", "100rw", "easeInQuad"]
+						],
+						"100rh"
+					]
+				}]
+			]]
+		]]
+	]
+]

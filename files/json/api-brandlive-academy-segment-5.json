@@ -1,0 +1,392 @@
+[
+	"api-brandlive-academy-segment-5",
+	[
+		{
+			"key": "headline",
+			"display": "Headline",
+			"type": "string",
+			"default": "Building a Culture of Collaboration and Innovation",
+			"required": false
+		},
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "string",
+			"default": "Employee Engagement",
+			"required": false
+		},
+		{
+			"key": "font-1",
+			"display": "Font 1",
+			"type": "string",
+			"required": false
+		},
+		{
+			"key": "font-2",
+			"display": "Font 2",
+			"type": "string",
+			"required": false
+		},
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": "#FFFFFF",
+			"required": false
+		},
+		{
+			"key": "color-2",
+			"display": "Color 2",
+			"type": "color",
+			"default": "#09083F",
+			"required": false
+		},
+		{
+			"key": "color-3",
+			"display": "Color 3",
+			"type": "color",
+			"default": "#FFBC1E",
+			"required": false
+		},
+		{
+			"key": "color-4",
+			"display": "Color 4",
+			"type": "color",
+			"default": "#ED0201",
+			"required": false
+		},
+		{
+			"key": "color-5",
+			"display": "Color 5",
+			"type": "color",
+			"default": "#0B45AC",
+			"required": false
+		},
+		{
+			"key": "text-color-1",
+			"display": "Text Color 1",
+			"type": "color",
+			"default": "#FFFFFF",
+			"required": false
+		},
+		{
+			"key": "text-color-2",
+			"display": "Text Color 2",
+			"type": "color",
+			"default": "#FFFFFF",
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-dsx-su"
+			]
+		},[
+			["solid", {
+				"rect": [0, 0, "100rw", "100rh"],
+				"color": ["$", ["var", "color-1"]],
+				"end": 60
+			}],
+			["solid", {
+				"rect": [0, 0, "100rw", "100rh"],
+				"color": ["$", ["var", "color-2"]],
+				"start": 60
+			}],
+			["solid", {
+				"path": [
+					["25rw", "25rh"],
+					["25rw", "75rh"],
+					["50rw", "100rh"],
+					["75rw", "75rh"],
+					["75rw", "25rh"],
+					["50rw", "0rh"]
+				],
+				"color": ["$", ["var", "color-2"]],
+				"transform": [
+					["scale",
+						["animate",
+							[0, 1.0],
+							["+60", 0.95]
+						]
+					]
+				],
+				"end": 60
+			}],
+			["solid", {
+				"path": [
+					["25rw", "25rh"],
+					["25rw", "75rh"],
+					["50rw", "100rh"],
+					["75rw", "75rh"],
+					["75rw", "25rh"],
+					["50rw", "0rh"]
+				],
+				"color": ["$", ["var", "color-1"]],
+				"start": 60,
+				"transform": [
+					["scale",
+						["animate",
+							[0, 0.95],
+							["+166", 0.45]
+						]
+					]
+				],
+				"end": 266
+			}],
+			["null",{
+				"start": 266,
+				"end": 1000
+			}, [
+				["solid", {
+					"path": [
+						["50rw", "50rh"],
+						["1560su", "560su"],
+						["1560su", "880su"]
+					],
+					"color": ["$", ["var", "color-1"]],
+					"//": "right",
+					"transform": [
+						["translate",
+							["animate", 
+								["+540", 0, "easeInQuad"],
+								["+233", "160su"]
+							],
+							["animate",
+								["+540", 0, "easeInQuad"],
+								["+233", "90su"]
+							]
+						]
+					]
+				}],
+				["solid", {
+					"path": [
+						["50rw", "50rh"],
+						["1560su", "560su"],
+						["1560su", "880su"]
+					],
+					"color": ["$", ["var", "color-4"]],
+					"//": "right",
+					"start": 266,
+					"duration": 233
+				}],
+				["solid", {
+					"path": [
+						["50rw", "50rh"],
+						["1000su", "560su"],
+						["1000su", "880su"]
+					],
+					"color": ["$", ["var", "color-1"]],
+					"transform": [
+						["translate",
+							["animate", 
+								["+540", 0, "easeInQuad"],
+								["+233", "-160su"]
+							],
+							["animate",
+								["+540", 0, "easeInQuad"],
+								["+233", "90su"]
+							]
+						]
+					],
+					"//": "left"
+				}],
+				["solid", {
+					"path": [
+						["50rw", "50rh"],
+						["1000su", "560su"],
+						["1000su", "880su"]
+					],
+					"color": ["$", ["var", "color-3"]],
+					"//": "left",
+					"start": 266,
+					"duration": 233
+				}],
+				["solid", {
+					"path": [
+						["50rw", "50rh"],
+						["1000su", "560su"],
+						["50rw", "398su"]
+					],
+					"color": ["$", ["var", "color-1"]],
+					"//": "top left",
+					"end": 500
+				}],
+				["solid", {
+					"path": [
+						["50rw", "50rh"],
+						["1000su", "560su"],
+						["50rw", "398su"]
+					],
+					"color": ["$", ["var", "color-4"]],
+					"//": "top left",
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[0, 0, "easeInQuad"],
+								["+233", "-185su"]
+							]
+						]
+					],
+					"start": 500
+				}],
+				["solid", {
+					"path": [
+						["50rw", "50rh"],
+						["1560su", "560su"],
+						["50rw", "398su"]
+					],
+					"color": ["$", ["var", "color-1"]],
+					"//": "top right",
+					"end": 500
+				}],
+				["solid", {
+					"path": [
+						["50rw", "50rh"],
+						["1560su", "560su"],
+						["50rw", "398su"]
+					],
+					"color": ["$", ["var", "color-3"]],
+					"//": "top right",
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[0, 0, "easeInQuad"],
+								["+233", "-185su"]
+							]
+						]
+					],
+					"start": 500
+				}],
+				["solid", {
+					"path": [
+						["50rw", "50rh"],
+						["1000su", "880su"],
+						["50rw", "1042su"]
+					],
+					"color": ["$", ["var", "color-1"]],
+					"//": "bottom left",
+					"transform": [
+						["translate",
+							["animate", 
+								["+540", 0, "easeInQuad"],
+								["+233", "-160su"]
+							],
+							["animate",
+								["+540", 0, "easeInQuad"],
+								["+233", "90su"]
+							]
+						]
+					]
+				}],
+				["solid", {
+					"path": [
+						["50rw", "50rh"],
+						["1000su", "880su"],
+						["50rw", "1042su"]
+					],
+					"color": ["$", ["var", "color-3"]],
+					"//": "bottom left",
+					"start": 266,
+					"duration": 233
+				}],
+				["solid", {
+					"path": [
+						["50rw", "50rh"],
+						["1560su", "880su"],
+						["50rw", "1042su"]
+					],
+					"color": ["$", ["var", "color-1"]],
+					"//": "bottom right",
+					"end": 266
+				}],
+				["solid", {
+					"path": [
+						["50rw", "50rh"],
+						["1560su", "880su"],
+						["50rw", "1042su"]
+					],
+					"color": ["$", ["var", "color-4"]],
+					"//": "bottom right",
+					"transform": [
+						["translate",
+							["animate", 
+								["+274", 0, "easeInQuad"],
+								["+233", "160su"]
+							],
+							["animate",
+								["+274", 0, "easeInQuad"],
+								["+233", "90su"]
+							]
+						]
+					],
+					"start": 266
+				}]
+			]],
+			["api-brandlive-academy-segment-5-triangles", {
+				"rect": ["50rw", 0, "50rw", "100rh"],
+				"color-1": ["$", ["var", "color-1"]],
+				"color-2": ["$", ["var", "color-3"]],
+				"color-3": ["$", ["var", "color-4"]],
+				"color-4": ["$", ["var", "color-5"]],
+				"start": 1000,
+				"end": 3800,
+				"effect": [
+					["mirror", {
+						"x": -0.5
+					}]
+				]
+			}],
+			["solid", {
+				"start": 3800,
+				"end": 3966,
+				"color": ["$", ["var", "color-1"]],
+				"path": [
+					["1600su", "535su"],
+					["50rw", "1095su"],
+					["960su", "535su"]
+				],
+				"transform": [
+					["translate",
+						0,
+						["animate",
+							[0, 0, "easeInOutQuad"],
+							["+166", "120su"]
+						]
+					]
+				]
+			}],
+			["solid", {
+				"start": 3966,
+				"color": ["$", ["var", "color-3"]],
+				"path": [
+					["1600su", "655su"],
+					["50rw", "1215su"],
+					["960su", "655su"]
+				],
+				"transform": [
+					["rotate",
+						["animate",
+							[0, 0, "easeInQuad"],
+							["+500", -0.1666667],
+							["+60", -0.158],
+							["+60", -0.166667]
+						],
+						"50rw", "1215su"
+					]
+				]
+			}],
+			["api-brandlive-academy-segment-text", {
+				"headline": ["$", ["var", "headline"]],
+				"text": ["$", ["var", "text"]],
+				"font-1": ["$", ["var", "font-1"]],
+				"font-2": ["$", ["var", "font-2"]],
+				"text-color-1": ["$", ["var", "text-color-1"]],
+				"text-color-2": ["$", ["var", "text-color-2"]],
+				"start": 4000
+			}]
+		]]
+	]
+]

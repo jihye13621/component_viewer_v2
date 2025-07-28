@@ -1,0 +1,690 @@
+[
+	"ds-hubspot-media",
+	[
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["gain", 0],
+				["justify", "fit"],
+				["motion", "none"]
+			],
+			"script": ["$", ["if",
+				["exists", ["var", "asset"]],
+				["var", "asset"],
+				"./media/image-wide.jpg"	
+			]]
+		},
+		{
+			"key": "asset-2",
+			"display": "Asset 2",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["gain", 0],
+				["justify", "fit"],
+				["motion", "none"]
+			]
+		},
+		{
+			"key": "asset-3",
+			"display": "Asset 3",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["gain", 0],
+				["justify", "fit"],
+				["motion", "none"]
+			]
+		},
+		{
+			"key": "asset-4",
+			"display": "Asset 4",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["gain", 0],
+				["justify", "fit"],
+				["motion", "none"]
+			]
+		},
+		{
+			"key": "asset-5",
+			"display": "Asset 5",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["gain", 0],
+				["justify", "fit"],
+				["motion", "none"]
+			]
+		},
+		["ds-hubspot-mixins",
+			"color-primary",
+			"color-secondary",
+			"color-darkgreys",
+			"color-lightgreys",
+			"color-neutrals"
+		],
+		["ds-hubspot-mixins",
+			"dark-mode"
+		],
+		{
+			"key": "#items",
+			"display": "Items",
+			"type": "object",
+			"default": [],
+			"required": false,
+			"private": true,
+			"script": ["$", ["compact", ["array",
+				["proc", ["var", "#safe-asset-get"], ["var", "asset"]],
+				["proc", ["var", "#safe-asset-get"], ["var", "asset-2"]],
+				["proc", ["var", "#safe-asset-get"], ["var", "asset-3"]],
+				["proc", ["var", "#safe-asset-get"], ["var", "asset-4"]],
+				["proc", ["var", "#safe-asset-get"], ["var", "asset-5"]]
+			]]]
+		},
+		{
+			"key": "#solo-image",
+			"display": "Is Solo Image",
+			"type": "bool",
+			"default": false,
+			"required": false,
+			"private": true,
+			"script": ["$",
+				["if",
+					["and",
+						["=", ["length", ["var", "#items"]], 1],
+						["=",
+							["media-type", ["nth", ["var", "#items"], 0]],
+							"image"
+						]
+					],
+					true,
+					false
+				]
+			]
+		},
+		{
+			"key": "#get-timing",
+			"display": "Get Timing",
+			"type": "proc",
+			"default": ["let",
+				[
+					["a", ["nth", ["var", "args"], 0]]
+				],
+				["if",
+					["exists", ["var", "a"]],
+					["if",
+						["=", ["type-of", ["var", "a"]], "string"],
+						["dur", ["var", "a"], 2000],
+						["if",
+							["exists", ["key", ["var", "a"], "file"]],
+							["key", ["var", "a"], "duration"],
+							0
+						]
+					],
+					0
+				]
+			],
+			"required": false,
+			"private": true
+		},
+		{
+			"key": "#safe-asset-get",
+			"display": "Get Asset Existence",
+			"type": "proc",
+			"default": ["let",
+				[
+					["a", ["nth", ["var", "args"], 0]]
+				],
+				["if",
+					["exists", ["var", "a"]],
+					["if",
+						["=", ["type-of", ["var", "a"]], "string"],
+						["var", "a"],
+						["if",
+							["exists", ["key", ["var", "a"], "file"]],
+							["var", "a"],
+							null
+						]
+					],
+					null
+				]
+			],
+			"required": false,
+			"private": true
+		},
+		{
+			"key": "#total-dur",
+			"display": "Total Duration",
+			"type": "number",
+			"default": 1000,
+			"required": false,
+			"private": true,
+			"script": ["$",
+				["if",
+					["var", "#solo-image"],
+					["key", ["comp-timing"], "duration"],
+					["+",
+						1000,
+						["proc", ["var", "#get-timing"], ["var", "asset"]],
+						["proc", ["var", "#get-timing"], ["var", "asset-2"]],
+						["proc", ["var", "#get-timing"], ["var", "asset-3"]],
+						["proc", ["var", "#get-timing"], ["var", "asset-4"]],
+						["proc", ["var", "#get-timing"], ["var", "asset-5"]]
+					]
+				]
+			]
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su"
+			],
+			"duration": ["$",
+				["min",
+					["var", "#total-dur"],
+					["key", ["comp-timing"], "duration"]
+				]
+			]
+		}, [
+			["solid", {
+				"mixins": ["dsx-mixins",
+					"safezone"
+				],
+				"color": ["$",
+					["if",
+						["var", "dark-mode"],
+						["var", "color-eclipse"],
+						["var", "color-oatmilk"]
+					]
+				],
+				"transform": [
+					["translate",
+						0,
+						["animate",
+							[0, "100ch", "easeOutQuart"],
+							["+650", 0],
+							["100%", "-100ch"],
+							["-500", 0, "easeInQuart"]
+						]
+					]
+				]
+			}, [
+				["for-each", {
+					"start": 1000,
+					"layout": "stacked", 
+					"align": "center",
+					"mask": {
+						"padding": [
+							["animate",
+								[0, "50rh", "easeOutQuart"],
+								["+300", 0, "easeInOutQuad"],
+								["+200", "10su"]
+							],
+							["animate",
+								[0, "50rw", "easeOutQuart"],
+								["+300", 0, "easeInOutQuad"],
+								["+200", "10su"]
+							],
+							["animate",
+								[0, "50rh", "easeOutQuart"],
+								["+300", 0, "easeInOutQuad"],
+								["+200", "10su"]
+							],
+							["animate",
+								[0, "50rw", "easeOutQuart"],
+								["+300", 0, "easeInOutQuad"],
+								["+200", "10su"]
+							]
+						]
+					},
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								["100%", "-20ch"],
+								["-500", 0, "easeInCubic"]
+							]
+						]
+					],
+					"items": ["$", ["var", "#items"]],
+					"-set-cursor": ["$", ["set", "cursor", 0]]
+				}, [
+					["user-asset", {
+						"enabled": ["$",
+							["if",
+								["<",
+									["var", "cursor"],
+									["-", ["key", ["comp-timing"], "duration"], 1000]
+								],
+								true,
+								false
+							]
+						],
+						"file": ["$", ["var", "item"]],
+						"tags": ["b-roll"],
+						"justify": "fit center",
+						"start": ["$", ["var", "cursor"]],
+						"duration": ["$",
+							["if",
+								["var", "#solo-image"],
+								["-", ["key", ["comp-timing"], "duration"], 1000],
+								["min",
+									["proc", ["var", "#get-timing"], ["var", "item"]],
+									["-",
+										["-", ["key", ["comp-timing"], "duration"], 1000],
+										["var", "cursor"]
+									]
+								]
+							]
+						]
+					}],
+					["null", {
+						"enabled": false,
+						"-set-cursor": ["$", ["set", "cursor",
+							["+",
+								["var", "cursor"],
+								["proc", ["var", "#get-timing"], ["var", "item"]]
+							]
+						]]
+					}]
+				]]
+			]],
+			["null", {
+				"transform": [
+					["translate",
+						0,
+						["animate",
+							[0, "100ch", "easeOutQuad"],
+							["+800", 0],
+							["100%", "-100ch"],
+							["-500", 0, "easeInCubic"]
+						]
+					]
+				]
+			}, [
+				["false-color", {
+					"color-1": ["$", ["var", "color-sahara"]],
+					"color-2": ["$", ["var", "color-solaris"]]
+				}, [
+					["null", {
+						"transform": [
+							["scale",
+								["animate",
+									[1000, 0.7, "easeOutCubic"],
+									["+300", 0.15]
+								],
+								"0rw",
+								"0rh"
+							],
+							["translate",
+								["animate",
+									[0, "-100rw", "easeInOutQuad"],
+									["+500", "0rw", "linear"],
+									["+500", "0rw", "easeOutQuad"],
+									["+300", "10rw"]
+								],
+								["animate",
+									[1000, "-10rh", "easeOutQuad"],
+									["+300", "0rh"]
+								]
+							]
+						]
+					}, [
+						["asset", {
+							"file": "./media/ds-hubspot-icon-rings.mov",
+							"justify": "fit center",
+							"loop": true,
+							"transform": [
+								["translate",
+									["animate",
+										[0, 0, "easeInOutQuad"],
+										["+800", "25su", "easeInOutQuad"],
+										["+1100", "-20su", "easeInOutQuad"],
+										["+600", 0, "easeInOutQuad"],
+										"loop"
+									],
+									["animate",
+										[0, 0, "easeInOutQuad"],
+										["+800", "20su", "easeInOutQuad"],
+										["+1100", "-15su", "easeInOutQuad"],
+										["+1000", 0, "easeInOutQuad"],
+										"loop"
+									]
+								]
+							]
+						}]
+					]]
+				]],
+				["false-color", {
+					"color-1": ["$", ["var", "color-nebula"]],
+					"color-2": ["$", ["var", "color-nebula"]]
+				}, [
+					["null", {
+						"transform": [
+							["scale",
+								["animate",
+									[1000, 0.6, "easeOutCubic"],
+									["+300", 0.15]
+								],
+								"0rw",
+								"50rh"
+							],
+							["translate",
+								["animate",
+									[0, "-100rw", "easeInOutQuad"],
+									["+600", "-13rw", "linear"],
+									["+400", "-13rw", "easeOutQuad"],
+									["+300", "-3rw"]
+								],
+								["animate",
+									[1000, "0rh", "easeOutQuad"],
+									["+300", "-10rh"],
+									["100%", "-30rh"],
+									["-700", "-10rh", "easeInCubic"]
+								]
+							]
+						]
+					}, [
+						["asset", {
+							"file": "./media/ds-hubspot-icon-sparkles-1.mov",
+							"justify": "fit center",
+							"loop": true,
+							"transform": [
+								["translate",
+									["animate",
+										[0, 0, "easeInOutQuad"],
+										["+700", "20su", "easeInOutQuad"],
+										["+600", "-10su", "easeInOutQuad"],
+										["+900", 0, "easeInOutQuad"],
+										"loop"
+									],
+									["animate",
+										[0, 0, "easeInOutQuad"],
+										["+800", "5su", "easeInOutQuad"],
+										["+700", "-15su", "easeInOutQuad"],
+										["+700", 0, "easeInOutQuad"],
+										"loop"
+									]
+								]
+							]
+						}]
+					]],
+					["null", {
+						"transform": [
+							["scale",
+								["animate",
+									[1000, 0.7, "easeOutCubic"],
+									["+300", 0.15]
+								],
+								"0rw",
+								"100rh"
+							],
+							["translate",
+								["animate",
+									[0, "-100rw", "easeInOutQuad"],
+									["+700", "-10rw", "linear"],
+									["+300", "-10rw", "easeOutQuad"],
+									["+300", "0rw"]
+								],
+								["animate",
+									[1000, "10rh", "easeOutQuad"],
+									["+300", "0rh"],
+									["100%", "-40rh"],
+									["-500", 0, "easeInCubic"]
+								]
+							]
+						]
+					}, [
+						["asset", {
+							"file": "./media/ds-hubspot-icon-arcs.mov",
+							"justify": "fit center",
+							"loop": true,
+							"transform": [
+								["translate",
+									["animate",
+										[0, 0, "easeInOutQuad"],
+										["+500", "20su", "easeInOutQuad"],
+										["+1100", "-25su", "easeInOutQuad"],
+										["+800", 0, "easeInOutQuad"],
+										"loop"
+									],
+									["animate",
+										[0, 0, "easeInOutQuad"],
+										["+800", "20su", "easeInOutQuad"],
+										["+1000", "-20su", "easeInOutQuad"],
+										["+800", 0, "easeInOutQuad"],
+										"loop"
+									]
+								]
+							]
+						}]
+					]]
+				]],
+				["false-color", {
+					"color-1": ["$", ["var", "color-solaris"]],
+					"color-2": ["$", ["var", "color-eclipse"]],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["var", "dark-mode"]],
+							"color-1": ["$", ["var", "color-sahara"]],
+							"color-2": ["$", ["var", "color-berlin-bus"]]
+						}
+					]
+				}, [
+					["null", {
+						"transform": [
+							["scale",
+								["animate",
+									[1000, 0.6, "easeOutCubic"],
+									["+300", 0.15]
+								],
+								"0rw",
+								"50rh"
+							],
+							["translate",
+								["animate",
+									[0, "-100rw", "easeInOutQuad"],
+									["+600", "-13rw", "linear"],
+									["+400", "-13rw", "easeOutQuad"],
+									["+300", "-3rw"]
+								],
+								["animate",
+									[1000, "0rh", "easeOutQuad"],
+									["+300", "-10rh"],
+									["100%", "-30rh"],
+									["-700", "-10rh", "easeInCubic"]
+								]
+							]
+						]
+					}, [
+						["asset", {
+							"file": "./media/ds-hubspot-icon-sparkles-2.mov",
+							"justify": "fit center",
+							"loop": true,
+							"transform": [
+								["translate",
+									["animate",
+										[0, 0, "easeInOutQuad"],
+										["+700", "20su", "easeInOutQuad"],
+										["+600", "-10su", "easeInOutQuad"],
+										["+900", 0, "easeInOutQuad"],
+										"loop"
+									],
+									["animate",
+										[0, 0, "easeInOutQuad"],
+										["+800", "5su", "easeInOutQuad"],
+										["+700", "-15su", "easeInOutQuad"],
+										["+700", 0, "easeInOutQuad"],
+										"loop"
+									]
+								]
+							]
+						}]
+					]],
+					["null", {
+						"transform": [
+							["scale",
+								["animate",
+									[1000, 0.6, "easeOutCubic"],
+									["+300", 0.15]
+								],
+								"100rw",
+								"50rh"
+							],
+							["translate",
+								["animate",
+									[0, "100rw", "easeInOutQuad"],
+									["+600", "20rw", "linear"],
+									["+400", "20rw", "easeOutQuad"],
+									["+300", "0rw"]
+								],
+								["animate",
+									[1000, "10rh", "easeOutQuad"],
+									["+300", "0rh"]
+								]
+							]
+						]
+					}, [
+						["asset", {
+							"file": "./media/ds-hubspot-icon-square.mov",
+							"justify": "fit center",
+							"loop": true,
+							"transform": [
+								["translate",
+									["animate",
+										[0, 0, "easeInOutQuad"],
+										["+700", "20su", "easeInOutQuad"],
+										["+900", "-20su", "easeInOutQuad"],
+										["+1100", 0, "easeInOutQuad"],
+										"loop"
+									],
+									["animate",
+										[0, 0, "easeInOutQuad"],
+										["+900", "20su", "easeInOutQuad"],
+										["+1400", "-15su", "easeInOutQuad"],
+										["+800", 0, "easeInOutQuad"],
+										"loop"
+									]
+								]
+							]
+						}]
+					]]
+				]],
+				["false-color", {
+					"color-1": ["$", ["var", "color-solaris"]],
+					"color-2": ["$", ["var", "color-lorax"]]
+				}, [
+					["null", {
+						"transform": [
+							["scale",
+								["animate",
+									[1000, 0.6, "easeOutCubic"],
+									["+300", 0.15]
+								],
+								"100rw",
+								"0rh"
+							],
+							["translate",
+								["animate",
+									[0, "100rw", "easeInOutQuad"],
+									["+500", "0rw", "easeInOutQuad"],
+									["+500", "0rw", "easeOutQuad"],
+									["+300", "-5rw"]
+								],
+								["animate",
+									[1000, "0rh", "easeOutQuad"],
+									["+300", "0rh"]
+								]
+							]
+						]
+					}, [
+						["asset", {
+							"file": "./media/ds-hubspot-icon-tracker.mov",
+							"justify": "fit center",
+							"loop": true,
+							"transform": [
+								["translate",
+									["animate",
+										[0, 0, "easeInOutQuad"],
+										["+700", "20su", "easeInOutQuad"],
+										["+1100", "-20su", "easeInOutQuad"],
+										["+700", 0, "easeInOutQuad"],
+										"loop"
+									],
+									["animate",
+										[0, 0, "easeInOutQuad"],
+										["+1100", "10su", "easeInOutQuad"],
+										["+500", "-15su", "easeInOutQuad"],
+										["+800", 0, "easeInOutQuad"],
+										"loop"
+									]
+								]
+							]
+						}]
+					]],
+					["null", {
+						"transform": [
+							["scale",
+								["animate",
+									[1000, 0.6, "easeOutCubic"],
+									["+300", 0.15]
+								],
+								"100rw",
+								"100rh"
+							],
+							["translate",
+								["animate",
+									[0, "100rw", "easeInOutQuad"],
+									["+700", "-10rw", "linear"],
+									["+300", "-10rw", "easeOutQuad"],
+									["+300", "-10rw"]
+								],
+								["animate",
+									[1000, "10rh", "easeOutQuad"],
+									["+300", "0rh"],
+									["100%", "-50rh"],
+									["-600", 0, "easeInCubic"]
+								]
+							]
+						]
+					}, [
+						["asset", {
+							"file": "./media/ds-hubspot-icon-radial.mov",
+							"justify": "fit center",
+							"loop": true,
+							"transform": [
+								["translate",
+									["animate",
+										[0, 0, "easeInOutQuad"],
+										["+800", "20su", "easeInOutQuad"],
+										["+700", "-20su", "easeInOutQuad"],
+										["+900", 0, "easeInOutQuad"],
+										"loop"
+									],
+									["animate",
+										[0, 0, "easeInOutQuad"],
+										["+800", "20su", "easeInOutQuad"],
+										["+1100", "-12su", "easeInOutQuad"],
+										["+800", 0, "easeInOutQuad"],
+										"loop"
+									]
+								]
+							]
+						}]
+					]]
+				]]
+			]]
+		]]
+	]
+]

@@ -1,0 +1,145 @@
+[
+	"ds-mavenclinic-media",
+	[
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["gain", 0],
+				["justify", "fit"],
+				["motion", "none"]
+			],
+			"script": ["$", ["if",
+				["exists", ["var", "asset"]],
+				["var", "asset"],
+				"./media/image-wide.jpg"	
+			]]
+		},
+		{
+			"key": "animate-direction",
+			"display": "Animate Direction",
+			"type": "string",
+			"default": "right",
+			"required": false,
+			"options": [
+				{
+					"key": "right",
+					"display": "Right"
+				},
+				{
+					"key": "left",
+					"display": "Left"
+				},
+				{
+					"key": "top",
+					"display": "Top"
+				},
+				{
+					"key": "bottom",
+					"display": "Bottom"
+				}
+			]
+		},
+		["ds-mavenclinic-mixins",
+			"color-selector"
+		]
+	],
+	[
+		["solid", {
+			"color": ["$", ["var", "#background"]]
+		}],
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			],
+			"transform": [
+				["translate",
+					["animate",
+						[0, "100rw", "easeOutQuint"],
+						["+1000", 0],
+						["100%", "100rw"],
+						["-700", 0, "easeInQuint"]
+					],
+					0
+				]
+			],
+			"breakpoints": [
+				{
+					"enabled": ["$", ["eq", ["var", "animate-direction"], "left"]],
+					"transform": [
+						["translate",
+							["animate",
+								[0, "-100rw", "easeOutQuint"],
+								["+1000", 0],
+								["100%", "-100rw"],
+								["-700", 0, "easeInQuint"]
+							],
+							0
+						]
+					]
+				},
+				{
+					"enabled": ["$", ["eq", ["var", "animate-direction"], "top"]],
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[0, "-100rh", "easeOutQuint"],
+								["+1000", 0],
+								["100%", "-100rh"],
+								["-700", 0, "easeInQuint"]
+							]
+						]
+					]
+				},
+				{
+					"enabled": ["$", ["eq", ["var", "animate-direction"], "bottom"]],
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[0, "100rh", "easeOutQuint"],
+								["+1000", 0],
+								["100%", "100rh"],
+								["-700", 0, "easeInQuint"]
+							]
+						]
+					]
+				}
+			]
+		}, [
+			["null", {
+				"enabled": ["$", ["exists", ["var", "asset"]]],
+				"stagger": [600, -400],
+				"radius": "40su",
+				"color": ["$", ["var", "#foreground"]],
+				"layout": "stacked",
+				"align": "center",
+				"transform": [
+					["scale",
+						["animate",
+							[0, 0.85, "easeInOutQuad"],
+							["+500", 1],
+							["100%", 0.85],
+							["-400", 1, "easeInOutQuad"]
+						]
+					]
+				]
+			}, [
+				["user-asset", {
+					"file": ["$", ["var", "asset"]],
+					"justify": "fit center",
+					"tags": ["b-roll"],
+					"mask": {
+						"radius": "38su",
+						"transform": true
+					}
+				}]
+			]]
+		]]
+	]
+]

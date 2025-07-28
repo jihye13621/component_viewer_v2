@@ -1,0 +1,50 @@
+{
+	"params": {
+		"transition-select": {
+			"key": "transition-select",
+			"display": "Transition",
+			"type": "string",
+			"default": "pill",
+			"options": [
+				{
+					"key": "none",
+					"display": "None"
+				},
+				{
+					"key": "circle",
+					"display": "Circle"
+				},
+				{
+					"key": "pill",
+					"display": "Pill"
+				}
+			],
+			"required": false 
+		},
+		"animation-select": {
+			"key": "animation-select",
+			"display": "Animation Style",
+			"type": "string",
+			"default": "rise",
+			"options": [
+				{
+					"key": "rise",
+					"display": "Rise"
+				},
+				{
+					"key": "scale",
+					"display": "Scale"
+				},
+				{
+					"key": "word-rise",
+					"display": "Word Rise"
+				},
+				{
+					"key": "word-scale",
+					"display": "Word Scale"
+				}
+			],
+			"required": false
+		}
+	}
+}

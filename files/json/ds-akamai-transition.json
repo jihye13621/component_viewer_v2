@@ -1,0 +1,150 @@
+[
+	"ds-akamai-transition",
+	[
+		{
+			"key": "direction",
+			"display": "Direction",
+			"type": "string",
+			"default": "left",
+			"options": [
+				{
+					"key": "left",
+					"display": "Left"
+				},
+				{
+					"key": "right",
+					"display": "Right"
+				}
+			],
+			"required": false
+		},
+		["ds-akamai-mixins",
+			"colors"
+		]
+	],
+	[
+		["null", {
+			"breakpoints": [
+				{
+					"enabled": ["$", ["eq", ["var", "direction"], "left"]],
+					"mask": {
+						"padding": [
+							0,
+							["animate",
+								["100%", "100rw"],
+								["-1000", 0, "easeOutQuad"]
+							],
+							0,
+							0
+						]
+					}
+				},
+				{
+					"enabled": ["$", ["eq", ["var", "direction"], "right"]],
+					"mask": {
+						"padding": [
+							0,
+							0,
+							0,
+							["animate",
+								["100%", "100rw"],
+								["-1000", 0, "easeOutQuad"]
+							]
+						]
+					}
+				}
+			]
+		}, [
+			["solid", {
+				"stagger": [0, 0],
+				"color": "#3982c8",
+				"breakpoints": [
+					{
+						"enabled": ["$", ["eq", ["var", "direction"], "left"]],
+						"transform": [
+							["translate",
+								["animate",
+									[0, "100rw", "easeOutQuad"],
+									["+500", 0]
+								],
+								0
+							]
+						]
+					},
+					{
+						"enabled": ["$", ["eq", ["var", "direction"], "right"]],
+						"transform": [
+							["translate",
+								["animate",
+									[0, "-100rw", "easeOutQuad"],
+									["+500", 0]
+								],
+								0
+							]
+						]
+					}
+				]
+			}],
+			["solid", {
+				"stagger": [150, 0],
+				"color": "#49a1dd",
+				"breakpoints": [
+					{
+						"enabled": ["$", ["eq", ["var", "direction"], "left"]],
+						"transform": [
+							["translate",
+								["animate",
+									[0, "100rw", "easeOutQuad"],
+									["+750", 0]
+								],
+								0
+							]
+						]
+					},
+					{
+						"enabled": ["$", ["eq", ["var", "direction"], "right"]],
+						"transform": [
+							["translate",
+								["animate",
+									[0, "-100rw", "easeOutQuad"],
+									["+750", 0]
+								],
+								0
+							]
+						]
+					}
+				]
+			}],
+			["solid", {
+				"stagger": [350, 0],
+				"color": "#60b4e4",
+				"breakpoints": [
+					{
+						"enabled": ["$", ["eq", ["var", "direction"], "left"]],
+						"transform": [
+							["translate",
+								["animate",
+									[0, "100rw", "easeOutQuad"],
+									["+700", 0]
+								],
+								0
+							]
+						]
+					},
+					{
+						"enabled": ["$", ["eq", ["var", "direction"], "right"]],
+						"transform": [
+							["translate",
+								["animate",
+									[0, "-100rw", "easeOutQuad"],
+									["+700", 0]
+								],
+								0
+							]
+						]
+					}
+				]
+			}]
+		]]
+	]
+]

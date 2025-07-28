@@ -1,0 +1,109 @@
+[
+	"ds1-captions",
+	[
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": 2,
+			"required": false
+		},
+		{
+			"key": "transcript",
+			"display": "Transcript",
+			"type": "transcript",
+			"required": true
+		},
+		{
+			"key": "style",
+			"display": "Style",
+			"type": "fontstyle",
+			"default": {
+				"font": "./media/Inter-Medium.ttf",
+				"height": 44
+			},
+			"required": false
+		},
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": [1, 1, 1, 1],
+			"required": false
+		},
+		{
+			"key": "color-2",
+			"display": "Color 2",
+			"type": "color",
+			"default": [0, 0, 0, 1],
+			"required": false
+		},
+		{
+			"key": "color-3",
+			"display": "Color 3",
+			"type": "color",
+			"default": "#20FF79",
+			"required": false
+		},
+		{
+			"key": "slip",
+			"display": "Slip",
+			"type": "number",
+			"default": 0,
+			"required": false,
+			"private": true
+		}
+	],
+	[
+		["null", {
+			"padding": ["5ch", "5cw", "5ch", "5cw"]
+		}, [
+			["null", {
+				"padding": [5, 20, 5, 20],
+				"align": ["$", ["switch", ["var", "position"], {
+					"1": "left",
+					"3": "right",
+					"4": "left",
+					"6": "right",
+					"7": "left",
+					"9": "right",
+					"_": "center"
+				}]],
+				"layout": ["$", ["switch", ["var", "position"], {
+					"1": "vertical packed reverse",
+					"2": "vertical packed reverse",
+					"3": "vertical packed reverse",
+					"4": "vertical packed center",
+					"5": "vertical packed center",
+					"6": "vertical packed center",
+					"_": "vertical packed"
+				}]]
+			}, [
+				["text", {
+					"justify": ["$", ["switch", ["var", "position"], {
+						"1": "left",
+						"2": "center",
+						"3": "right",
+						"4": "left",
+						"5": "center",
+						"6": "right",
+						"7": "left",
+						"8": "center",
+						"9": "right",
+						"_": "center"
+					}]],
+					"flex": {
+						"width": "70cw"
+					},
+					"slip": ["$", ["var", "slip"]],
+					"transcript": ["$", ["var", "transcript"]],
+					"color": ["$", ["var", "color-1"]],
+					"background-color": ["$", ["var", "color-2"]],
+					"background-padding": [5, 20],
+					"style": ["$", ["var", "style"]],
+					"animate-color": ["$", ["var", "color-3"]]
+				}]
+			]]
+		]]
+	]
+]

@@ -1,0 +1,36 @@
+{
+	"params": {
+		"green": {
+			"key": "green",
+			"display": "Color",
+			"type": "color",
+			"default": "#00B451",
+			"required": false,
+			"private": true
+		},
+		"font-regular": {
+			"key": "font-regular",
+			"display": "Font Regular",
+			"type": "string",
+			"default": "./media/Bebas Neue Pro Regular.otf",
+			"required": false,
+			"private": true
+		},
+		"font-bold": {
+			"key": "font-bold",
+			"display": "Font Bold",
+			"type": "string",
+			"default": "./media/Bebas Neue Pro Bold.otf",
+			"required": false,
+			"private": true
+		},
+		"font-bold-italic": {
+			"key": "font-bold-italic",
+			"display": "Font Bold Italic",
+			"type": "string",
+			"default": "./media/Bebas Neue Pro Bold Italic.otf",
+			"required": false,
+			"private": true
+		}
+	}
+}

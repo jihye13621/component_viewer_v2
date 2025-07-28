@@ -1,0 +1,154 @@
+[
+	"ds-sbg-captions",
+	[
+		["dsx-mixins",
+			"captions"
+		],
+		{
+			"key": "color-text",
+			"display": "Text",
+			"type": "color",
+			"default": "#ffffff",
+			"private": true,
+			"required": false
+		},
+		["ds-sbg-mixins",
+			"font-body"
+		],
+		{
+			"key": "category",
+			"display": "Category",
+			"type": "string",
+			"options": [
+				{
+					"key": "breaking",
+					"display": "Breaking News"
+				},
+				{
+					"key": "national",
+					"display": "National News"
+				},
+				{
+					"key": "local",
+					"display": "Local News"
+				},
+				{
+					"key": "world",
+					"display": "World News"
+				},
+				{
+					"key": "weather",
+					"display": "Weather"
+				},
+				{
+					"key": "politics",
+					"display": "Politics"
+				},
+				{
+					"key": "sports",
+					"display": "Sports"
+				}
+			],
+			"default": "national",
+			"required": false
+		},
+		{
+			"key": "#category-config",
+			"private": true,
+			"required": false,
+			"default": "#DC0101",
+			"script": ["$", ["switch", ["var", "category"], {
+				"breaking": "#DC0101",
+				"national": "#043968",
+				"local": "#06569D",
+				"world": "#00859d",
+				"weather": "#0076c8",
+				"politics": "#4A4A4A",
+				"sports": "#000000",
+				"_": "#DC0101"
+			}]]
+		},
+		["dsx-mixins",
+			"boilerplate-captions"
+		],
+		{
+			"key": "max-words",
+			"display": "Words",
+			"type": "number",
+			"default": 4,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 1,
+				"minimum": 1,
+				"maximum": 12
+			}
+		},
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [2, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": true,
+				"minimum": -100,
+				"maximum": 100
+			},
+			"required": false,
+			"private": true
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-dsx-su",
+				"safezone",
+				"offset"
+			]
+		}, [
+			["null", {
+				"max-width": "800nsu",
+				"align": ["$", ["var", "#align"]],
+				"padding": [
+					0,
+					"30nsu",
+					0,
+					0
+				]
+			}, [
+				["text", {
+					"mixins": ["ds-sbg-mixins",
+						"text",
+						"text-label"
+					],
+					"justify": ["$", ["var", "#align"]],
+					"transcript": ["$",
+						["transcript-split",
+							["var", "transcript"],
+							["var", "max-words"]
+						]
+					],
+					"color": ["$", ["var", "color-text"]],
+					"background-color": ["$", ["var", "#category-config"]],
+					"background-padding": [
+						"23su",
+						"20su"
+					],
+					"background-radius": "8su",
+					"animations": [
+						{
+							"opacity": 0.5,
+							"background-opacity": 1
+						},
+						{
+							"mix": [[0, 0], [0.1, 1]],
+							"opacity": 1
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

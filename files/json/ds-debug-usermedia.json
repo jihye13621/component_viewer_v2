@@ -1,0 +1,66 @@
+[
+	"ds-debug-usermedia",
+	[
+		{
+			"key": "asset-1",
+			"display": "Asset 1",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["gain", 0],
+				["justify", "fill"],
+				["motion", "none"]
+			]
+		},
+		{
+			"key": "asset-2",
+			"display": "Asset 2",
+			"type": "asset",
+			"default": null,
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["solid", {
+				"enabled": ["$", ["exists", ["var", "asset-1"]]],
+				"rect": [
+					0,
+					0,
+					"70rw",
+					"70rh"
+				],
+				"padding": [
+					"10su",
+					"10su"
+				]
+			}, [
+				["user-asset", {
+					"file": ["$", ["var", "asset-1"]],
+					"mask": {}
+				}]
+			]],
+			["solid", {
+				"enabled": ["$", ["exists", ["var", "asset-2"]]],
+				"rect": [
+					"30rw",
+					"30rh",
+					"70rw",
+					"70rh"
+				],
+				"padding": [
+					"10su",
+					"10su"
+				]
+			}, [
+				["user-asset", {
+					"file": ["$", ["var", "asset-2"]],
+					"mask": {}
+				}]
+			]]
+		]]
+	]
+]

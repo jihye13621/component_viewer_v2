@@ -1,0 +1,159 @@
+{
+	"params": {
+		"colors": [
+			{
+				"key": "white-1",
+				"display": "Color",
+				"private": true,
+				"type": "color",
+				"default": "#ffffff",
+				"required": false
+			},
+			{
+				"key": "white-2",
+				"display": "Color",
+				"private": true,
+				"type": "color",
+				"default": "#DEDCD8",
+				"required": false
+			},
+			{
+				"key": "black-1",
+				"display": "Color",
+				"private": true,
+				"type": "color",
+				"default": "#1c1b17",
+				"required": false
+			},
+			{
+				"key": "black-2",
+				"display": "Color",
+				"private": true,
+				"type": "color",
+				"default": "#3F3F3F",
+				"required": false
+			},
+			{
+				"key": "yellow",
+				"display": "Color",
+				"private": true,
+				"type": "color",
+				"default": "#e4f222",
+				"required": false
+			},
+			{
+				"key": "color-yellow",
+				"display": "Color",
+				"private": true,
+				"type": "color",
+				"default": "#e4f222",
+				"required": false
+			},
+			{
+				"key": "color-green",
+				"display": "Color",
+				"private": true,
+				"type": "color",
+				"default": "#17332D",
+				"required": false
+			},
+			{
+				"key": "color-white",
+				"display": "Color",
+				"private": true,
+				"type": "color",
+				"default": "#ffffff",
+				"required": false
+			},
+			{
+				"key": "color-black",
+				"display": "Color",
+				"private": true,
+				"type": "color",
+				"default": "#1c1b17",
+				"required": false
+			}
+		],
+		"dark-mode-colors": [
+			{
+				"key": "dark-mode",
+				"display": "Dark Mode",
+				"type": "bool",
+				"default": true,
+				"required": false
+			},
+			{
+				"key": "#color-text",
+				"display": "Color Text",
+				"private": true,
+				"type": "color",
+				"default": "#ffffff",
+				"required": false,
+				"script": ["$", ["if", ["var", "dark-mode"], ["var", "white-2"], ["var", "black-1"]]]
+			},
+			{
+				"key": "#color-bg",
+				"display": "Color Background",
+				"private": true,
+				"type": "color",
+				"default": "#1c1b17",
+				"required": false,
+				"script": ["$", ["if", ["var", "dark-mode"], ["var", "black-1"], ["var", "white-2"]]]
+			}
+		],
+		"fonts": [
+			{
+				"key": "font-350",
+				"display": "Font",
+				"private": true,
+				"type": "string",
+				"default": "./media/TWK-Lausanne-350.ttf",
+				"required": false
+			},
+			{
+				"key": "font-400",
+				"display": "Font",
+				"private": true,
+				"type": "string",
+				"default": "./media/TWK-Lausanne-400.ttf",
+				"required": false
+			}
+		]
+	},
+	"text": {
+		"measure": "letter-size"
+	},
+	"text-intro-headline": {
+		"font": "./media/TWK-Lausanne-400.ttf",
+		"height": "170su",
+		"leading": "20su",
+		"kerning": -0.04
+	},
+	"text-intro-subhead": {
+		"font": "./media/TWK-Lausanne-400.ttf",
+		"height": "170su",
+		"leading": "20su",
+		"kerning": -0.04
+	},
+	"text-headline": {
+		"font": "./media/TWK-Lausanne-700.ttf",
+		"height": "100su",
+		"leading": "10su",
+		"kerning": -0.02
+	},
+	"text-title": {
+		"font": "./media/TWK-Lausanne-400.ttf",
+		"height": "90su",
+		"leading": "20su"
+	},
+	"text-body": {
+		"font": "./media/TWK-Lausanne-700.ttf",
+		"height": "55su",
+		"leading": "10su"
+	},
+	"text-label": {
+		"font": "./media/TWK-Lausanne-700.ttf",
+		"height": "40su",
+		"leading": "10su"
+	}
+}

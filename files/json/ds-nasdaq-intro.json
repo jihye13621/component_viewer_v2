@@ -1,0 +1,244 @@
+[
+	"ds-nasdaq-intro",
+	[
+		{
+			"key": "headline",
+			"display": "Headline",
+			"type": "text",
+			"default": "Title Text",
+			"required": false
+		},
+		{
+			"key": "subhead",
+			"display": "Subhead",
+			"type": "text",
+			"default": "Subtitle Text",
+			"required": false
+		},
+		{
+			"key": "#sidebar",
+			"display": "Sidebar",
+			"type": "number",
+			"default": 100,
+			"required": false,
+			"private": true,
+			"script": ["$",
+				["let",
+					[
+						["asset-aspect", ["aspect", "./media/ds-nasdaq-pattern.mov"]],
+						["calc", ["*",
+							["var", "asset-aspect"],
+							["height"]
+						]]
+					],
+					["if",
+						[">", ["aspect"], 1],
+						["var", "calc"],
+						["if",
+							["=", ["aspect"], 1],
+							["*", 0.5, ["var", "calc"]],
+							["*", 0.33, ["var", "calc"]]
+						]
+					]
+				]
+			]
+		}
+	],
+	[
+		["null", { 
+			"mixins": ["dsx-mixins",
+				"set-su"
+			] 
+		}, [
+			["solid", {
+				"color": "#9B7EF5",
+				"transform": [
+					["translate",
+						["animate",
+							["100%", "100rw"],
+							["-1000", 0, "easeInOutQuint"]
+						],
+						0
+					]
+				]
+			}],
+			["null", {
+				"stagger": [0, -100],
+				"rect": [
+					["$", ["var", "#sidebar"]],
+					0,
+					["$", ["-", ["width"], ["var", "#sidebar"]]],
+					"100rh"
+				],
+				"transform": [
+					["translate",
+						["animate",
+							["100%", "100rw"],
+							["-1000", 0, "easeInOutQuint"]
+						],
+						0
+					]
+				],
+				"opacity": ["animate",
+					["100%", 0],
+					["-1000", 1, "easeInOutQuint"]
+				]
+			}, [
+				["solid", {
+					"stagger": [0, 0],
+					"color": ["linear-gradient",
+						-0.25,
+						[0, "#060B29"],
+						[1, ["$", ["rgba-set", "#060B29", "a", 0]]]
+					],
+					"mask": {
+						"padding": [
+							0,
+							0,
+							0,
+							["animate",
+								[0, "100rw", "easeOutCubic"],
+								["+1000", 0],
+								["100%", "80rw"],
+								["-1000", 0, "easeInCubic"]
+							]
+						]
+					},
+					"opacity": ["animate",
+						[0, 0],
+						["+400", 1]
+					]
+				}],
+				["null", {
+					"stagger": [0, 0],
+					"padding": [
+						["$", ["nth", ["safezone"], 0]],
+						["$", ["nth", ["safezone"], 1]],
+						["$", ["nth", ["safezone"], 2]],
+						"140su"
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["lte", ["aspect"], 1.0]],
+							"padding": [
+								["$", ["nth", ["safezone"], 0]],
+								["$", ["nth", ["safezone"], 1]],
+								["$", ["nth", ["safezone"], 2]],
+								"80su"
+							]
+						}
+					]
+				}, [
+					["null", {
+						"layout": "vertical packed",
+						"align": "center left",
+						"gap": "120su",
+						"max-width": "1200nsu"
+					}, [
+						["asset", {
+							"stagger": [700, 0],
+							"file": "./media/ds-nasdaq-logo.png",
+							"justify": "fit center left",
+							"flex": {
+								"height": "75su"
+							},
+							"opacity": ["animate",
+								[0, 0],
+								["+800", 1]
+							]
+						}],
+						["null", {
+							"enabled": ["$", ["or",
+								["exists", ["var", "headline"]],
+								["exists", ["var", "subhead"]]
+							]],
+							"layout": "vertical packed",
+							"align": "center left",
+							"gap": "40su"
+						}, [
+							["text", {
+								"enabled": ["$", ["exists", ["var", "subhead"]]],
+								"stagger": [850, 0],
+								"font": "./media/Inter-Regular.ttf",
+								"measure": "letter-size",
+								"string": ["$", ["var", "subhead"]],
+								"color": "#9B7EF5",
+								"height": "70su",
+								"leading": "10su",
+								"boundary": "word",
+								"animations": [
+									{
+										"translate": [
+											0,
+											"40su"
+										]
+									},
+									{
+										"mix": ["animate",
+											[0, 0],
+											["+800", 1]
+										],
+										"easing": "easeOutQuad",
+										"opacity": 1,
+										"translate": [0, 0]
+									}
+								]
+							}],
+							["text", {
+								"enabled": ["$", ["exists", ["var", "headline"]]],
+								"stagger": [1500, 0],
+								"font": "./media/Inter-Light.ttf",
+								"measure": "letter-size",
+								"string": ["$", ["var", "headline"]],
+								"color": [1, 1, 1, 1],
+								"height": "125su",
+								"leading": "20su",
+								"kerning": -0.02,
+								"boundary": "word",
+								"animations": [
+									{
+										"translate": [
+											0,
+											"40su"
+										]
+									},
+									{
+										"mix": ["animate",
+											[0, 0],
+											["+1000", 1]
+										],
+										"easing": "easeOutQuad",
+										"opacity": 1,
+										"translate": [0, 0]
+									}
+								]
+							}]
+						]]
+					]]
+				]]
+			]],
+			["asset", {
+				"stagger": [0, 0],
+				"file": "./media/ds-nasdaq-pattern.mov",
+				"blend": "screen",
+				"justify": "fill right top",
+				"rect": [
+					0,
+					0,
+					["$", ["var", "#sidebar"]],
+					"100rh"
+				],
+				"transform": [
+					["translate",
+						["animate",
+							["100%", null],
+							["-500", "-100rw"],
+							["-1000", 0, "easeInQuint"]
+						],
+						0
+					]
+				]
+			}]
+		]]
+	]
+]

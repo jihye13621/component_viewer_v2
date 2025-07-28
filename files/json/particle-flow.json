@@ -1,0 +1,366 @@
+[
+    "particle-flow",
+    [
+        {
+            "key": "start",
+            "display": "Start",
+            "type": "number",
+            "default": 0,
+            "required": false
+        },
+        {
+            "key": "duration",
+            "display": "Duration",
+            "type": "number",
+            "default": 4000,
+            "required": false
+        },
+        {
+            "key": "text",
+            "display": "Text",
+            "type": "text",
+            "default": "FLOW",
+            "required": false
+        },
+        ["ds-sojern-mixins",
+            "colors",
+            "fonts"
+        ],
+        ["dsx-mixins",
+            "boilerplate"
+        ]
+    ],
+    [
+        ["null", {
+            "mixins": ["dsx-mixins", 
+                "set-su",
+                "safezone"
+            ]
+        }, [
+            ["solid", {
+                "start": ["$", ["var", "start"]],
+                "duration": ["$", ["var", "duration"]],
+                "color": [0.02, 0.05, 0.1, 1],
+                "layout": "stacked",
+                "align": "center",
+                "rect": ["100rw", "100rh"]
+            }, [
+                ["null", {
+                    "layout": "stacked",
+                    "align": "center"
+                }, [
+                    ["null", {
+                        "layout": "stacked",
+                        "align": "center",
+                        "stagger": [80, -80]
+                    }, [
+                        ["solid", {
+                            "rect": ["40su", "40su"],
+                            "color": [0.1, 0.6, 0.9, 0.7],
+                            "mask": {
+                                "radius": "20su"
+                            },
+                            "opacity": ["animate",
+                                [0, 0, "easeInOutSine"],
+                                ["+500", 0.7],
+                                ["+3500", 0.7],
+                                ["+4000", 0]
+                            ],
+                            "transform": [
+                                ["translate",
+                                    ["animate",
+                                        [0, "-300su", "easeInOutSine"],
+                                        ["+1000", "-200su"],
+                                        ["+3000", "-100su"],
+                                        ["+4000", 0]
+                                    ],
+                                    ["animate",
+                                        [0, "-200su", "easeInOutSine"],
+                                        ["+1000", "-100su"],
+                                        ["+3000", 0],
+                                        ["+4000", "100su"]
+                                    ]
+                                ],
+                                ["scale",
+                                    ["animate",
+                                        [0, 0.5, "easeInOutSine"],
+                                        ["+1000", 1],
+                                        ["+3000", 1.5],
+                                        ["+4000", 2]
+                                    ]
+                                ],
+                                ["rotate",
+                                    ["animate",
+                                        [0, 0, "easeInOutSine"],
+                                        ["+1000", 45],
+                                        ["+3000", 90],
+                                        ["+4000", 180]
+                                    ]
+                                ]
+                            ]
+                        }],
+                        ["solid", {
+                            "rect": ["40su", "40su"],
+                            "color": [0.9, 0.3, 0.6, 0.7],
+                            "mask": {
+                                "radius": "20su"
+                            },
+                            "opacity": ["animate",
+                                [0, 0, "easeInOutSine"],
+                                ["+800", 0.7],
+                                ["+3200", 0.7],
+                                ["+4000", 0]
+                            ],
+                            "transform": [
+                                ["translate",
+                                    ["animate",
+                                        [0, "300su", "easeInOutSine"],
+                                        ["+1200", "200su"],
+                                        ["+2800", "100su"],
+                                        ["+4000", 0]
+                                    ],
+                                    ["animate",
+                                        [0, "200su", "easeInOutSine"],
+                                        ["+1200", "100su"],
+                                        ["+2800", 0],
+                                        ["+4000", "-100su"]
+                                    ]
+                                ],
+                                ["scale",
+                                    ["animate",
+                                        [0, 0.5, "easeInOutSine"],
+                                        ["+1200", 1],
+                                        ["+2800", 1.5],
+                                        ["+4000", 2]
+                                    ]
+                                ],
+                                ["rotate",
+                                    ["animate",
+                                        [0, 0, "easeInOutSine"],
+                                        ["+1200", -45],
+                                        ["+2800", -90],
+                                        ["+4000", -180]
+                                    ]
+                                ]
+                            ]
+                        }],
+                        ["solid", {
+                            "rect": ["40su", "40su"],
+                            "color": [0.6, 0.9, 0.3, 0.7],
+                            "mask": {
+                                "radius": "20su"
+                            },
+                            "opacity": ["animate",
+                                [0, 0, "easeInOutSine"],
+                                ["+1100", 0.7],
+                                ["+2900", 0.7],
+                                ["+4000", 0]
+                            ],
+                            "transform": [
+                                ["translate",
+                                    ["animate",
+                                        [0, "-200su", "easeInOutSine"],
+                                        ["+1400", "-100su"],
+                                        ["+2600", 0],
+                                        ["+4000", "100su"]
+                                    ],
+                                    ["animate",
+                                        [0, "300su", "easeInOutSine"],
+                                        ["+1400", "200su"],
+                                        ["+2600", "100su"],
+                                        ["+4000", 0]
+                                    ]
+                                ],
+                                ["scale",
+                                    ["animate",
+                                        [0, 0.5, "easeInOutSine"],
+                                        ["+1400", 1],
+                                        ["+2600", 1.5],
+                                        ["+4000", 2]
+                                    ]
+                                ],
+                                ["rotate",
+                                    ["animate",
+                                        [0, 0, "easeInOutSine"],
+                                        ["+1400", 90],
+                                        ["+2600", 180],
+                                        ["+4000", 270]
+                                    ]
+                                ]
+                            ]
+                        }],
+                        ["solid", {
+                            "rect": ["40su", "40su"],
+                            "color": [0.9, 0.6, 0.3, 0.7],
+                            "mask": {
+                                "radius": "20su"
+                            },
+                            "opacity": ["animate",
+                                [0, 0, "easeInOutSine"],
+                                ["+1400", 0.7],
+                                ["+2600", 0.7],
+                                ["+4000", 0]
+                            ],
+                            "transform": [
+                                ["translate",
+                                    ["animate",
+                                        [0, "200su", "easeInOutSine"],
+                                        ["+1600", "100su"],
+                                        ["+2400", 0],
+                                        ["+4000", "-100su"]
+                                    ],
+                                    ["animate",
+                                        [0, "-300su", "easeInOutSine"],
+                                        ["+1600", "-200su"],
+                                        ["+2400", "-100su"],
+                                        ["+4000", 0]
+                                    ]
+                                ],
+                                ["scale",
+                                    ["animate",
+                                        [0, 0.5, "easeInOutSine"],
+                                        ["+1600", 1],
+                                        ["+2400", 1.5],
+                                        ["+4000", 2]
+                                    ]
+                                ],
+                                ["rotate",
+                                    ["animate",
+                                        [0, 0, "easeInOutSine"],
+                                        ["+1600", -90],
+                                        ["+2400", -180],
+                                        ["+4000", -270]
+                                    ]
+                                ]
+                            ]
+                        }]
+                    ]],
+                    ["null", {
+                        "layout": "stacked",
+                        "align": "center",
+                        "stagger": [120, -120]
+                    }, [
+                        ["solid", {
+                            "rect": ["60su", "60su"],
+                            "color": [0.2, 0.8, 1, 0.8],
+                            "mask": {
+                                "radius": "30su"
+                            },
+                            "opacity": ["animate",
+                                [0, 0, "easeInOutSine"],
+                                ["+1500", 0.8],
+                                ["+2500", 0.8],
+                                ["+4000", 0]
+                            ],
+                            "transform": [
+                                ["translate",
+                                    ["animate",
+                                        [0, "-250su", "easeInOutSine"],
+                                        ["+1500", "-150su"],
+                                        ["+2500", "-50su"],
+                                        ["+4000", "50su"]
+                                    ],
+                                    ["animate",
+                                        [0, "-150su", "easeInOutSine"],
+                                        ["+1500", "-50su"],
+                                        ["+2500", "50su"],
+                                        ["+4000", "150su"]
+                                    ]
+                                ],
+                                ["scale",
+                                    ["animate",
+                                        [0, 0.7, "easeInOutSine"],
+                                        ["+1500", 1],
+                                        ["+2500", 1.3],
+                                        ["+4000", 1.6]
+                                    ]
+                                ],
+                                ["rotate",
+                                    ["animate",
+                                        [0, 0, "easeInOutSine"],
+                                        ["+1500", 180],
+                                        ["+2500", 360],
+                                        ["+4000", 540]
+                                    ]
+                                ]
+                            ]
+                        }],
+                        ["solid", {
+                            "rect": ["60su", "60su"],
+                            "color": [1, 0.4, 0.7, 0.8],
+                            "mask": {
+                                "radius": "30su"
+                            },
+                            "opacity": ["animate",
+                                [0, 0, "easeInOutSine"],
+                                ["+1800", 0.8],
+                                ["+2200", 0.8],
+                                ["+4000", 0]
+                            ],
+                            "transform": [
+                                ["translate",
+                                    ["animate",
+                                        [0, "250su", "easeInOutSine"],
+                                        ["+1800", "150su"],
+                                        ["+2200", "50su"],
+                                        ["+4000", "-50su"]
+                                    ],
+                                    ["animate",
+                                        [0, "150su", "easeInOutSine"],
+                                        ["+1800", "50su"],
+                                        ["+2200", "-50su"],
+                                        ["+4000", "-150su"]
+                                    ]
+                                ],
+                                ["scale",
+                                    ["animate",
+                                        [0, 0.7, "easeInOutSine"],
+                                        ["+1800", 1],
+                                        ["+2200", 1.3],
+                                        ["+4000", 1.6]
+                                    ]
+                                ],
+                                ["rotate",
+                                    ["animate",
+                                        [0, 0, "easeInOutSine"],
+                                        ["+1800", -180],
+                                        ["+2200", -360],
+                                        ["+4000", -540]
+                                    ]
+                                ]
+                            ]
+                        }]
+                    ]],
+                    ["text", {
+                        "string": ["$", ["var", "text"]],
+                        "font": ["$", ["var", "text-semibold"]],
+                        "measure": "letter-size",
+                        "height": "200su",
+                        "color": [1, 1, 1, 1],
+                        "justify": "center",
+                        "opacity": ["animate",
+                            [0, 0, "easeInOutSine"],
+                            ["+2000", 1],
+                            ["+2000", 1]
+                        ],
+                        "transform": [
+                            ["translate",
+                                ["animate",
+                                    [0, 0, "easeInOutSine"],
+                                    ["+2000", 0]
+                                ],
+                                0
+                            ],
+                            ["scale",
+                                ["animate",
+                                    [0, 0.9, "easeInOutSine"],
+                                    ["+2000", 1]
+                                ]
+                            ]
+                        ]
+                    }]
+                ]]
+            ]]
+        ]]
+    ]
+] 

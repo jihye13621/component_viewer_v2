@@ -1,0 +1,25 @@
+{
+	
+	"font-medium-bold": {
+		"font": "./media/Helvetica-Now-XBold.otf",
+		"height": "80su",
+		"kerning": -0.01
+	},
+	"font-medium": {
+		"font": "./media/Helvetica-Now-Bold.otf",
+		"height": "80su",
+		"leading": -0.25,
+		"kerning": -0.02
+	},
+	"font-small": {
+		"font": "./media/Helvetica-Now-Bold.otf",
+		"height": "60su",
+		"kerning": -0.01,
+		"leading": -0.1
+	},
+	"font-xSmall": {
+		"font": "./media/Helvetica-Now.otf",
+		"height": "50su",
+		"kerning": -0.02
+	}
+}

@@ -1,0 +1,48 @@
+{
+	"params": {
+		"color-1": {
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		},
+		"color-2": {
+			"key": "color-2",
+			"display": "Color 2",
+			"type": "color",
+			"default": "#000000",
+			"required": false
+		},
+		"color-3": {
+			"key": "color-3",
+			"display": "Color 3",
+			"type": "color",
+			"default": "#00D2B3",
+			"required": false
+		}
+	},
+	"font-h1": {
+		"font": "./media/AvenirNextPForBBG-Bold.otf",
+		"height": "155su",
+		"leading": -0.15,
+		"kerning": -0.01
+	},
+	"font-h2": {
+		"font": "./media/AvenirNextPForBBG-Demi.otf",
+		"height": "70su",
+		"leading": -0.15,
+		"kerning": -0.01
+	},
+	"font-t1": {
+		"font": "./media/AvenirNextPForBBG-Bold.otf",
+		"height": "60su",
+		"leading": -0.15
+	},
+	"font-t2": {
+		"font": "./media/AvenirNextPForBBG-Regular.otf",
+		"height": "45su",
+		"leading": -0.15,
+		"kerning": -0.01
+	}
+}

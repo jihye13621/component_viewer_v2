@@ -1,0 +1,37 @@
+[
+	"ds-maintainx-transition",
+	[
+		{
+			"key": "style",
+			"display": "Style",
+			"type": "string",
+			"default": "arrows",
+			"options": [
+				{
+					"key": "arrows",
+					"display": "Arrows"
+				},
+				{
+					"key": "blocks",
+					"display": "Blocks"
+				}
+			]
+		}
+	],
+	[
+		["asset", {
+			"file": ["$", ["if", ["eq", ["var", "style"], "arrows"],
+				"./media/ds-maintainx-transition.json",
+				"./media/ds-maintainx-transition-blocks.mov"
+			]],
+			"justify": "fill center",
+			"lottie-driver": ["animate",
+				[0, 0],
+				[
+					["$", ["to-relative-string", ["dur", "./media/ds-maintainx-transition.json"]]],
+					1
+				]
+			]
+		}]
+	]
+]

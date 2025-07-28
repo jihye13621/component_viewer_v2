@@ -1,0 +1,69 @@
+[
+	"ds-valor-lite-captions",
+	[
+		["dsx-mixins", ["captions"]],
+		["ds-valor-lite-mixins", "color-1", "color-2"],
+		["dsx-mixins", ["boilerplate"]],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [7, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"max-width": "800nsu",
+				"align": ["$", ["var", "#align"]],
+				"layout": "vertical packed",
+				"padding": [
+					0,
+					0,
+					0,
+					"70su"
+				]
+			}, [
+				["text", {
+					"mixins": ["ds-valor-lite-mixins", ["text-1"]],
+					"transcript": ["$",
+						["transcript-split",
+							["var", "transcript"],
+							["max", 1, ["floor", ["/", 10, ["var", "size"]]]]
+						]
+					],
+					"color": ["$", ["var", "color-2"]],
+					"justify": "left",
+					"animations": [
+						{
+							"opacity": 0.5
+						},
+						{
+							"mix": [[-0.1, 0], [0.1, 1.0]],
+							"color": ["$", ["var", "color-1"]],
+							"opacity": 1
+						}
+					]
+				}, [
+					["solid", {
+						"color": ["$", ["var", "color-2"]],
+						"radius": "80su",
+						"rect": [
+							"-70su",
+							"2su",
+							"45su",
+							"45su"
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

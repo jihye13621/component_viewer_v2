@@ -1,0 +1,97 @@
+[
+	"ds-horizonmedia-text-bubble",
+	[
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "text",
+			"default": "Add text",
+			"required": false
+		},
+		{
+			"key": "color-1",
+			"display": "Color",
+			"type": "color",
+			"default": "#0A9BCF",
+			"required": false
+		},
+		{
+			"key": "color-2",
+			"display": "Color",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		},
+		["ds-horizonmedia-mixins",
+			"font-bold"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [0, 0, 0],
+			"required": false,
+			"ui": {
+				"grid": false,
+				"offset": true,
+				"minimum": -100,
+				"maximum": 100
+			}
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone",
+				"offset-screen"
+			]
+		}, [
+			["null", {
+				"enabled": ["$", ["exists", ["var", "text"]]],
+				"layout": "vertical packed",
+				"align": "center",
+				"effect": [
+					["shadow", {
+						"offset": ["2su", "2su"],
+						"radius": "10su",
+						"color": [0, 0, 0, 0.2]
+					}]
+				],
+				"transform": [
+					["scale",
+						["animate",
+							[0, 0, [0.2,1.65,0.64,1]],
+							["+500", 1],
+							["100%", 0],
+							["-500", 1, [1,-0.5,0.88,0.64]]
+						]
+					]
+				]
+			}, [
+				["solid", {
+					"color": ["$", ["var", "color-2"]],
+					"layout": "stacked",
+					"radius": "100su",
+					"padding": [
+						"30su",
+						"60su"
+					]
+				}, [
+					["text", {
+						"font": ["$", ["var", "font-bold"]],
+						"height": "60su",
+						"leading": "10su",
+						"color": ["$", ["var", "color-1"]],
+						"measure": "letter-size",
+						"justify": "center",
+						"string": ["$", ["var", "text"]]
+					}]
+				]]
+			]]
+		]]
+	]
+]

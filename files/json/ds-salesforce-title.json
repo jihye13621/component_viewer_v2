@@ -1,0 +1,481 @@
+[
+	"ds-salesforce-title",
+	[
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "textarea",
+			"default": "Add text",
+			"required": false
+		},
+		{
+			"key": "theme",
+			"display": "Theme",
+			"type": "string",
+			"options": [
+				{
+					"key": "consumer-goods",
+					"display": "Consumer Goods"
+				},
+				{
+					"key": "service",
+					"display": "Service"
+				},
+				{
+					"key": "sales",
+					"display": "Sales"
+				},
+				{
+					"key": "slack",
+					"display": "Slack"
+				}
+			],
+			"default": "consumer-goods",
+			"required": false
+		},
+		["ds-salesforce-mixins",
+			"font-headline",
+			"font-body"
+		],
+		{
+			"key": "#colors",
+			"display": "Color",
+			"type": "object",
+			"default": ["#ff0000"],
+			"required": false,
+			"private": true,
+			"script": ["$",
+				["switch", ["var", "theme"], {
+					"consumer-goods": [
+						"#B587F1",
+						"#F4C935",
+						"#4BA4DB",
+						"#68E1D2",
+						"#8CC483",
+						"#2D66B1",
+						"#183266",
+						"#9698D4"
+					],
+					"service": [
+						"#4BA2DA",
+						"#5BC5B9",
+						"#D3748B",
+						"#F0A14D",
+						"#13326A",
+						"#9597D3",
+						"#731B9B",
+						"#387ED5"
+					],
+					"sales": [
+						"#4ba4db",
+						"#5ac5b9",
+						"#d3768c",
+						"#F0A14D",
+						"#81bb77",
+						"#13336a",
+						"#9698d4",
+						"#731a9a",
+						"#3880d6",
+						"#a0d88e"
+					],
+					"slack": [
+						"#ffffff"
+					],
+					"_": [
+						"#ff0000"
+					]
+				}]
+			]
+		},
+		{
+			"key": "#icons",
+			"display": "Icons",
+			"type": "object",
+			"default": [],
+			"required": false,
+			"private": true,
+			"script": ["$",
+				["switch", ["var", "theme"], {
+					"consumer-goods": [],
+					"service": [],
+					"sales": [],
+					"slack": [
+						"media/ds-salesforce-icon-commerce.svg",
+						"media/ds-salesforce-icon-customer.svg",
+						"media/ds-salesforce-icon-data.svg",
+						"media/ds-salesforce-icon-einstein.svg",
+						"media/ds-salesforce-icon-marketing.svg",
+						"media/ds-salesforce-icon-mulesoft.svg",
+						"media/ds-salesforce-icon-netzero.svg",
+						"media/ds-salesforce-icon-partners.svg",
+						"media/ds-salesforce-icon-sales.svg",
+						"media/ds-salesforce-icon-service.svg",
+						"media/ds-salesforce-icon-smb.svg",
+						"media/ds-salesforce-icon-tableau.svg"
+					],
+					"_": [
+						"#ff0000"
+					]
+				}]
+			]
+		},
+		{
+			"key": "#rotation",
+			"display": "Rotation",
+			"type": "number",
+			"default": 1,
+			"required": false,
+			"private": true,
+			"script": ["$",
+				["if",
+					["and",
+						["exists", ["key", ["comp-timing"], "start"]],
+						["exists", ["key", ["comp-timing"], "end"]]
+					],
+					["/",
+						["-", ["key", ["comp-timing"], "end"], ["key", ["comp-timing"], "start"]],
+						1000,
+						10
+					],
+					0.5
+				]
+			]
+		}
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins", ["set-su", "safezone"]],
+			"color": ["$",
+				["switch", ["var", "theme"], {
+					"consumer-goods": "#731A9A",
+					"service": "#D33376",
+					"sales": "#68e0d1",
+					"slack": "#F4F0E7",
+					"_": "#000000"
+				}
+			]]
+		}, [
+			["null", {
+				"max-width": "1000su",
+				"align": "center",
+				"layout": "vertical packed",
+				"gap": "40su",
+				"transform": [
+					["scale",
+						["animate",
+							[0, 0.9, "easeInOutQuad"],
+							["100%", 1.0]
+						]
+					],
+					["scale",
+						["animate",
+							[0, 0.9, "easeInOutQuad"],
+							["+1000", 1.0]
+						]
+					],
+					["scale",
+						["animate",
+							["100%", 1.0],
+							["-1500", 0.9, "easeInOutQuart"]
+						]
+					]
+				]
+			}, [
+				["asset", {
+					"flex": {
+						"height": "130su"
+					},
+					"enabled": ["$",
+						["eq",
+							["var", "theme"],
+							"slack"
+						]
+					],
+					"file": "./media/ds-salesforce-slack-logo.svg",
+					"justify": "fit center"
+				}],
+				["text", {
+					"mixins": ["ds-salesforce-mixins",
+						"text",
+						"text-headline"
+					],
+					"enabled": ["$", ["exists", ["var", "text"]]],
+					"string": ["$", ["var", "text"]],
+					"justify": "center",
+					"color": ["$",
+						["switch", ["var", "theme"], {
+							"consumer-goods": "#ffffff",
+							"service": "#ffffff",
+							"sales": "#245453",
+							"slack": "#000000",
+							"_": "#000000"
+						}
+					]],
+					"boundary": "word",
+					"animations": [
+						{
+							"translate": [
+								"100su",
+								0
+							]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+1000", 1]
+							],
+							"easing": "easeOutQuad",
+							"ramp": 0.5,
+							"translate": [0, 0],
+							"opacity": 1
+						}
+					]
+				}]
+			]],
+			["for-each", {
+				"items": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+				"transform": [
+					["scale",
+						["animate",
+							["100%", 2],
+							["-1500", 1, "easeInOutQuart"]
+						]
+					]
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$",
+							["and",
+								["lte", ["aspect"], 1],
+								["gt", ["aspect"], 0.6]
+							]
+						],
+						"transform": [
+							["scale",
+								["animate",
+									["100%", 2],
+									["-1500", 0.8, "easeInOutQuart"]
+								]
+							]
+						]
+					}
+				]
+			}, [
+				["null", {
+					"transform": [
+						["rotate",
+							["animate",
+								[
+									0,
+									["$",
+										["*",
+											["/",
+												1,
+												["var", "count"]
+											],
+											["var", "index"]
+										]
+									]
+								],
+								[
+									"100%",
+									["$",
+										["+",
+											["*",
+												["/",
+													1,
+													["var", "count"]
+												],
+												["var", "index"]
+											],
+											["var", "#rotation"]
+										]
+									]
+								]
+							]
+						]
+					]
+				}, [
+					["solid", {
+						"stagger": [
+							["$",
+								["*",
+									100,
+									["var", "index"]
+								]
+							],
+							0
+						],
+						"rect": [
+							0,
+							0,
+							"280su",
+							"280su"
+						],
+						"align": "center",
+						"color": ["$",
+							["nth",
+								["var", "#colors"],
+								["mod",
+									["var", "index"],
+									["length", ["var", "#colors"]]
+								]
+							]
+						], 
+						"radius": 1000,
+						"transform": [
+							["scale",
+								["animate",
+									[0, 0, "easeOutQuint"],
+									["+500", 1]
+								]
+							],
+							["translate",
+								0,
+								"-750su"
+							]
+						]
+					}, [
+						["asset", {
+							"enabled": ["$",
+								["gt",
+									["length", ["var", "#icons"]],
+									0
+								]
+							],
+							"file": ["$",
+								["nth",
+									["var", "#icons"],
+									["mod",
+										["var", "index"],
+										["length", ["var", "#icons"]]
+									]
+								]
+							], 
+							"justify": "fit",
+							"transform": [
+								["scale", 0.5],
+								["rotate",
+									["animate",
+										[
+											0,
+											["$",
+												["*",
+													["*",
+														["/",
+															1,
+															["var", "count"]
+														],
+														["var", "index"]
+													],
+													-1
+												]
+											]
+										],
+										[
+											"100%",
+											["$",
+												["*",
+													["+",
+														["*",
+															["/",
+																1,
+																["var", "count"]
+															],
+															["var", "index"]
+														],
+														["var", "#rotation"]
+													],
+													-1
+												]
+											]
+										]
+									]
+								]
+							]
+						}],
+						["null", {
+							"enabled": ["$",
+								["gt",
+									["length", ["var", "#icons"]],
+									0
+								]
+							],
+							"transform": [
+								["scale",
+									["animate",
+										["30%", null],
+										[
+											["$",
+												["to-relative-string",
+													["*",
+														100,
+														["var", "index"]
+													]
+												]
+											],
+											0.0,
+											"easeOutQuint"
+										],
+										["+500", 1.05]
+									]
+								],
+								["rotate",
+									["animate",
+										[
+											0,
+											["$",
+												["*",
+													["*",
+														["/",
+															1,
+															["var", "count"]
+														],
+														["var", "index"]
+													],
+													-1
+												]
+											]
+										],
+										[
+											"100%",
+											["$",
+												["*",
+													["+",
+														["*",
+															["/",
+																1,
+																["var", "count"]
+															],
+															["var", "index"]
+														],
+														["var", "#rotation"]
+													],
+													-1
+												]
+											]
+										]
+									]
+								]
+							]
+						}, [
+							["asset", {
+								"mask": {
+									"radius": 1000
+								},
+								"file": ["$",
+									["concat",
+										"./media/ds-salesforce-profile-",
+										["+", 1, ["var", "index"]],
+										".jpg"
+									]
+								], 
+								"justify": "fill"
+							}]
+						]]
+					]]
+				]]
+			]]
+		]]
+	]
+]

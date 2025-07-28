@@ -1,0 +1,54 @@
+[
+	"ds-getwell-text",
+	[
+		["dsx-mixins",
+			"text"
+		],
+		["ds-getwell-mixins", 
+			"colors",
+			"dark-mode-colors"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [4, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["solid", {
+				"enabled": ["$", ["exists", ["var", "text"]]],
+				"mixins": ["ds-getwell-mixins", ["anchored-anim"]],
+				"color": ["$", ["var", "#color-bg"]],
+				"radius": "25nsu",
+				"max-width": "800nsu",
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"padding": [
+					"42su",
+					"50su"
+				]
+			}, [
+				["text", {
+					"mixins": ["ds-getwell-mixins",
+						"font-text"
+					],
+					"string": ["$", ["var", "text"]],
+					"justify": ["$", ["var", "#align"]],
+					"color": ["$", ["var", "#color-text"]]
+				}]
+			]]
+		]]
+	]
+]

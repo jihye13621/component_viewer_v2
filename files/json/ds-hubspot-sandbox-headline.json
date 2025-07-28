@@ -1,0 +1,244 @@
+[
+	"ds-hubspot-sandbox-headline",
+	[
+		["dsx-mixins",
+			"headline"
+		],
+		{
+			"key": "theme",
+			"display": "Theme",
+			"type": "string",
+			"default": "fullscreen",
+			"options": [
+				{
+					"key": "fullscreen",
+					"display": "Fullscreen"
+				},
+				{
+					"key": "boxed",
+					"display": "Boxed"
+				}
+			]
+		},
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": "#FEF4EA",
+			"required": false
+		},
+		{
+			"key": "color-2",
+			"display": "Color 2",
+			"type": "color",
+			"default": "#FFCEC2",
+			"required": false
+		},
+		{
+			"key": "color-3",
+			"display": "Text Color",
+			"type": "color",
+			"default": "#192733",
+			"required": false
+		},
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [5, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": true,
+				"minimum": -100,
+				"maximum": 100
+			},
+			"required": false
+		}
+	],
+	[
+		["solid", {
+			"enabled": ["$", ["eq", ["var", "theme"], "fullscreen"]],
+			"rect": [
+				0,
+				0,
+				["$", ["width"]],
+				["$", ["height"]]
+			],
+			"color": ["$", ["var", "color-1"]],
+			"align": "center",
+			"transform": [
+				["scale",
+					["animate",
+						[0, 0, "easeOutQuad"],
+						["+300", 1]
+					]
+				]
+			],
+			"opacity": ["animate",
+				["100%", 0],
+				["-300", 1, "easeOutQuad"]
+			]
+		}],
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-dsx-su",
+				"safezone"
+			],
+			"breakpoints": [
+				{
+					"enabled": ["$", ["eq", ["var", "theme"], "fullscreen"]],
+					"opacity": ["animate",
+						["100%", 0],
+						["-300", 1, "easeOutQuad"]
+					]
+				}
+			]
+		}, [
+			["null", {
+				"mixins": ["dsx-mixins",
+					"offset"
+				],
+				"max-width": "800nsu",
+				"layout": "vertical packed match",
+				"align": ["$", ["var", "#align"]],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["eq", ["var", "theme"], "boxed"]],
+						"gap": "20su"
+					}
+				]
+			}, [
+				["solid", {
+					"skip": ["$", ["eq", ["var", "theme"], "fullscreen"]],
+					"enabled": ["$", ["exists", ["var", "headline"]]],
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]],
+					"color": ["$", ["var", "color-1"]],
+					"padding": [
+						"50su",
+						"50su"
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["eq", ["var", "theme"], "boxed"]],
+							"opacity": ["animate",
+								[0, 0],
+								["+200", 1],
+								["100%", 0],
+								["-200", 1]
+							],
+							"transform": [
+								["scale",
+									["animate",
+										[0, 0.8, "easeOutQuad"],
+										["+350", 1.0]
+									]
+								]
+							]
+						}
+					]
+				}, [
+					["text", {
+						"stagger": [150, 0],
+						"enabled": ["$", ["exists", ["var", "headline"]]],
+						"mixins": ["ds-hubspot-mixins", "font-text-large"],
+						"measure": "letter-size",
+						"leading": "10su",
+						"color": ["$", ["var", "color-3"]],
+						"string": ["$", ["var", "headline"]],
+						"justify": ["$", ["var", "#align"]],
+						"boundary": "line",
+						"animations": [
+							{
+								"scale": 0.6
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+600", 1]
+								],
+								"easing": "easeOutCubic",
+								"opacity": 1,
+								"scale": 1
+							}
+						],
+						"breakpoints": [
+							{
+								"enabled": ["$", ["eq", ["var", "theme"], "boxed"]],
+								"stagger": [100, 0]
+							}
+						]
+					}]
+				]],
+				["solid", {
+					"stagger": [300, -150],
+					"skip": ["$", ["eq", ["var", "theme"], "fullscreen"]],
+					"enabled": ["$", ["exists", ["var", "subhead"]]],
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]],
+					"color": ["$", ["var", "color-2"]],
+					"padding": [
+						"40su",
+						"50su"
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["eq", ["var", "theme"], "boxed"]],
+							"opacity": ["animate",
+								[0, 0],
+								["+200", 1],
+								["100%", 0],
+								["-200", 1]
+							],
+							"transform": [
+								["scale",
+									["animate",
+										[0, 0.8, "easeOutQuad"],
+										["+350", 1.0]
+									]
+								]
+							]
+						}
+					]
+				}, [
+					["text", {
+						"stagger": [300, 0],
+						"enabled": ["$", ["exists", ["var", "subhead"]]],
+						"mixins": ["ds-hubspot-mixins", "font-text-large"],
+						"case": "uppercase",
+						"measure": "cap-size",
+						"height": "30su",
+						"leading": "10su",
+						"color": ["$", ["var", "color-3"]],
+						"string": ["$", ["var", "subhead"]],
+						"justify": ["$", ["var", "#align"]],
+						"boundary": "line",
+						"animations": [
+							{
+								"scale": 0.6
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+600", 1]
+								],
+								"easing": "easeOutCubic",
+								"opacity": 1,
+								"scale": 1
+							}
+						],
+						"breakpoints": [
+							{
+								"enabled": ["$", ["eq", ["var", "theme"], "boxed"]],
+								"stagger": [400, 0]
+							}
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

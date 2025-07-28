@@ -1,0 +1,132 @@
+[
+	"ds-verkada-outro",
+	[
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "text",
+			"default": "verkada.com",
+			"required": false
+		},
+		{
+			"key": "theme",
+			"display": "Color Theme",
+			"type": "string",
+			"default": "black",
+			"options": [
+				{
+					"key": "white",
+					"display": "White"
+				},
+				{
+					"key": "dark-blue",
+					"display": "Dark Blue"
+				},
+				{
+					"key": "black",
+					"display": "Black"
+				}
+			],
+			"required": false
+		},
+		["ds-verkada-mixins",
+			"colors",
+			"fonts"
+		],
+		["dsx-mixins", 
+			"boilerplate"
+		]
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			],
+			"color": ["$", ["switch", ["var", "theme"], ["object",
+				["array", "dark-blue", ["var", "color-dark-blue"]],
+				["array", "black", ["var", "color-black"]],
+				["array", "white", ["var", "color-white"]]
+			]]]
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"align": "center",
+				"gap": "100su"
+			}, [
+				["asset", {
+					"file": "./media/ds-verkada-logo-animated.json",
+					"justify": "fit center",
+					"max-width": "500su",
+					"lottie-driver": ["animate",
+						[0, 0],
+						[
+							["$", ["to-relative-string", ["dur", "./media/ds-verkada-logo-animated.json"]]],
+							1
+						]
+					],
+					"transform": [
+						["translate",
+							["$", ["exists", ["var", "text"]]],
+							0,
+							["animate",
+								[0, "100su"],
+								["+1000", "100su", "easeInOutCubic"],
+								["+600", 0]
+							]
+						]
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["eq", ["var", "theme"], "white"]],
+							"replace-color": [
+								[
+									["$", ["var", "color-white"]],
+									["$", ["var", "color-black"]],
+									0.1
+								]]
+						}
+					]
+					
+				}],
+				["solid", {
+					"enabled": ["$", ["exists", ["var", "text"]]],
+					"stagger": [1200, -200],
+					"layout": "vertical packed",
+					"padding": ["40su", "40su"],
+					"radius": "12su",
+					"max-width": "70rw",
+					"mask": {},
+					"color": ["$", ["switch", ["var", "theme"], ["object",
+						["array", "dark-blue", ["var", "color-white"]],
+						["array", "black", ["var", "color-white"]],
+						["array", "white", ["var", "color-black"]]
+					]]],
+					"transform": [
+						["translate", 
+							0,
+							["animate", 
+								[0, "101rh", "easeOutQuart"],
+								["+600", 0]
+							]
+						]
+					]
+				}, [
+					["text", {
+						"stagger": [1000, 0],
+						"font": ["$", ["var", "font-black"]],
+						"measure": "letter-size",
+						"string": ["$", ["var", "text"]],
+						"height": "45su",
+						"justify": "center",
+						"color": ["$", ["switch", ["var", "theme"], ["object",
+							["array", "dark-blue", ["var", "color-dark-blue"]],
+							["array", "black", ["var", "color-black"]],
+							["array", "white", ["var", "color-white"]]
+						]]]
+					}]
+				]]
+			]]
+		]]
+	]
+]

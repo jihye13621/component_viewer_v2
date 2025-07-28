@@ -1,0 +1,74 @@
+[
+	"ds-aspect-media",
+	[
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["gain", 0],
+				["justify", "fill"],
+				["motion", "none"]
+			],
+			"script": ["$", ["if",
+				["exists", ["var", "asset"]],
+				["var", "asset"],
+				"./media/image-wide.jpg"	
+			]]
+		},
+		["ds-aspect-mixins",
+			"colors",
+			"font-roobert"
+		]
+	],
+	[
+		["ds-aspect-bg", {
+			"theme": "raspberry"
+		}],
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			]
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"align": "center",
+				"transform": [
+					["scale",
+						["animate",
+							[0, 0.8, "easeOutExpo"],
+							["+800", 1],
+							["100%", 0.8],
+							["-800", 1, "easeInExpo"]
+						]
+					]
+				]
+			}, [
+				["solid", {
+					"flex": {
+						"position": "fixed"
+					},
+					"color": [1, 1, 1, 0.4],
+					"radius": "20su",
+					"inset": [
+						"-14su",
+						"-14su"
+					]
+				}],
+				["user-asset", {
+					"file": ["$", ["var", "asset"]],
+					"justify": "fill center",
+					"tags": ["b-roll"],
+					"mute": true,
+					"hold": true,
+					"mask": {
+						"radius": "10su"
+					}
+				}]
+			]]
+		]]
+	]
+]

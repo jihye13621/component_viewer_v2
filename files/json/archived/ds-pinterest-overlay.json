@@ -1,0 +1,421 @@
+[
+	"ds-pinterest-overlay",
+	[
+		{
+			"key": "logo",
+			"display": "Logo",
+			"type": "asset",
+			"default": null,
+			"required": false
+		},
+		{
+			"key": "brand-name",
+			"display": "Brand Name",
+			"type": "text",
+			"default": "Pinterest",
+			"required": false
+		},
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "text",
+			"default": "Pinterest promotion blurb.",
+			"required": false
+		},
+		{
+			"key": "cta",
+			"display": "CTA",
+			"type": "text",
+			"default": "Visit Site",
+			"required": false
+		},
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false,
+			"private": true
+		},
+		{
+			"key": "color-2",
+			"display": "Color 2",
+			"type": "color",
+			"default": "#000000",
+			"required": false,
+			"private": true
+		},
+		{
+			"key": "color-3",
+			"display": "Color 3",
+			"type": "color",
+			"default": "#E60023",
+			"required": false
+		}
+	],
+	[
+		["dsx-background", {
+			"enabled": ["$", ["exists", ["var", "background"]]],
+			"color": ["$", ["var", "background"]]
+		}],
+		["null", {
+			"enabled": ["$",
+				["and",
+					["lt", ["aspect"], 0.9],
+					["safezone?"]
+				]
+			],
+			"mixins": ["dsx-mixins", ["set-su"]],
+			"padding": [
+				"62su",
+				"62su"
+			]
+		}, [
+			["solid", {
+				"flex": {
+					"position": "fixed"
+				},
+				"rect": [
+					0,
+					0,
+					"100rw",
+					"616su"
+				],
+				"align": "bottom",
+				"color": ["linear-gradient",
+					0.0,
+					[0.0, [0, 0, 0, 0]],
+					[1.0, [0, 0, 0, 0.25]]
+				]
+			}],
+			["asset", {
+				"rect": [
+					0,
+					0,
+					"45su",
+					"45su"
+				],
+				"file": "./media/ds-pinterest-back.svg",
+				"justify": "fit top left",
+				"transform": [
+					["translate",
+						0,
+						"15su"
+					]
+				]
+			}],
+			["null", {
+				"align": "bottom",
+				"layout": "vertical packed",
+				"padding": [
+					0,
+					0,
+					0,
+					0
+				]
+			}, [
+				["null", {
+					"align": "bottom",
+					"layout": "horizontal packed",
+					"padding": [
+						0,
+						"220su",
+						"15su",
+						0
+					],
+					"gap": "20su"
+				}, [
+					["solid", {
+						"flex": {
+							"width": "94su",
+							"height": "94su"
+						},
+						"stroke": "3su",
+						"stroke-color": ["$", ["var", "color-2"]],
+						"radius": "200su",
+						"color": ["$", ["var", "color-3"]]
+					}, [
+						["asset", {
+							"exists": ["$", ["var", "logo"]],
+							"mask": {
+								"padding": [
+									"3su",
+									"3su",
+									"3su",
+									"3su"
+								],
+								"radius": "200su"
+							},
+							"mute": true,
+							"file": ["$", ["var", "logo"]],
+							"justify": "fit center"
+						}]
+					]],
+					["null", {
+						"layout": "vertical packed",
+						"align": "bottom",
+						"gap": "8su"
+					}, [
+						["text", {
+							"mixins": ["ds-pinterest-mixins", ["font-overlay-small-bold"]],
+							"justify": "top left",
+							"fit": true,
+							"string": "Promoted by",
+							"color": ["$", ["var", "color-1"]]
+						}],
+						["text", {
+							"mixins": ["ds-pinterest-mixins", ["font-overlay-small"]],
+							"justify": "top left",
+							"fit": true,
+							"string": ["$", ["var", "brand-name"]],
+							"color": ["$", ["var", "color-1"]]
+						}]
+					]]
+				]],
+				["null", {
+					"align": "bottom",
+					"layout": "vertical packed",
+					"padding": [
+						0,
+						"220su",
+						"32su",
+						0
+					]
+				}, [
+					["asset", {
+						"flex": {
+							"position": "fixed"
+						},
+						"align": "top right",
+						"rect": [
+							0,
+							0,
+							"60su",
+							"60su"
+						],
+						"file": "./media/ds-pinterest-bookmark.svg",
+						"justify": "fit center right"
+					}],
+					["asset", {
+						"flex": {
+							"position": "fixed"
+						},
+						"align": "top right",
+						"rect": [
+							0,
+							0,
+							"50su",
+							"50su"
+						],
+						"file": "./media/ds-pinterest-dots.svg",
+						"justify": "fit top right",
+						"transform": [
+							["translate",
+								0,
+								"-170su"
+							]
+						]
+					}],
+					["null", {
+						"rect": [
+							0,
+							0,
+							"100rw",
+							"85su"
+						]
+					}, [
+						["text", {
+							"mixins": ["ds-pinterest-mixins", ["font-overlay-small"]],
+							"justify": "top left",
+							"string": ["$", ["var", "text"]],
+							"color": ["$", ["var", "color-1"]]
+						}]
+					]]
+				]],
+				["solid", {
+					"radius": "200su",
+					"rect": [
+						0,
+						0,
+						"100rw",
+						"125su"
+					]
+				}, [
+					["text", {
+						"mixins": ["ds-pinterest-mixins", ["font-cta"]],
+						"justify": "center",
+						"string": ["$", ["var", "cta"]],
+						"color": ["$", ["var", "color-2"]]
+					}]
+				]]
+				
+			]]
+		]],
+		["null", {
+			"enabled": ["$",
+				["and",
+					["gte", ["aspect"], 0.9],
+					["safezone?"]
+				]
+			],
+			"mixins": ["dsx-mixins", ["set-su"]],
+			"padding": [
+				"62su",
+				"96su"
+			]
+		}, [
+			["solid", {
+				"flex": {
+					"position": "fixed"
+				},
+				"rect": [
+					0,
+					0,
+					"100rw",
+					"212su"
+				],
+				"align": "bottom",
+				"color": ["linear-gradient",
+					0.0,
+					[0.0, [0, 0, 0, 0]],
+					[1.0, [0, 0, 0, 0.25]]
+				]
+			}],
+			["null", {
+				"rect": [
+					0,
+					"-20su",
+					"100rw",
+					"125su"
+				]
+			}, [
+				["text", {
+					"mixins": ["ds-pinterest-mixins", ["font-overlay-medium"]],
+					"justify": "top left",
+					"fit": true,
+					"string": "10:06",
+					"color": ["$", ["var", "color-1"]]
+				}],
+				["asset", {
+					"rect": [
+						0,
+						0,
+						"200su",
+						"50su"
+					],
+					"file": "./media/ds-pinterest-ui.svg",
+					"align": "top right",
+					"justify": "fit top right",
+					"transform": [
+						["translate",
+							0,
+							"10su"
+						]
+					]
+				}]
+			]],
+			["solid", {
+				"color": "#292929",
+				"rect": [
+					0,
+					"100su",
+					"100rw",
+					"125su"
+				],
+				"radius": "100su"
+			}, [
+				["asset", {
+					"rect": [
+						0,
+						0,
+						"45su",
+						"45su"
+					],
+					"file": "./media/ds-pinterest-search.svg",
+					"align": "center left",
+					"justify": "fit center left",
+					"svg-recolor": "#D9D9D9",
+					"transform": [
+						["translate",
+							"40su",
+							0
+						]
+					]
+				}],
+				["text", {
+					"mixins": ["ds-pinterest-mixins", ["font-overlay-medium"]],
+					"justify": "left center",
+					"fit": true,
+					"string": "Search Pinterest",
+					"color": "#D9D9D9",
+					"rect": [
+						"110su",
+						0,
+						"50rw",
+						"100rh"
+					]
+				}],
+				["asset", {
+					"rect": [
+						0,
+						0,
+						"60su",
+						"60su"
+					],
+					"align": "center right",
+					"file": "./media/ds-pinterest-camera.svg",
+					"justify": "fit center right",
+					"svg-recolor": "#D9D9D9",
+					"transform": [
+						["translate",
+							"-50su",
+							0
+						]
+					]
+				}]
+			]],
+			["null", {
+				"align": "bottom",
+				"layout": "horizontal packed space-between"
+			}, [
+				["null", {
+					"layout": "vertical packed",
+					"align": "left",
+					"gap": "5su"
+				}, [
+					["text", {
+						"mixins": ["ds-pinterest-mixins", ["font-overlay-small-bold"]],
+						"justify": "top left",
+						"fit": true,
+						"string": ["$", ["concat", "Promoted by ", ["var", "brand-name"]]],
+						"color": ["$", ["var", "color-1"]]
+					}],
+					["text", {
+						"mixins": ["ds-pinterest-mixins", ["font-overlay-medium"]],
+						"justify": "top left",
+						"fit": true,
+						"string": ["$", ["var", "text"]],
+						"color": ["$", ["var", "color-1"]]
+					}]
+				]],
+				["solid", {
+					"color": ["$", ["var", "color-1"]],
+					"layout": "vertical packed",
+					"align": "bottom right",
+					"radius": "200su",
+					"padding": [
+						"24su",
+						"45su"
+					]
+				}, [
+					["text", {
+						"mixins": ["ds-pinterest-mixins", ["font-overlay-small-bold"]],
+						"justify": "center",
+						"string": ["$", ["var", "cta"]],
+						"color": ["$", ["var", "color-2"]]	
+					}]
+				]]
+			]]
+		]]
+	]
+]

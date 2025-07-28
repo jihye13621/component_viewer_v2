@@ -1,0 +1,240 @@
+[
+	"api-brandlive-academy-speaker",
+	[
+		{
+			"key": "name",
+			"display": "Speaker name",
+			"type": "string",
+			"default": "Olivia Walker",
+			"required": false
+		},
+		{
+			"key": "detail-1",
+			"display": "Title",
+			"type": "string",
+			"default": "Chief Brand Officer",
+			"required": false
+		},
+		{
+			"key": "font-1",
+			"display": "Font 1",
+			"type": "string",
+			"default": "./media/api-brandlive/Poppins-Medium.ttf",
+			"required": false
+		},
+		{
+			"key": "font-2",
+			"display": "Font 2",
+			"type": "string",
+			"default": "./media/api-brandlive/Poppins-Regular.ttf",
+			"required": false
+		},
+		{
+			"key": "color-primary",
+			"display": "Color Primary",
+			"type": "color",
+			"default": "#c80606",
+			"required": false
+		},
+		{
+			"key": "color-secondary",
+			"display": "Color Secondary",
+			"type": "color",
+			"default": "#ff72e3",
+			"required": false
+		},
+		{
+			"key": "color-accent",
+			"display": "Color Accent",
+			"type": "color",
+			"default": [0.8, 0.8, 0.8, 1],
+			"required": false
+		},
+		{
+			"key": "text-color",
+			"display": "Text Color",
+			"type": "color",
+			"default": "#FFFFFF",
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-dsx-su",
+				"safezone"
+			]
+		}, [
+			["null", {
+				"max-width": "50rw",
+				"layout": "stacked"
+			},  [
+				["null", {
+					"padding": [0, 0, 0, "75su"]
+				}, [
+					["solid", {
+						"color": ["linear-gradient",
+							-0.25,
+							[0.0, ["$", ["var", "color-primary"]]],
+							[1.0, ["$", ["var", "color-secondary"]]]
+						],
+						"rect": [
+							0,
+							0,
+							"1000su",
+							"250su"
+						],
+						"padding": ["20su", "50su"],
+						"stagger": [200, -300],
+						"mask": {
+							"padding": [
+								0,
+								["animate",
+									[0, "1000su", "easeInOutQuad"],
+									["+600", 0],
+									["100%", "1000su", "easeInOutQuad"],
+									["-250", 0]      
+								],
+								0,
+								0
+							]
+						},
+						"align": "bottom"
+					}, [
+						["null", {
+							"flex": {
+								"position": "fixed"
+							}
+						}, [
+							["null", {
+								"focus": true
+							}]
+						]],
+						["null", {
+							"layout": "vertical packed",
+							"align": "center left",
+							"gap": "35su",
+							"padding": [0, "45su", 0, 0]
+						}, [
+							["text", {
+								"string": ["$", ["var", "name"]],
+								"color": ["$", ["var", "text-color"]],
+								"font": ["$", ["var", "font-1"]],
+								"fit": true,
+								"measure": "letter-size",
+								"height": "80su",
+								"stagger": [1000, 0],
+								"transform": [
+									["translate",
+										0,
+										["animate",
+											[0, "80su", "easeInOutQuad"],
+											["+500", 0]
+										]
+									]
+								],
+								"opacity": ["animate", 
+									[0, 0, "easeInOutQuad"],
+									["+500", 1]
+								]
+							}],
+							["text", {
+								"string": ["$", ["var", "detail-1"]],
+								"enabled": ["$", ["exists", ["var", "detail-1"]]],
+								"color": ["$", ["var", "text-color"]],
+								"font": ["$", ["var", "font-2"]],
+								"fit": true,
+								"height": "40su",
+								"stagger": [1500, 0],
+								"measure": "letter-size",
+								"boundary": "letter",
+								"animations": [
+									{
+										"mix": ["animate",
+											[0, 0],
+											[1500, 1]
+										],
+										"opacity": 1,
+										"ramp": 1.5,
+										"easing": "round"
+									}
+								]
+							}]
+						]]
+					]]
+				]],
+				["null", {
+					"max-height": "250su",
+					"max-width": "200su",
+					"transform": [
+						["translate",
+							["animate",
+								["+200", 0, "easeInOutQuad"],
+								["+600", "1000su"],
+								["100%", 0],
+								["-300", 0, "easeInOutQuad"],
+								["-250", "1000su"]
+							],
+							0
+						],
+						["scale",
+							["animate",
+								[0, "easeInOutQuad"],
+								["+200", 1.25],
+								["+200", 1],
+								["100%", 0, "easeInOutQuad"],
+								["-300", 1]
+							]
+						]
+					],
+					"align": "bottom left"              
+				}, [
+					["solid", {
+						"path": [
+							["75su", 0],
+							[0, "125su"],
+							["150su", "125su"]
+						],
+						"color": ["$", ["var", "color-accent"]]
+					}],
+					["solid", {
+						"path": [
+							["75su", 0],
+							[0, "125su"],
+							["150su", "125su"]
+						],
+						"color": ["$", ["var", "text-color"]],
+						"opacity": ["animate",
+							[0, 0, "holdIn"],
+							["+1000", 1, "holdIn"],
+							["+1000", 0],
+							"loop"
+						]
+					}],
+					["solid", {
+						"path": [
+							[0, "125su"],
+							["150su", "125su"],
+							["75su", "250su"]
+						],
+						"color": ["$", ["var", "text-color"]]
+					}],
+					["solid", {
+						"path": [
+							[0, "125su"],
+							["150su", "125su"],
+							["75su", "250su"]
+						],
+						"color": ["$", ["var", "color-accent"]],
+						"opacity": ["animate",
+							[0, 0, "holdIn"],
+							["+1000", 1, "holdIn"],
+							["+1000", 0],
+							"loop"
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

@@ -1,0 +1,404 @@
+[
+	"ds-stanford-headline",
+	[
+		{
+			"key": "course-code",
+			"display": "Course Code",
+			"type": "text",
+			"default": "STRAMGT 546",
+			"required": false
+		},
+		{
+			"key": "course-name",
+			"display": "Course Name",
+			"type": "text",
+			"default": "Startup Garage: Research Driven Inspiration",
+			"required": false
+		},
+		{
+			"key": "lecturer-1-name",
+			"display": "Lecturer 1 Name",
+			"type": "text",
+			"default": "Scott Brady",
+			"required": false
+		},
+		{
+			"key": "lecturer-1-details",
+			"display": "Lecturer 1 Details",
+			"type": "text",
+			"default": "Lecturer, Management",
+			"required": false
+		},
+		{
+			"key": "lecturer-2-name",
+			"display": "Lecturer 2 Name",
+			"type": "text",
+			"default": "",
+			"required": false
+		},
+		{
+			"key": "lecturer-2-details",
+			"display": "Lecturer 2 Details",
+			"type": "text",
+			"default": "",
+			"required": false
+		},
+		["ds-stanford-mixins",
+			"colors"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		]
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			],
+			"color": ["radial-gradient",
+				["50rw", "50rh"],
+				"50rw",
+				[0, ["$", ["var", "red"]]],
+				[1, ["$", ["color-mix", ["var", "red"], "#000000", 0.3]]]
+			],
+			"opacity": ["animate",
+				["100%", 0],
+				["-400", 1, "easeInQuad"]
+			]
+		}, [
+			["null", {
+				"layout": "stacked",
+				"align": ["$", ["var", "#align"]],
+				"gap": "125su",
+				"padding": [
+					"200su",
+					0,
+					"200su",
+					0
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", 
+							["or",
+								["exists", ["var", "lecturer-2-name"]],
+								["exists", ["var", "lecturer-2-details"]]
+							]
+						],
+						"padding": [
+							"100su",
+							0,
+							"100su",
+							0
+						]
+					},
+					{
+						"enabled": ["$", ["and",
+							["<=", ["aspect"], 1],
+							["or",
+								["exists", ["var", "lecturer-2-name"]],
+								["exists", ["var", "lecturer-2-details"]]
+							]
+						]],
+						"padding": [
+							"100su",
+							0,
+							"100su",
+							0
+						]
+					},
+					{
+						"enabled": ["$", ["<=", ["aspect"], 1]],
+						"padding": [
+							"125su",
+							0,
+							"125su",
+							0
+						]
+					}
+				]
+			}, [
+				["null", {
+					"stagger": [2000, 0],
+					"enabled": ["$", 
+						["or",
+							["exists", ["var", "course-code"]],
+							["exists", ["var", "course-name"]]
+						]
+					],
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]],
+					"gap": "50su",
+					"opacity": ["animate",
+						[0, 1],
+						["+400", 0, "easeInQuad"]
+					]
+				}, [
+					["text", {
+						"stagger": [150, -150],
+						"enabled": ["$", ["exists", ["var", "course-code"]]],
+						"mixins": ["ds-stanford-mixins",
+							"text-bold"
+						],
+						"color": ["$", ["var", "white"]],
+						"string": ["$", ["var", "course-code"]],
+						"justify": ["$", ["var", "#align"]],
+						"case": "uppercase",
+						"boundary": "line",
+						"animations": [
+							{
+								"translate": [
+									0,
+									"50su"
+								]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+800", 1]
+								],
+								"translate": [0, 0],
+								"opacity": 1,
+								"easing": "easeOutQuad"
+							}
+						]
+					}],
+					["text", {
+						"stagger": [400, -350],
+						"enabled": ["$", ["exists", ["var", "course-name"]]],
+						"mixins": ["ds-stanford-mixins",
+							"text-italic"
+						],
+						"color": ["$", ["var", "white"]],
+						"string": ["$", ["var", "course-name"]],
+						"justify": ["$", ["var", "#align"]],
+						"boundary": "line",
+						"animations": [
+							{
+								"translate": [
+									0,
+									"50su"
+								]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+800", 1]
+								],
+								"translate": [0, 0],
+								"opacity": 1,
+								"easing": "easeOutQuad"
+							}
+						]
+					}]
+				]],
+				["null", {
+					"enabled": ["$", 
+						["or",
+							["exists", ["var", "lecturer-1-name"]],
+							["exists", ["var", "lecturer-1-details"]],
+							["exists", ["var", "lecturer-2-name"]],
+							["exists", ["var", "lecturer-2-details"]]
+						]
+					],
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]],
+					"gap": "80su"
+				}, [
+					["null", {
+						"enabled": ["$", 
+							["or",
+								["exists", ["var", "lecturer-1-name"]],
+								["exists", ["var", "lecturer-1-details"]]
+							]
+						],
+						"layout": "vertical packed",
+						"align": ["$", ["var", "#align"]],
+						"gap": "40su"
+					}, [
+						["text", {
+							"stagger": [2400, 0],
+							"enabled": ["$", ["exists", ["var", "lecturer-1-name"]]],
+							"mixins": ["ds-stanford-mixins",
+								"text-bold"
+							],
+							"color": ["$", ["var", "white"]],
+							"string": ["$", ["var", "lecturer-1-name"]],
+							"justify": ["$", ["var", "#align"]],
+							"boundary": "line",
+							"animations": [
+								{
+									"translate": [
+										0,
+										"50su"
+									]
+								},
+								{
+									"mix": ["animate",
+										[0, 0],
+										["+800", 1]
+									],
+									"translate": [0, 0],
+									"opacity": 1,
+									"easing": "easeOutQuad"
+								}
+							]
+						}],
+						["text", {
+							"stagger": [2600, 0],
+							"enabled": ["$", ["exists", ["var", "lecturer-1-details"]]],
+							"mixins": ["ds-stanford-mixins",
+								"text-regular"
+							],
+							"color": ["$", ["var", "white"]],
+							"string": ["$", ["var", "lecturer-1-details"]],
+							"justify": ["$", ["var", "#align"]],
+							"height": "75su",
+							"boundary": "line",
+							"animations": [
+								{
+									"translate": [
+										0,
+										"50su"
+									]
+								},
+								{
+									"mix": ["animate",
+										[0, 0],
+										["+800", 1]
+									],
+									"translate": [0, 0],
+									"opacity": 1,
+									"easing": "easeOutQuad"
+								}
+							]
+						}]
+					]],
+					["null", {
+						"enabled": ["$", 
+							["or",
+								["exists", ["var", "lecturer-2-name"]],
+								["exists", ["var", "lecturer-2-details"]]
+							]
+						],
+						"layout": "vertical packed",
+						"align": ["$", ["var", "#align"]],
+						"gap": "40su"
+					}, [
+						["text", {
+							"stagger": [2800, 0],
+							"enabled": ["$", ["exists", ["var", "lecturer-2-name"]]],
+							"mixins": ["ds-stanford-mixins",
+								"text-bold"
+							],
+							"color": ["$", ["var", "white"]],
+							"string": ["$", ["var", "lecturer-2-name"]],
+							"justify": ["$", ["var", "#align"]],
+							"boundary": "line",
+							"animations": [
+								{
+									"translate": [
+										0,
+										"50su"
+									]
+								},
+								{
+									"mix": ["animate",
+										[0, 0],
+										["+800", 1]
+									],
+									"translate": [0, 0],
+									"opacity": 1,
+									"easing": "easeOutQuad"
+								}
+							]
+						}],
+						["text", {
+							"stagger": [3000, 0],
+							"enabled": ["$", ["exists", ["var", "lecturer-2-details"]]],
+							"mixins": ["ds-stanford-mixins",
+								"text-regular"
+							],
+							"color": ["$", ["var", "white"]],
+							"string": ["$", ["var", "lecturer-2-details"]],
+							"justify": ["$", ["var", "#align"]],
+							"height": "75su",
+							"boundary": "line",
+							"animations": [
+								{
+									"translate": [
+										0,
+										"50su"
+									]
+								},
+								{
+									"mix": ["animate",
+										[0, 0],
+										["+800", 1]
+									],
+									"translate": [0, 0],
+									"opacity": 1,
+									"easing": "easeOutQuad"
+								}
+							]
+						}]
+					]]
+				]],
+				["null", {
+					"flex": {
+						"position": "fixed"
+					},
+					"align": "top center",
+					"max-width": "1000nsu",
+					"rect": [
+						0,
+						0,
+						"100rw",
+						"5nsu"
+					]
+				}, [
+					["solid", {
+						"rect": [
+							0,
+							0,
+							["animate",
+								[0, 0, "easeOutCubic"],
+								["+600", "100rw"]
+							],
+							"100rh"
+						],
+						"align": "top center",
+						"color": ["$", ["var", "white"]]
+					}]
+				]],
+				["null", {
+					"flex": {
+						"position": "fixed"
+					},
+					"align": "bottom center",
+					"max-width": "1000nsu",
+					"rect": [
+						0,
+						0,
+						"100rw",
+						"5nsu"
+					]
+				}, [
+					["solid", {
+						"rect": [
+							0,
+							0,
+							["animate",
+								[0, 0, "easeOutCubic"],
+								["+600", "100rw"]
+							],
+							"100rh"
+						],
+						"align": "bottom center",
+						"color": ["$", ["var", "white"]]
+					}]
+				]]
+			]]
+		]]
+	]
+]

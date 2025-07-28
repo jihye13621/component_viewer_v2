@@ -1,0 +1,86 @@
+[
+	"ds-ntv-watermark",
+	[
+		{
+			"key": "text",
+			"display": "City",
+			"type": "text",
+			"default": "",
+			"required": false
+		},
+		["ds-ntv-mixins",
+			"color-primary",
+			"color-accent",
+			"font-italic"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "do-bg",
+			"display": "Background",
+			"type": "bool",
+			"default": true,
+			"required": false
+		},
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [7, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"max-width": "500nsu",
+				"align": ["$", ["var", "#align"]]
+			}, [
+				["solid", {
+					"skip": ["$", ["not", ["var", "do-bg"]]],
+					"layout": "stacked",
+					"align": "center right",
+					"gap": "40su",
+					"color": ["$", ["rgba-set", ["var", "color-accent"], "a", 0.8]],
+					"padding": [
+						"30su",
+						"30su"
+					],
+					"opacity": ["animate",
+						[0, 0],
+						["300", 1],
+						["100%", 0],
+						["-250", 1]
+					]
+				}, [
+					["asset", {
+						"file": "./media/ds-ntv-logo-white.svg",
+						"justify": "fit center"
+					}],
+					["text", {
+						"enabled": ["$", ["exists", ["var", "text"]]],
+						"mixins": ["ds-ntv-mixins", "text"],
+						"font": ["$", ["var", "font-italic"]],
+						"justify": "bottom right",
+						"align": "bottom right",
+						"string": ["$", ["var", "text"]],
+						"height": "50su",
+						"fit": true,
+						"max-width": "76rw",
+						"transform": [
+							["translate", 0, "10su"]
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

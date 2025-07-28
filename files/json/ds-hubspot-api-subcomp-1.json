@@ -1,0 +1,103 @@
+[
+	"ds-hubspot-api-subcomp-1",
+	[
+		{
+			"key": "text-1",
+			"display": "Text 1",
+			"type": "textarea",
+			"default": "Add Text",
+			"required": false
+		},
+		{
+			"key": "text-2",
+			"display": "Text 2",
+			"type": "textarea",
+			"default": "Add Text",
+			"required": false
+		},
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["gain", 0],
+				["justify", "fit"],
+				["motion", "none"]
+			]
+		},
+		["ds-hubspot-api-mixins",
+			"animation-select",
+			"transition-select"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		]
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			]
+		}, [
+			["user-asset", {
+				"enabled": ["$", ["exists", ["var", "asset"]]],
+				"flex": {
+					"position": "fixed"
+				},
+				"file": ["$", ["var", "asset"]],
+				"justify": "fill center",
+				"hold": true
+			}],
+			["ds-hubspot-api-text", {
+				"end": ["$",
+					["+",
+						["floor", ["/",
+							["key", ["comp-timing"], "duration"],
+							2
+						]],
+						-250
+					]
+				],
+				"text": ["$", ["var", "text-1"]],
+				"effect": [
+					["shadow", {
+						"radius": "30su",
+						"color": [0, 0, 0, 0.7]
+					}]
+				],
+				"animation-select": ["$", ["var", "animation-select"]]
+			}],
+			["ds-hubspot-api-bg", {
+				"flex": {
+					"position": "fixed"
+				},
+				"transition-select": ["$", ["var", "transition-select"]],
+				"start": ["$",
+					["+",
+						["floor", ["/",
+							["key", ["comp-timing"], "duration"],
+							2
+						]],
+						-250
+					]
+				]
+			}],
+			["ds-hubspot-api-text", {
+				"start": ["$",
+					["+",
+						["floor", ["/",
+							["key", ["comp-timing"], "duration"],
+							2
+						]],
+						250
+					]
+				],
+				"text": ["$", ["var", "text-2"]],
+				"animation-select": ["$", ["var", "animation-select"]]
+			}]
+		]]
+	]
+]

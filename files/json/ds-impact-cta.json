@@ -1,0 +1,105 @@
+[
+	"ds-impact-cta",
+	[
+		["dsx-mixins",
+			"cta"
+		],
+		["ds-impact-mixins",
+			"color-primary",
+			"color-secondary",
+			"color-accent",
+			"font-headline",
+			"font-body"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [9, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"max-width": "800nsu",
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"gap": "25su"
+			}, [
+				["solid", {
+					"enabled": ["$", ["neq", ["var", "icon"], "none"]],
+					"mixins": ["ds-impact-mixins", ["scale-2step"]],
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]],
+					"color": ["$", ["var", "color-accent"]],
+					"radius": "100su",
+					"padding": [
+						"40su",
+						"56su",
+						"40su",
+						"56su"
+					]
+				}, [
+					["dsx-icon", {
+						"flex": {
+							"width": "50su",
+							"height": "50su"
+						},
+						"icon": ["$", ["var", "icon"]],
+						"color": ["$", ["var", "color-secondary"]]
+					}]
+				]],
+				["solid", {
+					"enabled": ["$", ["exists", ["var", "text"]]],
+					"mixins": ["ds-impact-mixins", ["scale-3step"]],
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]],
+					"color": ["$", ["var", "color-secondary"]],
+					"padding": [
+						"36su",
+						"36su"
+					],
+					"stagger": [100, -100],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["eq", ["var", "icon"], "none"]],
+							"stagger": [0, 0]
+						}
+					]
+				}, [
+					["text", {
+						"mixins": ["ds-impact-mixins",
+							"text",
+							"text-title",
+							"anim-body"
+						],
+						"string": ["$", ["var", "text"]],
+						"measure": "cap-size",
+						"case": "uppercase",
+						"justify": ["$", ["var", "#align"]],
+						"color": [0, 0, 0, 0],
+						"stroke-color": ["$", ["var", "color-accent"]],
+						"boundary": "word",
+						"stagger": [100, -100],
+						"breakpoints": [
+							{
+								"enabled": ["$", ["eq", ["var", "icon"], "none"]],
+								"stagger": [0, 0]
+							}
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

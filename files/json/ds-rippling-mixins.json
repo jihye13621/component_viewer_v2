@@ -1,0 +1,143 @@
+{
+	"params": {
+		"colors": [
+			{
+				"key": "white",
+				"display": "White",
+				"private": true,
+				"type": "color",
+				"default": "#FFFFFF",
+				"required": false
+			},
+			{
+				"key": "black",
+				"display": "Black",
+				"private": true,
+				"type": "color",
+				"default": "#000000",
+				"required": false
+			},
+			{
+				"key": "gold",
+				"display": "Gold",
+				"private": true,
+				"type": "color",
+				"default": "#FDB71C",
+				"required": false
+			},
+			{
+				"key": "maroon",
+				"display": "Maroon",
+				"private": true,
+				"type": "color",
+				"default": "#502D3C",
+				"required": false
+			},
+			{
+				"key": "gray",
+				"display": "Gray",
+				"private": true,
+				"type": "color",
+				"default": "#3E3B3B",
+				"required": false
+			},
+			{
+				"key": "light-gray",
+				"display": "Light Gray",
+				"private": true,
+				"type": "color",
+				"default": "#9E9E9E",
+				"required": false
+			},
+			{
+				"key": "tan",
+				"display": "Tan",
+				"private": true,
+				"type": "color",
+				"default": "#F0E8DF",
+				"required": false
+			},
+			{
+				"key": "eggshell",
+				"display": "Eggshell",
+				"private": true,
+				"type": "color",
+				"default": "#F4F3EB",
+				"required": false
+			}
+		],
+		"color-selector": [
+			{
+				"key": "theme",
+				"display": "Theme",
+				"type": "string",
+				"default": "eggshell",
+				"options": [
+					{
+						"key": "eggshell",
+						"display": "Eggshell"
+					},
+					{
+						"key": "plum",
+						"display": "Plum"
+					}
+				],
+				"required": false
+			},
+			{
+				"key": "#background",
+				"display": "Background",
+				"default": "#000000",
+				"script": ["$",
+					["switch", ["var", "theme"], ["object",
+						["array", "eggshell", ["var", "eggshell"]],
+						["array", "plum", ["var", "maroon"]]
+					]]
+				],
+				"private": true
+			},
+			{
+				"key": "#foreground",
+				"display": "Foreground",
+				"default": "#ffffff",
+				"script": ["$",
+					["switch", ["var", "theme"], ["object",
+						["array", "eggshell", ["var", "maroon"]],
+						["array", "plum", ["var", "eggshell"]]
+					]]
+				],
+				"private": true
+			}
+		],
+		"font-bgtf": {
+			"key": "font-bgtf",
+			"type": "string",
+			"default": "./media/BG-TF-Regular-Web.woff2",
+			"private": true
+		},
+		"font-bgtf-medium": {
+			"key": "font-bgtf-medium",
+			"type": "string",
+			"default": "./media/BG-TF-Medium-Web.woff2",
+			"private": true
+		}
+	},
+	"text-captions": {
+		"font": "./media/StyreneA-Medium-Web.woff2",
+		"measure": "letter-size",
+		"height": "50su",
+		"leading": "20su"
+	},
+	"text-bold": {
+		"font": "./media/StyreneA-Bold-Web.woff2",
+		"measure": "letter-size",
+		"height": "60su",
+		"leading": "45su"
+	},
+	"text-regular": {
+		"font": "./media/StyreneA-Medium-Web.woff2",
+		"measure": "letter-size",
+		"height": "60su",
+		"leading": "45su"
+	}
+}

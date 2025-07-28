@@ -1,0 +1,130 @@
+[
+	"ds-paycom-wellbeing-intro",
+	[
+		{
+			"key": "#screen-diag",
+			"display": "Screen Diagonal",
+			"type": "number",
+			"default": 0,
+			"private": true,
+			"required": false,
+			"script": ["$", ["sqrt", ["+", ["*", ["width"], ["width"]], ["*", ["height"], ["height"]] ]]]
+		},
+		{
+			"key": "#asset",
+			"display": "Asset",
+			"type": "string",
+			"private": true,
+			"default": "./media/ds-paycom-wellbeing-intro.json",
+			"required": false,
+			"script": ["$",
+				["if",
+					["<=", ["aspect"], 1],
+					"./media/ds-paycom-wellbeing-intro-vert.json",
+					"./media/ds-paycom-wellbeing-intro.json"
+				]
+			]
+		}
+	],
+	[
+		["solid", {
+			"start": ["$", ["-", ["key", ["comp-timing"], "duration"], 700]],
+			"color": [0, 0, 0, 1],
+			"buffer": "knockout-out"
+		}, [
+			["solid", {
+				"color": [1, 1, 1, 1],
+				"radius": 10000,
+				"rect": [
+					0,
+					0,
+					["$", ["var", "#screen-diag"]],
+					["$", ["var", "#screen-diag"]]
+				],
+				"align": "center",
+				"transform": [
+					["scale",
+						["animate",
+							[0, 1, "easeInOutCubic"],
+							["100%", 0]
+						]
+					]
+				]
+			}]
+		]],
+		["solid", {
+			"color": [1, 1, 1, 1],
+			"effect": [
+				["matte", {
+					"start": ["$", ["-", ["key", ["comp-timing"], "duration"], 700]],
+					"buffer-in": "knockout-out"
+				}]
+			]
+		}, [
+			["asset", {
+				"file": ["$", ["var", "#asset"]],
+				"justify": "fill center",
+				"lottie-driver": ["animate",
+					[0, 0],
+					[
+						"+2000",
+						["$",
+							["/",
+								2000,
+								["dur", ["var", "#asset"]]
+							]
+						]
+					],
+					["100%", 1],
+					[
+						"-2000",
+						["$",
+							["/",
+								["-",
+									["dur", ["var", "#asset"]],
+									2000
+								],
+								["dur", ["var", "#asset"]]
+							]
+						]
+					]
+				]
+			}],
+			["asset", {
+				"file": "./media/ds-paycom-wellbeing-logo.json",
+				"justify": "fit center",
+				"rect": [
+					"15rw",
+					"20rh",
+					"70rw",
+					"50rh"
+				],
+				"lottie-driver": ["animate",
+					[0, 0],
+					[
+						"+2500",
+						["$",
+							["/",
+								2500,
+								["dur", "./media/ds-paycom-wellbeing-logo.json"]
+							]
+						]
+					],
+					["100%", 1],
+					[
+						"-2500",
+						["$",
+							["/",
+								["-",
+									["dur", "./media/ds-paycom-wellbeing-logo.json"],
+									2500
+								],
+								["dur", "./media/ds-paycom-wellbeing-logo.json"]
+							]
+						]
+					]
+				]
+			}]
+		]]
+	]
+]

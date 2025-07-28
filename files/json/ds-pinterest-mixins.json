@@ -1,0 +1,46 @@
+{
+	"params": {
+		"colors": [
+			{
+				"key": "color-white",
+				"display": "White",
+				"type": "color",
+				"default": [1, 1, 1, 1],
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "color-black",
+				"display": "Black",
+				"type": "color",
+				"default": [0, 0, 0, 1],
+				"required": false,
+				"private": true
+			},
+            {
+				"key": "color-red",
+				"display": "Red",
+				"type": "color",
+				"default": "#f41c24",
+				"required": false,
+				"private": true
+			}
+		],
+        "font-pinterest-bold": {
+            "key": "font-pinterest-bold",
+            "display": "Font Pinterest Bold",
+            "type": "string",
+            "default": "./media/Pinterest-Sans-Pro-Bold.otf",
+            "required": false,
+			"private": true
+        },
+        "font-pinterest-regular": {
+            "key": "font-pinterest-regular",
+            "display": "Font Pinterest Regular",
+            "type": "string",
+            "default": "./media/Pinterest-Sans-Pro-Regular.otf",
+            "required": false,
+			"private": true
+        }
+	}
+}

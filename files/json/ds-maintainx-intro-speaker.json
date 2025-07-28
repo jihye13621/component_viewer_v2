@@ -1,0 +1,367 @@
+[
+	"ds-maintainx-intro-speaker",
+	[
+		{
+			"key": "name",
+			"display": "Speaker name",
+			"type": "text",
+			"default": "Speaker name",
+			"required": false
+		},
+		{
+			"key": "detail-1",
+			"display": "Title",
+			"type": "text",
+			"default": "Title",
+			"required": false
+		},
+		{
+			"key": "detail-2",
+			"display": "Company",
+			"type": "text",
+			"default": "at MaintainX",
+			"required": false
+		},
+		{
+			"key": "#anim-dur",
+			"private": true,
+			"type": "number",
+			"default": 0,
+			"script": ["$",
+				["dur", "./media/ds-maintainx-speaker-bg.json"]
+			]
+		},
+		{
+			"key": "#finder",
+			"display": "Finder",
+			"type": "object",
+			"default": null,
+			"required": false,
+			"private": true,
+			"script": ["$",
+				["rect-solve",
+					["size", "./media/ds-maintainx-speaker-bg.json"],
+					["dim-to-rect", ["size"]],
+					"fill"
+				]
+			]
+		}
+	],
+	[
+		["null", {
+			"end": 500,
+			"buffer": "knockout-in"
+		}, [
+			["solid", {
+				"color": [0, 0, 0, 1]
+			}],
+			["solid", {
+				"path": [
+					[0, 0],
+					["50rw", "-40rw"],
+					["100rw", 0],
+					["100rw", "3000rh"],
+					[0, "3000rh"]
+				],
+				"color": [1, 1, 1, 1],
+				"transform": [
+					["translate",
+						0,
+						["animate",
+							[0, "100rh"],
+							["+500", "-150rw"]
+						]
+					],
+					["translate",
+						0,
+						["animate",
+							[0, "40rw"],
+							["+500", 0]
+						]
+					]
+				]
+			}]
+		]],
+		["null", {
+			"start": ["$", ["-", ["key", ["comp-timing"], "duration"], 500]],
+			"buffer": "knockout-out"
+		}, [
+			["solid", {
+				"color": [1, 1, 1, 1]
+			}],
+			["solid", {
+				"path": [
+					[0, 0],
+					["50rw", "-40rw"],
+					["100rw", 0],
+					["100rw", "3000rh"],
+					[0, "3000rh"]
+				],
+				"color": [0, 0, 0, 1],
+				"transform": [
+					["translate",
+						0,
+						["animate",
+							[0, "100rh"],
+							["+500", "-150rw"]
+						]
+					],
+					["translate",
+						0,
+						["animate",
+							[0, "40rw"],
+							["+500", 0]
+						]
+					]
+				]
+			}]
+		]],
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su"
+			],
+			"effect": [
+				["matte", {
+					"end": 500,
+					"buffer-in": "knockout-in"
+				}],
+				["matte", {
+					"start": ["$", ["-", ["key", ["comp-timing"], "duration"], 500]],
+					"buffer-in": "knockout-out"
+				}]
+			]
+		}, [
+			["solid", {
+				"color": [1, 1, 1, 1]
+			}],
+			["asset", {
+				"start": 300,
+				"end": ["$", ["-", ["key", ["comp-timing"], "duration"], 300]],
+				"file": "./media/ds-maintainx-speaker-bg.json",
+				"justify": "fill center",
+				"lottie-driver": ["animate",
+					[0, 0],
+					["+2000", ["$",
+						["/",
+							2000,
+							["var", "#anim-dur"]
+						]
+					]]
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$",
+							["gt",
+								["key", ["comp-timing"], "duration"],
+								["var", "#anim-dur"]
+							]
+						],
+						"lottie-driver": ["animate",
+							[0, 0],
+							[
+								"+2000",
+								["$",
+									["/",
+										2000,
+										["var", "#anim-dur"]
+									]
+								]
+							],
+							["100%", 1],
+							[
+								["$",
+									["to-relative-string",
+										["*",
+											-1,
+											["-",
+												["var", "#anim-dur"],
+												2000
+											]
+										]
+									]
+								],
+								["$",
+									["/",
+										2000,
+										["var", "#anim-dur"]
+									]
+								]
+							]
+						]
+					}
+				]
+			}],
+			["null", {
+				"rect": ["$", ["var", "#finder"]],
+				"start": 300,
+				"end": ["$", ["-", ["key", ["comp-timing"], "duration"], 300]]
+			}, [
+				["solid", {
+					"color": "#001E40",
+					"rect": [
+						"16.2rw",
+						"30.9rh",
+						"83.8rw",
+						"32.4rh"
+					],
+					"padding": [
+						"80su",
+						"80su"
+					],
+					"transform": [
+						["translate",
+							["animate",
+								[0, "100rw", "easeOutQuad"],
+								["+600", 0]
+							],
+							0
+						]
+					],
+					"mask": {
+						"padding": [
+							0,
+							0,
+							0,
+							["animate",
+								["100%", null],
+								["-100", "100rw", "easeInQuad"],
+								["-300", 0]
+							]
+						]
+					}
+				}, [
+					["null", {
+						"layout": "vertical packed",
+						"align": "bottom left",
+						"gap": "70su"
+					}, [
+						["text", {
+							"flex": {
+								"weight": 2
+							},
+							"enabled": ["$", ["exists", ["var", "name"]]],
+							"font": "./media/Inter-Bold.ttf",
+							"height": "90su",
+							"leading": "10su",
+							"justify": "bottom",
+							"measure": "letter-size",
+							"color": [1, 1, 1, 1],
+							"string": ["$", ["var", "name"]],
+							"transform": [
+								["translate",
+									["animate",
+										[0, "100rw", "easeOutQuad"],
+										["+600", 0]
+									],
+									0
+								]
+							]
+						}],
+						["text", {
+							"enabled": ["$", ["or",
+								["exists", ["var", "detail-1"]],
+								["exists", ["var", "detail-2"]]
+							]],
+							"stagger": [300, 0],
+							"font": "./media/Inter-Regular.ttf",
+							"height": "50su",
+							"leading": "10su",
+							"justify": "bottom",
+							"measure": "letter-size",
+							"color": [1, 1, 1, 1],
+							"string": ["$", ["join",
+								["compact", ["array",
+									["var", "detail-1"],
+									["var", "detail-2"]
+								]],
+								"\n"
+							]],
+							"boundary": "line",
+							"animations": [
+								{
+									"translate": [
+										"50rw",
+										0
+									],
+									"opacity": 0
+								},
+								{
+									"mix": ["animate",
+										[0, 0],
+										["+500", 1]
+									],
+									"easing": "easeOutQuad",
+									"ramp": 2,
+									"opacity": 1,
+									"translate": [0, 0]
+								}
+							]
+						}]
+					]]
+				]]
+			]]
+		]],
+		["null", {
+			"end": 500
+		}, [
+			["solid", {
+				"path": [
+					[0, 0],
+					["50rw", "-40rw"],
+					["100rw", 0],
+					["100rw", "150rw"],
+					["50rw", "110rw"],
+					[0, "150rw"]
+				],
+				"color": "#E8EFFF",
+				"transform": [
+					["translate",
+						0,
+						["animate",
+							[0, "100rh"],
+							["+500", "-150rw"]
+						]
+					],
+					["translate",
+						0,
+						["animate",
+							[0, "40rw"],
+							["+500", 0]
+						]
+					]
+				]
+			}]
+		]],
+		["null", {
+			"start": ["$", ["-", ["key", ["comp-timing"], "duration"], 500]] 
+		}, [
+			["solid", {
+				"path": [
+					[0, 0],
+					["50rw", "-40rw"],
+					["100rw", 0],
+					["100rw", "150rw"],
+					["50rw", "110rw"],
+					[0, "150rw"]
+				],
+				"color": "#E8EFFF",
+				"transform": [
+					["translate",
+						0,
+						["animate",
+							[0, "100rh"],
+							["+500", "-150rw"]
+						]
+					],
+					["translate",
+						0,
+						["animate",
+							[0, "40rw"],
+							["+500", 0]
+						]
+					]
+				]
+			}]
+		]]
+	]
+]

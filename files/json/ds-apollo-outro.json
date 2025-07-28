@@ -1,0 +1,382 @@
+[
+	"ds-apollo-outro",
+	[
+		{
+			"key": "audio-file",
+			"display": "Audio",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["gain", 0]
+			]
+		},
+		{
+			"key": "logo",
+			"display": "Logo",
+			"type": "string",
+			"default": "default",
+			"options": [
+				{
+					"key": "default",
+					"display": "Default"
+				},
+				{
+					"key": "live",
+					"display": "Live"
+				}
+			],
+			"required": false
+		},
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "text",
+			"default": "Optional text",
+			"required": false
+		},
+		["ds-apollo-mixins",
+			"color-secondary-private",
+			"font-headline"
+		],
+		["dsx-mixins",
+			"boilerplate-intro-outro"
+		],
+		{
+			"key": "#gain",
+			"display": "Gain Calculation",
+			"type": "number",
+			"default": 0,
+			"required": false,
+			"private": true,
+			"script": ["$",
+				["let",
+					[
+						["gv", ["key", ["var", "audio-file"], "gain"]]
+					],
+					["if",
+						["exists", ["var", "gv"]],
+						["var", "gv"],
+						0
+					]
+				]
+			]
+		}
+	],
+	[
+		["solid", {
+			"color": "#FCCF40",
+			"radius": "100ch",
+			"rect": [
+				"-100cw",
+				0,
+				"200cw",
+				"300ch"
+			],
+			"transform": [
+				["translate",
+					["animate",
+						[0, "-100cw", "easeInOutQuad"],
+						["+1000", "100cw"]
+					],
+					["animate",
+						[0, "100ch", "easeInOutQuad"],
+						["+1000", "-100ch"]
+					]
+				]
+			]
+		}],
+		["null", {
+			"rect": [
+				0,
+				0,
+				["$", ["min", ["width"], ["height"]]],
+				["$", ["min", ["width"], ["height"]]]
+			],
+			"align": "bottom right",
+			"transform": [
+				["translate",
+					"50rw",
+					0
+				]
+			]
+		}, [
+			["null", {
+				"stagger": [500, 0],
+				"transform": [
+					["rotate",
+						["animate",
+							[0, -0.25],
+							["+1000", 0.4]
+						]
+					],
+					["scale",
+						3,
+						"50rw",
+						"100rh"
+					]
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["gt", ["aspect"], 1.1]],
+						"transform": [
+							["rotate",
+								["animate",
+									[0, -0.25],
+									["+1000", 0.4]
+								]
+							],
+							["scale",
+								3,
+								"50rw",
+								"100rh"
+							],
+							["translate",
+								"-25cw",
+								"8ch"
+							]
+						]
+					}
+				]
+			}, [
+				["null", {
+					"padding": [
+						"0.09cw",
+						"0.09cw"
+					],
+					"mask": {
+						"path": [
+							["50rw", "50rh"],
+							["50rw", 0],
+							["100rw", 0],
+							["100rw", "50rh"],
+							["100rw", "100rh"],
+							["50rw", "100rh"],
+							["50rw", "50rh"]
+						]
+					}
+				}, [
+					["solid", {
+						"color": [0, 0, 0, 0],
+						"stroke": "0.15cw",
+						"stroke-color": "#FFF5D9",
+						"radius": 10000
+					}]
+				]],
+				["solid", {
+					"color": [0, 0, 0, 0],
+					"stroke": "0.4cw",
+					"stroke-color": "#FFF5D9",
+					"radius": 10000,
+					"mask": {
+						"path": [
+							["50rw", "50rh"],
+							["100rw", "100rh"],
+							["50rw", "100rh"],
+							["50rw", "50rh"]
+						]
+					}
+				}]
+			]],
+			["solid", {
+				"stagger": [1000, 0],
+				"radius": 10000,
+				"color": "#FEE28C",
+				"transform": [
+					["scale",
+						2,
+						"50rw",
+						"100rh"
+					],
+					["translate",
+						["animate",
+							[0, "100cw", "easeOutQuint"],
+							["+2000", 0]
+						],
+						0
+					],
+					["translate",
+						["animate",
+							[0, "10cw"],
+							["100%", 0]
+						],
+						0
+					]
+				]
+			}],
+			["solid", {
+				"stagger": [1200, 0],
+				"radius": 10000,
+				"color": "#FFECB3",
+				"transform": [
+					["translate",
+						["animate",
+							[0, "-50cw", "easeInOutQuart"],
+							["+1700", 0]
+						],
+						["animate",
+							[0, "100ch", "easeInOutQuart"],
+							["+1700", 0]
+						]
+					],
+					["translate",
+						["animate",
+							[0, "-2cw"],
+							["100%", "2cw"]
+						],
+						["animate",
+							[0, "2ch"],
+							["100%", "-2ch"]
+						]
+					]
+				]
+			}]
+		]],
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"min-width": "100rw",
+				"align": "center",
+				"gap": "100su"
+			}, [
+				["null", {
+					"stagger": [500, 0],
+					"flex": {
+						"width": "700su",
+						"height": "300su"
+					},
+					"layout": "horizontal packed",
+					"align": "center",
+					"transform": [
+						["scale",
+							["animate",
+								[0, 0, "easeOutCubic"],
+								["+500", 1]
+							]
+						]
+					]
+				}, [
+					["asset", {
+						"justify": "fit center",
+						"breakpoints": [
+							{
+								"enabled": ["$", ["=", ["var", "logo"], "default"]],
+								"file": "./media/ds-apollo-logo.svg",
+								"svg-recolor": ["$", ["var", "color-secondary-private"]]
+							},
+							{
+
+								"enabled": ["$", ["=", ["var", "logo"], "live"]],
+								"file": "./media/ds-apollo-logo-live-dark.png"
+							}
+						]
+					}]
+				]],
+				["text", {
+					"enabled": ["$", ["exists", ["var", "text"]]],
+					"stagger": [750, 0], 
+					"mixins": ["ds-apollo-mixins",
+						"text",
+						"text-title"
+					],
+					"color": ["$", ["var", "color-secondary-private"]],
+					"string": ["$", ["var", "text"]],
+					"justify": "center",
+					"boundary": "word",
+					"animations": [
+						{
+							"translate": [
+								0,
+								"50su"
+							]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+750", 1]
+							],
+							"easing": "easeOutCubic",
+							"ramp": 0.5,
+							"translate": [0, 0],
+							"opacity": 1
+						}
+					]
+				}]
+			]]
+		]],
+		["null", {
+			"-calc-safe-fade-in": ["$",
+				["set", "fade-in",
+					["min",
+						1000,
+						["-", ["floor", ["/", ["key", ["comp-timing"], "duration"], 2]], 10]
+					]
+				]
+			],
+			"-calc-safe-fade-out": ["$",
+				["set", "fade-out",
+					["min",
+						1000,
+						["-", ["floor", ["/", ["key", ["comp-timing"], "duration"], 2]], 10]
+					]
+				]
+			]
+		}, [
+			["user-asset", {
+				"file": ["$", ["var", "audio-file"]],
+				"opacity": 0,
+				"loop": ["$", ["var", "loop"]],
+				"breakpoints": [
+					{
+						"enabled": ["$",
+							["or",
+								["gt", ["var", "fade-in"], 0],
+								["gt", ["var", "fade-out"], 0]
+							]
+						],
+						"gain-dopesheet": ["$",
+							["compact",
+								["array",
+									["if",
+										["gt", ["var", "fade-in"], 0],
+										["array",
+											["key", ["comp-timing"], "start"],
+											-96
+										],
+										null
+									],
+									["if",
+										["gt", ["var", "fade-in"], 0],
+										["array",
+											["+", ["key", ["comp-timing"], "start"], ["var", "fade-in"]],
+											["var", "#gain"]
+										],
+										null
+									],
+									["if",
+										["gt", ["var", "fade-out"], 0],
+										["array",
+											["-", ["+", ["key", ["comp-timing"], "start"], ["key", ["comp-timing"], "duration"]], ["var", "fade-out"]],
+											["var", "#gain"]
+										],
+										null
+									],
+									["if",
+										["gt", ["var", "fade-out"], 0],
+										["array",
+											["+", ["key", ["comp-timing"], "start"], ["key", ["comp-timing"], "duration"]],
+											-96
+										],
+										null
+									]
+								]
+							]
+						]
+					}
+				]
+			}]
+		]]
+	]
+]

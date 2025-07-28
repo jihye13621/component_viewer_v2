@@ -1,0 +1,92 @@
+[
+    "motion-intro-sh-mixins",
+    {
+        "text-styles": {
+            "title": {
+                "font": "./media/Barlow-Bold.ttf",
+                "color": [1, 1, 1, 0.95],
+                "stroke": {
+                    "color": [0, 0, 0, 0.7],
+                    "width": 6
+                },
+                "shadow": {
+                    "color": [0, 0, 0, 0.98],
+                    "offset": [0, 30],
+                    "blur": 45
+                },
+                "fit": true,
+                "measure": "letter-size",
+                "height": "80su"
+            },
+            "subtitle": {
+                "font": "./media/Barlow-Medium.ttf",
+                "color": [1, 1, 1, 0.85],
+                "stroke": {
+                    "color": [0, 0, 0, 0.5],
+                    "width": 4
+                },
+                "shadow": {
+                    "color": [0, 0, 0, 0.95],
+                    "offset": [0, 25],
+                    "blur": 40
+                },
+                "fit": true,
+                "measure": "letter-size",
+                "height": "40su"
+            }
+        },
+        "gradients": {
+            "background": {
+                "base": ["linear-gradient",
+                    0.0,
+                    [0.0, [0.1, 0.3, 0.4, 1]],
+                    [1.0, [0.2, 0.1, 0.3, 1]]
+                ],
+                "overlay": ["linear-gradient",
+                    0.0,
+                    [0.0, [0.2, 0.4, 0.6, 0.9]],
+                    [1.0, [0.4, 0.2, 0.5, 0.9]]
+                ]
+            },
+            "accent": {
+                "primary": ["linear-gradient",
+                    0.0,
+                    [0.0, [0.1, 0.6, 0.95, 0.95]],
+                    [1.0, [0.95, 0.1, 0.6, 0.95]]
+                ],
+                "secondary": ["linear-gradient",
+                    0.0,
+                    [0.0, [0.95, 0.1, 0.6, 0.95]],
+                    [1.0, [0.6, 0.1, 0.95, 0.95]]
+                ]
+            }
+        },
+        "animations": {
+            "fade-in": ["animate",
+                [0, 0, "easeInOutQuad"],
+                ["+500", 1]
+            ],
+            "slide-up": ["animate",
+                [0, "50su", "easeInOutQuad"],
+                ["+500", "0su"]
+            ],
+            "scale-in": ["animate",
+                [0, 0.8, "easeInOutQuad"],
+                ["+500", 1]
+            ],
+            "mask": {
+                "padding": [
+                    0,
+                    ["animate",
+                        [0, "1000su", "easeInOutQuad"],
+                        ["+600", 0],
+                        ["100%", "1000su", "easeInOutQuad"],
+                        ["-250", 0]      
+                    ],
+                    0,
+                    0
+                ]
+            }
+        }
+    }
+] 

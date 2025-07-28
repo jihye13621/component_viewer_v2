@@ -1,0 +1,76 @@
+{
+	"params": {
+		"color-primary": {
+			"key": "color-primary",
+			"display": "Primary",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		},
+		"color-secondary": {
+			"key": "color-secondary",
+			"display": "Secondary",
+			"type": "color",
+			"default": "#000000",
+			"required": false
+		},
+		"color-orange": {
+			"key": "color-orange",
+			"display": "Accent",
+			"type": "color",
+			"default": "#FA9E28",
+			"required": false
+		},
+		"color-blue": {
+			"key": "color-blue",
+			"display": "Accent",
+			"type": "color",
+			"default": "#2E55BA",
+			"required": false
+		},
+		"font-headline": {
+			"key": "font-headline",
+			"display": "Font Headline",
+			"type": "string",
+			"default": "./media/AvenirNextPForBBG-Bold.otf",
+			"required": false,
+			"private": true
+		},
+		"font-title": {
+			"key": "font-title",
+			"display": "Font Title",
+			"type": "string",
+			"default": "./media/AvenirNextPForBBG-Demi.otf",
+			"required": false,
+			"private": true
+		},
+		"font-body": {
+			"key": "font-body",
+			"display": "Font Body",
+			"type": "string",
+			"default": "./media/AvenirNextPForBBG-Regular.otf",
+			"required": false,
+			"private": true
+		}
+	},
+	"text": {
+		"measure": "letter-size"
+	},
+	"text-headline": {
+		"font": ["$", ["var", "font-headline"]],
+		"height": "100su"
+	},
+	"text-title": {
+		"font": ["$", ["var", "font-title"]],
+		"height": "100su",
+		"leading": "20su"
+	},
+	"text-body": {
+		"font": ["$", ["var", "font-body"]],
+		"height": "50su"
+	},
+	"text-label": {
+		"font": ["$", ["var", "font-body"]],
+		"height": "40su"
+	}
+}

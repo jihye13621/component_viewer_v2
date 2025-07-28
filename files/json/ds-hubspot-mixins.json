@@ -1,0 +1,311 @@
+{
+	"params": {
+		"color-neutrals": [
+			{
+				"key": "color-chapati",
+				"display": "Chapati",
+				"type": "color",
+				"default": "#FCEAD7",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "color-oatmilk",
+				"display": "oatmilk",
+				"type": "color",
+				"default": "#FEF4EA",
+				"required": false,
+				"private": true
+			}
+		],
+		"color-primary": [
+			{
+				"key": "color-solaris",
+				"display": "Solaris",
+				"type": "color",
+				"default": "#FF5C35",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "color-yuma",
+				"display": "Yuma",
+				"type": "color",
+				"default": "#FFCEC2",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "color-lorax",
+				"display": "Lorax",
+				"type": "color",
+				"default": "#FF7A59",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "color-helios",
+				"display": "Helios",
+				"type": "color",
+				"default": "#D44325",
+				"required": false,
+				"private": true
+			}
+		],
+		"color-secondary": [
+			{
+				"key": "color-oolong-tea",
+				"display": "Oolong Tea",
+				"type": "color",
+				"default": "#CC6D29",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "color-berlin-bus",
+				"display": "Berlin Bus",
+				"type": "color",
+				"default": "#FFBC4B",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "color-sahara",
+				"display": "Sahara",
+				"type": "color",
+				"default": "#FF8933",
+				"required": false,
+				"private": true
+			}
+		],
+		"color-darkgreys": [
+			{
+				"key": "color-darkmatter",
+				"display": "Darkmatter",
+				"type": "color",
+				"default": "#192733",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "color-eclipse",
+				"display": "Eclipse",
+				"type": "color",
+				"default": "#213343",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "color-galaxy",
+				"display": "Galaxy",
+				"type": "color",
+				"default": "#2E475D",
+				"required": false,
+				"private": true
+			}
+		],
+		"color-lightgreys": [
+			{
+				"key": "color-nebula",
+				"display": "Nebula",
+				"type": "color",
+				"default": "#99AFC4",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "color-moon",
+				"display": "Moon",
+				"type": "color",
+				"default": "#FFFFFF",
+				"required": false,
+				"private": true
+			}
+		],
+		"dark-mode": {
+			"key": "dark-mode",
+			"display": "Dark Mode",
+			"type": "bool",
+			"default": true,
+			"required": false,
+			"script": ["$",
+				["if",
+					["exists", ["gvar", "mode"]],
+					["if", ["eq", ["gvar", "mode"], "dark"],
+						true,
+						false
+					],
+					["var", "dark-mode"]
+				]
+			]
+		}
+	},
+	"font-intro": {
+		"font": ["$",
+			["if",
+				["or",
+					["exists", ["gvar", "jp-font"]],
+					["in", "ja", ["languages"]]
+				],
+				"./media/NotoSansJP-Bold.otf",
+				"./media/Queens-Bold.ttf"
+			]
+		],
+		"height": "150su"
+	},
+	"font-bold": {
+		"font": ["$",
+			["if",
+				["or",
+					["exists", ["gvar", "jp-font"]],
+					["in", "ja", ["languages"]]
+				],
+				"./media/NotoSansJP-Bold.otf",
+				"./media/LexendDeca-Bold.ttf"
+			]
+		],
+		"height": "150su"
+	},
+	"font-regular": {
+		"font": ["$",
+			["if",
+				["or",
+					["exists", ["gvar", "jp-font"]],
+					["in", "ja", ["languages"]]
+				],
+				"./media/NotoSansJP-Regular.otf",
+				"./media/LexendDeca-Regular.ttf"
+			]
+		],
+		"height": "150su"
+	},
+	"font-light": {
+		"font": ["$",
+			["if",
+				["or",
+					["exists", ["gvar", "jp-font"]],
+					["in", "ja", ["languages"]]
+				],
+				"./media/NotoSansJP-Light.otf",
+				"./media/LexendDeca-Light.ttf"
+			]
+		],
+		"height": "150su"
+	},
+	"font-captions": {
+		"font": ["$",
+			["if",
+				["or",
+					["exists", ["gvar", "jp-font"]],
+					["in", "ja", ["languages"]]
+				],
+				"./media/NotoSansJP-SemiBold.ttf",
+				"./media/LexendDeca-SemiBold.ttf"
+			]
+		],
+		"height": "60su"
+	},
+	"font-speaker-name": {
+		"font": ["$",
+			["if",
+				["or",
+					["exists", ["gvar", "jp-font"]],
+					["in", "ja", ["languages"]]
+				],
+				"./media/NotoSansJP-SemiBold.ttf",
+				"./media/LexendDeca-SemiBold.ttf"
+			]
+		],
+		"height": "60su"
+	},
+	"font-speaker-details": {
+		"font": ["$",
+			["if",
+				["or",
+					["exists", ["gvar", "jp-font"]],
+					["in", "ja", ["languages"]]
+				],
+				"./media/NotoSansJP-Light.otf",
+				"./media/LexendDeca-Light.ttf"
+			]
+		],
+		"height": "40su"
+	},
+	"font-headline": {
+		"font": ["$",
+			["if",
+				["or",
+					["exists", ["gvar", "jp-font"]],
+					["in", "ja", ["languages"]]
+				],
+				"./media/NotoSansJP-Regular.otf",
+				"./media/LexendDeca-Regular.ttf"
+			]
+		],
+		"height": "75su"
+	},
+	"font-list": {
+		"font": ["$",
+			["if",
+				["or",
+					["exists", ["gvar", "jp-font"]],
+					["in", "ja", ["languages"]]
+				],
+				"./media/NotoSansJP-Regular.otf",
+				"./media/LexendDeca-Regular.ttf"
+			]
+		],
+		"height": "120su"
+	},
+	"font-list-headline": {
+		"font": ["$",
+			["if",
+				["or",
+					["exists", ["gvar", "jp-font"]],
+					["in", "ja", ["languages"]]
+				],
+				"./media/NotoSansJP-SemiBold.ttf",
+				"./media/LexendDeca-SemiBold.ttf"
+			]
+		],
+		"height": "120su"
+	},
+	"font-text-large": {
+		"font": ["$",
+			["if",
+				["or",
+					["exists", ["gvar", "jp-font"]],
+					["in", "ja", ["languages"]]
+				],
+				"./media/NotoSansJP-SemiBold.ttf",
+				"./media/LexendDeca-SemiBold.ttf"
+			]
+		],
+		"height": "75su"
+	},
+	"font-text-small": {
+		"font": ["$",
+			["if",
+				["or",
+					["exists", ["gvar", "jp-font"]],
+					["in", "ja", ["languages"]]
+				],
+				"./media/NotoSansJP-Regular.otf",
+				"./media/LexendDeca-Regular.ttf"
+			]
+		],
+		"height": "45su"
+	},
+	"font-semibold": {
+		"font": ["$",
+			["if",
+				["or",
+					["exists", ["gvar", "jp-font"]],
+					["in", "ja", ["languages"]]
+				],
+				"./media/NotoSansJP-SemiBold.ttf",
+				"./media/LexendDeca-SemiBold.ttf"
+			]
+		]
+	}
+}

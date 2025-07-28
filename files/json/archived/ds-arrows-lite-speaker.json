@@ -1,0 +1,71 @@
+[
+	"ds-arrows-lite-speaker",
+	[
+		["dsx-mixins", ["speaker"]],
+		["ds-arrows-lite-mixins", "color-1", "color-2"],
+		["dsx-mixins", ["boilerplate"]],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": 1,
+			"required": false
+		}
+	],
+	[
+		["dsx-background", {
+			"enabled": ["$", ["exists", ["var", "background"]]],
+			"color": ["$", ["var", "background"]]
+		}],
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"max-width": "800nsu",
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]]
+			}, [
+				["ds-arrows-lite-pill", {
+					"enabled": ["$", ["exists", ["var", "name"]]],
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]],
+					"position": ["$", ["var", "position"]],
+					"color-1": ["$", ["var", "color-2"]],
+					"color-2": ["$", ["var", "color-1"]],
+					"string": ["$", ["var", "name"]],
+					"pill-mixin": "headline-2",
+					"pill-padding": ["38su", "72su"],
+					"pill-stroke": "10su",
+					"pill-radius": "88su",
+					"pill-stagger": [0, 0]
+				}],
+				["ds-arrows-lite-pill", {
+					"enabled": ["$", ["exists", ["var", "detail-1"]]],
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]],
+					"position": ["$", ["var", "position"]],
+					"color-1": ["$", ["var", "color-1"]],
+					"color-2": ["$", ["var", "color-2"]],
+					"string": ["$", ["var", "detail-1"]],
+					"pill-mixin": "text-2",
+					"pill-padding": ["38su", "72su"],
+					"pill-radius": "77su",
+					"pill-stagger": [200, -100]
+				}],
+				["ds-arrows-lite-pill", {
+					"enabled": ["$", ["exists", ["var", "detail-2"]]],
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]],
+					"position": ["$", ["var", "position"]],
+					"color-1": ["$", ["var", "color-1"]],
+					"color-2": ["$", ["var", "color-2"]],
+					"string": ["$", ["var", "detail-2"]],
+					"pill-mixin": "text-2",
+					"pill-padding": ["38su", "72su"],
+					"pill-radius": "77su",
+					"pill-stagger": [400, -200]
+				}]
+			]]
+		]]
+	]
+]

@@ -1,0 +1,101 @@
+[
+	"ds-impact-prompt",
+	[
+		["dsx-mixins",
+			"prompt"
+		],
+		["ds-impact-mixins",
+			"color-primary",
+			"color-secondary",
+			"color-accent",
+			"font-headline",
+			"font-body"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [5, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"max-width": "800nsu",
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"gap": "50su"
+			}, [
+				["solid", {
+					"mixins": ["ds-impact-mixins", ["scale-3step"]],
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]],
+					"color": ["$", ["var", "color-accent"]],
+					"radius": "100su",
+					"padding": [
+						"40su",
+						"56su",
+						"40su",
+						"56su"
+					]
+				}, [
+					["text", {
+						"mixins": ["ds-impact-mixins",
+							"text",
+							"text-body"
+						],
+						"case": "uppercase",
+						"measure": "cap-size",
+						"height": "32su",
+						"string": "QUESTION",
+						"color": ["$", ["var", "color-secondary"]],
+						"justify": ["$", ["var", "#align"]]
+					}]
+				]],
+				["solid", {
+					"enabled": ["$", ["exists", ["var", "text"]]],
+					"mixins": ["ds-impact-mixins", ["scale-2step"]],
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]],
+					"color": ["$", ["var", "color-secondary"]],
+					"padding": [
+						"50su",
+						"50su",
+						"50su",
+						"50su"
+					],
+					"stroke": "10su",
+					"stroke-color": ["$", ["var", "color-accent"]],
+					"stagger": [250, -50]
+				}, [
+					["text", {
+						"mixins": ["ds-impact-mixins",
+							"text",
+							"text-title",
+							"anim-body"
+						],
+						"string": ["$", ["var", "text"]],
+						"measure": "cap-size",
+						"case": "uppercase",
+						"height": "70su",
+						"justify": ["$", ["var", "#align"]],
+						"color": [0, 0, 0, 0],
+						"stroke-color": ["$", ["var", "color-accent"]],
+						"stagger": [300, -50],
+						"boundary": "word"
+					}]
+				]]
+			]]
+		]]
+	]
+]

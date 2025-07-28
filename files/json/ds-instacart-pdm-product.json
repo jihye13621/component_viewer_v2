@@ -1,0 +1,298 @@
+[
+	"ds-instacart-pdm-product",
+	[
+		{
+			"key": "background-1",
+			"display": "Background 1",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [],
+			"script": ["$", ["if",
+				["exists", ["var", "background-1"]],
+				["var", "background-1"],
+				"./media/image-wide.jpg"	
+			]]
+		},
+		{
+			"key": "background-2",
+			"display": "Background 2",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": []
+		},
+		{
+			"key": "product-1",
+			"display": "Product-1",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": []
+		},
+		{
+			"key": "product-2",
+			"display": "Product-2",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": []
+		},
+		{
+			"key": "product-3",
+			"display": "Product-3",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": []
+		},
+		["dsx-mixins", "intro"],
+		{
+			"key": "legal",
+			"display": "Legal",
+			"type": "text",
+			"default": "Min $10 req/order. Terms apply.",
+			"required": false
+		},
+		{
+			"key": "sticker-text",
+			"display": "Sticker Text",
+			"type": "text",
+			"default": "Sticker Text",
+			"required": false
+		},
+		{
+			"key": "sticker-detail",
+			"display": "Sticker Detail",
+			"type": "text",
+			"default": "Sticker Detail",
+			"required": false
+		},
+		["ds-instacart-mixins",
+			"colors",
+			"font-sans-400",
+			"font-sans-600",
+			"theme"
+		],
+		{
+			"key": "#products",
+			"display": "Products",
+			"type": "object",
+			"default": [],
+			"required": false,
+			"private": true,
+			"script": ["$",
+				["compact", ["array",
+					["var", "product-1"],
+					["var", "product-2"],
+					["var", "product-3"]
+				]]
+			]
+		}
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins", "safezone", "set-su"],
+			"color": ["$", ["var", "#background"]]
+		}, [
+			["null", {
+				"gap": "60su",
+				"breakpoints": [
+					{
+						"enabled": ["$", ["lte", ["aspect"], 1]],
+						"layout": "vertical packed",
+						"units": {
+							"allspace": "100rh"
+						}
+					},
+					{
+						"enabled": ["$", ["gt", ["aspect"], 1]],
+						"layout": "horizontal packed",
+						"units": {
+							"allspace": "100rw"
+						}
+					}
+				]
+			}, [
+				["null", {
+				}, [
+					["text", {
+						"flex": {
+							"position": "fixed"
+						},
+						"enabled": ["$", ["exists", ["var", "legal"]]],
+						"stagger": [650, -300],
+						"measure": "letter-size",
+						"font": ["$", ["var", "font-sans-400"]],
+						"height": "22su",
+						"fit": true,
+						"string": ["$", ["var", "legal"]],
+						"color": ["$", ["var", "#foreground"]],
+						"justify": "right",
+						"boundary": "word",
+						"animations": [
+							{
+								"mask": [0, 0, "-5su", 0],
+								"translate": [0, "50su"]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+400", 1]
+								],
+								"easing": "easeOutQuad",
+								"translate": [0, 0]
+							}
+						],
+						"breakpoints": [
+							{
+								"enabled": ["$", ["lte", ["aspect"], 1]],
+								"justify": "bottom right",
+								"transform": [
+									["translate",
+										0,
+										"50su"
+									]
+								]
+							},
+							{
+								"enabled": ["$", ["gt", ["aspect"], 1]],
+								"justify": "top right",
+								"transform": [
+									["translate",
+										0,
+										"-35su"
+									]
+								]
+							}
+						]
+					}],
+					["null", {
+						"mask": {
+							"radius": "40su"
+						}
+					}, [
+						["user-asset", {
+							"file": ["$", ["var", "background-1"]],
+							"justify": "fill center",
+							"breakpoints": [
+								{
+									"enabled": ["$", ["exists", ["var", "background-2"]]],
+									"end": ["$", ["+", ["floor", ["/", ["key", ["comp-timing"], "duration"], 2]], 1000]]
+								}
+							]
+						}],
+						["user-asset", {
+							"stagger": [
+								["$", ["floor", ["/", ["key", ["comp-timing"], "duration"], 2]]],
+								0
+							],
+							"enabled": ["$", ["exists", ["var", "background-2"]]],
+							"file": ["$", ["var", "background-2"]],
+							"justify": "fill center",
+							"transform": [
+								["translate",
+									["animate",
+										[0, "100rw", "easeOutQuad"],
+										["+1000", 0]
+									],
+									0
+								]
+							]
+						}]
+					]],
+					["for-each", {
+						"enabled": ["$", ["gt", ["length", ["var", "#products"]], 0]],
+						"items": ["$", ["var", "#products"]],
+						"breakpoints": [
+							{
+								"enabled": ["$", ["lte", ["aspect"], 1]],
+								"rect": [
+									0,
+									0,
+									"60rw",
+									"60rw"
+								],
+								"align": "bottom center",
+								"transform": [
+									["translate",
+										0,
+										"-33rh"
+									]
+								]
+							},
+							{
+								"enabled": ["$", ["gt", ["aspect"], 1]],
+								"rect": [
+									"15rh",
+									"25rh",
+									"50rh",
+									"50rh"
+								]
+							}
+						]
+					}, [
+						["user-asset", {
+							"file": ["$", ["var", "item"]],
+							"justify": "fill center",
+							"mask": {
+								"transform": true,
+								"radius": "40su"
+							},
+							"start": ["$",
+								["*",
+									["var", "index"],
+									["-",
+										["floor",
+											["/",
+												["key", ["comp-timing"], "duration"],
+												["length", ["var", "#products"]]
+											]
+										],
+										200
+									]
+								]
+							],
+							"duration": ["$",
+								["floor",
+									["/",
+										["key", ["comp-timing"], "duration"],
+										["length", ["var", "#products"]]
+									]
+								]
+							],
+							"transform": [
+								["scale",
+									["animate",
+										[0, 0, "easeOutBack"],
+										["+500", 1],
+										["100%", 0],
+										["-500", 1, "easeInBack"]
+									]
+								]
+							]
+						}]
+					]]
+				]]
+			]],
+			["null", {
+			}, [
+				["ds-instacart-pdm-sticker", {
+					"enabled": ["$", ["or",
+						["exists", ["var", "sticker-text"]],
+						["exists", ["var", "sticker-detail"]]
+					]],
+					"rect": [
+						0,
+						0,
+						"300su",
+						"300su"
+					],
+					"align": "top right",
+					"text-1": ["$", ["var", "sticker-text"]],
+					"text-2": ["$", ["var", "sticker-detail"]]
+				}]
+			]]
+		]]
+	]
+]

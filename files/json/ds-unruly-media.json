@@ -1,0 +1,219 @@
+[
+	"ds-unruly-media",
+	[
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false
+		},
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "use-safezone",
+			"display": "Safezone",
+			"type": "bool",
+			"default": true,
+			"required": false
+		},
+		{
+			"key": "bg-style",
+			"display": "Background",
+			"type": "string",
+			"options": [
+				{
+					"key": "none",
+					"display": "None"
+				},
+				{
+					"key": "black",
+					"display": "Black"
+				},
+				{
+					"key": "blur",
+					"display": "Blur"
+				}
+			],
+			"default": "none",
+			"required": false
+		},
+		{
+			"key": "audio",
+			"display": "Audio",
+			"type": "string",
+			"options": [
+				{
+					"key": "off",
+					"display": "Off"
+				},
+				{
+					"key": "on",
+					"display": "On"
+				}
+			],
+			"default": "off",
+			"required": false
+		},
+		{
+			"key": "fitfill",
+			"display": "Fit / Fill",
+			"type": "string",
+			"options": [
+				{
+					"key": "fill",
+					"display": "Fill"
+				},
+				{
+					"key": "fit",
+					"display": "Fit"
+				}
+			],
+			"default": "fit",
+			"required": false
+		},
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [5, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"enabled": ["$", ["eq", ["var", "bg-style"], "blur"]]
+		}, [
+			["blur", {
+				"radius": ["$", ["*", 0.05, ["min", ["width"], ["height"]]]],
+				"transform": [
+					["scale",
+						1.1
+					]
+				],
+				"opacity": ["animate",
+					[0, 0, "easeOutSine"],
+					["+200", 1],
+					["100%", 0],
+					["-200", 1, "easeInSine"]
+				] 
+			}, [
+				["dsx-placeholder", {
+					"enabled": ["$", ["not", ["exists", ["var", "asset"]]]]
+				}],
+				["asset", {
+					"enabled": ["$", ["exists", ["var", "asset"]]],
+					"mute": true,
+					"file": ["$", ["var", "asset"]],
+					"justify": "fill center"
+				}]
+			]]
+		]],
+		["null", {
+			"mixins": ["dsx-mixins", ["set-su"]],
+			"padding": ["$",
+				["if",
+					["var", "use-safezone"],
+					["safezone"],
+					null
+				]
+			]
+		}, [
+			["null", {
+				"layout": "horizontal packed",
+				"align": ["$", ["var", "#align"]],
+				"rect": [
+					0,
+					0,
+					["$",
+						["concat",
+							["*", 100, ["var", "size"]],
+							"rw"
+						]
+					],
+					["$",
+						["concat",
+							["*", 100, ["var", "size"]],
+							"rh"
+						]
+					]
+				]
+			}, [
+				["null", {
+					"layout": "horizontal packed",
+					"align": ["$", ["var", "#align"]],
+					"padding": [
+						"15nsu",
+						"15nsu"
+					]
+				}, [
+					["solid", {
+						"flex": {
+							"position": "fixed"
+						},
+						"color": [0, 0, 0, 0],
+						"stroke": "15nsu",
+						"stroke-color": [1, 1, 1, 1],
+						"align": "center",
+						"rect": [
+							0,
+							0,
+							["animate",
+								[0, "30nsu", "easeOutQuad"],
+								["+350", "100rw"],
+								["100%", "30nsu"],
+								["-350", "100rw", "easeInQuad"]
+							],
+							"100rh"
+						]
+					}],
+					["null", {
+						"layout": "horizontal packed",
+						"align": ["$", ["var", "#align"]],
+						"mask": {
+							"padding": [
+								0,
+								["animate",
+									[0, "50rw", "easeOutQuad"],
+									["+350", 0],
+									["100%", "50rw"],
+									["-350", 0, "easeInQuad"]
+								],
+								0,
+								["animate",
+									[0, "50rw", "easeOutQuad"],
+									["+350", 0],
+									["100%", "50rw"],
+									["-350", 0, "easeInQuad"]
+								]
+							]
+						}
+					}, [
+						["dsx-placeholder", {
+							"enabled": ["$", ["not", ["exists", ["var", "asset"]]]]
+						}],
+						["asset", {
+							"enabled": ["$", ["exists", ["var", "asset"]]],
+							"mute": ["$", ["eq", "off", ["var", "audio"]]],
+							"file": ["$", ["var", "asset"]],
+							"justify": ["$", ["concat", ["var", "fitfill"], " center"]],
+							"transform": [
+								["scale",
+									["animate",
+										[0, 1],
+										["100%", 1.1]
+									]
+								]
+							]
+						}]
+					]]
+				]]
+			]]
+		]]
+	]
+]

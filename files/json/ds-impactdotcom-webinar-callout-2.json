@@ -1,0 +1,448 @@
+[
+	"ds-impactdotcom-webinar-callout-2",
+	[
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["gain", 0],
+				["motion", "none"]
+			]
+		},
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "textarea",
+			"default": "Title Text",
+			"required": false
+		},
+		{
+			"key": "do-background",
+			"display": "Background",
+			"type": "bool",
+			"default": true,
+			"required": false
+		},
+		["ds-impactdotcom-webinar-mixins",
+			"color-text-auto",
+			"color-primary",
+			"color-accent",
+			"font-bold"
+		],
+		{
+			"key": "size",
+			"display": "Size",
+			"type": "number",
+			"default": 1.0,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"step": 0.05,
+				"minimum": 0.25,
+				"maximum": 2.0
+			}
+		},
+		{
+			"key": "#rad",
+			"display": "Radius",
+			"type": "number",
+			"default": 100,
+			"required": false,
+			"private": true,
+			"script": ["$", ["min", ["width"], ["height"]]]
+		}
+	],
+	[
+		["solid", {
+			"enabled": ["$", ["var", "do-background"]],
+			"color": ["$", ["var", "color-black"]],
+			"opacity": ["animate",
+				[0, 0, "easeOutQuad"],
+				["+250", 1],
+				["100%", 0],
+				["-200", 1, "easeInQuad"]
+			]
+		}],
+		["null", {
+			"mixins": ["dsx-mixins", "set-su", "safezone"]
+		}, [
+			["null", {
+				"enabled": ["$", ["exists", ["var", "asset"]]],
+				"flex": {
+					"position": "fixed"
+				},
+				"rect": [
+					0,
+					0,
+					"40rw",
+					"100rh"
+				],
+				"align": "center right",
+				"mask": {
+					"transform": true,
+					"padding": [
+						0,
+						0,
+						0,
+						["animate",
+							[0, 0, "easeOutCubic"],
+							["+1000", "-20nsu"],
+							["100%", 0],
+							["-500", "-20nsu", "easeInQuad"]
+						]
+					]
+				},
+				"transform": [
+					["translate",
+						["animate",
+							[0, "-50rw", "easeOutCubic"],
+							["+1000", 0],
+							["100%", "-50rw"],
+							["-500", 0, "easeInQuad"]
+						],
+						0
+					]
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["lte", ["aspect"], 1]],
+						"rect": [
+							0,
+							0,
+							"100rw",
+							"40rh"
+						],
+						"align": "center top",
+						"mask": {
+							"transform": true,
+							"padding": [
+								0,
+								0,
+								"-20nsu",
+								0
+							]
+						},
+						"transform": [
+							["translate",
+								0,
+								["animate",
+									[0, "-100rh", "easeOutCubic"],
+									["+1000", 0],
+									["100%", "-100rh"],
+									["-500", 0, "easeInQuad"]
+								]
+							]
+						]
+					}
+				]
+			}, [
+				["user-asset", {
+					"file": ["$", ["var", "asset"]],
+					"justify": "fill center",
+					"mask": {
+						"transform": true
+					},
+					"transform": [
+						["translate",
+							["animate",
+								[0, "-100rw", "easeOutCubic"],
+								["+1000", 0],
+								["100%", "-100rw"],
+								["-500", 0, "easeInQuad"]
+							],
+							0
+						]
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["lte", ["aspect"], 1]],
+							"transform": [
+								["translate",
+									0,
+									["animate",
+										[0, "50rh", "easeOutCubic"],
+										["+1000", 0],
+										["100%", "50rh"],
+										["-500", 0, "easeInQuad"]
+									]
+								]
+							]
+						}
+					]
+				}],
+				["solid", {
+					"color": ["$", ["var", "color-gradient"]],
+					"rect": [
+						"-20nsu",
+						0,
+						"20nsu",
+						"100rh"
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["lte", ["aspect"], 1]],
+							"rect": [
+								0,
+								"100rh",
+								"100rw",
+								"20nsu"
+							]
+						}
+					]
+				}]
+			]],
+			["null", {
+				"flex": {
+					"position": "fixed"
+				}
+			}, [
+				["solid", {
+					"stagger": [300, -200],
+					"rect": [
+						0,
+						0,
+						["$", ["var", "#rad"]],
+						["$", ["var", "#rad"]]
+					],
+					"radius": 2000,
+					"color": ["linear-gradient",
+						-0.25,
+						[
+							0.0,
+							["$", ["var", "color-accent"]]
+						],
+						[
+							1.0,
+							["$", ["var", "color-gradient"]]
+						]
+					],
+					"mask": {
+						"transform": true,
+						"padding": [
+							"12.5rh",
+							"12.5rh"
+						],
+						"radius": 2000
+					},
+					"transform": [
+						["scale",
+							1.33
+						],
+						["translate",
+							["animate",
+								[0, "-100rw", "easeOutCubic"],
+								["+1000", "-50rw"],
+								["100%", "-100rw"],
+								["-500", "-50rw", "easeInQuad"]
+							],
+							0
+						]
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["lte", ["aspect"], 1]],
+							"align": "bottom center",
+							"color": ["linear-gradient",
+								-0.5,
+								[
+									0.0,
+									["$", ["var", "color-accent"]]
+								],
+								[
+									1.0,
+									["$", ["var", "color-gradient"]]
+								]
+							],
+							"transform": [
+								["scale",
+									1.33
+								],
+								["translate",
+									0,
+									["animate",
+										[0, "100rh", "easeOutCubic"],
+										["+1000", "50rh"],
+										["100%", "100rh"],
+										["-500", "50rh", "easeInQuad"]
+									]
+								]
+							]
+						}
+					]
+				}],
+				["solid", {
+					"rect": [
+						0,
+						0,
+						["$", ["var", "#rad"]],
+						["$", ["var", "#rad"]]
+					],
+					"radius": 2000,
+					"color": ["linear-gradient",
+						-0.25,
+						[
+							0.0,
+							["$", ["var", "color-accent"]]
+						],
+						[
+							1.0,
+							["$", ["var", "color-gradient"]]
+						]
+					],
+					"mask": {
+						"transform": true,
+						"padding": [
+							0,
+							0,
+							0,
+							["animate",
+								[0, 0, "easeOutCubic"],
+								["+1000", "83rw"],
+								["100%", 0],
+								["-600", "83rw", "easeInQuad"]
+							]
+						]
+					},
+					"transform": [
+						["scale",
+							1.33
+						],
+						["translate",
+							["animate",
+								[0, "-150rw", "easeOutCubic"],
+								["+1000", "-50rw"],
+								["100%", "-150rw"],
+								["-500", "-50rw", "easeInQuad"]
+							],
+							0
+						]
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["lte", ["aspect"], 1]],
+							"align": "bottom center",
+							"color": ["linear-gradient",
+								-0.5,
+								[
+									0.0,
+									["$", ["var", "color-accent"]]
+								],
+								[
+									1.0,
+									["$", ["var", "color-gradient"]]
+								]
+							],
+							"mask": {
+								"transform": true,
+								"padding": [
+									0,
+									0,
+									["animate",
+										[0, 0, "easeOutCubic"],
+										["+1000", "83rw"],
+										["100%", 0],
+										["-600", "83rw", "easeInQuad"]
+									],
+									0
+								]
+							},
+							"transform": [
+								["scale",
+									1.33
+								],
+								["translate",
+									0,
+									["animate",
+										[0, "150rh", "easeOutCubic"],
+										["+1000", "50rh"],
+										["100%", "150rh"],
+										["-600", "50rh", "easeInQuad"]
+									]
+								]
+							]
+						}
+					]
+				}]
+			]],
+			["text", {
+				"enabled": ["$", ["exists", ["var", "text"]]],
+				"mixins": ["ds-impactdotcom-webinar-mixins",
+					"text"
+				],
+				"rect": [
+					0,
+					0,
+					"70rw",
+					"800su"
+				],
+				"align": "left center",
+				"string": ["$", ["var", "text"]],
+				"color": ["$", ["var", "color-text-auto"]],
+				"font": ["$", ["var", "font-bold"]],
+				"height": "115su",
+				"leading": "20su",
+				"justify": "left center",
+				"boundary": "line",
+				"animations": [
+					{
+						"translate": [0, "100su"]
+					},
+					{
+						"mix": ["animate",
+							[0, 0],
+							["+800", 1]
+						],
+						"ramp": 1,
+						"easing": "easeOutCubic",
+						"opacity": 1,
+						"translate": [0, 0]
+					},
+					{
+						"mix": ["animate",
+							["100%", 1],
+							["-650", 0]
+						],
+						"ramp": 1,
+						"easing": "easeInCubic",
+						"opacity": 0,
+						"translate": [0, "-100su"]
+					}
+				],
+				"transform": [
+					["scale", 
+						["animate",
+							[400, 0.8, "easeInOutQuart"],
+							["+800", 1],
+							["100%", 0.8],
+							["-250", 0.8],
+							["-700", 1, "easeInOutCubic"]
+						]
+					],
+					["scale", 
+						["animate",
+							[0, 0.9],
+							["100%", 1]
+						]
+					]
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["lte", ["aspect"], 1]],
+						"rect": [
+							0,
+							"45rh",
+							"100rw",
+							"55rh"
+						],
+						"align": null,
+						"max-width": null,
+						"justify": "top center"
+					}
+				]
+			}]
+		]]
+	]
+]

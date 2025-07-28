@@ -1,0 +1,137 @@
+[
+	"ds-aiedu-location",
+	[
+		["dsx-mixins",
+			"location"
+		],
+		["ds-aiedu-mixins",
+			"color-primary",
+			"color-orange",
+			"font-main"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [2, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": true,
+				"minimum": -100,
+				"maximum": 100
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-dsx-su",
+				"safezone",
+				"offset"
+			]
+		}, [
+			["null", {
+				"max-width": "800nsu",
+				"layout": "horizontal packed match",
+				"align": ["$", ["var", "#align"]]
+			}, [
+				["solid", {
+					"stagger": [0, -100],
+					"flex": {
+						"width": "100su"
+					},
+					"layout": "vertical packed match",
+					"align": "center",
+					"color": ["$", ["var", "color-orange"]],
+					"padding": [
+						"20su",
+						"20su"
+					],
+					"mask": {
+						"transform": true
+					},
+					"transform": [
+						["scale",
+							["animate",
+								[0, 0, "easeOutQuad"],
+								["+300", 1],
+								["100%", 0],
+								["-300", 1, "easeInQuad"]
+							]
+						]
+					]
+				}, [
+					["asset", {
+						"stagger": [0, -100],
+						"flex": {
+							"width": "60su",
+							"height": "60su"
+						},
+						"file": "./media/dsx-icon-pin-outline.svg",
+						"justify": "fit center",
+						"svg-recolor": ["$", ["var", "color-primary"]],
+						"transform": [
+							["scale",
+								["animate",
+									[0, 3, "easeOutQuint"],
+									["+400", 1],
+									["100%", 3],
+									["-400", 1, "easeInQuint"]
+								]
+							]
+						]
+					}]
+				]],
+				["solid", {
+					"enabled": ["$", ["exists", ["var", "location"]]],
+					"stagger": [100, 0],
+					"layout": "vertical packed match",
+					"align": "center",
+					"color": ["$", ["var", "color-primary"]],
+					"padding": [
+						"20su",
+						"20su"
+					],
+					"mask": {
+						"transform": true
+					},
+					"transform": [
+						["scale",
+							["animate",
+								[0, 0, "easeOutQuad"],
+								["+300", 1],
+								["100%", 0],
+								["-300", 1, "easeInQuad"]
+							]
+						]
+					]
+				}, [
+					["text", {
+						"stagger": [100, 0],
+						"mixins": ["ds-aiedu-mixins", "text"],
+						"font": ["$", ["var", "font-main"]],
+						"height": "60su",
+						"kerning": -0.01,
+						"color": ["$", ["var", "color-orange"]],
+						"string": ["$", ["var", "location"]],
+						"fit": true,
+						"transform": [
+							["scale",
+								["animate",
+									[0, 3, "easeOutQuint"],
+									["+400", 1],
+									["100%", 3],
+									["-400", 1, "easeInQuint"]
+								]
+							]
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

@@ -1,0 +1,99 @@
+[
+	"ds-functionhealth-speaker",
+	[
+		["dsx-mixins", ["speaker"]],
+		["ds-functionhealth-mixins", "color-1", "color-2"],
+		["dsx-mixins", ["boilerplate"]],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [1, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["shadow", {
+				"enabled": ["$",
+					["or",
+						["exists", ["var", "name"]],
+						["exists", ["var", "detail-1"]],
+						["exists", ["var", "detail-2"]]
+					]
+				],
+				"layout": "vertical packed",
+				"max-width": "800nsu",
+				"align": ["$", ["var", "#align"]],
+				"gap": "25su",
+				"color": ["$", ["rgba-set", ["var", "color-2"], "a", 0.5]],
+				"radius": "5su",
+				"offset": ["4su", "4su"]
+			}, [
+				["text", {
+					"enabled": ["$", ["exists", ["var", "name"]]],
+					"mixins": ["ds-functionhealth-mixins", ["headline-2"]],
+					"string": ["$", ["var", "name"]],
+					"color": ["$", ["var", "color-1"]],
+					"justify": ["$", ["var", "#align"]],
+					"boundary": "line",
+					"animations": [
+						{
+							"mix": ["animate",
+								[0, 0],
+								[400, 1],
+								["100%", 0],
+								["-400", 1]
+							],
+							"easing": "easeOutQuad",
+							"opacity": 1
+						}
+					]
+				}],
+				["text", {
+					"enabled": ["$", ["exists", ["var", "detail-1"]]],
+					"mixins": ["ds-functionhealth-mixins", ["text-2"]],
+					"string": ["$", ["var", "detail-1"]],
+					"color": ["$", ["var", "color-1"]],
+					"justify": ["$", ["var", "#align"]],
+					"boundary": "line",
+					"stagger": [180, -180],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["exists", ["var", "detail-2"]]],
+							"string": ["$",
+								["concat",
+									["var", "detail-1"],
+									["if",
+										["exists", ["var", "detail-1"]],
+										"\n",
+										""
+									],
+									["var", "detail-2"]
+								]
+							]
+						}
+					],
+					"animations": [
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+500", 1],
+								["100%", 0],
+								["-500", 1]
+							],
+							"easing": "easeOutQuad",
+							"opacity": 1
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

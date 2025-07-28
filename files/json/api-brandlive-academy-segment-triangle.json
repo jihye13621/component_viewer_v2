@@ -1,0 +1,46 @@
+[
+	"api-brandlive-academy-segment-triangle",
+	[
+		{
+			"key": "colors",
+			"type": "object",
+			"default": [],
+			"required": false
+		},
+		{
+			"key": "value",
+			"type": "object",
+			"default": [],
+			"required": false
+		}
+	],
+	[
+		["for-each", {
+			"items": ["$", ["var", "colors"]]
+		}, [
+			["solid", {
+				"color": ["$", ["var", "item"]],
+				"path": [
+					["50rw", 0],
+					[0, "100rw"],
+					["100rw", "100rw"]
+				],
+				"start": ["$", 
+					["nth",
+						["var", "value"],
+						["var", "index"]
+					]
+				],
+				"end": ["$", 
+					["if",
+						["lt", ["+", 1, ["var", "index"]], ["var", "count"]],
+						["nth",
+							["var", "value"],
+							["+", 1, ["var", "index"]]
+						]
+					]
+				]
+			}]
+		]]
+	]
+]

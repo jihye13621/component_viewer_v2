@@ -1,0 +1,103 @@
+[
+	"ds-sbg-aa-outro",
+	[
+		["ds-sbg-aa-mixins",
+			"colors",
+			"color-selector"
+		]
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su-roi"
+			]
+		}, [
+			["null", {
+				}, [
+					["solid", {
+						"stagger": [0, 0],
+						"color": ["$", ["var", "#accent-2"]],
+						"transform": [
+							["translate",
+								["animate",
+									[0, "-100rw", "easeOutQuart"],
+									["+800", 0]
+								],
+								0
+							]
+						]
+					}],
+					["solid", {
+						"stagger": [250, 0],
+						"color": ["$", ["var", "#accent-1"]],
+						"transform": [
+							["translate",
+								["animate",
+									[0, "-100rw", "easeOutQuart"],
+									["+800", 0]
+								],
+								0
+							]
+						]
+					}],
+					["solid", {
+						"stagger": [500, 0],
+						"color": ["$", ["var", "#background"]],
+						"transform": [
+							["translate",
+								["animate",
+									[0, "-100rw", "easeOutQuart"],
+									["+800", 0]
+								],
+								0
+							]
+						]
+					}]
+				]],
+			["null", {
+				"stagger": [500, 0],
+				"mask": {
+					"padding": [
+						0,
+						["animate",
+							[0, "100rw", "easeOutQuart"],
+							["+800", 0]
+						],
+						0,
+						0
+					]
+				}
+			}, [
+				["null", {
+					"stagger": [500, 0],
+					"mixins": ["dsx-mixins",
+						"safezone"
+					],
+					"layout": "vertical packed",
+					"align": "center",
+					"max-width": "1000su",
+					"transform": [
+						["scale",
+							["animate",
+								[0, 1.5, "easeOutExpo"],
+								["+2000", 1]
+							]
+						]
+					]
+				}, [
+					["asset", {
+						"file": "./media/ds-sbg-america-logo.svg",
+						"justify": "fit center",
+						"hold": true,
+						"breakpoints": [
+							{
+								"enabled": ["$", ["=", ["var", "theme"], "sun"]],
+								"svg-recolor": ["$", ["var", "color-black"]]
+							}
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

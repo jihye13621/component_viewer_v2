@@ -1,0 +1,209 @@
+[
+	"ds-capsule-intro",
+	[
+		["dsx-mixins",
+			"intro"
+		],
+		["ds-capsule-mixins",
+			"color-primary",
+			"color-secondary",
+			"color-accent",
+			"font-headline",
+			"font-body"
+		],
+		["dsx-mixins",
+			"boilerplate-intro-outro"
+		]
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su"]]
+		}, [
+			["solid", {
+				"mixins": ["dsx-mixins", ["safezone"]],
+				"duration": 1100,
+				"color": ["linear-gradient",
+					0.0,
+					[0.0, ["$", ["var", "color-accent"]]],
+					[1.0, ["$", ["hue-shift", ["var", "color-accent"], 0.1]]]
+				]
+			}, [
+				["text", {
+					"mixins": ["ds-capsule-mixins",
+						"text",
+						"text-intro-headline"
+					],
+					"justify": "left center",
+					"color": ["$", ["var", "color-secondary"]],
+					"string": ["$", ["var", "headline"]],
+					"boundary": "line",
+					"animations": [
+						{
+							"translate": [
+								"100su",
+								0
+							]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+600", 1]
+							],
+							"opacity": 1,
+							"easing": "easeOutCubic",
+							"translate": [0, 0]
+						}
+					],
+					"transform": [
+						["scale",
+							["animate",
+								[700, 1, "easeInQuart"],
+								["+400", 1.25]
+							],
+							0,
+							"50rh"
+						]
+					]
+				}]
+			]],
+			["solid", {
+				"mixins": ["dsx-mixins", ["safezone"]],
+				"start": 1100,
+				"duration": 1000,
+				"color": ["$", ["var", "color-primary"]]
+			}, [
+				["text", {
+					"mixins": ["ds-capsule-mixins",
+						"text",
+						"text-label"
+					],
+					"justify": "top left",
+					"color": ["$", ["var", "color-secondary"]],
+					"string": ["$", ["var", "headline"]],
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[0, "+80su", "easeOutQuart"],
+								["+500", 0, "easeInQuart"],
+								["+500", "+80su"]
+							]
+						]
+					]
+				}],
+				["text", {
+					"enabled": ["$", ["exists", ["var", "subhead"]]],
+					"mixins": ["ds-capsule-mixins",
+						"text",
+						"text-intro-subhead"
+					],
+					"justify": "left center",
+					"color": ["$", ["var", "color-secondary"]],
+					"string": ["$", ["var", "subhead"]],
+					"transform": [
+						["scale",
+							["animate",
+								[0, 0.8, "easeOutQuint"],
+								["+500", 1.1, "easeInQuint"],
+								["+500", 0.8]
+							],
+							0,
+							"50rh"
+						]
+					]
+				}],
+				["text", {
+					"mixins": ["ds-capsule-mixins",
+						"text",
+						"text-label"
+					],
+					"justify": "bottom left",
+					"color": ["$", ["var", "color-secondary"]],
+					"string": ["$", ["var", "headline"]],
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[0, "-80su", "easeOutCubic"],
+								["+500", 0, "easeInCubic"],
+								["+500", "-80su"]
+							]
+						]
+					]
+				}]
+			]],
+			["solid", {
+				"mixins": ["dsx-mixins", ["safezone"]],
+				"start": 2100,
+				"color": ["$", ["var", "color-secondary"]]
+			}, [
+				["null", {
+					"gap": "200su",
+					"layout": "vertical packed",
+					"align": "top left"
+				}, [
+					["text", {
+						"mixins": ["ds-capsule-mixins",
+							"text",
+							"text-intro-headline"
+						],
+						"justify": "top left",
+						"color": ["$", ["var", "color-primary"]],
+						"string": ["$", ["var", "headline"]],
+						"animations": [
+							{
+								"translate": [
+									0,
+									"85su"
+								]
+							},
+							{
+								"mix": ["animate",
+									[0, 0.2],
+									["+500", 1]
+								],
+								"opacity": 1,
+								"easing": "easeOutCubic",
+								"translate": [0, 0]
+							},
+							{
+								"mix": ["animate",
+								["100%", 0.8],
+								["-350", 0]
+								],
+								"opacity": 0,
+								"translate": [0, "50su"],
+								"easing": "easeInQuart",
+								"reverse": true
+							}
+						]
+					}],
+					["text", {
+						"flex": {
+							"weight": 0.3
+						},
+						"enabled": ["$", ["exists", ["var", "subhead"]]],
+						"mixins": ["ds-capsule-mixins",
+							"text",
+							"text-label"
+						],
+						"justify": "left center",
+						"color": ["$", ["var", "color-primary"]],
+						"string": ["$", ["var", "subhead"]],
+						"transform": [
+							["translate",
+								0,
+								["animate",
+									[0, "+80su", "easeOutCubic"],
+									["+500", 0],
+									["100%", "+80su"],
+									["-350", 0, "easeInCubic"]
+								]
+							]
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

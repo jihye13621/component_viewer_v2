@@ -1,0 +1,210 @@
+[
+	"ds-sbg-triple-headline",
+	[
+		{
+			"key": "headline",
+			"display": "Headline",
+			"type": "textarea",
+			"default": "Add a headline",
+			"required": false
+		},
+		{
+			"key": "subhead",
+			"display": "Subhead",
+			"type": "text",
+			"default": "Optional subhead",
+			"required": false
+		},
+		{
+			"key": "color-white",
+			"display": "Color",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		},
+		{
+			"key": "color-red",
+			"display": "Color",
+			"type": "color",
+			"default": "#9E2826",
+			"required": false
+		},
+		["ds-sbg-triple-mixins",
+			"font-headline",
+			"font-alt"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [8, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": true,
+				"minimum": -100,
+				"maximum": 100
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone",
+				"offset"
+			]
+		}, [
+			["null", {
+				"enabled": ["$", ["exists", ["var", "headline"]]],
+				"layout": "stacked",
+				"align": ["$", ["var", "#align"]],
+				"max-width": "700su",
+				"units": {
+					"space": "100rh"
+				}
+			}, [
+				["null", {
+					"flex": {
+						"position": "fixed"
+					},
+					"buffer": "knockout"
+				}, [
+					["asset", {
+						"file": "./media/ds-sbg-triple-shape.svg",
+						"justify": "stretch",
+						"transform": [
+							["scale",
+								["animate",
+									[0, 0.5, "easeOutQuad"],
+									["+400", 1],
+									["100%", 0.5],
+									["-300", 1, "easeInQuad"]
+								]
+							]
+						]
+					}]
+				]],
+				["null", {
+					"layout": "stacked",
+					"align": "center",
+					"padding": [
+						"20su",
+						"20su"
+					],
+					"effect": [
+						["matte", {
+							"buffer-in": "knockout"
+						}]
+					],
+					"opacity": ["animate",
+						[0, 0],
+						["+300", 1],
+						["100%", 0],
+						["-200", 1]
+					]
+				}, [
+					["solid", {
+						"flex": {
+							"position": "fixed"
+						},
+						"color": ["$", ["var", "color-red"]]
+					}],
+					["text", {
+						"stagger": [200, -200],
+						"font": ["$", ["var", "font-headline"]],
+						"height": "40su",
+						"leading": "14su",
+						"measure": "cap-size",
+						"case": "uppercase",
+						"color": ["$", ["var", "color-white"]],
+						"string": ["$", ["var", "headline"]],
+						"align": "center",
+						"justify": "center",
+						"effect": [
+							["shadow", {
+								"offset": ["2su", "5su"],
+								"color": [0, 0, 0, 1]
+							}]
+						],
+						"animations": [
+							{
+								"translate": [
+									0,
+									"80su"
+								]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+400", 1],
+									["100%", 0],
+									["-300", 1]
+								],
+								"easing": "easeOutQuad",
+								"ramp": 2,
+								"opacity": 1,
+								"translate": [0, 0]
+							}
+						]
+					}]
+				]],
+				["text", {
+					"enabled": ["$", ["exists", ["var", "subhead"]]],
+					"stagger": [300, -300],
+					"flex": {
+						"position": "fixed"
+					},
+					"rect": [
+						0,
+						0,
+						"700su",
+						"100su"
+					],
+					"font": ["$", ["var", "font-alt"]],
+					"height": "45su",
+					"measure": "cap-size",
+					"case": "uppercase",
+					"color": ["$", ["var", "color-white"]],
+					"string": ["$", ["var", "subhead"]],
+					"align": "top right",
+					"justify": "top right",
+					"fit": true,
+					"effect": [
+						["shadow", {
+							"offset": ["4su", "4su"],
+							"color": [0, 0, 0, 0.5],
+							"radius": "10su"
+						}]
+					],
+					"transform": [
+						["rotate",
+							-0.01
+						],
+						["translate",
+							"30su",
+							"1space"
+						]
+					],
+					"boundary": "letter",
+					"animations": [
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+400", 1],
+								["100%", 0],
+								["-300", 1]
+							],
+							"opacity": 1,
+							"easing": "round",
+							"ramp": 1
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

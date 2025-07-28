@@ -1,0 +1,52 @@
+{
+	"params": {
+		"color-white": {
+			"key": "color-white",
+			"display": "Color",
+			"type": "color",
+			"default": "#FFFFFF",
+			"private": true,
+			"required": false
+		},
+		"font-black": {
+			"key": "font-black",
+			"display": "Font Black",
+			"type": "string",
+			"default": "./media/Poppins-Black.ttf",
+			"required": false,
+			"private": true
+		},
+		"font-alt": {
+			"key": "font-alt",
+			"display": "Font Alt",
+			"type": "string",
+			"default": "./media/SAGONABOOKITALIC.ttf",
+			"required": false,
+			"private": true
+		},
+		"font-bold": {
+			"key": "font-bold",
+			"display": "Font Bold",
+			"type": "string",
+			"default": "./media/Poppins-Bold.ttf",
+			"required": false,
+			"private": true
+		},
+		"font-semibold": {
+			"key": "font-semibold",
+			"display": "Font SemiBold",
+			"type": "string",
+			"default": "./media/Poppins-SemiBold.ttf",
+			"required": false,
+			"private": true
+		},
+		"font-regular": {
+			"key": "font-regular",
+			"display": "Font Regular",
+			"type": "string",
+			"default": "./media/Poppins-Regular.ttf",
+			"required": false,
+			"private": true
+		}
+	}
+}

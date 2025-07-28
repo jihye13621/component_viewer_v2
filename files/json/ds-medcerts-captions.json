@@ -1,0 +1,140 @@
+[
+	"ds-medcerts-captions",
+	[
+		["dsx-mixins", ["captions"]],
+		{
+			"key": "style",
+			"display": "Style",
+			"type": "string",
+			"default": "background",
+			"required": false,
+			"options": [
+				{
+					"key": "background",
+					"display": "Background"
+				},
+				{
+					"key": "karaoke",
+					"display": "Karaoke Box"
+				}
+			]
+		},
+		["ds-medcerts-mixins", "color-primary", "color-secondary", "color-accent"],
+		["dsx-mixins", ["boilerplate"]],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [2, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-su", "safezone"]]
+		}, [
+			["shadow", {
+				"skip": ["$", ["neq", ["var", "style"], "karaoke"]],
+				"color": [0, 0, 0, 0.5],
+				"radius": "4su",
+				"offset": ["4su", "4su"]
+			}, [
+				["for-each", {
+					"max-width": "800nsu",
+					"align": ["$", ["var", "#align"]],
+					"items": ["$",
+						["transcript-split",
+							["var", "transcript"],
+							["max", 1, ["floor", ["/", 10, ["var", "size"]]]],
+							"absolute"
+						]
+					]
+				}, [
+					["solid", {
+						"start": ["$", ["concat", "+", ["key", ["first", ["var", "item"]], "relativeStart"]]],
+						"duration": ["$",
+							["-",
+								["key", ["last", ["var", "item"]], "relativeEnd"],
+								["key", ["first", ["var", "item"]], "relativeStart"]
+							]
+						],
+						"layout": "vertical packed",
+						"align": ["$", ["var", "#align"]],
+						"color": ["$", ["rgba-set", ["var", "color-secondary"], "a", 0.5]],
+						"padding": [
+							"15su",
+							"30su",
+							"20su",
+							"30su"
+						],
+						"mask": {
+							"radius": "20su"
+						},
+						"breakpoints": [
+							{
+								"enabled": ["$", ["eq", ["var", "style"], "karaoke"]],
+								"color": ["$", ["rgba-set", ["var", "color-secondary"], "a", 0]],
+								"padding": [
+									0,
+									"10su",
+									"8su",
+									"10su"
+								],
+								"mask": null
+							}
+						]
+					}, [
+						["text", {
+							"mixins": [
+								["ds-medcerts-mixins", "font-captions"]
+							],
+							"color": ["$", ["var", "color-primary"]],
+							"justify": ["$", ["var", "#align"]],
+							"transcript": ["$", ["var", "item"]],
+							"animations": [
+								{
+									"opacity": 0.3
+								},
+								{
+									"mix": [[-0.1, 0], [0.2, 1]],
+									"opacity": 1
+								}
+							],
+							"breakpoints": [
+								{
+									"enabled": ["$", ["eq", ["var", "style"], "karaoke"]],
+									"background-color": ["$", ["var", "color-accent"]],
+									"background-radius": "10su",
+									"background-padding": [
+										0,
+										"10su",
+										"8su",
+										"10su"
+									],
+									"animations": [
+										{
+											"background-opacity": 0
+										},
+										{
+											"mix": [[-0.1, 0], [0.2, 1]],
+											"background-opacity": 1
+										},
+										{
+											"mix": [[0.8, 0], [1.1, 1]],
+											"background-opacity": 0
+										}
+									]
+								}
+							]
+						}]
+					]]
+				]]
+				
+			]]
+		]]
+	]
+]

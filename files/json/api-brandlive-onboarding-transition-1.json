@@ -1,0 +1,93 @@
+[
+	"api-brandlive-onboarding-segment-1",
+	[
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": "#21DCFD",
+			"required": false
+		},
+		{
+			"key": "color-2",
+			"display": "Color 2",
+			"type": "color",
+			"default": "#FE6545",
+			"required": false
+		},
+		{
+			"key": "color-3",
+			"display": "Color 3",
+			"type": "color",
+			"default": "#00E69B",
+			"required": false
+		},
+		{
+			"key": "background-color",
+			"display": "Background Color",
+			"type": "color",
+			"default": "#FFFFFF",
+			"required": false
+		}
+	],
+	[
+	   	["null", {
+			"mixins": ["dsx-mixins",
+				"set-dsx-su"
+			]
+		}, [
+			["solid", {
+				"rect": [0, 0, "100rw", "100rh"],
+				"color": ["$", ["var", "background-color"]]
+			}],
+			["solid", {
+				"rect": [0, 0, "100rw", "50rh"],
+				"stroke": "40su",
+				"stroke-color": "#000000",
+				"color": ["$", ["var", "color-1"]],
+				"transform": [
+					["translate",
+						["animate",
+							[0, "-2560su", "easeInOutCubic"],
+							["+600", 0, "easeInOutCubic"],
+							["+600", "2560su"]
+						],
+						0
+					]
+				]
+			}],
+			["solid", {
+				"rect": [0, "680su", "100rw", "500su"],
+				"stroke": "40su",
+				"stroke-color": "#000000",
+				"color": ["$", ["var", "color-2"]],
+				"transform": [
+					["translate",
+						["animate",
+							["+100", "2560su", "easeInOutCubic"],
+							["+566", 0, "easeInOutCubic"],
+							["+600", "-2560su"]
+						],
+						0
+					]
+				]
+			}],
+			["solid", {
+				"rect": [0, "1140su", "100rw", "300su"],
+				"stroke": "40su",
+				"stroke-color": "#000000",
+				"color": ["$", ["var", "color-3"]],
+				"transform": [
+					["translate",
+						["animate",
+							["+166", "-2560su", "easeInOutCubic"],
+							["+600", 0, "easeInOutCubic"],
+							["+600", "2560su"]
+						],
+						0
+					]
+				]
+			}]
+		]]
+	]
+]

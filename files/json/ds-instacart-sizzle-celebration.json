@@ -1,0 +1,108 @@
+[
+	"ds-instacart-sizzle-celebration",
+	[
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "textarea",
+			"default": "Headline",
+			"required": false
+		},
+		{
+			"key": "loop-timer",
+			"display": "Loop Timer",
+			"type": "number",
+			"default": 4,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 0.1,
+				"minimum": 1.0,
+				"maximum": 10.0
+			}
+		},
+		["ds-instacart-mixins",
+			"colors",
+			"font-contrast-400",
+			"theme"
+		]
+	],
+	[
+		["solid", {
+			"color": ["$", ["var", "#background"]]
+		}],
+		["null", {
+			"enabled": ["$", ["exists", ["var", "text"]]],
+			"mixins": ["dsx-mixins",
+				"set-su"
+			],
+			"layout": "stacked",
+			"padding": [
+				"70su",
+				"40su"
+			],
+			"effect": [
+				["fract", {
+					"mod-x": "100rw",
+					"mod-y": "100rh",
+					"roll-x": ["animate",
+						[0, "100rw"],
+						[
+							["$",
+								["to-relative-string", ["*", ["var", "loop-timer"], 1000]]
+							],
+							0
+						],
+						"loop"
+					],
+					"normalized": false 
+				}]
+			]
+		}, [
+			["text", {
+				"font": ["$", ["var", "font-contrast-400"]],
+				"measure": "letter-size",
+				"height": "120su",
+				"leading": "20su",
+				"fit": true,
+				"justify": "top left",
+				"string": ["$", ["var", "text"]],
+				"color": ["$", ["var", "#foreground"]],
+				"boundary": "letter",
+				"animations": [
+					{
+						"mix": ["animate",
+							[0, 0],
+							["+1000", 0],
+							["+800", 1],
+							["+1000", 1],
+							"loop"
+						],
+						"easing": "easeInOutQuad",
+						"ramp": 0.25,
+						"translate": [
+							0,
+							"-50su"
+						]
+					},
+					{
+						"mix": ["animate",
+							[0, 0],
+							["+1200", 0],
+							["+800", 1],
+							["+800", 1],
+							"loop"
+						],
+						"easing": "easeInOutQuad",
+						"ramp": 0.25,
+						"translate": [
+							0,
+							0
+						]
+					}
+				]
+			}]
+		]]
+	]
+]

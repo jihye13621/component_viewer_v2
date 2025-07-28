@@ -1,0 +1,75 @@
+[
+	"ds-teded-watermark",
+	[
+		{
+			"key": "teded-logo",
+			"display": "Logo",
+			"type": "string",
+			"default": "logo",
+			"options": [
+				{
+					"key": "logo",
+					"display": "TED-Ed"
+				},
+				{
+					"key": "studenttalks",
+					"display": "Student Talks"
+				}
+			]
+		},
+		["dsx-mixins", ["boilerplate"]],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [8, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"max-width": "800nsu",
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]]
+			}, [
+				["asset", {
+					"mute": true,
+					"file": ["$",
+						["concat",
+							"./media/ds-teded-",
+							["var", "teded-logo"],
+							"-white.svg"
+						]
+					],
+					"flex": {
+						"width": "250su",
+						"height": "300su"
+					},
+					"justify": ["$", ["concat", "fit ", ["var", "#align"]]],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["eq", ["var", "teded-logo"], "studenttalks"]],
+							"flex": {
+								"width": "500su",
+								"height": "300su"
+							}
+						}
+					],
+					"opacity": ["animate",
+						[0, 0, "easeOutQuad"],
+						["+350", 1],
+						["100%", 0],
+						["-350", 1, "easeInQuad"]
+					]
+				}]
+			]]
+		]]
+	]
+]

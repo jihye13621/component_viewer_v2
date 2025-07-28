@@ -1,0 +1,78 @@
+[
+	"ds-ntv-outro",
+	[
+		{
+			"key": "do-transition-in",
+			"display": "Transition In",
+			"type": "bool",
+			"default": true,
+			"required": false
+		},
+		["ds-ntv-mixins",
+			"color-primary",
+			"color-accent",
+			"font-medium"
+		],
+		["dsx-mixins",
+			"boilerplate-intro-outro"
+		]
+	],
+	[
+		["solid", {
+			"color": ["$", ["var", "color-accent"]],
+			"transform": [
+				["translate",
+					["animate",
+						[0, "-100rw", "easeInOutCubic"],
+						["+1000", 0]
+					],
+					0
+				]
+			],
+			"breakpoints": [
+				{
+					"enabled": ["$", ["not", ["var", "do-transition-in"]]],
+					"transform": null
+				}
+			]
+		}, [
+			["asset", {
+				"flex": {
+					"position": "fixed"
+				},
+				"file": "./media/ds-ntv-background.jpg",
+				"justify": "fill center",
+				"mask": {}
+			}],
+			["null", {
+				"stagger": [400, 0],
+				"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]],
+				"align": "center",
+				"transform": [
+					["translate",
+						["animate",
+							[0, "-100rw", "easeInOutCubic"],
+							["+800", 0]
+						],
+						0
+					]
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["not", ["var", "do-transition-in"]]],
+						"stagger": [0, 0]
+					},
+					{
+						"enabled": ["$", ["gt", ["aspect"], 1.0]],
+						"max-width": "80rw"
+					}
+				]
+			}, [
+				["asset", {
+					"file": "./media/ds-ntv-logo-white.svg",
+					"justify": "fit center"
+				}]
+			]]
+		]]
+	]
+]

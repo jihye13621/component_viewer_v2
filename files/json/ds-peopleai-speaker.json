@@ -1,0 +1,227 @@
+[
+	"ds-peopleai-speaker",
+	[
+		["dsx-mixins", "speaker"],
+		["ds-peopleai-mixins",
+			"color-white",
+			"color-dark-blue",
+			"color-black",
+			"font-regular",
+			"font-headline"
+		],
+		["dsx-mixins", "boilerplate"],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [1, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"max-width": "1200nsu",
+				"enabled": ["$",
+					["or",
+						["exists", ["var", "name"]],
+						["exists", ["var", "detail-1"]],
+						["exists", ["var", "detail-2"]]
+					]
+				],
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"padding": [
+					"40su",
+					"150su"
+				],
+				"mask": {
+					"padding": [
+						0,
+						"-100rw",
+						0,
+						0
+					]
+				},
+				"breakpoints": [
+					{
+						"enabled": ["$", ["in", ["nth", ["var", "position"], 0], 3, 6, 9]],
+						"mask": {
+							"padding": [
+								0,
+								0,
+								0,
+								"-100rw"
+							]
+						}
+					}
+				]
+			}, [
+				["solid", {
+					"flex": {
+						"position": "fixed"
+					},
+					"rect": [
+						0,
+						0,
+						"150rw",
+						"100rh"
+					],
+					"align": "right",
+					"color": ["$", ["var", "color-white"]],
+					"transform": [
+						["translate",
+							["animate",
+								[0, "-100rw", "easeOutBack"],
+								["+500", 0],
+								["100%", "-100rw"],
+								["-500", 0, "easeInQuad"]
+							],
+							0
+						]
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["in", ["nth", ["var", "position"], 0], 3, 6, 9]],
+							"align": "left",
+							"transform": [
+								["translate",
+									["animate",
+										[0, "100rw", "easeOutBack"],
+										["+500", 0],
+										["100%", "100rw"],
+										["-500", 0, "easeInQuad"]
+									],
+									0
+								]
+							]
+						}
+					]
+				}],
+				["solid", {
+					"stagger": [200, -200],
+					"flex": {
+						"position": "fixed"
+					},
+					"rect": [
+						0,
+						0,
+						"200su",
+						"100rh"
+					],
+					"color": ["$", ["var", "color-dark-blue"]],
+					"transform": [
+						["translate",
+							["animate",
+								[0, "-100rw", "easeOutBack"],
+								["+500", "-140su"],
+								["100%", "-100rw"],
+								["-500", "-140su", "easeInQuad"]
+							],
+							0
+						]
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["in", ["nth", ["var", "position"], 0], 3, 6, 9]],
+							"align": "right",
+							"transform": [
+								["translate",
+									["animate",
+										[0, "100rw", "easeOutBack"],
+										["+500", "140su"],
+										["100%", "100rw"],
+										["-500", "140su", "easeInQuad"]
+									],
+									0
+								]
+							]
+						}
+					]
+				}],
+				["null", {
+					"stagger": [600, -600],
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]],
+					"gap": "20su",
+					"opacity": ["animate",
+						[0, 0, "easeOutQuad"],
+						["+500", 1],
+						["100%", 0],
+						["-500", 1, "easeInQuad"]
+					],
+					"transform": [
+						["translate",
+							["animate",
+								[0, "-60su", "easeOutQuad"],
+								["+500", 0],
+								["100%", "-60su"],
+								["-500", 0, "easeInQuad"]
+							],
+							0
+						]
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["in", ["nth", ["var", "position"], 0], 3, 6, 9]],
+							"transform": [
+								["translate",
+									["animate",
+										[0, "60su", "easeOutQuad"],
+										["+500", 0],
+										["100%", "60su"],
+										["-500", 0, "easeInQuad"]
+									],
+									0
+								]
+							]
+						}
+					]
+				}, [
+					["text", {
+						"enabled": ["$", ["exists", ["var", "name"]]],
+						"mixins": ["ds-peopleai-mixins",
+							"text"
+						],
+						"font": ["$", ["var", "font-headline"]],
+						"string": ["$", ["var", "name"]],
+						"height": "70su",
+						"justify": "left",
+						"color": ["$", ["var", "color-black"]],
+						"fit": true
+					}],
+					["text", {
+						"enabled": ["$", ["or",
+							["exists", ["var", "detail-1"]],
+							["exists", ["var", "detail-2"]]
+						]],
+						"mixins": ["ds-peopleai-mixins",
+							"text"
+						],
+						"font": ["$", ["var", "font-regular"]],
+						"height": "40su",
+						"justify": "left",
+						"color": ["$", ["var", "color-black"]],
+						"string": ["$",
+							["join",
+								["compact",
+									["array",
+										["var", "detail-1"],
+										["var", "detail-2"]
+									]
+								],
+								", "
+							]
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

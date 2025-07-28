@@ -1,0 +1,74 @@
+[
+	"ds-rippling-captions-alt",
+	[
+		["ds-rippling-mixins",
+			"colors"
+		],
+		["dsx-mixins",
+			"captions",
+			"boilerplate"
+		],
+		{
+			"key": "max-words",
+			"display": "Words",
+			"type": "number",
+			"default": 5,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 1,
+				"minimum": 1,
+				"maximum": 12
+			}
+		},
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [2, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-dsx-su",
+				"safezone"
+			]
+		}, [
+			["null", {
+				"max-width": "1000nsu",
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]]
+			}, [
+				["text", {
+					"mixins": ["ds-rippling-mixins",
+						"text-captions"
+					],
+					"color": ["$", ["color-mix",
+						["var", "gold"],
+						["var", "tan"],
+						0.5
+					]],
+					"justify": ["$", ["var", "#align"]],
+					"transcript": ["$",
+						["transcript-split",
+							["var", "transcript"],
+							["var", "max-words"]
+						]
+					],
+					"effect": [
+						["shadow", {
+							"radius": "40su"
+						}]
+					]
+				}]
+			]]
+		]]
+	]
+]

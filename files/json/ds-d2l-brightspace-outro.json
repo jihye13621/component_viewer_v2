@@ -1,0 +1,50 @@
+[
+	"ds-d2l-brightspace-outro",
+	[
+		["ds-d2l-brightspace-mixins",
+			"color-selector"
+		]
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			],
+			"opacity": ["animate",
+				[0, 0, "easeOutQuad"],
+				["+500", 1]
+			]
+		}, [
+			["solid", {
+				"flex": {
+					"position": "fixed"
+				},
+				"color": ["linear-gradient",
+					-0.125,
+					[0, ["$", ["var", "#background"]]],
+					[1, ["$", ["var", "#foreground"]]]
+				]
+			}],
+			["asset", {
+				"file": "./media/ds-d2l-brightspace-logo-white.svg",
+				"justify": "fit center",
+				"rect": [
+					0,
+					0,
+					"800su",
+					"500su"
+				],
+				"align": "center",
+				"transform": [
+					["scale",
+						["animate",
+							[0, 1.7, "easeOutExpo"],
+							["+2000", 1]
+						]
+					]
+				]
+			}]
+		]]
+	]
+]

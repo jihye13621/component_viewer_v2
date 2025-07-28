@@ -1,0 +1,130 @@
+{
+	"params": {
+		"color-1": {
+			"key": "color-1",
+			"display": "Primary",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		},
+		"color-2": {
+			"key": "color-2",
+			"display": "Secondary",
+			"type": "color",
+			"default": "#111111",
+			"required": false
+		},
+		"color-3": {
+			"key": "color-3",
+			"display": "Accent",
+			"type": "color",
+			"default": "#777777",
+			"required": false
+		}
+	},
+	"headline-0": {
+		"font": "./media/Satoshi-Bold.otf",
+		"height": "200su"
+	},
+	"headline-1": {
+		"font": "./media/Satoshi-Bold.otf",
+		"height": "140su",
+		"leading": "-14su"
+	},
+	"headline-2": {
+		"font": "./media/Satoshi-Bold.otf",
+		"height": "100su",
+		"leading": "-10su"
+	},
+	"text-1": {
+		"font": "./media/Satoshi-Regular.otf",
+		"height": "64su"
+	},
+	"text-2": {
+		"font": "./media/Satoshi-Regular.otf",
+		"height": "58su",
+		"leading": 0.1
+	},
+	"font-speaker-name": {
+		"font": "./media/Satoshi-Bold.otf",
+		"height": "80su"
+	},
+	"font-speaker-detail": {
+		"font": "./media/Satoshi-Regular.otf",
+		"height": "50su",
+		"leading": 0.1
+	},
+	"anchored-anim": {
+		"opacity": ["animate",
+			[0, 0, "easeOutSine"],
+			[100, 1],
+			["100%", 0],
+			["-100", 1, "easeInSine"]
+		],
+		"transform": [
+			["scale",
+				["animate",
+					[0, 0.8, "easeOutCubic"],
+					[250, 1],
+					["100%", 0.8],
+					["-250", 1, "easeInCubic"]
+				],
+				["$", ["switch", ["nth", ["var", "position"], 0], {
+					"1": 0,
+					"2": "50rw",
+					"3": "100rw",
+					"4": 0,
+					"5": "50rw",
+					"6": "100rw",
+					"7": 0,
+					"8": "50rw",
+					"9": "100rw",
+					"_": 0
+				}]],
+				["$", ["switch", ["nth", ["var", "position"], 0], {
+					"1": "100rh",
+					"2": "100rh",
+					"3": "100rh",
+					"4": "50rh",
+					"5": "50rh",
+					"6": "50rh",
+					"7": 0,
+					"8": 0,
+					"9": 0,
+					"_": 0
+				}]]
+			]
+		]
+	},
+	"anchored-anim-top": {
+		"opacity": ["animate",
+			[0, 0, "easeOutSine"],
+			[100, 1],
+			["100%", 0],
+			["-100", 1, "easeInSine"]
+		],
+		"transform": [
+			["scale",
+				["animate",
+					[0, 0.8, "easeOutCubic"],
+					[250, 1],
+					["100%", 0.8],
+					["-250", 1, "easeInCubic"]
+				],
+				["$", ["switch", ["nth", ["var", "position"], 0], {
+					"1": 0,
+					"2": "50rw",
+					"3": "100rw",
+					"4": 0,
+					"5": "50rw",
+					"6": "100rw",
+					"7": 0,
+					"8": "50rw",
+					"9": "100rw",
+					"_": 0
+				}]],
+				0
+			]
+		]
+	}
+}

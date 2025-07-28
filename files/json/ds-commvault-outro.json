@@ -1,0 +1,97 @@
+[
+	"ds-commvault-outro",
+	[
+		["ds-commvault-mixins",
+			"color-primary",
+			"color-secondary",
+			"color-purple-medium",
+			"font-headline"
+		],
+		{
+			"key": "darkmode",
+			"display": "Dark Mode",
+			"type": "bool",
+			"default": false,
+			"required": false
+		},
+		{
+			"key": "do-audio",
+			"display": "Play Audio",
+			"type": "bool",
+			"default": false,
+			"required": false
+		}
+	],
+	[
+		["asset", {
+			"enabled": ["$", ["var", "do-audio"]],
+			"file": "./media/ds-commvault-outro-audio.mp3"
+		}],
+		["solid", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]],
+			"color": ["$",
+				["if",
+					["var", "darkmode"],
+					["var", "color-secondary"],
+					["var", "color-primary"]
+				]
+			]
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"align": "center",
+				"max-width": "50cw",
+				"breakpoints": [
+					{
+						"enabled": ["$", ["lt", ["aspect"], 1.1]],
+						"max-width": "80cw"
+					}
+				]
+			}, [
+				["false-color", {
+					"color-1": ["$", ["var", "color-purple-medium"]],
+					"color-2": ["$", ["var", "color-purple-medium"]],
+					"flex": {
+						"height": "300nsu"
+					}
+				}, [
+					["asset", {
+						"start": 400,
+						"file": "./media/ds-commvault-icon-animated.mov",
+						"justify": "fit center",
+						"hold": true
+					}]
+				]],
+				["null", {
+					"layout":"vertical packed",
+					"padding": [
+						"40nsu",
+						"20nsu"
+					],
+					"mask": {},
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[0, "100rh", "easeOutCubic"],
+								["+500", 0]
+							]
+						]
+					]
+				}, [
+					["asset", {
+						"file": "./media/ds-commvault-logo-wordmark.svg",
+						"justify": "fit center",
+						"svg-recolor": ["$",
+							["if",
+								["var", "darkmode"],
+								["var", "color-primary"],
+								["var", "color-secondary"]
+							]
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

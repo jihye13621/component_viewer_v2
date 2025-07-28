@@ -1,0 +1,115 @@
+[
+	"ds-teded-speaker",
+	[
+		["dsx-mixins", ["speaker"]],
+		["ds-teded-mixins", "color-1", "color-3"],
+		["dsx-mixins", ["boilerplate"]],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [2, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"max-width": "800nsu",
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]]
+			}, [
+				["solid", {
+					"enabled": ["$", ["exists", ["var", "name"]]],
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]],
+					"color": ["$", ["var", "color-3"]],
+					"padding": [
+						"13su",
+						"17su",
+						"4su",
+						"17su"
+					],
+					"mask": {},
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[0, "100rh", "easeOutCubic"],
+								["+600", 0],
+								["100%", "100rh"],
+								["-500", 0, "easeInCubic"]
+							]
+						]
+					]
+				}, [
+					["text", {
+						"mixins": ["ds-teded-mixins", ["font-speaker"]],
+						"string": ["$", ["var", "name"]],
+						"justify": ["$", ["var", "#align"]],
+						"color": ["$", ["var", "color-1"]]
+					}]
+				]],
+				["solid", {
+					"enabled": ["$",
+						["or",
+							["exists", ["var", "detail-1"]],
+							["exists", ["var", "detail-2"]]
+						]
+					],
+					"stagger": [200, -200],
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]],
+					"color": ["$", ["var", "color-3"]],
+					"padding": [
+						"6su",
+						"14su",
+						"2su",
+						"14su"
+					],
+					"mask": {},
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[0, "100rh", "easeOutCubic"],
+								["+600", 0],
+								["100%", "100rh"],
+								["-500", 0, "easeInCubic"]
+							]
+						]
+					]
+				}, [
+					["text", {
+						"mixins": ["ds-teded-mixins", ["font-speaker-detail"]],
+						"string": ["$", ["var", "detail-1"]],
+						"justify": ["$", ["var", "#align"]],
+						"color": ["$", ["var", "color-1"]],
+						"breakpoints": [
+							{
+								"enabled": ["$", ["exists", ["var", "detail-2"]]],
+								"string": ["$",
+									["concat",
+										["var", "detail-1"],
+										["if",
+											["exists", ["var", "detail-1"]],
+											", ",
+											""
+										],
+										["var", "detail-2"]
+									]
+								]
+							}
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

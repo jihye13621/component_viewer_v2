@@ -1,0 +1,158 @@
+[
+	"ds-wheelhouse-cta",
+	[
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "text",
+			"default": "Add a call to action",
+			"required": false
+		},
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": "#000000",
+			"required": false
+		},
+		{
+			"key": "color-2",
+			"display": "Color 2",
+			"type": "color",
+			"default": "#00FF02",
+			"required": false
+		},
+		["dsx-mixins", ["boilerplate"]],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [5, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"max-width": "800nsu",
+				"layout": "horizontal packed match",
+				"align": ["$", ["var", "#align"]],
+				"mask": {}
+			}, [
+				["null", {
+					"enabled": ["$", ["exists", ["var", "text"]]],
+					"layout": "vertical packed"
+				}, [
+					["solid", {
+						"layout": "vertical packed",
+						"enabled": ["$", ["exists", ["var", "text"]]],
+						"align": ["$", ["var", "#align"]],
+						"color": ["$", ["var", "color-2"]],
+						"padding": [
+							"20su",
+							"40su",
+							"20su",
+							"40su"
+						],
+						"stagger": [0, 0],
+						"mask": {
+							"padding":  [
+								0,
+								["animate",
+									[0, "100rw", "round"],
+									["+100", "75rw", "round"],
+									["+100", "50rw", "round"],
+									["+100", "25rw", "round"],
+									["+100", 0, "round"]
+								],
+								0,
+								["animate",
+									["100%", "100rw", "round"],
+									["-50", "75rw", "round"],
+									["-50", "50rw", "round"],
+									["-50", "25rw", "round"],
+									["-50", 0, "round"]
+								]
+							]
+						}
+					}, [
+						["text", {
+							"mixins": ["ds-wheelhouse-mixins", ["font-medium-bold"]],
+							"string": ["$", ["var", "text"]],
+							"justify": "center",
+							"boundary": "word",
+							"stagger": [800, -400],
+							"animations": [
+								{
+									"translate": [
+										0,
+										"40su"
+									]
+								},
+								{
+									"mix": ["animate",
+										[0, 0],
+										["+500", 1]
+									],
+									"easing": "easeOutQuad",
+									"opacity": 1,
+									"translate": [0, 0]
+								}
+							]
+						}]
+					]],	
+					["null", {
+						"flex": {
+							"position": "fixed"
+						},
+						"stagger": [0, 0],
+						"mask": {
+							"padding":  [
+								0,
+								["animate",
+									[0, "100rw", "round"],
+									["+100", "75rw", "round"],
+									["+100", "50rw", "round"],
+									["+100", "25rw", "round"],
+									["+100", 0, "holdIn"],
+									["100%", null],
+									["-400", "100rw", "round"],
+									["+50", "75rw", "round"],
+									["+50", "50rw", "round"],
+									["+50", "25rw", "round"],
+									["+50", 0, "round"]
+								],
+								0,
+								["animate",
+									[400, 0, "round"],
+									["+100", "25rw", "round"],
+									["+100", "50rw", "round"],
+									["+100", "75rw", "round"],
+									["+100", "100rw", "holdIn"],
+									["100%", null],
+									["-400", 0, "holdIn"],
+									["+200", 0, "round"],
+									["+50", "25rw", "round"],
+									["+50", "50rw", "round"],
+									["+50", "75rw", "round"],
+									["+50", "100rw", "round"]
+								]
+							]
+						}
+					}, [
+						["asset", {
+							"file": "./media/ds-wheelhouse-bg.png",
+							"justify": "fill top center"
+						}]
+					]]
+				]]
+			]]
+		]]
+	]
+]

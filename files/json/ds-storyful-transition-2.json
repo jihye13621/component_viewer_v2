@@ -1,0 +1,44 @@
+[
+	"ds-storyful-transition-2",
+	[
+		
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", "set-su"]
+		}, [
+			["solid", {
+				"color": "#bd5f25",
+				"blend": "color-dodge",
+				"opacity": ["animate",
+					[0, 0, "easeOutQuad"],
+					["+150", 1],
+					["100%", 0],
+					["-100", 1, "easeInQuad"]
+				]
+			}],
+			["solid", {
+				"stagger": [50, -25],
+				"color": "#fcfc5e",
+				"blend": "color-dodge",
+				"opacity": ["animate",
+					[0, 0, "easeOutQuad"],
+					["+150", 1],
+					["100%", 0],
+					["-100", 1, "easeInQuad"]
+				]
+			}],
+			["solid", {
+				"stagger": [100, -75],
+				"color": "#ffffff",
+				"blend": "normal",
+				"opacity": ["animate",
+					[0, 0, "easeOutQuad"],
+					["+150", 1],
+					["100%", 0],
+					["-100", 1, "easeInQuad"]
+				]
+			}]
+		]]
+	]
+]

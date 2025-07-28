@@ -1,0 +1,350 @@
+[
+	"ds-aspect-stat-graph",
+	[
+		{
+			"key": "percent",
+			"display": "Percent",
+			"type": "number",
+			"default": 72,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 1,
+				"minimum": 0,
+				"maximum": 100
+			}
+		},
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "textarea",
+			"default": "Optional text",
+			"required": false
+		},
+		{
+			"key": "theme",
+			"display": "Theme",
+			"type": "string",
+			"default": "light",
+			"options": [
+				{
+					"key": "light",
+					"display": "Light"
+				},
+				{
+					"key": "light-plum",
+					"display": "Light Plum"
+				},
+				{
+					"key": "light-raspberry",
+					"display": "Light Raspberry"
+				},
+				{
+					"key": "plum",
+					"display": "Dark Plum"
+				},
+				{
+					"key": "raspberry",
+					"display": "Raspberry"
+				},
+				{
+					"key": "blueberry",
+					"display": "Blueberry"
+				},
+				{
+					"key": "aloe",
+					"display": "Aloe"
+				},
+				{
+					"key": "citron",
+					"display": "Citron"
+				},
+				{
+					"key": "clementine",
+					"display": "Clementine"
+				}
+			],
+			"required": false
+		},
+		{
+			"key": "shape",
+			"display": "Shape",
+			"type": "string",
+			"default": "circle",
+			"options": [
+				{
+					"key": "circle",
+					"display": "Circle"
+				},
+				{
+					"key": "row",
+					"display": "Row"
+				},
+				{
+					"key": "column",
+					"display": "Column"
+				}
+			],
+			"required": false
+		},
+		["ds-aspect-mixins",
+			"colors",
+			"font-wallop",
+			"font-roobert",
+			"font-roobert-regular"
+		]
+	],
+	[
+		["ds-aspect-bg", {
+			"theme-manual": ["$", ["switch", ["var", "theme"], ["object",
+				["array", "light", ["'", "#F8F7EF", "#F7397A"]],
+				["array", "light-plum", ["'", "#FCF5FB", "#8B0F71"]],
+				["array", "light-raspberry", ["'", "#FFF5F9", "#F7397A"]],
+				["array", "plum", ["'", "#8B0F71", "#F7397A"]],
+				["array", "raspberry", ["'", "#F7397A", "#F7397A"]],
+				["array", "blueberry", ["'", "#FAFAFE", "#546CEB"]],
+				["array", "aloe", ["'", "#F8FCFB", "#59DCC4"]],
+				["array", "citron", ["'", "#FFFCEB", "#D4A732"]],
+				["array", "clementine", ["'", "#FFF3EB", "#FBC3A0"]]
+			]]]
+		}],
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			],
+			"layout": "horizontal",
+			"gap": "100su",
+			"breakpoints": [
+				{
+					"enabled": ["$",
+						["or",
+							["=", ["var", "shape"], "row"],
+							["<=", ["aspect"], 1]
+						]
+					],
+					"layout": "vertical packed"
+				}
+			]
+		}, [
+			["null", {
+				"align": "left center",
+				"layout": "vertical packed",
+				"gap": "50su",
+				"breakpoints": [
+					{
+						"enabled": ["$",
+							["and",
+								["=", ["var", "shape"], "row"],
+								[">", ["aspect"], 1]
+							]
+						],
+						"layout": "horizontal packed",
+						"align": "bottom center"
+					}
+				]
+			}, [
+				["text", {
+					"font": ["$", ["var", "font-wallop"]],
+					"height": "250su",
+					"color": ["$", ["switch", ["var", "theme"], ["object",
+						["array", "light", "#F7397A"],
+						["array", "light-plum", "#8B0F71"],
+						["array", "light-raspberry", "#F7397A"],
+						["array", "plum", "#FFFFFF"],
+						["array", "raspberry", "#FFFFFF"],
+						["array", "blueberry", "#546CEB"],
+						["array", "aloe", "#40AD99"],
+						["array", "citron", "#D4A732"],
+						["array", "clementine", "#F4792B"]
+					]]],
+					"measure": "letter-size",
+					"string": ["$", ["concat", ["floor", ["var", "percent"]], "%"]],
+					"align": "left",
+					"justify": "left",
+					"boundary": "letter",
+					"kerning": -0.03,
+					"animations": [
+						{
+							"indices": [-1, 1],
+							"color": ["$", ["switch", ["var", "theme"], ["object",
+								["array", "light", "#FF9CC1"],
+								["array", "light-plum", "#E99DDB"],
+								["array", "light-raspberry", "#FF9CC1"],
+								["array", "plum", "#FFFFFF"],
+								["array", "raspberry", "#FFFFFF"],
+								["array", "blueberry", "#D1D7F7"],
+								["array", "aloe", "#59DCC4"],
+								["array", "citron", "#FFD43A"],
+								["array", "clementine", "#FBC3A0"]
+							]]]
+						},
+						{
+							"translate": [
+								0,
+								"100su"
+							]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+1000", 1]
+							],
+							"easing": "easeOutCubic",
+							"opacity": 1,
+							"ramp": 3,
+							"translate": [0, 0]
+						}
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$",
+								["or",
+									["=", ["var", "shape"], "row"],
+									["<=", ["aspect"], 1]
+								]
+							],
+							"justify": "bottom left"
+						}
+					]
+				}],
+				["text", {
+					"enabled": ["$", ["exists", ["var", "text"]]],
+					"stagger": [300, 0],
+					"font": ["$", ["var", "font-roobert-regular"]],
+					"height": "40su",
+					"leading": "15su",
+					"color": ["$", ["switch", ["var", "theme"], ["object",
+						["array", "light", "#0F0F0E"],
+						["array", "light-plum", "#5C0747"],
+						["array", "light-raspberry", "#891E42"],
+						["array", "plum", "#F1D3EA"],
+						["array", "raspberry", "#FEEBF2"],
+						["array", "blueberry", "#23317B"],
+						["array", "aloe", "#06604B"],
+						["array", "citron", "#98742D"],
+						["array", "clementine", "#AC5217"]
+					]]],
+					"measure": "letter-size",
+					"string": ["$", ["var", "text"]],
+					"align": "left",
+					"justify": "left",
+					"boundary": "line",
+					"animations": [
+						{
+							"translate": [
+								0,
+								"70su"
+							]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+1000", 1]
+							],
+							"easing": "easeOutCubic",
+							"opacity": 1,
+							"ramp": 2,
+							"translate": [0, 0]
+						}
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$",
+								["or",
+									["=", ["var", "shape"], "row"],
+									["<=", ["aspect"], 1]
+								]
+							],
+							"justify": "bottom left"
+						}
+					]
+				}]
+			]],
+			["null", {
+				"breakpoints": [
+					{
+						"enabled": ["$",
+							["or",
+								["=", ["var", "shape"], "row"],
+								["<=", ["aspect"], 1]
+							]
+						],
+						"flex": {
+							"grow": true
+						}
+					}
+				]
+			}, [
+				["asset", {
+					"file": ["$", ["switch", ["var", "shape"], ["object",
+						["array", "circle", "./media/ds-aspect-graph-circle-100-rgb.json"],
+						["array", "row", "./media/ds-aspect-graph-row-100-rgb.json"],
+						["array", "column", "./media/ds-aspect-graph-column-100-rgb.json"]
+					]]],
+					"justify": ["$", ["switch", ["var", "shape"], ["object",
+						["array", "circle", "fit center"],
+						["array", "row", "fit center bottom"],
+						["array", "column", "fit center"]
+					]]],
+					"replace-color": [
+						[
+							[1, 0, 0, 1],
+							["$", ["switch", ["var", "theme"], ["object",
+								["array", "light", "#F7397A"],
+								["array", "light-plum", "#8B0F71"],
+								["array", "light-raspberry", "#F7397A"],
+								["array", "plum", "#F7397A"],
+								["array", "raspberry", "#8B0F71"],
+								["array", "blueberry", "#546CEB"],
+								["array", "aloe", "#40AD99"],
+								["array", "citron", "#D4A732"],
+								["array", "clementine", "#F4792B"]
+							]]]
+						],
+						[
+							[0, 0, 1, 1],
+							["$", ["switch", ["var", "theme"], ["object",
+								["array", "light", "#FF9CC159"],
+								["array", "light-plum", "#E99DDB59"],
+								["array", "light-raspberry", "#FF9CC159"],
+								["array", "plum", "#F7397A1A"],
+								["array", "raspberry", "#8B0F7140"],
+								["array", "blueberry", "#546CEB59"],
+								["array", "aloe", "#59DCC459"],
+								["array", "citron", "#FFD43A59"],
+								["array", "clementine", "#F0520E59"]
+							]]]
+						],
+						[
+							[0, 1, 0, 1],
+							["$", ["switch", ["var", "theme"], ["object",
+								["array", "light", "#C9CCC3"],
+								["array", "light-plum", "#F1D3EA"],
+								["array", "light-raspberry", "#ffccdf"],
+								["array", "plum", "#fa98ba"],
+								["array", "raspberry", "#FF9CC1"],
+								["array", "blueberry", "#DDE2FB"],
+								["array", "aloe", "#ffccdf"],
+								["array", "citron", "#DDE2FB"],
+								["array", "clementine", "#ffccdf"]
+							]]]
+						]
+					],
+					"lottie-driver": ["animate",
+						[0, 0, "easeInOutCubic"],
+						["+1500", ["$", ["/", ["var", "percent"], 100]]]
+					],
+					"effect": [
+						["shadow", {
+							"color": "#5C074733",
+							"offset": ["-4su", "10su"],
+							"radius": "20su"
+						}]
+					] 
+				}]
+			]]
+		]]
+	]
+]

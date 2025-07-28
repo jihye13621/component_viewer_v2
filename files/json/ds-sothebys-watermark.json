@@ -1,0 +1,82 @@
+[
+	"ds-sothebys-watermark",
+	[
+		["ds-capsule-mixins",
+			"color-primary",
+			"color-secondary"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "dark-mode",
+			"display": "Dark Mode",
+			"type": "bool",
+			"default": false,
+			"required": false
+		},
+		{
+			"key": "shadow",
+			"display": "Shadow",
+			"type": "bool",
+			"default": false,
+			"required": false
+		},
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [7, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["shadow", {
+				"skip": ["$", ["not", ["var", "shadow"]]],
+				"color": ["$",
+					["rgba-set",
+						["if", ["var", "dark-mode"],
+							["var", "color-primary"],
+							["var", "color-secondary"]
+						],
+						"a",
+						0.9
+					]
+				],
+				"radius": "30su",
+				"layout": "horizontal packed",
+				"max-width": "800nsu",
+				"align": ["$", ["var", "#align"]]
+			}, [
+				["asset", {
+					"mute": true,
+					"file": "./media/ds-sothebys-logo.svg",
+					"flex": {
+						"width": "300su",
+						"height": "300su"
+					},
+					"justify": ["$", ["concat", "fit ", ["var", "#align"]]],
+					"svg-recolor": ["$",
+						["if", ["var", "dark-mode"],
+							["var", "color-secondary"],
+							["var", "color-primary"]
+						]
+					],
+					"opacity": ["animate",
+						[0, 0, "easeOutQuad"],
+						["+350", 1],
+						["100%", 0],
+						["-350", 1, "easeInQuad"]
+					]
+				}]
+			]]
+		]]
+	]
+]

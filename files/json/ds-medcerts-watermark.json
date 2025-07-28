@@ -1,0 +1,405 @@
+[
+	"ds-medcerts-watermark",
+	[
+		{
+			"key": "logo",
+			"display": "Logo",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": []
+		},
+		{
+			"key": "medcerts-logo",
+			"display": "Logo",
+			"type": "string",
+			"default": "logo",
+			"options": [
+				{
+					"key": "logo",
+					"display": "Stride"
+				},
+				{
+					"key": "logo-partner",
+					"display": "Partner"
+				}
+			]
+		},
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "text",
+			"default": "Optional text",
+			"required": false
+		},
+		{
+			"key": "direction",
+			"display": "Direction",
+			"type": "string",
+			"default": "horizontal",
+			"options": [
+				{
+					"key": "horizontal",
+					"display": "Horizontal"
+				},
+				{
+					"key": "vertical",
+					"display": "Vertical"
+				}
+			]
+		},
+		{
+			"key": "text-placement",
+			"display": "Text Placement",
+			"type": "string",
+			"default": "bottom",
+			"options": [
+				{
+					"key": "top",
+					"display": "Top"
+				},
+				{
+					"key": "bottom",
+					"display": "Bottom"
+				}
+			]
+		},
+		["ds-medcerts-mixins", "color-primary", "color-secondary"],
+		["dsx-mixins", ["boilerplate"]],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [5, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]]
+			}, [
+				["null", {
+					"layout": "vertical packed",
+					"align": "top center",
+					"opacity": ["animate",
+						[0, 0, "easeOutQuad"],
+						["+300", 1],
+						["100%", 0],
+						["-350", 1, "easeInQuad"]
+					],
+					"transform": [
+						["scale",
+							["animate",
+								[0, 0.75, "easeOutCubic"],
+								["+400", 1]
+							]
+						]
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$",
+								["and",
+									["exists", ["var", "logo"]],
+									["eq", ["var", "direction"], "horizontal"],
+									["eq", ["var", "text-placement"], "bottom"]
+								]
+							],
+							"transform": [
+								["scale",
+									["animate",
+										[0, 0.75, "easeOutCubic"],
+										["+400", 1]
+									],
+									"175su",
+									"105su"
+								],
+								["translate",
+									["animate",
+										[850, "175su", "easeInOutQuad"],
+										["+500", 0]
+									],
+									0
+								]
+							]
+						},
+						{
+							"enabled": ["$",
+								["and",
+									["exists", ["var", "logo"]],
+									["eq", ["var", "direction"], "vertical"],
+									["eq", ["var", "text-placement"], "bottom"]
+								]
+							],
+							"transform": [
+								["scale",
+									["animate",
+										[0, 0.75, "easeOutCubic"],
+										["+400", 1]
+									],
+									"225su",
+									"105su"
+								],
+								["translate",
+									0,
+									["animate",
+										[850, "90su", "easeInOutQuad"],
+										["+500", 0]
+									]
+								]
+							]
+						}
+					]
+				}, [
+					["solid", {
+						"layout": "vertical packed",
+						"align": "top center",
+						"color": ["$", ["rgba-set", ["var", "color-primary"], "a", 0.8]],
+						"padding": [
+							"30su",
+							"50su"
+						],
+						"gap": "30su",
+						"breakpoints": [
+							{
+								"enabled": ["$",
+									["and",
+										["exists", ["var", "logo"]],
+										["eq", ["var", "direction"], "horizontal"],
+										["eq", ["var", "text-placement"], "bottom"]
+									]
+								],
+								"mask": {
+									"rect": [
+										0,
+										0,
+										["animate",
+											[850, "350su", "easeInOutQuad"],
+											["+500", "100rw"]
+										],
+										["animate",
+											[850, "190su", "easeInOutQuad"],
+											["+500", "100rh"]
+										]
+									]
+								}
+							},
+							{
+								"enabled": ["$",
+									["and",
+										["exists", ["var", "logo"]],
+										["eq", ["var", "direction"], "vertical"],
+										["eq", ["var", "text-placement"], "bottom"]
+									]
+								],
+								"mask": {
+									"rect": [
+										0,
+										0,
+										"100rw",
+										["animate",
+											[850, "190su", "easeInOutQuad"],
+											["+500", "100rh"]
+										]
+									]
+								}
+							},
+							{
+								"enabled": ["$", ["eq", ["var", "text-placement"], "top"]],
+								"mask": {
+									"rect": [
+										0,
+										0,
+										"100rw",
+										["animate",
+											[0, 0, "easeInOutQuad"],
+											["+500", "100rh"]
+										]
+									]
+								}
+							}
+						]
+					}, [
+						["null", {
+							"layout": ["$",
+								["if",
+									["eq", ["var", "direction"], "horizontal"],
+									"horizontal packed match",
+									"vertical packed match"
+								]
+							],
+							"gap": "50su",
+							"breakpoints": [
+								{
+									"enabled": ["$", ["eq", ["var", "text-placement"], "top"]],
+									"order": 2
+								}
+							]
+						}, [
+							["null", {
+								"flex": {
+									"width": ["$",
+										["if",
+											["and",
+												["eq", ["var", "direction"], "horizontal"],
+												["exists", ["var", "logo"]]
+											],
+											"250su",
+											"350su"
+										]
+									],
+									"height": "120su"
+								}
+							}, [
+								["asset", {
+									"mute": true,
+									"file": ["$",
+										["concat",
+											"./media/ds-medcerts-",
+											["var", "medcerts-logo"],
+											".svg"
+										]
+									],
+									"justify": "fit center"
+								}]
+							]],
+							["solid", {
+								"enabled": ["$", ["exists", ["var", "logo"]]],
+								"flex": {
+									"shrink": true,
+									"width": "4su"
+								},
+								"color": ["$", ["rgba-set", ["var", "color-secondary"], "a", 0.25]],
+								"breakpoints": [
+									{
+										"enabled": ["$", ["exists", ["var", "logo"]]],
+										"transform": [
+											["scale",
+												1,
+												["animate",
+													[850, 0, "easeInOutQuad"],
+													["+500", 1]
+												]
+											]
+										]
+									},
+									{
+										"enabled": ["$", ["eq", ["var", "direction"], "vertical"]],
+										"flex": {
+											"shrink": true,
+											"height": "4su"
+										},
+										"transform": [
+											["scale",
+												["animate",
+													[["$",
+														["if",
+															["eq", ["var", "text-placement"], "top"],
+														250,
+														850
+													]],
+														0,
+														"easeInOutQuad"],
+													["+500", 1]
+												],
+												1
+											]
+										]
+									},
+									{
+										"enabled": ["$",
+											["and",
+												["exists", ["var", "logo"]],
+												["eq", ["var", "direction"], "horizontal"],
+												["eq", ["var", "text-placement"], "top"]
+											]
+										],
+										"transform": [
+											["scale",
+												1,
+												["animate",
+													[250, 0, "easeInOutQuad"],
+													["+500", 1]
+												]
+											]
+										]
+									}
+								]
+							}],
+							["null", {
+								"enabled": ["$", ["exists", ["var", "logo"]]],
+								"flex": {
+									"width": ["$",
+										["if",
+											["and",
+												["eq", ["var", "direction"], "horizontal"],
+												["exists", ["var", "logo"]]
+											],
+											"250su",
+											"350su"
+										]
+									],
+									"height": "120su"
+								}
+							}, [
+								["user-asset", {
+									"mute": true,
+									"file": ["$", ["var", "logo"]],
+									"justify": "fit center"
+								}]
+							]]
+						]],
+						["text", {
+							"max-width": "350su",
+							"enabled": ["$", ["exists", ["var", "text"]]],
+							"mixins": ["ds-medcerts-mixins", "font-watermark"],
+							"string": ["$", ["var", "text"]],
+							"color": ["$", ["var", "color-secondary"]],
+							"justify": "top center",
+							"boundary": "word",
+							"animations": [
+								{
+									"translate": [
+										0,
+										"50su"
+									]
+								},
+								{
+									"mix": ["animate",
+										[200, 0],
+										["+650", 1]
+									],
+									"easing": "easeOutQuad",
+									"opacity": 1,
+									"translate": [0, 0]
+								}
+							],
+							"breakpoints": [
+								{
+									"enabled": ["$",
+										["and",
+											["exists", ["var", "logo"]],
+											["eq", ["var", "direction"], "horizontal"]
+										]
+									],
+									"max-width": "600su"
+								},
+								{
+									"enabled": ["$",["eq", ["var", "text-placement"], "top"]],
+									"order": 1
+								}
+							]
+						}]
+					]]
+				]]
+			]]
+		]]
+	]
+]

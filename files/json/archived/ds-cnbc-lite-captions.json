@@ -1,0 +1,68 @@
+[
+	"ds-cnbc-lite-captions",
+	[
+		["dsx-mixins", ["captions"]],
+		["ds-cnbc-lite-mixins", "color-1", "color-3"],
+		["dsx-mixins", ["boilerplate"]],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": 7,
+			"required": false
+		}
+	],
+	[
+		["dsx-background", {
+			"enabled": ["$", ["exists", ["var", "background"]]],
+			"color": ["$", ["var", "background"]]
+		}],
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"max-width": "800nsu",
+				"align": ["$", ["var", "#align"]],
+				"layout": "vertical packed",
+				"padding": [
+					0,
+					0,
+					0,
+					"70su"
+				]
+			}, [
+				["text", {
+					"mixins": ["ds-cnbc-lite-mixins", ["text-2"]],
+					"transcript": ["$",
+						["transcript-split",
+							["var", "transcript"],
+							["max", 1, ["floor", ["/", 10, ["var", "size"]]]]
+						]
+					],
+					"color": ["$", ["var", "color-3"]],
+					"justify": "left",
+					"animations": [
+						{
+							"opacity": 1
+						},
+						{
+							"mix": [[0, 0], [0.25, 1.0]],
+							"color": ["$", ["var", "color-1"]]
+						}
+					]
+				}, [
+					["solid", {
+						"color": ["$", ["var", "color-3"]],
+						"radius": "80su",
+						"rect": [
+							"-70su",
+							"2su",
+							"45su",
+							"45su"
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

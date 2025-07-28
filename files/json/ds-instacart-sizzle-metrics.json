@@ -1,0 +1,167 @@
+[
+	"ds-instacart-sizzle-metrics",
+	[
+		{
+			"key": "stat-1",
+			"display": "Stat 1",
+			"type": "text",
+			"default": "~45%",
+			"required": false
+		},
+		{
+			"key": "detail-1",
+			"display": "Detail 1",
+			"type": "text",
+			"default": "Nearly half of on-demand delivery orders were priority",
+			"required": false
+		},
+		{
+			"key": "stat-2",
+			"display": "Stat 2",
+			"type": "text",
+			"default": "7",
+			"required": false
+		},
+		{
+			"key": "detail-2",
+			"display": "Detail 2",
+			"type": "text",
+			"default": "Consecutive quarters of found and fill rate improvements",
+			"required": false
+		},
+		{
+			"key": "stat-3",
+			"display": "Stat 3",
+			"type": "text",
+			"default": "19%",
+			"required": false
+		},
+		{
+			"key": "detail-3",
+			"display": "Detail 3",
+			"type": "text",
+			"default": "Reduction in Failed Delivery Order (FDO) Rate",
+			"required": false
+		},
+		{
+			"key": "stat-4",
+			"display": "Stat 4",
+			"type": "text",
+			"default": "3.4 Million",
+			"required": false
+		},
+		{
+			"key": "detail-4",
+			"display": "Detail 4",
+			"type": "text",
+			"default": "Conversations completed by Carebot with a RR of 13.6 million annually",
+			"required": false
+		},
+		["ds-instacart-mixins",
+			"colors",
+			"font-sans-800",
+			"theme"
+		]
+	],
+	[
+		["solid", {
+			"-calc-items": ["$", ["set", "#items", ["array",
+				["if",
+					["exists", ["var", "stat-1"]],
+					["array", ["var", "stat-1"], ["var", "detail-1"]]
+				],
+				["if",
+					["exists", ["var", "stat-2"]],
+					["array", ["var", "stat-2"], ["var", "detail-2"]]
+				],
+				["if",
+					["exists", ["var", "stat-3"]],
+					["array", ["var", "stat-3"], ["var", "detail-3"]]
+				],
+				["if",
+					["exists", ["var", "stat-4"]],
+					["array", ["var", "stat-4"], ["var", "detail-4"]]
+				]
+			]]],
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			],
+			"color": ["$", ["var", "#background"]]
+		}, [
+			["null", {
+				"padding": [
+					0,
+					"100su",
+					0,
+					0
+				]
+			}, [
+				["ds-instacart-sizzle-stat", {
+					"enabled": ["$", ["exists", ["nth", ["nth", ["var", "#items"], 0], 0]]],
+					"rect": [
+						0,
+						0,
+						"30rw",
+						"50rh"
+					],
+					"stat": ["$", ["nth", ["nth", ["var", "#items"], 0], 0]],
+					"text": ["$", ["nth", ["nth", ["var", "#items"], 0], 1]],
+					"color": ["$", ["var", "#foreground"]],
+					"start-frame": 0
+				}],
+				["ds-instacart-sizzle-stat", {
+					"enabled": ["$", ["exists", ["nth", ["nth", ["var", "#items"], 1], 0]]],
+					"rect": [
+						"30rw",
+						0,
+						"50rw",
+						"50rh"
+					],
+					"stat": ["$", ["nth", ["nth", ["var", "#items"], 1], 0]],
+					"text": ["$", ["nth", ["nth", ["var", "#items"], 1], 1]],
+					"color": ["$", ["var", "#foreground"]],
+					"start-frame": 100,
+					"transform": [
+						["translate",
+							"100su",
+							0
+						]
+					]
+				}],
+				["ds-instacart-sizzle-stat", {
+					"enabled": ["$", ["exists", ["nth", ["nth", ["var", "#items"], 2], 0]]],
+					"rect": [
+						0,
+						"50rh",
+						"30rw",
+						"50rh"
+					],
+					"stat": ["$", ["nth", ["nth", ["var", "#items"], 2], 0]],
+					"text": ["$", ["nth", ["nth", ["var", "#items"], 2], 1]],
+					"color": ["$", ["var", "#foreground"]],
+					"start-frame": 200
+				}],
+				["ds-instacart-sizzle-stat", {
+					"enabled": ["$", ["exists", ["nth", ["nth", ["var", "#items"], 3], 0]]],
+					"rect": [
+						"30rw",
+						"50rh",
+						"50rw",
+						"50rh"
+					],
+					"stat": ["$", ["nth", ["nth", ["var", "#items"], 3], 0]],
+					"text": ["$", ["nth", ["nth", ["var", "#items"], 3], 1]],
+					"color": ["$", ["var", "#foreground"]],
+					"start-frame": 300,
+					"transform": [
+						["translate",
+							"100su",
+							0
+						]
+					]
+				}]
+			]]
+		]]
+	]
+]

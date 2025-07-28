@@ -1,0 +1,52 @@
+{
+	"params": {
+		"light-green": {
+			"key": "light-green",
+			"display": "Color",
+			"type": "color",
+			"default": "#ebfbe2",
+			"required": false,
+			"private": true
+		},
+		"green": {
+			"key": "green",
+			"display": "Color",
+			"type": "color",
+			"default": "#02a95c",
+			"required": false,
+			"private": true
+		},
+		"dark-green": {
+			"key": "dark-green",
+			"display": "Color",
+			"type": "color",
+			"default": "#015d32",
+			"required": false,
+			"private": true
+		},
+		"font-bold": {
+			"key": "font-bold",
+			"display": "Font",
+			"type": "string",
+			"default": "./media/CircularXXWeb-Bold.woff2",
+			"required": false,
+			"private": false
+		},
+		"font-medium": {
+			"key": "font-medium",
+			"display": "Font",
+			"type": "string",
+			"default": "./media/CircularXXWeb-Medium.woff2",
+			"required": false,
+			"private": false
+		},
+		"font-regular": {
+			"key": "font-regular",
+			"display": "Font",
+			"type": "string",
+			"default": "./media/CircularXXWeb-Regular.woff2",
+			"required": false,
+			"private": false
+		}
+	}
+}

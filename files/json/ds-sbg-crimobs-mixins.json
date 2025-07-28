@@ -1,0 +1,44 @@
+{
+	"params": {
+		"color-white": {
+			"key": "color-white",
+			"display": "Color",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false,
+			"private": true
+		},
+		"color-highlighter-yellow": {
+			"key": "color-highlighter-yellow",
+			"display": "Color",
+			"type": "color",
+			"default": "#f1e740",
+			"required": false,
+			"private": true
+		},
+		"color-crime-tape-yellow": {
+			"key": "color-crime-tape-yellow",
+			"display": "Color",
+			"type": "color",
+			"default": "#eed202",
+			"required": false,
+			"private": true
+		},
+		"color-coffee-cream": {
+			"key": "color-coffee-cream",
+			"display": "Color",
+			"type": "color",
+			"default": "#fff2d7",
+			"required": false,
+			"private": true
+		},
+		"color-red-handed": {
+			"key": "color-red-handed",
+			"display": "Color",
+			"type": "color",
+			"default": "#bb0a1e",
+			"required": false,
+			"private": true
+		}
+	}
+}

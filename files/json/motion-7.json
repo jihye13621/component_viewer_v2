@@ -1,0 +1,510 @@
+[
+    "motion-7",
+    [
+        {
+            "key": "start",
+            "display": "Start",
+            "type": "number",
+            "default": 0,
+            "required": false
+        },
+        {
+            "key": "duration",
+            "display": "Duration",
+            "type": "number",
+            "default": 6000,
+            "required": false
+        },
+        {
+            "key": "text",
+            "display": "Text",
+            "type": "text",
+            "default": "MOTION",
+            "required": false
+        },
+        {
+            "key": "blue-rect",
+            "display": "Color 1",
+            "type": "color",
+            "default": [0.4, 0.6, 1, 1],
+            "required": false
+        },
+        {
+            "key": "purple-rect",
+            "display": "Color 2",
+            "type": "color",
+            "default": [0.6, 0.4, 1, 1],
+            "required": false
+        }
+    ],
+    [
+        ["solid", {
+            "start": ["$", ["var", "start"]],
+            "duration": ["$", ["var", "duration"]],
+            "mixins": ["dsx-mixins", "set-su"],
+            "color": [0.05, 0.05, 0.1, 1],
+            "layout": "stacked",
+            "align": "center",
+            "rect": ["100rw", "100rh"]
+        }, [
+            ["null", {
+                "layout": "stacked",
+                "align": "center"
+            }, [
+                ["null", {
+                    "layout": "stacked",
+                    "align": "center"
+                }, [
+                    ["solid", {
+                        "rect": ["150su", "150su"],
+                        "color": ["linear-gradient",
+                            0.0,
+                            [0.0, [0.4, 0.8, 1, 0.65]],
+                            [1.0, [0.2, 0.9, 0.8, 0.65]]
+                        ],
+                        "mask": {
+                            "radius": "75su"
+                        },
+                        "shadow": {
+                            "color": [0, 0, 0, 0.7],
+                            "offset": [0, 5],
+                            "blur": 5
+                        },
+                        "transform": [
+                            ["translate",
+                                ["animate",
+                                    [0, "600su", "easeInOutSine"],
+                                    ["+2000", "0su"]
+                                ],
+                                ["animate",
+                                    [0, "-600su", "easeInOutSine"],
+                                    ["+2000", "0su"]
+                                ]
+                            ],
+                            ["scale",
+                                ["animate",
+                                    [0, 0.3, "easeInOutSine"],
+                                    ["+2000", 1.5]
+                                ]
+                            ]
+                        ],
+                        "opacity": ["animate",
+                            [0, 0, "easeInOutSine"],
+                            ["+2000", 1]
+                        ]
+                    }],
+                    ["solid", {
+                        "rect": ["150su", "150su"],
+                        "color": ["linear-gradient",
+                            0.0,
+                            [0.0, [0.4, 0.8, 1, 0.75]],
+                            [1.0, [0.2, 0.9, 0.8, 0.75]]
+                        ],
+                        "mask": {
+                            "radius": "75su"
+                        },
+                        "shadow": {
+                            "color": [0, 0, 0, 0.7],
+                            "offset": [0, 5],
+                            "blur": 5
+                        },
+                        "transform": [
+                            ["translate",
+                                ["animate",
+                                    [0, "-600su", "easeInOutSine"],
+                                    ["+2000", "0su"]
+                                ],
+                                ["animate",
+                                    [0, "600su", "easeInOutSine"],
+                                    ["+2000", "0su"]
+                                ]
+                            ],
+                            ["scale",
+                                ["animate",
+                                    [0, 0.3, "easeInOutSine"],
+                                    ["+2000", 1.5]
+                                ]
+                            ]
+                        ],
+                        "opacity": ["animate",
+                            [0, 0, "easeInOutSine"],
+                            ["+2000", 1]
+                        ]
+                    }]
+                ]],
+                ["solid", {
+                    "rect": ["150su", "150su"],
+                    "color": ["linear-gradient",
+                        0.0,
+                        [0.0, [0.4, 0.6, 1, 0.75]],
+                        [1.0, [0.6, 0.4, 1, 0.75]]
+                    ],
+                    "mask": {
+                        "radius": "75su"
+                    },
+                    "shadow": {
+                        "color": [0, 0, 0, 0.7],
+                        "offset": [0, 5],
+                        "blur": 5
+                    },
+                    "transform": [
+                        ["translate",
+                            ["animate",
+                                [0, 0, "easeOutCubic"],
+                                ["+2000", 0]
+                            ],
+                            ["animate",
+                                [0, "200su", "easeOutCubic"],
+                                ["+2000", 0]
+                            ]
+                        ]
+                    ],
+                    "opacity": ["animate",
+                        [0, 0, "easeOutCubic"],
+                        ["+2000", 1]
+                    ]
+                }],
+                ["null", {
+                    "layout": "stacked",
+                    "align": "center"
+                }, [
+                    ["solid", {
+                        "color": ["$", ["var", "blue-rect"]],
+                        "rect": ["200su", "50su"],
+                        "shadow": {
+                            "color": [0, 0, 0, 0.7],
+                            "offset": [0, 5],
+                            "blur": 5
+                        },
+                        "transform": [
+                            ["translate",
+                                ["animate",
+                                    [0, "-800su", "easeInOutSine"],
+                                    ["+2000", 0]
+                                ],
+                                ["animate",
+                                    [0, "100su", "easeInOutSine"],
+                                    ["+1000", "-100su"],
+                                    ["+2000", 0]
+                                ]
+                            ],
+                            ["scale",
+                                ["animate",
+                                    [0, 1.2, "easeInOutSine"],
+                                    ["+1000", 0.8],
+                                    ["+2000", 1]
+                                ]
+                            ]
+                        ]
+                    }],
+                    ["solid", {
+                        "color": ["$", ["var", "purple-rect"]],
+                        "rect": ["200su", "50su"],
+                        "shadow": {
+                            "color": [0, 0, 0, 0.7],
+                            "offset": [0, 5],
+                            "blur": 5
+                        },
+                        "transform": [
+                            ["translate",
+                                ["animate",
+                                    [0, "800su", "easeInOutSine"],
+                                    ["+2000", 0]
+                                ],
+                                ["animate",
+                                    [0, "-100su", "easeInOutSine"],
+                                    ["+1000", "100su"],
+                                    ["+2000", 0]
+                                ]
+                            ],
+                            ["scale",
+                                ["animate",
+                                    [0, 0.8, "easeInOutSine"],
+                                    ["+1000", 1.2],
+                                    ["+2000", 1]
+                                ]
+                            ]
+                        ]
+                    }]
+                ]],
+                ["null", {
+                    "layout": "stacked",
+                    "align": "center"
+                }, [
+                    ["solid", {
+                        "color": [0.4, 0.8, 0.2, 0.8],
+                        "rect": ["200su", "200su"],
+                        "shadow": {
+                            "color": [0, 0, 0, 0.7],
+                            "offset": [0, 5],
+                            "blur": 5
+                        },
+                        "transform": [
+                            ["translate",
+                                ["animate",
+                                    [0, "800su", "easeInOutQuart"],
+                                    ["+3000", 0]
+                                ],
+                                ["animate",
+                                    [0, "-200su", "easeInOutQuart"],
+                                    ["+3000", 0]
+                                ]
+                            ],
+                            ["rotate",
+                                ["animate",
+                                    [0, 360, "easeInOutQuart"],
+                                    ["+3000", 0]
+                                ]
+                            ],
+                            ["scale",
+                                ["animate",
+                                    [0, 1.5, "easeInOutQuart"],
+                                    ["+3000", 1]
+                                ]
+                            ]
+                        ]
+                    }],
+                    ["solid", {
+                        "color": [0.2, 0.9, 0.4, 0.8],
+                        "rect": ["150su", "150su"],
+                        "shadow": {
+                            "color": [0, 0, 0, 0.7],
+                            "offset": [0, 5],
+                            "blur": 5
+                        },
+                        "transform": [
+                            ["translate",
+                                ["animate",
+                                    [0, "-800su", "easeInOutQuart"],
+                                    ["+3000", 0]
+                                ],
+                                ["animate",
+                                    [0, "200su", "easeInOutQuart"],
+                                    ["+3000", 0]
+                                ]
+                            ],
+                            ["rotate",
+                                ["animate",
+                                    [0, -360, "easeInOutQuart"],
+                                    ["+3000", 0]
+                                ]
+                            ],
+                            ["scale",
+                                ["animate",
+                                    [0, 0.5, "easeInOutQuart"],
+                                    ["+3000", 1]
+                                ]
+                            ]
+                        ]
+                    }],
+                    ["solid", {
+                        "color": [0.3, 0.95, 0.3, 0.8],
+                        "rect": ["100su", "100su"],
+                        "shadow": {
+                            "color": [0, 0, 0, 0.7],
+                            "offset": [0, 5],
+                            "blur": 5
+                        },
+                        "transform": [
+                            ["translate",
+                                ["animate",
+                                    [0, "400su", "easeInOutQuart"],
+                                    ["+3000", 0]
+                                ],
+                                ["animate",
+                                    [0, "400su", "easeInOutQuart"],
+                                    ["+3000", 0]
+                                ]
+                            ],
+                            ["rotate",
+                                ["animate",
+                                    [0, 180, "easeInOutQuart"],
+                                    ["+3000", 0]
+                                ]
+                            ],
+                            ["scale",
+                                ["animate",
+                                    [0, 2, "easeInOutQuart"],
+                                    ["+3000", 1]
+                                ]
+                            ]
+                        ]
+                    }]
+                ]],
+                ["text", {
+                    "enabled": ["$", ["exists", ["var", "text"]]],
+                    "font": "./media/Barlow-Bold.ttf",
+                    "color": [1, 1, 1, 1],
+                    "string": "M",
+                    "justify": "center",
+                    "shadow": {
+                        "color": [0, 0, 0, 0.7],
+                        "offset": [0, 10],
+                        "blur": 20
+                    },
+                    "transform": [
+                        ["translate",
+                            ["animate",
+                                [0, "-150su", "easeOutCubic"],
+                                ["+500", "-100su"]
+                            ],
+                            ["animate",
+                                [0, "-200su", "easeOutCubic"],
+                                ["+500", "0su"]
+                            ]
+                        ]
+                    ],
+                    "opacity": ["animate",
+                        [0, 0, "easeOutCubic"],
+                        ["+500", 1]
+                    ]
+                }],
+                // O
+                ["text", {
+                    "enabled": ["$", ["exists", ["var", "text"]]],
+                    "font": "./media/Barlow-Bold.ttf",
+                    "color": [1, 1, 1, 1],
+                    "string": "O",
+                    "justify": "center",
+                    "shadow": {
+                        "color": [0, 0, 0, 0.7],
+                        "offset": [0, 10],
+                        "blur": 20
+                    },
+                    "transform": [
+                        ["translate",
+                            ["animate",
+                                [0, "-75su", "easeOutCubic"],
+                                ["+1000", "-40su"]
+                            ],
+                            ["animate",
+                                [0, "-200su", "easeOutCubic"],
+                                ["+1000", "0su"]
+                            ]
+                        ]
+                    ],
+                    "opacity": ["animate",
+                        [0, 0, "easeOutCubic"],
+                        ["+1000", 1]
+                    ]
+                }],
+                // T
+                ["text", {
+                    "enabled": ["$", ["exists", ["var", "text"]]],
+                    "font": "./media/Barlow-Bold.ttf",
+                    "color": [1, 1, 1, 1],
+                    "string": "T",
+                    "justify": "center",
+                    "shadow": {
+                        "color": [0, 0, 0, 0.7],
+                        "offset": [0, 10],
+                        "blur": 20
+                    },
+                    "transform": [
+                        ["translate",
+                            ["animate",
+                                [0, "0su", "easeOutCubic"],
+                                ["+1500", "10su"]
+                            ],
+                            ["animate",
+                                [0, "-200su", "easeOutCubic"],
+                                ["+1500", "0su"]
+                            ]
+                        ]
+                    ],
+                    "opacity": ["animate",
+                        [0, 0, "easeOutCubic"],
+                        ["+1500", 1]
+                    ]
+                }],
+                // I
+                ["text", {
+                    "enabled": ["$", ["exists", ["var", "text"]]],
+                    "font": "./media/Barlow-Bold.ttf",
+                    "color": [1, 1, 1, 1],
+                    "string": "I",
+                    "justify": "center",
+                    "shadow": {
+                        "color": [0, 0, 0, 0.7],
+                        "offset": [0, 10],
+                        "blur": 20
+                    },
+                    "transform": [
+                        ["translate",
+                            ["animate",
+                                [0, "75su", "easeOutCubic"],
+                                ["+2000", "50su"]
+                            ],
+                            ["animate",
+                                [0, "-200su", "easeOutCubic"],
+                                ["+2000", "0su"]
+                            ]
+                        ]
+                    ],
+                    "opacity": ["animate",
+                        [0, 0, "easeOutCubic"],
+                        ["+2000", 1]
+                    ]
+                }],
+                // O
+                ["text", {
+                    "enabled": ["$", ["exists", ["var", "text"]]],
+                    "font": "./media/Barlow-Bold.ttf",
+                    "color": [1, 1, 1, 1],
+                    "string": "O",
+                    "justify": "center",
+                    "shadow": {
+                        "color": [0, 0, 0, 0.7],
+                        "offset": [0, 10],
+                        "blur": 20
+                    },
+                    "transform": [
+                        ["translate",
+                            ["animate",
+                                [0, "150su", "easeOutCubic"],
+                                ["+2500", "90su"]
+                            ],
+                            ["animate",
+                                [0, "-200su", "easeOutCubic"],
+                                ["+2500", "0su"]
+                            ]
+                        ]
+                    ],
+                    "opacity": ["animate",
+                        [0, 0, "easeOutCubic"],
+                        ["+2500", 1]
+                    ]
+                }],
+                // N
+                ["text", {
+                    "enabled": ["$", ["exists", ["var", "text"]]],
+                    "font": "./media/Barlow-Bold.ttf",
+                    "color": [1, 1, 1, 1],
+                    "string": "N",
+                    "justify": "center",
+                    "shadow": {
+                        "color": [0, 0, 0, 0.7],
+                        "offset": [0, 10],
+                        "blur": 20
+                    },
+                    "transform": [
+                        ["translate",
+                            ["animate",
+                                [0, "225su", "easeOutCubic"],
+                                ["+3000", "145su"]
+                            ],
+                            ["animate",
+                                [0, "-200su", "easeOutCubic"],
+                                ["+3000", "0su"]
+                            ]
+                        ]
+                    ],
+                    "opacity": ["animate",
+                        [0, 0, "easeOutCubic"],
+                        ["+3000", 1]
+                    ]
+                }]
+            ]]
+        ]]
+    ]
+] 

@@ -1,0 +1,58 @@
+[
+	"ds-amp-cta",
+	[
+		["dsx-mixins", ["cta"]],
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		},
+		{
+			"key": "color-2",
+			"display": "Color 2",
+			"type": "color",
+			"default": "#1E7AFA",
+			"required": false
+		},
+		["dsx-mixins", ["boilerplate"]]
+	],
+	[
+		["dsx-background", {
+			"enabled": ["$", ["exists", ["var", "background"]]],
+			"color": ["$", ["var", "background"]]
+		}],
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["solid", {
+				"layout": "horizontal packed match",
+				"color": ["$", ["var", "color-2"]],
+				"stroke": "10su",
+				"stroke-color": ["$", ["var", "color-1"]],
+				"padding": [
+					"30su",
+					"40su",
+					"30su",
+					"40su"
+				],
+				"gap": "40su"
+			}, [
+				["dsx-icon", {
+					"flex": {
+						"shrink": true,
+						"width": "60su"
+					},
+					"icon": "arrow-up-right"
+				}],
+				["text", {
+					"mixins": ["ds-amp-mixins", ["text-1", "animate-up-down"]],
+					"string": ["$", ["var", "text"]],
+					"justify": ["$", ["var", "#align"]],
+					"boundary": "line"
+				}]
+			]]
+		]]
+	]
+]

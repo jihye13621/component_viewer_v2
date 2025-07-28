@@ -1,0 +1,203 @@
+[
+	"ds-appcues-shove-video",
+	[
+		{
+			"key": "in-offset",
+			"display": "In Offset",
+			"type": "number",
+			"default": 0
+		},
+		{
+			"key": "out-offset",
+			"display": "Out Offset",
+			"type": "number",
+			"default": 0
+		},
+		{
+			"key": "in-duration",
+			"display": "In Duration",
+			"type": "number",
+			"default": 650
+		},
+		{
+			"key": "out-duration",
+			"display": "Out Duration",
+			"type": "number",
+			"default": 650
+		},
+		{
+			"key": "type",
+			"display": "type",
+			"type": "string",
+			"default": "in-out",
+			"options": [
+				{
+					"key": "in",
+					"display": "In"
+				},
+				{
+					"key": "out",
+					"display": "Out"
+				},
+				{
+					"key": "in-out",
+					"display": "In-Out"
+				}
+			]
+		},
+		{
+			"key": "direction",
+			"display": "Direction",
+			"default": "right",
+			"type": "string", 
+			"options": [
+				{
+					"key": "right",
+					"display": "Right"
+				},
+				{
+					"key": "left",
+					"display": "Left"
+				},
+				{
+					"key": "up",
+					"display": "Up"
+				},
+				{
+					"key": "down",
+					"display": "Down"
+				}
+			]
+		},
+		{
+			"key": "size",
+			"display": "Size",
+			"default": "full",
+			"type": "string", 
+			"options": [
+				{
+					"key": "half",
+					"display": "Half"
+				},
+				{
+					"key": "full",
+					"display": "Full"
+				}
+			]
+		},
+		{
+			"key": "#offset-divisor",
+			"display": "Offset Divisor",
+			"type": "number",
+			"default": 0,
+			"script": ["$", 
+				["*", 
+					["if", 
+						["and", 
+							["eq", ["var", "size"], "full"], 
+							["in", ["var", "direction"], "left", "right"] 
+						],
+						1,
+						4
+					],
+					["if", 
+						["or",
+							["eq", ["var", "direction"], "right"],
+							["eq", ["var", "direction"], "up"]
+						],
+						1,
+						-1
+					]
+				]
+			]
+		}
+	],
+	[
+		["null", {
+			"script": ["$$",
+				["let",
+					[ 
+						["in-offset", ["$", ["var", "in-offset"]]],
+						["out-offset", ["$", ["var", "out-offset"]]],
+						["in-duration", ["$", ["var", "in-duration"]]],
+						["out-duration", ["$", ["var", "out-duration"]]],
+						["direction", ["$", ["var", "direction"]]],
+						["type", ["$", ["var", "type"]]],
+						["offset-div", ["$", ["var", "#offset-divisor"]]],
+						["start", ["key", ["var", "self"], "start"]],
+						["end", ["key", ["var", "self"], "end"]],
+						["width", ["/", 
+							["key", ["key", ["var", "self"], "roi"], "width"], 
+							["var", "offset-div"]
+						]],
+						["height", ["/", 
+							["key", ["key", ["var", "self"], "roi"], "height"], 
+							["var", "offset-div"]
+						]],
+						["animate-in",
+							["ease",
+								["map",
+									["var", "frame"],
+									["+", 
+										["var", "start"],
+										["var", "in-offset"]
+									],
+									["+", 
+										["var", "start"],
+										["var", "in-offset"],
+										["var", "in-duration"]
+									],
+									0,
+									1
+								],
+								"easeInOutCubic"
+							]
+						],
+						["animate-out",
+							["ease",
+								["map",
+									["var", "frame"],
+									["+", 
+										["var", "end"], 
+										["-", 0, ["var", "out-duration"]],
+										["var", "out-offset"]
+									],
+									["+", 
+										["var", "end"],
+										["var", "out-offset"]
+									],
+									0,
+									1
+								],
+								"easeInOutCubic"
+							]
+						],
+						["animation", ["if", 
+							["eq", ["var", "type"], "in-out"], 
+								["-", ["var", "animate-in"], ["var", "animate-out"]],
+								["if", ["eq", ["var", "type"], "out"],
+									["-", 1, ["var", "animate-out"]],
+									["var", "animate-in"]
+								]
+						]]
+					],
+					["if",
+						["in", ["var", "direction"], "left", "right"],
+						["live-transform",
+							["lookup-by-tag", "clip"],
+							"translate",
+							["*", 1, ["var", "animation"], ["var", "width"]],
+							0
+						],
+						["live-transform",
+							["lookup-by-tag", "clip"],
+							"translate",
+							0,
+							["*", -1, ["var", "animation"], ["var", "height"]]
+						]
+					]
+				]
+			]
+		}]
+	]
+]

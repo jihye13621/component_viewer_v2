@@ -1,0 +1,322 @@
+[
+	"ds-commvault-audiogram-1",
+	[
+		{
+			"key": "asset",
+			"display": "Image",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["justify", "fill"],
+				["motion", "none"]
+			]
+		},
+		["dsx-mixins",
+			"speaker"
+		],
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"default": "#010538",
+			"type": "color",
+			"required": false
+		},
+		{
+			"key": "color-2",
+			"display": "Color 2",
+			"default": "#CAA3DB",
+			"type": "color",
+			"required": false
+		},
+		["dsx-mixins",
+			"captions"
+		],
+		["dsx-mixins",
+			"boilerplate-captions"
+		],
+		{
+			"key": "max-words",
+			"display": "Words",
+			"type": "number",
+			"default": 8,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 1,
+				"minimum": 1,
+				"maximum": 12
+			}
+		},
+		{
+			"key": "do-image-effect",
+			"display": "Recolor Image",
+			"type": "bool",
+			"default": true,
+			"required": false
+		},
+		{
+			"key": "do-waveform",
+			"display": "Waveform",
+			"type": "bool",
+			"default": true,
+			"required": false
+		},
+		["ds-commvault-mixins",
+			"font-body",
+			"font-semibold"
+		]
+	],
+	[
+		["user-asset", {
+			"enabled": ["$", ["exists", ["var", "asset"]]],
+			"file": ["$", ["var", "asset"]],
+			"justify": "fill center",
+			"mute": true,
+			"loop": true,
+			"breakpoints": [
+				{
+					"enabled": ["$", ["var", "do-image-effect"]],
+					"effect": [
+						["false-color", {
+							"color-1": ["$", ["var", "color-1"]],
+							"color-2": ["$", ["var", "color-2"]]
+						}]
+					]
+				}
+			]
+		}],
+		["solid", {
+			"enabled": ["$", ["not", ["exists", ["var", "asset"]]]],
+			"color": ["linear-gradient",
+				0.45,
+				[0, ["$", ["var", "color-1"]]],
+				[1, ["$", ["var", "color-2"]]]
+			]
+		}],
+		["null", {
+			"enabled": ["$", ["var", "do-waveform"]],
+			"rect": [
+				0,
+				0,
+				"100rw",
+				"100rw"
+			],
+			"align": "bottom center",
+			"transform": [
+				["translate",
+					0,
+					"50rw"
+				]
+			],
+			"breakpoints": [
+				{
+					"enabled": ["$", ["gt", ["aspect"], 1]],
+					"transform": [
+						["translate",
+							0,
+							"50rw"
+						],
+						["scale",
+							0.5,
+							"50rw",
+							"100rh"
+						]
+					]
+				}
+			]
+		}, [
+			["solid", {
+				"color": ["radial-gradient", 
+					["50rw", "50rh"],
+					"50rw",
+					[0.33, "#DDC9F600"],
+					[1, "#DDC9F644"]
+				],
+				"radius": 10000,
+				"transform": [
+					["scale",
+						["animate",
+							[0, 1, "easeInOutQuad"],
+							["+200", 0.8, "easeInOutQuad"],
+							["+400", 0.9, "easeInOutQuad"],
+							["+300", 0.85, "easeInOutQuad"],
+							["+400", 1, "easeInOutQuad"],
+							"loop"
+						]
+					],
+					["scale",
+						["animate",
+							[0, 0.9, "easeInOutQuad"],
+							["+300", 0.8, "easeInOutQuad"],
+							["+300", 0.9, "easeInOutQuad"],
+							"loop"
+						]
+					]
+				]
+			}],
+			["solid", {
+				"color": ["radial-gradient", 
+					["50rw", "50rh"],
+					"50rw",
+					[0.33, "#D8406544"],
+					[1.0, "#D8406500"]
+				],
+				"radius": 10000,
+				"transform": [
+					["scale",
+						["animate",
+							[0, 1, "easeInOutQuad"],
+							["+200", 0.7, "easeInOutQuad"],
+							["+400", 0.9, "easeInOutQuad"],
+							["+300", 0.6, "easeInOutQuad"],
+							["+400", 1, "easeInOutQuad"],
+							"loop"
+						]
+					],
+					["scale",
+						["animate",
+							[0, 1, "easeInOutQuad"],
+							["+300", 0.9, "easeInOutQuad"],
+							["+300", 1, "easeInOutQuad"],
+							"loop"
+						]
+					]
+				]
+			}],
+			["solid", {
+				"color": "#DDC9F67F",
+				"radius": 10000,
+				"transform": [
+					["scale",
+						0.45
+					]
+				]
+			}],
+			["solid", {
+				"color": "#DDC9F67F",
+				"radius": 10000,
+				"transform": [
+					["scale",
+						0.38
+					]
+				]
+			}]
+		]],
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			]
+		}, [
+			["text", {
+				"font": "./media/GalanoGrotesque-Medium.ttf",
+				"color": [1, 1, 1, 1],
+				"height": "100su",
+				"measure": "letter-size",
+				"leading": "10su",
+				"transcript": ["$",
+					["transcript-split",
+						["var", "transcript"],
+						["var", "max-words"]
+					]
+				],
+				"justify": "center left",
+				"align": "center left",
+				"animations": [
+					{
+						"translate": [
+							0,
+							"50su"
+						]
+					},
+					{
+						"mix": [[0, 0], [0.75, 1]],
+						"opacity": 1,
+						"easing": "easeOutQuad",
+						"translate": [0, 0]
+					}
+				]
+			}],
+			["null", {
+				"layout": "vertical packed",
+				"gap": "20su",
+				"align": "bottom left"
+			}, [
+				["text", {
+					"enabled": ["$", ["exists", ["var", "name"]]],
+					"stagger": [150, 0],
+					"measure": "letter-size",
+					"color": ["$", ["var", "color-primary"]],
+					"string": ["$", ["var", "name"]],
+					"font": ["$", ["var", "font-semibold"]],
+					"height": "60su",
+					"justify": "left",
+					"case": "uppercase",
+					"boundary": "letter",
+					"animations": [
+						{
+							"translate": [
+								"-20su",
+								0
+							]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+600", 1]
+							],
+							"easing": "easeOutQuad",
+							"ramp": 0.1,
+							"opacity": 1,
+							"translate": [0, 0]
+						}
+					]
+				}],
+				["text", {
+					"enabled": ["$",
+						["or",
+							["exists", ["var", "detail-1"]],
+							["exists", ["var", "detail-2"]]
+						]
+					],
+					"stagger": [400, 0],
+					"measure": "letter-size",
+					"color": ["$", ["var", "color-primary"]],
+					"font": ["$", ["var", "font-body"]],
+					"height": "32su",
+					"justify": "left",
+					"string": ["$",
+						["join",
+							["compact", ["array",
+								["var", "detail-1"],
+								["var", "detail-2"]
+							]],
+							", "
+						]
+					],
+					"boundary": "letter",
+					"animations": [
+						{
+							"translate": [
+								"-20su",
+								0
+							]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+600", 1]
+							],
+							"easing": "easeOutQuad",
+							"ramp": 0.1,
+							"opacity": 1,
+							"translate": [0, 0]
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

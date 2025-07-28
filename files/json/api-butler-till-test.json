@@ -1,0 +1,452 @@
+[
+	"api-butler-till-test",
+	[
+		{
+			"key": "name",
+			"display": "Name",
+			"type": "text",
+			"default": "Maguire Audi Ithaca",
+			"required": false
+		},
+		{
+			"key": "music",
+			"display": "Music",
+			"type": "text",
+			"default": "auido-1.wav",
+			"required": false
+		},
+		{
+			"key": "background",
+			"display": "Background",
+			"type": "text",
+			"default": "#FFFFFF",
+			"required": false
+		},
+		{
+			"key": "clips",
+			"display": "Clips",
+			"type": "object",
+			"default": [
+				"clip-1.mp4",
+				"clip-2.mp4",
+				"clip-3.mp4",
+				"clip-4.mp4",
+				"clip-5.mp4",
+				"clip-6.mp4",
+				"clip-7.mp4"
+			],
+			"required": false
+		},
+		{
+			"key": "text-color",
+			"display": "Text Color",
+			"type": "text",
+			"default": "#ffffff",
+			"required": false
+		},
+		{
+			"key": "text-background",
+			"display": "Text Background",
+			"type": "text",
+			"default": "#0C1132",
+			"required": false
+		},
+		{
+			"key": "text-background-opacity",
+			"display": "Text Background Opacity",
+			"type": "number",
+			"default": 0.85,
+			"required": false
+		},
+		{
+			"key": "text-1",
+			"display": "Text 1",
+			"type": "text",
+			"default": "Maguire's Upfront Guarantee",
+			"required": false
+		},
+		{
+			"key": "text-2",
+			"display": "Text 2",
+			"type": "text",
+			"default": "New Buffalo Locations",
+			"required": false
+		},
+		{
+			"key": "logo-manufacturer",
+			"display": "Logo Manufacturer",
+			"type": "text",
+			"default": "maguire-audi-ithaca-logo.png",
+			"required": false
+		},
+		{
+			"key": "logo-brand",
+			"display": "Logo Brand",
+			"type": "text",
+			"default": "right-by-you.png",
+			"required": false
+		},
+		{
+			"key": "url",
+			"display": "URL",
+			"type": "text",
+			"default": "MaguireCars.com",
+			"required": false
+		},
+		{
+			"key": "shape-wipe",
+			"display": "Shape Wipe",
+			"type": "text",
+			"default": "#0C1132",
+			"required": false
+		},
+		{
+			"key": "#directory",
+			"display": "Directory",
+			"type": "text",
+			"default": "",
+			"private": true,
+			"required": false
+		},
+		{
+			"key": "#media-duration",
+			"display": "Media Duration",
+			"type": "text",
+			"default": 0,
+			"private": true,
+			"required": false,
+			"script": ["$",
+				["ceil",
+					["/",
+						12500,
+						["length", ["var", "clips"]]
+					]
+				]
+			]
+		},
+		{
+			"key": "#box-width",
+			"display": "Box Width",
+			"type": "number",
+			"default": 100,
+			"private": true,
+			"required": false,
+			"script": ["$",
+				["if",
+					["eq", ["aspect"], 1],
+					["*", ["width"], 0.7],
+					["if",
+						["lt", ["aspect"], 1],
+						["*", ["width"], 0.8],
+						["*", ["width"], 0.5]
+					]
+				]
+			]
+		}
+	],
+	[
+		["solid", {
+			"start": 0,
+			"duration": 15000,
+			"mixins": ["dsx-mixins", "set-su"],
+			"color": [0, 0, 0, 1]
+		}, [
+			["null", {
+
+			}, [
+				["for-each", {
+					"items": ["$", ["var", "clips"]]
+				}, [
+					["asset", {
+						"start": ["$",
+							["*",
+								["var", "#media-duration"],
+								["var", "index"]
+							]
+						],
+						"mute": true,
+						"duration": ["$", ["var", "#media-duration"]],
+						"file": ["$", ["concat",
+							["var", "#directory"],
+							["var", "item"]
+						]],
+						"justify": "fill center"
+					}]
+				]]
+			]],
+			["null", {
+				"duration": 10000,
+				"rect": [
+					0,
+					0,
+					"50rw",
+					"100rh"
+				],
+				"transform": [
+					["translate",
+						["animate",
+							[0, "-100rw", "easeOutCubic"],
+							["+850", 0],
+							["100%", "-100rw"],
+							["-650", 0, "easeInCubic"]
+						],
+						0
+					],
+					["translate",
+						["animate",
+							[0, -50, "easeOutCubic"],
+							["+850", 0],
+							["100%", -50],
+							["-650", 0, "easeInCubic"]
+						],
+						0
+					]
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["eq", ["aspect"], 1]],
+						"rect": [
+							0,
+							0,
+							"70rw",
+							"1080su"
+						],
+						"align": "center left"
+					},
+					{
+						"enabled": ["$", ["lt", ["aspect"], 1]],
+						"rect": [
+							0,
+							0,
+							"80rw",
+							"100rh"
+						],
+						"align": "center left",
+						"padding": [
+							["$", ["nth", ["safezone"], 0]],
+							0,
+							["$", ["nth", ["safezone"], 2]],
+							0
+						]
+					}
+				]
+			}, [
+				["solid", {
+					"color": ["$", ["var", "text-background"]],
+					"opacity": ["$", ["var", "text-background-opacity"]],
+					"path": [
+						[0, 0],
+						[["$", ["+", ["var", "#box-width"], 50]], 0],
+						[["$", ["-", ["var", "#box-width"], 50]], "100rh"],
+						[0, "100rh"]
+					]
+				}],
+				["null", {
+					"breakpoints": [
+						{
+							"enabled": ["$", ["gte", ["aspect"], 1]],
+							"mixins": ["dsx-mixins", "safezone"]
+						},
+						{
+							"enabled": ["$", ["lt", ["aspect"], 1]],
+							"padding": [
+								["$", ["nth", ["safezone"], 3]],
+								["$", ["nth", ["safezone"], 3]],
+								["$", ["nth", ["safezone"], 3]],
+								["$", ["nth", ["safezone"], 3]]
+							]
+						}
+					]
+				}, [
+					["text", {
+						"start": 0,
+						"duration": 4900,
+						"font": "./media/Poppins-Bold.ttf",
+						"string": ["$", ["var", "text-1"]],
+						"color": ["$", ["var", "text-color"]],
+						"align": "center",
+						"justify": "left center",
+						"height": "130su",
+						"measure": "letter-size",
+						"leading": "30su",
+						"transform": [
+							["translate",
+								["animate",
+									[0, "-100rw", "easeOutCubic"],
+									["+950", 0],
+									["100%", "-100rw"],
+									["-650", 0, "easeInCubic"]
+								],
+								0
+							]
+						],
+						"breakpoints": [
+							{
+								"enabled": ["$", ["eq", ["aspect"], 1]],
+								"height": "100su",
+								"leading": "20su"
+							},
+							{
+								"enabled": ["$", ["lt", ["aspect"], 1]],
+								"height": "120su",
+								"leading": "25su"
+							}
+						]
+					}],
+					["text", {
+						"start": 5100,
+						"duration": 4900,
+						"font": "./media/Poppins-Bold.ttf",
+						"string": ["$", ["var", "text-2"]],
+						"color": ["$", ["var", "text-color"]],
+						"align": "center",
+						"justify": "left center",
+						"height": "130su",
+						"measure": "letter-size",
+						"leading": "30su",
+						"transform": [
+							["translate",
+								["animate",
+									[0, "-100rw", "easeOutCubic"],
+									["+850", 0]
+								],
+								0
+							]
+						],
+						"breakpoints": [
+							{
+								"enabled": ["$", ["eq", ["aspect"], 1]],
+								"height": "100su",
+								"leading": "20su"
+							},
+							{
+								"enabled": ["$", ["lt", ["aspect"], 1]],
+								"height": "120su",
+								"leading": "25su"
+							}
+						]
+					}]
+				]]
+			]],
+			["null", {
+				"mixins": ["dsx-mixins", "safezone"],
+				"duration": 3000,
+				"start": 12000,
+				"mask": {
+					"padding": [
+						0,
+						0,
+						["animate",
+							[0, "100rh", "easeInCubic"],
+							["+400", 0]
+						],
+						0
+					]
+				} 
+			}, [
+				["solid", {
+					"flex": {
+						"position": "fixed"
+					},
+					"color": ["$", ["var", "background"]]
+				}],
+				["null", {
+					"layout": "vertical",
+					"gap": "20su"
+				}, [
+					["asset", {
+						"rect": [
+							0,
+							0,
+							"700su",
+							"400su"
+						],
+						"align": "center",
+						"file": ["$", ["concat",
+							["var", "#directory"],
+							"logo-manufacturer-1.png"
+						]],
+						"justify": "fit center"
+					}],
+					["null", {
+						"flex": {
+							"height": "200su"
+						},
+						"rect": [
+							0,
+							0,
+							"70rw",
+							"200su"
+						],
+						"align": "bottom center"
+					}, [
+						["null", {
+							"layout": "horizontal packed match",
+							"align": "center",
+							"gap": "50su"
+						}, [
+							["asset", {
+								"file": ["$", ["concat",
+									["var", "#directory"],
+									["var", "logo-manufacturer"]
+								]],
+								"justify": "fit center"
+							}],
+							["solid", {
+								"color": [0, 0, 0, 0.2],
+								"flex": {
+									"shrink": true,
+									"width": "5su"
+								}
+							}],
+							["asset", {
+								"file": ["$", ["concat",
+									["var", "#directory"],
+									["var", "logo-brand"]
+								]],
+								"justify": "fit center"
+							}]
+						]]
+					]],
+					["text", {
+						"flex": {
+							"height": "60su"
+						},
+						"font": "./media/Poppins-Bold.ttf",
+						"string": ["$", ["var", "url"]],
+						"align": "center",
+						"justify": "center",
+						"height": "40su",
+						"color": [0, 0, 0, 0.5],
+						"fit": true,
+						"measure": "letter-size"
+					}]
+				]],
+				["solid", {
+					"flex": {
+						"position": "fixed"
+					},
+					"color": ["$", ["var", "shape-wipe"]],
+					"mask": {
+						"padding": [
+							["animate",
+								[400, 0, "easeOutCubic"],
+								["+400", "100rh"]
+							],
+							0,
+							0,
+							0
+						]
+					} 
+				}]
+			]],
+			["asset", {
+				"file": ["$", ["concat",
+					["var", "#directory"],
+					["var", "music"]
+				]],
+				"opacity": 0
+			}]
+		]]
+	]
+]

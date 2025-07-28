@@ -1,0 +1,54 @@
+[
+	"ds-unruly-captions-alt",
+	[
+		["dsx-mixins",
+			"captions"
+		],
+		["ds-unruly-mixins",
+			"color-white",
+			"color-blue",
+			"font-body"
+		],
+		["dsx-mixins",
+			"boilerplate-captions"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": 5,
+			"required": false
+		}
+	],
+	[
+		["dsx-background", {
+			"enabled": ["$", ["exists", ["var", "background"]]],
+			"color": ["$", ["var", "background"]]
+		}],
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"max-width": "800nsu",
+				"align": ["$", ["var", "#align"]]
+			}, [
+				["text", {
+					"mixins": ["ds-unruly-mixins",
+						"text",
+						"text-body"
+					],
+					"justify": ["$", ["var", "#align"]],
+					"transcript": ["$",
+						["transcript-split",
+							["var", "transcript"],
+							1
+						]
+					],
+					"color": ["$", ["var", "color-white"]],
+					"stroke": "10su",
+					"stroke-color": ["$", ["var", "color-blue"]]
+				}]
+			]]
+		]]
+	]
+]

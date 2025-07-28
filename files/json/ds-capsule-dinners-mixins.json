@@ -1,0 +1,77 @@
+{
+	"params": {
+		"color-primary": {
+			"key": "color-primary",
+			"display": "Primary",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		},
+		"color-secondary": {
+			"key": "color-secondary",
+			"display": "Secondary",
+			"type": "color",
+			"default": "#151718",
+			"required": false
+		},
+		"color-accent": {
+			"key": "color-accent",
+			"display": "Accent",
+			"type": "color",
+			"default": "#C3FF51",
+			"required": false
+		},
+		"font-headline": {
+			"key": "font-headline",
+			"display": "Font Headline",
+			"type": "string",
+			"default": "./media/Inter-Regular.ttf",
+			"required": false,
+			"private": true
+		},
+		"font-body": {
+			"key": "font-body",
+			"display": "Font Body",
+			"type": "string",
+			"default": "./media/Inter-Medium.ttf",
+			"required": false,
+			"private": true
+		}
+	},
+	"text": {
+		"measure": "letter-size"
+	},
+	"text-intro-headline": {
+		"font": ["$", ["var", "font-headline"]],
+		"height": "170su",
+		"leading": "20su",
+		"kerning": -0.04
+	},
+	"text-intro-subhead": {
+		"font": ["$", ["var", "font-headline"]],
+		"height": "170su",
+		"leading": "20su",
+		"kerning": -0.04
+	},
+	"text-headline": {
+		"font": ["$", ["var", "font-body"]],
+		"height": "100su",
+		"leading": "10su",
+		"kerning": -0.02
+	},
+	"text-title": {
+		"font": ["$", ["var", "font-headline"]],
+		"height": "90su",
+		"leading": "20su"
+	},
+	"text-body": {
+		"font": ["$", ["var", "font-body"]],
+		"height": "55su",
+		"leading": "10su"
+	},
+	"text-label": {
+		"font": ["$", ["var", "font-body"]],
+		"height": "40su",
+		"leading": "10su"
+	}
+}

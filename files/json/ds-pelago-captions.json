@@ -1,0 +1,132 @@
+[
+	"ds-pelago-captions",
+	[
+		["dsx-mixins",
+			"captions"
+		],
+		["ds-pelago-mixins",
+			"color-primary",
+			"color-secondary",
+			"color-accent",
+			"font-headline-bold"
+		],
+		{
+			"key": "theme",
+			"display": "Style",
+			"type": "string",
+			"default": "plain",
+			"required": false,
+			"options": [
+				{
+					"key": "plain",
+					"display": "Plain"
+				},
+				{
+					"key": "background",
+					"display": "Background"
+				}
+			]
+		},
+		["dsx-mixins",
+			"boilerplate-captions"
+		],
+		{
+			"key": "max-words",
+			"display": "Words",
+			"type": "number",
+			"default": 6,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 1,
+				"minimum": 1,
+				"maximum": 12
+			}
+		},
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [2, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["shadow", {
+				"skip": ["$", ["eq", ["var", "theme"], "background"]],
+				"max-width": "800nsu",
+				"align": ["$", ["var", "#align"]],
+				"radius": "2su",
+				"offset": ["1su", "2su"],
+				"color": [0, 0, 0, 0.5],
+				"breakpoints": [
+						{
+							"enabled": ["$", ["eq", ["var", "theme"], "background"]],
+							"padding": [
+								"12su",
+								"12su"
+							]
+						}
+					]
+			}, [
+				["text", {
+					"mixins": ["ds-pelago-mixins",
+						"text"
+					],
+					"font": ["$", ["var", "font-headline-bold"]],
+					"height": "60su",
+					"leading": "10su",
+					"justify": ["$", ["var", "#align"]],
+					"transcript": ["$",
+						["transcript-split",
+							["var", "transcript"],
+							["var", "max-words"]
+						]
+					],
+					"color": ["$", ["var", "color-primary"]],
+					"animations": [
+						{
+							"mix": [[0, 0], [0.00001, 1]],
+							"color": ["$", ["var", "color-yellow"]]
+						},
+						{
+							"mix": [[0.99999, 0], [1.0, 1]],
+							"color": ["$", ["var", "color-primary"]]
+						}
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["eq", ["var", "theme"], "background"]],
+							"background-color": ["$", ["var", "color-yellow"]],
+							"background-padding": [
+								"25su",
+								"25su"
+							],
+							"background-radius": "20su",
+							"color": ["$", ["var", "color-jet-black"]],
+							"animations": [
+								{
+									"translate": [0, "10su"]
+								},
+								{
+									"mix": [[-0.1, 0], [0.3, 1]],
+									"opacity": 1,
+									"translate": [0, 0],
+									"easing": "easeOutQuad"
+								}
+							]
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

@@ -1,0 +1,99 @@
+[
+	"ds-clean-cta",
+	[
+		["dsx-mixins",
+			"cta"
+		],
+		["ds-clean-mixins",
+			"color-primary",
+			"color-accent",
+			"font-headline",
+			"font-body"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [9, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"max-width": "800nsu",
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]]
+			}, [
+				["null", {
+					"layout": "horizontal packed",
+					"align": "top left",
+					"gap": "10su"
+				}, [
+					["solid", {
+						"enabled": ["$", ["neq", ["var", "icon"], "none"]],
+						"mixins": ["ds-clean-mixins", ["anchored-anim"]],
+						"layout": "vertical packed",
+						"color": ["$", ["var", "color-accent"]],
+						"flex": {
+							"width": "130su",
+							"height": "130su"
+						},
+						"padding": ["35su", "35su"],
+						"radius": "200su"
+					}, [
+						["dsx-icon", {
+							"flex": {
+								"shrink": true,
+								"width": "60su",
+								"height": "60su"
+							},
+							"color": ["$", ["var", "color-primary"]],
+							"icon": ["$", ["var", "icon"]]
+						}]
+					]],
+					["solid", {
+						"enabled": ["$", ["exists", ["var", "text"]]],
+						"mixins": ["ds-clean-mixins", ["anchored-anim"]],
+						"layout": "vertical packed",
+						"color": ["$", ["var", "color-primary"]],
+						"padding": [
+							"30su",
+							"40su"
+						],
+						"radius": "70su",
+						"stagger": [100, -100],
+						"min-height": "130su",
+						"breakpoints": [
+							{
+								"enabled": ["$", ["eq", ["var", "icon"], "none"]],
+								"stagger": [0, 0]
+							}
+						]
+					}, [
+						["text", {
+							"mixins": ["ds-clean-mixins",
+								"text",
+								"text-label"
+							],
+							"string": ["$", ["var", "text"]],
+							"justify": "left center",
+							"color": ["$", ["var", "color-accent"]],
+							"boundary": "line",
+							"min-height": "70su"
+						}]
+					]]
+				]]
+			]]
+		]]
+	]
+]

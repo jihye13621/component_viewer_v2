@@ -1,0 +1,99 @@
+[
+	"ds-ryno-media",
+	[
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["gain", 0],
+				["justify", "fit"],
+				["motion", "none"]
+			],
+			"script": ["$", ["if",
+				["exists", ["var", "asset"]],
+				["var", "asset"],
+				"./media/image-tall.jpg"	
+			]]
+		},
+		{
+			"key": "background-asset",
+			"display": "Background",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["justify", "fill"],
+				["motion", "none"]
+			],
+			"script": ["$", ["if",
+				["exists", ["var", "background-asset"]],
+				["var", "background-asset"],
+				"./media/image-wide.jpg"	
+			]]
+		},
+		{
+			"key": "animation",
+			"display": "Animation",
+			"type": "string",
+			"default": "horizontal",
+			"required": false,
+			"options": [
+				{
+					"key": "none",
+					"display": "None"
+				},
+				{
+					"key": "horizontal",
+					"display": "Horizontal"
+				},
+				{
+					"key": "vertical",
+					"display": "Vertical"
+				}
+			]
+		}
+	],[
+		["user-asset", {
+			"enabled": ["$", ["exists", ["var", "background-asset"]]],
+			"file": ["$", ["var", "background-asset"]],
+			"justify": "fill center",
+			"mute": true,
+			"breakpoints": [
+				{ 
+					"enabled": ["$", ["eq", ["var", "animation"], "horizontal"]],
+					"mixins": ["ds-ryno-mixins", "x-mask-wipe"]
+				},
+				{ 
+					"enabled": ["$", ["eq", ["var", "animation"], "vertical"]],
+					"mixins": ["ds-ryno-mixins", "y-mask-wipe"]
+				}
+			]
+		}],
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["dsx-placeholder", {
+				"enabled": ["$", ["not", ["exists", ["var", "asset"]]]]
+			}],
+			["user-asset", {
+				"enabled": ["$", ["exists", ["var", "asset"]]],
+				"stagger": [100, -100],
+				"file": ["$", ["var", "asset"]],
+				"justify": "fit center",
+				"breakpoints": [
+					{ 
+						"enabled": ["$", ["eq", ["var", "animation"], "horizontal"]],
+						"mixins": ["ds-ryno-mixins", "x-mask-wipe"]
+					},
+					{ 
+						"enabled": ["$", ["eq", ["var", "animation"], "vertical"]],
+						"mixins": ["ds-ryno-mixins", "y-mask-wipe"]
+					}
+				]
+			}]
+		]]
+	]
+]

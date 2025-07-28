@@ -1,0 +1,130 @@
+[
+	"ds-instacart-pdm-marketplace-sticker",
+	[
+		{
+			"key": "text-1",
+			"display": "Text 1",
+			"type": "string",
+			"default": null,
+			"required": false
+		},
+		{
+			"key": "text-2",
+			"display": "Text 2",
+			"type": "string",
+			"default": null,
+			"required": false,
+			"parameters": []
+		},
+		{
+			"key": "color-foreground",
+			"display": "Foreground",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false,
+			"private": true
+		},
+		{
+			"key": "color-background",
+			"display": "Background",
+			"type": "color",
+			"default": "#000000",
+			"required": false,
+			"private": true
+		},
+		{
+			"key": "color-accent",
+			"display": "Accent",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false,
+			"private": true
+		},
+		["ds-instacart-mixins",
+			"font-sans-400",
+			"font-sans-600"
+		]
+	],
+	[
+		["solid", {
+			"color": ["$", ["var", "color-accent"]],
+			"rect": [
+				0,
+				0,
+				"100rw",
+				"100rh"
+			],
+			"radius": 10000,
+			"padding": [
+				"9su",
+				"9su"
+			],
+			"transform": [
+				["scale",
+					["animate",
+						[0, 0, "easeOutBack"],
+						["+700", 1]
+					]
+				],
+				["rotate", 0.015],
+				["scale",
+					["animate",
+						[0, 1, "easeInOutQuad"],
+						["+500", 1.1, "easeInOutQuad"],
+						["+500", 1],
+						"loop"
+					]
+				]
+			]
+		}, [
+			["solid", {
+				"stagger": [200, 0],
+				"color": ["$", ["var", "color-background"]],
+				"radius": 10000,
+				"padding": [
+					"30su",
+					"30su"
+				],
+				"transform": [
+					["scale",
+						["animate",
+							[0, 0, "easeOutQuint"],
+							["+700", 1]
+						]
+					]
+				]
+			}, [
+				["null", {
+					"layout": "vertical packed",
+					"align": "center",
+					"gap": "10su"
+				}, [
+					["text", {
+						"enabled": ["$", ["exists", ["var", "text-1"]]],
+						"stagger": [300, 0],
+						"measure": "letter-size",
+						"font": ["$", ["var", "font-sans-400"]],
+						"height": "40su",
+						"string": ["$", ["var", "text-1"]],
+						"color": ["$", ["var", "color-foreground"]],
+						"boundary": "word",
+						"align": "bottom",
+						"justify": "bottom center"
+					}],
+					["text", {
+						"enabled": ["$", ["exists", ["var", "text-2"]]],
+						"stagger": [800, 0],
+						"measure": "letter-size",
+						"font": ["$", ["var", "font-sans-600"]],
+						"height": "60su",
+						"string": ["$", ["var", "text-2"]],
+						"color": ["$", ["var", "color-foreground"]],
+						"boundary": "word",
+						"align": "top",
+						"justify": "top center"
+					}]
+				]]
+			]]
+		]]
+	]
+]

@@ -1,0 +1,18 @@
+[
+	"ds-instacart-sizzle-transition-1",
+	[],
+	[
+		["asset", {
+			"file": "./media/ds-instacart-transition-arrow-vert.json",
+			"lottie-driver": ["animate",
+				[0, 0],
+				[
+					["$", ["to-relative-string", ["dur", "./media/ds-instacart-transition-arrow-vert.json"]]],
+					1
+				]
+			],
+			"justify": "fill center",
+			"mute": true
+		}]
+	]
+]

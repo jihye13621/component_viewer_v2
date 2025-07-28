@@ -1,0 +1,90 @@
+{
+	"params": {
+		"color-white": {
+			"key": "color-white",
+			"display": "Color",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		},
+		"color-black": {
+			"key": "color-black",
+			"display": "Color",
+			"type": "color",
+			"default": "#000000",
+			"required": false
+		},
+		"color-green": {
+			"key": "color-green",
+			"display": "Color",
+			"type": "color",
+			"default": "#34E82A",
+			"required": false
+		},
+		"color-blue": {
+			"key": "color-blue",
+			"display": "Color",
+			"type": "color",
+			"default": "#006D9B",
+			"required": false
+		},
+		"fonts": [
+			{
+				"key": "font-black",
+				"display": "Font Black",
+				"type": "string",
+				"default": "./media/D2LSans-Black.otf",
+				"required": false,
+				"private": false
+			},
+			{
+				"key": "font-black-italic",
+				"display": "Font Black Italic",
+				"type": "string",
+				"default": "./media/D2LSans-BlackItalic.otf",
+				"required": false,
+				"private": false
+			},
+			{
+				"key": "font-bold",
+				"display": "Font Bold",
+				"type": "string",
+				"default": "./media/D2LSans-Bold.otf",
+				"required": false,
+				"private": false
+			},
+			{
+				"key": "font-bold",
+				"display": "Font Bold",
+				"type": "string",
+				"default": "./media/D2LSans-Bold.otf",
+				"required": false,
+				"private": false
+			},
+			{
+				"key": "font-medium",
+				"display": "Font Medium",
+				"type": "string",
+				"default": "./media/D2LSans-Medium.otf",
+				"required": false,
+				"private": false
+			},
+			{
+				"key": "font-regular",
+				"display": "Font Regular",
+				"type": "string",
+				"default": "./media/D2LSans-Regular.otf",
+				"required": false,
+				"private": false
+			},
+			{
+				"key": "font-light",
+				"display": "Font Light",
+				"type": "string",
+				"default": "./media/D2LSans-Light.otf",
+				"required": false,
+				"private": false
+			}
+		]
+	}
+}

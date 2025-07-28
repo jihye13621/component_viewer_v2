@@ -1,0 +1,131 @@
+[
+	"ds-paycom-evergreen-intro",
+	[
+		["dsx-mixins",
+			"intro"
+		],
+		["ds-paycom-mixins",
+			"green",
+			"font-regular",
+			"font-bold"
+		]
+	],
+	[
+		["ds-paycom-evergreen-bg", {
+			"mixins": ["dsx-mixins",
+				"set-su"
+			],
+			"animate-in": false
+		}, [
+			["null", {
+				"mixins": ["dsx-mixins",
+					"safezone"
+				],
+				"layout": "vertical packed",
+				"align": "center",
+				"gap": "50su",
+				"transform": [
+					["scale",
+						["animate",
+							[0, 0.93],
+							["100%", 1]
+						]
+					]
+				],
+				"effect": [
+					["shadow", {
+						"color": [0, 0, 0, 0.5],
+						"radius": "20su",
+						"offset": [
+							"4su",
+							"20su"
+						]
+					}]
+				]
+			}, [
+				["null", {
+					"flex": {
+						"height": "90su"
+					},
+					"layout": "stacked",
+					"align": "center",
+					"padding": [
+						0,
+						0,
+						"50su",
+						0
+					]
+				}, [
+					["asset", {
+						"file": "./media/ds-paycom-sales-logo-animated.json",
+						"justify": "fit center",
+						"lottie-driver": ["animate",
+							[0, 0],
+							[
+								["$", ["to-relative-string", ["dur", "./media/ds-paycom-sales-logo-animated.json"]]],
+								1
+							]
+						],
+						"flex": {
+							"height": "90su"
+						}
+					}]
+				]],
+				["text", {
+					"flex": {
+						"weight": 1.5
+					},
+					"enabled": ["$", ["exists", ["var", "headline"]]],
+					"font": ["$", ["var", "font-bold"]],
+					"height": "150su",
+					"leading": "40su",
+					"measure": "cap-size",
+					"justify": "center",
+					"case": "uppercase",
+					"string": ["$", ["var", "headline"]],
+					"color": [1, 1, 1, 1],
+					"animations": [
+						{
+							"translate": [0, "50su"]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+700", 1]
+							],
+							"easing": "easeOutQuad",
+							"ramp": 1.5,
+							"opacity": 1,
+							"translate": [0, 0]
+						}
+					]
+				}],
+				["text", {
+					"enabled": ["$", ["exists", ["var", "subhead"]]],
+					"stagger": [250, 0],
+					"font": ["$", ["var", "font-regular"]],
+					"height": "90su",
+					"measure": "letter-size",
+					"justify": "center",
+					"string": ["$", ["var", "subhead"]],
+					"color": ["$", ["var", "green"]],
+					"animations": [
+						{
+							"translate": [0, "50su"]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+700", 1]
+							],
+							"easing": "easeOutQuad",
+							"ramp": 1.5,
+							"opacity": 1,
+							"translate": [0, 0]
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

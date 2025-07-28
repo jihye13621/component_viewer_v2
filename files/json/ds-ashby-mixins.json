@@ -1,0 +1,83 @@
+{
+	"params": {
+		"colors": [
+			{
+				"key": "color-black",
+				"display": "Purple",
+				"type": "color",
+				"default": "#0E0C29",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "color-gray",
+				"display": "Gray",
+				"type": "color",
+				"default": "#717075",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "color-purple",
+				"display": "Purple",
+				"type": "color",
+				"default": "#473BCE",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "color-dark-purple",
+				"display": "Purple",
+				"type": "color",
+				"default": "#1C1852",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "color-light-purple",
+				"display": "Purple",
+				"type": "color",
+				"default": "#B5B1EB",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "color-white",
+				"display": "White",
+				"type": "color",
+				"default": "#F3F2FF",
+				"required": false,
+				"private": true
+			}
+		],
+		"fonts": [
+			{
+				"key": "font-regular",
+				"display": "Font Regular",
+				"type": "string",
+				"default": "./media/TTNorms-Regular.otf",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "font-medium",
+				"display": "Font Medium",
+				"type": "string",
+				"default": "./media/TTNorms-Medium.otf",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "font-bold",
+				"display": "Font Bold",
+				"type": "string",
+				"default": "./media/TTNorms-Bold.otf",
+				"required": false,
+				"private": true
+			}
+		]
+	},
+	"text": {
+		"measure": "letter-size"
+	}
+}

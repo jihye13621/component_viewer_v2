@@ -1,0 +1,136 @@
+[
+	"ds-unl-prompt",
+	[
+		["dsx-mixins", ["prompt"]],
+		["ds-unl-mixins", "color-primary", "color-secondary"],
+		["dsx-mixins", ["boilerplate"]],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [4, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"max-width": "800nsu",
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]]
+			}, [
+				["solid", {
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]],
+					"color": ["$", ["var", "color-primary"]],
+					"padding": [
+						"5su",
+						"20su",
+						"5su",
+						"20su"
+					],
+					"mask": {},
+					"transform": [
+						["translate",
+							["animate",
+								[0, "-100rw", "easeOutCubic"],
+								["+600", 0],
+								["100%", "-100rw"],
+								["-500", 0, "easeInCubic"]
+							],
+							0
+						]
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$",
+								["or",
+									["eq", ["nth", ["var", "position"], 0], 3],
+									["eq", ["nth", ["var", "position"], 0], 6],
+									["eq", ["nth", ["var", "position"], 0], 9]
+								]
+							],
+							"transform": [
+								["translate",
+									["animate",
+										[0, "100rw", "easeOutCubic"],
+										["+600", 0],
+										["100%", "100rw"],
+										["-500", 0, "easeInCubic"]
+									],
+									0
+								]
+							]
+						}
+					]
+				}, [
+					["text", {
+						"mixins": ["ds-unl-mixins", ["font-prompt-small"]],
+						"string": "QUESTION",
+						"justify": ["$", ["var", "#align"]],
+						"color": ["$", ["var", "color-secondary"]],
+						"case": "uppercase"
+					}]
+				]],
+				["solid", {
+					"enabled": ["$", ["exists", ["var", "text"]]],
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]],
+					"color": ["$", ["var", "color-secondary"]],
+					"padding": [
+						"20su",
+						"20su"
+					],
+					"stagger": [200, -200],
+					"mask": {},
+					"transform": [
+						["translate",
+							["animate",
+								[0, "-100rw", "easeOutCubic"],
+								["+700", 0],
+								["100%", "-100rw"],
+								["-600", 0, "easeInCubic"]
+							],
+							0
+						]
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$",
+								["or",
+									["eq", ["nth", ["var", "position"], 0], 3],
+									["eq", ["nth", ["var", "position"], 0], 6],
+									["eq", ["nth", ["var", "position"], 0], 9]
+								]
+							],
+							"transform": [
+								["translate",
+									["animate",
+										[0, "100rw", "easeOutCubic"],
+										["+700", 0],
+										["100%", "100rw"],
+										["-600", 0, "easeInCubic"]
+									],
+									0
+								]
+							]
+						}
+					]
+				}, [
+					["text", {
+						"mixins": ["ds-unl-mixins", ["font-prompt-large"]],
+						"string": ["$", ["var", "text"]],
+						"justify": ["$", ["var", "#align"]],
+						"color": ["$", ["var", "color-primary"]]
+					}]
+				]]
+			]]
+		]]
+	]
+]

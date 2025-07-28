@@ -1,0 +1,176 @@
+[
+	"ds-paycom-evergreen-signage",
+	[
+		{
+			"key": "greeting",
+			"display": "Greeting",
+			"type": "text",
+			"default": "Welcome",
+			"required": false
+		},
+		{
+			"key": "name",
+			"display": "Client Name",
+			"type": "text",
+			"default": "Client Name",
+			"required": false
+		},
+		{
+			"key": "detail",
+			"display": "Detail",
+			"type": "text",
+			"default": "we're glad you're here",
+			"required": false
+		},
+		["ds-paycom-mixins",
+			"green",
+			"font-bold"
+		]
+	],
+	[
+		["asset", {
+			"file": "./media/ds-paycom-evergreen-signage-intro.mp4",
+			"justify": "fill center"
+		}],
+		["asset", {
+			"enabled": ["$",
+				[">",
+					["key", ["comp-timing"], "duration"],
+					["dur", "./media/ds-paycom-evergreen-signage-intro.mp4"]
+				]
+			],
+			"file": "./media/ds-paycom-evergreen-signage-loop.mp4",
+			"start": ["$", ["dur", "./media/ds-paycom-evergreen-signage-intro.mp4"]],
+			"justify": "fill center",
+			"loop": true
+		}],
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			],
+			"layout": "vertical packed",
+			"align": "center",
+			"transform": [
+				["scale",
+					["animate",
+						[0, 0.8],
+						["100%", 1]
+					]
+				]
+			]
+		}, [
+			["text", {
+				"stagger": [1000, 0],
+				"enabled": ["$", ["exists", ["var", "greeting"]]],
+				"font": ["$", ["var", "font-bold"]],
+				"height": "40su",
+				"measure": "cap-size",
+				"justify": "center",
+				"case": "uppercase",
+				"string": ["$", ["var", "greeting"]],
+				"kerning": 0.5,
+				"fit": true,
+				"stroke": "2su",
+				"color": [0, 0, 0, 0],
+				"stroke-color": "#008542",
+				"opacity": ["animate",
+					[0, 0],
+					["+500", 1]
+				],
+				"boundary": "letter",
+				"animations": [
+					{
+						"color": "#00854200"
+					},
+					{
+						"mix": ["animate",
+							[500, 0],
+							["+1000", 1]
+						],
+						"easing": "easeOutQuad",
+						"ramp": 1,
+						"color": "#008542"
+					}
+				]
+			}],
+			["null", {
+				"enabled": ["$", ["exists", ["var", "name"]]],
+				"flex": {
+					"weight": 2
+				},
+				"layout": "stacked",
+				"align": "center",
+				"padding": [
+					"50su",
+					0,
+					"80su",
+					0
+				]
+			}, [
+				["text", {
+					"stagger": [1000, 0],
+					"font": ["$", ["var", "font-bold"]],
+					"height": "120su",
+					"measure": "cap-size",
+					"case": "uppercase",
+					"justify": "center",
+					"kerning": 0.05,
+					"string": ["$", ["var", "name"]],
+					"color": "#008542",
+					"fit": true,
+					"boundary": "letter",
+					"animations": [
+						{
+							"scale": 1.2
+						},
+						{
+							"mix": ["animate",
+								[1000, 0],
+								["+1000", 1]
+							],
+							"easing": "easeOutQuad",
+							"ramp": 1,
+							"opacity": 1,
+							"scale": 1
+						}
+					]
+				}]
+			]],
+			["text", {
+				"stagger": [2500, 0],
+				"enabled": ["$", ["exists", ["var", "detail"]]],
+				"font": ["$", ["var", "font-bold"]],
+				"height": "40su",
+				"measure": "cap-size",
+				"case": "uppercase",
+				"justify": "center",
+				"kerning": 0.1,
+				"string": ["$", ["var", "detail"]],
+				"fit": true,
+				"stroke": "2su",
+				"color": [0, 0, 0, 0],
+				"stroke-color": "#008542",
+				"opacity": ["animate",
+					[0, 0],
+					["+500", 1]
+				],
+				"boundary": "letter",
+				"animations": [
+					{
+						"color": "#00854200"
+					},
+					{
+						"mix": ["animate",
+							[500, 0],
+							["+1000", 1]
+						],
+						"easing": "easeOutQuad",
+						"ramp": 1,
+						"color": "#008542"
+					}
+				]
+			}]
+		]]
+	]
+]

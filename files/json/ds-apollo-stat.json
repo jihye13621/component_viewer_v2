@@ -1,0 +1,202 @@
+[
+	"ds-apollo-stat",
+	[
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "text",
+			"default": "Optional statistic details",
+			"required": false
+		},
+		{
+			"key": "stat",
+			"display": "Number",
+			"type": "text",
+			"default": "1000",
+			"required": false,
+			"script": ["$", 
+				["if",
+					["var", "do-count-up"],
+					["let",
+						[
+							["found", ["match", ["var", "stat"], ["regexp", "[\\d,]+"], ""]],
+							["segments", ["if",
+								["exists", ["var", "found"]],
+								["segment", ["var", "stat"], ["var", "found"]]
+							]]
+						],
+						["if",
+							["exists", ["var", "found"]],
+							["do",
+								["set", "prefix", ["nth", ["var", "segments"], 0]],
+								["set", "postfix", ["nth", ["var", "segments"], 2]],
+								["floor",
+									["to-number",
+										["var", "found"]
+									]
+								]
+							],
+							["do",
+								["set", "prefix", ""],
+								["set", "postfix", ""],
+								0
+							]
+						]
+					],
+					["var", "stat"]
+				]
+			]
+		},
+		{
+			"key": "do-count-up",
+			"display": "Count Up",
+			"type": "bool",
+			"default": true,
+			"required": false
+		},
+		{
+			"key": "do-bg",
+			"display": "Background",
+			"type": "bool",
+			"default": true,
+			"required": false
+		},
+		["ds-apollo-mixins",
+			"color-secondary",
+			"font-headline",
+			"font-thin"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [5, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["composite-blur", {
+			"enabled": ["$", ["var", "do-bg"]],
+			"opacity": ["animate",
+				[0, 0, "easeOutSine"],
+				["+200", 1],
+				["100%", 0],
+				["-200", 1, "easeInSine"]
+			]
+		}, [
+			["solid", {
+				"color": [1, 1, 1, 0.5]
+			}]
+		]],
+		["null", {
+			"mixins": ["dsx-mixins", "set-su", "safezone"]
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"max-width": "1200su",
+				"align": ["$", ["var", "#align"]],
+				"gap": "50su"
+			}, [
+				["text", {
+					"mixins": ["ds-apollo-mixins",
+						"text"
+					],
+					"enabled": ["$", ["exists", ["var", "text"]]],
+					"font": ["$", ["var", "font-thin"]],
+					"height": "50su",
+					"color": ["$", ["var", "color-secondary"]],
+					"string": ["$", ["var", "text"]],
+					"justify": "center",
+					"mask": {
+						"padding": [
+							"-50rh",
+							0
+						]
+					},
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[0, "200rh", "easeOutBack"],
+								["+600", 0],
+								["100%", "-200rh"],
+								["-600", 0, "easeInCubic"]
+							]
+						]
+					]
+				}],
+				["text", {
+					"mixins": ["ds-apollo-mixins",
+						"text"
+					],
+					"enabled": ["$", ["exists", ["var", "stat"]]],
+					"font": ["$", ["var", "font-headline"]],
+					"height": "200su",
+					"color": ["$", ["var", "color-secondary"]],
+					"string": ["$", ["var", "stat"]],
+					"fit": true,
+					"justify": "center",
+					"opacity": ["animate",
+						[0, 0, "easeOutQuad"],
+						["+400", 1],
+						["100%", 0],
+						["-400", 1, "easeInQuad"]
+					],
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[0, "80su", "easeOutQuad"],
+								["+800", 0]
+							]
+						]
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["var", "do-count-up"]],
+							"string": "",
+							"mutate": ["$$",
+								["let",
+									[
+										["start", ["$", ["var", "start"]]],
+										["end", ["$", ["var", "end"]]],
+										["frame", ["current-frame"]],
+										["animate",
+											["ease",
+												["map",
+													["var", "frame"],
+													["var", "start"],
+													["+", ["var", "start"], 800],
+													0,
+													1
+												],
+												"easeOutQuad"
+											]
+										]
+									],
+									["concat",
+										["$", ["var", "prefix"]],
+										["to-string", ["floor",
+											["*",
+												["$", ["var", "stat"]],
+												["var", "animate"]
+											]
+										]],
+										["$", ["var", "postfix"]]
+									]
+								]
+							]
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

@@ -1,0 +1,144 @@
+[
+	"ds-bloomberg-studios-annotation",
+	[
+		{
+			"key": "color",
+			"display": "Color",
+			"type": "color",
+			"default": [1, 0, 1, 1],
+			"required": false
+		},
+		{
+			"key": "rect-x",
+			"display": "X",
+			"type": "number",
+			"default": 0,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 0.05,
+				"minimum": 0.05,
+				"maximum": 100.0
+			},
+			"script": ["$",
+				["concat",
+					["var", "rect-x"],
+					"cw"
+				]
+			]
+		},
+		{
+			"key": "rect-y",
+			"display": "Y",
+			"type": "number",
+			"default": 0,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 0.05,
+				"minimum": 0.05,
+				"maximum": 100.0
+			},
+			"script": ["$",
+				["concat",
+					["var", "rect-y"],
+					"ch"
+				]
+			]
+		},
+		{
+			"key": "rect-z",
+			"display": "Width",
+			"type": "number",
+			"default": 30,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 0.05,
+				"minimum": 0.05,
+				"maximum": 100.0
+			},
+			"script": ["$",
+				["concat",
+					["var", "rect-z"],
+					"cw"
+				]
+			]
+		},
+		{
+			"key": "rect-w",
+			"display": "Height",
+			"type": "number",
+			"default": 30,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 0.05,
+				"minimum": 0.05,
+				"maximum": 100.0
+			},
+			"script": ["$",
+				["concat",
+					["var", "rect-w"],
+					"ch"
+				]
+			]
+		},
+		{
+			"key": "thickness",
+			"display": "Thickness",
+			"type": "number",
+			"default": 10,
+			"required": false,
+			"private": true,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 0.05,
+				"minimum": 0.05,
+				"maximum": 20.0
+			},
+			"script": ["$",
+				["concat",
+					["var", "thickness"],
+					"su"
+				]
+			]
+		},
+		{
+			"key": "rounded",
+			"display": "Rounded",
+			"type": "bool",
+			"default": false,
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", "set-su"]
+		}, [
+			["solid", {
+				"rect": [
+					["$", ["var", "rect-x"]],
+					["$", ["var", "rect-y"]],
+					["$", ["var", "rect-z"]],
+					["$", ["var", "rect-w"]]
+				],
+				"color": [0, 0, 0, 0],
+				"stroke": ["$", ["var", "thickness"]],
+				"stroke-color": ["$", ["var", "color"]],
+				"radius": ["$", ["if", ["var", "rounded"], "1000su", 0]],
+				"opacity": ["animate",
+					[0, 0],
+					["+500", 1],
+					["100%", 0],
+					["-500", 1]
+				]
+			}]
+		]]
+	]
+]

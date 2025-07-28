@@ -1,0 +1,413 @@
+[
+	"ds-instacart-pdm-intro",
+	[
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["gain", 0],
+				["justify", "fit"],
+				["motion", "none"]
+			],
+			"script": ["$", ["if",
+				["exists", ["var", "asset"]],
+				["var", "asset"],
+				"./media/image-wide.jpg"	
+			]]
+		},
+		["dsx-mixins", "intro"],
+		{
+			"key": "legal",
+			"display": "Legal",
+			"type": "text",
+			"default": "Min $10 req/order. Terms apply.",
+			"required": false
+		},
+		{
+			"key": "sticker-text",
+			"display": "Sticker Text",
+			"type": "text",
+			"default": "Sticker Text",
+			"required": false
+		},
+		{
+			"key": "sticker-detail",
+			"display": "Sticker Detail",
+			"type": "text",
+			"default": "Sticker Detail",
+			"required": false
+		},
+		["ds-instacart-mixins",
+			"colors",
+			"font-sans-400",
+			"font-sans-600",
+			"theme"
+		]
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins", "safezone", "set-su"],
+			"color": ["$", ["var", "#background"]]
+		}, [
+			["null", {
+				"gap": "60su",
+				"breakpoints": [
+					{
+						"enabled": ["$", ["lte", ["aspect"], 1]],
+						"layout": "vertical packed",
+						"units": {
+							"allspace": "100rh"
+						}
+					},
+					{
+						"enabled": ["$", ["gt", ["aspect"], 1]],
+						"layout": "horizontal packed",
+						"units": {
+							"allspace": "100rw"
+						}
+					}
+				]
+			}, [
+				["null", {
+					"layout": "vertical packed",
+					"align": "left",
+					"gap": "60su",
+					"padding": [
+						0,
+						"100su",
+						0,
+						0
+					]
+				}, [
+					["asset", {
+						"flex": {
+							"height": "60su"
+						},
+						"file": ["$", ["var", "#logo"]],
+						"justify": "fit top left",
+						"hold": true,
+						"mask": {},
+						"transform": [
+							["translate",
+								["$",
+									["compact",
+										["array",
+											"animate",
+											["'", 3400, 0],
+											["if",
+												["gte", ["key", ["comp-timing"], "duration"], 3500],
+												["'", "+300", "100su"]
+
+											]
+										]
+									]
+								],
+								["animate",
+									[0, "100rh", "easeInOutQuint"],
+									["+700", 0]
+								]
+							]
+						],
+						"breakpoints": [
+							{
+								"enabled": ["$", ["gte", ["key", ["comp-timing"], "duration"], 3500]],
+								"opacity": ["animate",
+									[3400, 1],
+									["+300", 0]
+								]
+							}
+						]
+					}],
+					["text", {
+						"enabled": ["$", ["exists", ["var", "headline"]]],
+						"stagger": [150, -100],
+						"flex": {
+							"weight": 3
+						},
+						"font": ["$", ["var", "font-sans-400"]],
+						"height": "120su",
+						"leading": "-10su",
+						"string": ["$", ["var", "headline"]],
+						"color": ["$", ["var", "#foreground"]],
+						"boundary": "word",
+						"animations": [
+							{
+								"mask": [0, 0, "-5su", 0],
+								"translate": [0, "220su"]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+750", 1]
+								],
+								"easing": "easeOutCubic",
+								"translate": [0, 0],
+								"ramp": 0.75
+							}
+						]
+					}],
+					["text", {
+						"enabled": ["$", ["exists", ["var", "subhead"]]],
+						"stagger": [650, -300],
+						"measure": "letter-size",
+						"font": ["$", ["var", "font-sans-600"]],
+						"height": "60su",
+						"leading": "20su",
+						"string": ["$", ["var", "subhead"]],
+						"color": ["$", ["var", "#accent"]],
+						"boundary": "word",
+						"animations": [
+							{
+								"mask": [0, 0, "-5su", 0],
+								"translate": [0, "80su"]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+400", 1]
+								],
+								"easing": "easeOutQuad",
+								"translate": [0, 0]
+							}
+						]
+					}]
+				]],
+				["null", {
+					"flex": {
+						"grow": true
+					},
+					"breakpoints": [
+						{
+							"enabled": ["$", ["lte", ["aspect"], 1]],
+							"units": {
+								"space": "100rh"
+							}
+						},
+						{
+							"enabled": ["$", ["gt", ["aspect"], 1]],
+							"units": {
+								"space": "100rw"
+							}
+						}
+					]
+				}, [
+					["text", {
+						"flex": {
+							"position": "fixed"
+						},
+						"enabled": ["$", ["exists", ["var", "legal"]]],
+						"stagger": [650, -300],
+						"measure": "letter-size",
+						"font": ["$", ["var", "font-sans-400"]],
+						"height": "22su",
+						"fit": true,
+						"string": ["$", ["var", "legal"]],
+						"color": ["$", ["var", "#foreground"]],
+						"boundary": "word",
+						"animations": [
+							{
+								"mask": [0, 0, "-5su", 0],
+								"translate": [0, "50su"]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+400", 1]
+								],
+								"easing": "easeOutQuad",
+								"translate": [0, 0]
+							}
+						],	
+						"breakpoints": [
+							{
+								"enabled": ["$", ["lte", ["aspect"], 1]],
+								"justify": "bottom right",
+								"transform": [
+									["translate",
+										0,
+										"50su"
+									]
+								]
+							},
+							{
+								"enabled": ["$", ["gt", ["aspect"], 1]],
+								"justify": "top right",
+								"transform": [
+									["translate",
+										0,
+										"-35su"
+									]
+								]
+							}
+						]
+					}],
+					["null", {
+						"layout": "vertical packed",
+						"align": "bottom right"
+					}, [
+						["null", {
+							"stagger": [2500, 0],
+							"breakpoints": [
+								{
+									"enabled": ["$", ["and",
+										["lte", ["aspect"], 1],
+										["gt", ["key", ["comp-timing"], "duration"], 3500]
+									]],
+									"rect": [
+										0,
+										0,
+										"100rw",
+										0
+									],
+									"padding": [
+										["animate",
+											[0, "-1space", "easeInOutQuad"],
+											["+1000", "-1allspace"]
+										],
+										0,
+										0,
+										0
+									]
+								},
+								{
+									"enabled": ["$", ["and",
+										["gt", ["aspect"], 1],
+										["gt", ["key", ["comp-timing"], "duration"], 3500]
+									]],
+									"rect": [
+										0,
+										0,
+										0,
+										"100rh"
+									],
+									"align": "right",
+									"padding": [
+										0,
+										0,
+										0,
+										["animate",
+											[0, "-1space", "easeInOutQuad"],
+											["+1000", "-1allspace"]
+										]
+									]
+								}
+							]
+						}, [
+							["user-asset", {
+								"file": ["$", ["var", "asset"]],
+								"justify": "fill center",
+								"mask": {
+									"transform": true,
+									"radius": "40su",
+									"padding": [
+										["animate",
+											[0, "100rh", "easeInOutQuad"],
+											["+1000", 0],
+											0,
+											0,
+											0
+										]
+									]
+								},
+								"transform": [
+									["translate",
+										0,
+										["animate",
+											[0, "1allspace", "easeOutQuad"],
+											["+1000", 0]
+										]
+									]
+								]
+							}]
+						]]
+					]]
+				]]
+			]],
+			["null", {
+				"stagger": [2500, 0],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["gt", ["aspect"], 1]],
+						"transform": [
+							["translate",
+								["$",
+									["compact",
+										["array",
+											"animate",
+											["'", 0, "37rw", "easeInOutQuint"],
+											["if",
+												["gt", ["key", ["comp-timing"], "duration"], 3500],
+												["'", "+1000", "85rw"]
+											]
+										]
+									]
+								],
+								["$",
+									["compact",
+										["array",
+											"animate",
+											["'", 0, "60rh", "easeInOutQuint"],
+											["if",
+												["gt", ["key", ["comp-timing"], "duration"], 3500],
+												["'", "+1000", "5rh"]
+											]
+										]
+									]
+								]
+							]
+						]
+					},
+					{
+						"enabled": ["$", ["lte", ["aspect"], 1]],
+						"transform": [
+							["translate",
+								["$",
+									["compact",
+										["array",
+											"animate",
+											["'", 0, "70rw", "easeInOutQuint"],
+											["if",
+												["gt", ["key", ["comp-timing"], "duration"], 3500],
+												["'", "+1000", "70rw"]
+											]
+										]
+									]
+								],
+								["$",
+									["compact",
+										["array",
+											"animate",
+											["'", 0, "30rh", "easeInOutQuint"],
+											["if",
+												["gt", ["key", ["comp-timing"], "duration"], 3500],
+												["'", "+1000", "0rh"]
+											]
+										]
+									]
+								]
+							]
+						]
+					}
+				]
+			}, [
+				["ds-instacart-pdm-sticker", {
+					"enabled": ["$", ["or",
+						["exists", ["var", "sticker-text"]],
+						["exists", ["var", "sticker-detail"]]
+					]],
+					"rect": [
+						0,
+						0,
+						"300su",
+						"300su"
+					],
+					"text-1": ["$", ["var", "sticker-text"]],
+					"text-2": ["$", ["var", "sticker-detail"]]
+				}]
+			]]
+		]]
+	]
+]

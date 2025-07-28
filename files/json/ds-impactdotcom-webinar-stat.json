@@ -1,0 +1,298 @@
+[
+	"ds-impactdotcom-webinar-stat",
+	[
+		["dsx-mixins",
+			"stat"
+		],
+		["ds-impactdotcom-webinar-mixins",
+			"color-primary",
+			"color-accent",
+			"font-bold",
+			"font-medium"
+		],
+		{
+			"key": "dark-mode",
+			"display": "Theme",
+			"type": "string",
+			"default": "light",
+			"options": [
+				{
+					"key": "light",
+					"display": "Light"
+				},
+				{
+					"key": "dark",
+					"display": "Dark"
+				}
+			],
+			"required": false
+		},
+		{
+			"key": "color-text-custom",
+			"display": "Text",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false,
+			"private": true,
+			"script": ["$",
+				["if",
+					["and",
+						["exists", ["var", "theme"]],
+						["eq", ["var", "dark-mode"], "light"]
+					],
+					["if",
+						["or",
+							["eq", ["var", "theme"], "tropical-tropica"],
+							["eq", ["var", "theme"], "yellow"]
+						],
+						"#000000",
+						"#ffffff"
+					],
+					"#ffffff"
+				]
+			]
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", "set-su", "safezone"]
+		}, [
+			["solid", {
+				"flex": {
+					"position": "fixed"
+				},
+				"color": ["linear-gradient",
+					-0.25,
+					[
+						0.0,
+						["$", ["var", "color-accent"]]
+					],
+					[
+						1.0,
+						["$", ["var", "color-gradient"]]
+					]
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["eq", ["var", "dark-mode"], "dark"]],
+						"color": ["$", ["var", "color-black"]]
+					}
+				]
+			}],
+			["null", {
+				"layout": "stacked",
+				"align": "center",
+				"breakpoints": [
+					{
+						"enabled": ["$", ["lte", ["aspect"], 1]],
+						"layout": "vertical"
+					}
+				]
+			}, [
+				["null", {
+					"layout": "stacked",
+					"align": "center",
+					"breakpoints": [
+						{
+							"enabled": ["$", ["lte", ["aspect"], 1]],
+							"align": "center bottom"
+						}
+					]
+				}, [
+					["text", {
+						"mixins": ["ds-impactdotcom-webinar-mixins",
+							"text"
+						],
+						"string": ["$", ["var", "stat"]],
+						"font": ["$", ["var", "font-bold"]],
+						"height": "900su",
+						"justify": "center",
+						"color": ["$", ["rgba-set", ["var", "color-text-custom"], "a", 0.25]],
+						"opacity": ["animate",
+							[0, 0, "easeOutSine"],
+							["+400", 1],
+							["100%", 0],
+							["-300", 1, "easeInSine"]
+						],
+						"transform": [
+							["translate",
+								0,
+								["animate",
+									[0, "100su", "easeOutCubic"],
+									["+600", 0],
+									["100%", "-75su"],
+									["-500", 0, "easeInCubic"]
+								]
+							]
+						],
+						"breakpoints": [
+							{
+								"enabled": ["$", ["eq", ["var", "dark-mode"], "dark"]],
+								"color": [0, 0, 0, 0],
+								"stroke": "4nsu",
+								"stroke-color": ["linear-gradient",
+									-0.25,
+									[
+										0.0,
+										["$", ["var", "color-accent"]]
+									],
+									[
+										1.0,
+										["$", ["var", "color-gradient"]]
+									]
+								]
+							},
+							{
+								"enabled": ["$", ["lte", ["aspect"], 1]],
+								"justify": "bottom center"
+							}
+						]
+					}],
+					["text", {
+						"enabled": ["$", ["lte", ["aspect"], 1]],
+						"stagger": [200, -200],
+						"mixins": ["ds-impactdotcom-webinar-mixins",
+							"text"
+						],
+						"string": ["$", ["var", "stat"]],
+						"font": ["$", ["var", "font-bold"]],
+						"height": "900su",
+						"justify": "center",
+						"color": ["$", ["rgba-set", ["var", "color-text-custom"], "a", 0.25]],
+						"opacity": ["animate",
+							[0, 0, "easeOutSine"],
+							["+400", 0.5],
+							["100%", 0],
+							["-300", 0.5, "easeInSine"]
+						],
+						"transform": [
+							["translate", 0, "-27ch"],
+							["translate",
+								0,
+								["animate",
+									[0, "100su", "easeOutCubic"],
+									["+600", 0],
+									["100%", "-75su"],
+									["-500", 0, "easeInCubic"]
+								]
+							]
+						],
+						"breakpoints": [
+							{
+								"enabled": ["$", ["eq", ["var", "dark-mode"], "dark"]],
+								"color": [0, 0, 0, 0],
+								"stroke": "4nsu",
+								"stroke-color": ["linear-gradient",
+									-0.25,
+									[
+										0.0,
+										["$", ["var", "color-accent"]]
+									],
+									[
+										1.0,
+										["$", ["var", "color-gradient"]]
+									]
+								]
+							},
+							{
+								"enabled": ["$", ["lte", ["aspect"], 1]],
+								"justify": "bottom center"
+							}
+						]
+					}],
+					["text", {
+						"enabled": ["$", ["lte", ["aspect"], 1]],
+						"stagger": [300, -300],
+						"mixins": ["ds-impactdotcom-webinar-mixins",
+							"text"
+						],
+						"string": ["$", ["var", "stat"]],
+						"font": ["$", ["var", "font-bold"]],
+						"height": "900su",
+						"justify": "center",
+						"color": ["$", ["rgba-set", ["var", "color-text-custom"], "a", 0.25]],
+						"opacity": ["animate",
+							[0, 0, "easeOutSine"],
+							["+400", 0.5],
+							["100%", 0],
+							["-300", 0.5, "easeInSine"]
+						],
+						"transform": [
+							["translate", 0, "70ch"],
+							["translate",
+								0,
+								["animate",
+									[0, "100su", "easeOutCubic"],
+									["+600", 0],
+									["100%", "-75su"],
+									["-500", 0, "easeInCubic"]
+								]
+							]
+						],
+						"breakpoints": [
+							{
+								"enabled": ["$", ["eq", ["var", "dark-mode"], "dark"]],
+								"color": [0, 0, 0, 0],
+								"stroke": "4nsu",
+								"stroke-color": ["linear-gradient",
+									-0.25,
+									[
+										0.0,
+										["$", ["var", "color-accent"]]
+									],
+									[
+										1.0,
+										["$", ["var", "color-gradient"]]
+									]
+								]
+							},
+							{
+								"enabled": ["$", ["lte", ["aspect"], 1]],
+								"justify": "bottom center"
+							}
+						]
+					}]
+				]],
+				["text", {
+					"mixins": ["ds-impactdotcom-webinar-mixins",
+						"text"
+					],
+					"string": ["$", ["var", "text"]],
+					"font": ["$", ["var", "font-medium"]],
+					"color": ["$", ["var", "color-text-custom"]],
+					"height": "100su",
+					"justify": "center",
+					"boundary": "word",
+					"animations": [
+						{
+							"translate": [0, "150su"]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+1000", 1]
+							],
+							"opacity": 1,
+							"translate": [0, 0],
+							"easing": "easeOutCubic",
+							"ramp": 1.5
+						},
+						{
+							"mix": ["animate",
+								["100%", 1],
+								["-800", 0]
+							],
+							"opacity": 0,
+							"translate": [0, "-100su"],
+							"easing": "easeInCubic",
+							"ramp": 1.5
+						}
+					]
+				}],
+				["null", {
+
+				}]
+			]]
+		]]
+	]
+]

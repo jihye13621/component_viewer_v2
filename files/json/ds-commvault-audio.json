@@ -1,0 +1,150 @@
+[
+	"ds-commvault-audio",
+	[
+		{
+			"key": "audio-file",
+			"display": "Audio",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["gain", 0]
+			]
+		},
+		{
+			"key": "fade-in",
+			"display": "Fade In Length",
+			"type": "number",
+			"default": 0,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 1,
+				"minimum": 0,
+				"maximum": 5
+			},
+			"script": ["$",
+				["floor", ["*", ["var", "fade-in"], 1000]]
+			]
+		},
+		{
+			"key": "fade-out",
+			"display": "Fade Out Length",
+			"type": "number",
+			"default": 0,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 1,
+				"minimum": 0,
+				"maximum": 5
+			},
+			"script": ["$",
+				["floor", ["*", ["var", "fade-out"], 1000]]
+			]
+		},
+		{
+			"key": "loop",
+			"display": "Loop",
+			"type": "bool",
+			"default": false,
+			"required": false
+		},
+		{
+			"key": "#gain",
+			"display": "Gain Calculation",
+			"type": "number",
+			"default": 0,
+			"required": false,
+			"private": true,
+			"script": ["$",
+				["let",
+					[
+						["gv", ["key", ["var", "audio-file"], "gain"]]
+					],
+					["if",
+						["exists", ["var", "gv"]],
+						["var", "gv"],
+						0
+					]
+				]
+			]
+		}
+	],
+	[
+		["null", {
+			"-calc-safe-fade-in": ["$",
+				["set", "fade-in",
+					["min",
+						["var", "fade-in"],
+						["-", ["floor", ["/", ["key", ["comp-timing"], "duration"], 2]], 10]
+					]
+				]
+			],
+			"-calc-safe-fade-out": ["$",
+				["set", "fade-out",
+					["min",
+						["var", "fade-out"],
+						["-", ["floor", ["/", ["key", ["comp-timing"], "duration"], 2]], 10]
+					]
+				]
+			]
+		}, [
+			["user-asset", {
+				"file": ["$", ["var", "audio-file"]],
+				"opacity": 0,
+				"loop": ["$", ["var", "loop"]],
+				"breakpoints": [
+					{
+						"enabled": ["$",
+							["or",
+								["gt", ["var", "fade-in"], 0],
+								["gt", ["var", "fade-out"], 0]
+							]
+						],
+						"gain-dopesheet": ["$",
+							["compact",
+								["array",
+									["if",
+										["gt", ["var", "fade-in"], 0],
+										["array",
+											["key", ["comp-timing"], "start"],
+											-96
+										],
+										null
+									],
+									["if",
+										["gt", ["var", "fade-in"], 0],
+										["array",
+											["+", ["key", ["comp-timing"], "start"], ["var", "fade-in"]],
+											["var", "#gain"]
+										],
+										null
+									],
+									["if",
+										["gt", ["var", "fade-out"], 0],
+										["array",
+											["-", ["+", ["key", ["comp-timing"], "start"], ["key", ["comp-timing"], "duration"]], ["var", "fade-out"]],
+											["var", "#gain"]
+										],
+										null
+									],
+									["if",
+										["gt", ["var", "fade-out"], 0],
+										["array",
+											["+", ["key", ["comp-timing"], "start"], ["key", ["comp-timing"], "duration"]],
+											-96
+										],
+										null
+									]
+								]
+							]
+						]
+					}
+				]
+			}]
+		]]
+	]
+]

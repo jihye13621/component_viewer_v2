@@ -1,0 +1,91 @@
+[
+	"ds-paycom-evergreen-callout",
+	[
+		["dsx-mixins",
+			"intro"
+		],
+		["ds-paycom-mixins",
+			"green",
+			"font-bold-italic",
+			"font-bold"
+		]
+	],
+	[
+		["ds-paycom-evergreen-bg", {
+			"mixins": ["dsx-mixins",
+				"set-su"
+			],
+			"asset-alt": true
+		}, [
+			["null", {
+				"mixins": ["dsx-mixins",
+					"safezone"
+				],
+				"layout": "stacked",
+				"align": "center",
+				"max-width": "1200nsu"
+			}, [
+				["null", {
+					"layout": "vertical packed",
+					"gap": "30su",
+					"align": "center left"
+				}, [
+					["text", {
+						"enabled": ["$", ["exists", ["var", "headline"]]],
+						"stagger": [600, 0],
+						"font": ["$", ["var", "font-bold-italic"]],
+						"height": "80su",
+						"leading": "30su",
+						"measure": "cap-size",
+						"justify": "left",
+						"case": "uppercase",
+						"string": ["$", ["var", "headline"]],
+						"color": ["$", ["var", "green"]],
+						"animations": [
+						{
+							"translate": [0, "50su"]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+700", 1]
+							],
+							"easing": "easeOutQuad",
+							"ramp": 1.5,
+							"opacity": 1,
+							"translate": [0, 0]
+						}
+					]
+					}],
+					["text", {
+						"enabled": ["$", ["exists", ["var", "subhead"]]],
+						"stagger": [1000, 0],
+						"font": ["$", ["var", "font-bold"]],
+						"height": "70su",
+						"leading": "30su",
+						"measure": "cap-size",
+						"case": "uppercase",
+						"justify": "left",
+						"string": ["$", ["var", "subhead"]],
+						"color": [1, 1, 1, 1],
+						"animations": [
+						{
+							"translate": [0, "50su"]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+700", 1]
+							],
+							"easing": "easeOutQuad",
+							"ramp": 1.5,
+							"opacity": 1,
+							"translate": [0, 0]
+						}
+					]
+					}]
+				]]
+			]]
+		]]
+	]
+]

@@ -1,0 +1,188 @@
+[
+	"ds4-text",
+	[
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "textarea",
+			"default": "Add text",
+			"required": false
+		},
+		{
+			"key": "font-1",
+			"display": "Font",
+			"type": "fontstyle",
+			"default": {
+				"font": "./media/Newsreader16pt-Medium.ttf",
+				"height": 44,
+				"leading": -0.1818
+			},
+			"required": false,
+			"script": ["$",
+				["key-set",
+					["var", "font-1"],
+					"height",
+					["round", ["*", ["var", "size"], ["var", "font-1", "height"]]]
+				]
+			]
+		},
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		},
+		{
+			"key": "color-2",
+			"display": "Color 2",
+			"type": "color",
+			"default": "#E03467",
+			"required": false
+		},
+		{
+			"key": "background",
+			"display": "Background",
+			"type": "color",
+			"default": null,
+			"required": false
+		},
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": 5,
+			"required": false
+		},
+		{
+			"key": "size",
+			"display": "Size",
+			"type": "number",
+			"default": 1.0,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"step": 0.05,
+				"minimum": 0.5,
+				"maximum": 1.5
+			}
+		},
+		{
+			"key": "#align",
+			"type": "string",
+			"default": "center",
+			"required": false,
+			"private": true,
+			"script": ["$", ["switch", ["var", "position"], {
+				"1": "bottom left",
+				"2": "bottom center",
+				"3": "bottom right",
+				"4": "left",
+				"5": "center",
+				"6": "right",
+				"7": "top left",
+				"8": "top center",
+				"9": "top right",
+				"_": "center"
+			}]]
+		}
+	],
+	[
+		["dsx-background", {
+			"enabled": ["$", ["exists", ["var", "background"]]],
+			"color": ["$", ["var", "background"]]
+		}],
+		["dsx-padding", {
+			"position": ["$", ["var", "position"]]
+		}, [
+			["null", {
+				"layout": "vertical packed match",
+				"clip": true,
+				"mask": {
+					"radius": ["$", ["*", 0.3, ["var", "font-1", "height"]]]
+				},
+				"padding": [
+					["$", ["*", 0.5, ["var", "font-1", "height"]]],
+					["$", ["*", 0.5, ["var", "font-1", "height"]]],
+					["$", ["*", 0.5, ["var", "font-1", "height"]]],
+					["$", ["*", 0.5, ["var", "font-1", "height"]]]
+				],
+				"gap": ["$", ["*", 0.3, ["var", "font-1", "height"]]]
+			}, [
+				["solid", {
+					"flex": {
+						"position": "fixed"
+					},
+					"color": ["linear-gradient",
+						0.0,
+						[0.0, ["$", ["rgba-set", ["var", "color-2"], "a", 0.0]]],
+						[0.5, ["$", ["rgba-set", ["var", "color-2"], "a", 0.5]]],
+						[1.0, ["$", ["rgba-set", ["var", "color-2"], "a", 0.0]]]
+					],
+					"opacity": ["animate",
+						[0, 1, "holdIn"],
+						[1000, 0]
+					],
+					"transform": [
+						["rotate", 0.03],
+						["scale", 2.5],
+						["translate",
+							0,
+							["animate",
+								[0, "100rh", "easeInOutCubic"],
+								[1000, "-100rh"]
+							]
+						]
+					]
+				}],
+				["null", {
+					"clip": true,
+					"flex": {
+						"shrink": true
+					},
+					"opacity": ["animate", 
+						[150, 0],
+						["+500", 1],
+						["100%", 0],
+						["-500", 1]
+					],
+					"rect": [
+						0,
+						0,
+						"100rw",
+						["$", ["*", 0.4, ["var", "font-1", "height"]]]
+					]
+				}, [
+					["ds4-progbar-1", {
+						"color-1": ["$", ["var", "color-1"]],
+						"color-2": ["$", ["var", "color-2"]]
+					}]
+				]],
+				["text", {
+					"string": ["$", ["var", "text"]],
+					"color": ["$", ["var", "color-1"]],
+					"justify": ["$", ["var", "#align"]],
+					"style": ["$", ["var", "font-1"]],
+					"boundary": "line",
+					"animations": [
+						{
+							"translate": [0, ["$", ["var", "font-1", "height"]]]
+						},
+						{
+							"mix": ["animate",
+								[150, 0],
+								["+1000", 1],
+								["100%", 0],
+								["-300", 1]
+							],
+							"ramp": 1.0,
+							"easing": "easeOutQuad",
+							"translate": [0, 0],
+							"opacity": 1
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

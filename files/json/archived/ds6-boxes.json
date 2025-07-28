@@ -1,0 +1,184 @@
+[
+	"ds6-boxes",
+	[
+		{
+			"key": "offset",
+			"display": "Offset",
+			"type": "point",
+			"default": [-20, 20],
+			"required": false
+		},
+		{
+			"key": "anchor-in",
+			"display": "Anchor In",
+			"type": "point",
+			"default": [
+				0,
+				"100rh"
+			],
+			"required": false
+		},
+		{
+			"key": "anchor-out",
+			"display": "Anchor Out",
+			"type": "point",
+			"default": [
+				"100rw",
+				0
+			],
+			"required": false
+		},
+		{
+			"key": "scaling",
+			"display": "Scaling",
+			"type": "point",
+			"default": [
+				0,
+				0
+			],
+			"required": false
+		},
+		{
+			"key": "color-bg",
+			"display": "Color BG",
+			"type": "color",
+			"default": [0, 0, 0, 1],
+			"required": false
+		},
+		{
+			"key": "color-fg",
+			"display": "Color FG",
+			"type": "color",
+			"default": [1, 1, 1, 1],
+			"required": false
+		},
+		{
+			"key": "timing",
+			"display": "Timing",
+			"type": "object",
+			"default": [0, 0],
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"transform": [
+				["translate",
+					["animate",
+						[
+							["$", ["nth", ["var", "timing"], 0]],
+							null
+						],
+						["+300", 0, "easeInOutQuad"],
+						[
+							"+300",
+							["$", ["nth", ["var", "offset"], 0]]
+						]
+					],
+					["animate",
+						[
+							["$", ["nth", ["var", "timing"], 0]],
+							null
+						],
+						["+300", 0, "easeInOutQuad"],
+						[
+							"+300",
+							["$", ["nth", ["var", "offset"], 1]]
+						]
+					]
+				]
+			]
+		}, [
+			["solid", {
+				"color": ["$", ["var", "color-bg"]],
+				"transform": [
+					["scale",
+						["animate",
+							[
+								["$", ["nth", ["var", "timing"], 0]],
+								["$", ["nth", ["var", "scaling"], 0]],
+								"easeOutQuint"
+							],
+							["+300", 1]
+						],
+						["animate",
+							[
+								["$", ["nth", ["var", "timing"], 0]],
+								["$", ["nth", ["var", "scaling"], 1]],
+								"easeOutQuint"
+							],
+							["+300", 1]
+						],
+						["$", ["nth", ["var", "anchor-in"], 0]],
+						["$", ["nth", ["var", "anchor-in"], 1]]
+					],
+					["scale",
+						["animate",
+							["100%", null],
+							[
+								["$", ["to-relative-string", ["nth", ["var", "timing"], 1]]],
+								["$", ["nth", ["var", "scaling"], 0]]
+							],
+							["-300", 1, "easeInQuint"]
+						],
+						["animate",
+							["100%", null],
+							[
+								["$", ["to-relative-string", ["nth", ["var", "timing"], 1]]],
+								["$", ["nth", ["var", "scaling"], 1]]
+							],
+							["-300", 1, "easeInQuint"]
+						],
+						["$", ["nth", ["var", "anchor-out"], 0]],
+						["$", ["nth", ["var", "anchor-out"], 1]]
+					]
+				]
+			}]
+		]],
+		["solid", {
+			"color": ["$", ["var", "color-fg"]],
+			"transform": [
+				["scale",
+					["animate",
+						[
+							["$", ["nth", ["var", "timing"], 0]],
+							["$", ["nth", ["var", "scaling"], 0]],
+							"easeOutQuint"
+						],
+						["+300", 1]
+					],
+					["animate",
+						[
+							["$", ["nth", ["var", "timing"], 0]],
+							["$", ["nth", ["var", "scaling"], 1]],
+							"easeOutQuint"
+						],
+						["+300", 1]
+					],
+					["$", ["nth", ["var", "anchor-in"], 0]],
+					["$", ["nth", ["var", "anchor-in"], 1]]
+				],
+				["scale",
+					["animate",
+						["100%", null],
+						[
+							["$", ["to-relative-string", ["nth", ["var", "timing"], 1]]],
+							["$", ["nth", ["var", "scaling"], 0]]
+						],
+						["-300", 1, "easeInQuint"]
+					],
+					["animate",
+						["100%", null],
+						[
+							["$", ["to-relative-string", ["nth", ["var", "timing"], 1]]],
+							["$", ["nth", ["var", "scaling"], 1]]
+						],
+						["-300", 1, "easeInQuint"]
+					],
+					["$", ["nth", ["var", "anchor-out"], 0]],
+					["$", ["nth", ["var", "anchor-out"], 1]]
+				]
+			]
+		}]
+	]
+]

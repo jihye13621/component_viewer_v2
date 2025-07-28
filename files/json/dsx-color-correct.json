@@ -1,0 +1,85 @@
+[
+	"dsx-color-correct",
+	[
+		{
+			"key": "cc-mode",
+			"display": "Target",
+			"type": "string",
+			"default": "footage",
+			"required": false,
+			"options": [
+				{
+					"key": "b-roll",
+					"display": "B-Roll"
+				},
+				{
+					"key": "footage",
+					"display": "Footage"
+				}
+			]
+		},
+		{
+			"key": "cc-saturation",
+			"display": "Saturation",
+			"type": "number",
+			"default": 1.0,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 0.01,
+				"minimum": 0.75,
+				"maximum": 1.25
+			}
+		},
+		{
+			"key": "cc-brightness",
+			"display": "Brightness",
+			"type": "number",
+			"default": 1.0,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 0.01,
+				"minimum": 0.75,
+				"maximum": 1.25
+			}
+		},
+		{
+			"key": "cc-contrast",
+			"display": "Contrast",
+			"type": "number",
+			"default": 1.0,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 0.01,
+				"minimum": 0.75,
+				"maximum": 1.25
+			}
+		}
+	],
+	[
+		["null", {
+			"script": ["$$",
+				["live-effect",
+					["lookup-by-tag", ["$",
+						["if",
+							["eq", ["var", "cc-mode"], "b-roll"],
+							"b-roll",
+							"clip"
+						]
+					]],
+					"colorize",
+					["$", ["object",
+						["array", "saturation", ["var", "cc-saturation"]],
+						["array", "brightness", ["-", ["var", "cc-brightness"], 1]],
+						["array", "contrast", ["var", "cc-contrast"]]
+					]]
+				]
+			]
+		}]
+	]
+]

@@ -1,0 +1,111 @@
+[
+	"ds-ofb-outro",
+	[
+		{
+			"key": "style",
+			"display": "Style",
+			"type": "string",
+			"default": "solid-green",
+			"options": [
+				{
+					"key": "solid-green",
+					"display": "Solid Green"
+				},
+				{
+					"key": "trans-grey",
+					"display": "Transparent Grey"
+				},
+				{
+					"key": "trans-green",
+					"display": "Transparent Green"
+				}
+			],
+			"required": false
+		},
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "textarea",
+			"default": "Visit OregonFoodFinder.org to find food near you",
+			"required": false
+		},
+		["ds-ofb-mixins",
+			"font-medium"
+		]
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", "safezone", "set-su"]
+		}, [
+			["solid", {
+				"flex": {
+					"position": "fixed"
+				},
+				"opacity": ["animate",
+					[0, 0],
+					["+500", 1]
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["eq", ["var", "style"], "trans-grey"]],
+						"color": "#323232BF"
+					},
+					{
+						"enabled": ["$", ["eq", ["var", "style"], "trans-green"]],
+						"color": "#4DA00FBF"
+					},
+					{
+						"enabled": ["$", ["eq", ["var", "style"], "solid-green"]],
+						"color": "#4DA00F"
+					}
+				]
+			}],
+			["null", {
+				"max-width": "700nsu",
+				"layout": "vertical packed",
+				"gap": "100su",
+				"align": "center"
+			}, [
+				["asset", {
+					"flex": {
+						"height": "550su"
+					},
+					"file": "./media/ds-ofb-logo-animated.mov",
+					"justify": "fit center",
+					"hold": true,
+					"mute": true
+				}],
+				["text", {
+					"enabled": ["$", ["exists", ["var", "text"]]],
+					"stagger": [1000, 0],
+					"font": ["$", ["var", "font-medium"]],
+					"height": "55su",
+					"measure": "letter-size",
+					"leading": "10su",
+					"color": ["$", ["var", "color-black"]],
+					"string": ["$", ["var", "text"]],
+					"justify": "center",
+					"boundary": "word",
+					"animations": [
+						{
+							"translate": [
+								0,
+								"20su"
+							]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+1000", 1]
+							],
+							"easing": "easeOutQuart",
+							"opacity": 1,
+							"ramp": 0.5,
+							"translate": [0, 0]
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

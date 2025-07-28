@@ -1,0 +1,248 @@
+[
+	"ds1-list",
+	[
+		{
+			"key": "item-1",
+			"display": "Item 1",
+			"type": "text",
+			"default": "Add a list item",
+			"required": false
+		},
+		{
+			"key": "item-2",
+			"display": "Item 2",
+			"type": "text",
+			"default": "Add a second list item",
+			"required": false
+		},
+		{
+			"key": "item-3",
+			"display": "Item 3",
+			"type": "text",
+			"default": "Add a third list item",
+			"required": false
+		},
+		{
+			"key": "font-1",
+			"display": "Style",
+			"type": "fontstyle",
+			"default": {
+				"font": "./media/Inter-Medium.ttf",
+				"height": 44
+			},
+			"required": false,
+			"script": ["$",
+				["key-set",
+					["var", "font-1"],
+					"height",
+					["round", ["*", ["var", "size"], ["var", "font-1", "height"]]]
+				]
+			]
+		},
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": [1, 1, 1, 1],
+			"required": false
+		},
+		{
+			"key": "color-2",
+			"display": "Color 2",
+			"type": "color",
+			"default": [0, 0, 0, 1],
+			"required": false
+		},
+		{
+			"key": "color-3",
+			"display": "Color 3",
+			"type": "color",
+			"default": "#20FF79",
+			"default_": ["#9BFF20", "#20FF79", 0.75],
+			"required": false
+		},
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": 4,
+			"required": false
+		},
+		{
+			"key": "size",
+			"display": "Size",
+			"type": "number",
+			"default": 1.0,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"step": 0.05,
+				"minimum": 0.5,
+				"maximum": 1.5
+			}
+		},
+		{
+			"key": "#sized",
+			"script": ["$", ["struct",
+				"label", ["round", ["*", 1.3, ["var", "size"], ["var", "font-1", "height"]]]
+			]],
+			"required": false,
+			"private": true
+		},
+		{
+			"key": "#align",
+			"type": "string",
+			"default": "center",
+			"required": false,
+			"private": true,
+			"script": ["$", ["switch", ["var", "position"], {
+				"1": "bottom left",
+				"2": "bottom center",
+				"3": "bottom right",
+				"4": "left",
+				"5": "center",
+				"6": "right",
+				"7": "top left",
+				"8": "top center",
+				"9": "top right",
+				"_": "center"
+			}]]
+		}
+	],
+	[
+		["dsx-background", {
+			"enabled": ["$", ["exists", ["var", "background"]]],
+			"color": ["$", ["var", "background"]]
+		}],
+		["dsx-padding", {
+			"position": ["$", ["var", "position"]]
+		}, [
+			["for-each", {	
+				"items": ["$", ["array",
+					["var", "item-1"],
+					["var", "item-2"],
+					["var", "item-3"]
+				]],
+				"layout": "vertical packed match",
+				"gap": ["$", ["*", 15, ["var", "size"]]],
+				"padding": [
+					0,
+					0,
+					0,
+					["$", ["var", "#sized", "label"]]
+				]
+			}, [
+				["solid", {
+					"enabled": ["$", ["exists", ["var", "item"]]],
+					"layout": "horizontal packed",
+					"align": "top",
+					"mask": {
+						"padding": [
+							["animate",
+								[
+									["$", ["*", 500, ["var", "index"]]],
+									"100rh",
+									"easeOutQuad"
+								],
+								["+300", 0]
+							],
+							0,
+							["animate",
+								["100%", "100rh", "easeInQuad"],
+								["-300", 0]
+							],
+							["$", ["*", -1, ["var", "#sized", "label"]]]
+						]
+					},
+					"color": ["$", ["var", "color-2"]]
+				}, [
+					["solid", {
+						"rect": [
+							["$", ["*", -1, ["var", "#sized", "label"]]],
+							0,
+							["$", ["var", "#sized", "label"]],
+							["$", ["var", "#sized", "label"]]
+						],
+						"color": ["$", ["var", "color-3"]],
+						"flex": {
+							"position": "fixed"
+						},
+						"clip": true,
+						"transform": [
+							["translate",
+								0,
+								["animate",
+									[
+										["$", ["*", 500, ["var", "index"]]],
+										"100rh",
+										"easeOutQuad"
+									],
+									["+300", 0]
+								]
+							]
+						]
+					}, [
+						["text", {
+							"justify": "center",
+							"string": ["$", ["+", 1, ["var", "index"]]],
+							"style": ["$", ["var", "font-1"]],
+							"color": ["$", ["var", "color-2"]],
+							"fit": true,
+							"transform": [
+								["translate",
+									0,
+									["animate",
+										[
+											["$", ["+", 200, ["*", 500, ["var", "index"]]]],
+											"100rh",
+											"easeOutQuad"
+										],
+										["+400", 0]
+									]
+								]
+							]
+						}]
+					]],
+					["null", {
+						"layout": "vertical packed",
+						"clip": true,
+						"TODO:": "more hack mask ^",
+						"padding": [
+							["$", ["*", 0.15, ["var", "font-1", "height"]]],
+							["$", ["*", 20, ["var", "size"]]],
+							["$", ["*", 0.15, ["var", "font-1", "height"]]],
+							["$", ["*", 20, ["var", "size"]]]
+						]
+					}, [
+						["text", {
+							"string": ["$", ["var", "item"]],
+							"style": ["$", ["var", "font-1"]],
+							"color": ["$", ["var", "color-1"]],
+							"opacity": ["animate",
+								[
+									["$", ["+", 250, ["*", 500, ["var", "index"]]]],
+									0,
+									"easeOutQuad"
+								],
+								["+400", 1]
+							],
+							"transform": [
+								["translate",
+									0,
+									["animate",
+										[
+											["$", ["+", 250, ["*", 500, ["var", "index"]]]],
+											["$", ["var", "font-1", "height"]],
+											"easeOutQuad"
+										],
+										["+400", 0]
+									]
+								]
+							]
+						}]
+					]]
+				]]
+			]] 
+		]]
+	]
+]

@@ -1,0 +1,105 @@
+{
+	"params": {
+		"colors": [
+			{
+				"key": "white",
+				"display": "White",
+				"private": true,
+				"type": "color",
+				"default": "#F6F5FB",
+				"required": false
+			},
+			{
+				"key": "gray",
+				"display": "Gray",
+				"private": true,
+				"type": "color",
+				"default": "#CDD5E8",
+				"required": false
+			},
+			{
+				"key": "periwinkle",
+				"display": "Periwinkle",
+				"private": true,
+				"type": "color",
+				"default": "#8B8BFF",
+				"required": false
+			},
+			{
+				"key": "blurple",
+				"display": "Blurple",
+				"private": true,
+				"type": "color",
+				"default": "#5C45FF",
+				"required": false
+			},
+			{
+				"key": "off-black",
+				"display": "Off Black",
+				"private": true,
+				"type": "color",
+				"default": "#020C1C",
+				"required": false
+			}
+		]
+	},
+	
+	"text-x-large": {
+		"font": "./media/Poppins-SemiBold.ttf",
+		"measure": "letter-size",
+		"height": "110su",
+		"leading": "17su"
+	},
+	"text-large": {
+		"font": "./media/Poppins-SemiBold.ttf",
+		"measure": "letter-size",
+		"height": "90su",
+		"leading": "20su"
+	},
+	"text-quote": {
+		"font": "./media/Mulish-SemiBold.ttf",
+		"measure": "letter-size",
+		"height": "80su",
+		"leading": "20su"
+	},
+	"text-quote-alt": {
+		"font": "./media/PlayfairDisplay-Regular.ttf",
+		"measure": "letter-size",
+		"height": "80su",
+		"leading": "20su",
+		"kerning": 0.01
+	},
+	"text-med": {
+		"font": "./media/Mulish-Regular.ttf",
+		"measure": "letter-size",
+		"height": "70su",
+		"leading": "17su"
+	},
+	"text-small": {
+		"font": "./media/Mulish-Regular.ttf",
+		"measure": "letter-size",
+		"height": "50su",
+		"leading": "20su"
+	},
+	"text-label": {
+		"font": "./media/Mulish-SemiBold.ttf",
+		"measure": "letter-size",
+		"height": "50su",
+		"leading": "20su",
+		"kerning": 0.05
+	},
+	"text-captions": {
+		"font": "./media/Poppins-SemiBold.ttf",
+		"measure": "letter-size",
+		"height": "60su",
+		"leading": "20su",
+		"kerning": 0.01
+	},
+	"text-title": {
+		"font": "./media/Poppins-SemiBold.ttf",
+		"measure": "letter-size",
+		"height": "160su",
+		"leading": "20su",
+		"kerning": -0.02
+	}
+}

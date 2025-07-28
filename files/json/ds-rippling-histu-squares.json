@@ -1,0 +1,60 @@
+[
+	"ds-rippling-histu-squares",
+	[
+		{
+			"key": "blur",
+			"display": "Blur",
+			"type": "bool",
+			"default": true,
+			"required": false,
+			"private": true
+		},
+		["dsx-mixins",
+			"boilerplate"
+		],
+		["ds-rippling-histu-mixins",
+			"colors"
+		]
+	],
+	[
+		["null", {
+			"buffer": "matte"
+		}, [
+			["asset", {
+				"file": "./media/ds-rippling-histu-squares.mp4",
+				"justify": "fill center",
+				"hold": true,
+				"breakpoints": [
+					{
+						"enabled": ["$", ["<", ["aspect"], 1]],
+						"rotate": 0.25
+					}
+				]
+			}]
+		]],
+		["null", {
+			"effect": [
+				["matte", {
+					"buffer-in": "matte"
+				}]
+			]
+		}, [
+			["null", {
+				"effect": [
+					["compose", {}],
+					["blur", {
+						"enabled": ["$", ["var", "blur"]],
+						"radius": ["$", ["*", 20, ["/",
+							["min", ["width"], ["height"]],
+							1080
+						]]],
+						"extend": true
+					}]
+				]
+			}],
+			["solid", {
+				"color": ["$", ["rgba-set", ["var", "maroon"], "a", 0.33]]
+			}]
+		]]
+	]
+]

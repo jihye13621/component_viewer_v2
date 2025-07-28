@@ -1,0 +1,76 @@
+{
+	"params": {
+		"colors": [
+			{
+				"key": "white",
+				"display": "White",
+				"private": true,
+				"type": "color",
+				"default": "#F6F5FB",
+				"required": false
+			},
+			{
+				"key": "gray",
+				"display": "Gray",
+				"private": true,
+				"type": "color",
+				"default": "#636363",
+				"required": false
+			},
+			{
+				"key": "off-black",
+				"display": "Off Black",
+				"private": true,
+				"type": "color",
+				"default": "#031729",
+				"required": false
+			}
+		]
+	},
+	"text-captions": {
+		"font": "./media/InterTight-Bold.ttf",
+		"measure": "letter-size",
+		"height": "40su",
+		"leading": "10su",
+		"kerning": 0.01
+	},
+	"text-bold": {
+		"font": "./media/InterTight-Bold.ttf",
+		"measure": "letter-size",
+		"height": "60su",
+		"leading": "20su",
+		"kerning": 0.01
+	},
+	"text-regular": {
+		"font": "./media/InterTight-Regular.ttf",
+		"measure": "letter-size",
+		"height": "60su",
+		"leading": "60su",
+		"kerning": 0.01
+	},
+	"speaker-box-anim": {
+		"radius": "65su",
+		"rect": [
+			0,
+			0,
+			["animate",
+				[500, "100rh", "easeInOutCubic"],
+				["+400", "100rw"],
+				["100%", null],
+				["-400", "100rh"],
+				["-400", "100rw", "easeInOutCubic"]
+			],
+			"100rh"
+		],
+		"transform": [
+			["scale",
+				["animate",
+					[0, 0, "easeOutCubic"],
+					["+400", 1],
+					["100%", 0],
+					["-400", 1, "easeInCubic"]
+				]
+			]
+		]
+	}
+}

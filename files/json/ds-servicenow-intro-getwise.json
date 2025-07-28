@@ -1,0 +1,110 @@
+[
+	"ds-servicenow-intro-getwise",
+	[
+		{
+			"key": "do-transition-out",
+			"display": "Transition Out",
+			"type": "bool",
+			"default": true,
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su"]],
+			"breakpoints": [
+				{
+					"enabled": ["$", ["var", "do-transition-out"]],
+					"mask": {
+						"padding": [
+							0,
+							["animate",
+								["100%", "100rw"],
+								["-500", 0, "easeInQuad"]
+							],
+							0,
+							0
+						]
+					}
+				}
+			]
+		}, [
+			["solid", {
+				"mixins": ["dsx-mixins", ["safezone"]],
+				"color": "#02243C"
+			}, [
+				["asset", {
+					"file": "./media/ds-servicenow-intro-getwise-1.mp4",
+					"justify": "fit center"
+				}]
+			]],
+			["solid", {
+				"mixins": ["dsx-mixins", ["safezone"]],
+				"start": ["$", ["dur", "./media/ds-servicenow-intro-getwise-1.mp4"]],
+				"color": "#011D2E"
+			}, [
+				["asset", {
+					"file": "./media/ds-servicenow-intro-getwise-2.mp4",
+					"justify": "fit center",
+					"hold": true
+				}]
+			]],
+			["solid", {
+				"enabled": ["$", ["var", "do-transition-out"]],
+				"stagger": [0, -600],
+				"color": "#67DB8C",
+				"transform": [
+					["translate",
+						["animate",
+							["100%", 0],
+							["-700", "100rw", "easeInQuad"]
+						],
+						0
+					]
+				]
+			}],
+			["solid", {
+				"enabled": ["$", ["var", "do-transition-out"]],
+				"stagger": [0, -375],
+				"color": "#4BCD37",
+				"transform": [
+					["translate",
+						["animate",
+							["100%", 0],
+							["-700", "100rw", "easeInQuad"]
+						],
+						0
+					]
+				]
+			}],
+			["solid", {
+				"enabled": ["$", ["var", "do-transition-out"]],
+				"stagger": [0, -300],
+				"color": "#5FD44E",
+				"transform": [
+					["translate",
+						["animate",
+							["100%", 0],
+							["-700", "100rw", "easeInQuad"]
+						],
+						0
+					]
+				]
+			}],
+			["solid", {
+				"enabled": ["$", ["var", "do-transition-out"]],
+				"stagger": [0, -150],
+				"color": "#78DB69",
+				"transform": [
+					["translate",
+						["animate",
+							["100%", 0],
+							["-700", "100rw", "easeInQuad"]
+						],
+						0
+					]
+				]
+			}]
+		]]
+	]
+]

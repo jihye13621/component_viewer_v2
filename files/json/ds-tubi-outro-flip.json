@@ -1,0 +1,335 @@
+[
+	"ds-tubi-outro-flip",
+	[
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "text",
+			"default": "See You In There.",
+			"required": false
+		},
+		["ds-tubi-mixins",
+			"color-primary",
+			"font-black"
+		],
+		{
+			"key": "#unit",
+			"display": "Unit",
+			"type": "number",
+			"default": 100,
+			"required": false,
+			"private": true,
+			"script": ["$",
+				["max", ["width"], ["height"]]
+			]
+		},
+		{
+			"key": "show-firetv",
+			"display": "Fire TV",
+			"type": "bool",
+			"default": true,
+			"required": false
+		},
+		{
+			"key": "show-lg",
+			"display": "LG",
+			"type": "bool",
+			"default": true,
+			"required": false
+		},
+		{
+			"key": "show-vizio",
+			"display": "Vizio",
+			"type": "bool",
+			"default": true,
+			"required": false
+		},
+		{
+			"key": "show-roku",
+			"display": "Roku",
+			"type": "bool",
+			"default": true,
+			"required": false
+		},
+		{
+			"key": "show-apple",
+			"display": "Apple",
+			"type": "bool",
+			"default": true,
+			"required": false
+		},
+		{
+			"key": "show-samsung",
+			"display": "Samsung",
+			"type": "bool",
+			"default": true,
+			"required": false
+		},
+		{
+			"key": "show-android",
+			"display": "Android",
+			"type": "bool",
+			"default": true,
+			"required": false
+		},
+		{
+			"key": "#icons",
+			"display": "Icons",
+			"type": "object",
+			"default": [],
+			"required": false,
+			"private": true,
+			"script": ["$", ["compact", ["array",
+				["if", ["var", "show-firetv"], ["'", "firetv", "75su", "40su"]],
+				["if", ["var", "show-lg"], ["'", "lg", "40su", "40su"]],
+				["if", ["var", "show-vizio"], ["'", "vizio", "100su", "25su"]],
+				["if", ["var", "show-roku"], ["'", "roku", "80su", "25su"]],
+				["if", ["var", "show-apple"], ["'", "apple", "30su", "40su"]],
+				["if", ["var", "show-samsung"], ["'", "samsung", "155su", "24su"]],
+				["if", ["var", "show-android"], ["'", "android", "155su", "25su"]]
+			]]]
+		}
+	],
+	[
+		["null", {
+			"buffer": "knockout",
+			"script": ["$$",
+				["let",
+					[
+						["start", ["key", ["var", "self"], "start"]],
+						["end", ["key", ["var", "self"], "end"]],
+						["animation",
+							["ease",
+								["map",
+									["var", "frame"],
+									["+", ["var", "start"], ["+", 400]],
+									["+", ["var", "start"], ["+", 900]],
+									0,
+									1
+								],
+								"easeInOutQuad"
+							]
+						]
+					],
+					["live-transform",
+						["lookup-by-tag", "clip"],
+						"scale",
+						["-", 1, ["*", 0.2, ["var", "animation"]]]
+					]
+				]
+			]
+		}, [
+			["solid", {
+				"color": [1, 1, 1, 1]
+			}],
+			["solid", {
+				"color": [0, 0, 0, 1],
+				"radius": 10000,
+				"rect": [
+					0,
+					0,
+					["$", ["var", "#unit"]],
+					["$", ["var", "#unit"]]
+				],
+				"align": "center",
+				"transform": [
+					["scale",
+						["animate",
+							[0, 1.6, "easeOutQuad"],
+							["+800", 0.35]
+						]
+					],
+					["scale",
+						["animate",
+							[600, 0.8, "easeInCubic"],
+							["+600", 0.0]
+						],
+						1
+					],
+					["rotate",
+						["animate",
+							[0, 0.5],
+							["+1200", 0]
+						]
+					]
+				]
+			}]
+		]],
+		["matte", {
+			"buffer-in": "knockout",
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			]
+		}, [
+			["solid", {
+				"flex": {
+					"position": "fixed"
+				},
+				"mixins": ["ds-tubi-mixins", ["bg-gradient"]]
+			}],
+			["null", {
+				"start": 1200,
+				"layout": "stacked",
+				"align": "center"
+			}, [
+				["asset", {
+					"file": "./media/ds-tubi-outro-flip.mov",
+					"justify": "fit center",
+					"align": "center",
+					"hold": true,
+					"units": {
+						"grid": "100rh"
+					},
+					"rect": [
+						0,
+						0,
+						"70rw",
+						"100rh"
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["lt", ["aspect"], 1]],
+							"rect": [
+								0,
+								0,
+								"90rw",
+								"100rh"
+							]
+						}
+					]
+				}, [
+					["null", {
+						"enabled": ["$", ["exists", ["var", "text"]]],
+						"layout": "stacked",
+						"align": "top center",
+						"transform": [
+							["translate",
+								0,
+								"1grid"
+							],
+							["translate",
+								0,
+								"20su"
+							]
+						]
+					}, [
+						["text", {
+							"stagger": [900, 0],
+							"mixins": ["ds-tubi-mixins", "text"],
+							"font": ["$", ["var", "font-black"]],
+							"height": "40su",
+							"case": "uppercase",
+							"string": ["$", ["var", "text"]],
+							"justify": "top center",
+							"transform": [
+								["translate",
+									0,
+									"100su"
+								]
+							],
+							"boundary": "word",
+							"animations": [
+								{
+									"mix": ["animate",
+										[0, 0],
+										["+1000", 1]
+									],
+									"opacity": 1,
+									"ramp": 0.25
+								}
+							]
+						}]
+					]]
+				]]
+			]],
+			["null", {
+				"rect": [
+					0,
+					0,
+					"100rw",
+					"200su"
+				],
+				"align": "bottom center",
+				"opacity": ["animate",
+					[2750, 0],
+					["+500", 1]
+				]
+			}, [
+				["null", {
+					"layout": "horizontal packed",
+					"align": "bottom center",
+					"gap": "60su",
+					"breakpoints": [
+						{
+							"enabled": ["$", ["lte", ["aspect"], 1]],
+							"layout": "vertical packed",
+							"gap": "40su"
+						}
+					]
+				}, [
+					["for-each", {
+						"layout": "horizontal packed",
+						"align": "center",
+						"gap": "60su",
+						"items": ["$", ["var", "#icons"]],
+						"breakpoints": [
+							{
+								"enabled": ["$", ["lte", ["aspect"], 1]],
+								"order": 2
+							}
+						]
+					}, [
+						["asset", {
+							"enabled": ["$",
+								["lte",
+									["var", "index"],
+									["/", ["var", "count"], 2]
+								]
+							],
+							"file": ["$", ["concat",
+								"./media/ds-tubi-",
+								["nth", ["var", "item"], 0],
+								".svg"
+							]],
+							"justify": "fit center",
+							"rect": [
+								0,
+								0,
+								["$", ["nth", ["var", "item"], 1]],
+								["$", ["nth", ["var", "item"], 2]]
+							]
+						}]
+					]],
+					["for-each", {
+						"layout": "horizontal packed",
+						"align": "center",
+						"gap": "60su",
+						"items": ["$", ["var", "#icons"]]
+					}, [
+						["asset", {
+							"enabled": ["$",
+								["gt",
+									["var", "index"],
+									["/", ["var", "count"], 2]
+								]
+							],
+							"file": ["$", ["concat",
+								"./media/ds-tubi-",
+								["nth", ["var", "item"], 0],
+								".svg"
+							]],
+							"justify": "fit center",
+							"rect": [
+								0,
+								0,
+								["$", ["nth", ["var", "item"], 1]],
+								["$", ["nth", ["var", "item"], 2]]
+							]
+						}]
+					]]
+				]]
+			]]
+		]]
+	]
+]

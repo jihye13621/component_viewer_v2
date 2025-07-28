@@ -1,0 +1,44 @@
+{
+	"params": {
+		"color-white": {
+			"key": "color-white",
+			"display": "Color",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		},
+		"color-light-purple": {
+			"key": "color-light-purple",
+			"display": "Color",
+			"type": "color",
+			"default": "#8039df",
+			"required": false
+		},
+		"text-light": {
+			"key": "text-light",
+			"display": "Detail Text",
+			"type": "string",
+			"default": "./media/ember-regular.woff2",
+			"required": false,
+			"private": true
+		},
+		"text-regular": {
+			"key": "text-regular",
+			"display": "Regular Text",
+			"type": "string",
+			"default": "./media/SharpGroteskPETrialMedium.ttf",
+			"required": false,
+			"private": true
+		},
+		"text-bold": {
+			"key": "text-bold",
+			"display": "Bold Text",
+			"type": "string",
+			"default": "./media/SharpGroteskPETrialBold.ttf",
+			"required": false,
+			"private": true
+		}
+
+
+	}
+}

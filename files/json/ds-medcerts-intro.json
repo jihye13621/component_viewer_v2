@@ -1,0 +1,393 @@
+[
+	"ds-medcerts-intro",
+	[
+		{
+			"key": "image",
+			"display": "Image",
+			"type": "asset",
+			"default": "./media/ds-medcerts-intro-image.jpg",
+			"required": false,
+			"parameters": []
+		},
+		{
+			"key": "title",
+			"display": "Title",
+			"type": "text",
+			"default": "Optional title",
+			"required": false
+		},
+		{
+			"key": "presenter",
+			"display": "Presenter",
+			"type": "text",
+			"default": "Presenter Name",
+			"required": false
+		},
+		{
+			"key": "role",
+			"display": "Role",
+			"type": "text",
+			"default": "Presenter Role",
+			"required": false
+		},
+		{
+			"key": "location",
+			"display": "Location",
+			"type": "text",
+			"default": "Presenter Location",
+			"required": false
+		},
+		{
+			"key": "medcerts-logo",
+			"display": "Logo",
+			"type": "string",
+			"default": "logo-white",
+			"options": [
+				{
+					"key": "logo-white",
+					"display": "Stride"
+				},
+				{
+					"key": "logo-partner-white",
+					"display": "Partner"
+				}
+			]
+		},
+		["ds-medcerts-mixins",
+			"color-primary",
+			"color-accent"
+		],
+		["dsx-mixins", ["boilerplate-intro-outro"]]
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins", ["set-su", "safezone"]],
+			"color": ["$", ["var", "color-accent"]]
+		}, [
+			["null", {
+				"rect": [
+					0,
+					0,
+					"400su",
+					"400su"
+				],
+				"align": "bottom left"
+			}, [
+				["asset", {
+					"mute": true,
+					"file": ["$",
+						["concat",
+							"./media/ds-medcerts-",
+							["var", "medcerts-logo"],
+							".svg"
+						]
+					],
+					"justify": "fit bottom left",
+					"svg-recolor": ["$", ["var", "color-primary"]]
+				}]
+			]],
+			["null", {
+				"rect": [
+					0,
+					0,
+					"400su",
+					"400su"
+				],
+				"align": "bottom left",
+				"transform": [
+					["rotate",
+						["animate",
+							[0, 0],
+							["+10000", 1],
+							"loop"
+						]
+					],
+					["translate",
+						0,
+						"200su"
+					]
+				]
+			}, [
+				["asset", {
+					"mute": true,
+					"file": "./media/ds-medcerts-flourish.svg",
+					"justify": "fit center",
+					"svg-recolor": ["$", ["rgba-set", ["var", "color-primary"], "a", 0.2]]
+				}]
+			]],
+			["null", {
+				"rect": [
+					0,
+					0,
+					"500su",
+					"500su"
+				],
+				"align": "top right",
+				"transform": [
+					["rotate",
+						["animate",
+							[0, 0],
+							["+12000", 1],
+							"loop"
+						]
+					],
+					["translate",
+						"200su",
+						"-200su"
+					]
+				]
+			}, [
+				["asset", {
+					"mute": true,
+					"file": "./media/ds-medcerts-flourish.svg",
+					"justify": "fit center",
+					"svg-recolor": ["$", ["rgba-set", ["var", "color-primary"], "a", 0.2]]
+				}]
+			]],
+			["null", {
+				"rect": [
+					0,
+					0,
+					"60rw",
+					"500su"
+				],
+				"padding": [
+					0,
+					"200su",
+					0,
+					0
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["lte", ["aspect"], 1]],
+						"rect": [
+							0,
+							0,
+							"100rw",
+							"40rh"
+						],
+						"padding": null
+					}
+				]
+			}, [
+				["text", {
+					"mixins": ["ds-medcerts-mixins", "font-intro-large"],
+					"string": ["$", ["var", "title"]],
+					"justify": "left center",
+					"color": ["$", ["var", "color-primary"]],
+					"boundary": "word",
+					"animations": [
+						{
+							"translate": [0, "60su"]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+850", 1]
+							],
+							"translate": [0, 0],
+							"opacity": 1,
+							"ramp": 0.75,
+							"easing": "easeOutCubic"
+						}
+					]
+				}]
+			]],
+			["null", {
+				"rect": [
+					"60rw",
+					0,
+					"40rw",
+					"100rh"
+				],
+				"layout": "vertical",
+				"align": "right",
+				"gap": "40su",
+				"breakpoints": [
+					{
+						"enabled": ["$",
+							["and",
+								["lte", ["aspect"], 1],
+								["gte", ["aspect"], 0.6]
+							]
+						],
+						"rect": [
+							0,
+							"40rh",
+							"100rw",
+							"40rh"
+						],
+						"align": null,
+						"layout": "horizontal"
+					},
+					{
+						"enabled": ["$",
+							["lte", ["aspect"], 0.6]
+						],
+						"align": null,
+						"rect": [
+							"40rw",
+							"40rh",
+							"60rw",
+							"40rh"
+						]
+					}
+				]
+			}, [
+				["null", {
+					"stagger": [250, 0],
+					"flex": {
+						"width": "400su"
+					},
+					"mask": {},
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[0, "80su", "easeOutCubic"],
+								["+600", 0]
+							]
+						]
+					],
+					"opacity": ["animate",
+						[0, 0, "easeOutQuad"],
+						["+600", 1]
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$",
+								["and",
+									["lte", ["aspect"], 1],
+									["gte", ["aspect"], 0.6]
+								]
+							],
+							"order": 2,
+							"flex": {
+								"width": "300su"
+							}
+						},
+						{
+							"enabled": ["$",
+								["lte", ["aspect"], 0.6]
+							],
+							"flex": {
+								"height": "400su",
+								"width": "300su",
+								"align": "right"
+							}
+						}
+					]
+				}, [
+					["user-asset", {
+						"mute": true,
+						"file": ["$", ["var", "image"]],
+						"justify": "fill center",
+						"breakpoints": [
+							{
+								"enabled": ["$",
+									["and",
+										["lte", ["aspect"], 1],
+										["gte", ["aspect"], 0.6]
+									]
+								],
+								"max-height": "400su",
+								"align": "bottom"
+							}
+						]
+					}]
+				]],
+				["null", {
+					"layout": "vertical packed",
+					"align": "top right",
+					"gap": "20su",
+					"breakpoints": [
+						{
+							"enabled": ["$",
+								["and",
+									["lte", ["aspect"], 1],
+									["gte", ["aspect"], 0.6]
+								]
+							],
+							"align": "bottom right"
+						}
+					]
+				}, [
+					["text", {
+						"stagger": [450, 0],
+						"enabled": ["$", ["exists", ["var", "presenter"]]],
+						"mixins": ["ds-medcerts-mixins", "font-intro-small"],
+						"string": ["$",
+							["concat",
+								"Presented by\n",
+								["var", "presenter"]
+							]
+						],
+						"color": ["$", ["var", "color-primary"]],
+						"justify": "right",
+						"boundary": "word",
+						"animations": [
+							{
+								"translate": [0, "30su"]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+500", 1]
+								],
+								"translate": [0, 0],
+								"opacity": 1,
+								"easing": "easeOutQuad"
+							}
+						]
+					}],
+					["text", {
+						"stagger": [650, 0],
+						"enabled": ["$", ["exists", ["var", "role"]]],
+						"mixins": ["ds-medcerts-mixins", "font-intro-small"],
+						"string": ["$", ["var", "role"]],
+						"color": ["$", ["var", "color-primary"]],
+						"justify": "right",
+						"boundary": "word",
+						"animations": [
+							{
+								"translate": [0, "30su"]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+500", 1]
+								],
+								"translate": [0, 0],
+								"opacity": 1,
+								"easing": "easeOutQuad"
+							}
+						]
+					}],
+					["text", {
+						"stagger": [850, 0],
+						"enabled": ["$", ["exists", ["var", "location"]]],
+						"mixins": ["ds-medcerts-mixins", "font-intro-small"],
+						"string": ["$", ["var", "location"]],
+						"color": ["$", ["var", "color-primary"]],
+						"justify": "right",
+						"boundary": "word",
+						"animations": [
+							{
+								"translate": [0, "30su"]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+500", 1]
+								],
+								"translate": [0, 0],
+								"opacity": 1,
+								"easing": "easeOutQuad"
+							}
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

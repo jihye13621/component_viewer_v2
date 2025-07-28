@@ -1,0 +1,77 @@
+[
+	"ds-gofundme-text",
+	[
+		["dsx-mixins",
+			"text"
+		],
+		["ds-gofundme-mixins",
+			"font-bold"
+		]
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			],
+			"layout": "vertical packed",
+			"align": "bottom",
+			"min-width": "100rw"
+		}, [
+			["null", {
+				"flex": {
+					"position": "fixed"
+				},
+				"padding": [
+					"-100su",
+					0,
+					0,
+					0
+				],
+				"opacity": ["animate",
+					[0, 0],
+					["+500", 1],
+					["100%", 0],
+					["-500", 1]
+				]
+			}, [
+				["solid", {
+					"color": ["linear-gradient",
+						0.0,
+						[0, [0, 0, 0, 0]],
+						[1, [0, 0, 0, 0.5]]
+					]
+				}]
+			]],
+			["text", {
+				"font": ["$", ["var", "font-bold"]],
+				"measure": "letter-size",
+				"height": "60su",
+				"leading": 0.2,
+				"justify": "bottom left",
+				"string": ["$", ["var", "text"]],
+				"color": [1, 1, 1, 1],
+				"animations": [
+					{
+						"translate": [
+							0,
+							"100su"
+						]
+					},
+					{
+						"mix": ["animate",
+							[0, 0],
+							["+500", 1],
+							["100%", 0],
+							["-500", 1]
+						],
+						"easing": "easeOutQuad",
+						"ramp": 2,
+						"opacity": 1,
+						"translate": [0, 0]
+					}
+				]
+			}]
+		]]
+	]
+]

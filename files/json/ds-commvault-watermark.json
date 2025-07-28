@@ -1,0 +1,83 @@
+[
+	"ds-commvault-watermark",
+	[
+		{
+			"key": "color-logo",
+			"display": "Color Logo",
+			"type": "bool",
+			"default": true,
+			"required": false
+		},
+		{
+			"key": "logo",
+			"display": "Logo",
+			"type": "string",
+			"default": "default",
+			"options": [
+				{
+					"key": "default",
+					"display": "Default"
+				},
+				{
+					"key": "cloud",
+					"display": "Cloud"
+				}
+			],
+			"required": false
+		},
+		["dsx-mixins", ["boilerplate"]],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [7, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["shadow", {
+				"max-width": "800nsu",
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"radius": "25su",
+				"color": [0, 0, 0, 0.5]
+			}, [
+				["asset", {
+					"mute": true,
+					"file": ["$",
+						["if", ["var", "color-logo"],
+							["if",
+								["eq", ["var", "logo"], "default"],
+								"./media/ds-commvault-logo-color.svg",
+								"./media/ds-commvault-logo-cloud-color.svg"
+							],
+							["if",
+								["eq", ["var", "logo"], "default"],
+								"./media/ds-commvault-logo.svg",
+								"./media/ds-commvault-logo-cloud.svg"
+							]
+						]
+					],
+					"flex": {
+						"width": "400su",
+						"height": "300su"
+					},
+					"justify": ["$", ["concat", "fit ", ["var", "#align"]]],
+					"opacity": ["animate",
+						[0, 0, "easeOutQuad"],
+						["+350", 1],
+						["100%", 0],
+						["-350", 1, "easeInQuad"]
+					]
+				}]
+			]]
+		]]
+	]
+]

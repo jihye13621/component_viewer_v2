@@ -1,0 +1,57 @@
+[
+	"ds-tubi-prompt",
+	[
+		["dsx-mixins",
+			"prompt"
+		],
+		["ds-tubi-mixins",
+			"color-primary",
+			"font-black"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [5, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["shadow", {
+				"max-width": "800nsu",
+				"align": ["$", ["var", "#align"]],
+				"radius": "8su",
+				"color": [0, 0, 0, 0.5],
+				"offset": [0, "8su"],
+				"opacity": ["animate",
+					[0, 0, "easeOutSine"],
+					["+250", 1],
+					["100%", 0],
+					["-200", 1, "easeInSine"]
+				]
+			}, [
+				["text", {
+					"enabled": ["$", ["exists", ["var", "text"]]],
+					"font": ["$", ["var", "font-black"]],
+					"measure": "cap-size",
+					"case": "uppercase",
+					"height": "60su",
+					"leading": "20su",
+					"string": ["$", ["var", "text"]],
+					"justify": ["$", ["var", "#align"]],
+					"color": ["$", ["var", "color-hello-yellow"]]
+				}]
+			]]
+		]]
+	]
+]

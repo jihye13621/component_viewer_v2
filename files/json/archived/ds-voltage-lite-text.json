@@ -1,0 +1,100 @@
+[
+	"ds-voltage-lite-text",
+	[
+		["dsx-mixins", ["text"]],
+		["ds-voltage-lite-mixins", "color-1", "color-2", "color-3"],
+		["dsx-mixins", ["boilerplate"]],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": 5,
+			"required": false
+		}
+	],
+	[
+		["dsx-background", {
+			"enabled": ["$", ["exists", ["var", "background"]]],
+			"color": ["$", ["var", "background"]]
+		}],
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["solid", {
+				"max-width": "800nsu",
+				"mixins": ["ds-voltage-lite-mixins", ["scale-2step"]],
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"color": ["$", ["rgba-set", ["var", "color-2"], "a", 0.5]],
+				"padding": [
+					"44su",
+					"64su",
+					"54su",
+					"64su"
+				]
+			}, [
+				["text", {
+					"mixins": ["ds-voltage-lite-mixins", ["font-title"]],
+					"string": ["$", ["var", "text"]],
+					"case": "uppercase",
+					"justify": ["$", ["var", "#align"]],
+					"stroke-color": ["$", ["var", "color-3"]],
+					"color": [0, 0, 0, 0],
+					"boundary": "word",
+					"stagger": [0, 0],
+					"animations": [
+						{
+							"stroke": "3su",
+							"scale": 0.5
+						},
+						{
+							"opacity": 1,
+							"mix": ["animate",
+								[0, 0],
+								["+300", 1]
+							],
+							"easing": "round"
+						},
+						{
+							"scale": 0.75,
+							"mix": ["animate",
+								[150, 0],
+								["+300", 1]
+							],
+							"easing": "round"
+						},
+						{
+							"mix": ["animate",
+								[300, 0],
+								["+300", 1]
+							],
+							"easing": "round",
+							"color": ["$", ["var", "color-1"]],
+							"scale": 1,
+							"stroke": 0
+						},
+						{
+							"scale": 0.75,
+							"color": [0, 0, 0, 0],
+							"stroke": "3su",
+							"easing": "round",
+							"mix": ["animate",
+								["100%", null],
+								["-100", 1],
+								["-300", 0]
+							]
+						},
+						{
+							"opacity": 0,
+							"easing": "round",
+							"mix": ["animate",
+								["100%", 1],
+								["-300", 0]
+							]
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

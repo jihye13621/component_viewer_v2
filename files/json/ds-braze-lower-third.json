@@ -1,0 +1,189 @@
+[
+	"ds-braze-lower-third",
+	[
+		["dsx-mixins",
+			"speaker"
+		],
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["justify", "fill"],
+				["motion", "none"]
+			]
+		},
+		["ds-braze-mixins",
+			"font-bold",
+			"font-regular"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [2, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": true,
+				"minimum": -100,
+				"maximum": 100 
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone",
+				"offset"
+			],
+			"layout": "stacked",
+			"align": ["$", ["var", "#align"]]
+		}, [
+			["solid", {
+				"layout": "horizontal packed match",
+				"align": "center",
+				"color": [1, 1, 1, 1],
+				"padding": [
+					"35su",
+					"35su"
+				],
+				"mask": {
+					"radius": "25su",
+					"transform": true,
+					"padding": [
+						0,
+						["animate",
+							[0, "100rw", "easeOutQuint"],
+							["+1000", 0],
+							["100%", "100rw"],
+							["-1000", 0, "easeInQuint"]
+						],
+						0,
+						0
+					]
+				},
+				"transform": [
+					["translate",
+						["animate",
+							[0, "-20rw", "easeOutQuad"],
+							["+1000", 0],
+							["100%", "-20rw"],
+							["-1000", 0, "easeInQuad"]
+						],
+						0
+					]
+				]
+			}, [
+				["null", {
+					"flex": {
+						"width": "500su"
+					},
+					"min-width": "500su",
+					"layout": "vertical packed",
+					"align": "left center",
+					"gap": "15su",
+					"transform": [
+						["translate",
+							["animate",
+								[0, "-200su", "easeOutQuint"],
+								["+1000", 0],
+								["100%", "-200su"],
+								["-1000", 0, "easeInQuint"]
+							],
+							0
+						]
+					]
+				}, [
+					["text", {
+						"enabled": ["$", ["exists", ["var", "name"]]],
+						"font": ["$", ["var", "font-bold"]],
+						"measure": "letter-size",
+						"height": "30su",
+						"leading": "10su",
+						"kerning": -0.02,
+						"color": [0, 0, 0, 1],
+						"string": ["$", ["var", "name"]],
+						"justify": "left center"
+					}],
+					["text", {
+						"enabled": ["$", ["or",
+							["exists", ["var", "detail-1"]],
+							["exists", ["var", "detail-2"]]
+						]],
+						"font": ["$", ["var", "font-regular"]],
+						"measure": "letter-size",
+						"height": "20su",
+						"leading": "10su",
+						"kerning": -0.02,
+						"color": [0, 0, 0, 1],
+						"string": ["$", ["join",
+							["compact", ["array",
+								["var", "detail-1"],
+								["var", "detail-2"]
+							]],
+							", "
+						]],
+						"justify": "left center"
+					}]
+				]],
+				["null", {
+					"rect": [
+						0,
+						0,
+						"200su",
+						"70su"
+					],
+					"transform": [
+						["translate",
+							["animate",
+								[0, "-220su", "easeOutQuint"],
+								["+1000", 0],
+								["100%", "-200su"],
+								["-1000", 0, "easeInQuint"]
+							],
+							0
+						]
+					]
+				}, [
+					["user-asset", {
+						"file": ["$",
+							["if",
+								["exists", ["var", "asset"]],
+								["var", "asset"],
+								"./media/ds-braze-logo.svg"
+							]
+						],
+						"justify": "fit center",
+						"svg-recolor": [0, 0, 0, 1]
+					}]
+				]],
+				["null", {
+					"flex": {
+						"position": "fixed"
+					},
+					"rect": [
+						0,
+						0,
+						"140rh",
+						"140rh"
+					],
+					"align": "left center",
+					"end": 1000
+				}, [
+					["asset", {
+						"file": "./media/ds-braze-supergraphic-1.mov",
+						"justify": "fit center",
+						"slip": 500
+					}]
+				]]
+			]]
+		]]
+	]
+]

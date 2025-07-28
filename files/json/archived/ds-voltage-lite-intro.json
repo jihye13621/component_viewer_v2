@@ -1,0 +1,101 @@
+[
+	"ds-voltage-lite-intro",
+	[
+		{
+			"key": "background-image",
+			"display": "Image",
+			"type": "asset",
+			"default": "./media/ds-impact-bg-1.mp4",
+			"required": false
+		},
+		["dsx-mixins", ["intro"]],
+		["ds-voltage-lite-mixins", "color-1", "color-3"],
+		["dsx-mixins", ["boilerplate"]]
+	],
+	[
+		["asset", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]],
+			"file": ["$", ["var", "background-image"]],
+			"justify": "fill center",
+			"loop": true
+		}, [
+			["null", {
+				"breakpoints": [
+					{
+						"enabled": ["$", ["exists", ["var", "subhead"]]],
+						"end": "50%"
+					}
+				]
+			}, [
+				["text", {
+					"max-width": "1000nsu",
+					"mixins": ["ds-voltage-lite-mixins", ["font-display"]],
+					"string": ["$", ["var", "headline"]],
+					"justify": "center",
+					"align": "center",
+					"case": "uppercase",
+					"stroke-color": ["$", ["var", "color-3"]],
+					"color": [0, 0, 0, 0],
+					"boundary": "word",
+					"animations": [
+						{
+							"stroke": "3su"
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+500", 1],
+								["100%", 0],
+								["-300", 1]
+							],
+							"easing": "round",
+							"color": ["$", ["var", "color-1"]],
+							"stroke": 0
+						}
+					],
+					"transform": [
+						["scale",
+							["animate",
+								[0, 2, "holdIn"],
+								[100, 1.8, "holdIn"],
+								[170, 1.2, "holdIn"],
+								[250, 1, "holdIn"]
+							]
+						]
+					]
+				}]
+			]],
+			["null", {
+				"enabled": ["$", ["exists", ["var", "subhead"]]],
+				"start": "50%"
+			}, [	
+				["text", {
+					"mixins": ["ds-voltage-lite-mixins", ["font-intro-subhead"]],
+					"max-width": "1000nsu",
+					"string": ["$", ["var", "subhead"]],
+					"justify": "center",
+					"align": "center",
+					"stroke-color": ["$", ["var", "color-3"]],
+					"color": [0, 0, 0, 0],
+					"boundary": "word",
+					"animations": [
+						{
+							"stroke": "3su"
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+500", 1],
+								["100%", 0],
+								["-300", 1]
+							],
+							"easing": "round",
+							"color": ["$", ["var", "color-1"]],
+							"stroke": 0
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

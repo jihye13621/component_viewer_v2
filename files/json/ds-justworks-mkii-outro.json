@@ -1,0 +1,115 @@
+[
+	"ds-justworks-mkii-outro",
+	[
+		["dsx-mixins", "text"],
+		["ds-justworks-mkii-mixins",
+			"color-yellow-400",
+			"color-yellow-800",
+			"fonts"
+		],
+		["dsx-mixins", "boilerplate-intro-outro"]
+	],
+	[
+		["solid",{
+			"mixins": ["dsx-mixins", ["set-su", "safezone"]],
+			"color": ["$", ["var", "color-yellow-400"]],
+			"mask": {
+				"padding": [
+					0,
+					["animate",
+						[0, "100rw", "easeInOutQuad"],
+						["+500", 0] 
+					],
+					0,
+					0
+				]
+			}
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"align": "center",
+				"gap": "80su"
+			}, [
+				["asset", {
+					"flex": {
+						"width": "600su"
+					},
+					"file": "./media/ds-justworks-logo.svg",
+					"justify": "fit center",
+					"svg-recolor": ["$", ["var", "color-yellow-800"]]
+				}],
+				["text", {
+					"stagger": [400, 0],
+					"mixins": ["ds-justworks-mkii-mixins", "text"],
+					"font": ["$", ["var", "font-bold"]],
+					"height": "60su",
+					"leading": "20su",
+					"string": "Support for small businesses.",
+					"color": ["$", ["var", "color-yellow-800"]],
+					"align": "center",
+					"justify": "center",
+					"boundary": "word",
+					"animations": [
+						{
+							"scale": 0.9
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+1000", 1]
+							],
+							"ramp": 1,
+							"easing": "easeOutCubic",
+							"scale": 1 
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+1000", 1]
+							],
+							"ramp": 1,
+							"easing": "plateauIn",
+							"opacity": 1 
+						}
+					]
+				}]
+			]],
+			["text", {
+				"enabled": ["$", ["exists", ["var", "text"]]],
+				"stagger": [1000, 0],
+				"mixins": ["ds-justworks-mkii-mixins", "text"],
+				"font": ["$", ["var", "font-bold"]],
+				"height": "40su",
+				"leading": "20su",
+				"string": ["$", ["var", "text"]],
+				"color": ["$", ["var", "color-yellow-800"]],
+				"align": "bottom center", 
+				"justify": "bottom center",
+				"boundary": "line",
+				"animations": [
+					{
+						"scale": 0.9
+					},
+					{
+						"mix": ["animate",
+							[0, 0],
+							["+400", 1]
+						],
+						"ramp": 1,
+						"easing": "easeOutQuad",
+						"scale": 1 
+					},
+					{
+						"mix": ["animate",
+							[0, 0],
+							["+400", 1]
+						],
+						"ramp": 1,
+						"easing": "plateauIn",
+						"opacity": 1 
+					}
+				]
+			}]
+		]]
+	]
+]

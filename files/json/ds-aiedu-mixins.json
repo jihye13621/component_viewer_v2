@@ -1,0 +1,65 @@
+{
+	"params": {
+		"color-primary": {
+			"key": "color-primary",
+			"display": "Primary",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		},
+		"color-secondary": {
+			"key": "color-secondary",
+			"display": "Secondary",
+			"type": "color",
+			"default": "#000000",
+			"required": false
+		},
+		"color-light-green": {
+			"key": "color-light-green",
+			"display": "Accent",
+			"type": "color",
+			"default": "#ACE4E4",
+			"required": false
+		},
+		"color-dark-green": {
+			"key": "color-dark-green",
+			"display": "Accent",
+			"type": "color",
+			"default": "#006464",
+			"required": false
+		},
+		"color-orange": {
+			"key": "color-orange",
+			"display": "Accent",
+			"type": "color",
+			"default": "#F5501C",
+			"required": false
+		},
+		"color-yellow": {
+			"key": "color-yellow",
+			"display": "Accent",
+			"type": "color",
+			"default": "#DBFF00",
+			"required": false
+		},
+		"font-main": {
+			"key": "font-main",
+			"display": "Font Main",
+			"type": "string",
+			"default": "./media/Poppins-SemiBold.ttf",
+			"required": false,
+			"private": true
+		},
+		"font-alt": {
+			"key": "font-alt",
+			"display": "Font Alt",
+			"type": "string",
+			"default": "./media/OpenSans-Regular.ttf",
+			"required": false,
+			"private": true
+		}
+	},
+	"text": {
+		"measure": "letter-size"
+	}
+}

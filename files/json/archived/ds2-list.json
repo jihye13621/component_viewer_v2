@@ -1,0 +1,236 @@
+[
+	"ds2-list",
+	[
+		{
+			"key": "item-1",
+			"display": "Item 1",
+			"type": "text",
+			"default": "Add a list item",
+			"required": false
+		},
+		{
+			"key": "item-2",
+			"display": "Item 2",
+			"type": "text",
+			"default": "Add a second list item",
+			"required": false
+		},
+		{
+			"key": "item-3",
+			"display": "Item 3",
+			"type": "text",
+			"default": "Add a third list item",
+			"required": false
+		},
+		{
+			"key": "font-1",
+			"display": "Font",
+			"type": "fontstyle",
+			"default": {
+				"font": "./media/Inter-SemiBold.ttf",
+				"height": 40
+			},
+			"required": false,
+			"script": ["$",
+				["key-set",
+					["var", "font-1"],
+					"height",
+					["round", ["*", ["var", "size"], ["var", "font-1", "height"]]]
+				]
+			]
+		},
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": [0, 0, 0, 1],
+			"required": false
+		},
+		{
+			"key": "color-2",
+			"display": "Color 2",
+			"type": "color",
+			"default": [1, 1, 1, 1],
+			"required": false
+		},
+		{
+			"key": "color-3",
+			"display": "Color 3",
+			"type": "color",
+			"default": "#9539F0",
+			"required": false
+		},
+		{
+			"key": "background",
+			"display": "Background",
+			"type": "color",
+			"default": null,
+			"required": false
+		},
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": 2,
+			"required": false
+		},
+		{
+			"key": "size",
+			"display": "Size",
+			"type": "number",
+			"default": 1.0,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"step": 0.05,
+				"minimum": 0.5,
+				"maximum": 1.5
+			}
+		},
+		{
+			"key": "#align",
+			"type": "string",
+			"default": "center",
+			"required": false,
+			"private": true,
+			"script": ["$", ["switch", ["var", "position"], {
+				"1": "bottom left",
+				"2": "bottom center",
+				"3": "bottom right",
+				"4": "left",
+				"5": "center",
+				"6": "right",
+				"7": "top left",
+				"8": "top center",
+				"9": "top right",
+				"_": "center"
+			}]]
+		}
+	],
+	[
+		["dsx-background", {
+			"enabled": ["$", ["exists", ["var", "background"]]],
+			"color": ["$", ["var", "background"]]
+		}],
+		["dsx-padding", {
+			"position": ["$", ["var", "position"]]
+		}, [
+			["for-each", {
+				"items": ["$", ["array",
+					["var", "item-1"],
+					["var", "item-2"],
+					["var", "item-3"]
+				]],
+				"layout": "vertical packed",
+				"gap": 15,
+				"clip": true
+			}, [
+				["solid", {
+					"enabled": ["$", ["exists", ["var", "item"]]],
+					"layout": "horizontal packed",
+					"align": "top",
+					"color": ["$", ["var", "color-2"]],
+					"gap": ["$", ["*", 0.4, ["var", "font-1", "height"]]],
+					"padding": [
+						["$", ["*", 0.1, ["var", "font-1", "height"]]],
+						["$", ["*", 0.1, ["var", "font-1", "height"]]],
+						["$", ["*", 0.1, ["var", "font-1", "height"]]],
+						["$", ["*", 0.1, ["var", "font-1", "height"]]]
+					],
+					"opacity": ["animate",
+						[["$", ["*", 200, ["var", "index"]]], 0, "easeOutQuad"],
+						["+500", 1],
+						["100%", null],
+						[["$", ["to-relative-string", ["*", -200, ["var", "index"]]]], 0],
+						["-300", 1, "easeInQuad"]
+					],
+					"mask": {
+						"padding": [
+							0,
+							["animate",
+								[["$", ["*", 200, ["var", "index"]]], "100rw", "easeOutQuad"],
+								["+500", 0],
+								["100%", null],
+								[["$", ["to-relative-string", ["*", -200, ["var", "index"]]]], "100rw"],
+								["-300", 0, "easeInQuad"]
+							],
+							0,
+							0
+						],
+						"radius": ["$", 
+							["*", 1.5, 0.5, ["var", "font-1", "height"]]
+						]
+					},
+					"radius": ["$", 
+						["*", 1.5, 0.5, ["var", "font-1", "height"]]
+					]
+				}, [
+					["solid", {
+						"color": ["$", ["var", "color-3"]],
+						"z-index": 1,
+						"flex": {
+							"width": ["$", ["*", 1.3, ["var", "font-1", "height"]]],
+							"height": ["$", ["*", 1.3, ["var", "font-1", "height"]]]
+						},
+						"radius": ["$", ["*", 1.3, 0.5, ["var", "font-1", "height"]]],
+						"transform": [
+							["scale",
+								["animate",
+									[["$", ["+", 100, ["*", 200, ["var", "index"]]]], 0, "easeOutQuad"],
+									["+500", 1],
+									["100%", null],
+									[["$", ["to-relative-string", ["-", -100, ["*", 200, ["var", "index"]]]]], 0],
+									["-300", 1, "easeInQuad"]
+								]
+							]
+						]
+					}, [
+						["text", {
+							"justify": "center",
+							"string": ["$", ["+", 1, ["var", "index"]]],
+							"style": ["$", ["var", "font-1"]],
+							"color": ["$", ["var", "color-2"]]
+						}]
+					]],
+					["null", {
+						"layout": "vertical packed",
+						"padding": [
+							["$", ["*", 0.3, 0.5, ["var", "font-1", "height"]]],
+							["$", ["*", 0.3, ["var", "font-1", "height"]]],
+							["$", ["*", 0.3, 0.5, ["var", "font-1", "height"]]],
+							0
+						]
+					}, [
+						["text", {
+							"string": ["$", ["var", "item"]],
+							"style": ["$", ["var", "font-1"]],
+							"color": ["$", ["var", "color-1"]],
+							"boundary": "line",
+							"animations": [
+								{
+									"translate": [
+										["$", ["*", -1.0, ["var", "font-1", "height"]]],
+										0
+									]
+								},
+								{
+									"mix": ["animate",
+										[["$", ["+", 300, ["*", 200, ["var", "index"]]]], 0],
+										["+500", 1],
+										["100%", null],
+										[["$", ["to-relative-string", ["-", -300, ["*", 200, ["var", "index"]]]]], 0],
+										["-300", 1]
+									],
+									"ramp": 0.5,
+									"easing": "easeOutQuad",
+									"opacity": 1,
+									"translate": [0, 0]
+								}
+							]
+						}]
+					]]
+				]]
+			]]
+		]]
+	]
+]

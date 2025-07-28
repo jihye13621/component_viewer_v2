@@ -1,0 +1,72 @@
+[
+	"ds-cashapp-outro",
+	[
+		["ds-cashapp-mixins",
+			"colors",
+			"font-bold"
+		],
+		{
+			"key": "dark-mode",
+			"display": "Dark Mode",
+			"type": "bool",
+			"default": true,
+			"required": false
+		}
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins",
+				"safezone",
+				"set-su"
+			],
+			"color": ["$", ["var", "color-green"]],
+			"breakpoints": [
+				{
+					"enabled": ["$", ["var", "dark-mode"]],
+					"color": ["$", ["var", "color-black"]]
+				}
+			]
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"max-height": "35rh",
+				"align": "center",
+				"breakpoints": [
+					{
+						"enabled": ["$", ["lt", ["aspect"], 1]],
+						"max-height": "15rh"
+					},
+					{
+						"enabled": ["$", ["eq", ["aspect"], 1]],
+						"max-height": "25rh"
+					}
+				]
+			}, [
+				["asset", {
+					"file": "./media/ds-cashapp-logo-white.json",
+					"lottie-driver": 
+						["animate",
+						[0, 0],
+						[
+							["$", ["to-relative-string", ["dur", "./media/ds-cashapp-logo-white.json"]]],
+							1
+						]
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["var", "dark-mode"]],
+							"file": "./media/ds-cashapp-logo-color.json",
+							"lottie-driver": ["animate",
+								[0, 0],
+								[
+									["$", ["to-relative-string", ["dur", "./media/ds-cashapp-logo-color.json"]]],
+									1
+								]
+							]
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

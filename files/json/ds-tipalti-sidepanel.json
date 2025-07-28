@@ -1,0 +1,162 @@
+[
+	"ds-tipalti-sidepanel",
+	[
+		["ds-tipalti-mixins",
+			"text-regular"
+		],
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "textarea",
+			"default": "Add text",
+			"required": false
+		},
+		{
+			"key": "swap",
+			"display": "Swap Sides",
+			"default": false,
+			"type": "bool",
+			"required": false
+		},
+		["dsx-mixins",
+			"boilerplate-intro-outro"
+		]
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su"
+			],
+			"mask": {},
+			"breakpoints": [
+				{
+					"enabled": ["$", [">", ["aspect"], 1]],
+					"rect": [
+						0,
+						0,
+						"33rw",
+						"100rh"
+					]
+				},
+				{
+					"enabled": ["$", ["<=", ["aspect"], 1]],
+					"rect": [
+						0,
+						0,
+						"100rw",
+						"33rh"
+					]
+				},
+				{
+					"enabled": ["$",
+						["and",
+							[">", ["aspect"], 1],
+							["not", ["var", "swap"]]
+						]
+					],
+					"align": "left",
+					"padding": ["$", ["array",
+						["nth", ["safezone"], 0],
+						"80nsu",
+						["nth", ["safezone"], 2],
+						["nth", ["safezone"], 3]
+					]]
+				},
+				{
+					"enabled": ["$",
+						["and",
+							[">", ["aspect"], 1],
+							["var", "swap"]
+						]
+					],
+					"align": "right",
+					"padding": ["$", ["array",
+						["nth", ["safezone"], 0],
+						["nth", ["safezone"], 1],
+						["nth", ["safezone"], 2],
+						"80nsu"
+					]]
+				},
+				{
+					"enabled": ["$",
+						["and",
+							["<=", ["aspect"], 1],
+							["not", ["var", "swap"]]
+						]
+					],
+					"align": "top",
+					"padding": ["$", ["array",
+						["nth", ["safezone"], 0],
+						["nth", ["safezone"], 1],
+						"80nsu",
+						["nth", ["safezone"], 3]
+					]]
+				},
+				{
+					"enabled": ["$",
+						["and",
+							["<=", ["aspect"], 1],
+							["var", "swap"]
+						]
+					],
+					"align": "bottom",
+					"padding": ["$", ["array",
+						"80nsu",
+						["nth", ["safezone"], 1],
+						["nth", ["safezone"], 2],
+						["nth", ["safezone"], 3]
+					]]
+				}
+			]
+		}, [
+			["null", {
+				"flex": {
+					"position": "fixed"
+				},
+				"opacity": ["animate", 
+					[0, 0],
+					["+1000", 0.6]
+				]
+			}, [
+				["solid", {
+					"color": [0, 0, 0, 1]
+				}],
+				["asset", {
+					"file": "./media/ds-tipalti-grid-pattern.svg",
+					"justify": "fill center",
+					"mute": true
+				}]
+			]],
+			["null", {
+				"enabled": ["$", ["exists", ["var", "text"]]],
+				"layout": "stacked",
+				"align": "center left"
+			}, [
+				["text", {
+					"stagger": [1000, 0],
+					"mixins": ["ds-tipalti-mixins",
+						"text-bold"
+					],
+					"string": ["$", ["var", "text"]],
+					"color": ["$", ["var", "white"]],
+					"height": "40su",
+					"justify": "center left",
+					"animations": [
+						{
+							"translate": [0, "40su"]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+1000", 1]
+							],
+							"easing": "easeOutQuad",
+							"translate": [0, 0],
+							"opacity": 1
+						}
+					]
+				}]
+			]]
+		]
+	]]		 
+]

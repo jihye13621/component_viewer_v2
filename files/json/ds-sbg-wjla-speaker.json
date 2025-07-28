@@ -1,0 +1,136 @@
+[
+	"ds-sbg-wjla-speaker",
+	[
+		["dsx-mixins",
+			"speaker"
+		],
+		["ds-sbg-mixins",
+			"color-fg",
+			"color-bg",
+			"color-accent",
+			"font-headline",
+			"font-body"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [1, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["shadow", {
+				"max-width": "800nsu",
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"gap": "40su",
+				"color": [0, 0, 0, 0.6],
+				"radius": "35su",
+				"padding": [
+					"100nsu",
+					"30nsu",
+					"100nsu",
+					0
+				]
+			}, [
+				["text", {
+					"mixins": ["ds-sbg-mixins",
+						"text",
+						"text-headline"
+					],
+					"enabled": ["$", ["exists", ["var", "name"]]],
+					"string": ["$", ["var", "name"]],
+					"height": "70su",
+					"color": ["$", ["var", "color-fg"]],
+					"justify": ["$", ["var", "#align"]],
+					"boundary": "word",
+					"animations": [
+						{
+							"translate": [
+								"100su",
+								0
+							]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+900", 1],
+								["100%", 0],
+								["-500", 1]
+							],
+							"ramp": 1.25,
+							"easing": "easeOutCubic",
+							"opacity": 1,
+							"translate": [0, 0]
+						}
+					]
+				}],
+				["text", {
+					"enabled": ["$",
+						["or",
+							["exists", ["var", "detail-1"]],
+							["exists", ["var", "detail-2"]]
+						]
+					],
+					"stagger": [400, 0],
+					"mixins": ["ds-sbg-mixins",
+						"text",
+						"text-label"
+					],
+					"string": ["$", ["var", "detail-1"]],
+					"height": "40su",
+					"justify": ["$", ["var", "#align"]],
+					"color": ["$", ["var", "color-fg"]],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["exists", ["var", "detail-2"]]],
+							"string": ["$",
+								["concat",
+									["var", "detail-1"],
+									["if",
+										["exists", ["var", "detail-1"]],
+										"\n",
+										""
+									],
+									["var", "detail-2"]
+								]
+							]
+						}
+					],
+					"boundary": "line",
+					"animations": [
+						{
+							"translate": [
+								"80su",
+								0
+							]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+800", 1],
+								["100%", 0],
+								["-500", 1]
+							],
+							"ramp": 1.5,
+							"easing": "easeOutCubic",
+							"opacity": 1,
+							"translate": [0, 0]
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

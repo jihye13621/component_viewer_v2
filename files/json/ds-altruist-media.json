@@ -1,0 +1,116 @@
+[
+	"ds-altruist-media",
+	[
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["gain", 0],
+				["justify", "fit"]
+			],
+			"script": ["$", ["if",
+				["exists", ["var", "asset"]],
+				["var", "asset"],
+				"./media/image-wide.jpg"	
+			]]
+		},
+		["ds-altruist-mixins",
+			"custom-ease",
+			"colors"
+		],
+		{
+			"key": "theme",
+			"display": "Theme",
+			"type": "string",
+			"default": "1",
+			"options": [
+				{
+					"key": "1",
+					"display": "Blue 1"
+				},
+				{
+					"key": "2",
+					"display": "Blue 2"
+				},
+				{
+					"key": "3",
+					"display": "Blue 3"
+				},
+				{
+					"key": "4",
+					"display": "Orange 1"
+				},
+				{
+					"key": "5",
+					"display": "Orange 2"
+				},
+				{
+					"key": "6",
+					"display": "Green"
+				},
+				{
+					"key": "7",
+					"display": "Multicolor"
+				},
+				{
+					"key": "black",
+					"display": "Black"
+				}
+			],
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su-roi"
+			],
+			"transform": [
+				["translate",
+					0,
+					["animate",
+						[0, "100roih", ["$", ["var", "custom-ease"]]],
+						["+1400", 0],
+						["100%", "-100roih"],
+						["-1400", 0, ["$", ["var", "custom-ease"]]]
+					]
+				]
+			],
+			"mask": {
+				"transform": true
+			}
+		}, [
+			["solid", {
+				"enabled": ["$", ["=", ["var", "theme"], "black"]],
+				"color": ["$", ["var", "black"]]
+			}],
+			["asset", {
+				"mixins": ["dsx-mixins",
+					"safezone"
+				],
+				"justify": "fill center",
+				"skip": ["$", ["=", ["var", "theme"], "black"]],
+				"file": ["$",
+					["switch", ["var", "theme"], {
+						"1": "./media/ds-altruist-gradient-1.jpg",
+						"2": "./media/ds-altruist-gradient-2.jpg",
+						"3": "./media/ds-altruist-gradient-3.jpg",
+						"4": "./media/ds-altruist-gradient-4.jpg",
+						"5": "./media/ds-altruist-gradient-5.jpg",
+						"6": "./media/ds-altruist-gradient-6.jpg",
+						"7": "./media/ds-altruist-gradient-7.jpg",
+						"_": "./media/ds-altruist-gradient-1.jpg"
+					}]
+				]
+			}, [
+				["user-asset", {
+					"file": ["$", ["var", "asset"]],
+					"justify": "fit center"
+				}]
+			]]
+		]]
+	]
+]

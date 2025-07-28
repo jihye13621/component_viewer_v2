@@ -1,0 +1,207 @@
+[
+	"ds-salesforce-screenshare",
+	[
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["gain", 0],
+				["justify", "fill"],
+				["motion", "none"]
+			],
+			"script": ["$", ["if",
+				["exists", ["var", "asset"]],
+				["var", "asset"],
+				"./media/image-wide.jpg"	
+			]]
+		},
+		{
+			"key": "backdrop",
+			"display": "Backdrop",
+			"type": "string",
+			"options": [
+				{
+					"key": "desktop",
+					"display": "Desktop"
+				},
+				{
+					"key": "mobile",
+					"display": "Mobile"
+				}
+			],
+			"default": "desktop",
+			"required": false
+		},
+		{
+			"key": "#rect",
+			"display": "Rect",
+			"type": "object",
+			"default": null,
+			"required": false,
+			"private": true,
+			"script": ["$",
+				["if",
+					["eq", ["var", "backdrop"], "desktop"],
+					["'", 672, 672, 1083, 620],
+					["'", 976, 540, 493, 1064]
+				]
+			]
+		},
+		{
+			"key": "#padding",
+			"display": "Padding",
+			"type": "object",
+			"default": null,
+			"required": false,
+			"private": true,
+			"script": ["$",
+				["if",
+					["eq", ["var", "backdrop"], "desktop"],
+					["'", 0, 0, 0, 0],
+					["'", -20, -20, -20, -20]
+				]
+			]
+		},
+		{
+			"key": "#backdrop-asset",
+			"display": "B Asset",
+			"type": "string",
+			"default": null,
+			"required": false,
+			"private": true,
+			"script": ["$",
+				["if",
+					["eq", ["var", "backdrop"], "desktop"],
+					"./media/ds-salesforce-mock-desktop.jpg",
+					"./media/ds-salesforce-mock-mobile.jpg"
+				]
+			]
+		},
+		{
+			"key": "#finder",
+			"display": "Finder",
+			"type": "object",
+			"default": null,
+			"required": false,
+			"private": true,
+			"script": ["$",
+				["rect-subrect-n",
+					["rect-solve",
+						["size", ["var", "#backdrop-asset"]],
+						["dim-to-rect", ["size"]]
+					],
+					["rect-px-to-n",
+						["size", ["var", "#backdrop-asset"]],
+						["var", "#rect"]
+					]
+				]
+			]
+		},
+		{
+			"key": "#scaler",
+			"display": "Scaler",
+			"type": "object",
+			"default": null,
+			"required": false,
+			"private": true,
+			"script": ["$",
+				["rect-zoom",
+					["dim-to-rect", ["size"]],
+					["rect-pad",
+						["var", "#finder"],
+						["var", "#padding"]
+					],
+					"fit"
+				]
+			]
+		},
+		{
+			"key": "#radius",
+			"display": "Radius",
+			"type": "number",
+			"default": 0,
+			"required": false,
+			"private": true,
+			"script": ["$",
+				["if",
+					["eq", ["var", "backdrop"], "desktop"],
+					["/", ["nth", ["var", "#finder"], 2], 200],
+					["/", ["nth", ["var", "#finder"], 2], 7]
+				]
+			]
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-su"]]
+		}, [
+			["null", {
+			}, [
+				["null", {
+					"transform": [
+						["scale",
+							["animate",
+								[0, 1, "easeInOutQuart"],
+								[
+									"+3000",
+									["$", ["key", ["var", "#scaler"], "scale"]]
+								]
+							]
+						],
+						["translate",
+							["animate",
+								[0, 0, "easeInOutQuart"],
+								[
+									"+3000",
+									["$", ["key", ["var", "#scaler"], "x"]]
+								]
+							],
+							["animate",
+								[0, 0, "easeInOutQuart"],
+								[
+									"+3000",
+									["$", ["key", ["var", "#scaler"], "y"]]
+								]
+							]
+						]
+					]
+				}, [
+					["asset", {
+						"file": ["$", ["var", "#backdrop-asset"]],
+						"justify": "fill center"
+					}, [
+						["solid", {
+							"color": [0, 0, 0, 1],
+							"rect": ["$", ["var", "#finder"]],
+							"mask": {
+								"radius": ["$", ["var", "#radius"]]
+							}
+						}, [
+							["user-asset", {
+								"enabled": ["$", ["exists", ["var", "asset"]]],
+								"file": ["$", ["var", "asset"]],
+								"mask": {},
+								"justify": "fit center"
+							}, [
+								["solid", {
+									"enabled": ["$", ["eq", ["var", "backdrop"], "mobile"]],
+									"color": [0, 0, 0, 1],
+									"rect": [
+										"35rw",
+										"1.5rh",
+										"30rw",
+										"4rh"
+									],
+									"radius": 1000
+								}]
+							]]
+						]]
+					]]
+				]]
+			]]
+		]]
+	]
+]

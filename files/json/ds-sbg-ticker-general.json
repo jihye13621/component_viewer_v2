@@ -1,0 +1,47 @@
+[
+	"ds-sbg-ticker-general",
+	[
+		{
+			"key": "category",
+			"display": "Category",
+			"type": "string",
+			"options": [
+				{
+					"key": "breaking",
+					"display": "Breaking News"
+				},
+				{
+					"key": "national",
+					"display": "National News"
+				},
+				{
+					"key": "local",
+					"display": "Local News"
+				},
+				{
+					"key": "world",
+					"display": "World News"
+				},
+				{
+					"key": "weather",
+					"display": "Weather"
+				},
+				{
+					"key": "politics",
+					"display": "Politics"
+				},
+				{
+					"key": "sports",
+					"display": "Sports"
+				}
+			],
+			"default": "national",
+			"required": false
+		}
+	],
+	[
+		["ds-sbg-ticker", {
+			"category": ["$", ["var", "category"]]
+		}]
+	]
+]

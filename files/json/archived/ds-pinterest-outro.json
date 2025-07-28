@@ -1,0 +1,108 @@
+[
+	"ds-pinterest-outro",
+	[
+		{
+			"key": "logo",
+			"display": "Logo",
+			"type": "asset",
+			"default": "./media/ds-pinterest-logo.svg",
+			"required": false
+		},
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "text",
+			"default": "Optional text",
+			"required": false
+		},
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": "#E60023",
+			"required": false
+		},
+		{
+			"key": "color-2",
+			"display": "Color 2",
+			"type": "color",
+			"default": "#FBE3EB",
+			"required": false
+		},
+		["dsx-mixins", ["boilerplate-intro-outro"]]
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-su"]]
+		}, [
+			["solid", {
+				"enabled": ["$", ["exists", ["var", "text"]]],
+				"mixins": ["dsx-mixins", ["safezone"]],
+				"color": ["$", ["var", "color-2"]]
+			}, [
+				["null", {
+					"layout": "vertical packed",
+					"align": "center",
+					"gap": "80su"
+				}, [
+					["asset", {
+						"flex": {
+							"width": "130su",
+							"height": "130su"
+						},
+						"mute": true,
+						"file": ["$", ["var", "logo"]],
+						"justify": "fit center",
+						"transform": [
+							["scale",
+								["animate",
+									[0, 1.7, "easeOutQuint"],
+									["+400", 1]
+								]
+							],
+							["translate",
+								0,	
+								["animate",
+									[500, "100su", "easeInOutCubic"],
+									["+300", 0]
+								]
+							]
+						],
+						"breakpoints": [
+							{
+								"enabled": ["$", ["eq", ["var", "logo"], "./media/ds-pinterest-logo.svg"]],
+								"svg-recolor": ["$", ["var", "color-1"]]
+							}
+						]
+					}],
+					["text", {
+						"enabled": ["$", ["exists", ["var", "text"]]],
+						"mixins": ["ds-pinterest-mixins", ["font-outro"]],
+						"max-width": "1000nsu",
+						"align": "center",
+						"string": ["$", ["var", "text"]],
+						"justify": "center",
+						"color": ["$", ["var", "color-1"]],
+						"boundary": "word",
+						"stagger": [600, 0],
+						"animations": [
+							{
+								"translate": [0, "100su"]
+							},
+							{
+								"mix": ["animate",
+									[0, 0, "easeOutCubic"],
+									["+600", 1]
+								],
+								"translate": [0, 0],
+								"opacity": 1,
+								"ramp": 2,
+								"easing": "easeOutCubic"
+							}
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

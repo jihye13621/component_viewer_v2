@@ -1,0 +1,221 @@
+[
+	"ds-ntv-speaker",
+	[
+		["dsx-mixins",
+			"speaker"
+		],
+		["ds-ntv-mixins",
+			"color-primary",
+			"color-accent",
+			"color-blue-homebase",
+			"font-medium"
+		],
+		{
+			"key": "do-logo",
+			"display": "Logo",
+			"type": "bool",
+			"default": true,
+			"required": false
+		},
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [1, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]],
+			"layout": "horizontal packed",
+			"align": ["$", ["var", "#align"]],
+			"gap": "30su"
+		}, [
+			["asset", {
+				"enabled": ["$", ["var", "do-logo"]],
+				"flex": {
+					"width": "300su"
+				},
+				"file": "./media/ds-ntv-logo-color.svg",
+				"justify": "fit top center",
+				"transform": [
+					["scale",
+						["animate",
+							[0, 0.5, "easeOutQuad"],
+							["+300", 1],
+							["100%", 0.5],
+							["-300", 1, "easeInQuad"]
+						]
+					]
+				],
+				"opacity": ["animate",
+					[0, 0],
+					["+300", 1],
+					["100%", 0],
+					["-300", 1]
+				]
+			}],
+			["null", {
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"max-width": "1200nsu",
+				"gap": "10su"
+			}, [
+				["solid", {
+					"enabled": ["$", ["exists", ["var", "name"]]],
+					"stagger": [150, -50],
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]],
+					"color": ["$", ["var", "color-blue-homebase"]],
+					"padding": ["40su", "30su"],
+					"mask": {
+						"padding": [
+							0,
+							["animate",
+								[0, "100rw", "easeInOutQuad"],
+								["+750", 0],
+								["100%", "100rw"],
+								["-500", 0, "easeInOutQuad"]
+							],
+							0,
+							0
+						]
+					},
+					"breakpoints": [
+						{
+							"enabled": ["$", ["not", ["var", "do-logo"]]],
+							"stagger": [0, 0]
+						}
+					]
+				}, [
+					["text", {
+						"stagger": [300, 0],
+						"measure": "cap-size",
+						"fit": true,
+						"font": ["$", ["var", "font-medium"]],
+						"height": "75su",
+						"case": "uppercase",
+						"string": ["$", ["var", "name"]],
+						"justify": ["$", ["var", "#align"]],
+						"color": ["$", ["var", "color-primary"]],
+						"transform": [
+							["translate",
+								["animate",
+									[0, "100rw", "easeInOutCubic"],
+									["+750", 0]
+								],
+								0
+							],
+							["translate",
+								["animate",
+									[0, "30su", "easeInOutCubic"],
+									["+750", 0]
+								],
+								0
+							]
+						],
+						"breakpoints": [
+							{
+								"enabled": ["$", ["not", ["var", "do-logo"]]],
+								"stagger": [150, 0]
+							}
+						]
+					}]
+				]],
+				["solid", {
+					"enabled": ["$", ["or",
+						["exists", ["var", "detail-1"]],
+						["exists", ["var", "detail-2"]]
+					]],
+					"stagger": [400, -100],
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]],
+					"color": ["$", ["var", "color-accent"]],
+					"padding": ["30su", "30su"],
+					"mask": {
+						"padding": [
+							0,
+							0,
+							0,
+							["animate",
+								[0, "100rw", "easeInOutQuad"],
+								["+750", 0],
+								["100%", "100rw"],
+								["-500", 0, "easeInOutQuad"]
+							]
+						]
+					},
+					"breakpoints": [
+						{
+							"enabled": ["$", ["not", ["var", "do-logo"]]],
+							"stagger": [250, -50]
+						}
+					]
+				}, [
+					["text", {
+						"stagger": [600, 0],
+						"measure": "cap-size",
+						"fit": true,
+						"font": ["$", ["var", "font-medium"]],
+						"height": "65su",
+						"case": "uppercase",
+						"string": ["$",
+							["concat",
+								["if",
+									["exists", ["var", "detail-1"]],
+									["var", "detail-1"],
+									""
+								],
+								["if",
+									["and",
+										["exists", ["var", "detail-1"]],
+										["exists", ["var", "detail-2"]]
+									],
+									", ",
+									""
+								],
+								["if",
+									["exists", ["var", "detail-2"]],
+									["var", "detail-2"],
+									""
+								]
+							]
+						],
+						"justify": ["$", ["var", "#align"]],
+						"color": ["$", ["var", "color-primary"]],
+						"transform": [
+							["translate",
+								["animate",
+									[0, "100rw", "easeInOutCubic"],
+									["+750", 0]
+								],
+								0
+							],
+							["translate",
+								["animate",
+									[0, "30su", "easeInOutCubic"],
+									["+750", 0]
+								],
+								0
+							]
+						],
+						"breakpoints": [
+							{
+								"enabled": ["$", ["not", ["var", "do-logo"]]],
+								"stagger": [450, 0]
+							}
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

@@ -1,0 +1,274 @@
+[
+	"ds-crchd-outro",
+	[
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "text",
+			"default": "",
+			"required": false
+		},
+		{
+			"key": "theme",
+			"display": "Theme",
+			"type": "string",
+			"default": "blue",
+			"required": false,
+			"options": [
+				{
+					"key": "blue",
+					"display": "Blue"
+				},
+				{
+					"key": "dark-blue",
+					"display": "Dark Blue"
+				},
+				{
+					"key": "green",
+					"display": "Green"
+				},
+				{
+					"key": "cranberry",
+					"display": "Cranberry"
+				}
+			]
+		},
+		{
+			"key": "entity",
+			"display": "Entity",
+			"type": "string",
+			"default": "crchd",
+			"options": [
+				{
+					"key": "crchd",
+					"display": "CRCHD"
+				},
+				{
+					"key": "cche",
+					"display": "CCHE"
+				},
+				{
+					"key": "none",
+					"display": "None"
+				}
+			],
+			"required": false
+		},
+		{
+			"key": "do-transition-in",
+			"display": "Transition In",
+			"type": "bool",
+			"default": true,
+			"required": false
+		},
+		{
+			"key": "do-first-slide",
+			"display": "First Slide",
+			"type": "bool",
+			"default": true,
+			"required": false
+		},
+		["dsx-mixins", "boilerplate"],
+		{
+			"key": "#color",
+			"display": "Color",
+			"type": "color",
+			"default": "#007BBD",
+			"required": false,
+			"private": true,
+			"script": ["$", ["switch", ["var", "theme"], {
+				"blue": "#007BBD",
+				"dark-blue": "#1a5e86",
+				"green": "#3c989e",
+				"cranberry": "#bb0e3d",
+				"_": "#007BBD"
+			}]]
+		}
+	],
+	[
+		["null", {
+		}, [
+			["solid", {
+				"enabled": ["$", ["var", "do-transition-in"]],
+				"color": "#ffffff",
+				"stagger": [0, 0],
+				"transform": [
+					["translate",
+						["animate",
+							[0, "-100rw", "easeInOutQuad"],
+							["+400", 0]
+						],
+						0
+					]
+				]
+			}],
+			["solid", {
+				"color": ["$",
+					["if",
+						["var", "do-first-slide"],
+						["var", "#color"],
+						"#14315c"
+					]
+				],
+				"stagger": [100, -100],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["var", "do-transition-in"]],
+						"transform": [
+							["translate",
+								["animate",
+									[0, "-100rw", "easeInOutQuad"],
+									["+400", 0]
+								],
+								0
+							]
+						]
+					}
+				]
+			}],
+			["null", {
+				"enabled": ["$", ["var", "do-first-slide"]],
+				"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]],
+				"stagger": [100, -100],
+				"end": ["$", ["+", ["floor", ["/", ["key", ["comp-timing"], "duration"], 2]], 500]],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["var", "do-transition-in"]],
+						"mask": {
+							"padding": [
+								0,
+								["animate",
+									[0, "100rw", "easeInOutQuad"],
+									["+400", 0]
+								],
+								0,
+								0
+							]
+						}
+					}
+				]
+			}, [
+				["null", {
+					"layout": "vertical packed",
+					"align": "center",
+					"gap": "50su",
+					"transform": [
+						["scale",
+							["animate",
+								[0, 0.95],
+								["100%", 1.0]
+							]
+						]
+					]
+				}, [
+					["asset", {
+						"max-width": "1200su",
+						"mute": true,
+						"file": "./media/ds-crchd-logo-nih.svg",
+						"justify": "fit center left",
+						"align": "center"
+					}],
+					["text", {
+						"enabled": ["$", ["<>", ["var", "entity"], "none"]],
+						"mixins": ["ds-crchd-mixins", "font-watermark"],
+						"height": "50su",
+						"leading": 0.3,
+						"string": ["$",
+							["if",
+								["=", ["var", "entity"], "crchd"],
+								"Center to Reduce Cancer Health Disparities\ncancer.gov/CRCHD",
+								"Center for Cancer Health Equity\ncancer.gov/CCHE"
+							]
+						],
+						"color": "#ffffff",
+						"justify": "center",
+						"breakpoints": [
+							{
+								"enabled": ["$", ["gt", ["aspect"], 1]],
+								"height": "50su"
+							},
+							{
+								"enabled": ["$", ["eq", ["aspect"], 1]],
+								"height": "45su"
+							},
+							{
+								"enabled": ["$", ["lt", ["aspect"], 1]],
+								"height": "40su"
+							}
+						]
+					}]
+				]],
+				["text", {
+					"enabled": ["$", ["exists", ["var", "text"]]],
+					"mixins": ["ds-crchd-mixins", ["font-prompt"]],
+					"string": ["$", ["var", "text"]],
+					"color": "#ffffff",
+					"stagger": [200, -200],
+					"opacity": ["animate",
+						[0, 0],
+						["+400", 1]
+					],
+					"rect": [
+						"5rw",
+						0,
+						"90rw",
+						"200su"
+					],
+					"align": "bottom center",
+					"justify": "bottom center"
+				}]
+			]],
+			["solid", {
+				"start": 500,
+				"color": "#14315c",
+				"opacity": ["animate",
+					[0, 0],
+					["+500", 1]
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["var", "do-first-slide"]],
+						"start": ["$", ["floor", ["/", ["key", ["comp-timing"], "duration"], 2]]]
+					}
+				]
+			}, [
+				["asset", {
+					"file": "./media/ds-crchd-nih-outro.png",
+					"justify": "fit center",
+					"rect": [
+						0,
+						0,
+						"50rw",
+						"50rh"
+					],
+					"align": "center",
+					"transform": [
+						["scale",
+							["animate",
+								[0, 0.95],
+								["100%", 1.0]
+							]
+						]
+					]
+				}]
+			]],
+			["asset", {
+				"file": "./media/ds-crchd-outro-audio.m4a",
+				"start": ["$",
+					["if",
+						["var", "do-first-slide"],
+						["max",
+							0,
+							["-",
+								["key", ["comp-timing"], "duration"],
+								["dur", "./media/ds-crchd-outro-audio.m4a"],
+								200
+							]
+						],
+						200
+					]
+				]
+			}]
+		]]
+	]
+]

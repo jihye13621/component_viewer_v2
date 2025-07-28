@@ -1,0 +1,140 @@
+[
+	"ds-sojern-media",
+	[
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["gain", 0],
+				["justify", "fill"],
+				["motion", "none"]
+			],
+			"script": ["$", ["if",
+				["exists", ["var", "asset"]],
+				["var", "asset"],
+				"./media/image-wide.jpg"	
+			]]
+		},
+		["ds-sojern-mixins",
+			"colors",
+			"darkmode",
+			"fonts"
+		]
+	],
+	[
+		["solid", {
+			"color": ["$", ["var", "#bg"]]
+		}],
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			]
+		}, [
+			["null", {
+				"flex" : {
+					"position": "fixed"
+				},
+				"transform": [
+					["scale",
+						["animate",
+							[0, 1],
+							["100%", 1.025]
+						]
+					]
+				]
+			}, [
+				["null", {
+					"align": "top left",
+					"rect": [0,0,0,0],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["=", ["aspect"], 1]],
+							"transform": [
+								["scale", 0.77]
+							]
+						}
+					]
+				}, [
+					["asset", {
+						"slip": 250,
+						"file": "./media/ds-sojern-triangles-01.mov",
+						"hold": true,
+						"mute": true,
+						"align": "center",
+						"rect": [
+							0,
+							0,
+							"567su",
+							"724su"
+						],
+						"transform": [
+							["translate", 
+								"55su",
+								"60su"
+							]
+						]
+					}]
+				]],
+				["null", {
+					"align": "bottom right",
+					"rect": [0, 0, 0, 0],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["=", ["aspect"], 1]],
+							"transform": [
+								["scale", 0.77]
+							]
+						}
+					]
+				}, [
+					["asset", {
+						"file": "./media/ds-sojern-triangles-03.mov",
+						"hold": true,
+						"mute": true,
+						"align": "center",
+						"rect": [
+							0,
+							0,
+							"567su",
+							"463su"
+						],
+						"transform": [
+							["translate", 
+								"-120su",
+								"-90su"
+							]
+						]
+					}]
+				]]
+			]],
+			["null", {
+				"layout": "vertical packed",
+				"align": "center",
+				"transform": [
+					["scale",
+						["animate",
+							[0, 0.8, "easeOutExpo"],
+							["+800", 1],
+							["100%", 0.8],
+							["-800", 1, "easeInExpo"]
+						]
+					]
+				]
+			}, [
+				["user-asset", {
+					"file": ["$", ["var", "asset"]],
+					"justify": "fill center",
+					"tags": ["b-roll"],
+					"hold": true,
+					"mask": {
+						"radius": "38su"
+					}
+				}]
+			]]
+		]]
+	]
+]

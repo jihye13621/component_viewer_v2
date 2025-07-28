@@ -1,0 +1,125 @@
+[
+	"ds-impactdotcom-callout",
+	[
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "text",
+			"default": "Add text",
+			"required": false
+		},
+		{
+			"key": "anim-direction",
+			"display": "Animate",
+			"type": "string",
+			"default": "left-to-right",
+			"options": [
+				{
+					"key": "none",
+					"display": "None"
+				},
+				{
+					"key": "left-to-right",
+					"display": "Left to Right"
+				},
+				{
+					"key": "right-to-left",
+					"display": "Right to Left"
+				}
+			],
+			"required": false
+		},
+		{
+			"key": "color-red",
+			"display": "Accent",
+			"type": "color",
+			"default": "#fc333f",
+			"required": false
+		},
+		{
+			"key": "color-text",
+			"display": "Text",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		},
+		["ds-impactdotcom-mixins",
+			"font-headline",
+			"font-body"
+		],
+		["dsx-mixins", "boilerplate"],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [9, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-su", "safezone"]]
+		}, [
+			["solid", {
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"color": ["$", ["var", "color-red"]],
+				"padding": [
+					"20su",
+					"60su"
+				],
+				"radius": "30su",
+				"opacity": ["animate",
+					[0, 0, "easeOutQuad"],
+					["+500", 1],
+					["100%", 0],
+					["-500", 1, "easeInQuad"]
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["eq", ["var", "anim-direction"], "left-to-right"]],
+						"transform": [
+							["translate",
+								["animate",
+									[0, "-100su", "easeOutQuad"],
+									["+500", 0],
+									["100%", "100su"],
+									["-500", 0, "easeInQuad"]
+								],
+								0
+							]
+						]
+					},
+					{
+						"enabled": ["$", ["eq", ["var", "anim-direction"], "right-to-left"]],
+						"transform": [
+							["translate",
+								["animate",
+									[0, "100su", "easeOutQuad"],
+									["+500", 0],
+									["100%", "-100su"],
+									["-500", 0, "easeInQuad"]
+								],
+								0
+							]
+						]
+					}
+				]
+			}, [
+				["text", {
+					"mixins": ["ds-impactdotcom-mixins",
+						"text",
+						"text-body"
+					],
+					"color": ["$", ["var", "color-text"]],
+					"string": ["$", ["var", "text"]],
+					"fit": true
+				}]
+			]]
+		]]
+	]
+]

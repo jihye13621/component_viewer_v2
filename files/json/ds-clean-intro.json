@@ -1,0 +1,282 @@
+[
+	"ds-clean-intro",
+	[
+		["dsx-mixins",
+			"intro"
+		],
+		["ds-clean-mixins",
+			"color-primary",
+			"color-secondary",
+			"color-accent",
+			"font-headline",
+			"font-body"
+		],
+		["dsx-mixins",
+			"boilerplate-intro-outro"
+		]
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su"]]
+		}, [
+			["noise", {
+				"time": ["animate",
+					[0, 0],
+					["100%", 3]
+				],
+				"size": [
+					"2rw",
+					"2rw"
+				],
+				"color-1": ["$", ["hue-shift", ["var", "color-accent"], 0.1]],
+				"color-2": ["$", ["hue-shift", ["var", "color-accent"], -0.1]]
+			}],
+			["null", {
+				"mixins": ["dsx-mixins", ["safezone"]]
+			}, [
+				["text", {
+					"enabled": ["$", ["exists", ["var", "headline"]]],
+					"mixins": ["ds-clean-mixins",
+						"text",
+						"text-headline"
+					],
+					"string": ["$", ["var", "headline"]],
+					"justify": "top center",
+					"color": ["$", ["var", "color-primary"]],
+					"fit": true,
+					"transform": [
+						["scale", 1.5],
+						["translate",
+							0,
+							["animate",
+								["24%", null],
+								["-400", "-33ch", "round"],
+								["+200", 0, "round"],
+								["+200", "33ch", "round"],
+								["+200", "66ch", "round"],
+								["+200", "100ch"]
+							]
+						]
+					],
+					"opacity": ["animate",
+						["24%", null],
+						["-400", null],
+						["+100", 0, "easeOutQuad"],
+						["+100", 1, "easeInQuad"],
+						["+100", 0, "easeOutQuad"],
+						["+100", 1, "easeInQuad"],
+						["+100", 0, "easeOutQuad"],
+						["+100", 1, "easeInQuad"],
+						["+100", 0]
+					]
+				}],
+				["text", {
+					"enabled": ["$", ["exists", ["var", "headline"]]],
+					"mixins": ["ds-clean-mixins",
+						"text",
+						"text-headline"
+					],
+					"color": ["$", ["var", "color-primary"]],
+					"string": ["$", ["var", "headline"]],
+					"justify": "top center",
+					"fit": true,
+					"transform": [
+						["scale", 1.5],
+						["translate",
+							0,
+							"16.66667ch"
+						],
+						["translate",
+							0,
+							["animate",
+								["24%", null],
+								["-400", null],
+								["+100", "-33ch", "round"],
+								["+200", 0, "round"],
+								["+200", "33ch", "round"],
+								["+200", "66ch", "round"],
+								["+200", "100ch"]
+							]
+						]
+					],
+					"opacity": ["animate",
+						["24%", null],
+						["-400", null],
+						["+100", null],
+						["+100", 0, "easeOutQuad"],
+						["+100", 1, "easeInQuad"],
+						["+100", 0, "easeOutQuad"],
+						["+100", 1, "easeInQuad"],
+						["+100", 0, "easeOutQuad"],
+						["+100", 1, "easeInQuad"],
+						["+100", 0]
+					]
+				}]
+			]],
+			["null", {
+				"mixins": ["dsx-mixins", ["safezone"]],
+				"enabled": ["$",
+					["or",
+						["exists", ["var", "headline"]],
+						["exists", ["var", "subhead"]]
+					]
+				],
+				"layout": "vertical packed center",
+				"align": "left",
+				"gap": "40su",
+				"start": "29%"
+			}, [
+				["text", {
+					"enabled": ["$", ["exists", ["var", "headline"]]],
+					"mixins": ["ds-clean-mixins",
+						"text",
+						"text-headline"
+					],
+					"string": ["$", ["var", "headline"]],
+					"color": ["$", ["var", "color-primary"]],
+					"justify": ["$", ["var", "#align"]],
+					"boundary": "line",
+					"stagger": [0, -200],
+					"animations": [
+						{
+							"translate": [
+								0,
+								"300su"
+							]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+1000", 1]
+							],
+							"translate": [0, 0],
+							"opacity": 1,
+							"ramp": 2,
+							"easing": "easeOutQuint"
+						},
+						{
+							"mix": ["animate",
+								["100%", 1],
+								["-600", 0]
+							],
+							"translate": [0, "-100su"],
+							"opacity": 0,
+							"easing": "easeInQuart"
+						}
+					],
+					"transform": [
+						["translate", 
+							0,
+							["animate", 
+								[1000, "50rh", "easeInOutCubic"],
+								["+600", 0]
+							]
+						]
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["not", ["exists", ["var", "subhead"]]]],
+							"transform": null
+						}
+					]
+				}],
+				["text", {
+					"enabled": ["$", ["exists", ["var", "subhead"]]],
+					"mixins": ["ds-clean-mixins",
+						"text",
+						"text-title"
+					],
+					"string": ["$", ["var", "subhead"]],
+					"color": ["$", ["var", "color-primary"]],
+					"justify": ["$", ["var", "#align"]],
+					"boundary": "line",
+					"stagger": [1500, 0],
+					"animations": [
+						{
+							"translate": [
+								0,
+								"150su"
+							]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+800", 1]
+							],
+							"translate": [0, 0],
+							"opacity": 1,
+							"ramp": 2,
+							"easing": "easeOutQuint"
+						},
+						{
+							"mix": ["animate",
+								["100%", 1],
+								["-600", 0]
+							],
+							"translate": [0, "-70su"],
+							"opacity": 0,
+							"easing": "easeInQuart"
+						}
+					]
+				}]
+			]],
+			["solid", {
+				"mixins": ["dsx-mixins", ["safezone"]],
+				"duration": "25%",
+				"color": ["$", ["var", "color-secondary"]],
+				"mask": {
+					"invert": true,
+					"radius": "100cw",
+					"padding": [
+						["animate",
+							["40%", "50rh", "easeInOutQuart"],
+							["100%", "-50rh"]
+						],
+						["animate",
+							["40%", "50rw", "easeInOutQuart"],
+							["100%", "-50rw"]
+						],
+						["animate",
+							["40%", "50rh", "easeInOutQuart"],
+							["100%", "-50rh"]
+						],
+						["animate",
+							["40%", "50rw", "easeInOutQuart"],
+							["100%", "-50rw"]
+						]
+					]
+				}
+			}, [
+				["text", {
+					"enabled": ["$", ["exists", ["var", "headline"]]],
+					"mixins": ["ds-clean-mixins",
+						"text",
+						"text-display"
+					],
+					"string": ["$", ["var", "headline"]],
+					"justify": "top left",
+					"color": ["$", ["var", "color-primary"]],
+					"boundary": "line",
+					"animations": [
+						{
+							"translate": [
+								0,
+								"350su"
+							]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["100%", 1]
+							],
+							"translate": [0, 0],
+							"opacity": 1,
+							"ramp": 2,
+							"easing": "easeOutCubic"
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

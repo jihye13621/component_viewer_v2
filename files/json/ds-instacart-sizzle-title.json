@@ -1,0 +1,119 @@
+[
+	"ds-instacart-sizzle-title",
+	[
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "textarea",
+			"default": "$0\nPickup\nFee",
+			"required": false
+		},
+		["ds-instacart-mixins",
+			"colors",
+			"font-sans-800",
+			"theme"
+		]
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins", "safezone", "set-su"],
+			"color": ["$", ["var", "#background"]],
+			"mask": {
+				"transform": true
+			},
+			"transform": [
+				["translate",
+					0,
+					["animate",
+						["100%", "-100rh"],
+						["-500", 0, "easeInCubic"]
+					]
+				]
+			]
+		}, [
+			["null", {
+
+			}, [
+				["null", {
+					"layout": "vertical packed",
+					"align": "center left",
+					"max-width": "1000nsu",
+					"script": ["$$",
+						["let",
+							[
+								["start", ["key", ["var", "self"], "start"]],
+								["end", ["key", ["var", "self"], "end"]],
+								["parent", ["key", ["var", "self"], "parent"]],
+								["target-width", ["key", ["key", ["var", "parent"], "roi"], "width"]],
+								["width", ["key", ["key", ["var", "self"], "roi"], "width"]],
+								["height", ["key", ["key", ["var", "self"], "roi"], "height"]],
+								["factor", ["/", ["var", "target-width"], ["var", "width"]]],
+								["height-factored", ["*", ["var", "height"], ["var", "factor"]]],
+								["animate",
+									["map",
+										["var", "frame"],
+										["+", ["var", "start"], 0],
+										["+", ["var", "end"], 0],
+										0,
+										1
+									]
+								]
+							],
+							["do",
+								["live-transform",
+									["var", "self"],
+									"scale",
+									["var", "factor"],
+									0,
+									"50rh"
+								],
+								["live-transform",
+									["var", "self"],
+									"translate",
+									0,
+									["map",
+										["var", "animate"],
+										0,
+										1,
+										["*", 0.5, ["var", "height-factored"]],
+										["*", -0.5, ["var", "height-factored"]]
+									]
+								]
+							]
+						]
+					]
+				}, [
+					["text", {
+						"stagger": [0, 0],
+						"enabled": ["$", ["exists", ["var", "text"]]],
+						"font": ["$", ["var", "font-sans-800"]],
+						"measure": "letter-size",
+						"height": "100su",
+						"string": ["$", ["var", "text"]],
+						"color": ["$", ["var", "#foreground"]],
+						"justify": "left center",
+						"boundary": "line",
+						"animations": [
+							{
+								"translate": [
+									0,
+									"120su"
+								],
+								"mask": ["-10su", 0, "-10su", 0]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+600", 1]
+								],
+								"translate": [0, 0],
+								"easing": "easeOutCubic",
+								"ramp": 2
+							}
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

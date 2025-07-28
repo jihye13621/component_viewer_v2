@@ -1,0 +1,154 @@
+[
+	"ds-capsule-cta",
+	[
+		["dsx-mixins",
+			"cta"
+		],
+		["ds-capsule-mixins",
+			"color-secondary",
+			"color-accent",
+			"font-body"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [9, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"layout": "horizontal packed match",
+				"max-width": "800nsu",
+				"align": ["$", ["var", "#align"]],
+				"padding": [
+					"50su",
+					"60su"
+				],
+				"gap": "40su",
+				"mask": {
+					"radius": "40su",
+					"rect": [
+						0,
+						0,
+						["animate",
+							[500, "180su", "easeInOutCubic"],
+							["+500", "100rw", "easeInOutCubic"],
+							["100%", null],
+							["-350", "180su"],
+							["-500", "100rw", "easeInOutCubic"]
+						],
+						"100rh"
+					]
+				},
+				"transform": [
+					["scale",
+						["animate",
+							[0, 0, "easeOutCubic"],
+							[350, 1],
+							["100%", 0],
+							["-350", 1, "easeInCubic"]
+						],
+						"80su",
+						"50rh"
+					]
+				]
+			}, [
+				["solid", {
+					"flex": {
+						"position": "fixed"
+					},
+					"color": ["$", ["var", "color-accent"]],
+					"stroke": "7su",
+					"stroke-color": ["$", ["var", "color-secondary"]],
+					"radius": "40su",
+					"rect": [
+						0,
+						0,
+						["animate",
+							[500, "180su", "easeInOutCubic"],
+							["+500", "100rw", "easeInOutCubic"],
+							["100%", null],
+							["-350", "180su"],
+							["-500", "100rw", "easeInOutCubic"]
+						],
+						"100rh"
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["eq", ["var", "icon"], "none"]],
+							"rect": [
+								0,
+								0,
+								["animate",
+									[500, "100rh", "easeInOutCubic"],
+									["+500", "100rw", "easeInOutCubic"],
+									["100%", null],
+									["-350", "100rh"],
+									["-500", "100rw", "easeInOutCubic"]
+								],
+								"100rh"
+							]
+						}
+					]
+				}],
+				["dsx-icon", {
+					"enabled": ["$", ["neq", ["var", "icon"], "none"]],
+					"min-height": "60su",
+					"flex": {
+						"shrink": true,
+						"width": "60su",
+						"height": "60su"
+					},
+					"padding": [
+						"5su",
+						0
+					],
+					"color": ["$", ["var", "color-secondary"]],
+					"justify": "fit top center",
+					"icon": ["$", ["var", "icon"]]
+				}],
+				["null", {
+					"enabled": ["$", ["exists", ["var", "text"]]],
+					"min-height": "60su",
+					"layout": "vertical packed",
+					"align": "center"
+				}, [
+					["text", {
+						"mixins": ["ds-capsule-mixins",
+							"text",
+							"text-label"
+						],
+						"color": ["$", ["var", "color-secondary"]],
+						"string": ["$", ["var", "text"]],
+						"justify": "top left",
+						"boundary": "word",
+						"animations": [
+							{
+								"mix": ["animate",
+									[500, 0],
+									["+500", 1],
+									["100%", null],
+									["-500", 0],
+									["-500", 1]
+								],
+								"opacity": 1
+							}
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

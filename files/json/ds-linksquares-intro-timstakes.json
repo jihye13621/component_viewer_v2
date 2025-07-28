@@ -1,0 +1,114 @@
+[
+	"ds-linksquares-intro-timstakes",
+	[
+		{
+			"key": "text",
+			"display": "Title",
+			"type": "text",
+			"default": "Episode Title",
+			"required": false
+		},
+		["ds-linksquares-mixins",
+			"color-primary"
+		],
+		["dsx-mixins", ["boilerplate-intro-outro"]]
+	],
+	[
+		["asset", {
+			"file": "./media/ds-linksquares-intro-timtakes-audio.mp3",
+			"gain-dopesheet": [
+				[
+					["$",
+						["-", 
+							["+",
+								["key", ["comp-timing"], "start"],
+								["min",
+									["dur", "./media/ds-linksquares-intro-timtakes-audio.mp3"],
+									["key", ["comp-timing"], "duration"]
+								]
+							],
+						1000
+					]],
+					0
+				],
+				[
+					["$",
+						["+",
+							["key", ["comp-timing"], "start"],
+							["min",
+								["dur", "./media/ds-linksquares-intro-timtakes-audio.mp3"],
+								["key", ["comp-timing"], "duration"]
+							]
+						]
+					],
+					-96
+				]
+			]
+		}],
+		["asset", {
+			"file": "./media/ds-linksquares-intro-timsTakes1.mp4",
+			"justify": "fill",
+			"breakpoints": [
+				{
+					"enabled": ["$", ["lt", ["aspect"], 1.1]],
+					"justify": "fill bottom left"
+				}
+			]
+		}],
+		["asset", {
+			"start": ["$", ["dur", "./media/ds-linksquares-intro-timsTakes1.mp4"]],
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]],
+			"file": "./media/ds-linksquares-intro-timsTakes2.mp4",
+			"justify": "fill",
+			"loop": true
+		}, [
+			["shadow", {
+				"max-width": "1200nsu",
+				"layout": "vertical packed center",
+				"align": "left center",
+				"color": ["$", ["rgba-set", "000000", "a", 0.4]],
+				"radius": "15su",
+				"breakpoints": [
+					{
+						"enabled": ["$", ["gt", ["aspect"], 1.5]],
+						"padding": [
+							0,
+							"100su"
+						]
+					}
+				]
+			}, [
+				["text", {
+					"enabled": ["$", ["exists", ["var", "text"]]],
+					"mixins": ["ds-linksquares-mixins",
+						"text"
+					],
+					"stagger": [300, 0],
+					"measure": "cap-size",
+					"string": ["$", ["var", "text"]],
+					"font": "./media/GT-America-Extended-Medium.otf",
+					"height": "75su",
+					"leading": "20su",
+					"kerning": 0.01,
+					"justify": "left center",
+					"case": "uppercase",
+					"color": ["$", ["var", "color-primary"]],
+					"boundary": "word",
+					"opacity": ["animate",
+						[0, 0, "easeOutSine"],
+						["+1000", 1]
+					],
+					"transform": [
+						["translate",
+							["animate",
+								[0, "-50su", "easeOutQuad"],
+								["+500", 0]
+							],
+							0
+						]
+					]
+				}]
+			]]
+		]]
+	]
+]

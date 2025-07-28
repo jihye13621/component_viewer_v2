@@ -1,0 +1,125 @@
+[
+	"ds-ffao-watermark",
+	[
+		["ds-ffao-mixins",
+			"theme-selector"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [7, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			]
+		}, [
+			["null", {
+				"layout": "stacked",
+				"align": "top left",
+				"max-width": "300su",
+				"mask": {
+					"padding": [
+						0,
+						0,
+						0,
+						["animate",
+							["100%", "100rw"],
+							["-500", 0, "easeInOutQuad"]
+						]
+					]
+				}
+			}, [
+				["null", {
+					"flex": {
+						"position": "fixed"
+					},
+					"buffer": "knockout-1",
+					"end": 700
+				}, [
+					["solid", {
+						"stagger": [200, 0],
+						"color": [1, 1, 1, 1],
+						"path": [
+							[0, 0],
+							["50rh", "50rh"],
+							[0, "100rh"],
+							["-100rw", "100rh"],
+							["-100rw", 0]
+						],
+						"transform": [
+							["translate",
+								["animate",
+									[0, "-50rh", "easeInOutQuad"],
+									["+500", "100rw"]
+								],
+								0
+							]
+						]
+					}]
+				]],
+				["solid", {
+					"flex": {
+						"position": "fixed"
+					},
+					"end": 700,
+					"color": ["$", ["nth", ["var", "#theme"], 0]],
+					"path": [
+						[0, 0],
+						["50rh", "50rh"],
+						[0, "100rh"],
+						["-100rw", "100rh"],
+						["-100rw", 0]
+					],
+					"transform": [
+						["translate",
+							["animate",
+								[0, "-50rh", "easeInOutQuad"],
+								["+500", "100rw"]
+							],
+							0
+						]
+					]
+				}],
+				["solid", {
+					"color": ["$", ["nth", ["var", "#theme"], 2]],
+					"padding": [
+						"30su",
+						"30su"
+					],
+					"layout": "stacked",
+					"align": "top left",
+					"effect": [
+						["matte", {
+							"end": 700,
+							"buffer-in": "knockout-1"
+						}]
+					]
+				}, [
+					["asset", {
+						"file": "./media/ds-ffao-logo-white.svg",
+						"justify": "fit top left",
+						"effect": [
+							["false-color", {
+								"color-1": ["$", ["nth", ["var", "#theme"], 0]],
+								"color-2": ["$", ["nth", ["var", "#theme"], 1]]
+							}]
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

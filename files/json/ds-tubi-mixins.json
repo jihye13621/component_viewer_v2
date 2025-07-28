@@ -1,0 +1,122 @@
+{
+	"params": {
+		"color-primary": [
+			{
+				"key": "color-deep-purple",
+				"display": "Deep Purple",
+				"type": "color",
+				"default": "#45009D",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "color-vibrant-violet",
+				"display": "Vibrant Violet",
+				"type": "color",
+				"default": "#8C00E5",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "color-hello-yellow",
+				"display": "Hello Yellow",
+				"type": "color",
+				"default": "#FFFF13",
+				"required": false,
+				"private": true
+			}
+		],
+		"color-secondary": [
+			{
+				"key": "color-white",
+				"display": "White",
+				"type": "color",
+				"default": "#FFFFFF",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "color-off-white",
+				"display": "Off White",
+				"type": "color",
+				"default": "#F6F6F6",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "color-gray",
+				"display": "Gray",
+				"type": "color",
+				"default": "#E4E3EC",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "color-dark-purple",
+				"display": "Dark Purple",
+				"type": "color",
+				"default": "#0B0019",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "color-screen-violet",
+				"display": "Screen Violet",
+				"type": "color",
+				"default": "#53008B",
+				"required": false,
+				"private": true
+			}
+		],
+		"font-thin": {
+			"key": "font-thin",
+			"display": "Font Thin",
+			"type": "string",
+			"default": "./media/TubiStansVariable-20.ttf",
+			"required": false,
+			"private": true
+		},
+		"font-light": {
+			"key": "font-light",
+			"display": "Font Light",
+			"type": "string",
+			"default": "./media/TubiStansVariable-50.ttf",
+			"required": false,
+			"private": true
+		},
+		"font-medium": {
+			"key": "font-medium",
+			"display": "Font Medium",
+			"type": "string",
+			"default": "./media/TubiStansVariable-100.ttf",
+			"required": false,
+			"private": true
+		},
+		"font-bold": {
+			"key": "font-bold",
+			"display": "Font Bold",
+			"type": "string",
+			"default": "./media/TubiStansVariable-150.ttf",
+			"required": false,
+			"private": true
+		},
+		"font-black": {
+			"key": "font-black",
+			"display": "Font Black",
+			"type": "string",
+			"default": "./media/TubiStansVariable-190.ttf",
+			"required": false,
+			"private": true
+		}
+	},
+	"text": {
+		"measure": "letter-size"
+	},
+	"bg-gradient": {
+		"color": ["linear-gradient",
+			0.54167,
+			[0, ["$", ["var", "color-deep-purple"]]],
+			[1, ["$", ["var", "color-vibrant-violet"]]]
+		]
+	}
+}

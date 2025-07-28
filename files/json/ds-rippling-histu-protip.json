@@ -1,0 +1,318 @@
+[
+	"ds-rippling-histu-protip",
+	[
+		{
+			"key": "headline",
+			"display": "Headline",
+			"type": "text",
+			"default": "Pro Tip",
+			"required": false
+		},
+		{
+			"key": "subhead",
+			"display": "Subhead",
+			"type": "text",
+			"default": "Sed do eiusmod tempor incididunt ut.",
+			"required": false
+		},
+		["ds-rippling-histu-mixins",
+			"colors",
+			"text-medium",
+			"text-bold"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [2, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": true,
+				"minimum": -100,
+				"maximum": 100
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone",
+				"offset"
+			]
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"transform": [
+					["translate",
+						0,
+						["animate", 
+							["100%", "200rh"],
+							["-500", "-50su", "easeInOutQuart"],
+							["-200", 0, "easeOutQuad"]
+						]
+					]
+				]
+			}, [
+				["null", {
+					"layout": "stacked",
+					"mask": {
+						"path": [
+							[0, "50su"],
+							["50su", 0],
+							["100rw", 0],
+							["100rw", "100rh"],
+							[0, "100rh"]
+						],
+						"padding": [
+							["animate",
+								[0, "50rh", "easeOutQuint"],
+								["+600", 0]
+							],
+							0,
+							["animate",
+								[0, "50rh", "easeOutQuint"],
+								["+600", 0]
+							],
+							0
+						]
+					}
+				}, [
+					["null", {
+						"layout": "stacked",
+						"mask": {
+							"transform": true,
+							"path": [
+								[0, "50su"],
+								["50su", 0],
+								["100rw", 0],
+								["100rw", "100rh"],
+								[0, "100rh"]
+							],
+							"padding": [
+								["animate",
+									[0, "50rh", "easeOutQuint"],
+									["+600", 0]
+								],
+								0,
+								["animate",
+									[0, "50rh", "easeOutQuint"],
+									["+600", 0]
+								],
+								0
+							]
+						},
+						"transform": [
+							["rotate", 0.5]
+						]
+					}, [
+						["solid", {
+							"layout": "vertical packed",
+							"color": ["$", ["rgba-set", ["var", "maroon"], "a", 0.8]],
+							"gap": "50su",
+							"max-width": "1500su",
+							"padding": [
+								"50su",
+								"250su"
+							],
+							"transform": [
+								["rotate", 0.5]
+							],
+							"breakpoints": [
+								{
+									"enabled": ["$", ["<=", ["aspect"], 1]],
+									"padding": [
+										"50su",
+										"150su"
+									]
+								}
+							]
+						}, [
+							["null", {
+								"flex": {
+									"position": "fixed"
+								},
+								"effect": [
+									["compose", {
+									}],
+									["blur", {
+										"radius": "5su"
+									}]
+								]
+							}],
+							["null", {
+								"flex": {
+									"position": "fixed"
+								}
+							}, [
+								["solid", {
+									"stagger": [150, 0],
+									"align": "bottom left",
+									"color": ["linear-gradient",
+										-0.25,
+										[0.0, ["$", ["var", "gold"]]],
+										[1.0, ["$", ["var", "salmon"]]]
+									],
+									"rect": [
+										0,
+										0,
+										"50su",
+										"50su"
+									],
+									"path": [
+										[0, 0],
+										["50rh", "50rh"],
+										[0, "100rh"],
+										["-15rh", "85rh"],
+										["20rh", "50rh"],
+										["-15rh", "15rh"]
+									],
+									"transform": [
+										["rotate", 
+											0.375,
+											"50rw",
+											"50rh"
+										],
+										["scale", 
+											["animate",
+												[0, 0, "easeOutQuart"],
+												["+500", 1]
+											],
+											"100rw",
+											0
+										],
+										["translate", 
+											["animate",
+												[0, "50su", "easeOutQuart"],
+												["+500", 0]
+											],
+											["animate",
+												[0, "-50su", "easeOutQuart"],
+												["+500", 0]
+											]
+										]	
+									]
+								}],
+								["solid", {
+									"stagger": [150, 0],
+									"align": "top right",
+									"color": ["linear-gradient",
+										-0.25,
+										[0.0, ["$", ["var", "gold"]]],
+										[1.0, ["$", ["var", "salmon"]]]
+									],
+									"rect": [
+										0,
+										0,
+										"50su",
+										"50su"
+									],
+									"path": [
+										[0, 0],
+										["50rh", "50rh"],
+										[0, "100rh"],
+										["-15rh", "85rh"],
+										["20rh", "50rh"],
+										["-15rh", "15rh"]
+									],
+									"transform": [
+										["rotate", 
+											0.875,
+											"50rw",
+											"50rh"
+										],
+										["scale", 
+											["animate",
+												[0, 0, "easeOutQuart"],
+												["+500", 1]
+											],
+											0,
+											"100rh"
+										],
+										["translate", 
+											["animate",
+												[0, "-50su", "easeOutQuart"],
+												["+500", 0]
+											],
+											["animate",
+												[0, "50su", "easeOutQuart"],
+												["+500", 0]
+											]
+										]	
+									]
+								}]
+							]],
+							["null", {
+								"layout": "vertical packed",
+								"align": "left",
+								"justify": "left",
+								"gap": "20su"
+							}, [
+								["text", {
+									"stagger": [200, 0],
+									"enabled": ["$", ["exists", ["var", "headline"]]],
+									"font": ["$", ["var", "text-bold"]],
+									"measure": "cap-size",
+									"justify": "left",
+									"case": "uppercase",
+									"height": "38su",
+									"kerning": 0.03,
+									"string": ["$", ["var", "headline"]],
+									"color": ["$", ["var", "gold"]],
+									"mask": {
+										"padding": [
+											"-10su",
+											"-10su"
+										]
+									},
+									"transform": [
+										["translate",
+											0,
+											["animate",
+												[0, "150rh", "easeOutQuint"],
+												["+600", 0]
+											]
+										]
+									]
+								}],
+								["text", {
+									"stagger": [250, 0],
+									"enabled": ["$", ["exists", ["var", "subhead"]]],
+									"font": ["$", ["var", "text-medium"]],
+									"measure": "letter-size",
+									"height": "45su",
+									"leading": "5su",
+									"kerning": 0.03,
+									"string": ["$", ["var", "subhead"]],
+									"justify": "left",
+									"color": ["$", ["var", "color-primary"]],
+									"boundary": "line",
+									"animations": [
+										{
+											"mask": [0, 0, "-10su", 0],
+											"translate": [0, "75su"]
+										},
+										{
+											"mix": ["animate",
+												[0, 0],
+												["+600", 1]
+											],
+											"easing": "easeOutQuint",
+											"ramp": 3,
+											"translate": [0, 0]
+										}
+									]
+								}]
+							]]
+						]]
+					]]
+				]]
+			]]
+		]]
+	]
+]

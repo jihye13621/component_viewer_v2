@@ -1,0 +1,60 @@
+[
+	"ds-sbg-crimobs-watermark",
+	[
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "do-animated",
+			"display": "Animated Logo",
+			"type": "bool",
+			"default": true,
+			"required": false
+		},
+		["ds-sbg-mixins", "do-safezone"],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [9, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": true,
+				"minimum": -100,
+				"maximum": 100
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins":[
+				["dsx-mixins",
+					"set-su",
+					"offset"
+				],
+				["ds-sbg-mixins",
+					"watermark-safezone"
+				]
+			]
+		}, [
+			["asset", {
+				"rect": [
+					0,
+					0,
+					"350su",
+					"200su"
+				],
+				"file": ["$",
+					["if", ["var", "do-animated"],
+						"./media/ds-sbg-crimobs-logo-animated.mov",
+						"./media/ds-sbg-crimobs-logo.png"
+					]
+				],
+				"align": ["$", ["var", "#align"]],
+				"justify": ["$", ["concat", "fit ", ["var", "#align"]]],
+				"hold": true
+			}]
+		]]
+	]
+]

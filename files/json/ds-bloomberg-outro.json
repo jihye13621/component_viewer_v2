@@ -1,0 +1,153 @@
+[
+	"ds-bloomberg-outro",
+	[
+		{
+			"key": "logo",
+			"display": "Logo",
+			"type": "string",
+			"options": [
+				{
+					"key": "logo-1",
+					"display": "Bloomberg Industry Group"
+				},
+				{
+					"key": "logo-2",
+					"display": "Bloomberg Law"
+				},
+				{
+					"key": "logo-3",
+					"display": "Bloomberg Tax & Accounting"
+				},
+				{
+					"key": "logo-4",
+					"display": "Bloomberg Government"
+				}
+			],
+			"default": "logo-1",
+			"required": false
+		},
+		["ds-bloomberg-mixins", "color-1", "color-2"],
+		["dsx-mixins", ["boilerplate"]],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [5, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		},
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "string",
+			"default": "",
+			"script": ["$", ["switch", ["var", "logo"], {
+				"logo-1": "bloombergindustry.com",
+				"logo-2": "pro.bloomberglaw.com",
+				"logo-2s": "pro.bloomberglaw.com",
+				"logo-3": "pro.bloombergtax.com",
+				"logo-4": "about.bgov.com",
+				"_": ""
+			}]],
+			"required": false,
+			"private": true
+		}
+	],
+	[
+		["solid", {
+			"enabled": ["$", ["not", ["exists", ["var", "background"]]]],
+			"color": ["$", ["var", "color-1"]]
+		}],
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"max-width": "800nsu",
+				"align": ["$", ["var", "#align"]],
+				"breakpoints": [
+					{
+						"enabled": ["$", 
+							["gte",
+								["aspect"],
+								1.1
+							]
+						],
+						"max-width": "1200su"
+					}
+				]
+			}, [
+				["null", {
+					"layout": "vertical packed",
+					"align": "left center",
+					"gap": "60su"
+				}, [
+					["asset", {
+						"mute": true,
+						"file": ["$", ["concat",
+							"./media/ds-bloomberg-",
+							["var", "logo"],
+							".svg"
+						]],
+						"flex": {
+							"width": "700su",
+							"height": "700su"
+						},
+						"justify": "fit left center",
+						"opacity": ["animate",
+							[0, 0],
+							["+350", 1],
+							["100%", 0],
+							["-350", 1]
+						],
+						"svg-recolor": ["$", ["var", "color-2"]],
+						"breakpoints": [
+							{
+								"enabled": ["$", 
+									["gte",
+										["aspect"],
+										1.1
+									]
+								],
+								"flex": {
+									"width": "1200su",
+									"height": "1000su"
+								}
+							}
+						]
+					}],
+					["text", {
+						"mixins": ["ds-bloomberg-mixins", "font-h2"],
+						"string": ["$", ["var", "text"]],
+						"color": ["$", ["var", "color-2"]],
+						"justify": ["$", ["var", "#align"]],
+						"boundary": "line",
+						"stagger": [150, -150],
+						"animations": [
+							{
+								"translate": [
+									0,
+									"70su"
+								]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									[650, 1],
+									["100%", 0],
+									["-500", 1]
+								],
+								"easing": "easeOutCubic",
+								"translate": [0, 0],
+								"opacity": 1
+							}
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

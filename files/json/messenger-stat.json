@@ -1,0 +1,200 @@
+[
+	"messenger-stat",
+	[
+		{
+			"key": "name",
+			"display": "Name",
+			"type": "text",
+			"default": "Name Namerson",
+			"required": false
+		},
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "textarea",
+			"default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+			"required": false
+		},
+		{
+			"key": "font-1",
+			"display": "Style 1",
+			"type": "fontstyle",
+			"default": {
+				"font": "./media/TiemposHeadline-Semibold.otf",
+				"height": 60,
+				"leading": -0.0667
+			},
+			"required": false
+		},
+		{
+			"key": "font-2",
+			"display": "Style 2",
+			"type": "fontstyle",
+			"default": {
+				"font": "./media/Selecta Bold.otf",
+				"height": 60
+			},
+			"required": false
+		},
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		},
+		{
+			"key": "background",
+			"display": "Background",
+			"type": "color",
+			"default": null,
+			"required": false
+		},
+		{
+			"key": "#align",
+			"type": "string",
+			"default": "center",
+			"required": false,
+			"script": ["$", ["switch", ["nth", ["var", "position"], 0], {
+				"1": "left",
+				"3": "right",
+				"4": "left",
+				"6": "right",
+				"7": "left",
+				"9": "right",
+				"_": "center"
+			}]],
+			"private": true
+		},
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [5, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"align": ["$", ["var", "#align"]],
+			"padding": ["5ch", "5cw", "5ch", "5cw"],
+			"layout": ["$", ["switch", ["nth", ["var", "position"], 0], {
+				"1": "vertical packed reverse",
+				"2": "vertical packed reverse",
+				"3": "vertical packed reverse",
+				"4": "vertical packed center",
+				"5": "vertical packed center",
+				"6": "vertical packed center",
+				"_": "vertical packed"
+			}]],
+			"gap": 20
+		}, [
+			["null", {
+				"layout": ["$", ["switch", ["nth", ["var", "position"], 0], {
+					"1": "vertical packed reverse",
+					"2": "vertical packed reverse",
+					"3": "vertical packed reverse",
+					"4": "vertical packed center",
+					"5": "vertical packed center",
+					"6": "vertical packed center",
+					"_": "vertical packed"
+				}]],
+				"flex": {
+					"width": "70cw"
+				}
+			}, [
+				["null", {
+					"layout": "vertical packed",
+					"clip": true
+				}, [
+					["solid", {
+						"color": ["$", ["var", "color-1"]],
+						"flex": {
+							"position": "fixed"
+						},
+						"rect": [
+							0,
+							0,
+							5, 
+							["animate",
+								[0, 0, "easeInOutQuad"],
+								["+500", "100rh"],
+								["100%", 0],
+								["-500", "100rh", "easeInOutQuad"]
+							]
+						],
+						"align": "center left"
+					}],
+					["null", {
+						"layout": "vertical packed",
+						"padding": [
+							0,
+							0,
+							0,
+							20
+						]
+					}, [
+						["text", {
+							"justify": "left center",
+							"string": ["$", ["concat", ["var", "text"], "\""]],
+							"color": ["$", ["var", "color-1"]],
+							"style": ["$", ["var", "font-1"]],
+							"transform": [
+								["translate", 
+									["animate",
+										[300, -30, "easeInOutQuad"],
+										["+500", 0],
+										["100%", null],
+										["-300", -30],
+										["-500", 0, "easeInOutQuad"]
+									],
+									0
+								],
+								["translate", 
+									["animate",
+										[300, "-100rw", "easeInOutQuad"],
+										["+500", 0],
+										["100%", null],
+										["-300", "-100rw"],
+										["-500", 0, "easeInOutQuad"]
+									],
+									0
+								]
+							]
+						}]
+					]]
+				]],
+				["text", {
+					"justify": "left top",
+					"string": ["$", ["var", "name"]],
+					"color": ["$", ["var", "color-1"]],
+					"style": ["$", ["var", "font-2"]],
+					"mask": {},
+					"opacity": ["animate",
+						[500, 0],
+						["+500", 1],
+						["100%", null],
+						["-300", 0],
+						["-300", 1]
+					],
+					"transform": [
+						["translate", 
+							["$", ["*", 1.0, ["var", "font-2", "height"]]],
+							["animate",
+								[500, ["$", ["*", -1.5, ["var", "font-2", "height"]]], "easeInOutQuad"],
+								["+500", 0],
+								["100%", null],
+								["-300", ["$", ["*", -1.5, ["var", "font-2", "height"]]]],
+								["-300", 0, "easeInOutQuad"]
+							]
+						]
+					]
+				}]
+			]]
+		]]
+	]
+]

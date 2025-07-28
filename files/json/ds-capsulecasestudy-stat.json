@@ -1,0 +1,319 @@
+[
+	"ds-capsulecasestudy-stat",
+	[
+		{
+			"key": "stat-1",
+			"display": "Stat 1",
+			"type": "text",
+			"default": "stat 1", 
+			"required": false
+		},
+		{
+			"key": "stat-1-detail",
+			"display": "Detail",
+			"type": "text",
+			"default": "detail 1", 
+			"required": false
+		},
+		{
+			"key": "stat-2",
+			"display": "Stat 2",
+			"type": "text",
+			"default": "stat 2", 
+			"required": false
+		},
+		{
+			"key": "stat-2-detail",
+			"display": "Detail",
+			"type": "text",
+			"default": "detail 2", 
+			"required": false
+		},
+		{
+			"key": "stat-3",
+			"display": "Stat 3",
+			"type": "text",
+			"default": "stat 3", 
+			"required": false
+		},
+		{
+			"key": "stat-3-detail",
+			"display": "Detail",
+			"type": "text",
+			"default": "detail 3", 
+			"required": false
+		},
+		["ds-capsulecasestudy-mixins",
+			"color-primary",
+			"color-yellow",
+			"font-headline",
+			"font-body"
+		]
+	],
+	[
+		["solid", {
+			"color": ["$", ["var", "color-white"]]
+		}],
+		["solid", {
+			"mixins": ["dsx-mixins", ["set-su", "safezone"]],
+			"color": ["$", ["var", "color-yellow"]],
+			"transform": [
+				["translate",
+					0,
+					["animate",
+						["100%", "-100ch"],
+						["-1000", 0, "easeInExpo"]
+					]
+				]
+			]
+		}, [
+			["ds-capsulecasestudy-circle", {
+				"enabled": ["$", ["exists", ["var", "stat-1"]]],
+				"rect": [
+					0,
+					0,
+					"500su",
+					"500su"
+				],
+				"text-1": ["$", ["var", "stat-1"]],
+				"text-2": ["$", ["var", "stat-1-detail"]],
+				"color-bg": ["$", ["var", "color-yellow"]],
+				"color-fg": ["$", ["var", "color-black"]],
+				"color-stroke": ["$", ["var", "color-black"]],
+				"stroke": "4su",
+				"align": "center",
+				"transform": [
+					["scale",
+						["animate",
+							[0, 0, "easeOutQuint"],
+							["+500", 1, "holdIn"],
+							[
+								["$", ["if", ["exists", ["var", "stat-2"]], "25%"]],
+								1,
+								"easeInOutQuint"
+							],
+							[
+								["$", ["if", ["exists", ["var", "stat-2"]], "+500"]],
+								0.6,
+								"holdIn"
+							],
+							[
+								["$", ["if", ["exists", ["var", "stat-3"]], "50%"]],
+								0.6,
+								"easeInOutQuint"
+							],
+							[
+								["$", ["if", ["exists", ["var", "stat-3"]], "+500"]],
+								0.5
+							]
+						]
+					],
+					["translate",
+						["animate",
+							[0, 0],
+							[
+								["$", ["if", ["exists", ["var", "stat-2"]], "25%"]],
+								0,
+								"easeInOutQuint"
+							],
+							[
+								["$", ["if", ["exists", ["var", "stat-2"]], "+500"]],
+								"-200su",
+								"holdIn"
+							],
+							[
+								["$", ["if", ["exists", ["var", "stat-2"]], "50%"]],
+								"-200su",
+								"easeInOutQuint"
+							],
+							[
+								["$", ["if", ["exists", ["var", "stat-3"]], "+500"]],
+								"200su"
+							]
+						],
+						["animate",
+							[0, 0],
+							[
+								["$", ["if", ["exists", ["var", "stat-2"]], "25%"]],
+								0,
+								"easeInOutQuint"
+							],
+							[
+								["$", ["if", ["exists", ["var", "stat-2"]], "+500"]],
+								"200su",
+								"holdIn"
+							],
+							[
+								["$", ["if", ["exists", ["var", "stat-2"]], "+500"]],
+								"200su",
+								"easeInOutQuint"
+							],
+							[
+								["$", ["if", ["exists", ["var", "stat-3"]], "+500"]],
+								"200su"
+							]
+						]
+					],
+					["translate",
+						["animate",
+							[0, 0, "easeInOutQuad"],
+							["+800", "10su", "easeInOutQuad"],
+							["+500", "-10su", "easeInOutQuad"],
+							["+700", "5su", "easeInOutQuad"],
+							["+1700", 0, "easeInOutQuad"],
+							"loop"
+						],
+						["animate",
+							[0, 0, "easeInOutQuad"],
+							["+700", "10su", "easeInOutQuad"],
+							["+700", "-13su", "easeInOutQuad"],
+							["+800", "7su", "easeInOutQuad"],
+							["+600", 0, "easeInOutQuad"],
+							"loop"
+						]
+					],
+					["translate",
+						0,
+						["animate",
+							["100%", "-100ch"],
+							["-1000", 0, "easeInExpo"]
+						]
+					]
+				]
+			}],
+			["ds-impactdotcom-circle", {
+				"enabled": ["$", ["exists", ["var", "stat-2"]]],
+				"rect": [
+					0,
+					0,
+					"500su",
+					"500su"
+				],
+				"text-1": ["$", ["var", "stat-2"]],
+				"text-2": ["$", ["var", "stat-2-detail"]],
+				"color-bg": ["$", ["var", "color-black"]],
+				"color-fg": ["$", ["var", "color-white"]],
+				"align": "center",
+				"transform": [
+					["scale",
+						["animate",
+							["25%", 0, "easeInOutQuint"],
+							["+500", 1, "holdIn"],
+							[
+								["$", ["if", ["exists", ["var", "stat-3"]], "50%"]],
+								1,
+								"easeInOutQuint"
+							],
+							[
+								["$", ["if", ["exists", ["var", "stat-3"]], "+500"]],
+								1.2
+							]
+						]
+					],
+					["translate",
+						["animate",
+							[
+								["$", ["if", ["exists", ["var", "stat-3"]], "50%"]],
+								0,
+								"easeInOutQuint"
+							],
+							[
+								["$", ["if", ["exists", ["var", "stat-3"]], "+500"]],
+								"-100su"
+							]
+						],
+						["animate",
+							[
+								["$", ["if", ["exists", ["var", "stat-3"]], "50%"]],
+								0,
+								"easeInOutQuint"
+							],
+							[
+								["$", ["if", ["exists", ["var", "stat-3"]], "+500"]],
+								"60su"
+							]
+						]
+					],
+					["translate",
+						["animate",
+							[1000, 0, "easeInOutQuad"],
+							["+800", "8su", "easeInOutQuad"],
+							["+500", "-3su", "easeInOutQuad"],
+							["+700", "5su", "easeInOutQuad"],
+							["+1700", 0, "easeInOutQuad"],
+							"loop"
+						],
+						["animate",
+							[1000, 0, "easeInOutQuad"],
+							["+700", "5su", "easeInOutQuad"],
+							["+700", "-14su", "easeInOutQuad"],
+							["+800", "7su", "easeInOutQuad"],
+							["+600", 0, "easeInOutQuad"],
+							"loop"
+						]
+					],
+					["translate",
+						0,
+						["animate",
+							["100%", null],
+							["-200", "-100ch"],
+							["-1000", 0, "easeInExpo"]
+						]
+					]
+				]
+			}],
+			["ds-impactdotcom-circle", {
+				"enabled": ["$", ["exists", ["var", "stat-3"]]],
+				"rect": [
+					0,
+					0,
+					"500su",
+					"500su"
+				],
+				"text-1": ["$", ["var", "stat-3"]],
+				"text-2": ["$", ["var", "stat-3-detail"]],
+				"color-bg": ["$", ["var", "color-white"]],
+				"color-fg": ["$", ["var", "color-black"]],
+				"align": "center",
+				"transform": [
+					["scale",
+						["animate",
+							["50%", 0, "easeInOutQuint"],
+							["+500", 1, "holdIn"]
+						]
+					],
+					["translate",
+						"100su",
+						"-100su"
+					],
+					["translate",
+						["animate",
+							[2000, 0, "easeInOutQuad"],
+							["+800", "6su", "easeInOutQuad"],
+							["+500", "-5su", "easeInOutQuad"],
+							["+700", "3su", "easeInOutQuad"],
+							["+1700", 0, "easeInOutQuad"],
+							"loop"
+						],
+						["animate",
+							[2000, 0, "easeInOutQuad"],
+							["+700", "8su", "easeInOutQuad"],
+							["+700", "-11su", "easeInOutQuad"],
+							["+800", "7su", "easeInOutQuad"],
+							["+600", 0, "easeInOutQuad"],
+							"loop"
+						]
+					],
+					["translate",
+						0,
+						["animate",
+							["100%", null],
+							["-400", "-100ch"],
+							["-1000", 0, "easeInExpo"]
+						]
+					]
+				]
+			}]
+		]]
+	]
+]

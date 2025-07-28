@@ -1,0 +1,342 @@
+[
+	"ds-hubspot-api-text-mkii-3",
+	[
+		{
+			"key": "text-1",
+			"display": "Text 1",
+			"type": "text",
+			"default": "Less Budget, more leads.",
+			"required": false
+		},
+		{
+			"key": "text-2",
+			"display": "Text 2",
+			"type": "text",
+			"default": "107% more, to be specific",
+			"required": false
+		},
+		{
+			"key": "#parts-1",
+			"display": "Parts 1",
+			"type": "object",
+			"default": ["hello", "world"],
+			"required": false,
+			"private": true,
+			"script": ["$",
+				["let",
+					[
+						["values", ["split", ["var", "text-1"], ","]]
+					],
+					["if",
+						[">=", ["length", ["var", "values"]], 2],
+						["var", "values"],
+						["array",
+							["if",
+								["=", ["length", ["var", "values"]], 1],
+								["nth", ["var", "values"], 0],
+								""
+							],
+							""
+						]
+					]
+				]
+			]
+		},
+		{
+			"key": "#parts-2",
+			"display": "Parts 2",
+			"type": "object",
+			"default": ["hello", "world"],
+			"required": false,
+			"private": true,
+			"script": ["$",
+				["let",
+					[
+						["values", ["split", ["var", "text-2"], ","]]
+					],
+					["if",
+						[">=", ["length", ["var", "values"]], 2],
+						["var", "values"],
+						["array",
+							["if",
+								["=", ["length", ["var", "values"]], 1],
+								["nth", ["var", "values"], 0],
+								""
+							],
+							""
+						]
+					]
+				]
+			]
+		},
+		["dsx-mixins",
+			"boilerplate"
+		]
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			],
+			"align": "center"
+		}, [
+			["null", {
+				"enabled": ["$", ["exists", ["nth", ["var", "#parts-1"], 0]]],
+				"layout": "horizontal packed",
+				"align": "center",
+				"gap": "20su",
+				"end": 2500
+			}, [
+				["text", {
+					"enabled": ["$", ["exists", ["nth", ["var", "#parts-1"], 0]]],
+					"stagger": [0, 0],
+					"mixins": ["ds-hubspot-mixins",
+						"font-bold"
+					],
+					"flex": {
+						"weight": ["$",
+							["/",
+								["length",
+									["nth", ["var", "#parts-1"], 0]
+								],
+								["+",
+									["length",
+										["nth", ["var", "#parts-1"], 0]
+									],
+									["length",
+										["nth", ["var", "#parts-1"], 1]
+									]
+								]
+							]
+						]
+					},
+					"color": [1, 1, 1, 1],
+					"measure": "letter-size",
+					"justify": "center",
+					"align": "center",
+					"string": ["$",
+						["concat",
+							["nth", ["var", "#parts-1"], 0],
+							["if",
+								["exists", ["nth", ["var", "#parts-1"], 1]],
+								",",
+								""
+							]
+						]
+					],
+					"height": "80su",
+					"leading": 0.25,
+					"fit": true,
+					"boundary": "letter",
+					"animations": [
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+500", 1]
+							],
+							"opacity": 1,
+							"easing": "plateauIn",
+							"ramp": 0.01
+						}
+					]
+				}],
+				["text", {
+					"enabled": ["$", ["exists", ["nth", ["var", "#parts-1"], 1]]],
+					"stagger": [1000, 0],
+					"mixins": ["ds-hubspot-mixins",
+						"font-bold"
+					],
+					"flex": {
+						"weight": ["$",
+							["/",
+								["length",
+									["nth", ["var", "#parts-1"], 1]
+								],
+								["+",
+									["length",
+										["nth", ["var", "#parts-1"], 0]
+									],
+									["length",
+										["nth", ["var", "#parts-1"], 1]
+									]
+								]
+							]
+						]
+					},
+					"color": [1, 1, 1, 1],
+					"measure": "letter-size",
+					"justify": "center",
+					"align": ["$", ["var", "#align"]],
+					"string": ["$", ["nth", ["var", "#parts-1"], 1]],
+					"height": "80su",
+					"leading": 0.25,
+					"fit": true,
+					"boundary": "letter",
+					"animations": [
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+500", 1]
+							],
+							"opacity": 1,
+							"easing": "plateauIn",
+							"ramp": 0.01
+						}
+					]
+				}]
+			]],
+			["null", {
+				"enabled": ["$", ["exists", ["nth", ["var", "#parts-2"], 0]]],
+				"layout": "horizontal packed",
+				"align": "center",
+				"gap": "20su",
+				"start": 2500
+			}, [
+				["text", {
+					"stagger": [0, 0],
+					"mixins": ["ds-hubspot-mixins",
+						"font-bold"
+					],
+					"flex": {
+						"weight": ["$",
+							["/",
+								["length",
+									["nth", ["var", "#parts-2"], 0]
+								],
+								["+",
+									["length",
+										["nth", ["var", "#parts-2"], 0]
+									],
+									["length",
+										["nth", ["var", "#parts-2"], 1]
+									]
+								]
+							]
+						]
+					},
+					"color": [1, 1, 1, 1],
+					"measure": "letter-size",
+					"justify": "center",
+					"align": "center",
+					"string": ["$",
+						["concat",
+							["nth", ["var", "#parts-2"], 0],
+							["if",
+								["exists", ["nth", ["var", "#parts-2"], 1]],
+								",",
+								""
+							]
+						]
+					],
+					"height": "80su",
+					"leading": 0.25,
+					"fit": true,
+					"boundary": "letter",
+					"animations": [
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+500", 1]
+							],
+							"opacity": 1,
+							"easing": "plateauIn",
+							"ramp": 0.01
+						}
+					],
+					"transform-": [
+						["scale",
+							["animate",
+								[0, 0.5, "easeOutQuad"],
+								["+250", 1]
+							]
+						]
+					]
+				}],
+				["text", {
+					"enabled": ["$", ["exists", ["nth", ["var", "#parts-2"], 1]]],
+					"stagger": [1000, 0],
+					"mixins": ["ds-hubspot-mixins",
+						"font-bold"
+					],
+					"flex": {
+						"weight": ["$",
+							["/",
+								["length",
+									["nth", ["var", "#parts-2"], 1]
+								],
+								["+",
+									["length",
+										["nth", ["var", "#parts-2"], 0]
+									],
+									["length",
+										["nth", ["var", "#parts-2"], 1]
+									]
+								]
+							]
+						]
+					},
+					"color": [1, 1, 1, 1],
+					"measure": "letter-size",
+					"justify": "center",
+					"align": ["$", ["var", "#align"]],
+					"string": ["$", ["nth", ["var", "#parts-2"], 1]],
+					"height": "80su",
+					"leading": 0.25,
+					"fit": true,
+					"boundary": "letter",
+					"animations": [
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+500", 1]
+							],
+							"opacity": 1,
+							"easing": "plateauIn",
+							"ramp": 0.01
+						}
+					]
+				}]
+			]]
+		]],
+		["asset", {
+			"file": "./media/ds-hubspot-typing-sfx.m4a",
+			"duration": 500,
+			"gain": 2
+		}],
+		["asset", {
+			"enabled": ["$",
+				["and",
+					["exists", ["nth", ["var", "#parts-1"], 1]],
+					[">", ["key", ["comp-timing"], "duration"], 1000]
+				]
+			],
+			"file": "./media/ds-hubspot-typing-sfx.m4a",
+			"start": 1000,
+			"duration": 500,
+			"slip": 3500,
+			"gain": 2
+		}],
+		["asset", {
+			"enabled": ["$", [">", ["key", ["comp-timing"], "duration"], 2500]],
+			"file": "./media/ds-hubspot-typing-sfx.m4a",
+			"start": 2500,
+			"duration": 500,
+			"slip": 7000,
+			"gain": 2
+		}],
+		["asset", {
+			"enabled": ["$",
+				["and",
+					["exists", ["nth", ["var", "#parts-2"], 1]],
+					[">", ["key", ["comp-timing"], "duration"], 3500]
+				]
+			],
+			"file": "./media/ds-hubspot-typing-sfx.m4a",
+			"start": 3500,
+			"duration": 500,
+			"slip": 9000,
+			"gain": 2
+		}]
+	]
+]

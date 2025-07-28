@@ -1,0 +1,93 @@
+[
+	"ds-ryno-list-sidepanel",
+	[
+		{
+			"key": "title",
+			"display": "List Title",
+			"type": "text",
+			"default": "List Title",
+			"required": false
+		},
+		{
+			"key": "items",
+			"display": "List Items",
+			"type": "textarea",
+			"default": "Item 1\nItem 2\nItem 3\nItem 4",
+			"required": false
+		},
+		["ds-ryno-mixins", 
+			"color-primary", 
+			"color-background", 
+			"color-background-gradient"
+		],
+		["dsx-mixins", "boilerplate"]
+	],
+	[
+		["ds-ryno-sidepanel", {
+			"mixins": ["dsx-mixins", ["set-dsx-su"]],
+			"split": "half"	
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"gap": "100su"
+			}, [
+				["text", {
+					"flex": {
+						"weight": 0.25
+					},
+					"enabled": ["$", ["exists", ["var", "title"]]],
+					"align": "center left",
+					"justify": "center left",
+					"mixins": ["ds-ryno-mixins",
+						"text",
+						"text-headline"
+					],
+					"string": ["$", ["var", "title"]],
+					"boundary": "line",
+					"animations": [
+						{
+							"opacity": 0,
+							"translate": [0, "100su"]
+						},
+						{
+							"opacity": 1,
+							"translate": [0, 0],
+							"ramp": 1,
+							"mix": ["animate",
+								[500, 0],
+								["+750", 1]
+							],
+							"easing": "easeOutCubic"
+						}
+					]
+				}],
+				["text", {
+					"enabled": ["$", ["exists", ["var", "items"]]],
+					"align": "center left",
+					"justify": "center left",
+					"mixins": ["ds-ryno-mixins", "text", "text-list"],
+					"height": "70su",
+					"string": ["$", ["var", "items"]],
+					"leading": "30su",
+					"boundary": "line",
+					"animations": [
+						{
+							"opacity": 0,
+							"translate": [0, "100su"]
+						},
+						{
+							"opacity": 1,
+							"translate": [0, 0],
+							"ramp": 0.3,
+							"mix": ["animate",
+								[1000, 0],
+								["+3000", 1]
+							],
+							"easing": "easeOutCubic"
+						}
+					]
+				}]	
+			]]
+		]]
+	]
+]

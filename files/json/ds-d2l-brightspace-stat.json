@@ -1,0 +1,203 @@
+[
+	"ds-d2l-brightspace-stat",
+	[
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "text",
+			"default": "Optional statistic details",
+			"required": false
+		},
+		{
+			"key": "stat",
+			"display": "Number",
+			"type": "text",
+			"default": "1000",
+			"required": false,
+			"script": ["$", 
+				["if",
+					["var", "do-count-up"],
+					["let",
+						[
+							["found", ["match", ["var", "stat"], ["regexp", "[\\d,]+"], ""]],
+							["segments", ["if",
+								["exists", ["var", "found"]],
+								["segment", ["var", "stat"], ["var", "found"]]
+							]]
+						],
+						["if",
+							["exists", ["var", "found"]],
+							["do",
+								["set", "prefix", ["nth", ["var", "segments"], 0]],
+								["set", "postfix", ["nth", ["var", "segments"], 2]],
+								["floor",
+									["to-number",
+										["var", "found"]
+									]
+								]
+							],
+							["do",
+								["set", "prefix", ""],
+								["set", "postfix", ""],
+								0
+							]
+						]
+					],
+					["var", "stat"]
+				]
+			]
+		},
+		{
+			"key": "do-count-up",
+			"display": "Count Up",
+			"type": "bool",
+			"default": true,
+			"required": false
+		},
+		{
+			"key": "do-bg",
+			"display": "Background",
+			"type": "bool",
+			"default": true,
+			"required": false
+		},
+		["ds-d2l-brightspace-mixins", 
+			"d2l-black",
+			"bright",
+			"color-selector",
+			"font-d2l-sans-bold"
+		],
+		{
+			"key": "dark-mode",
+			"display": "Dark Mode",
+			"type": "bool",
+			"default": false,
+			"required": false
+		},
+		["dsx-mixins",
+			"boilerplate"
+		]
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			],
+			"color": ["$", 
+				["if",
+					["var", "dark-mode"],
+					["var", "#background"],
+					["var", "#foreground"]
+				]
+			],
+			"skip": ["$", ["not", ["var", "do-bg"]]]
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"max-width": "1200su",
+				"align": "center",
+				"gap": "50su"
+			}, [
+				["text", {
+					"enabled": ["$", ["exists", ["var", "text"]]],
+					"font": ["$", ["var", "font-d2l-sans-bold"]],
+					"height": "65su",
+					"color": ["$", 
+						["if",
+							["var", "dark-mode"],
+							["var", "white"],
+							["var", "d2l-black"]
+						]
+					],
+					"string": ["$", ["var", "text"]],
+					"justify": "center",
+					"mask": {
+						"padding": [
+							"-50rh",
+							0
+						]
+					},
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[0, "200rh", "easeOutCubic"],
+								["+600", 0],
+								["100%", "-200rh"],
+								["-600", 0, "easeInCubic"]
+							]
+						]
+					]
+				}],
+				["text", {
+					"enabled": ["$", ["exists", ["var", "stat"]]],
+					"font": ["$", ["var", "font-d2l-sans-bold"]],
+					"height": "200su",
+					"color": ["$", 
+						["if",
+							["var", "dark-mode"],
+							["var", "white"],
+							["var", "d2l-black"]
+						]
+					],
+					"string": ["$", ["var", "stat"]],
+					"fit": true,
+					"justify": "center",
+					"opacity": ["animate",
+						[0, 0, "easeOutQuad"],
+						["+400", 1],
+						["100%", 0],
+						["-400", 1, "easeInQuad"]
+					],
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[0, "80su", "easeOutQuad"],
+								["+800", 0]
+							]
+						]
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["var", "do-count-up"]],
+							"string": "",
+							"mutate": ["$$",
+								["let",
+									[
+										["start", ["$", ["var", "start"]]],
+										["end", ["$", ["var", "end"]]],
+										["frame", ["current-frame"]],
+										["animate",
+											["ease",
+												["map",
+													["var", "frame"],
+													["var", "start"],
+													["+", ["var", "start"], 800],
+													0,
+													1
+												],
+												"easeOutQuad"
+											]
+										]
+									],
+									["concat",
+										["$", ["var", "prefix"]],
+										["to-string", ["floor",
+											["*",
+												["$", ["var", "stat"]],
+												["var", "animate"]
+											]
+										]],
+										["$", ["var", "postfix"]]
+									]
+								]
+							]
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

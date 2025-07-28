@@ -1,0 +1,73 @@
+[
+	"ds-sojern-outro",
+	[
+		{
+			"key": "tagline",
+			"display": "Tagline",
+			"type": "text",
+			"default": "Born for Travel. Built for Performance.",
+			"required": false
+		},
+		["ds-sojern-mixins",
+			"colors",
+			"darkmode",
+			"fonts"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		]
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			],
+			"color": ["$", ["var", "#bg"]],
+			"opacity": ["animate",
+				[0, 0, "easeOutQuad"],
+				["+500", 1]
+			]
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"align": "center",
+				"gap": "35su",
+				"transform": [
+					["scale", ["animate",
+						[0, 1.5, "easeOutQuint"],
+						["+1500", 1]
+					]]
+				]
+			}, [
+				["asset", {
+					"file": ["$", ["if", ["var", "darkmode"],
+						"./media/ds-sojern-logo.svg",
+						"./media/ds-sojern-logo-dark.svg"
+					]],
+					"justify": "fit center",
+					"align": "center",
+					"max-width": "1000su",
+					"breakpoints": [
+						{
+							"enabled": ["$", ["lte", ["aspect"], 1]],
+							"max-width": "800su"
+						}
+					]
+				}],
+				["text", {
+					"enabled": ["$", ["exists", ["var", "tagline"]]],
+					"font": ["$", ["var", "text-bold"]],
+					"measure": "letter-size",
+					"height": "38.5su",
+					"leading": "10su",
+					"kerning": 0.02,
+					"string": ["$", ["var", "tagline"]],
+					"justify": "center",
+					"align": "center",
+					"color": ["$", ["var", "#fg"]]
+				}]
+			]]
+		]]
+	]
+]

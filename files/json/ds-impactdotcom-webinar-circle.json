@@ -1,0 +1,215 @@
+[
+	"ds-impactdotcom-webinar-circle",
+	[
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false
+		},
+		{
+			"key": "siblings",
+			"display": "Siblings",
+			"type": "bool",
+			"default": false,
+			"required": false
+		},
+		{
+			"key": "siblings-driver",
+			"display": "Driver",
+			"type": "object",
+			"default": null,
+			"required": false
+		},
+		{
+			"key": "orbit",
+			"display": "Orbit",
+			"type": "bool",
+			"default": false,
+			"required": false
+		},
+		{
+			"key": "circle-background",
+			"display": "Background",
+			"type": "bool",
+			"default": true,
+			"required": false
+		},
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": "#F77300",
+			"required": false
+		},
+		{
+			"key": "color-2",
+			"display": "Color 2",
+			"type": "color",
+			"default": "#F5333F",
+			"required": false
+		},
+		{
+			"key": "stroke",
+			"display": "Stroke",
+			"type": "number",
+			"default": "4nsu",
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"rect": [
+				0,
+				0,
+				"100rw",
+				"100rw"
+			],
+			"align": "center"
+		}, [
+			["solid", {
+				"enabled": ["$", ["var", "siblings"]],
+				"radius": 10000,
+				"color": [0, 0, 0, 0],
+				"stroke": ["$", ["var", "stroke"]],
+				"stroke-color": [1, 1, 1, 1],
+				"transform": [
+					["translate",
+						"14rw",
+						0
+					]
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["exists", ["var", "siblings-driver"]]],
+						"transform": [
+							["translate",
+								["animate",
+									[
+										["$", ["nth", ["var", "siblings-driver"], 0]],
+										0,
+										"easeInOutQuad"
+									],
+									[
+										["$", ["nth", ["var", "siblings-driver"], 1]],
+										"14rw"
+									]
+								],
+								0
+							]
+						]
+					}
+				]
+			}],
+			["solid", {
+				"enabled": ["$", ["var", "siblings"]],
+				"radius": 10000,
+				"color": ["linear-gradient",
+					0.25,
+					[0.0, ["$", ["var", "color-1"]]],
+					[1.0, ["$", ["var", "color-2"]]]
+				],
+				"transform": [
+					["translate",
+						"-14rw",
+						0
+					]
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["exists", ["var", "siblings-driver"]]],
+						"transform": [
+							["translate",
+								["animate",
+									[
+										["$", ["nth", ["var", "siblings-driver"], 0]],
+										0,
+										"easeInOutQuad"
+									],
+									[
+										["$", ["nth", ["var", "siblings-driver"], 1]],
+										"-14rw"
+									]
+								],
+								0
+							]
+						]
+					}
+				]
+			}],
+			["solid", {
+				"radius": 10000,
+				"skip": ["$", ["not", ["var", "circle-background"]]],
+				"stroke-color": [1, 1, 1, 1]
+			}, [
+				["user-asset", {
+					"enabled": ["$", ["exists", ["var", "asset"]]],
+					"file": ["$", ["var", "asset"]],
+					"justify": "fill center",
+					"mask": {
+						"radius": 10000
+					}
+				}]
+			]],
+			["null", {
+				"enabled": ["$", ["var", "orbit"]],
+				"transform": [
+					["scale",
+						0.85
+					],
+					["rotate",
+						["animate",
+							[0, 0],
+							["+5000", 1],
+							"loop"
+						]
+					]
+				]
+			}, [
+				["solid", {
+					"radius": 10000,
+					"color": [0, 0, 0, 0],
+					"stroke": ["$", ["var", "stroke"]],
+					"stroke-color": ["linear-gradient",
+						-0.25,
+						[0.0, ["$", ["var", "color-1"]]],
+						[1.0, ["$", ["var", "color-2"]]]
+					],
+					"mask": {
+						"padding": [
+							"48rh",
+							"-10rw",
+							"48rh",
+							"50rw"
+						],
+						"invert": true
+					}
+				}],
+				["solid", {
+					"radius": 10000,
+					"color": ["$",
+						["if",
+							["exists", ["var", "color-2"]],
+							["var", "color-2"],
+							["var", "color-1"]
+						]
+					],
+					"rect": [
+						0,
+						0,
+						"4rw",
+						"4rw"
+					],
+					"align": "center right",
+					"transform": [
+						["translate",
+							"35rw",
+							"-90rw"
+						]
+					]
+				}]
+			]]
+		]]
+	]
+]

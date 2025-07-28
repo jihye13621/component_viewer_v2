@@ -1,0 +1,64 @@
+[
+	"dsl-demo",
+	[
+		{
+			"key": "name",
+			"display": "Name",
+			"type": "text",
+			"default": "Name",
+			"required": false
+		},
+		{
+			"key": "file",
+			"display": "File",
+			"type": "asset",
+			"default": null,
+			"required": false
+		},
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": "#000000",
+			"required": false
+		},
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		}
+	],
+	[
+		["solid", {
+			"start": 0,
+			"duration": 10000,
+			"color": ["$", ["var", "color-0"]]
+		}, [
+			["null", {
+				"enabled": ["$", ["exists", ["var", "file"]]],
+				"rect": [
+					"50rw",
+					0,
+					"50rw",
+					"100rh"
+				],
+				"mask": {}
+			}, [
+				["asset", {
+					"file": ["$", ["var", "file"]],
+					"justify": "fill center"
+				}]
+			]],
+			["text", {
+				"style": {
+					"font": "./media/Inter-Black.ttf",
+					"height": 100
+				},
+				"string": ["$", ["var", "name"]],
+				"color": ["$", ["var", "color-1"]]
+			}]
+		]]
+	]
+]

@@ -1,0 +1,150 @@
+[
+	"ds-fiverr-gig",
+	[
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": []
+		},
+		{
+			"key": "name",
+			"display": "Name",
+			"type": "text",
+			"default": "Name",
+			"required": false
+		},
+		{
+			"key": "title",
+			"display": "Title",
+			"type": "text",
+			"default": "Title",
+			"required": false
+		},
+		["ds-fiverr-mixins",
+			"bg-options",
+			"font-bold",
+			"font-regular",
+			"color-white"
+		]
+	],
+	[
+		["ds-fiverr-bg", {
+			"palette": ["$", ["var", "palette"]],
+			"swap-colors": ["$", ["var", "swap-colors"]],
+			"blur": ["$", ["var", "blur"]],
+			"shape": ["$", ["var", "shape"]]
+		}],
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			]
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"align": "center",
+				"gap": "70su",
+				"transform": [
+					["scale",
+						["animate",
+							[0, 1.25, "easeOutQuint"],
+							["+1000", 1]
+						]
+					]
+				]
+			}, [
+				["text", {
+					"flex": {
+						"height": "100su"
+					},
+					"font": ["$", ["var", "font-bold"]],
+					"height": "75su",
+					"measure": "letter-size",
+					"string": "Artist Spotlight",
+					"color": ["$", ["var", "color-white"]]
+				}],
+				["null", {
+					"enabled": ["$", ["or",
+						["exists", ["var", "name"]],
+						["exists", ["var", "title"]],
+						["exists", ["var", "asset"]]
+					]],
+					"layout": "vertical packed",
+					"align": "center",
+					"gap": "40su",
+					"padding": [
+						"60su",
+						"100su"
+					]
+				}, [
+					["null", {
+						"flex": {
+							"position": "fixed"
+						},
+						"mask": {
+							"radius": "40su"
+						},
+						"effect": [
+							["compose", {
+							}],
+							["blur", {
+								"radius": "50su"
+							}]
+						]
+					}],
+					["solid", {
+						"flex": {
+							"position": "fixed"
+						},
+						"color": [1, 1, 1, 0.15],
+						"stroke-color": ["$", ["var", "color-white"]],
+						"stroke": "3su",
+						"radius": "40su"
+					}],
+					["null", {
+						"enabled": ["$", ["exists", ["var", "asset"]]],
+						"flex": {
+							"height": "300su"
+						},
+						"rect": [
+							0,
+							0,
+							"100rh",
+							"100rh"
+						],
+						"align": "center"
+					}, [
+						["user-asset", {
+							"file": ["$", ["var", "asset"]],
+							"justify": "fill center",
+							"mask": {
+								"radius": 1000
+							}
+						}]
+					]],
+					["text", {
+						"enabled": ["$", ["exists", ["var", "name"]]],
+						"font": ["$", ["var", "font-bold"]],
+						"height": "60su",
+						"measure": "letter-size",
+						"string": ["$", ["var", "name"]],
+						"color": ["$", ["var", "color-white"]],
+						"justify": "center"
+					}],
+					["text", {
+						"enabled": ["$", ["exists", ["var", "title"]]],
+						"font": ["$", ["var", "font-regular"]],
+						"height": "45su",
+						"measure": "letter-size",
+						"string": ["$", ["var", "title"]],
+						"color": ["$", ["var", "color-white"]],
+						"justify": "center"
+					}]
+				]]
+			]]
+		]]
+	]
+]

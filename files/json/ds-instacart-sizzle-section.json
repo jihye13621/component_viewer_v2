@@ -1,0 +1,73 @@
+[
+	"ds-instacart-sizzle-section",
+	[
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "text",
+			"default": "Your groceries, delivered effortlessly on any budget",
+			"required": false
+		},
+		["dsx-mixins", "boilerplate"],
+		["ds-instacart-mixins",
+			"colors",
+			"font-sans-400",
+			"font-sans-600",
+			"theme"
+		]
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins",
+				"safezone",
+				"set-su"
+			],
+			"color": ["$", ["var", "#background"]],
+			"transform": [
+				["translate",
+					0,
+					["animate",
+						[0, "100rh", "easeOutQuad"],
+						["+500", 0],
+						["100%", "100rh"],
+						["-500", 0, "easeInQuad"]
+					]
+				]
+			]
+		}, [
+			["null", {
+				"enabled": ["$", ["exists", ["var", "text"]]],
+				"layout": "vertical packed",
+				"align": "bottom left",
+				"max-width": "1400nsu"
+			}, [
+				["text", {
+					"stagger": [400, 0],
+					"font": ["$", ["var", "font-sans-600"]],
+					"measure": "letter-size",
+					"height": "140su",
+					"leading": "20su",
+					"justify": "bottom left",
+					"string": ["$", ["var", "text"]],
+					"color": ["$", ["var", "#foreground"]],
+					"boundary": "line",
+					"animations": [
+						{
+							"mask": [0, 0, "-10su", 0],
+							"translate": [0, "150su"]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+700", 1]
+							],
+							"easing": "easeOutQuint",
+							"ramp": 3,
+							"translate": [0, 0]
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

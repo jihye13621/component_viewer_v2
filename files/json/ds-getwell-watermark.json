@@ -1,0 +1,84 @@
+[
+	"ds-getwell-watermark",
+	[
+		["ds-getwell-mixins", "colors"],
+		{
+			"key": "color",
+			"display": "Color",
+			"type": "string",
+			"required": false,
+			"default": "white",
+			"options": [
+				{
+					"key": "corporate-purple",
+					"display": "Corporate Purple"
+				},
+				{
+					"key": "bright-purple",
+					"display": "Bright Purple"
+				},
+				{
+					"key": "light-purple",
+					"display": "Light Purple"
+				},
+				{
+					"key": "white",
+					"display": "White"
+				}
+			]
+		},
+		{
+			"key": "#color",
+			"display": "Color",
+			"type": "color",
+			"default": [0, 0, 0, 1],
+			"required": false,
+			"private": true,
+			"script": ["$", ["switch", ["var", "color"], {
+				"white": "#F6F5FB",
+				"corporate-purple": "#291758",
+				"bright-purple": "#795DE9",
+				"light-purple": "#E3DDF3",
+				"_": "#F6F5FB"
+			}]]
+		},
+		["dsx-mixins", "boilerplate"],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [7, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"max-width": "800nsu",
+				"align": ["$", ["var", "#align"]]
+			}, [
+				["asset", {
+					"file": "./media/ds-getwell-logo-white.svg",
+					"svg-recolor": ["$", ["var", "#color"]],
+					"flex": {
+						"height": "70su"
+					},
+					"justify": ["$", ["concat", "fit ", ["var", "#align"]]],
+					"opacity": ["animate",
+						[0, 0],
+						["+250", 1],
+						["100%", 0],
+						["-250", 1]
+					]
+				}]
+			]]
+		]]
+	]
+]

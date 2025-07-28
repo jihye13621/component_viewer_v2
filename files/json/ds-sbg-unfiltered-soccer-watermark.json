@@ -1,0 +1,114 @@
+[
+	"ds-sbg-unfiltered-soccer-watermark",
+	[
+		{
+			"key": "sponsor",
+			"display": "Sponsor",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": []
+		},
+		["ds-sbg-unfiltered-soccer-mixins",
+			"colors"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [7, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": true,
+				"minimum": -100,
+				"maximum": 100
+			},
+			"required": false
+		},
+		["ds-sbg-mixins",
+			"do-safezone"
+		]
+	],
+	[
+		["null", {
+			"mixins": [
+				["dsx-mixins",
+					"set-su",
+					"offset"
+				],
+				["ds-sbg-mixins",
+					"watermark-safezone"
+				]
+			]
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"max-width": "300su",
+				"gap": "20su"
+			}, [
+				["asset", {
+					"file": "./media/ds-sbg-unfiltered-soccer-logo-white.svg",
+					"justify": "fit center",
+					"opacity": ["animate",
+						[0, 0],
+						["+500", 1],
+						["100%", 0],
+						["-500", 1]
+					]
+				}],
+				["null", {
+					"stagger": [400, 0],
+					"enabled": ["$", ["exists", ["var", "sponsor"]]],
+					"flex": {
+						"height": "30su"
+					},
+					"transform": [
+						["rotate", 0.125]
+					],
+					"opacity": ["animate",
+						[0, 0],
+						["+500", 1],
+						["100%", 0],
+						["-500", 1]
+					]
+				}, [
+					["solid", {
+						"rect": [
+							0,
+							0,
+							"7su",
+							"30su"
+						],
+						"align": "center"
+					}],
+					["solid", {
+						"rect": [
+							0,
+							0,
+							"30su",
+							"7su"
+						],
+						"align": "center"
+					}]
+				]],
+				["user-asset", {
+					"stagger": [800, 0],
+					"enabled": ["$", ["exists", ["var", "sponsor"]]],
+					"file": ["$", ["var", "sponsor"]],
+					"justify": "fit center",
+					"mute": true,
+					"opacity": ["animate",
+						[0, 0],
+						["+500", 1],
+						["100%", 0],
+						["-500", 1]
+					]
+				}]
+			]]
+		]]
+	]
+]

@@ -1,0 +1,43 @@
+[
+	"ds-clean-prompt",
+	[
+		["dsx-mixins", ["prompt"]],
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": "#EBEBEB",
+			"required": false
+		},
+		{
+			"key": "color-2",
+			"display": "Color 2",
+			"type": "color",
+			"default": "#0F0D0C",
+			"required": false
+		},
+		["dsx-mixins", ["boilerplate"]]
+	],
+	[
+		["dsx-background", {
+			"enabled": ["$", ["exists", ["var", "background"]]],
+			"color": ["$", ["var", "background"]]
+		}],
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["text", {
+				"mixins": ["ds-amp-mixins", ["headline-2"]],
+				"string": ["$", ["var", "text"]],
+				"justify": ["$", ["var", "#align"]],
+				"background-color": ["$", ["var", "color-2"]],
+				"background-padding": [
+					"2su",
+					"10su"
+				],
+				"boundary": "line",
+				"stagger": [200, -200]
+			}]
+		]]
+	]
+]

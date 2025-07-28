@@ -1,0 +1,88 @@
+[
+	"ds4-progbar-1",
+	[
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		},
+		{
+			"key": "color-2",
+			"display": "Color 2",
+			"type": "color",
+			"default": "#E03467",
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"transform": [
+				["translate",
+					["animate",
+						[0, 0, "easeOutQuad"],
+						["100%", null],
+						["-500", "100rw"]],
+					0
+				]
+			]
+		}, [
+			["solid", {
+				"rect": [
+					0,
+					"40rh",
+					"100rw",
+					"20rh"
+				],
+				"color": ["$", ["var", "color-2"]]
+			}],
+			["solid", {
+				"rect": [
+					"-100rw",
+					"40rh",
+					"100rw",
+					"20rh"
+				],
+				"color": ["$", ["var", "color-1"]],
+				"transform": [
+					["translate",
+						["animate", 
+							["100%", "100rw"], 
+							["-400", 0, "easeInQuad"]
+						],
+						0
+					]
+				]
+			}],
+			["null", {
+				"rect": [
+					0,
+					0,
+					"100rh",
+					"100rh"
+				]
+			}, [
+				["solid", {
+					"radius": 10,
+					"path": [
+						["50rw", "-20rh"],
+						["65rw", "35rh"],
+						["120rw", "50rh"],
+						["65rw", "65rh"],
+						["50rw", "120rh"],
+						["35rw", "65rh"],
+						["-20rw", "50rh"],
+						["35rw", "35rh"]
+					],
+					"transform": [
+						["translate",
+							"-100rw",
+							0
+						]
+					]
+				}]
+			]]
+		]]
+	]
+]

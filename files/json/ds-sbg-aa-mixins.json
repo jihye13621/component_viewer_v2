@@ -1,0 +1,185 @@
+{
+	"params": {
+		"colors": [
+			{
+				"key": "color-slate",
+				"display": "Color",
+				"type": "color",
+				"default": "#4899af",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "color-sky",
+				"display": "Color",
+				"type": "color",
+				"default": "#77d3e8",
+				"required": false,
+				"private": true
+			},
+            {
+				"key": "color-sun",
+				"display": "Color",
+				"type": "color",
+				"default": "#ffed45",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "color-ochre",
+				"display": "Color",
+				"type": "color",
+				"default": "#f7bd19",
+				"required": false,
+				"private": true
+			},
+            {
+				"key": "color-coral",
+				"display": "Color",
+				"type": "color",
+				"default": "#fa7b4a",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "color-white",
+				"display": "Color",
+				"type": "color",
+				"default": [1, 1, 1, 1],
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "color-black",
+				"display": "Color",
+				"type": "color",
+				"default": [0, 0, 0, 1],
+				"required": false,
+				"private": true
+			}
+		],
+		"color-selector": [
+			{
+				"key": "theme",
+				"display": "Theme",
+				"type": "string",
+				"default": "sun",
+				"options": [
+					{
+						"key": "slate",
+						"display": "Slate"
+					},
+					{
+						"key": "sky",
+						"display": "Sky"
+					},
+					{
+						"key": "sun",
+						"display": "Sun"
+					},
+					{
+						"key": "ochre",
+						"display": "Ochre"
+					},
+					{
+						"key": "coral",
+						"display": "Coral"
+					}
+				],
+				"required": false
+			},
+			{
+				"key": "#background",
+				"display": "Background",
+				"default": "#000000",
+				"script": ["$",
+					["switch", ["var", "theme"], ["object",
+						["array", "slate", ["var", "color-slate"]],
+						["array", "sky", ["var", "color-sky"]],
+						["array", "sun", ["var", "color-sun"]],
+						["array", "ochre", ["var", "color-ochre"]],
+						["array", "coral", ["var", "color-coral"]]
+					]]
+				],
+				"private": true
+			},
+			{
+				"key": "#foreground",
+				"display": "Foreground",
+				"default": "#ffffff",
+				"script": ["$",
+					["switch", ["var", "theme"], ["object",
+						["array", "slate", ["var", "color-white"]],
+						["array", "sky", ["var", "color-white"]],
+						["array", "sun", ["var", "color-black"]],
+						["array", "ochre", ["var", "color-white"]],
+						["array", "coral", ["var", "color-white"]]
+					]]
+				],
+				"private": true
+			},
+			{
+				"key": "#accent-1",
+				"display": "Accent 1",
+				"default": "#000000",
+				"script": ["$",
+					["switch", ["var", "theme"], ["object",
+						["array", "slate", ["var", "color-sky"]],
+						["array", "sky", ["var", "color-sun"]],
+						["array", "sun", ["var", "color-ochre"]],
+						["array", "ochre", ["var", "color-coral"]],
+						["array", "coral", ["var", "color-slate"]]
+					]]
+				],
+				"private": true
+			},
+			{
+				"key": "#accent-2",
+				"display": "Accent 2",
+				"default": "#000000",
+				"script": ["$",
+					["switch", ["var", "theme"], ["object",
+						["array", "slate", ["var", "color-ochre"]],
+						["array", "sky", ["var", "color-coral"]],
+						["array", "sun", ["var", "color-slate"]],
+						["array", "ochre", ["var", "color-sky"]],
+						["array", "coral", ["var", "color-sun"]]
+					]]
+				],
+				"private": true
+			}
+		],
+        "font-toroka-black": {
+            "key": "font-toroka-black",
+            "display": "Font Toroka Black",
+            "type": "string",
+            "default": "./media/Toroka-Black-7104069.otf",
+            "required": false,
+			"private": true
+        },
+		"font-toroka-bold": {
+            "key": "font-toroka-bold",
+            "display": "Font Toroka Bold",
+            "type": "string",
+            "default": "./media/Toroka-Bold.otf",
+            "required": false,
+			"private": true
+        },
+		"font-toroka-medium": {
+            "key": "font-toroka-medium",
+            "display": "Font Toroka Medium",
+            "type": "string",
+            "default": "./media/Toroka-Medium.otf",
+            "required": false,
+			"private": true
+        },
+        "font-toroka-thin": {
+            "key": "font-toroka-thin",
+            "display": "Font Toroka Thin",
+            "type": "string",
+            "default": "./media/Toroka-Thin-7104035.otf",
+            "required": false,
+			"private": true
+        }
+	}
+}

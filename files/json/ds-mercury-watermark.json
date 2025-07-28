@@ -1,0 +1,124 @@
+[
+	"ds-mercury-watermark",
+	[
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "text",
+			"default": "Optional text",
+			"required": false
+		},
+		["ds-mercury-mixins",
+			"color-primary",
+			"color-secondary",
+			"font-headline",
+			"font-body"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [7, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]],
+			"layout": "vertical packed",
+			"max-width": "800nsu",
+			"align": ["$", ["var", "#align"]]
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"gap": "40su"
+			}, [
+				["asset", {
+					"mute": true,
+					"file": "./media/ds-mercury-logo-wordmark-white.svg",
+					"flex": {
+						"width": "300su",
+						"height": "300su"
+					},
+					"justify": ["$", ["concat", "fit ", ["var", "#align"]]],
+					"opacity": ["animate",
+						[0, 0],
+						["+350", 1],
+						["100%", 0],
+						["-350", 1]
+					]
+				}],
+				["null", {
+					"enabled": ["$", ["exists", ["var", "text"]]],
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]],
+					"stagger": [400, -300],
+					"padding": [
+						"16su",
+						"20su"
+					],
+					"mask": {
+						"radius": "10su",
+						"padding": [
+							["animate",
+								[0, "100rh", "easeInOutCubic"],
+								[500, 0],
+								["100%", "100rh"],
+								["-500", 0, "easeInOutCubic"]
+							],
+							0,
+							0,
+							0
+						]
+					}
+				}, [
+					["solid", {
+						"flex": {
+							"position": "fixed"
+						},
+						"color": ["$", ["var", "color-primary"]]
+					}],
+					["text", {
+						"mixins": ["ds-capsule-mixins",
+							"text",
+							"text-label"
+						],
+						"string": ["$", ["var", "text"]],
+						"color": ["$", ["var", "color-secondary"]],
+						"justify": ["$", ["var", "#align"]],
+						"stagger": [500, -400],
+						"boundary": "word",
+						"animations": [
+							{
+								"opacity": 0,
+								"translate": [
+									0,
+									"40su"
+								]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									[650, 1],
+									["100%", 0],
+									["-350", 1]
+								],
+								"easing": "easeOutQuad",
+								"opacity": 1,
+								"translate": [0, 0]
+							}
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

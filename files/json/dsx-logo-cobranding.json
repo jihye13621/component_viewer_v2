@@ -1,0 +1,122 @@
+[
+	"dsx-logo-cobranding",
+	[
+		{
+			"key": "logo-1",
+			"display": "Logo Left",
+			"type": "asset",
+			"default": "./media/capsule.svg",
+			"required": false
+		},
+		{
+			"key": "logo-2",
+			"display": "Logo Right",
+			"type": "asset",
+			"default": "./media/capsule.svg",
+			"required": false
+		},
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [7, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"max-width": "10000nsu",
+				"align": ["$", ["var", "#align"]]
+			}, [
+				["null", {
+					"layout": "horizontal packed",
+					"align": "center"
+				}, [
+					["user-asset", {
+						"mute": true,
+						"file": ["$", ["var", "logo-1"]],
+						"flex": {
+							"height": "100su"
+						},
+						"justify": ["$", ["concat", "fit ", ["var", "#align"]]],
+						"opacity": ["animate", 
+							[0, 0, "easeOutQuad"],
+							["+500", 1],
+							["100%", 0],
+							["-500", 1]
+						],
+						"transform": [
+							["translate",
+								["animate",
+									[0, "50nsu", "easeOutQuint"],
+									["+500", 0],
+									["100%", "50nsu"],
+									["-500", 0, "easeInQuint"]
+								],
+								0
+							]
+						]
+					}],
+					["null", {
+					  "layout": "horizontal",
+						"flex": {
+							"height": "150nsu",
+							"width": "120nsu"
+						}
+					}, [
+						["solid", {
+							"align": "center",
+							"rect": [
+								0,
+								0,
+								"5nsu", 
+								["animate",
+									[0, 0, "easeOutQuad"],
+									["+400", "100rh"],
+									["100%", 0],
+									["-350", "100rh", "easeInQuad"]
+								]
+							]
+						}]
+					]],
+					["user-asset", {
+						"mute": true,
+						"file": ["$", ["var", "logo-2"]],
+						"flex": {
+							"height": "100su"
+						},
+						"justify": ["$", ["concat", "fit ", ["var", "#align"]]],
+						"opacity": ["animate", 
+							[0, 0, "easeOutQuad"],
+							["+500", 1],
+							["100%", 0],
+							["-500", 1, "easeInQuad"]
+						],
+						"transform": [
+							["translate",
+								["animate",
+									[0, "-50nsu", "easeOutQuint"],
+									["+500", 0],
+									["100%", "-50nsu"],
+									["-500", 0, "easeInQuint"]
+								],
+								0
+							]
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

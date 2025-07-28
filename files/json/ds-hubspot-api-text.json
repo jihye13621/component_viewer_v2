@@ -1,0 +1,198 @@
+[
+	"ds-hubspot-api-text",
+	[
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "textarea",
+			"default": "Add Text",
+			"required": false
+		},
+		["dsx-mixins",
+			"boilerplate"
+		],
+		["ds-hubspot-api-mixins",
+			"animation-select"
+		],
+		{
+			"key": "animate-in",
+			"display": "Animate in",
+			"type": "bool",
+			"default": true,
+			"required": false
+		},
+		{
+			"key": "animate-out",
+			"display": "Animate Out",
+			"type": "bool",
+			"default": true,
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"enabled": ["$", ["exists", ["var", "text"]]],
+			"align": "center"
+		}, [
+			["text", {
+				"stagger": [0, -100],
+				"mixins": ["ds-hubspot-mixins",
+					"font-bold"
+				],
+				"color": [1, 1, 1, 1],
+				"measure": "letter-size",
+				"justify": "center",
+				"align": ["$", ["var", "#align"]],
+				"string": ["$", ["var", "text"]],
+				"height": "100su",
+				"leading": 0.25,
+				"breakpoints": [
+					{
+						"enabled": ["$", ["eq", ["var", "animation-select"], "rise"]],
+						"animations": [
+							{
+								"enabled": ["$", ["var", "animate-in"]],
+								"translate": [
+									0,
+									"100su"
+								]
+							},
+							{
+								"enabled": ["$", ["var", "animate-in"]],
+								"mix": ["animate",
+									[0, 0],
+									["+1000", 1]
+								],
+								"easing": "easeOutQuad",
+								"ramp": 2,
+								"translate": [0, 0],
+								"opacity": 1
+							},
+							{
+								"enabled": ["$", ["var", "animate-out"]],
+								"mix": ["animate",
+									["100%", 1],
+									["-1000", 0]
+								],
+								"easing": "easeInQuad",
+								"ramp": -1,
+								"opacity": 0
+							}
+						]
+					},
+					{
+						"enabled": ["$", ["eq", ["var", "animation-select"], "scale"]],
+						"transform": [
+							["scale",
+								["$", ["var", "animate-in"]],
+								["animate",
+									[0, 1.5, "easeOutQuart"],
+									["+1500", 1]
+								]
+							]
+						],
+						"animations": [
+							{
+								"enabled": ["$", ["var", "animate-in"]],
+								"mix": ["animate",
+									[0, 0],
+									["+1000", 1]
+								],
+								"easing": "easeOutCubic",
+								"ramp": -1,
+								"opacity": 1
+							},
+							{
+								"enabled": ["$", ["var", "animate-out"]],
+								"mix": ["animate",
+									["100%", 1],
+									["-500", 0]
+								],
+								"ramp": -1,
+								"easing": "easeInCubic",
+								"opacity": 0,
+								"translate": [
+									0,
+									"-200su"
+								]
+							}
+						]
+					},
+					{
+						"enabled": ["$", ["eq", ["var", "animation-select"], "word-rise"]],
+						"boundary": "word",
+						"animations": [
+							{
+								"enabled": ["$", ["var", "animate-in"]],
+								"translate": [
+									0,
+									"100su"
+								]
+							},
+							{
+								"enabled": ["$", ["var", "animate-in"]],
+								"mix": ["animate",
+									[0, 0],
+									["+500", 1]
+								],
+								"easing": "easeOutCubic",
+								"ramp": 2,
+								"opacity": 1,
+								"translate": [0, 0]
+							},
+							{
+								"enabled": ["$", ["var", "animate-out"]],
+								"mix": ["animate",
+									["100%", 1],
+									["-500", 0]
+								],
+								"easing": "easeInCubic",
+								"ramp": 2,
+								"opacity": 0,
+								"translate": [
+									0,
+									"-100su"
+								]
+							}
+						]
+					},
+					{
+						"enabled": ["$", ["eq", ["var", "animation-select"], "word-scale"]],
+						"boundary": "word",
+						"animations": [
+							{
+								"enabled": ["$", ["var", "animate-in"]],
+								"scale": 1.25
+							},
+							{
+								"enabled": ["$", ["var", "animate-in"]],
+								"mix": ["animate",
+									[0, 0],
+									["+1000", 1]
+								],
+								"easing": "easeOutCubic",
+								"ramp": 1,
+								"opacity": 1,
+								"scale": 1 
+							},
+							{
+								"enabled": ["$", ["var", "animate-out"]],
+								"mix": ["animate",
+									["100%", 1],
+									["-500", 0]
+								],
+								"easing": "easeInCubic",
+								"ramp": 2,
+								"opacity": 0,
+								"translate": [
+									0,
+									"-50su"
+								]
+							}
+						]
+					}
+				]
+			}]
+		]]
+	]
+]

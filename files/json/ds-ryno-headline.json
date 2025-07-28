@@ -1,0 +1,95 @@
+[
+	"ds-ryno-headline",
+	[
+		["dsx-mixins", "headline"],
+		["ds-ryno-mixins", "color-primary", "color-scrim"],
+		["dsx-mixins", "boilerplate"],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [5, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]],
+			"layout": "vertical packed",
+			"align":["$", ["var", "#align"]]		
+		}, [
+			["null", {
+				"enabled": ["$", ["or",
+					["exists", ["var", "headline"]],
+					["exists", ["var", "subhead"]]
+				]],
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"gap": "50su",
+				"padding": ["60su", "60su"],
+				"max-width": "1000nsu",
+				"opacity": ["animate",
+					["100%", 0],
+					["-350", 1]
+				],
+				"transform": [
+					["translate",
+						0, 
+						["animate", 
+							[0, "-100su", "easeInOutCubic"], 
+							["+1500", 0]
+						]
+					]
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["lte", ["aspect"], 1.0]],
+						"max-width": "800nsu"
+					}
+				]
+			}, [  
+				["text", {
+					"enabled": ["$", ["exists", ["var", "headline"]]],
+					"justify": ["$", ["var", "#align"]],
+					"mixins": ["ds-ryno-mixins", "text", "text-headline"],
+					"string": ["$", ["var", "headline"]],
+					"boundary": "line",
+					"animations": [
+						{
+							"mix": ["animate", [350, 0], ["+750", 1]],
+							"opacity": 1            
+						}
+					]
+				}],
+				["text", {
+					"enabled": ["$", ["exists", ["var", "subhead"]]],
+					"justify": ["$", ["var", "#align"]],
+					"mixins": ["ds-ryno-mixins", "text", "text-subhead"],
+					"string": ["$", ["var", "subhead"]],
+					"case": "uppercase",
+					"boundary": "word",
+					"animations": [
+						{
+							"mix": ["animate", [650, 0], ["+500", 1]],
+							"opacity": 1            
+						}
+					]
+				}],
+				["solid", {
+					"z-index": -1,
+					"color": ["$", ["var", "color-scrim"]],
+					"flex": { "position": "fixed" },
+					"opacity": ["animate", [800, 0, "easeInOutQuad"], ["+650", 1]]
+				}],
+				["ds-ryno-box", { 
+					"flex": { "position": "fixed" }
+				}]
+			]]
+		]]
+	]
+]
+

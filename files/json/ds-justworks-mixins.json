@@ -1,0 +1,72 @@
+{
+	"params": {
+		"color-primary": {
+			"key": "color-primary",
+			"display": "Primary",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		},
+		"color-secondary": {
+			"key": "color-secondary",
+			"display": "Secondary",
+			"type": "color",
+			"default": "#000000",
+			"required": false
+		},
+		"color-purple-light": {
+			"key": "color-purple-light",
+			"display": "Color",
+			"type": "color",
+			"default": "#EAE4FE",
+			"required": false
+		},
+		"color-purple-medium": {
+			"key": "color-purple-medium",
+			"display": "Color",
+			"type": "color",
+			"default": "#7E66CC",
+			"required": false
+		},
+		"color-purple-dark": {
+			"key": "color-purple-dark",
+			"display": "Color",
+			"type": "color",
+			"default": "#360FA7",
+			"required": false
+		}
+	},
+	"text": {
+		"measure": "letter-size"
+	},
+	"text-outro-headline": {
+		"font": "./media/Oately-Regular.otf",
+		"height": "180su",
+		"leading": "10su"
+	},
+	"text-headline": {
+		"font": "./media/Oately-Regular.otf",
+		"height": "120su",
+		"leading": "10su"
+	},
+	"text-subhead": {
+		"font": "./media/Oately-Bold.otf",
+		"height": "70su",
+		"leading": "10su"
+	},
+	"text-body": {
+		"font": "./media/Oately-Regular.otf",
+		"height": "100su",
+		"leading": "10su"
+	},
+	"text-label": {
+		"font": "./media/Oately-Bold.otf",
+		"height": "50su",
+		"leading": "10su"
+	},
+	"text-cta": {
+		"font": "./media/Oately-Regular.otf",
+		"height": "50su",
+		"leading": "10su"
+	}
+}

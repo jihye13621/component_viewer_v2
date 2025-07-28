@@ -1,0 +1,205 @@
+[
+	"ds-virta-speaker-alt-2",
+	[
+		["dsx-mixins",
+			"speaker"
+		],
+		["ds-virta-mixins",
+			"color-primary",
+			"color-accent",
+			"font-headline",
+			"font-body"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [1, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false,
+			"private": true
+		}
+	],
+	[
+		["null", {
+			"layout": "vertical packed",
+			"align": ["$", ["var", "#align"]],
+			"mixins": ["dsx-mixins", ["set-dsx-su"]],
+			"padding": [
+				"125nsu",
+				["$", ["nth", ["safezone"], 1]],
+				["$", ["nth", ["safezone"], 2]],
+				["$", ["nth", ["safezone"], 3]]
+			],
+			"transform": [
+				["translate",
+					0,
+					["animate",
+						[0, "100rh", "easeOutQuad"],
+						["+650", 0],
+						["100%", "100rh"],
+						["-550", 0, "easeInCubic"]
+					]
+				]
+			]
+		}, [
+			["solid", {
+				"flex": {
+					"position": "fixed"
+				},
+				"min-width": "200cw",
+				"radius": 300,
+				"color": ["$", ["var", "color-accent"]],
+				"path": [
+					["-20rw", 0],
+					["0rw", "100nsu"],
+					["20rw", 0],
+					["40rw", "100nsu"],
+					["60rw", 0],
+					["80rw", "100nsu"],
+					["100rw", 0],
+					["120rw", "100nsu"],
+					["120rw", "100rh"],
+					["120rw", "100rh"],
+					["-20rw", "100rh"],
+					["-20rw", "100rh"]
+				],
+				"transform": [
+					["translate",
+						["animate",
+							[0, "-40rw"],
+							["+4000", 0],
+							["+1", "-40rw"],
+							"loop"
+						],
+						0
+					]
+				]
+			}],
+			["null", {
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"gap": "40su"
+			}, [
+				["text", {
+					"stagger": [0, -50],
+					"enabled": ["$", ["exists", ["var", "name"]]],
+					"mixins": ["ds-virta-mixins",
+						"text",
+						"text-headline"
+					],
+					"color": ["$", ["var", "color-primary"]],
+					"string": ["$", ["var", "name"]],
+					"justify": ["$", ["var", "#align"]],
+					"opacity": ["animate",
+						["100%", 0],
+						["-300", 1]
+					],
+					"boundary": "letter",
+					"fit": true,
+					"animations": [
+						{
+							"translate": [
+								0,
+								"80su"
+							]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+1000", 1]
+							],
+							"easing": "easeOutQuad",
+							"opacity": 1,
+							"translate": [0, 0]
+						}
+					]
+				}],
+				["null", {
+					"enabled": ["$",
+						["or",
+							["exists", ["var", "detail-1"]],
+							["exists", ["var", "detail-2"]]
+						]
+					],
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]],
+					"gap": "20su"
+				}, [
+					["text", {
+						"stagger": [300, -100],
+						"enabled": ["$", ["exists", ["var", "detail-1"]]],
+						"mixins": ["ds-virta-mixins",
+							"text",
+							"text-label"
+						],
+						"color": ["$", ["var", "color-primary"]],
+						"string": ["$", ["var", "detail-1"]],
+						"justify": ["$", ["var", "#align"]],
+						"opacity": ["animate",
+							["100%", 0],
+							["-300", 1]
+						],
+						"boundary": "letter",
+						"animations": [
+							{
+								"translate": [
+									0,
+									"40su"
+								]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+800", 1]
+								],
+								"easing": "easeOutQuad",
+								"opacity": 1,
+								"translate": [0, 0]
+							}
+						]
+					}],
+					["text", {
+						"stagger": [400, -150],
+						"enabled": ["$", ["exists", ["var", "detail-2"]]],
+						"mixins": ["ds-virta-mixins",
+							"text",
+							"text-label"
+						],
+						"color": ["$", ["var", "color-primary"]],
+						"string": ["$", ["var", "detail-2"]],
+						"justify": ["$", ["var", "#align"]],
+						"opacity": ["animate",
+							["100%", 0],
+							["-300", 1]
+						],
+						"boundary": "letter",
+						"animations": [
+							{
+								"translate": [
+									0,
+									"40su"
+								]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+800", 1]
+								],
+								"easing": "easeOutQuad",
+								"opacity": 1,
+								"translate": [0, 0]
+							}
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

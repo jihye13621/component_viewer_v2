@@ -1,0 +1,97 @@
+[
+	"ds-sojern-watermark",
+	[
+		{
+			"key": "theme",
+			"display": "Theme",
+			"type": "string",
+			"default": "standard",
+			"options": [
+				{
+					"key": "standard",
+					"display": "Standard"
+				},
+				{
+					"key": "white",
+					"display": "White"
+				},
+				{
+					"key": "knockout",
+					"display": "Knockout"
+				}
+			]
+		},
+		{
+			"key": "#logo",
+			"display": "Logo",
+			"type": "object",
+			"default": [],
+			"script": ["$",
+				["switch", ["var", "theme"], {
+					"standard": "./media/ds-sojern-compass.svg",
+					"white": "./media/ds-sojern-compass_white.svg",
+					"knockout": "./media/ds-sojern-compass_ko.svg",
+					"_": "./media/ds-sojern-compass.svg"
+				}]
+			],
+			"required": false,
+			"private": true
+		},
+		{
+			"key": "override-opacity",
+			"display": "Opacity",
+			"type": "number",
+			"default": 1,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"step": 0.05,
+				"minimum": 0.0,
+				"maximum": 1.0
+			}
+		},
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [7, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": true,
+				"minimum": -100,
+				"maximum": 100
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone",
+				"offset"
+			]
+		}, [
+			["asset", {
+				"rect": [
+					0,
+					0,
+					"150su",
+					"150su"
+				],
+				"file": ["$", ["var", "#logo"]],
+				"justify": ["$", ["concat", "fit ", ["var", "#align"]]],
+				"align": ["$", ["var", "#align"]],
+				"opacity": ["animate",
+					[0, 0],
+					["+250", ["$", ["var", "override-opacity"]]],
+					["100%", 0],
+					["-150", ["$", ["var", "override-opacity"]]]
+				]
+			}]
+		]]
+	]
+]

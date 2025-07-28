@@ -1,0 +1,130 @@
+[
+	"ds-sbg-crimobs-arrow",
+	[
+		{
+			"key": "style",
+			"display": "Style",
+			"type": "string",
+			"default": "red",
+			"required": false,
+			"options": [
+				{
+					"key": "red",
+					"display": "Red"
+				},
+				{
+					"key": "white",
+					"display": "White"
+				}
+			]
+		},
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [0, 0, 0],
+			"required": false,
+			"ui": {
+				"grid": false,
+				"offset": true,
+				"minimum": -100,
+				"maximum": 100
+			}
+		},
+		{
+			"key": "angle",
+			"display": "Angle",
+			"type": "number",
+			"default": 0,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 0.01,
+				"minimum": 0.0,
+				"maximum": 1.0
+			}
+		},
+		{
+			"key": "length",
+			"display": "Size",
+			"type": "number",
+			"default": 1,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 0.01,
+				"minimum": 0.0,
+				"maximum": 3.0
+			}
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su"
+			]
+		}, [
+			["null", {
+				"rect": [
+					0,
+					0,
+					0,
+					0
+				],
+				"transform": [
+					["scale",
+						["$", ["var", "length"]],
+						0,
+						0
+					],
+					["rotate",
+						["$", ["var", "angle"]],
+						0,
+						0
+					],
+					["translate",
+						["$",
+							["concat",
+								["*", 0.5, ["nth", ["var", "position"], 1]],
+								"cw"
+							]
+						],
+						["$",
+							["concat",
+								["*", -0.5, ["nth", ["var", "position"], 2]],
+								"ch"
+							]
+						]
+					]
+				],
+				"align": "center"
+			}, [
+				["asset", {
+					"rect": [
+						0,
+						"-100su",
+						"200su",
+						"200su"
+					],
+					"file": ["$", ["concat", "./media/ds-sbg-crimobs-arrow-", ["var", "style"], ".svg"]],
+					"justify": "fit center left",
+					"mask": {
+						"padding": [
+							0,
+							["animate",
+								[0, "100rw", "easeInOutQuad"],
+								["+200", 0],
+								["100%", "100rw"],
+								["-200", 0, "easeInOutQuad"]
+							],
+							0,
+							0
+						]
+					}
+				}]
+			]]
+		]]
+	]
+]

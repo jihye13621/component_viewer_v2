@@ -1,0 +1,121 @@
+[
+	"ds-servicenow-nowsell-media",
+	[
+	{
+		"key": "asset",
+		"display": "Asset",
+		"type": "asset",
+		"default": null,
+		"required": false,
+		"parameters": [
+			["gain", 0],
+			["justify", "fill"],
+			["motion", "none"]
+		],
+		"script": ["$", ["if",
+			["exists", ["var", "asset"]],
+			["var", "asset"],
+			"./media/image-wide.jpg"	
+		]]
+	},
+		["ds-servicenow-mixins",
+			"color-secondary",
+			"color-accent"
+		]
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins", "set-su-roi", "safezone"],
+			"color": ["$", ["var", "color-secondary"]]
+		}, [
+			["asset", {
+				"flex": {
+					"position": "fixed"
+				},
+				"file": "./media/ds-servicenow-wheel.png",
+				"justify": "fit center left",
+				"opacity": 0.15,
+				"transform": [
+					["scale", 1.7],
+					["translate",
+						"-50rw",
+						0
+					]
+				]
+			}],
+			["null", {
+				"padding": [
+					"110nsu",
+					0,
+					0,
+					0
+				]
+			}, [
+				["user-asset", {
+					"file": ["$", ["var", "asset"]],
+					"justify": "fill center",
+					"tags": ["b-roll"],
+					"mask": {
+						"radius": "25nsu",
+						"transform": true,
+						"padding": [
+							["animate",
+								[0, "50rh", "easeOutCubic"],
+								["+600", 0],
+								["100%", "30rh"],
+								["-500", 0, "easeInCubic"]
+							],
+							0,
+							0,
+							0
+						]
+					},
+					"opacity": ["animate",
+						[0, 0],
+						["+350", 1, "easeOutQuad"],
+						["100%", 0],
+						["-350", 1, "easeInQuad"]
+					],
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[0, "20rh", "easeOutCubic"],
+								["+500", 0],
+								["100%", "12rh"],
+								["-500", 0, "easeInCubic"]
+							]
+						]
+					]
+				}],
+				["asset", {
+					"flex": {
+						"position": "fixed"
+					},
+					"file": "./media/ds-servicenow-nowsell-logo-animated-large.json",
+					"justify": "fit top left",
+					"lottie-driver": 1,
+					"rect": [
+						0,
+						0,
+						"400nsu",
+						"80nsu"
+					]
+				}]
+			]],
+			["solid", {
+				"flex": {
+					"position": "fixed"
+				},
+				"rect": [
+					0,
+					0,
+					"25nsu",
+					"100rh"
+				],
+				"color": ["$", ["var", "color-accent"]],
+				"align": "right center"
+			}]
+		]]
+	]
+]

@@ -1,0 +1,87 @@
+[
+	"ds-scottishrite-captions",
+	[
+		["dsx-mixins",
+			"captions"
+		],
+		["ds-scottishrite-mixins",
+			"color-primary",
+			"color-secondary",
+			"color-accent",
+			"font-headline",
+			"font-body"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "max-words",
+			"display": "Words",
+			"type": "number",
+			"default": 8,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 1,
+				"minimum": 1,
+				"maximum": 12
+			}
+		},
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [2, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"max-width": "800nsu",
+				"align": ["$", ["var", "#align"]],
+				"padding": [
+					"20su",
+					"20su"
+				]
+			}, [
+				["text", {
+					"mixins": ["ds-scottishrite-mixins",
+						"text",
+						"text-headline"
+					],
+					"justify": ["$", ["var", "#align"]],
+					"transcript": ["$",
+						["transcript-split",
+							["var", "transcript"],
+							["var", "max-words"]
+						]
+					],
+					"color": ["$", ["var", "color-secondary"]],
+					"background-color": ["$", ["var", "color-accent"]],
+					"background-padding": [
+						"20su",
+						"20su"
+					],
+					"animations": [
+						{
+							"opacity": 0.3,
+							"background-opacity": 1
+						},
+						{
+							"mix": [[0, 0], [0.2, 1]],
+							"opacity": 1
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

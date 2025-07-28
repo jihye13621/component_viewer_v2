@@ -1,0 +1,76 @@
+{
+	"params": {
+		"colors": [
+			{
+				"key": "color-white",
+				"display": "White",
+				"private": true,
+				"type": "color",
+				"default": "#F7F9FB",
+				"required": false
+			},
+			{
+				"key": "color-blue",
+				"display": "Blue",
+				"private": true,
+				"type": "color",
+				"default": "#0293CD",
+				"required": false
+			},
+			{
+				"key": "color-medium-blue",
+				"display": "Medium Blue",
+				"private": true,
+				"type": "color",
+				"default": "#15374C",
+				"required": false
+			},
+			{
+				"key": "color-dark-blue",
+				"display": "Dark Blue",
+				"private": true,
+				"type": "color",
+				"default": "#002033",
+				"required": false
+			},
+			{
+				"key": "color-black",
+				"display": "Black",
+				"private": true,
+				"type": "color",
+				"default": "#030E16",
+				"required": false
+			}
+		],
+        "fonts": [
+			{
+				"key": "font-black",
+				"display": "Font Black",
+				"type": "string",
+				"default": "./media/verkada-black.woff2",
+				"required": false
+			},       
+			{
+				"key": "font-bold",
+				"display": "Font Bold",
+				"type": "string",
+				"default": "./media/verkada-bold.woff2",
+				"required": false
+			},
+			{
+				"key": "font-medium",
+				"display": "Font Medium",
+				"type": "string",
+				"default": "./media/verkada-medium.woff2",
+				"required": false
+			},
+			{
+				"key": "font-regular",
+				"display": "Font Regular",
+				"type": "string",
+				"default": "./media/verkada-regular.woff2",
+				"required": false
+			}
+        ]
+	}
+}

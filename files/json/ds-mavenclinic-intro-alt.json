@@ -1,0 +1,44 @@
+[
+	"ds-mavenclinic-intro-alt",
+	[
+		["ds-mavenclinic-mixins",
+			"color-selector"
+		]
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins",
+				"set-su-roi",
+				"safezone"
+			],
+			"color": ["$", ["var", "#background"]]
+		}, [
+			["asset", {
+				"file": "./media/ds-mavenclinic-logo-primary-horizontal.svg",
+				"justify": "fit center",
+				"rect": [
+					0,
+					0,
+					"70rw",
+					"60rh"
+				],
+				"align": "center",
+				"transform": [
+					["translate",
+						0,
+						["animate",
+							[0, "100roih", "easeOutQuad"],
+							["+700", 0]
+						]
+					]
+				],
+				"replace-color": [
+					[
+						"#ffffff",
+						["$", ["var", "#foreground"]]
+					]
+				]
+			}]
+		]]
+	]
+]

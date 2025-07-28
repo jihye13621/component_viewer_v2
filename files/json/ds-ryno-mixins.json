@@ -1,0 +1,125 @@
+{
+	"params": {
+		"color-primary": {
+			"key": "color-primary",
+			"display": "Primary",
+			"type": "color",
+			"default": "#FFFFFF",
+			"required": false,
+			"private": true
+		},
+		"color-secondary": {
+			"key": "color-secondary",
+			"display": "Secondary",
+			"type": "color",
+			"default": "#F2F2F2",
+			"required": false,
+			"private": true
+		},
+		"color-accent": {
+			"key": "color-accent",
+			"display": "Accent",
+			"type": "color",
+			"default": "#999999",
+			"required": false,
+			"private": true
+		},
+		"color-background": {
+			"key": "color-background",
+			"display": "Background",
+			"type": "color",
+			"default": "#1D1E1B",
+			"required": false,
+			"private": true
+		},
+		"color-background-gradient": {
+			"key": "color-background-gradient",
+			"display": "Background Gradient",
+			"type": "color",
+			"default": [0.3, 0.3, 0.3, 1],
+			"required": false,
+			"private": true
+		},
+		"color-scrim": {
+			"key": "color-scrim",
+			"display": "Scrim",
+			"type": "color",
+			"default": [0, 0, 0, 0.3],
+			"required": false,
+			"private": true
+		}
+	},
+	"x-mask-wipe": {
+		"mask": {
+			"padding": [
+				0,
+				["animate",
+					[0, "100rw", "easeOutQuad"],
+					["+600", 0]
+				],
+				0,
+				["animate",
+					["100%", "100rw"],
+					["-450", 0, "easeInQuad"]
+				]
+			]
+		}
+	},
+	"y-mask-wipe": {
+		"mask": {
+			"padding": [
+				["animate",
+					["100%", "100rh"],
+					["-450", 0, "easeInQuad"]
+				],
+				0,
+				["animate",
+					[0, "100rh", "easeOutQuad"],
+					["+600", 0]
+				],
+				0
+			]
+		}
+	},
+	"text": {
+		"measure": "letter-size"
+	},
+	"text-headline": {
+		"font": "./media/Gotham-Light.otf",
+		"height": "100su",
+		"leading": "20su"
+	},
+	"text-list": {
+		"font": "./media/Gotham-Book.otf",
+		"height": "80su",
+		"leading": "20su"
+	},
+	"text-intro-headline": {
+		"font": "./media/Gotham-Light.otf",
+		"height": "170su",
+		"leading": "30su"
+	},
+	"text-subhead": {
+		"font": "./media/Gotham-Medium.otf",
+		"height": "45su",
+		"leading": "20su"
+	},
+	"text-intro-subhead": {
+		"font": "./media/Gotham-Light.otf",
+		"height": "60su"
+	},
+	"text-body": {
+		"font": "./media/Gotham-Medium.otf",
+		"height": "55su",
+		"leading": "10su"
+	},
+	"text-label": {
+		"font": "./media/Gotham-Bold.otf",
+		"height": "40su"
+	},
+	"text-captions": {
+		"font": "./media/Gotham-Book.otf",
+		"height": "60su",
+		"leading": "10su"
+	}
+}

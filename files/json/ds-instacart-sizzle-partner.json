@@ -1,0 +1,71 @@
+[
+	"ds-instacart-sizzle-partner",
+	[
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"parameters": []
+		},
+		["ds-instacart-mixins",
+			"colors",
+			"theme"
+		],
+		["dsx-mixins",
+			"boilerplate-intro-outro"
+		]
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			],
+			"color": ["$", ["var", "#background"]]
+		}, [
+			["null", {
+				"transform": [
+					["scale",
+						["$", ["var", "size"]]
+					]
+				]
+			}, [
+				["user-asset", {
+					"file": ["$", ["if",
+						["exists", ["var", "asset"]],
+						["var", "asset"],
+						["if",
+							["eq", ["var", "theme"], "cashew"],
+							"./media/ds-instacart-logo-dark.svg",
+							"./media/ds-instacart-logo-light.svg"
+						]
+					]],
+					"justify": "fit center",
+					"rect": [
+						0,
+						0,
+						"65rw",
+						"50rh"
+					],
+					"align": "center",
+					"mask": {
+						"padding": [
+							"-20su",
+							"-20su"
+						]
+					},
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[0, "150rh", "easeOutQuint"],
+								["+500", 0]
+							]
+						]
+					]
+				}]
+			]]
+		]]
+	]
+]

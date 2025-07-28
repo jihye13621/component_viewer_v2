@@ -1,0 +1,45 @@
+[
+	"ds-altruist-outro-logo",
+	[
+		["ds-altruist-mixins",
+			"custom-ease-2-reverse",
+			"colors",
+			"theme"
+		]
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			],
+			"color": ["$", ["var", "#bg"]]
+		}, [
+			["asset", {
+				"file": "./media/ds-altruist-logo.svg",
+				"justify": "fit center",
+				"rect": [
+					0,
+					0,
+					"50rw",
+					"50rh"
+				],
+				"align": "center",
+				"svg-recolor": ["$", ["var", "#fg"]],
+				"opacity": ["animate",
+					[0, 0, "easeOutSine"],
+					["+500", 1]
+				],
+				"transform": [
+					["translate",
+						0,
+						["animate",
+							[0, "200su", ["$", ["var", "custom-ease-2-reverse"]]],
+							["+1000", 0]
+						]
+					]
+				]
+			}]
+		]]
+	]
+]

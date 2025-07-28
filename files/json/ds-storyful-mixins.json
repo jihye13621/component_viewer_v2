@@ -1,0 +1,74 @@
+{
+	"params": {
+		"color-white": {
+			"key": "color-white",
+			"display": "White",
+			"type": "color",
+			"default": "#FEFDFA",
+			"required": false
+		},
+		"color-dark-blue": {
+			"key": "color-dark-blue",
+			"display": "Dark Blue",
+			"type": "color",
+			"default": "#0f142c",
+			"required": false
+		},
+		"color-blue": {
+			"key": "color-blue",
+			"display": "Blue",
+			"type": "color",
+			"default": "#53617f",
+			"required": false
+		},
+		"color-red": {
+			"key": "color-red",
+			"display": "Red",
+			"type": "color",
+			"default": "#FF3C00",
+			"required": false
+		},
+		"color-blue-secondary": {
+			"key": "color-blue-secondary",
+			"display": "Blue",
+			"type": "color",
+			"default": "#242423",
+			"required": false
+		},
+		"color-red-secondary": {
+			"key": "color-red-secondary",
+			"display": "Red",
+			"type": "color",
+			"default": "#ff005c",
+			"required": false
+		}
+	},
+	"font-headline": {
+		"font": "./media/ObjektivMk3_Trial_Blk.ttf",
+		"height": "250su",
+		"kerning": -0.01
+	},
+	"font-body": {
+		"font": "./media/ObjektivMk3_Trial_Bd.ttf",
+		"height": "80su",
+		"kerning": -0.02
+	},
+	"logo-animation": {
+		"file": "./media/ds-storyful-logo-animated.json",
+		"lottie-driver": ["animate",
+			[0, 0],
+			[
+				["$", ["to-relative-string", ["dur", "./media/ds-storyful-logo-animated.json"]]], 
+				1
+			]
+		],
+		"hold": true
+
+	},
+	"logo-black": {
+		"file": "./media/ds-storyful-logo-black.svg"
+	},
+	"logo-white": {
+		"file": "./media/ds-storyful-logo-white.svg"
+	}
+}

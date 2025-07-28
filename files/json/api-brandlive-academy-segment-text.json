@@ -1,0 +1,98 @@
+[
+	"api-brandlive-academy-segment-text",
+	[
+		{
+			"key": "headline",
+			"display": "Headline",
+			"type": "string",
+			"default": "Add a headline",
+			"required": false
+		},
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "string",
+			"default": "Optional text",
+			"required": false
+		},
+		{
+			"key": "font-1",
+			"display": "Font 1",
+			"type": "string",
+			"default": "./media/api-brandlive/Poppins-Medium.ttf",
+			"required": false
+		},
+		{
+			"key": "font-2",
+			"display": "Font 2",
+			"type": "string",
+			"default": "./media/api-brandlive/Poppins-Regular.ttf",
+			"required": false
+		},
+		{
+			"key": "text-color-1",
+			"display": "Text Color 1",
+			"type": "color",
+			"default": "#FFFFFF",
+			"required": false
+		},
+		{
+			"key": "text-color-2",
+			"display": "Text Color 2",
+			"type": "color",
+			"default": "#FFFFFF",
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"layout": "vertical packed",
+			"rect": ["55rw", "26rh", "45rw", "70rh"],
+			"padding": [0, "12rw", "15rh", 0],
+			"gap": "50su"
+		}, [
+			["text", {
+				"enabled": ["$", ["exists", ["var", "text"]]],
+				"string": ["$", ["var", "text"]],
+				"color": ["$", ["var", "text-color-1"]],
+				"font": ["$", ["var", "font-2"]],
+				"align": "left",
+				"height": "60su",
+				"boundary": "letter",  
+				"measure": "letter-size",                                
+				"animations": [
+					{
+						"mix": ["animate",
+							[0, 0],
+							[1000, 1]
+						],
+						"opacity": 1,
+						"ramp": 1.5,
+						"easing": "round"
+					}
+				]
+			}],
+			["text", {
+				"enabled": ["$", ["exists", ["var", "headline"]]],
+				"string": ["$", ["var", "headline"]],
+				"color": ["$", ["var", "text-color-2"]],
+				"font": ["$", ["var", "font-1"]],
+				"height": "100su",
+				"measure": "letter-size",
+				"transform": [
+					["translate",
+						0,
+						["animate",
+							[0, "80su", "easeInOutQuad"],
+							["+500", 0]
+						]
+					]
+				],
+				"opacity": ["animate", 
+					[0, 0, "easeInOutQuad"],
+					["+500", 1]
+				]
+			}]
+		]]
+	]
+]

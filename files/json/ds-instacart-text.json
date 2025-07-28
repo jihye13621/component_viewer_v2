@@ -1,0 +1,119 @@
+[
+	"ds-instacart-text",
+	[
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "textarea",
+			"default": "Get everyone's fresh favorites",
+			"required": false
+		},
+		{
+			"key": "do-bg",
+			"display": "Background",
+			"type": "bool",
+			"default": true,
+			"required": false
+		},
+		["ds-instacart-mixins",
+			"colors",
+			"font-sans-400",
+			"theme"
+		]
+	],
+	[
+		["solid", {
+			"skip": ["$", ["not", ["var", "do-bg"]]],
+			"mixins": ["dsx-mixins", "safezone", "set-su"],
+			"color": ["$", ["var", "#background"]]
+		}, [
+			["null", {
+
+			}, [
+				["null", {
+					"layout": "vertical packed",
+					"align": "center",
+					"max-width": "1000nsu",
+					"transform": [
+						["scale",
+							["animate",
+								[0, 1.25, "easeOutQuart"],
+								["+500", 1]
+							]
+						],
+						["translate", 
+							0,
+							["animate",
+								[500, "65su", "easeInOutQuad"],
+								["+400", 0]
+							]
+						]
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["lte", ["aspect"], 1.0]],
+							"transform": [
+								["scale",
+									["animate",
+										[0, 1.2, "easeOutQuart"],
+										["+500", 1]
+									]
+								],
+								["translate", 
+									0,
+									["animate",
+										[500, "65su", "easeInOutQuad"],
+										["+400", 0]
+									]
+								]
+							]
+						}
+					]
+				}, [
+					["text", {
+						"stagger": [500, 0],
+						"enabled": ["$", ["exists", ["var", "text"]]],
+						"font": ["$", ["var", "font-sans-400"]],
+						"measure": "letter-size",
+						"height": "100su",
+						"leading": "20su",
+						"string": ["$", ["var", "text"]],
+						"color": ["$", ["var", "#foreground"]],
+						"justify": "center",
+						"boundary": "line",
+						"effect": [
+							["shadow", {
+								"enabled": ["$", ["not", ["var", "do-bg"]]],
+								"color": [0, 0, 0, 0.5],
+								"radius": "30su"
+							}]
+						],
+						"animations": [
+							{
+								"translate": [
+									0,
+									"120su"
+								],
+								"mask": ["-10su", 0, "-10su", 0]
+							},
+							{
+								"indices": [0, 1],
+								"translate": [0, 0],
+								"opacity": 1
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+400", 1]
+								],
+								"translate": [0, 0],
+								"opacity": 1,
+								"easing": "easeOutQuad"
+							}
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

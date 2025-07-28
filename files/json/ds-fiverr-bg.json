@@ -1,0 +1,138 @@
+[
+	"ds-fiverr-bg",
+	[
+		["ds-fiverr-mixins",
+			"bg-options",
+			"bg-options-solid"
+		],
+		{
+			"key": "#unit",
+			"display": "Unit",
+			"type": "number",
+			"private": true,
+			"default": 100,
+			"script": ["$",
+				["*",
+					["/",
+						["min", ["width"], ["height"]],
+						1080
+					]
+				]
+			]
+		},
+		{
+			"key": "#rad",
+			"display": "Rad",
+			"type": "number",
+			"private": true,
+			"default": 100,
+			"script": ["$",
+				["*",
+					["var", "#unit"],
+					40
+				]
+			]
+		},
+		{
+			"key": "#scale",
+			"display": "Scale",
+			"type": "number",
+			"private": true,
+			"default": 1,
+			"script": ["$",
+				["let",
+					[
+						["size", ["min", ["width"], ["height"]]],
+						["reduced", ["-", ["var", "size"], ["*", ["var", "#rad"], 2]]]
+					],
+					["/",
+						["var", "size"],
+						["var", "reduced"]
+					]
+				]
+			]
+		},
+		{
+			"key": "#palette",
+			"display": "Palette Calc",
+			"type": "object",
+			"default": [
+				"#ffffff",
+				"#000000"
+			],
+			"private": true,
+			"script": ["$",
+				["switch", ["var", "palette"], {
+					"1": ["#FFD3E2", "#FF7D4C"],
+					"2": ["#1DBF73", "#D0F7E6"],
+					"3": ["#F1F4CB", "#D0E500"],
+					"4": ["#FF80AE", "#D0F7E6"],
+					"_": ["#FFD3E2", "#FF7D4C"]
+				}]
+			]
+		},
+		{
+			"key": "#color-order",
+			"display": "Color Order Calc",
+			"type": "object",
+			"default": [0, 1],
+			"private": true,
+			"script": ["$",
+				["if",
+					["var", "swap-colors"],
+					["'", 1, 0],
+					["'", 0, 1]
+				]
+			]
+		}
+	],
+	[
+		["solid", {
+			"enabled": ["$", ["var", "solid-color"]],
+			"color": ["$", ["nth", ["var", "#palette"], ["nth", ["var", "#color-order"], 0]]]
+		}],
+		["asset", {
+			"enabled": ["$", ["not", ["var", "solid-color"]]],
+			"file": ["$",
+				["concat",
+					"./media/ds-fiverr-bg-",
+					["var", "shape"],
+					["if", ["=", ["aspect"], 1],
+						"",
+						["if",
+							[">", ["aspect"], 1],
+							"-wide",
+							"-vert"
+						]
+					],
+					".json"
+				]
+			],
+			"justify": "fill center",
+			"effect": [
+				["false-color", {
+					"color-1": ["$", ["nth", ["var", "#palette"], ["nth", ["var", "#color-order"], 0]]],
+					"color-2": ["$", ["nth", ["var", "#palette"], ["nth", ["var", "#color-order"], 1]]]
+				}],
+				["blur", {
+					"radius": ["$", ["var", "#rad"]],
+					"end": ["$",
+						["if",
+							["var", "blur"],
+							null,
+							-1
+						]
+					]
+				}]
+			],
+			"breakpoints": [
+				{
+					"enabled": ["$", ["var", "blur"]],
+					"transform": [
+						["scale", ["$", ["var", "#scale"]]]
+					]
+				}
+			]
+		}]
+	]
+]

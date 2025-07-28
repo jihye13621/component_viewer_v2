@@ -1,0 +1,573 @@
+{
+	"params": {
+		"boilerplate": [
+			{
+				"key": "background",
+				"display": "Background",
+				"type": "color",
+				"default": null,
+				"required": false
+			},
+			{
+				"key": "size",
+				"display": "Size",
+				"type": "number",
+				"default": 1.0,
+				"required": false,
+				"ui": {
+					"input": "slider",
+					"step": 0.05,
+					"minimum": 0.5,
+					"maximum": 1.5
+				}
+			},
+			{
+				"key": "#align",
+				"type": "string",
+				"default": "center",
+				"required": false,
+				"private": true,
+				"script": ["$", ["switch", ["nth", ["var", "position"], 0], {
+					"1": "bottom left",
+					"2": "bottom center",
+					"3": "bottom right",
+					"4": "left center",
+					"5": "center",
+					"6": "right center",
+					"7": "top left",
+					"8": "top center",
+					"9": "top right",
+					"_": "center"
+				}]]
+			}
+		],
+		"boilerplate-captions": [
+			{
+				"key": "background",
+				"display": "Background",
+				"type": "color",
+				"default": null,
+				"required": false
+			},
+			{
+				"key": "size",
+				"display": "Size",
+				"type": "number",
+				"default": 1.0,
+				"required": false,
+				"ui": {
+					"input": "slider",
+					"step": 0.05,
+					"minimum": 0.25,
+					"maximum": 2.0
+				}
+			},
+			{
+				"key": "#align",
+				"type": "string",
+				"default": "center",
+				"required": false,
+				"private": true,
+				"script": ["$", ["switch", ["nth", ["var", "position"], 0], {
+					"1": "bottom left",
+					"2": "bottom center",
+					"3": "bottom right",
+					"4": "left center",
+					"5": "center",
+					"6": "right center",
+					"7": "top left",
+					"8": "top center",
+					"9": "top right",
+					"_": "center"
+				}]]
+			}
+		],
+		"boilerplate-intro-outro": [
+			{
+				"key": "size",
+				"display": "Size",
+				"type": "number",
+				"default": 1.0,
+				"required": false,
+				"ui": {
+					"input": "slider",
+					"step": 0.05,
+					"minimum": 0.5,
+					"maximum": 1.5
+				}
+			}
+		],
+		"intro": [
+			{
+				"key": "headline",
+				"display": "Headline",
+				"type": "text",
+				"default": "Add a headline",
+				"required": false
+			},
+			{
+				"key": "subhead",
+				"display": "Subhead",
+				"type": "text",
+				"default": "Optional subhead",
+				"required": false
+			}
+		],
+		"outro": [
+			{
+				"key": "logo",
+				"display": "Logo",
+				"type": "asset",
+				"default": "./media/capsule.svg",
+				"global": "logo",
+				"required": false,
+				"parameters": []
+			},
+			{
+				"key": "text",
+				"display": "Text",
+				"type": "text",
+				"default": "Optional text",
+				"required": false
+			}
+		],
+		"headline": [
+			{
+				"key": "headline",
+				"display": "Headline",
+				"type": "text",
+				"default": "Add a headline",
+				"required": false
+			},
+			{
+				"key": "subhead",
+				"display": "Subhead",
+				"type": "text",
+				"default": "Optional subhead",
+				"required": false
+			}
+		],
+		"text": [
+			{
+				"key": "text",
+				"display": "Text",
+				"type": "textarea",
+				"default": "Add text",
+				"required": false
+			}
+		],
+		"speaker": [
+			{
+				"key": "name",
+				"display": "Speaker name",
+				"type": "text",
+				"default": "Speaker name",
+				"required": false
+			},
+			{
+				"key": "detail-1",
+				"display": "Title",
+				"type": "text",
+				"default": "Optional speaker detail",
+				"required": false
+			},
+			{
+				"key": "detail-2",
+				"display": "Company",
+				"type": "text",
+				"default": "Optional speaker detail",
+				"required": false
+			}
+		],
+		"cta": [
+			{
+				"key": "icon",
+				"display": "Icon",
+				"type": "string",
+				"default": "star",
+				"options": [
+					{
+						"key": "none",
+						"display": "None"
+					},
+					{
+						"key": "arrow-up-right",
+						"display": "Arrow"
+					},
+					{
+						"key": "clock",
+						"display": "Clock"
+					},
+					{
+						"key": "calendar",
+						"display": "Calendar"
+					},
+					{
+						"key": "envelope",
+						"display": "Envelope"
+					},
+					{
+						"key": "link",
+						"display": "Link"
+					},
+					{
+						"key": "pin",
+						"display": "Pin"
+					},
+					{
+						"key": "star",
+						"display": "Star"
+					},
+					{
+						"key": "twitter",
+						"display": "Twitter"
+					},
+					{
+						"key": "facebook",
+						"display": "Facebook"
+					},
+					{
+						"key": "instagram",
+						"display": "Instagram"
+					},
+					{
+						"key": "linked-in",
+						"display": "LinkedIn"
+					},
+					{
+						"key": "snapchat",
+						"display": "Snapchat"
+					},
+					{
+						"key": "threads",
+						"display": "Threads"
+					},
+					{
+						"key": "tiktok",
+						"display": "TikTok"
+					}
+				],
+				"required": false
+			},
+			{
+				"key": "text",
+				"display": "Text",
+				"type": "text",
+				"default": "Add a call to action",
+				"required": false
+			}
+		],
+		"date": [
+			{
+				"key": "date",
+				"display": "Date",
+				"type": "text",
+				"default": "Add a date",
+				"required": false
+			}
+		],
+		"location": [
+			{
+				"key": "location",
+				"display": "Location",
+				"type": "text",
+				"default": "Add a location",
+				"required": false
+			}
+		],
+		"prompt": [
+			{
+				"key": "text",
+				"display": "Text",
+				"type": "text",
+				"default": "Add a prompt",
+				"required": false
+			}
+		],
+		"stat": [
+			{
+				"key": "stat",
+				"display": "Stat",
+				"type": "text",
+				"default": "Add a statistic",
+				"required": false
+			},
+			{
+				"key": "text",
+				"display": "Text",
+				"type": "text",
+				"default": "Optional statistic details",
+				"required": false
+			}
+		],
+		"list": [
+			{
+				"key": "items",
+				"display": "Items",
+				"type": "text",
+				"default": "Add list items",
+				"required": false
+			}
+		],
+		"quote": [
+			{
+				"key": "review",
+				"display": "Review",
+				"type": "string",
+				"options": [
+					{
+						"key": "0",
+						"display": "No Review"
+					},
+					{
+						"key": "1",
+						"display": "1"
+					},
+					{
+						"key": "2",
+						"display": "2"
+					},
+					{
+						"key": "3",
+						"display": "3"
+					},
+					{
+						"key": "4",
+						"display": "4"
+					},
+					{
+						"key": "5",
+						"display": "5"
+					}
+				],
+				"default": "0",
+				"required": false,
+				"script": ["$", ["to-number", ["var", "review"]]]
+			},
+			{
+				"key": "quote",
+				"display": "Quote",
+				"type": "text",
+				"default": "Add quote text",
+				"required": false
+			},
+			{
+				"key": "detail-1",
+				"display": "Source",
+				"type": "text",
+				"default": "Quote source",
+				"required": false
+			},
+			{
+				"key": "detail-2",
+				"display": "Details",
+				"type": "text",
+				"default": "Optional source details",
+				"required": false
+			}
+		],
+		"logo": [
+			{
+				"key": "logo",
+				"display": "Logo",
+				"type": "asset",
+				"default": "./media/capsule.svg",
+				"global": "logo",
+				"required": false,
+				"parameters": []
+			},
+			{
+				"key": "text",
+				"display": "Text",
+				"type": "text",
+				"default": "Optional text",
+				"required": false
+			}
+		],
+		"watermark": [
+			{
+				"key": "logo",
+				"display": "Logo",
+				"type": "asset",
+				"default": "./media/capsule.svg",
+				"global": "logo",
+				"required": false,
+				"parameters": []
+			},
+			{
+				"key": "text",
+				"display": "Text",
+				"type": "text",
+				"default": "Optional text",
+				"required": false
+			}
+		],
+		"captions": [
+			{
+				"key": "transcript",
+				"display": "Transcript",
+				"type": "transcript",
+				"required": true
+			}
+		]
+	},
+	"safezone": {
+		"padding": ["$", ["safezone"]]
+	},
+	"offset": {
+		"transform": [
+			["$",
+				["array",
+					"translate",
+					["concat", ["*", 2, ["nth", ["var", "position"], 1]], "nsu"],
+					["concat", ["*", -2, ["nth", ["var", "position"], 2]], "nsu"]
+				]
+			]
+		]
+	},
+	"offset-screen": {
+		"transform": [
+			["$",
+				["array",
+					"translate",
+					["concat",
+						["*", 0.5, ["nth", ["var", "position"], 1]],
+						"cw"
+					],
+					["concat",
+						["*", -0.5, ["nth", ["var", "position"], 2]],
+						"ch"
+					]
+				]
+			]
+		]
+	},
+	"set-dsx-su": {
+		"units": {
+			"su": ["$",
+				["*",
+					["/",
+						["min", ["width"], ["height"]],
+						1080
+					],
+					["if",
+						["exists", 
+							["var", "size"]
+						],
+						["var", "size"],
+						1
+					],
+					["if",
+						["gte",
+							["aspect"],
+							0.9
+						],
+						0.75,
+						1
+					]
+				]
+			],
+			"nsu": ["$",
+				["*",
+					["/",
+						["min", ["width"], ["height"]],
+						1080
+					]
+				]
+			]
+		}
+	},
+	"set-su": {
+		"units": {
+			"su": ["$",
+				["*",
+					["/",
+						["min", ["width"], ["height"]],
+						1080
+					],
+					["if",
+						["exists", 
+							["var", "size"]
+						],
+						["var", "size"],
+						1
+					]
+				]
+			],
+			"nsu": ["$",
+				["*",
+					["/",
+						["min", ["width"], ["height"]],
+						1080
+					]
+				]
+			]
+		}
+	},
+	"set-dsx-su-roi": {
+		"units": {
+			"su": ["$",
+				["*",
+					["/",
+						["min", ["width"], ["height"]],
+						1080
+					],
+					["if",
+						["exists", 
+							["var", "size"]
+						],
+						["var", "size"],
+						1
+					],
+					["if",
+						["gte",
+							["aspect"],
+							0.9
+						],
+						0.75,
+						1
+					]
+				]
+			],
+			"nsu": ["$",
+				["*",
+					["/",
+						["min", ["width"], ["height"]],
+						1080
+					]
+				]
+			],
+			"roiw": "1rw",
+			"roih": "1rh"
+		}
+	},
+	"set-su-roi": {
+		"units": {
+			"su": ["$",
+				["*",
+					["/",
+						["min", ["width"], ["height"]],
+						1080
+					],
+					["if",
+						["exists", 
+							["var", "size"]
+						],
+						["var", "size"],
+						1
+					]
+				]
+			],
+			"nsu": ["$",
+				["*",
+					["/",
+						["min", ["width"], ["height"]],
+						1080
+					]
+				]
+			],
+			"roiw": "1rw",
+			"roih": "1rh"
+		}
+	}
+}

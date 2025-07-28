@@ -1,0 +1,67 @@
+[
+	"ds-highwire-watermark",
+	[
+		["ds-highwire-mixins", "colors"],
+		{
+			"key": "dark-mode",
+			"display": "Dark Mode",
+			"type": "bool",
+			"default": false,
+			"required": false
+		},
+		{
+			"key": "two-color",
+			"display": "Two Color",
+			"type": "bool",
+			"default": false,
+			"required": false
+		},
+		["dsx-mixins", "boilerplate"],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [7, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"max-width": "800nsu",
+				"align": ["$", ["var", "#align"]]
+			}, [
+				["asset", {
+					"file": ["$",
+						["if",
+							["var", "two-color"],
+							"./media/ds-highwire-logo-twocolor.svg",
+							"./media/ds-highwire-logo.svg"
+					]],
+					"svg-recolor": ["$", 
+						["if", ["var", "dark-mode"],
+						["var", "color-black"],
+						["var", "color-white"]]
+					],
+					"flex": {
+						"height": "110su"
+					},
+					"justify": ["$", ["concat", "fit ", ["var", "#align"]]],
+					"opacity": ["animate",
+						[0, 0],
+						["+250", 1],
+						["100%", 0],
+						["-250", 1]
+					]
+				}]
+			]]
+		]]
+	]
+]

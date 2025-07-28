@@ -1,0 +1,95 @@
+[
+	"ds-verkada-lut",
+	[
+		{
+			"key": "target",
+			"display": "Target",
+			"type": "string",
+			"default": "footage",
+			"required": false,
+			"options": [
+				{
+					"key": "footage",
+					"display": "Footage"
+				},
+				{
+					"key": "b-roll",
+					"display": "B-Roll"
+				}
+			]
+		},
+		{
+			"key": "lut",
+			"display": "Lut",
+			"type": "string",
+			"default": "1-standard",
+			"required": false,
+			"options": [
+				{
+					"key": "1-standard",
+					"display": "Standard"
+				},
+				{
+					"key": "2-clean",
+					"display": "Clean"
+				},
+				{
+					"key": "3-bright",
+					"display": "Bright"
+				},
+				{
+					"key": "4-neutral",
+					"display": "Neutral"
+				},
+				{
+					"key": "5-warm",
+					"display": "Warm"
+				}
+			]
+		},
+		{
+			"key": "factor",
+			"display": "Factor",
+			"type": "number",
+			"default": 1,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 0.01,
+				"minimum": 0.0,
+				"maximum": 1.0
+			}
+		}
+	],
+	[
+		["null", {
+			"script": ["$$",
+				["live-effect",
+					["lookup-by-tag", ["$",
+						["if",
+							["eq", ["var", "target"], "b-roll"],
+							"b-roll",
+							"clip"
+						]
+					]],
+					"lut",
+					["$", ["object",
+						["array",
+							"asset",
+							["concat",
+								"./media/ds-verkada-lut-",
+								["var", "lut"],
+								".png"
+							]
+						],
+						["array",
+							"factor",
+							["var", "factor"]
+						]
+					]]
+				]
+			]
+		}]
+	]
+]

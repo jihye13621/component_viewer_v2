@@ -1,0 +1,181 @@
+[
+	"ds-hubspot-api-text-mkii-2",
+	[
+		{
+			"key": "text-1",
+			"display": "Text 1",
+			"type": "text",
+			"default": "Tired of 6-month rollouts?",
+			"required": false
+		},
+		{
+			"key": "text-2",
+			"display": "Text 2",
+			"type": "text",
+			"default": "Go live in just 48 hours.",
+			"required": false
+		},
+		{
+			"key": "text-3",
+			"display": "Text 3",
+			"type": "textarea",
+			"default": "Get started FREE\nwith HubSpot CRM",
+			"required": false
+		},
+		["dsx-mixins",
+			"boilerplate"
+		]
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			],
+			"align": "center"
+		}, [
+			["null", {
+			}, [
+				["text", {
+					"end": 2500,
+					"stagger": [0, 0],
+					"mixins": ["ds-hubspot-mixins",
+						"font-bold"
+					],
+					"color": [1, 1, 1, 1],
+					"measure": "letter-size",
+					"justify": "center",
+					"align": "center",
+					"string": ["$", ["var", "text-1"]],
+					"height": "80su",
+					"leading": 0.25,
+					"boundary": "letter",
+					"animations": [
+						{
+							"mix": ["animate",
+								[0, 0.0],
+								["+750", 1]
+							],
+							"opacity": 1,
+							"easing": "plateauIn",
+							"ramp": 0.01
+						}
+					],
+					"transform": [
+						["scale",
+							["animate",
+								[0, 1.15, "easeOutCubic"],
+								["100%", null],
+								["-300", 1]
+							]
+						],
+						["translate",
+							["animate",
+								["100%", "-60su"],
+								["-300", 0, "easeInCubic"]
+							],
+							0
+						]
+					]
+				}],
+				["text", {
+					"start": 2500,
+					"end": 5000,
+					"mixins": ["ds-hubspot-mixins",
+						"font-bold"
+					],
+					"color": [1, 1, 1, 1],
+					"measure": "letter-size",
+					"justify": "center",
+					"align": ["$", ["var", "#align"]],
+					"string": ["$", ["var", "text-2"]],
+					"height": "80su",
+					"leading": 0.25,
+					"boundary": "letter",
+					"animations": [
+						{
+							"mix": ["animate",
+								[0, 0.5],
+								["+400", 1]
+							],
+							"opacity": 1,
+							"easing": "plateauIn",
+							"ramp": 0.01
+						}
+					],
+					"transform": [
+						["translate",
+							["animate",
+								[0, "60su", "easeOutCubic"],
+								["+500", 0]
+							],
+							0
+						],
+						["translate",
+							0,
+							["animate",
+								["100%", "-60su"],
+								["-400", 0, "easeInCubic"]
+							]
+						]
+					]
+				}],
+				["text", {
+					"start": 5000,
+					"mixins": ["ds-hubspot-mixins",
+						"font-bold"
+					],
+					"color": [1, 1, 1, 1],
+					"measure": "letter-size",
+					"justify": "center",
+					"align": ["$", ["var", "#align"]],
+					"string": ["$", ["var", "text-3"]],
+					"height": "80su",
+					"leading": 0.25,
+					"boundary": "letter",
+					"animations": [
+						{
+							"mix": ["animate",
+								[0, 0.25],
+								["+800", 1]
+							],
+							"opacity": 1,
+							"easing": "plateauIn",
+							"ramp": 0.01
+						}
+					],
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[0, "60su", "easeOutExpo"],
+								["+900", 0]
+							]
+						]
+					]
+				}]
+			]]
+		]],
+		["asset", {
+			"file": "./media/ds-hubspot-typing-sfx.m4a",
+			"duration": 750,
+			"gain": 2
+		}],
+		["asset", {
+			"enabled": ["$", [">", ["key", ["comp-timing"], "duration"], 2500]],
+			"file": "./media/ds-hubspot-typing-sfx.m4a",
+			"start": 2500,
+			"slip": 9000,
+			"duration": 500, 
+			"gain": 2
+		}],
+		["asset", {
+			"enabled": ["$", [">", ["key", ["comp-timing"], "duration"], 5000]],
+			"file": "./media/ds-hubspot-typing-sfx.m4a",
+			"start": 5000,
+			"slip": 15300,
+			"duration": 800,
+			"gain": 2
+		}]
+	]
+]

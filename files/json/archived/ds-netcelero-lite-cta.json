@@ -1,0 +1,76 @@
+[
+	"ds-netcelero-lite-cta",
+	[
+		["dsx-mixins", ["cta"]],
+		["ds-netcelero-lite-mixins", "color-1", "color-2"],
+		["dsx-mixins", ["boilerplate"]],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": 5,
+			"required": false
+		}
+	],
+	[
+		["dsx-background", {
+			"enabled": ["$", ["exists", ["var", "background"]]],
+			"color": ["$", ["var", "background"]]
+		}],
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"max-width": "800nsu",
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]]
+			}, [
+				["null", {
+					"layout": "horizontal packed",
+					"align": "top left",
+					"gap": "10su"
+				}, [
+					["solid", {
+						"mixins": ["ds-netcelero-lite-mixins", ["anchored-anim"]],
+						"layout": "vertical packed",
+						"color": ["$", ["var", "color-2"]],
+						"flex": {
+							"width": "130su",
+							"height": "130su"
+						},
+						"padding": ["35su", "35su"],
+						"radius": "200su"
+					}, [
+						["dsx-icon", {
+							"flex": {
+								"shrink": true,
+								"width": "60su",
+								"height": "60su"
+							},
+							"color": ["$", ["var", "color-1"]],
+							"icon": ["$", ["var", "icon"]]
+						}]
+					]],
+					["solid", {
+						"enabled": ["$", ["exists", ["var", "text"]]],
+						"mixins": ["ds-netcelero-lite-mixins", ["anchored-anim"]],
+						"layout": "vertical packed",
+						"color": ["$", ["var", "color-1"]],
+						"padding": ["30su", "40su"],
+						"radius": "70su",
+						"stagger": [100, -100]
+					}, [
+						["text", {
+							"mixins": ["ds-netcelero-lite-mixins", ["text-2"]],
+							"string": ["$", ["var", "text"]],
+							"justify": "left center",
+							"color": ["$", ["var", "color-2"]],
+							"min-height": "70su",
+							"boundary": "line"
+						}]
+					]]
+				]]
+			]]
+		]]
+	]
+]

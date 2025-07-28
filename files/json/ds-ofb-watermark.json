@@ -1,0 +1,55 @@
+[
+	"ds-ofb-watermark",
+	[
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "override-opacity",
+			"display": "Opacity",
+			"type": "number",
+			"default": 1,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"step": 0.05,
+				"minimum": 0.0,
+				"maximum": 1.0
+			}
+		},
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [1, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", "safezone", "set-su"]
+		}, [
+			["asset", {
+				"file": "./media/ds-ofb-logo.svg",
+				"align": ["$", ["var", "#align"]],
+				"justify": ["$", ["concat", "fit ", ["var", "#align"]]],
+				"rect": [
+					0,
+					0,
+					"200su",
+					"220su"
+				], 
+				"opacity": ["animate",
+					[0, 0],
+					["+250", ["$", ["var", "override-opacity"]]],
+					["100%", 0],
+					["-250", ["$", ["var", "override-opacity"]]]
+				]
+			}]
+		]]
+	]
+]

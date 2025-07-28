@@ -1,0 +1,182 @@
+[
+	"ds5-list",
+	[
+		{
+			"key": "item-1",
+			"display": "Item 1",
+			"type": "text",
+			"default": "Add a list item",
+			"required": false
+		},
+		{
+			"key": "item-2",
+			"display": "Item 2",
+			"type": "text",
+			"default": "Add a second list item",
+			"required": false
+		},
+		{
+			"key": "item-3",
+			"display": "Item 3",
+			"type": "text",
+			"default": "Add a third list item",
+			"required": false
+		},
+		{
+			"key": "font-1",
+			"display": "Font",
+			"type": "fontstyle",
+			"default": {
+				"font": "./media/Inter-Black.ttf",
+				"height": 45
+			},
+			"required": false,
+			"script": ["$",
+				["key-set",
+					["var", "font-1"],
+					"height",
+					["round", ["*", ["var", "size"], ["var", "font-1", "height"]]]
+				]
+			]
+		},
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		},
+		{
+			"key": "color-2",
+			"display": "Color 2",
+			"type": "color",
+			"default": "#841EFD",
+			"required": false
+		},
+		{
+			"key": "background",
+			"display": "Background",
+			"type": "color",
+			"default": null,
+			"required": false
+		},
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": 5,
+			"required": false
+		},
+		{
+			"key": "size",
+			"display": "Size",
+			"type": "number",
+			"default": 1.0,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"step": 0.05,
+				"minimum": 0.5,
+				"maximum": 1.5
+			}
+		},
+		{
+			"key": "#align",
+			"type": "string",
+			"default": "center",
+			"required": false,
+			"private": true,
+			"script": ["$", ["switch", ["var", "position"], {
+				"1": "bottom left",
+				"2": "bottom center",
+				"3": "bottom right",
+				"4": "left",
+				"5": "center",
+				"6": "right",
+				"7": "top left",
+				"8": "top center",
+				"9": "top right",
+				"_": "center"
+			}]]
+		}
+	],
+	[
+		["dsx-background", {
+			"enabled": ["$", ["exists", ["var", "background"]]],
+			"color": ["$", ["var", "background"]]
+		}],
+		["dsx-padding", {
+			"position": ["$", ["var", "position"]]
+		}, [
+			["for-each", {
+				"items": ["$", ["array",
+					["var", "item-1"],
+					["var", "item-2"],
+					["var", "item-3"]
+				]],
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"gap": ["$", ["*", 1, ["var", "font-1", "height"]]]
+			}, [
+				["text", {
+					"enabled": ["$", ["exists", ["var", "item"]]],
+					"string": ["$", ["var", "item"]],
+					"style": ["$", ["var", "font-1"]],
+					"case": "uppercase",
+					"justify": ["$", ["var", "#align"]],
+					"color": [0, 0, 0, 0],
+					"stroke": ["animate", 
+						[
+							["$", ["+", 100, ["*", 500, ["var", "index"]]]],
+							["$", ["*", 0.05, ["var", "font-1", "height"]]],
+							"holdIn"
+						],
+						["+500", 0],
+						["100%", null],
+						[
+							["$", ["to-relative-string", ["*", -200, ["-", ["var", "count"], ["var", "index"], 1]]]],
+							1
+						],
+						["-300", 0, "holdOut"]
+					],
+					"stroke-color": ["$", ["var", "color-2"]],
+					"opacity": ["animate",
+						[0, 0, "holdIn"],
+						[["$", ["+", 1, ["*", 500, ["var", "index"]]]], 1],
+						["100%", null],
+						[["$", ["to-relative-string", ["*", -200, ["-", ["var", "count"], ["var", "index"], 1]]]], 0.0],
+						["-1", 1, "holdOut"]
+					],
+					"transform": [
+						["scale",
+							["animate",
+								[["$", ["*", 500, ["var", "index"]]], 1.5, "holdIn"],
+								["+150", 1.2, "holdIn"],
+								["+150", 1, "holdIn"],
+								["100%", null],
+								[["$", ["to-relative-string", ["*", -200, ["-", ["var", "count"], ["var", "index"], 1]]]], 0.5, "holdIn"],
+								["-100", 0.7, "holdIn"]
+							]
+						]
+					],
+					"boundary": "word",
+					"animations": [
+						{
+							"mix": ["animate",
+								[["$", ["+", 100, ["*", 500, ["var", "index"]]]], 0],
+								["+500", 1],
+								["100%", null],
+								[["$", ["to-relative-string", ["*", -200, ["-", ["var", "count"], ["var", "index"], 1]]]], null],
+								["-100", 0.0],
+								["-200", 1]
+							],
+							"ramp": 0.02,
+							"easing": "easeOutQuad",
+							"color": ["$", ["var", "color-1"]]
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

@@ -1,0 +1,202 @@
+[
+	"ds-bloomberg-speaker-alt",
+	[
+		["dsx-mixins", "speaker"],
+		["ds-bloomberg-mixins", "color-1", "color-2", "color-3"],
+		["dsx-mixins", ["boilerplate"]],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [1, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"enabled": ["$",
+					["or",
+						["exists", ["var", "name"]],
+						["exists", ["var", "detail-1"]],
+						["exists", ["var", "detail-2"]]
+					]
+				],
+				"layout": "vertical packed",
+				"max-width": "800nsu",
+				"align": ["$", ["var", "#align"]]
+			}, [
+				["solid", {
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]],
+					"color": ["$", ["rgba-set", ["var", "color-2"], "a", 0.5]],
+					"stroke": "5su",
+					"stroke-color": ["$", ["var", "color-3"]],
+					"padding": [
+						"12su",
+						"25su"
+					],
+					"stagger": [0, 0],
+					"mask": {
+						"padding": [
+							["animate",
+								[0, "100rh", "easeOutCubic"],
+								["+350", 0]
+							],
+							0,
+							["animate",
+								["100%", "100rh"],
+								["-300", 0, "easeInCubic"]
+							],
+							0
+						]
+					}
+				}, [
+					["text", {
+						"enabled": ["$", ["exists", ["var", "name"]]],
+						"mixins": ["ds-bloomberg-mixins", "font-t1"],
+						"string": ["$", ["var", "name"]],
+						"color": ["$", ["var", "color-1"]],
+						"justify": ["$", ["var", "#align"]],
+						"stagger": [400, -300],
+						"boundary": "word",
+						"animations": [
+							{
+								"translate": [
+									0,
+									"30su"
+								]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+600", 1]
+								],
+								"easing": "easeOutQuad",
+								"opacity": 1,
+								"translate": [0, 0]
+							},
+							{
+								"mix": ["animate",
+									["100%", 1],
+									["-400", 0]
+								],
+								"easing": "easeInQuad",
+								"opacity": 0,
+								"translate": [
+									0,
+									"-30su"
+								]
+							}
+						]
+					}],
+					["text", {
+						"enabled": ["$",
+							["or",
+								["exists", ["var", "detail-1"]],
+								["exists", ["var", "detail-2"]]
+							]
+						],
+						"mixins": ["ds-bloomberg-mixins", "font-t2"],
+						"string": ["$",
+							["if",
+								["and",
+									["exists", ["var", "detail-1"]],
+									["exists", ["var", "detail-2"]]
+								],
+								["concat",
+									["var", "detail-1"],
+									", ",
+									["var", "detail-2"]
+								],
+								["if",
+									["exists", ["var", "detail-1"]],
+									["var", "detail-1"],
+									["var", "detail-2"]
+								]
+							]
+						],
+						"justify": ["$", ["var", "#align"]],
+						"color": ["$", ["var", "color-3"]],
+						"fit": true,
+						"boundary": "word",
+						"stagger": [500, -200],
+						"animations": [
+							{
+								"translate": [
+									0,
+									"30su"
+								]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+600", 1]
+								],
+								"easing": "easeOutQuad",
+								"opacity": 1,
+								"translate": [0, 0]
+							},
+							{
+								"mix": ["animate",
+									["100%", 1],
+									["-400", 0]
+								],
+								"easing": "easeInQuad",
+								"opacity": 0,
+								"translate": [
+									0,
+									"-30su"
+								]
+							}
+						]
+					}],
+					["solid", {
+						"flex": {
+							"position": "fixed"
+						},
+						"color": ["$", ["var", "color-3"]],
+						"stagger": [300, -150],
+						"transform": [
+							["translate",
+								0,
+								["animate",
+									[0, 0, "easeOutCubic"],
+									["+350", "-100rh"],
+									["+1", "100rh", "plateauIn"],
+									["100%", 0],
+									["-300", "100rh", "easeInCubic"]
+								]
+							]
+						]
+					}],
+					["solid", {
+						"flex": {
+							"position": "fixed"
+						},
+						"color": ["$", ["var", "color-1"]],
+						"stagger": [150, -75],
+						"transform": [
+							["translate",
+								0,
+								["animate",
+									[0, 0, "easeOutCubic"],
+									["+350", "-100rh"],
+									["+1", "100rh", "plateauIn"],
+									["100%", 0],
+									["-300", "100rh", "easeInCubic"]
+								]
+							]
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

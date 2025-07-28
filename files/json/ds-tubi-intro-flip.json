@@ -1,0 +1,89 @@
+[
+	"ds-tubi-intro-flip",
+	[
+		["ds-tubi-mixins",
+			"color-primary"
+		],
+		{
+			"key": "#unit",
+			"display": "Unit",
+			"type": "number",
+			"default": 100,
+			"required": false,
+			"private": true,
+			"script": ["$",
+				["max", ["width"], ["height"]]
+			]
+		}
+	],
+	[
+		["null", {
+			"buffer": "knockout"
+		}, [
+			["solid", {
+				"color": [1, 1, 1, 1]
+			}],
+			["solid", {
+				"start": ["$", ["-", ["key", ["comp-timing"], "duration"], 500]],
+				"color": [0, 0, 0, 1],
+				"radius": 10000,
+				"rect": [
+					0,
+					0,
+					["$", ["var", "#unit"]],
+					["$", ["var", "#unit"]]
+				],
+				"align": "center",
+				"transform": [
+					["scale",
+						["animate",
+							[150, 0.3, "easeInQuad"],
+							["+350", 1.6]
+						]
+					],
+					["scale",
+						["animate",
+							[0, 0.2, "easeOutQuad"],
+							["+500", 0.9]
+						],
+						1
+					],
+					["rotate",
+						["animate",
+							[0, 0, "easeOutQuad"],
+							["+500", 0.1]
+						]
+					]
+				]
+			}]
+		]],
+		["matte", {
+			"buffer-in": "knockout",
+			"mixins": ["dsx-mixins",
+				"set-dsx-su",
+				"safezone"
+			]
+		}, [
+			["solid", {
+				"flex": {
+					"position": "fixed"
+				},
+				"mixins": ["ds-tubi-mixins", ["bg-gradient"]]
+			}],
+			["asset", {
+				"end": ["$", ["-", ["key", ["comp-timing"], "duration"], 500]],
+				"file": "./media/ds-tubi-flip-short.mov",
+				"justify": "fit center",
+				"align": "center",
+				"hold": true,
+				"hold-location": "start",
+				"rect": [
+					0,
+					0,
+					"50rw",
+					"50rh"
+				]
+			}]
+		]]
+	]
+]

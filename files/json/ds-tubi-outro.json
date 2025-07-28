@@ -1,0 +1,116 @@
+[
+	"ds-tubi-outro",
+	[
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "text",
+			"default": "Watch Free",
+			"required": false
+		},
+		["ds-tubi-mixins",
+			"color-primary",
+			"font-bold"
+		],
+		{
+			"key": "color-logo",
+			"display": "Color Logo",
+			"type": "bool",
+			"default": true,
+			"required": false
+		}
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]],
+			"color": ["linear-gradient",
+				0.54167,
+				[0, ["$", ["var", "color-deep-purple"]]],
+				[1, ["$", ["var", "color-vibrant-violet"]]]
+			]
+		}, [
+			["null", {
+				"layout": "stacked",
+				"align": "center",
+				"breakpoints": [
+					{
+						"enabled": ["$", ["gt", ["aspect"], 1.0]],
+						"rect": [
+							0,
+							0,
+							"59rw",
+							"50rh"
+						]
+					}
+				]
+			}, [
+				["asset", {
+					"file": "./media/ds-tubi-intro-simple.mov",
+					"justify": "fit center",
+					"hold": true,
+					"align": "center",
+					"units": {
+						"grid": "100rh"
+					},
+					"breakpoints": [
+						{
+							"enabled": ["$", ["var", "color-logo"]],
+							"file": "./media/ds-tubi-intro-simple-yellow.mov"
+						}
+					]
+				}, [
+					["null", {
+						"layout": "vertical packed",
+						"align": "top center",
+						"transform": [
+							["translate",
+								0,
+								"1grid"
+							],
+							["translate",
+								0,
+								"20su"
+							]
+						]
+					}, [
+						["text", {
+							"stagger": [900, 0],
+							"mixins": ["ds-tubi-mixins", "text"],
+							"font": ["$", ["var", "font-bold"]],
+							"trim-descender": false,
+							"height": "100su",
+							"string": ["$", ["var", "text"]],
+							"justify": "top center",
+							"opacity": ["animate",
+								[0, 0],
+								["+1", 1]
+							],
+							"mask": {
+								"padding": [
+									"-20su",
+									"-10su"
+								]
+							},
+							"transform": [
+								["translate",
+									0,
+									["animate",
+										[0, "-100rh", "easeOutQuad"],
+										["+600", 0]
+									]
+								],
+								["translate",
+									0,
+									["animate",
+										[0, "-20su", "easeOutQuad"],
+										["+600", 0]
+									]
+								]
+							]
+						}]
+					]]
+				]]
+			]]
+		]]
+	]
+]

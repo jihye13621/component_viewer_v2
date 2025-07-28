@@ -1,0 +1,78 @@
+[
+	"ds-voltage-lite-cta",
+	[
+		["dsx-mixins", ["cta"]],
+		["ds-voltage-lite-mixins", "color-1", "color-2", "color-3"],
+		["dsx-mixins", ["boilerplate"]],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": 2,
+			"required": false
+		}
+	],
+	[
+		["dsx-background", {
+			"enabled": ["$", ["exists", ["var", "background"]]],
+			"color": ["$", ["var", "background"]]
+		}],
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"max-width": "800nsu",
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"gap": "25su"
+			}, [
+				["solid", {
+					"mixins": ["ds-voltage-lite-mixins", ["scale-2step"]],
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]],
+					"color": ["$", ["var", "color-2"]],
+					"radius": "100su",
+					"padding": [
+						"40su",
+						"56su",
+						"40su",
+						"56su"
+					]
+				}, [
+					["dsx-icon", {
+						"flex": {
+							"width": "50su",
+							"height": "50su"
+						},
+						"icon": ["$", ["var", "icon"]],
+						"color": ["$", ["var", "color-3"]]
+					}]
+				]],
+				["solid", {
+					"mixins": ["ds-voltage-lite-mixins", ["scale-3step"]],
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]],
+					"color": ["$", ["var", "color-3"]],
+					"padding": [
+						"28su",
+						"48su",
+						"32su",
+						"48su"
+					],
+					"stagger": [100, -100]
+				}, [
+					["text", {
+						"mixins": ["ds-voltage-lite-mixins", ["font-headline", "anim-body"]],
+						"string": ["$", ["var", "text"]],
+						"case": "uppercase",
+						"justify": ["$", ["var", "#align"]],
+						"color": [0, 0, 0, 0],
+						"stroke-color": ["$", ["var", "color-2"]],
+						"boundary": "word",
+						"stagger": [100, -100]
+					}]
+				]]
+			]]
+		]]
+	]
+]

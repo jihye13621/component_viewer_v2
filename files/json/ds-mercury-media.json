@@ -1,0 +1,340 @@
+[
+	"ds-mercury-media",
+	[
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["gain", 0],
+				["justify", "fit"],
+				["motion", "none"]
+			],
+			"script": ["$", ["if",
+				["exists", ["var", "asset"]],
+				["var", "asset"],
+				"./media/image-wide.jpg"	
+			]]
+		},
+		{
+			"key": "animation",
+			"display": "Animation",
+			"type": "string",
+			"options": [
+				{
+					"key": "none",
+					"display": "None"
+				},
+				{
+					"key": "fade",
+					"display": "Fade"
+				},
+				{
+					"key": "pop",
+					"display": "Pop"
+				},
+				{
+					"key": "slide-horiz",
+					"display": "Slide Horizontal"
+				},
+				{
+					"key": "slide-vert",
+					"display": "Slide Vertical"
+				}
+			],
+			"default": "pop",
+			"required": false
+		},
+		{
+			"key": "sfx",
+			"display": "Sound Effect",
+			"type": "string",
+			"default": "none",
+			"options": [
+				{
+					"key": "none",
+					"display": "None"
+				},
+				{
+					"key": "ding-1",
+					"display": "Ding 1"
+				},
+				{
+					"key": "ding-2",
+					"display": "Ding 2"
+				},
+				{
+					"key": "pop-1",
+					"display": "Pop 1"
+				},
+				{
+					"key": "pop-2",
+					"display": "Pop 2"
+				},{
+					"key": "whoosh-1",
+					"display": "Whoosh 1"
+				},
+				{
+					"key": "whoosh-2",
+					"display": "Whoosh 2"
+				},{
+					"key": "mouse-1",
+					"display": "Mouse Click 1"
+				},
+				{
+					"key": "mouse-2",
+					"display": "Mouse Click 2"
+				},{
+					"key": "camera-1",
+					"display": "Camera Shutter 1"
+				},
+				{
+					"key": "camera-2",
+					"display": "Camera Shutter 2"
+				}
+			],
+			"required": false
+		},
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [5, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		},
+		{
+			"key": "sizer",
+			"display": "Size",
+			"type": "number",
+			"default": 1.0,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"step": 0.05,
+				"minimum": 0.05,
+				"maximum": 1.0
+			}
+		},
+		{
+			"key": "use-safezone",
+			"display": "Respect Safezone",
+			"type": "bool",
+			"default": false,
+			"required": false
+		},
+		{
+			"key": "#align",
+			"type": "string",
+			"default": "center",
+			"required": false,
+			"script": ["$", ["switch", ["nth", ["var", "position"], 0], {
+				"1": "bottom left",
+				"2": "bottom center",
+				"3": "bottom right",
+				"4": "left center",
+				"5": "center",
+				"6": "right center",
+				"7": "top left",
+				"8": "top center",
+				"9": "top right",
+				"_": "center"
+			}]],
+			"private": true
+		},
+		{
+			"key": "#anchor",
+			"display": "Anchor",
+			"type": "point",
+			"default": [0, 0],
+			"required": false,
+			"script": ["$", ["switch", ["nth", ["var", "position"], 0], {
+				"1": [0, "100rh"],
+				"2": ["50rw", "100rh"],
+				"3": ["100rw", "100rh"],
+				"4": [0, "50rh"],
+				"5": ["50rw", "50rh"],
+				"6": ["100rw", "50rh"],
+				"7": [0, 0],
+				"8": ["50rw", 0],
+				"9": ["100rw", 0],
+				"_": [0, 0]
+			}]],
+			"private": true
+		},
+		{
+			"key": "#radius",
+			"display": "Radius",
+			"type": "scalar",
+			"default": 0,
+			"required": false,
+			"script": ["$",
+				["if",
+					["or",
+						["lt", ["var", "sizer"], 1],
+						["var", "use-safezone"]
+					],
+					["concat",
+						["/", 20, ["var", "sizer"]],
+						"nsu"
+					],
+					0
+				]
+			],
+			"private": true
+		},
+		{
+			"key": "#sound",
+			"type": "string",
+			"default": null,
+			"required": false,
+			"private": true,
+			"script":  ["$", ["switch", ["var", "sfx"], {
+				"none": null,
+				"ding-1": "./media/sfx-ding-1.mp3",
+				"ding-2": "./media/sfx-ding-2.mp3",
+				"pop-1": "./media/sfx-pop-1.mp3",
+				"pop-2": "./media/sfx-pop-2.mp3",
+				"whoosh-1": "./media/sfx-whoosh-1.mp3",
+				"whoosh-2": "./media/sfx-whoosh-2.mp3",
+				"mouse-1": "./media/sfx-mouse-1.mp3",
+				"mouse-2": "./media/sfx-mouse-2.mp3",
+				"camera-1": "./media/sfx-camera-1.mp3",
+				"camera-2": "./media/sfx-camera-2.mp3",
+				"_": null
+			}]]
+		}
+	],
+	[
+		["null", {
+			"units": {
+				"su": ["$",
+					["*",
+						["/",
+							["min", ["width"], ["height"]],
+							1080
+						],
+						["if",
+							["exists", 
+								["var", "sizer"]
+							],
+							["var", "sizer"],
+							1
+						]
+					]
+				],
+				"nsu": ["$",
+					["*",
+						["/",
+							["min", ["width"], ["height"]],
+							1080
+						]
+					]
+				]
+			},
+			"padding": ["$",
+				["if",
+					["var", "use-safezone"],
+					["safezone"],
+					null
+				]
+			]
+		}, [
+			["null", {
+				"enabled": ["$", ["exists", ["var", "asset"]]],
+				"transform": [
+					["scale",
+						["$", ["var", "sizer"]],
+						["$", ["nth", ["var", "#anchor"], 0]],
+						["$", ["nth", ["var", "#anchor"], 1]]
+					]
+				]
+			}, [
+				["null", {
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["eq", ["var", "animation"], "fade"]],
+							"opacity": ["animate", [0, 0, "easeOutQuad"], [200, 1], ["100%", 0], ["-200", 1, "easeInQuad"]],
+							"transform": [
+								["scale",
+									["animate", [0, 1.15, "easeOutQuint"], [500, 1], ["100%", 1.15], ["-500", 1, "easeInQuint"]]
+								]
+							]
+						},
+						{
+							"enabled": ["$", ["eq", ["var", "animation"], "pop"]],
+							"opacity": ["animate", [0, 0, "easeOutQuad"], [200, 1], ["100%", 0], ["-200", 1, "easeInQuad"]],
+							"transform": [
+								["scale",
+									["animate", [0, 0.6, "easeOutBack"], [400, 1], ["100%", 0.6], ["-400", 1, "easeInBack"]]
+								]
+							]
+						}
+					]
+				}, [
+					["solid", {
+						"enabled": false,
+						"flex": {
+							"position": "fixed"
+						},
+						"z-index": 0
+					}],
+					["null", {
+						"enabled": ["$", ["exists", ["var", "asset"]]],
+						"layout": "vertical packed",
+						"mask": {
+							"radius": ["$", ["var", "#radius"]]
+						},
+						"breakpoints": [
+							{
+								"enabled": ["$", ["eq", ["var", "animation"], "slide-horiz"]],
+								"transform": [
+									["translate",
+										["animate",
+											[0, "-100rw", "easeOutQuad"],
+											[300, 0],
+											["100%", "100rw"],
+											["-300", 0, "easeInQuad"]
+										],
+										0
+									]
+								]
+							},
+							{
+								"enabled": ["$", ["eq", ["var", "animation"], "slide-vert"]],
+								"transform": [
+									["translate",
+										0,
+										["animate",
+											[0, "100rh", "easeOutQuad"],
+											[300, 0],
+											["100%", "-100rh"],
+											["-300", 0, "easeInQuad"]
+										]
+									]
+								]
+							}
+						]
+					}, [
+						["user-asset", {
+							"file": ["$", ["var", "asset"]],
+							"justify": "fit center",
+							"tags": ["b-roll"]
+						}]
+					]]
+				]]
+			]],
+			["asset", {
+				"enabled": ["$", ["exists", ["var", "#sound"]]],
+				"file": ["$", ["var", "#sound"]]
+			}]
+		]]
+	]
+]

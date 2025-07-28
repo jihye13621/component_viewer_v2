@@ -1,0 +1,336 @@
+[
+	"ds-sbg-crimobs-media",
+	[
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [],
+			"script": ["$", ["if",
+				["exists", ["var", "asset"]],
+				["var", "asset"],
+				"./media/image-wide.jpg"	
+			]]
+		},
+		{
+			"key": "style-choice",
+			"display": "Style",
+			"type": "string",
+			"default": "fullscreen",
+			"options": [
+				{
+					"key": "fullscreen",
+					"display": "Fullscreen"
+				},
+				{
+					"key": "inset",
+					"display": "Inset"
+				}
+			]
+		},
+		{
+			"key": "bg-choice",
+			"display": "Background",
+			"type": "string",
+			"default": "blur",
+			"options": [
+				{
+					"key": "blur",
+					"display": "Blur"
+				},
+				{
+					"key": "polaroid",
+					"display": "Polaroid"
+				},
+				{
+					"key": "thumb-1",
+					"display": "Thumb Print 1"
+				},
+				{
+					"key": "thumb-2",
+					"display": "Thumb Print 2"
+				},
+				{
+					"key": "thumb-3",
+					"display": "Thumb Print 3"
+				},
+				{
+					"key": "thumb-4",
+					"display": "Thumb Print 4"
+				},
+				{
+					"key": "paper-1",
+					"display": "Paper 1"
+				},
+				{
+					"key": "paper-2",
+					"display": "Paper 2"
+				},
+				{
+					"key": "car-1",
+					"display": "Car 1"
+				},
+				{
+					"key": "car-2",
+					"display": "Car 2"
+				},
+				{
+					"key": "scene-1",
+					"display": "Scene 1"
+				},
+				{
+					"key": "scene-2",
+					"display": "Scene 2"
+				},
+				{
+					"key": "scene-3",
+					"display": "Scene 3"
+				},
+				{
+					"key": "speckled",
+					"display": "Speckled"
+				},
+				{
+					"key": "scratches",
+					"display": "Scratches"
+				}
+			]
+		},
+		{
+			"key": "animation",
+			"display": "Animation",
+			"type": "string",
+			"options": [
+				{
+					"key": "none",
+					"display": "None"
+				},
+				{
+					"key": "fade",
+					"display": "Fade"
+				},
+				{
+					"key": "pop",
+					"display": "Pop"
+				},
+				{
+					"key": "fly-in",
+					"display": "Fly In"
+				}
+			],
+			"default": "none",
+			"required": false
+		},
+		{
+			"key": "sfx",
+			"display": "Sound Effect",
+			"type": "string",
+			"default": "none",
+			"options": [
+				{
+					"key": "none",
+					"display": "None"
+				},
+				{
+					"key": "ding-1",
+					"display": "Ding 1"
+				},
+				{
+					"key": "ding-2",
+					"display": "Ding 2"
+				},
+				{
+					"key": "pop-1",
+					"display": "Pop 1"
+				},
+				{
+					"key": "pop-2",
+					"display": "Pop 2"
+				},{
+					"key": "whoosh-1",
+					"display": "Whoosh 1"
+				},
+				{
+					"key": "whoosh-2",
+					"display": "Whoosh 2"
+				},{
+					"key": "mouse-1",
+					"display": "Mouse Click 1"
+				},
+				{
+					"key": "mouse-2",
+					"display": "Mouse Click 2"
+				},{
+					"key": "camera-1",
+					"display": "Camera Shutter 1"
+				},
+				{
+					"key": "camera-2",
+					"display": "Camera Shutter 2"
+				}
+			],
+			"required": false
+		},
+		{
+			"key": "scaling",
+			"display": "Size",
+			"type": "number",
+			"default": 1,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 0.01,
+				"minimum": 0.0,
+				"maximum": 2.0
+			}
+		},
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [0, 0, 0],
+			"required": false,
+			"ui": {
+				"grid": false,
+				"offset": true,
+				"minimum": -100,
+				"maximum": 100
+			}
+		},
+		{
+			"key": "#sound",
+			"type": "string",
+			"default": null,
+			"required": false,
+			"private": true,
+			"script":  ["$", ["switch", ["var", "sfx"], {
+				"none": null,
+				"ding-1": "./media/sfx-ding-1.mp3",
+				"ding-2": "./media/sfx-ding-2.mp3",
+				"pop-1": "./media/sfx-pop-1.mp3",
+				"pop-2": "./media/sfx-pop-2.mp3",
+				"whoosh-1": "./media/sfx-whoosh-1.mp3",
+				"whoosh-2": "./media/sfx-whoosh-2.mp3",
+				"mouse-1": "./media/sfx-mouse-1.mp3",
+				"mouse-2": "./media/sfx-mouse-2.mp3",
+				"camera-1": "./media/sfx-camera-1.mp3",
+				"camera-2": "./media/sfx-camera-2.mp3",
+				"_": null
+			}]]
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su"
+			],
+			"breakpoints": [
+				{
+					"enabled": ["$", ["eq", ["var", "style-choice"], "inset"]],
+					"effect": [
+						["shadow", {
+							"color": [0, 0, 0, 1],
+							"radius": "5rw"
+						}]
+					]
+				},
+				{
+					"enabled": ["$", ["eq", ["var", "animation"], "fade"]],
+					"opacity": ["animate", [0, 0, "easeOutQuad"], [200, 1], ["100%", 0], ["-200", 1, "easeInQuad"]]
+				},
+				{
+					"enabled": ["$", ["eq", ["var", "animation"], "pop"]],
+					"opacity": ["animate", [0, 0, "easeOutQuad"], ["+150", 1], ["100%", 0], ["-150", 1, "easeInQuad"]],
+					"transform": [
+						["scale",
+							["animate", [0, 0.6, "easeOutBack"], ["+200", 1], ["100%", 0.6], ["-200", 1, "easeInBack"]]
+						]
+					]
+				},
+				{
+					"enabled": ["$", ["eq", ["var", "animation"], "fly-in"]],
+					"transform": [
+						["translate",
+							["animate", [0, "-100cw", "easeOutQuad"], ["+175", 0], ["100%", "100cw"], ["-175", 0, "easeInQuad"]],
+							0
+						]
+					]
+				}
+			]
+		}, [
+			["solid", {
+				"enabled": ["$", ["eq", ["var", "style-choice"], "fullscreen"]],
+				"color": [0, 0, 0, 1]
+			}],
+			["user-asset", {
+				"enabled": ["$", ["eq", ["var", "style-choice"], "fullscreen"]],
+				"file": ["$", ["var", "asset"]],
+				"justify": "fill center",
+				"mute": true,
+				"loop": true,
+				"breakpoints": [
+					{
+						"enabled": ["$", ["=", ["var", "bg-choice"], "blur"]],
+						"effect": [
+							["blur", {
+								"radius": "20su"
+							}]
+						]
+					},
+					{
+						"enabled": ["$", ["<>", ["var", "bg-choice"], "blur"]],
+						"file": ["$", ["switch", ["var", "bg-choice"], {
+							"polaroid": "./media/ds-sbg-crimobs-bg-polaroid.jpg",
+							"thumb-1": "./media/ds-sbg-crimobs-bg-thumb-1.jpg",
+							"thumb-2": "./media/ds-sbg-crimobs-bg-thumb-2.jpg",
+							"thumb-3": "./media/ds-sbg-crimobs-bg-thumb-3.jpg",
+							"thumb-4": "./media/ds-sbg-crimobs-bg-thumb-4.jpg",
+							"paper-1": "./media/ds-sbg-crimobs-bg-paper-1.jpg",
+							"paper-2": "./media/ds-sbg-crimobs-bg-paper-2.jpg",
+							"car-1": "./media/ds-sbg-crimobs-bg-car-1.jpg",
+							"car-2": "./media/ds-sbg-crimobs-bg-car-2.jpg",
+							"scene-1": "./media/ds-sbg-crimobs-bg-scene-1.jpg",
+							"scene-2": "./media/ds-sbg-crimobs-bg-scene-2.jpg",
+							"scene-3": "./media/ds-sbg-crimobs-bg-scene-3.jpg",
+							"speckled": "./media/ds-sbg-crimobs-bg-speckled.jpg",
+							"scratches": "./media/ds-sbg-crimobs-bg-scratches.jpg",
+							"_": "./media/ds-sbg-crimobs-bg-scratches.jpg"
+						}]]
+					}
+				]
+			}],
+			["user-asset", {
+				"file": ["$", ["var", "asset"]],
+				"justify": "fit center",
+				"loop": true,
+				"tags": ["b-roll"],
+				"transform": [
+					["scale",
+						["$", ["var", "scaling"]]
+					],
+					["translate",
+						["$",
+							["concat",
+								["*", 0.5, ["nth", ["var", "position"], 1]],
+								"cw"
+							]
+						],
+						["$",
+							["concat",
+								["*", -0.5, ["nth", ["var", "position"], 2]],
+								"ch"
+							]
+						]
+					]
+				]
+			}]
+		]],
+		["asset", {
+			"enabled": ["$", ["exists", ["var", "#sound"]]],
+			"file": ["$", ["var", "#sound"]]
+		}]
+	]
+]

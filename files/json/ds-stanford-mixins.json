@@ -1,0 +1,76 @@
+{
+	"params": {
+		"colors": [
+			{
+				"key": "white",
+				"display": "White",
+				"private": true,
+				"type": "color",
+				"default": "#FFFFFF",
+				"required": false
+			},
+			{
+				"key": "black",
+				"display": "Black",
+				"private": true,
+				"type": "color",
+				"default": "#000000",
+				"required": false
+			},
+			{
+				"key": "red",
+				"display": "Red",
+				"private": true,
+				"type": "color",
+				"default": "#8C1515",
+				"required": false
+			},
+			{
+				"key": "dark-red",
+				"display": "Dark Red",
+				"private": true,
+				"type": "color",
+				"default": "#820000",
+				"required": false
+			}
+		]
+	},
+	"text-captions": {
+		"font": "./media/SourceSans3-Regular.ttf",
+		"measure": "letter-size",
+		"height": "40su",
+		"leading": "10su"
+	},
+	"text-regular": {
+		"font": "./media/SourceSans3-Regular.ttf",
+		"measure": "letter-size",
+		"height": "60su",
+		"leading": "10su"
+	},
+	"text-italic": {
+		"font": "./media/SourceSans3-BoldItalic.ttf",
+		"measure": "letter-size",
+		"height": "60su",
+		"leading": "10su"
+	},
+	"text-bold": {
+		"font": "./media/SourceSans3-Bold.ttf",
+		"measure": "letter-size",
+		"height": "100su",
+		"leading": "10su"
+	},
+	"text-serif-regular": {
+		"font": "./media/SourceSerif4-Regular.ttf",
+		"measure": "letter-size",
+		"height": "50su",
+		"leading": "10su"
+	},
+	"text-serif-bold": {
+		"font": "./media/SourceSerif4-Bold.ttf",
+		"measure": "letter-size",
+		"height": "60su",
+		"leading": "10su"
+	}
+
+	
+}

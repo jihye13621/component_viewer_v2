@@ -1,0 +1,202 @@
+[
+	"ds-servicenow-transition",
+	[
+		{
+			"key": "color",
+			"display": "Color",
+			"type": "string",
+			"default": "blue",
+			"options": [
+				{
+					"key": "blue",
+					"display": "Blue"
+				},
+				{
+					"key": "green",
+					"display": "Green"
+				},
+				{
+					"key": "multi",
+					"display": "Multicolor"
+				}
+			],
+			"required": false
+		},
+		{
+			"key": "direction",
+			"display": "Direction",
+			"type": "string",
+			"default": "vertical",
+			"required": false,
+			"options": [
+				{
+					"key": "vertical",
+					"display": "Vertical"
+				},
+				{
+					"key": "horizontal",
+					"display": "Horizontal"
+				}
+			]
+		},
+		{
+			"key": "do-transition-in",
+			"display": "Transition In",
+			"type": "bool",
+			"default": true,
+			"required": false,
+			"private": true
+		},
+		{
+			"key": "do-transition-out",
+			"display": "Transition Out",
+			"type": "bool",
+			"default": true,
+			"required": false,
+			"private": true
+		}
+	],
+	[
+		["solid", {
+			"color": ["$", ["if",
+				["eq", ["var", "color"], "blue"],
+				"#032D42",
+				"#62D84E"
+			]],
+			"breakpoints": [
+				{
+					"enabled": ["$", ["or",
+						["var", "do-transition-in"],
+						["var", "do-transition-out"]
+					]],
+					"transform": [
+						["translate",
+							0,
+							["$", ["compact", ["array",
+								"animate",
+								["if", ["var", "do-transition-in"], ["'", 0, "100rh", "easeInOutCubic"]],
+								["if", ["var", "do-transition-in"], ["'", "+600", 0]],
+								["if", ["var", "do-transition-out"], ["'", "100%", "-100rh"]],
+								["if", ["var", "do-transition-out"], ["'", "-600", 0, "easeInOutCubic"]]
+							]]]
+						]
+					]
+				},
+				{
+					"enabled": ["$", ["and",
+						["or",
+							["var", "do-transition-in"],
+							["var", "do-transition-out"]
+						],
+						["eq", ["var", "direction"], "horizontal"]
+					]],
+					"transform": [
+						["translate",
+							["$", ["compact", ["array",
+								"animate",
+								["if", ["var", "do-transition-in"], ["'", 0, "-100rw", "easeInOutCubic"]],
+								["if", ["var", "do-transition-in"], ["'", "+600", 0]],
+								["if", ["var", "do-transition-out"], ["'", "100%", "100rw"]],
+								["if", ["var", "do-transition-out"], ["'", "-600", 0, "easeInOutCubic"]]
+							]]],
+							0
+						]
+					]
+				},
+				{
+					"enabled": ["$", ["and",
+						["or",
+							["var", "do-transition-in"],
+							["var", "do-transition-out"]
+						],
+						["eq", ["var", "direction"], "vertical"],
+						["eq", ["var", "color"], "multi"]
+					]],
+					"transform": [
+						["translate",
+							0,
+							["$", ["compact", ["array",
+								"animate",
+								["if", ["var", "do-transition-in"], ["'", 0, "100rh", "easeInQuad"]],
+								["if", ["var", "do-transition-in"], ["'", "+550", 0]],
+								["if", ["var", "do-transition-out"], ["'", "100%", "-100rh"]],
+								["if", ["var", "do-transition-out"], ["'", "-300", 0, "easeOutQuad"]]
+							]]]
+						]
+					]
+				},
+				{
+					"enabled": ["$", ["and",
+						["or",
+							["var", "do-transition-in"],
+							["var", "do-transition-out"]
+						],
+						["eq", ["var", "direction"], "horizontal"],
+						["eq", ["var", "color"], "multi"]
+					]],
+					"transform": [
+						["translate",
+							["$", ["compact", ["array",
+								"animate",
+								["if", ["var", "do-transition-in"], ["'", 0, "-100rw", "easeInQuad"]],
+								["if", ["var", "do-transition-in"], ["'", "+550", 0]],
+								["if", ["var", "do-transition-out"], ["'", "100%", "100rw"]],
+								["if", ["var", "do-transition-out"], ["'", "-300", 0, "easeOutQuad"]]
+							]]],
+							0
+						]
+					]
+				}
+			]
+		}],
+		["solid", {
+			"enabled": ["$", ["eq", ["var", "color"], "multi"]],
+			"stagger": [350, -200],
+			"color": "#032D42",
+			"breakpoints": [
+				{
+					"enabled": ["$", ["and",
+						["or",
+							["var", "do-transition-in"],
+							["var", "do-transition-out"]
+						],
+						["eq", ["var", "direction"], "vertical"]
+					]],
+					"transform": [
+						["translate",
+							0,
+							["$", ["compact", ["array",
+								"animate",
+								["if", ["var", "do-transition-in"], ["'", 0, "100rh", "easeInQuad"]],
+								["if", ["var", "do-transition-in"], ["'", "+300", 0]],
+								["if", ["var", "do-transition-out"], ["'", "100%", "-100rh"]],
+								["if", ["var", "do-transition-out"], ["'", "-250", 0, "easeOutQuad"]]
+							]]]
+						]
+					]
+				},
+				{
+					"enabled": ["$", ["and",
+						["or",
+							["var", "do-transition-in"],
+							["var", "do-transition-out"]
+						],
+						["eq", ["var", "direction"], "horizontal"]
+					]],
+					"transform": [
+						["translate",
+							["$", ["compact", ["array",
+								"animate",
+								["if", ["var", "do-transition-in"], ["'", 0, "-100rw", "easeInQuad"]],
+								["if", ["var", "do-transition-in"], ["'", "+300", 0]],
+								["if", ["var", "do-transition-out"], ["'", "100%", "100rw"]],
+								["if", ["var", "do-transition-out"], ["'", "-250", 0, "easeOutQuad"]]
+							]]],
+							0
+						]
+					]
+				}
+			]
+		}]
+	]
+]

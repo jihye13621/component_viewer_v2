@@ -1,0 +1,459 @@
+[
+	"ds-instacart-pdm-marketplace",
+	[
+		{
+			"key": "asset-1",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [],
+			"script": ["$", ["if",
+				["exists", ["var", "asset-1"]],
+				["var", "asset-1"],
+				"./media/image-wide.jpg"
+			]]
+		},
+		{
+			"key": "asset-2",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [],
+			"script": ["$", ["if",
+				["exists", ["var", "asset-2"]],
+				["var", "asset-2"],
+				"./media/image-wide.jpg"
+			]]
+		},
+		{
+			"key": "asset-3",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [],
+			"script": ["$", ["if",
+				["exists", ["var", "asset-3"]],
+				["var", "asset-3"],
+				"./media/image-wide.jpg"
+			]]
+		},
+		{
+			"key": "partner",
+			"display": "Partner",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [],
+			"script": ["$", ["if",
+				["exists", ["var", "partner"]],
+				["var", "partner"],
+				"./media/capsule.svg"
+			]]
+		},
+		{
+			"key": "headline-1",
+			"display": "Headline 1",
+			"type": "text",
+			"default": "Headline 1",
+			"required": false
+		},
+		{
+			"key": "headline-2",
+			"display": "Headline 2",
+			"type": "text",
+			"default": "Headline 2",
+			"required": false
+		},
+		{
+			"key": "sticker-text",
+			"display": "Sticker Text",
+			"type": "text",
+			"default": "Get delivery in as fast as",
+			"required": false
+		},
+		{
+			"key": "sticker-detail",
+			"display": "Sticker Detail",
+			"type": "text",
+			"default": "30 min",
+			"required": false
+		},
+		["ds-instacart-mixins",
+			"colors",
+			"font-sans-600"
+		],
+		{
+			"key": "color-accent",
+			"display": "Accent",
+			"type": "color",
+			"default": "#FF7009",
+			"required": false
+		}
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins", "set-su-roi", "safezone"],
+			"color": ["$", ["var", "color-green"]]
+		}, [
+			["null", {
+				"layout": "vertical",
+				"align": "center",
+				"max-height": "1400nsu",
+				"max-width": "1000nsu"
+			}, [
+				["null", {
+					"flex": {
+						"height": "300su"
+					}
+				}, [
+					["text", {
+						"font": ["$", ["var", "font-sans-600"]],
+						"height": "80su",
+						"leading": "-10su",
+						"color": ["$", ["var", "color-white"]],
+						"string": ["$", ["var", "headline-1"]],
+						"max-height": "250su",
+						"animations": [
+							{
+								"mask": [0, 0, 0, 0],
+								"translate": [0, "110su"]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+350", 1]
+								],
+								"easing": "easeOutQuad",
+								"translate": [0, 0]
+							},
+							{
+								"mix": ["animate",
+									[3000, 1],
+									["-250", 0]
+								],
+								"easing": "easeInQuad",
+								"translate": [0, "-110su"]
+							},
+							{
+								"indices": [0, 1],
+								"color": ["$", ["var", "color-accent"]]
+							}
+						]
+					}],
+					["text", {
+						"font": ["$", ["var", "font-sans-600"]],
+						"height": "80su",
+						"leading": "-10su",
+						"color": ["$", ["var", "color-white"]],
+						"string": ["$", ["var", "headline-2"]],
+						"max-height": "250su",
+						"animations": [
+							{
+								"mask": [0, 0, 0, 0],
+								"translate": [0, "110su"]
+							},
+							{
+								"mix": ["animate",
+									[2900, 0],
+									["+350", 1]
+								],
+								"easing": "easeOutQuad",
+								"translate": [0, 0]
+							},
+							{
+								"mix": ["animate",
+									[5000, 1],
+									["-250", 0]
+								],
+								"easing": "easeInQuad",
+								"translate": [0, "-110su"]
+							}
+						]
+					}]
+				]],
+				["null", {
+					"z-index": 10
+				}, [
+					["null", {
+						"stagger": [5000, 0],
+						"mask": {
+							"transform": true,
+							"radius": "20su"
+						},
+						"transform": [
+							["translate",
+								0,
+								["animate",
+									[0, 0, "easeInOutQuad"],
+									["+1000", "-100rh"],
+									["+1000", "-100rh", "easeInOutQuad"],
+									["+1000", "-200rh"]
+								]
+							],
+							["translate",
+								0,
+								["animate",
+									[0, 0, "easeInOutQuad"],
+									["+1000", "-40su"],
+									["+1000", "-40su", "easeInOutQuad"],
+									["+1000", "-80su"]
+								]
+							],
+							["translate",
+								0,
+								["animate",
+									[2000, 0, "easeInExpo"],
+									["+1000", "-100rh"]
+								]
+							]
+						]
+					}, [
+						["user-asset", {
+							"file": ["$", ["var", "asset-1"]],
+							"justify": "fill center",
+							"mute": true,
+							"loop": true,
+							"transform": [
+								["scale",
+									["animate",
+										[0, 1],
+										[5000, 1.1]
+									]
+								],
+								["translate",
+									0,
+									["animate",
+										[0, 0],
+										[5000, "5rh"],
+										["+3000", "-5rh"]
+									]
+								]
+							]
+						}]
+					]],
+					["null", {
+						"stagger": [5000, 0],
+						"mask": {
+							"transform": true,
+							"radius": "20su"
+						},
+						"transform": [
+							["translate",
+								0,
+								"100rh"
+							],
+							["translate",
+								0,
+								"40su"
+							],
+							["translate",
+								0,
+								["animate",
+									[0, 0, "easeInOutQuad"],
+									["+1000", "-100rh"],
+									["+1000", "-100rh", "easeInOutQuad"],
+									["+1000", "-200rh"]
+								]
+							],
+							["translate",
+								0,
+								["animate",
+									[0, 0, "easeInOutQuad"],
+									["+1000", "-40su"],
+									["+1000", "-40su", "easeInOutQuad"],
+									["+1000", "-80su"]
+								]
+							],
+							["translate",
+								0,
+								["animate",
+									[0, "70rh", "easeOutExpo"],
+									["+1000", 0]
+								]
+							],
+							["translate",
+								0,
+								["animate",
+									[2000, 0, "easeInExpo"],
+									["+1000", "-100rh"]
+								]
+							]
+						]
+					}, [
+						["user-asset", {
+							"file": ["$", ["var", "asset-2"]],
+							"justify": "fill center",
+							"mute": true,
+							"loop": true,
+							"transform": [
+								["scale",
+									1.1
+								],
+								["translate",
+									0,
+									["animate",
+										[5000, "5rh"],
+										["+3000", "-5rh"]
+									]
+								]
+							]
+						}]
+					]],
+					["null", {
+						"stagger": [5000, 0],
+						"mask": {
+							"transform": true,
+							"radius": "20su"
+						},
+						"transform": [
+							["translate",
+								0,
+								"200rh"
+							],
+							["translate",
+								0,
+								"80su"
+							],
+							["translate",
+								0,
+								["animate",
+									[0, 0, "easeInOutQuad"],
+									["+1000", "-100rh"],
+									["+1000", "-100rh", "easeInOutQuad"],
+									["+1000", "-200rh"]
+								]
+							],
+							["translate",
+								0,
+								["animate",
+									[0, "70rh", "easeOutExpo"],
+									["+1000", 0]
+								]
+							],
+							["translate",
+								0,
+								["animate",
+									[0, 0, "easeInOutQuad"],
+									["+1000", "-40su"],
+									["+1000", "-40su", "easeInOutQuad"],
+									["+1000", "-80su"]
+								]
+							]
+						]
+					}, [
+						["user-asset", {
+							"file": ["$", ["var", "asset-3"]],
+							"mute": true,
+							"loop": true,
+							"justify": "fill center"
+						}]
+					]],
+					["ds-instacart-pdm-marketplace-sticker", {
+						"start": 8000,
+						"flex": {
+							"position": "fixed"
+						},
+						"rect": [
+							0,
+							0,
+							"350su",
+							"350su"
+						],
+						"align": "top right",
+						"transform": [
+							["translate",
+								"30su",
+								"-70su"
+							]
+						],
+						"text-1": ["$", ["var", "sticker-text"]],
+						"text-2": ["$", ["var", "sticker-detail"]],
+						"color-foreground": ["$", ["var", "color-green"]],
+						"color-background": ["$", ["var", "color-white"]],
+						"color-accent": ["$", ["var", "color-accent"]]
+					}]
+				]],
+				["null", {
+					"flex": {
+						"position": "fixed"
+					},
+					"start": 8000,
+					"rect": [
+						0,
+						0,
+						"90rw",
+						"250su"
+					],
+					"layout": "horizontal packed match",
+					"align": "top center",
+					"gap": "40su"
+				}, [
+					["asset", {
+						"file": "./media/ds-instacart-logo.json",
+						"justify": "fit center",
+						"hold": true,
+						"lottie-driver": ["animate",
+							[0, 0],
+							[
+								["$", ["to-relative-string", ["dur", "./media/ds-instacart-logo.json"]]],
+								1
+							]
+						]
+					}],
+					["solid", {
+						"rect": [
+							0,
+							0,
+							"3su",
+							["animate",
+								[0, 0, "easeInOutQuint"],
+								["+1000", "100rh"]
+							]
+						],
+						"flex": {
+							"shrink": true,
+							"width": "3su"
+						}
+					}],
+					["user-asset", {
+						"stagger": [1000, 0],
+						"flex": {
+							"weight": 0.5
+						},
+						"file": ["$", ["var", "partner"]],
+						"justify": "fit center",
+						"hold": true,
+						"mute": true,
+						"mask": {
+							"padding": [
+								0,
+								0,
+								0,
+								"-40su"
+							]
+						},
+						"transform": [
+							["translate",
+								["animate",
+									[0, "-100rw", "easeOutQuad"],
+									["+500", 0]
+								],
+								0
+							],
+							["translate",
+								["animate",
+									[0, "-40su", "easeOutQuad"],
+									["+500", 0]
+								],
+								0
+							]
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

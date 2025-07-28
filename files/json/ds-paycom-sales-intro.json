@@ -1,0 +1,99 @@
+[
+	"ds-paycom-sales-intro",
+	[
+		{
+			"key": "headline",
+			"display": "Headline",
+			"type": "text",
+			"default": "Add a headline",
+			"required": false
+		}
+	],
+	[
+		["asset", {
+			"file": "./media/ds-paycom-sales-intro-bg.mp4",
+			"loop": true,
+			"mute": true,
+			"justify": "fill center",
+			"breakpoints": [
+				{
+					"enabled": ["$", ["<", ["aspect"], 1]],
+					"rotate": 0.25
+				}
+			]
+		}],
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			]
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"align": "center",
+				"gap": "80su",
+				"transform": [
+					["scale",
+						["animate",
+							[0, 0.9],
+							["100%", 1]
+						]
+					]
+				]
+			}, [
+				["text", {
+					"enabled": ["$", ["exists", ["var", "headline"]]],
+					"font": "./media/Bebas Neue Pro Bold.otf",
+					"measure": "letter-size",
+					"height": "120su",
+					"kerning": 0.05,
+					"leading": "30su",
+					"justify": "center",
+					"color": "#ffffff",
+					"case": "uppercase",
+					"string": ["$", ["var", "headline"]],
+					"animations": [
+						{
+							"translate": [
+								0,
+								"20su"
+							]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+1000", 1]
+							],
+							"ramp": -1,
+							"easing": "easeOutQuad",
+							"opacity": 1,
+							"translate": [0, 0]
+						}
+					]
+				}],
+				["asset", {
+					"flex": {
+						"height": "80su"
+					},
+					"file": "./media/ds-paycom-sales-logo-animated.json",
+					"justify": "fit center",
+					"lottie-driver": ["animate",
+						[0, 0],
+						[
+							["$", ["to-relative-string", ["dur", "./media/ds-paycom-sales-logo-animated.json"]]],
+							1
+						]
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["not", ["exists", ["var", "headline"]]]],
+							"flex": {
+								"height": "120su"
+							}
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

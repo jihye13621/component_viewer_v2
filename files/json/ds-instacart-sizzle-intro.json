@@ -1,0 +1,230 @@
+[
+	"ds-instacart-sizzle-intro",
+	[
+		{
+			"key": "timeframe",
+			"display": "Timeframe",
+			"type": "text",
+			"default": "H1",
+			"required": false
+		},
+		{
+			"key": "year",
+			"display": "Year",
+			"type": "text",
+			"default": "2024",
+			"required": false
+		},
+		{
+			"key": "message",
+			"display": "Message",
+			"type": "text",
+			"default": "we focused on three horizons",
+			"required": false
+		},
+		["dsx-mixins", "boilerplate"],
+		["ds-instacart-mixins",
+			"colors",
+			"font-contrast-400",
+			"theme"
+		]
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins", "safezone", "set-su-roi"],
+			"color": ["$", ["var", "#background"]]
+		}, [
+			["null", {
+
+			}, [
+				["null", {
+					"layout": "stacked",
+					"align": "center",
+					"transform": [
+						["scale",
+							["animate",
+								[0, 3, "easeInOutQuint"],
+								["+2000", 1]
+							]
+						]
+					]
+				}, [
+					["text", {
+						"end": 1000,
+						"enabled": ["$", ["exists", ["var", "timeframe"]]],
+						"font": ["$", ["var", "font-contrast-400"]],
+						"measure": "letter-size",
+						"height": "120su",
+						"fit": true,
+						"justify": "center",
+						"string": ["$", ["concat", "In ", ["var", "timeframe"]]],
+						"color": ["$", ["var", "#foreground"]],
+						"boundary": "letter",
+						"animations": [
+							{
+								"mask": [0, 0, "-10su", 0],
+								"translate": [0, "150su"]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+500", 1]
+								],
+								"easing": "easeOutQuart",
+								"ramp": 2,
+								"translate": [0, 0]
+							}
+						]
+					}],
+					["text", {
+						"start": 1000,
+						"end": 1700,
+						"font": ["$", ["var", "font-contrast-400"]],
+						"measure": "letter-size",
+						"height": "120su",
+						"justify": "center",
+						"string": "of",
+						"color": ["$", ["var", "#foreground"]],
+						"boundary": "line",
+						"opacity": ["animate",
+							["100%", 0],
+							["-150", 1]
+						]
+					}]
+				]],
+				["for-each", {
+					"start": 1000,
+					"end": 3000,
+					"layout": "horizontal packed",
+					"align": "center",
+					"max-width": "800su",
+					"items": ["$", ["string-to-letters", ["var", "year"]]],
+					"transform": [
+						["scale",
+							["animate",
+								[500, 1, "easeInOutQuint"],
+								["+3000", 0.5]
+							]
+						]
+					],
+					"script": ["$$",
+						["let",
+							[
+								["start", ["key", ["var", "self"], "start"]],
+								["end", ["key", ["var", "self"], "end"]],
+								["parent", ["key", ["var", "self"], "parent"]],
+								["target-width", ["key", ["key", ["var", "parent"], "roi"], "width"]],
+								["width", ["key", ["key", ["var", "self"], "roi"], "width"]],
+								["factor", ["/", ["var", "target-width"], ["var", "width"]]],
+								["animate",
+									["map",
+										["var", "frame"],
+										["+", ["var", "start"], 0],
+										["+", ["var", "end"], 0],
+										0,
+										1
+									]
+								]
+							],
+							["do",
+								["live-transform",
+									["var", "self"],
+									"scale",
+									["var", "factor"]
+								]
+							]
+						]
+					]
+				}, [
+					["text", {
+						"font": ["$", ["var", "font-contrast-400"]],
+						"measure": "letter-size",
+						"height": "120su",
+						"fit": true,
+						"justify": "center",
+						"string": ["$", ["var", "item"]],
+						"color": ["$", ["var", "#foreground"]],
+						"boundary": "line",
+						"transform": [
+							["translate",
+								["animate",
+									[
+										0,
+										["$",
+											["let",
+												[
+													["vector", ["map",
+														["+", ["var", "index"], 1],
+														1,
+														["var", "count"],
+														-1,
+														1
+													]]
+												],
+												["*", ["var", "vector"], 800]
+											]
+										],
+										"easeOutQuint"
+									],
+									["+1300", 0]
+								],
+								0
+							]
+						]
+					}]
+				]],
+				["null", {
+					"stagger": [-1700, 0],
+					"start": 3000,
+					"layout": "stacked",
+					"align": "center",
+					"max-width": "1000nsu",
+					"transform": [
+						["scale",
+							["animate",
+								[0, 1.5, "easeInOutQuint"],
+								["+3000", 1]
+							]
+						]
+					]
+				}, [
+					["text", {
+						"enabled": ["$", ["exists", ["var", "message"]]],
+						"font": ["$", ["var", "font-contrast-400"]],
+						"measure": "letter-size",
+						"height": "120su",
+						"leading": 0,
+						"justify": "center",
+						"string": ["$", ["var", "message"]],
+						"color": ["$", ["var", "#foreground"]],
+						"boundary": "word",
+						"animations": [
+							{
+								"mask": [0, 0, "-10su", 0],
+								"translate": [0, "150su"]
+							},
+							{
+								"mix": ["animate",
+									[0, 0.2],
+									["+1000", 1]
+								],
+								"easing": "easeOutQuint",
+								"ramp": 1,
+								"translate": [0, 0]
+							}
+						],
+						"transform": [
+							["translate",
+								0,
+								["animate",
+									["100%", "-100roih"],
+									["-1000", 0, "easeInQuint"]
+								]
+							]
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

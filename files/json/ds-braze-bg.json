@@ -1,0 +1,145 @@
+[
+	"ds-braze-bg",
+	[
+		{
+			"key": "gradient-style",
+			"display": "Gradient",
+			"type": "string",
+			"default": "heat-2",
+			"required": false,
+			"options": [
+				{
+					"key": "heat-1",
+					"display": "Heat 1"
+				},
+				{
+					"key": "heat-2",
+					"display": "Heat 2"
+				},
+				{
+					"key": "heat-3",
+					"display": "Heat 3"
+				}
+			]
+		},
+		{
+			"key": "animate-in",
+			"display": "Animate In",
+			"type": "bool",
+			"default": true,
+			"required": false
+		},
+		{
+			"key": "animate-out",
+			"display": "Animate Out",
+			"type": "bool",
+			"default": true,
+			"required": false
+		},
+		["ds-braze-mixins",
+			"color-lighter-purple",
+			"color-light-purple",
+			"color-dark-purple",
+			"color-pink",
+			"color-orange",
+			"color-red",
+			"color-light-blue"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "#animation-files",
+			"display": "Animation Files",
+			"type": "object",
+			"default": [
+				"./media/ds-braze-transition-in-1.json",
+				"./media/ds-braze-transition-out-1.json"
+			],
+			"required": false
+		}
+	],
+	[
+		["solid", {
+			"enabled": ["$", ["var", "animate-in"]],
+			"end": ["$", ["dur", ["nth", ["var", "#animation-files"], 0]]],
+			"color": [0, 0, 0, 1],
+			"buffer": "screenmask-in"
+		}, [
+			["asset", {
+				"file": ["$", ["nth", ["var", "#animation-files"], 0]],
+				"justify": "fill center"
+			}]
+		]],
+		["solid", {
+			"enabled": ["$", ["var", "animate-out"]],
+			"start": ["$", ["-", ["key", ["comp-timing"], "duration"], ["dur", ["nth", ["var", "#animation-files"], 1]]]],
+			"color": [0, 0, 0, 1],
+			"buffer": "screenmask-out"
+		}, [
+			["asset", {
+				"file": ["$", ["nth", ["var", "#animation-files"], 1]],
+				"justify": "fill center"
+			}]
+		]],
+		["null", {
+			"effect": [
+				["matte", {
+					"enabled": ["$", ["var", "animate-in"]],
+					"end": ["$", ["dur", ["nth", ["var", "#animation-files"], 0]]],
+					"buffer-in": "screenmask-in"
+				}],
+				["matte", {
+					"enabled": ["$", ["var", "animate-out"]],
+					"start": ["$", ["-", ["key", ["comp-timing"], "duration"], ["dur", ["nth", ["var", "#animation-files"], 1]]]],
+					"buffer-in": "screenmask-out"
+				}]
+			]
+		}, [
+			["solid", {
+				"flex": {
+					"position": "fixed"
+				},
+				"color": ["linear-gradient",
+					["animate",
+						[0, -0.05],
+						["100%", 0.05]
+					],
+					[0.0, ["$", ["var", "color-lighter-purple"]]],
+					[0.5, ["$", ["var", "color-light-purple"]]],
+					[1.0, ["$", ["var", "color-orange"]]]
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["eq", ["var", "gradient-style"], "heat-1"]],
+						"color": ["linear-gradient",
+							["animate",
+								[0, -0.05],
+								["100%", 0.05]
+							],
+							[0.0, ["$", ["var", "color-pink"]]],
+							[0.5, ["$", ["var", "color-orange"]]],
+							[1.0, ["$", ["var", "color-red"]]]
+						]
+					},
+					{
+						"enabled": ["$", ["eq", ["var", "gradient-style"], "heat-3"]],
+						"color": ["linear-gradient",
+							["animate",
+								[0, -0.05],
+								["100%", 0.05]
+							],
+							[0.0, ["$", ["var", "color-light-blue"]]],
+							[0.5, ["$", ["var", "color-pink"]]],
+							[1.0, ["$", ["var", "color-orange"]]]
+						]
+					}
+				]
+			}, [
+				["null", {
+					"slot": "default"
+				}]
+			]]
+		]]
+	]
+]

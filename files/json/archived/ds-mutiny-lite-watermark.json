@@ -1,0 +1,139 @@
+[
+	"ds-mutiny-lite-watermark",
+	[
+		["dsx-mixins", ["watermark"]],
+		["ds-mutiny-lite-mixins", "color-light", "color-dark"],
+		["dsx-mixins", ["boilerplate"]],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": 7,
+			"required": false
+		}
+	],
+	[
+		["dsx-background", {
+			"enabled": ["$", ["exists", ["var", "background"]]],
+			"color": ["$", ["var", "background"]]
+		}],
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"max-width": "800nsu",
+				"layout": "vertical packed match",
+				"align": ["$", ["var", "#align"]],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["exists", ["var", "text"]]],
+						"transform": [
+							["translate",
+								0,
+								["animate",
+									[700, "-80su", "easeInOutQuart"],
+									["+700", 0],
+									["100%", "-80su"],
+									["-800", 0, "easeInOutQuart"]
+								]
+							]
+						]
+					}
+				]
+			}, [
+				["solid", {
+					"enabled": ["$", ["exists", ["var", "text"]]],
+					"align": ["$", ["var", "#align"]],
+					"layout": "vertical packed",
+					"color": ["$", ["var", "color-dark"]],
+					"padding": [
+						"22su",
+						"30su",
+						"10su",
+						"30su"
+					],
+					"stagger": [700, 0],
+					"mask": {
+						"padding": [
+							["animate",
+								[0, "100rh", "easeInOutQuart"],
+								["+700", 0],
+								["100%", "100rh"],
+								["-800", 0, "easeInOutQuart"]
+							],
+							0,
+							0,
+							0
+						]
+					}
+				}, [
+					["text", {
+						"mixins": ["ds-mutiny-lite-mixins", ["font-label"]],
+						"string": ["$", ["var", "text"]],
+						"color": ["$", ["var", "color-light"]],
+						"justify": ["$", ["var", "#align"]],
+						"boundary": "letter",
+						"stagger": [1000, -150],
+						"animations": [
+							{
+								"translate": [0, "-50su"]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									[500, 1],
+									["100%", 0],
+									["-800", 1]
+								],
+								"translate": [0, 0],
+								"opacity": 1,
+								"ramp": 1.5,
+								"easing": "easeOutQuart"
+							}
+						]
+					}]
+				]],
+				["solid", {
+					"layout": "vertical packed",
+					"padding": [
+						"30su",
+						"30su",
+						"30su",
+						"30su"
+					],
+					"color": ["$", ["var", "color-light"]],
+					"mask": {
+						"padding": [
+							0,
+							0,
+							["animate",
+								[0, "100rh", "easeInOutQuart"],
+								["+500", 0],
+								["100%", "100rh"],
+								["-800", 0, "easeInOutQuart"]
+							],
+							0
+						]
+					}
+				}, [
+					["asset", {
+						"mute": true,
+						"file": ["$", ["var", "logo"]],
+						"flex": {
+							"width": "200su",
+							"height": "200su"
+						},
+						"justify": "fit center",
+						"breakpoints": [
+							{
+								"enabled": ["$", ["eq", ["var", "logo"], "./media/capsule.svg"]],
+								"file": "./media/ds-mutiny-lite-logo.svg",
+								"svg-recolor": ["$", ["var", "color-dark"]]
+							}
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

@@ -1,0 +1,315 @@
+[
+	"ds4-speaker",
+	[
+		{
+			"key": "name",
+			"display": "Speaker name",
+			"type": "text",
+			"default": "Speaker name",
+			"required": false
+		},
+		{
+			"key": "detail-1",
+			"display": "Title",
+			"type": "text",
+			"default": "Optional speaker detail",
+			"required": false
+		},
+		{
+			"key": "detail-2",
+			"display": "Company",
+			"type": "text",
+			"default": "Optional speaker detail",
+			"required": false
+		},
+		{
+			"key": "font-1",
+			"display": "Style",
+			"type": "fontstyle",
+			"default": {
+				"font": "./media/Newsreader16pt-Regular.ttf",
+				"height": 72
+			},
+			"required": false,
+			"script": ["$",
+				["key-set",
+					["var", "font-1"],
+					"height",
+					["round", ["*", ["var", "size"], ["var", "font-1", "height"]]]
+				]
+			]
+		},
+		{
+			"key": "font-2",
+			"display": "Style",
+			"type": "fontstyle",
+			"default": {
+				"font": "./media/Inter-Bold.ttf",
+				"height": 36,
+				"kerning": 0.08,
+				"leading": 0.333
+			},
+			"required": false,
+			"script": ["$",
+				["key-set",
+					["var", "font-2"],
+					"height",
+					["round", ["*", ["var", "size"], ["var", "font-2", "height"]]]
+				]
+			]
+		},
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		},
+		{
+			"key": "color-2",
+			"display": "Color 2",
+			"type": "color",
+			"default": "#E03467",
+			"required": false
+		},
+		{
+			"key": "background",
+			"display": "Background",
+			"type": "color",
+			"default": null,
+			"required": false
+		},
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": 1,
+			"required": false
+		},
+		{
+			"key": "size",
+			"display": "Size",
+			"type": "number",
+			"default": 1.0,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"step": 0.05,
+				"minimum": 0.5,
+				"maximum": 1.5
+			}
+		},
+		{
+			"key": "#align",
+			"type": "string",
+			"default": "center",
+			"required": false,
+			"private": true,
+			"script": ["$", ["switch", ["var", "position"], {
+				"1": "bottom left",
+				"2": "bottom center",
+				"3": "bottom right",
+				"4": "left",
+				"5": "center",
+				"6": "right",
+				"7": "top left",
+				"8": "top center",
+				"9": "top right",
+				"_": "center"
+			}]]
+		}
+	],
+	[
+		["dsx-background", {
+			"enabled": ["$", ["exists", ["var", "background"]]],
+			"color": ["$", ["var", "background"]]
+		}],
+		["dsx-padding", {
+			"position": ["$", ["var", "position"]]
+		}, [
+			["null", {
+				"align": ["$", ["var", "#align"]],
+				"layout": ["$", ["switch", ["var", "position"], {
+					"1": "vertical match packed reverse",
+					"2": "vertical match packed reverse",
+					"3": "vertical match packed reverse",
+					"4": "vertical match packed center",
+					"5": "vertical match packed center",
+					"6": "vertical match packed center",
+					"_": "vertical match packed"
+				}]],
+				"clip": true,
+				"mask": {
+					"radius": ["$", ["*", 0.3, ["var", "font-1", "height"]]]
+				},
+				"padding": [
+					["$", ["*", 0.5, ["var", "font-1", "height"]]],
+					["$", ["*", 0.5, ["var", "font-1", "height"]]],
+					["$", ["*", 0.5, ["var", "font-1", "height"]]],
+					["$", ["*", 0.5, ["var", "font-1", "height"]]]
+				],
+				"gap": ["$", ["*", 0.3, ["var", "font-1", "height"]]]
+			}, [
+				["solid", {
+					"flex": {
+						"position": "fixed"
+					},
+					"color": ["linear-gradient",
+						0.0,
+						[0.0, ["$", ["rgba-set", ["var", "color-2"], "a", 0.0]]],
+						[0.5, ["$", ["rgba-set", ["var", "color-2"], "a", 0.5]]],
+						[1.0, ["$", ["rgba-set", ["var", "color-2"], "a", 0.0]]]
+					],
+					"opacity": ["animate", 
+						[0, 1, "holdIn"],
+						[1000, 0]
+					],
+					"transform": [
+						["rotate", 0.03],
+						["scale", 2],
+						["translate",
+							0,
+							["animate",
+								[0, "100rh", "easeInOutCubic"],
+								[1000, "-100rh"]
+							]
+						]
+					]
+				}],
+				["null", {
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]]
+				}, [
+					["text", {
+						"string": ["$", ["var", "name"]],
+						"color": ["$", ["var", "color-1"]],
+						"justify": ["$", ["var", "#align"]],
+						"style": ["$", ["var", "font-1"]],
+						"opacity": ["animate", 
+							["100%", 0], 
+							["-300", 1]
+						],
+						"transform": [
+							["translate",
+								["animate", 
+									["100%", ["$", ["var", "font-1", "height"]]],
+									["-300", 0, "easeInQuad"]
+								],
+								0
+							]
+						],
+						"boundary": "letter",
+						"animations": [
+							{
+								"translate": [0, ["$", ["var", "font-1", "height"]]]
+							},
+							{
+								"mix": ["animate",
+									[150, 0],
+									["+500", 1]
+								],
+								"ramp": 1.0,
+								"easing": "easeOutQuad",
+								"opacity": 1,
+								"translate": [0, 0]
+							}
+						]
+					}]
+				]],
+				["null", {
+					"flex": {
+						"shrink": true
+					},
+					"opacity": ["animate", 
+						[150, 0],
+						["+500", 1],
+						["100%", 0],
+						["-300", 1]
+					],
+					"mask": {
+						"padding": [
+							["$", ["*", -0.5, ["var", "font-1", "height"]]],
+							0,
+							["$", ["*", -0.5, ["var", "font-1", "height"]]],
+							0
+						]
+					},
+					"rect": [
+						0,
+						0,
+						"100rw",
+						["$", ["*", 0.3, ["var", "font-1", "height"]]]
+					],
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[150, ["$", ["*", 1, ["var", "font-1", "height"]]], "easeOutQuad"],
+								["+500", 0]
+							]
+						]
+					]
+				}, [
+					["ds4-progbar-1", {
+						"color-1": ["$", ["var", "color-1"]],
+						"color-2": ["$", ["var", "color-2"]]
+					}]
+				]],
+				["null", {
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]]
+				}, [
+					["text", {
+						"string": ["$", ["var", "detail-1"]],
+						"case": "uppercase",
+						"clip": true,
+						"TODO:": "what is up with requiring this clip",
+						"justify": ["$", ["var", "#align"]],
+						"color": ["$", ["var", "color-1"]],
+						"style": ["$", ["var", "font-2"]],
+						"opacity": ["animate", 
+							["100%", null], 
+							["-100", 0], 
+							["-300", 1]
+						],
+						"transform": [
+							["translate",
+								["animate", 
+									["100%", null], 
+									["-100", ["$", ["var", "font-1", "height"]]],
+									["-300", 0, "easeInQuad"]
+								],
+								0
+							]
+						],
+						"breakpoints": [
+							{
+								"enabled": ["$", ["exists", ["var", "detail-2"]]],
+								"string": ["$", ["concat", ["var", "detail-1"], "\n", ["var", "detail-2"]]]
+							}
+						],
+						"boundary": "line",
+						"animations": [
+							{
+								"translate": [
+									0,
+									["$", ["var", "font-2", "height"]]
+								]
+							},
+							{
+								"mix": ["animate",
+									[350, 0],
+									["+500", 1]
+								],
+								"ramp": 1.0,
+								"easing": "easeOutQuad",
+								"opacity": 1,
+								"translate": [0, 0]
+							}
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

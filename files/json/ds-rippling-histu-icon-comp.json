@@ -1,0 +1,16 @@
+[
+	"ds-rippling-histu-icon-comp",
+	[
+		["ds-rippling-histu-mixins",
+			"histu-icons"
+		]
+	],
+	[
+		["asset", {
+			"skip": ["$", ["=", ["var", "icon"], "none"]],
+			"file": ["$", ["var", "#file"]],
+			"loop": true,
+			"justify": "fit center"
+		}]
+	]
+]

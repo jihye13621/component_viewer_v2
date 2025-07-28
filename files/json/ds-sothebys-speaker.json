@@ -1,0 +1,208 @@
+[
+	"ds-sothebys-speaker",
+	[
+		["dsx-mixins", "speaker"],
+		["ds-sothebys-mixins",
+			"color-primary",
+			"color-secondary",
+			"font-body",
+			"font-label"
+		],
+		["dsx-mixins", ["boilerplate"]],
+		{
+			"key": "dark-mode",
+			"display": "Dark Mode",
+			"type": "bool",
+			"default": false,
+			"required": false
+		},
+		{
+			"key": "shadow",
+			"display": "Shadow",
+			"type": "bool",
+			"default": false,
+			"required": false
+		},
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [1, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["shadow", {
+				"enabled": ["$",
+					["or",
+						["exists", ["var", "name"]],
+						["exists", ["var", "detail-1"]],
+						["exists", ["var", "detail-2"]]
+					]
+				],
+				"skip": ["$", ["not", ["var", "shadow"]]],
+				"color": ["$",
+					["rgba-set",
+						["if", ["var", "dark-mode"],
+							["var", "color-primary"],
+							["var", "color-secondary"]
+						],
+						"a",
+						0.5
+					]
+				],
+				"radius": "30su",
+				"layout": "horizontal packed match",
+				"max-width": "800nsu",
+				"align": ["$", ["var", "#align"]],
+				"gap": "30su",
+				"opacity": ["animate",
+					["100%", 0],
+					["-600", 1, "easeInQuad"]
+				]
+			}, [
+				["text", {
+					"enabled": ["$", ["exists", ["var", "name"]]],
+					"mixins": ["ds-sothebys-mixins",
+						"text",
+						"text-body"
+					],
+					"case": "uppercase",
+					"string": ["$", ["var", "name"]],
+					"color": ["$",
+						["if", ["var", "dark-mode"],
+							["var", "color-secondary"],
+							["var", "color-primary"]
+						]
+					],
+					"justify": "left center",
+					"opacity": ["animate",
+						[0, 0],
+						["+850", 1]
+					],
+					"transform": [
+						["translate",
+							["animate",
+								[0, "-50su", "easeOutQuad"],
+								["+850", 0]
+							],
+							0
+						]
+					]
+				}],
+				["solid", {
+					"enabled": ["$",
+						["and",
+							["exists", ["var", "name"]],
+							["or",
+								["exists", ["var", "detail-1"]],
+								["exists", ["var", "detail-2"]]
+							]
+						]
+					],
+					"stagger": [600, 0],
+					"flex": {
+						"shrink": true,
+						"width": "4su"
+					},
+					"color": ["$",
+						["if", ["var", "dark-mode"],
+							["var", "color-secondary"],
+							["var", "color-primary"]
+						]
+					],
+					"transform": [
+						["scale",
+							1,
+							["animate",
+								[0, 0, "easeInOutQuad"],
+								["+600", 1]
+							]
+						]
+					]
+				}],
+				["null", {
+					"enabled": ["$",
+						["or",
+							["exists", ["var", "detail-1"]],
+							["exists", ["var", "detail-2"]]
+						]
+					],
+					"layout": "vertical packed",
+					"align": "left center",
+					"gap": "10su"
+				}, [
+					["text", {
+						"enabled": ["$", ["exists", ["var", "detail-1"]]],
+						"stagger": [900, 0],
+						"mixins": ["ds-sothebys-mixins",
+							"text",
+							"text-label"
+						],
+						"case": "uppercase",
+						"string": ["$", ["var", "detail-1"]],
+						"justify": "center left",
+						"color": ["$",
+							["if", ["var", "dark-mode"],
+								["var", "color-secondary"],
+								["var", "color-primary"]
+							]
+						],
+						"fit": true,
+						"opacity": ["animate",
+							[0, 0],
+							["+850", 1]
+						],
+						"transform": [
+							["translate",
+								0,
+								["animate",
+									[0, "20su", "easeOutQuad"],
+									["+850", 0]
+								]
+							]
+						]
+					}],
+					["text", {
+						"enabled": ["$", ["exists", ["var", "detail-2"]]],
+						"stagger": [1000, 0],
+						"mixins": ["ds-sothebys-mixins",
+							"text",
+							"text-label"
+						],
+						"case": "uppercase",
+						"string": ["$", ["var", "detail-2"]],
+						"justify": "center left",
+						"color": ["$",
+							["if", ["var", "dark-mode"],
+								["var", "color-secondary"],
+								["var", "color-primary"]
+							]
+						],
+						"fit": true,
+						"opacity": ["animate",
+							[0, 0],
+							["+850", 1]
+						],
+						"transform": [
+							["translate",
+								0,
+								["animate",
+									[0, "20su", "easeOutQuad"],
+									["+850", 0]
+								]
+							]
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

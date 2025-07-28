@@ -1,0 +1,227 @@
+[
+	"ds-indivior-logo",
+	[
+		{
+			"key": "logo",
+			"display": "Logo",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": []
+		},
+		["ds-indivior-mixins",
+			"color-blue"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [7, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		},
+		{
+			"key": "do-background",
+			"display": "Background",
+			"type": "bool",
+			"default": true,
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"max-width": "800nsu",
+				"align": ["$", ["var", "#align"]]
+			}, [
+				["null", {
+					"layout": "horizontal packed",
+					"mask": {
+						"radius": "6su"
+					},
+					"breakpoints": [
+						{
+							"enabled": ["$", ["not", ["var", "do-background"]]],
+							"mask": null,
+							"opacity": ["animate",
+								["100%", 0],
+								["-300", 1, "easeInSine"]
+							]
+						}
+					]
+				}, [
+					["null", {
+						"enabled": ["$", ["var", "do-background"]],
+						"flex": {
+							"position": "fixed"
+						}
+					}, [
+						["solid", {
+							"color": ["$", ["var", "color-blue"]],
+							"radius": "6su",
+							"transform": [
+								["translate",
+									["animate",
+										[0, "-100rw", "easeOutCubic"],
+										["+400", 0],
+										["100%", "100rw"],
+										["-400", 0, "easeInCubic"]
+									],
+									0
+								]
+							]
+						}],
+						["solid", {
+							"stagger": [300, -300],
+							"color": [1, 1, 1, 1],
+							"radius": "6su",
+							"transform": [
+								["translate",
+									["animate",
+										[0, "-100rw", "easeOutCubic"],
+										["+400", 0],
+										["100%", "100rw"],
+										["-400", 0, "easeInCubic"]
+									],
+									0
+								]
+							]
+						}]
+					]],
+					["null", {
+						"stagger": [300, -300],
+						"layout": "horizontal packed match",
+						"align": "center",
+						"gap": "30su",
+						"padding": [
+							"30su",
+							"30su"
+						],
+						"mask": {
+							"padding": [
+								0,
+								["animate",
+									[0, "100rw", "easeOutCubic"],
+									["+400", 0]
+								],
+								0,
+								["animate",
+									["100%", "100rw"],
+									["-400", 0, "easeInCubic"]
+								]
+							]
+						},
+						"opacity": ["animate",
+							["100%", 0],
+							["-400", 1]
+						],
+						"breakpoints": [
+							{
+								"enabled": ["$", ["not", ["var", "do-background"]]],
+								"mask": null,
+								"opacity": 1
+							}
+						]
+					}, [
+						["asset", {
+							"stagger": [0, 0],
+							"mute": true,
+							"file": ["$",
+								["if",
+									["var", "do-background"],
+									"./media/ds-indivior-logo-color.svg",
+									"./media/ds-indivior-logo-white.svg"
+								]
+							],
+							"flex": {
+								"width": "300su",
+								"height": "100su"
+							},
+							"justify": "fit center",
+							"opacity": ["animate",
+								[0, 0, "easeOutSine"],
+								["+400", 1]
+							],
+							"breakpoints": [
+								{
+									"enabled": ["$", ["var", "do-background"]],
+									"stagger": [350, 0]
+								}
+							]
+						}],
+						["solid", {
+							"enabled": ["$", ["exists", ["var", "logo"]]],
+							"stagger": [200, 0],
+							"flex": {
+								"width": "2su",
+								"shrink": true
+							},
+							"color": ["$",
+								["if",
+									["var", "do-background"],
+									["'", 0, 0, 0, 0.3],
+									["'", 1, 1, 1, 1]
+								]
+							],
+							"transform": [
+								["scale",
+									1,
+									["animate",
+										[0, 0, "easeOutQuad"],
+										["+300", 1]
+									]
+								]
+							],
+							"breakpoints": [
+								{
+									"enabled": ["$", ["var", "do-background"]],
+									"stagger": [500, 0]
+								}
+							]
+						}],
+						["user-asset", {
+							"enabled": ["$", ["exists", ["var", "logo"]]],
+							"stagger": [400, 0],
+							"mute": true,
+							"mask": {},
+							"file": ["$", ["var", "logo"]],
+							"flex": {
+								"width": "300su",
+								"height": "100su"
+							},
+							"justify": "fit center",
+							"opacity": ["animate",
+								[0, 0, "easeOutSine"],
+								["+300", 1]
+							],
+							"transform": [
+								["translate",
+									["animate",
+										[0, "-20su", "easeOutQuad"],
+										["+300", 0]
+									],
+									0
+								]
+							],
+							"breakpoints": [
+								{
+									"enabled": ["$", ["var", "do-background"]],
+									"stagger": [500, 0]
+								}
+							]
+						}]
+					]]
+				]]
+			]]
+		]]
+	]
+]

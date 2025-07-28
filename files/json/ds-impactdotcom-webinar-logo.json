@@ -1,0 +1,39 @@
+[
+	"ds-impactdotcom-webinar-logo",
+	[
+		["ds-impactdotcom-mixins",
+			"color-primary"
+		],
+		{
+			"key": "dark-mode",
+			"display": "Dark Mode",
+			"type": "bool",
+			"default": true,
+			"required": false
+		}
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins", ["set-su", "safezone"]],
+			"color": ["$", ["var", "color-black"]],
+			"breakpoints": [
+				{
+					"enabled": ["$", ["not", ["var", "dark-mode"]]],
+					"color": ["$", ["var", "color-white"]]
+				}
+			]
+		}, [
+			["asset", {
+				"file": "./media/ds-impactdotcom-logo-dark.mp4",
+				"justify": "fit center",
+				"hold": true,
+				"breakpoints": [
+					{
+						"enabled": ["$", ["not", ["var", "dark-mode"]]],
+						"file": "./media/ds-impactdotcom-logo.mp4"
+					}
+				]
+			}]
+		]]
+	]
+]

@@ -1,0 +1,317 @@
+[
+	"ds-gong-speaker",
+	[
+		{
+			"key": "name",
+			"display": "Speaker name",
+			"type": "text",
+			"default": "Speaker name",
+			"required": false
+		},
+		{
+			"key": "detail-1",
+			"display": "Job Title",
+			"type": "text",
+			"default": "Job title",
+			"required": false
+		},
+		{
+			"key": "detail-2",
+			"display": "Company",
+			"type": "text",
+			"default": "Company",
+			"required": false
+		},
+		["ds-gong-mixins",
+			"theme",	
+			"color-white",
+			"color-light-purple",
+			"color-mid-purple",
+			"color-dark-purple",
+			"font-400",
+			"font-700"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [1, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": true,
+				"minimum": -100,
+				"maximum": 100
+			},
+			"required": false
+		},
+		{
+			"key": "#flip",
+			"display": "Flip",
+			"type": "bool",
+			"default": false,
+			"required": false,
+			"private": true,
+			"script": ["$",
+				["in", ["nth", ["var", "position"], 0], 3, 6, 9]
+			]
+		},
+		{
+			"key": "#middle",
+			"display": "Middle",
+			"type": "bool",
+			"default": false,
+			"required": false,
+			"private": true,
+			"script": ["$",
+				["in", ["nth", ["var", "position"], 0], 2, 5, 8]
+			]
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"offset"
+			],
+			"align": ["$", ["var", "#align"]],
+			"padding": [
+				0,
+				"100su"
+			]
+		}, [
+			["solid", {
+				"enabled": ["$", ["or",
+					["exists", ["var", "name"]],
+					["exists", ["var", "detail-1"]],
+					["exists", ["var", "detail-2"]]
+				]],
+				"layout": "vertical packed",
+				"gap": "50su",
+				"align": ["$", ["var", "#align"]],
+				"color": ["$", ["var", "color-mid-purple"]],
+				"radius": "50rh",
+				"max-width": "1000su",
+				"padding": [
+					"70su",
+					"25su"
+				],
+				"inset": [
+					0,
+					["$", ["if",
+						["var", "#flip"],
+						"-1000su",
+						"-100su"
+					]],
+					0,
+					["$", ["if",
+						["var", "#flip"],
+						"-100su",
+						["if",
+							["var", "#middle"],
+							"-100su",
+							"-1000su"
+						]
+					]]
+				],
+				"transform": [
+					["translate",
+						["animate",
+							[
+								0,
+								["$", ["if",
+									["var", "#flip"],
+									"100rw",
+									"-100rw"
+								]],
+								"easeInOutQuad"
+							],
+							["+1000", 0],
+							[
+								"100%",
+								["$", ["if",
+									["var", "#flip"],
+									"100rw",
+									"-100rw"
+								]]
+							],
+							["-1000", 0, "easeInOutQuad"]
+						],
+						0
+					],
+					["translate",
+						["animate",
+							[
+								0,
+								["$", ["if",
+									["var", "#flip"],
+									["nth", ["safezone"], 3],
+									["concat", "-", ["nth", ["safezone"], 3]]
+								]],
+								"easeInOutQuad"
+							],
+							["+1000", 0],
+							[
+								"100%",
+								["$", ["if",
+									["var", "#flip"],
+									["nth", ["safezone"], 3],
+									["concat", "-", ["nth", ["safezone"], 3]]
+								]]
+							],
+							["-1000", 0, "easeInOutQuad"]
+						],
+						0
+					],
+					["translate",
+						["animate",
+							[
+								0,
+								["$", ["if",
+									["var", "#flip"],
+									"100su",
+									"-100su"
+								]],
+								"easeInOutQuad"
+							],
+							["+1000", 0],
+							[
+								"100%",
+								["$", ["if",
+									["var", "#flip"],
+									"100su",
+									"-100su"
+								]]
+							],
+							["-1000", 0, "easeInOutQuad"]
+						],
+						0
+					]
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["var", "#middle"]],
+						"opacity": ["animate",
+							[0, 0],
+							["+1000", 1],
+							["100%", 0],
+							["-1000", 1]
+						]
+					},
+					{
+						"enabled": ["$", ["eq", ["var", "theme"], "theme-2"]],
+						"color": ["$", ["var", "color-white"]]
+					},
+					{
+						"enabled": ["$", ["eq", ["var", "theme"], "theme-3"]],
+						"color": ["radial-gradient",
+							["50rw", "50rh"],
+							["$", ["if",
+								["var", "#flip"],
+								"-50rw",
+								"50rw"
+							]],
+							[0, ["$", ["var", "color-dark-purple"]]],
+							[1, ["$", ["var", "color-mid-purple"]]]
+						]
+					}
+				]
+			}, [
+				["text", {
+					"enabled": ["$", ["exists", ["var", "name"]]],
+					"stagger": [500, -500],
+					"font": ["$", ["var", "font-700"]],
+					"measure": "letter-size",
+					"height": "70su",
+					"kerning": -0.01,
+					"string": ["$", ["var", "name"]],
+					"color": ["$", ["var", "color-white"]],
+					"boundary": "line",
+					"animations": [
+						{
+							"translate": [
+								["$", ["if",
+									["var", "#flip"],
+									"50su",
+									"-50su"
+								]],
+								0
+							]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+1000", 1],
+								["100%", 0],
+								["-1000", 1]
+							],
+							"easing": "easeOutQuad",
+							"ramp": 2,
+							"translate": [0, 0],
+							"opacity": 1
+						}
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["eq", ["var", "theme"], "theme-2"]],
+							"color": "#000000"
+						}
+					]
+				}],
+				["text", {
+					"enabled": ["$", ["or",
+						["exists", ["var", "detail-1"]],
+						["exists", ["var", "detail-2"]]
+					]],
+					"stagger": [700, -700],
+					"font": ["$", ["var", "font-700"]],
+					"measure": "letter-size",
+					"height": "32su",
+					"string": ["$",
+						["join",
+							["compact", ["array",
+								["var", "detail-1"],
+								["var", "detail-2"]
+							]],
+							", "
+						]
+					],
+					"color": ["$", ["var", "color-white"]],
+					"boundary": "line",
+					"animations": [
+						{
+							"translate": [
+								["$", ["if",
+									["var", "#flip"],
+									"50su",
+									"-50su"
+								]],
+								0
+							]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+1000", 1],
+								["100%", 0],
+								["-1000", 1]
+							],
+							"easing": "easeOutQuad",
+							"ramp": 2,
+							"translate": [0, 0],
+							"opacity": 1
+						}
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["eq", ["var", "theme"], "theme-2"]],
+							"color": ["$", ["var", "color-light-purple"]]
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

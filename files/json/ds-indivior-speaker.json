@@ -1,0 +1,283 @@
+[
+	"ds-indivior-speaker",
+	[
+		{
+			"key": "name",
+			"display": "Speaker name",
+			"type": "text",
+			"default": "Speaker name",
+			"required": false
+		},
+		{
+			"key": "detail-1",
+			"display": "Title",
+			"type": "text",
+			"default": "Optional speaker detail",
+			"required": false
+		},
+		["ds-indivior-mixins",
+			"color-white",
+			"color-lightblue",
+			"font-headline",
+			"font-body"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [1, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"max-width": "800su"
+			}, [
+				["null", {
+					"enabled": ["$", ["exists", ["var", "name"]]],
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]],
+					"padding": [
+						"30su",
+						"45su"
+					],
+					"mask": {
+						"padding": [
+							0,
+							["animate",
+								["100%", "100rw"],
+								["-500", 0, "easeInQuad"]
+							],
+							0,
+							0
+						]
+					},
+					"breakpoints": [
+						{
+							"enabled": ["$",
+								["or",
+									["eq", ["nth", ["var", "position"], 0], 1],
+									["eq", ["nth", ["var", "position"], 0], 4],
+									["eq", ["nth", ["var", "position"], 0], 7]
+								]
+							],
+							"padding": [
+								"30su",
+								"90su",
+								"30su",
+								"40su"
+							]
+						},
+						{
+							"enabled": ["$",
+								["or",
+									["eq", ["nth", ["var", "position"], 0], 3],
+									["eq", ["nth", ["var", "position"], 0], 6],
+									["eq", ["nth", ["var", "position"], 0], 9]
+								]
+							],
+							"padding": [
+								"30su",
+								"40su",
+								"30su",
+								"90su"
+							]
+						}
+					]
+				}, [
+					["for-each", {
+						"flex": {
+							"position": "fixed"
+						},
+						"items": [1, 2, 3]
+					}, [
+						["solid", {
+							"color": ["$",
+								["rgba-set",
+									["var", "color-lightblue"],
+									"a",
+									["/", ["+", 1, ["var", "index"]], 3]
+								]
+							],
+							"transform": [
+								["scale",
+									["animate",
+										[["$",
+											["to-relative-string",
+												["*", 150, ["var", "index"]]
+											]
+										], 0, "easeOutQuad"],
+										["+500", 1],
+										["100%", null],
+										[["$",
+											["to-relative-string",
+												["*", -150, ["var", "index"]]
+											]
+										], 0],
+										["-500", 1, "easeInQuad"]
+									],
+									1,
+									0,
+									"50rh"
+								]
+							]
+						}]
+					]],
+					["text", {
+						"stagger": [200, 0],
+						"align": "center",
+						"mixins": ["ds-indivior-mixins",
+							"text",
+							"text-title"
+						],
+						"string": ["$", ["var", "name"]],
+						"justify": ["$", ["var", "#align"]],
+						"color": ["$", ["var", "color-white"]],
+						"boundary": "letter",
+						"animations": [
+							{
+								"translate": [0, "100su"]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+500", 1]
+								],
+								"translate": [0, 0],
+								"easing": "easeOutCubic"
+							}
+						]
+					}]
+				]],
+				["null", {
+					"enabled": ["$", ["exists", ["var", "detail-1"]]],
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]],
+					"padding": [
+						"25su",
+						"45su"
+					],
+					"mask": {
+						"padding": [
+							0,
+							0,
+							0,
+							["animate",
+								["100%", "100rw"],
+								["-500", 0, "easeInQuad"]
+							]
+						]
+					},
+					"breakpoints": [
+						{
+							"enabled": ["$",
+								["or",
+									["eq", ["nth", ["var", "position"], 0], 1],
+									["eq", ["nth", ["var", "position"], 0], 4],
+									["eq", ["nth", ["var", "position"], 0], 7]
+								]
+							],
+							"padding": [
+								"25su",
+								"90su",
+								"25su",
+								"40su"
+							]
+						},
+						{
+							"enabled": ["$",
+								["or",
+									["eq", ["nth", ["var", "position"], 0], 3],
+									["eq", ["nth", ["var", "position"], 0], 6],
+									["eq", ["nth", ["var", "position"], 0], 9]
+								]
+							],
+							"padding": [
+								"25su",
+								"40su",
+								"25su",
+								"90su"
+							]
+						}
+					]
+				}, [
+					["for-each", {
+						"flex": {
+							"position": "fixed"
+						},
+						"items": [1, 2, 3]
+					}, [
+						["solid", {
+							"color": ["$",
+								["rgba-set",
+									["var", "color-lightblue"],
+									"a",
+									["/", ["+", 1, ["var", "index"]], 3]
+								]
+							],
+							"transform": [
+								["scale",
+									["animate",
+										[["$",
+											["to-relative-string",
+												["*", 150, ["var", "index"]]
+											]
+										], 0, "easeOutQuad"],
+										["+500", 1],
+										["100%", null],
+										[["$",
+											["to-relative-string",
+												["*", -150, ["var", "index"]]
+											]
+										], 0],
+										["-500", 1, "easeInQuad"]
+									],
+									1,
+									"100rw",
+									"50rh"
+								]
+							]
+						}]
+					]],
+					["text", {
+						"stagger": [500, 0],
+						"align": "center",
+						"mixins": ["ds-indivior-mixins",
+							"text",
+							"text-label"
+						],
+						"string": ["$", ["var", "detail-1"]],
+						"justify": ["$", ["var", "#align"]],
+						"color": ["$", ["var", "color-white"]],
+						"boundary": "letter",
+						"animations": [
+							{
+								"translate": [0, "60su"]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+500", 1]
+								],
+								"translate": [0, 0],
+								"easing": "easeOutCubic"
+							}
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

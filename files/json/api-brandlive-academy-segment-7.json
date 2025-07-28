@@ -1,0 +1,340 @@
+[
+	"api-brandlive-academy-segment-7",
+	[
+		{
+			"key": "headline",
+			"display": "Headline",
+			"type": "string",
+			"default": "CEO Updates",
+			"required": false
+		},
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "string",
+			"default": "Q1 - 2025",
+			"required": false
+		},
+		{
+			"key": "font-1",
+			"display": "Font 1",
+			"type": "string",
+			"required": false
+		},
+		{
+			"key": "font-2",
+			"display": "Font 2",
+			"type": "string",
+			"required": false
+		},
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": "#FFFFFF",
+			"required": false
+		},
+		{
+			"key": "color-2",
+			"display": "Color 2",
+			"type": "color",
+			"default": "#09083F",
+			"required": false
+		},
+		{
+			"key": "color-3",
+			"display": "Color 3",
+			"type": "color",
+			"default": "#FFBC1E",
+			"required": false
+		},
+		{
+			"key": "color-4",
+			"display": "Color 4",
+			"type": "color",
+			"default": "#5AE4FF",
+			"required": false
+		},
+		{
+			"key": "color-5",
+			"display": "Color 5",
+			"type": "color",
+			"default": "#0B45AC",
+			"required": false
+		},
+		{
+			"key": "color-6",
+			"display": "Color 6",
+			"type": "color",
+			"default": "#ED0201",
+			"required": false
+		},
+		{
+			"key": "gradient-left",
+			"display": "Gradient Left",
+			"type": "color",
+			"default": "#ED0201",
+			"required": false
+		},
+		{
+			"key": "gradient-right",
+			"display": "Gradient Right",
+			"type": "color",
+			"default": "#FF6AE6",
+			"required": false
+		},        
+		{
+			"key": "text-color-1",
+			"display": "Text Color 1",
+			"type": "color",
+			"default": "#FFFFFF",
+			"required": false
+		},
+		{
+			"key": "text-color-2",
+			"display": "Text Color 2",
+			"type": "color",
+			"default": "#FFFFFF",
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-dsx-su"
+			]
+		},[
+			["solid", {
+				"rect": [0, 0, "100rw", "100rh"],
+				"color": ["$", ["var", "color-2"]]
+			}],
+			["solid", {
+				"start": 466,
+				"end": 3933,
+				"rect": [0, 0, "100rw", "100rh"],
+				"color": ["linear-gradient",
+					-0.25,
+					[0.0, ["$", ["var", "gradient-left"]]],
+					[1.0, ["$", ["var", "gradient-right"]]]
+				]
+			}],
+			["solid", {
+				"rect": ["30rw", "12rh", "900su", "900su"],
+				"align": "center",
+				"color": ["$", ["var", "color-1"]],
+				"transform": [
+					["rotate",
+						["animate",
+							[0, 0.125, "easeInQuad"],
+							["+466", 0.01]
+						]
+					],
+					["scale",
+						["animate",
+							[0, 1.7, "easeInQuad"],
+							["+466", 1.0]
+						]
+					]
+				],
+				"end": 466
+			}],
+			["null", {
+				"rect": ["30rw", "12rh", "900su", "900su"],
+				"align": "center",
+				"start": 466,
+				"end": 3933,
+				"transform": [
+					["translate",
+						["animate",
+							["+1566", 0, "easeInOutQuad"],
+							["+633", "-250su"]
+						],
+						["animate",
+							["+2200", 0, "easeInOutQuad"],
+							["+566", "-150su"],
+							["+366", "-150su", "easeInQuad"],
+							["+333", "-500su"]
+						]
+					]
+				]
+			}, [
+				["solid", {
+					"rect": [0, 0, "16rw", "16rh"],
+					"color": ["$", ["var", "color-1"]],
+					"//": "small white",
+					"transform": [
+						["rotate",
+							["animate",
+								["+966", 0],
+								["+533", 1.0],
+								["+633", 1.25],
+								["+566", 1.5],
+								["+766", 2.4]
+							]
+						],
+						["translate",
+							["animate",
+								["+966", 0],
+								["+533", "440su"],
+								["+633", "920su"],
+								["+566", "1085su"],
+								["+766", "1420su"]
+							],
+							["animate",
+								["+966", 0, "easeOutQuad"],
+								["+266", "-200su", "easeInQuad"],
+								["+267", "144su", "easeOutQuad"],
+								["+333", "-100su", "easeInQuad"],
+								["+300", "470su", "easeOutQuad"],
+								["+333", "260su", "easeInQuad"],
+								["+233", "760su", "easeOutQuad"],
+								["+433", "350su", "easeInQuad"],
+								["+333", "1500su"]
+							]
+						]
+					]
+				}],
+				["solid", {
+					"rect": [0, "16rh", "16rw", "16rh"],
+					"color": ["$", ["var", "color-5"]],
+					"//": "small royalblue"
+				}],
+				["solid", {
+					"rect": ["16rw", 0, "52rw", "32rh"],
+					"color": ["$", ["var", "color-4"]],
+					"//": "light blue",
+					"transform": [
+						["rotate",
+							["animate",
+								["+466", 0, "easeInQuad"],
+								["+1000", 0.5]
+							],
+							"100rw", "100rh"
+						],
+						["translate",
+							0,
+							["animate",
+								["+1466", 0, "easeInQuad"],
+								["+266", "112.5rh"]
+							]
+						]
+					]
+				}],
+				["solid", {
+					"rect": [0, "32rh", "68rw", "68rh"],
+					"color": ["$", ["var", "color-3"]],
+					"//": "yellow"
+				}],
+				["null", {
+					"rect": ["68rw", 0, "32rw", "100rh"],
+					"transform": [
+						["rotate",
+							["animate",
+								["+233", 0, "easeInQuad"],
+								["+1000", 0.25]
+							],
+							0, "100rh"
+						]
+					]
+				}, [
+					["solid", {
+						"rect": [0, 0, "100rw", "32rh"],
+						"color": ["$", ["var", "color-2"]],
+						"//": "navy",
+						"transform": [
+							["rotate",
+								["animate",
+									[0, 0, "easeInOutQuad"],
+									["+666", 0.5],
+									["+60", 0.49],
+									["+60", 0.5]
+								],
+								"100rw", "100rh"
+							]
+						]
+					}],
+					["solid", {
+						"rect": [0, "32rh", "100rw", "68rh"],
+						"color": ["$", ["var", "color-5"]],
+						"//": "big royal blue"
+					}]
+				]]
+			]],
+			["solid", {
+				"start": 3933,
+				"rect": ["18rw", "36rw", "10rw", "10rw"],
+				"color": ["$", ["var", "color-1"]],
+				"transform":[
+					["rotate", 
+						["animate",
+							[0, -0.086],
+							["+266", 0]
+						]
+					],
+					["translate",
+						0,
+						["animate",
+							[0, "-1200su"],
+							["+266", 0],
+							["+133", "-25su"],
+							["+133", 0]
+						]
+					]
+				]
+			}],
+			["solid", {
+				"start": 4200,
+				"rect": ["20rw", "26rw", "10rw", "10rw"],
+				"color": ["$", ["var", "color-3"]],
+				"transform": [
+					["rotate",
+						["animate",
+							[0, 0.127],
+							["+233", 0]
+						]
+					],
+					["translate",
+						0,
+						["animate",
+							[0, "-1100su"],
+							["+233", 0],
+							["+133", "-25su"],
+							["+166", 0]
+						]
+					]
+				]
+			}],
+			["solid", {
+				"start": 4700,
+				"rect": ["22rw", "16rw", "10rw", "10rw"],
+				"color": ["$", ["var", "color-6"]],
+				"transform": [
+					["rotate",
+						["animate",
+							[0, -0.147],
+							["+200", 0]
+						]
+					],
+					["translate",
+						0,
+						["animate",
+							[0, "-520su"],
+							["+200", 0],
+							["+133", "-25su"],
+							["+233", 0]
+						]
+					]
+				]
+			}],
+			["api-brandlive-academy-segment-text", {
+				"headline": ["$", ["var", "headline"]],
+				"text": ["$", ["var", "text"]],
+				"font-1": ["$", ["var", "font-1"]],
+				"font-2": ["$", ["var", "font-2"]],
+				"text-color-1": ["$", ["var", "text-color-1"]],
+				"text-color-2": ["$", ["var", "text-color-2"]],
+				"start": 4000
+			}]
+		]]
+	]
+]

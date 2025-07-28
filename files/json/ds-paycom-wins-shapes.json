@@ -1,0 +1,65 @@
+[
+	"ds-paycom-wins-shapes",
+	[],
+	[
+		["asset", {
+			"file": "./media/ds-paycom-wins-shapes.png",
+			"justify": "fill top left",
+			"rect": [
+				0,
+				0,
+				"100rw",
+				1
+			],
+			"transform": [
+				["scale",
+					["$",
+						["/",
+							2.5,
+							["aspect"]
+						]
+					],
+					0,
+					0
+				],
+				["translate",
+					["animate",
+						[0, 0],
+						["100%", "-20rw"]
+					],
+					0
+				]
+			]
+		}],
+		["asset", {
+			"file": "./media/ds-paycom-wins-shapes.png",
+			"justify": "fill bottom right",
+			"rect": [
+				0,
+				0,
+				"100rw",
+				1
+			],
+			"align": "bottom",
+			"transform": [
+				["scale",
+					["$",
+						["/",
+							2.5,
+							["aspect"]
+						]
+					],
+					"100rw",
+					0
+				],
+				["translate",
+					["animate",
+						[0, 0],
+						["100%", "20rw"]
+					],
+					0
+				]
+			]
+		}]
+	]
+]

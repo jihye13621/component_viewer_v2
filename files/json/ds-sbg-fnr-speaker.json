@@ -1,0 +1,203 @@
+[
+	"ds-sbg-fnr-speaker",
+	[
+		["ds-sbg-fnr-mixins",
+			"show"
+		],
+		{
+			"key": "name",
+			"display": "Speaker name",
+			"type": "text",
+			"default": "Speaker name",
+			"required": false
+		},
+		{
+			"key": "detail-1",
+			"display": "Title",
+			"type": "text",
+			"default": "Optional speaker detail",
+			"required": false
+		},
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [2, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": true,
+				"minimum": -100,
+				"maximum": 100
+			},
+			"required": false
+		},
+		["ds-sbg-fnr-mixins",
+			"font-body"
+		]
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su-roi",
+				"safezone",
+				"offset"
+			]
+		}, [
+			["null", {
+				"enabled": ["$", ["or",
+					["exists", ["var", "name"]],
+					["exists", ["var", "detail-1"]]
+				]],
+				"layout": "vertical packed match",
+				"align": ["$", ["var", "#align"]],
+				"mask": {
+					"padding": [
+						0,
+						0,
+						["animate",
+							[0, "100rh", "easeOutQuad"],
+							["+500", 0],
+							["100%", "100rh"],
+							["-500", 0, "easeInQuad"]
+						],
+						0
+					]
+				}
+			}, [
+				["solid", {
+					"layout": "vertical packed",
+					"align": "center",
+					"color": ["linear-gradient",
+						0,
+						[0.4, [1, 1, 1, 1]],
+						[1, "#636363"]
+					],
+					"padding": [
+						"10su",
+						"40su"
+					]
+				}, [
+					["asset", {
+						"flex": {
+							"height": "25su"
+						},
+						"file": ["$",
+							["if",
+								["eq", ["var", "show"], "fnr"],
+								"./media/ds-sbg-fnr-logo-text.svg",
+								"./media/ds-sbg-tnl-logo-text.svg"
+							]
+						],
+						"justify": "fit center",
+						"svg-recolor": [0, 0, 0, 1]
+					}]
+				]],
+				["null", {
+					"layout": "vertical packed",
+					"align": "center",
+					"padding": [
+						"20su",
+						"100su"
+					]
+				}, [
+					["solid", {
+						"flex": {
+							"position": "fixed"
+						},
+						"color": [1, 1, 1, 1],
+						"buffer": "fabric-matte"
+					}],
+					["null", {
+						"flex": {
+							"position": "fixed"
+						},
+						"effect": [
+							["matte", {
+								"buffer-in": "fabric-matte"
+							}]
+						]
+					}, [
+						["asset", {
+							"file": "./media/ds-sbg-fnr-fabric.jpg",
+							"justify": "fill center",
+							"mask-": {},
+							"transform": [
+								["scale", 3]
+							]
+						}],
+						["solid", {
+							"blend": "multiply",
+							"color": ["linear-gradient",
+								-0.25,
+								[0, "#2C4B91"],
+								[1, "#77CB45"] 
+							]
+						}],
+						["solid", {
+							"blend": "normal",
+							"color": ["linear-gradient",
+								0,
+								[0, [0, 0, 0, 0.2]],
+								[0.2, [0, 0, 0, 0]],
+								[0.8, [0, 0, 0, 0]],
+								[1, [0, 0, 0, 0.2]]
+							]
+						}]
+					]],
+					["shadow", {
+						"offset": ["5su", "5su"],
+						"radius": "10su", 
+						"layout": "vertical packed",
+						"align": "center",
+						"gap": "20su"
+					}, [
+						["text", {
+							"enabled": ["$", ["exists", ["var", "name"]]],
+							"font": ["$", ["var", "font-body"]],
+							"height": "40su",
+							"leading": "10su",
+							"justify": "center",
+							"measure": "cap-size",
+							"case": "uppercase",
+							"color": [1, 1, 1, 1],
+							"string": ["$", ["var", "name"]]
+						}],
+						["text", {
+							"enabled": ["$", ["exists", ["var", "detail-1"]]],
+							"font": ["$", ["var", "font-body"]],
+							"height": "25su",
+							"leading": "10su",
+							"justify": "center",
+							"measure": "cap-size",
+							"case": "uppercase",
+							"color": [1, 1, 1, 1],
+							"string": ["$", ["var", "detail-1"]]
+						}]
+					]]
+				]],
+				["solid", {
+					"flex": {
+						"position": "fixed"
+					},
+					"color": [0, 0, 0, 0],
+					"stroke": "4su",
+					"stroke-color": "#BEBEBE",
+					"rect": [
+						0,
+						0,
+						"100rw",
+						["animate",
+							[0, 0, "easeOutQuad"],
+							["+500", "100rh"],
+							["100%", 0],
+							["-500", "100rh", "easeInQuad"]
+						]
+					]
+				}]
+			]]
+		]]
+	]
+]

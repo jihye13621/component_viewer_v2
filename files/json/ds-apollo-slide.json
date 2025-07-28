@@ -1,0 +1,604 @@
+[
+	"ds-apollo-slide",
+	[
+		{
+			"key": "headline",
+			"display": "headline",
+			"type": "text",
+			"default": "Optional headline",
+			"required": false
+		},
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "textarea",
+			"default": "Text input",
+			"required": false
+		},
+		{
+			"key": "theme",
+			"display": "Theme",
+			"type": "string",
+			"default": "getting-started",
+			"options": [
+				{
+					"key": "engage",
+					"display": "Engage"
+				},
+				{
+					"key": "enrich",
+					"display": "Enrich"
+				},
+				{
+					"key": "getting-started",
+					"display": "Getting Started"
+				},
+				{
+					"key": "home",
+					"display": "Home"
+				},
+				{
+					"key": "integrations",
+					"display": "Integrations"
+				},
+				{
+					"key": "opportunities",
+					"display": "Opportunities"
+				},
+				{
+					"key": "plays",
+					"display": "Plays"
+				},
+				{
+					"key": "search",
+					"display": "Search"
+				},
+				{
+					"key": "settings",
+					"display": "Settings"
+				}
+			]
+		},
+		["ds-apollo-mixins",
+			"font-headline",
+			"font-body",
+			"font-thin"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "#unit",
+			"display": "Unit",
+			"type": "number",
+			"default": 100,
+			"required": false,
+			"private": true,
+			"script": ["$",
+				["if",
+					["lt", ["aspect"], 0.6],
+					["/", ["width"], 5],
+					["if",
+						["lte", ["aspect"], 1.0],
+						["/", ["width"], 7],
+						["/", ["width"], 8]
+					]
+				]
+			]
+		},
+		{
+			"key": "#colors",
+			"display": "Colors",
+			"type": "object",
+			"default": [],
+			"required": false,
+			"private": true,
+			"script": ["$", ["switch", ["var", "theme"], {
+				"engage": ["#DCD2FD", "#B9A6FB", "#8B6AF9", "#3B238E", "#190460", "#ffffff"],
+				"enrich": ["#FFD8BC", "#FFB179", "#FF7D1F", "#622F09", "#1F0D00", "#ffffff"], 
+				"getting-started": ["#FFF1C6", "#FEE28C", "#FECF40", "#5C4A13", "#161100", "#000000"],
+				"home": ["#FFF1C6", "#FEE28C", "#FECF40", "#5C4A13", "#161100", "#000000"],
+				"integrations": ["#E6FBBB", "#CEF776", "#ADF21B", "#3A5209", "#161100", "#000000"],
+				"opportunities": ["#96F1B5", "#61E88F", "#1BDD5D", "#0C5327", "#052710", "#000000"],
+				"plays": ["#F8CCD4", "#F199AA", "#E75571", "#6A1F2D", "#350810", "#ffffff"],
+				"search": ["#AFCDFC", "#6CA4F9", "#146EF6", "#072C62", "#010F23", "#ffffff"],
+				"settings": ["#FFF1C6", "#FEE28C", "#FECF40", "#5C4A13", "#161100", "#000000"],
+				"_": ["#DCD2FD", "#B9A6FB", "#8B6AF9", "#3B238E", "#190460", "#ffffff"]
+			}]]
+		},
+		{
+			"key": "#breadcrumb",
+			"display": "Breadcrumb",
+			"type": "object",
+			"default": [],
+			"required": false,
+			"private": true,
+			"script": ["$", ["switch", ["var", "theme"], {
+				"engage": ["Engage", true],
+				"enrich": ["Enrich", true], 
+				"getting-started": ["Getting Started", true],
+				"home": ["Home", true],
+				"integrations": ["Integrations", true],
+				"opportunities": ["Opportunities", true],
+				"plays": ["Plays", true],
+				"search": ["Search & Prospecting", true],
+				"settings": ["Settings & Billing", true],
+				"_": ["Engage", true]
+			}]]
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", "set-su"]
+		}, [
+			["solid", {
+				"color": ["$", ["nth", ["var", "#colors"], 2]],
+				"path": [
+					[0, 0],
+					[0, 0],
+					["100rw", 0],
+					["100rw", 0],
+					["100rw", "100rh"],
+					["100rw", "100rh"],
+					[0, "100rh"]
+				],
+				"radius": ["$", ["/", ["var", "#unit"], 2]],
+				"transform": [
+					["translate",
+						["animate",
+							[0, "100rw", "easeOutCubic"],
+							["+900", 0],
+							["100%", "100rw"],
+							["-500", 0, "easeInCubic"]
+						],
+						["animate",
+							[0, "-80rh", "easeOutCubic"],
+							["+900", 0],
+							["100%", "-80rw"],
+							["-500", 0, "easeInCubic"]
+						]
+					]
+				]
+			}],
+			["null", {
+				"rect": [
+					0,
+					0,
+					"100rw",
+					["$", ["var", "#unit"]]
+				],
+				"padding": [
+					0,
+					["$", ["/", ["var", "#unit"], 2]]
+				]
+			}, [
+				["null", {
+					"layout": "horizontal packed",
+					"align": "center left",
+					"gap": "10su",
+					"mask": {
+						"padding": [
+							"-20su",
+							"-5su"
+						]
+					}
+				}, [
+					["text", {
+						"stagger": [500, -500],
+						"enabled": ["$", ["exists", ["nth", ["var", "#breadcrumb"], 0]]],
+						"mixins": ["ds-apollo-mixins",
+							"text"
+						],
+						"font": ["$", ["var", "font-thin"]],
+						"height": "36su",
+						"color": ["$", ["rgba-set", ["nth", ["var", "#colors"], 5], "a", 0.5]],
+						"fit": true,
+						"justify": "left center",
+						"string": ["$", ["nth", ["var", "#breadcrumb"], 0]],
+						"transform": [
+							["translate",
+								0,
+								["animate",
+									[0, "60su", "easeOutQuad"],
+									["+300", 0],
+									["100%", "-60su"],
+									["-300", 0, "easeInQuad"]
+								]
+							]
+						]
+					}],
+					["asset", {
+						"stagger": [450, -400],
+						"enabled": ["$",
+							["and",
+								["nth", ["var", "#breadcrumb"], 1],
+								["exists", ["var", "headline"]]
+							]
+						],
+						"flex": {
+							"shrink": true,
+							"width": "25su",
+							"height": "25su"
+						},
+						"svg-recolor": ["$", ["rgba-set", ["nth", ["var", "#colors"], 5], "a", 0.5]],
+						"file": "./media/ds-apollo-icon-caret.svg",
+						"justify": "fit center",
+						"transform": [
+							["translate",
+								0,
+								["animate",
+									[0, "60su", "easeOutQuad"],
+									["+300", 0],
+									["100%", "-60su"],
+									["-300", 0, "easeInQuad"]
+								]
+							]
+						]
+					}],
+					["text", {
+						"stagger": [400, -300],
+						"enabled": ["$", ["exists", ["var", "headline"]]],
+						"mixins": ["ds-apollo-mixins",
+							"text"
+						],
+						"font": ["$", ["var", "font-thin"]],
+						"height": "36su",
+						"color": ["$", ["nth", ["var", "#colors"], 5]],
+						"fit": true,
+						"justify": "left center",
+						"string": ["$", ["var", "headline"]],
+						"transform": [
+							["translate",
+								0,
+								["animate",
+									[0, "60su", "easeOutQuad"],
+									["+300", 0],
+									["100%", "-60su"],
+									["-300", 0, "easeInQuad"]
+								]
+							]
+						]
+					}]
+				]]
+			]],
+			["solid", {
+				"stagger": [250, 0],
+				"color": ["$", ["nth", ["var", "#colors"], 4]],
+				"radius": ["$", ["/", ["var", "#unit"], 2]],
+				"align": "top right",
+				"rect": [
+					0,
+					0,
+					["$", ["*", 3, ["var", "#unit"]]],
+					["$", ["*", 3, ["var", "#unit"]]]
+				],
+				"transform": [
+					["translate",
+						["animate",
+							[
+								0,
+								["$", ["*", 3, ["var", "#unit"]]],
+								"easeOutQuad"
+							],
+							[
+								"+500",
+								["$", ["var", "#unit"]]
+							],
+							[
+								"100%",
+								["$", ["*", -1, ["var", "#unit"]]]
+							],
+							[
+								"-500",
+								["$", ["var", "#unit"]],
+								"easeInQuad"
+							]
+						],
+						["animate",
+							[
+								0,
+								["$", ["*", -2, ["var", "#unit"]]],
+								"easeOutQuad"
+							],
+							[
+								"+500",
+								["$", ["*", -1, ["var", "#unit"]]]
+							],
+							[
+								"100%",
+								["$", ["*", -4, ["var", "#unit"]]]
+							],
+							[
+								"-500",
+								["$", ["*", -1, ["var", "#unit"]]],
+								"easeInQuad"
+							]
+						]
+					]
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["lte", ["aspect"], 1]],
+						"rect": [
+							0,
+							0,
+							["$", ["*", 2, ["var", "#unit"]]],
+							["$", ["*", 3, ["var", "#unit"]]]
+						]
+					}
+				]
+			}],
+			["solid", {
+				"stagger": [250, -200],
+				"color": [1, 1, 1, 1],
+				"radius": ["$", ["/", ["var", "#unit"], 2]],
+				"align": "bottom left",
+				"transform": [
+					["translate",
+						["$", ["*", -1, ["var", "#unit"]]],
+						["animate",
+							[
+								0,
+								"100rh",
+								"easeOutQuad"
+							],
+							[
+								"+600",
+								["$", ["var", "#unit"]]
+							],
+							[
+								"100%",
+								"100rh"
+							],
+							[
+								"-500",
+								["$", ["var", "#unit"]],
+								"easeInQuad"
+							]
+						]
+					]
+				],
+				"padding": [
+					0,
+					["$", ["var", "#unit"]],
+					["$", ["var", "#unit"]],
+					["$", ["var", "#unit"]]
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["lte", ["aspect"], 1]],
+						"rect": [
+							0,
+							0,
+							"150rw",
+							"100rh"
+						]
+					}
+				]
+			}, [
+				["null", {
+					"padding": [
+						["$", ["/", ["var", "#unit"], 2]],
+						["$", ["/", ["var", "#unit"], 2]],
+						["$", ["/", ["var", "#unit"], 2]],
+						["$", ["/", ["var", "#unit"], 2]]
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["lte", ["aspect"], 1]],
+							"padding": [
+								["$", ["/", ["var", "#unit"], 2]],
+								["$", ["*", ["var", "#unit"], 2]],
+								["$", ["/", ["var", "#unit"], 2]],
+								["$", ["/", ["var", "#unit"], 2]]
+							]
+						},
+						{
+							"enabled": ["$", ["lt", ["aspect"], 0.6]],
+							"padding": [
+								["$", ["/", ["var", "#unit"], 2]],
+								["$", ["*", ["var", "#unit"], 1]],
+								["$", ["/", ["var", "#unit"], 2]],
+								["$", ["/", ["var", "#unit"], 2]]
+							]
+						}
+					]
+				}, [
+					["text", {
+						"stagger": [700, -100],
+						"mixins": ["ds-apollo-mixins",
+							"text"
+						],
+						"font": ["$", ["var", "font-headline"]],
+						"height": "80su",
+						"leading": "20su",
+						"color": [0, 0, 0, 1],
+						"string": ["$", ["var", "text"]],
+						"animations": [
+							{
+								"translate": [
+									0,
+									"100su"
+								]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+900", 1],
+									["100%", null],
+									["-500", 0],
+									["-500", 1]
+								],
+								"easing": "easeOutQuad",
+								"translate": [0, 0],
+								"opacity": 1
+							}
+						]
+					}]
+				]]
+			]],
+			["solid", {
+				"stagger": [250, 0],
+				"color": ["$", ["nth", ["var", "#colors"], 1]],
+				"radius": ["$", ["/", ["var", "#unit"], 2]],
+				"align": "bottom right",
+				"rect": [
+					0,
+					0,
+					["$", ["var", "#unit"]],
+					["$", ["-", ["height"], ["*", 2, ["var", "#unit"]]]]
+				],
+				"transform": [
+					["translate",
+						0,
+						["animate",
+							[
+								0,
+								["$", ["height"]],
+								"easeOutQuad"
+							],
+							[
+								"+500",
+								0
+							],
+							[
+								"100%",
+								["$", ["height"]]
+							],
+							[
+								"-500",
+								0,
+								"easeInQuad"
+							]
+						]
+					]
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["lte", ["aspect"], 1]],
+						"rect": [
+							0,
+							0,
+							["$", ["var", "#unit"]],
+							["$", ["*", 2, ["var", "#unit"]]]
+						]
+					}
+				]
+			}, [
+				["solid", {
+					"align": "bottom",
+					"color": ["$", ["nth", ["var", "#colors"], 3]],
+					"radius": ["$", ["/", ["var", "#unit"], 2]],
+					"rect": [
+						0,
+						0,
+						["$", ["var", "#unit"]],
+						["$", ["var", "#unit"]]
+					]
+				}, [
+					["asset", {
+						"start": 300,
+						"rect": [
+							"25rw",
+							"25rh",
+							"50rw",
+							"50rh"
+						],
+						"file": "./media/ds-apollo-icon-logo.mov",
+						"hold": true,
+						"justify": "fit center"
+					}]
+				]]
+			]],
+			["solid", {
+				"stagger": [0, 0],
+				"color": ["$", ["nth", ["var", "#colors"], 0]],
+				"radius": ["$", ["/", ["var", "#unit"], 2]],
+				"align": "bottom right",
+				"rect": [
+					0,
+					0,
+					["$", ["var", "#unit"]],
+					["$", ["height"]]
+				],
+				"transform": [
+					["translate",
+						["$", ["*", -1, ["var", "#unit"]]],
+						["animate",
+							[
+								0,
+								"100rh",
+								"easeOutCubic"
+							],
+							[
+								"+900",
+								["$", ["var", "#unit"]]
+							],
+							[
+								"100%",
+								"100rh"
+							],
+							[
+								"-500",
+								["$", ["var", "#unit"]],
+								"easeInQuad"
+							]
+						]
+					]
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["lte", ["aspect"], 1]],
+						"rect": [
+							0,
+							0,
+							["$", ["var", "#unit"]],
+							["$", ["*", 4, ["var", "#unit"]]]
+						]
+					}
+				]
+			}, [
+				["solid", {
+					"color": ["$", ["nth", ["var", "#colors"], 2]],
+					"radius": ["$", ["/", ["var", "#unit"], 2]],
+					"rect": [
+						0,
+						0,
+						["$", ["var", "#unit"]],
+						["$", ["var", "#unit"]]
+					]
+				}, [
+					["asset", {
+						"enabled": ["$", ["exists", ["var", "theme"]]],
+						"start": 200,
+						"rect": [
+							"10rw",
+							"10rh",
+							"80rw",
+							"80rh"
+						],
+						"file": ["$", ["concat",
+							"./media/ds-apollo-icon-",
+							["var", "theme"],
+							".mov"
+						]],
+						"hold": true,
+						"justify": "fit center",
+						"transform": [
+							["rotate",
+								["animate",
+									[0, 0.45, "easeInOutQuad"],
+									["+900", -0.125, "easeInOutQuad"],
+									["+500", 0.125, "easeInOutQuad"],
+									["+500", 0],
+									["100%", -0.4],
+									["-500", "easeOutCubic"]
+								]
+							]
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

@@ -1,0 +1,90 @@
+[
+	"ds-justworks-mkii-text-phone",
+	[
+		["dsx-mixins", "text"],
+		["ds-justworks-mkii-mixins",
+			"color-primary",
+			"color-green-800",
+			"fonts"
+		],
+		["dsx-mixins", "boilerplate-intro-outro"]
+	],
+	[
+		["solid", {
+			"color": ["$", ["var", "color-green-800"]]
+		}],
+		["null",{
+			"stagger": [
+				["$", ["-", ["key", ["comp-timing"], "duration"], ["dur", "./media/ds-justworks-phone.mov"], 150]],
+				0
+			],
+			"mixins": ["dsx-mixins", ["set-su", "safezone"]],
+			"transform": [
+				["scale",
+					["animate",
+						[0, 1, "easeInOutExpo"],
+						["+500", 3]
+					]
+				]
+			],
+			"opacity": ["animate",
+				[0, 1, "easeInOutExpo"],
+				["+500", 0.4]
+			], 
+			"effect": [
+				["blur", {
+					"start": 0,
+					"radius": ["animate",
+						[0, 0, "easeInOutExpo"],
+						["+500", "0.3rw"]
+					]
+				}]
+			]
+		}, [
+			["text", {
+				"max-width": "1000su",
+				"mixins": ["ds-justworks-mkii-mixins", "text"],
+				"font": ["$", ["var", "font-regular"]],
+				"height": "100su",
+				"leading": "10su",
+				"string": ["$", ["var", "text"]],
+				"color": ["$", ["var", "color-primary"]],
+				"align": "center",
+				"justify": "center",
+				"boundary": "word",
+				"animations": [
+					{
+						"translate": [
+							0,
+							"100su"
+						],
+						"opacity": 0
+					},
+					{
+						"mix": ["animate",
+							[0, 0],
+							["+1000", 1]
+						],
+						"easing": "easeOutCubic",
+						"ramp": 3,
+						"translate": [0, 0]
+					},
+					{
+						"mix": ["animate",
+							[0, 0],
+							["+500", 1]
+						],
+						"easing": "plateauIn",
+						"ramp": 1,
+						"opacity": 1
+					}
+				]
+			}]
+		]],
+		["asset", {
+			"start": ["$", ["-", ["key", ["comp-timing"], "duration"], ["dur", "./media/ds-justworks-phone.mov"]]],
+			"file": "./media/ds-justworks-phone.mov",
+			"justify": "fill center bottom"
+		}]
+	]
+]

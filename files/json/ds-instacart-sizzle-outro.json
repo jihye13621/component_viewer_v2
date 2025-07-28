@@ -1,0 +1,185 @@
+[
+	"ds-instacart-sizzle-outro",
+	[
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"parameters": []
+		},
+		{
+			"key": "bubble-1",
+			"display": "Bubble",
+			"type": "asset",
+			"default": null,
+			"parameters": []
+		},
+		{
+			"key": "bubble-2",
+			"display": "Bubble",
+			"type": "asset",
+			"default": null,
+			"parameters": []
+		},
+		{
+			"key": "bubble-3",
+			"display": "Bubble",
+			"type": "asset",
+			"default": null,
+			"parameters": []
+		},
+		{
+			"key": "bubble-4",
+			"display": "Bubble",
+			"type": "asset",
+			"default": null,
+			"parameters": []
+		},
+		{
+			"key": "bubble-5",
+			"display": "Bubble",
+			"type": "asset",
+			"default": null,
+			"parameters": []
+		},
+		{
+			"key": "bubble-6",
+			"display": "Bubble",
+			"type": "asset",
+			"default": null,
+			"parameters": []
+		},
+		{
+			"key": "bubble-7",
+			"display": "Bubble",
+			"type": "asset",
+			"default": null,
+			"parameters": []
+		},
+		["ds-instacart-mixins",
+			"colors",
+			"font-sans-800",
+			"theme"
+		],
+		["dsx-mixins",
+			"boilerplate-intro-outro"
+		],
+		{
+			"key": "bubble-size",
+			"display": "Bubble Size",
+			"type": "number",
+			"default": 1,
+			"ui": {
+				"input": "slider",
+				"step": 0.01,
+				"minimum": 0.25,
+				"maximum": 1.5
+			}
+		},
+		{
+			"key": "#bubble-size",
+			"display": "Bubble Size",
+			"type": "number",
+			"default": 100,
+			"script": ["$",
+				["*",
+					["var", "bubble-size"],
+					["min", ["width"], ["height"]],
+					0.2
+				]
+			],
+			"private": true
+		}
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins", "safezone", "set-su-roi"],
+			"color": ["$", ["var", "#background"]]
+		}, [
+			["user-asset", {
+				"file": ["$", ["if",
+					["exists", ["var", "asset"]],
+					["var", "asset"],
+					["if",
+						["eq", ["var", "theme"], "cashew"],
+						"./media/ds-instacart-logo-dark.svg",
+						"./media/ds-instacart-logo-light.svg"
+					]
+				]],
+				"justify": "fit center",
+				"rect": [
+					0,
+					0,
+					"65rw",
+					"50rh"
+				],
+				"align": "center",
+				"transform": [
+					["scale",
+						["animate",
+							[0, 0, "easeOutBack"],
+							["+500", ["$", ["var", "size"]]]
+						]
+					]
+				]
+			}],
+			["for-each", {
+				"items": [
+					["-40roiw", "-15roih", 100],
+					["-15roiw", "-28roih", 80],
+					["10roiw", "-30roih", 30],
+					["40roiw", "-20roih", 250],
+					["-35roiw", "28roih", 50],
+					["0roiw", "34roih", 120],
+					["35roiw", "32roih", 0]
+				]
+			}, [
+				["user-asset", {
+					"enabled": ["$", ["exists", ["var",
+						["concat",
+							"bubble-",
+							["+", ["var", "index"], 1]
+						]
+					]]],
+					"stagger": [
+						["$", ["nth", ["var", "item"], 2]],
+						0
+					],
+					"file": ["$", ["var",
+						["concat",
+							"bubble-",
+							["+", ["var", "index"], 1]
+						]
+					]],
+					"justify": "fill center",
+					"rect": ["$",
+						["array",
+							0,
+							0,
+							["var", "#bubble-size"],
+							["var", "#bubble-size"]
+						]
+					],
+					"align": "center",
+					"mask": {
+						"transform": true,
+						"radius": 10000
+					},
+					"transform": [
+						["scale",
+							["animate",
+								[0, 0, "easeOutBack"],
+								["+500", 1]
+							]
+						],
+						["translate",
+							["$", ["nth", ["var", "item"], 0]],
+							["$", ["nth", ["var", "item"], 1]]
+						]
+					]
+				}]
+			]]
+		]]
+	]
+]

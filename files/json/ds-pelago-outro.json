@@ -1,0 +1,138 @@
+[
+	"ds-pelago-outro",
+	[
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "text",
+			"default": "www.pelagohealth.com",
+			"required": false
+		},
+		["ds-pelago-mixins",
+			"color-primary",
+			"color-secondary",
+			"color-accent",
+			"font-body"
+		],
+		{
+			"key": "theme",
+			"display": "Theme",
+			"type": "string",
+			"default": "yellow",
+			"required": false,
+			"options": [
+				{
+					"key": "yellow",
+					"display": "Yell-O"
+				},
+				{
+					"key": "cerulean",
+					"display": "Cerulean"
+				},
+				{
+					"key": "maroon",
+					"display": "Maroon"
+				},
+				{
+					"key": "moss-green",
+					"display": "Moss Green"
+				},
+				{
+					"key": "punch-pink",
+					"display": "Punch Pink"
+				},
+				{
+					"key": "tea-green",
+					"display": "Tea Green"
+				}
+			]
+		},
+		{
+			"key": "#colors",
+			"display": "Colors",
+			"type": "object",
+			"default": ["#FAE355", "#212633"],
+			"private": true,
+			"script": ["$",
+				["switch", ["var", "theme"], {
+					"yellow": ["#FAE355", "#212633"],
+					"cerulean": ["#A4BDFF", "#ffffff"],
+					"maroon": ["#722F49", "#ffffff"],
+					"moss-green": ["#4D6525", "#ffffff"],
+					"punch-pink": ["#EEBCFF", "#212633"],
+					"tea-green": ["#DDF1C4", "#212633"],
+					"_": ["#FAE355", "#212633"]
+				}]
+			]
+		}
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins", "set-dsx-su", "safezone"],
+			"color": ["$", ["nth", ["var", "#colors"], 0]]
+		}, [
+			["null", {
+				"layout": "vertical",
+				"align": "center",
+				"gap": "100su",
+				"max-width": "1300su"
+			}, [
+				["null", {
+
+				}],
+				["asset", {
+					"flex": {
+						"height": "400su"
+					},
+					"file": "./media/ds-pelago-logo-wordmark.svg",
+					"justify": "fit center",
+					"svg-recolor": ["$", ["nth", ["var", "#colors"], 1]],
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[0, "50rh", "easeOutCubic"],
+								["+450", 0]
+							]
+						]
+					],
+					"opacity": ["animate",
+						[0, 0, "easeOutQuad"],
+						["+400", 1]
+					]
+				}],
+				["null", {
+
+				}, [
+					["text", {
+						"mixins": ["ds-pelago-mixins",
+							"text",
+							"text-body"
+						],
+						"stagger": [400, 0],
+						"string": ["$", ["var", "text"]],
+						"justify": "center top",
+						"align": "center top",
+						"color": ["$", ["nth", ["var", "#colors"], 1]],
+						"boundary": "word",
+						"animations": [
+							{
+								"translate": [0, "50su"]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+450", 1]
+								],
+								"easing": "easeOutCubic",
+								"ramp": 2,
+								"translate": [0, 0],
+								"opacity": 1
+							}
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

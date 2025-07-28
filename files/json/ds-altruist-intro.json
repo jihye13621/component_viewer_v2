@@ -1,0 +1,237 @@
+[
+	"ds-altruist-intro",
+	[
+		{
+			"key": "headline",
+			"display": "Headline",
+			"type": "text",
+			"default": "Add a headline",
+			"required": false
+		},
+		{
+			"key": "subhead",
+			"display": "Subhead",
+			"type": "text",
+			"default": "Add a sub-headline",
+			"required": false
+		},
+		{
+			"key": "detail",
+			"display": "detail",
+			"type": "text",
+			"default": "Detail Text",
+			"required": false
+		},
+		["ds-altruist-mixins",
+			"custom-ease",
+			"colors",
+			"theme",
+			"font-regular",
+			"font-bold"
+		]
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins",
+				"set-su-roi",
+				"safezone"
+			],
+			"color": ["$", ["var", "#bg"]],
+			"mask": {
+				"padding": [
+					0,
+					0,
+					["animate", 
+						["100%", "100roih"],
+						["-1400", 0, ["$", ["var", "custom-ease"]]]
+					],
+					0
+				]
+			}
+		}, [
+			["null", {
+				"layout": "vertical",
+				"align": "top left",
+				"transform": [
+					["translate",
+						0,
+						["animate",
+							[0, "100roih", ["$", ["var", "custom-ease"]]],
+							["+1400", 0]
+						]
+					]
+				]
+			}, [
+				["null", {
+					"stagger": [0, -500],
+					"layout": "vertical packed",
+					"align": "top left",
+					"gap": "16su",
+					"min-width": "100rw",
+					"padding": [
+						"55su",
+						0,
+						0,
+						0
+					],
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								["100%", "-100roih"],
+								["-1400", 0, ["$", ["var", "custom-ease"]]]
+							]
+						]
+					]
+				}, [
+					["solid", {
+						"flex": {
+							"position": "fixed"
+						},
+						"rect": [
+							0,
+							0,
+							"100rw",
+							"25su"
+						],
+						"color": ["$", ["var", "#fg"]]
+					}],
+					["text", {
+						"mixins": ["ds-altruist-mixins",
+							"text",
+							"tight",
+							"large",
+							"bold"
+						],
+						"enabled": ["$", ["exists", ["var", "headline"]]],
+						"color": ["$", ["var", "#fg"]],
+						"string": ["$", ["var", "headline"]]
+					}]
+				]],
+				["null", {
+					"enabled": ["$", ["or",
+						["exists", ["var", "subhead"]],
+						["exists", ["var", "detail"]]
+					]],
+					"stagger": [0, -250],
+					"layout": "vertical packed",
+					"align": "top left",
+					"gap": "16su",
+					"min-width": "100rw",
+					"padding": [
+						"24su",
+						0,
+						0,
+						0
+					],
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								["100%", "-100roih"],
+								["-1400", 0, ["$", ["var", "custom-ease"]]]
+							]
+						]
+					],
+					"script": ["$$",
+						["let",
+							[
+								["parent", ["key", ["var", "self"], "parent"]],
+								["parent-roi", ["key", ["var", "parent"], "roi"]],
+								["self-roi", ["key", ["var", "self"], "roi"]],
+								["parent-y", ["+",
+									["key", ["var", "parent-roi"], "y"],
+									["key", ["var", "parent-roi"], "w"]
+								]],
+								["self-y", ["+",
+									["key", ["var", "self-roi"], "y"],
+									["key", ["var", "self-roi"], "w"]
+								]],
+								["offset", ["-",
+									["var", "parent-y"],
+									["var", "self-y"]
+								]],
+								["start", ["key", ["var", "self"], "start"]],
+								["animate",
+									["ease",
+										["map",
+											["var", "frame"],
+											["+", ["var", "start"], 2000],
+											["+", ["var", "start"], 3400],
+											0,
+											1
+										],
+										["'", 0.7, 0, 0, 1]
+									]
+								]
+
+							],
+							["live-transform",
+								["var", "self"],
+								"translate",
+								0,
+								["*", ["var", "offset"], ["-", 1, ["var", "animate"]]]
+							]
+						]
+					]
+				}, [
+					["solid", {
+						"flex": {
+							"position": "fixed"
+						},
+						"rect": [
+							0,
+							0,
+							"100rw",
+							"6su"
+						],
+						"color": ["$", ["var", "#fg"]]
+					}],
+					["text", {
+						"enabled": ["$", ["exists", ["var", "subhead"]]],
+						"mixins": ["ds-altruist-mixins",
+							"text",
+							"small",
+							"bold"
+						],
+						"color": ["$", ["var", "#fg"]],
+						"string": ["$", ["var", "subhead"]]
+					}],
+					["text", {
+						"enabled": ["$", ["exists", ["var", "detail"]]],
+						"mixins": ["ds-altruist-mixins",
+							"text",
+							"small"
+						],
+						"color": ["$", ["var", "#fg"]],
+						"string": ["$", ["var", "detail"]]
+					}]
+				]]
+			]],
+			["asset", {
+				"stagger": [2000, 0],
+				"file": "./media/ds-altruist-logo.svg",
+				"justify": "fit bottom left",
+				"rect": [
+					0,
+					0,
+					"300nsu",
+					"150nsu"
+				],
+				"align": "bottom left",
+				"svg-recolor": ["$", ["var", "#fg"]],
+				"transform": [
+					["translate",
+						0,
+						["animate",
+							[0, "100roih", ["$", ["var", "custom-ease"]]],
+							["+1400", 0],
+							["100%", "-100roih"],
+							["-1400", 0, ["$", ["var", "custom-ease"]]]
+						]
+					]
+				]
+			}]
+		]]
+	]
+]

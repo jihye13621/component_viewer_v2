@@ -1,0 +1,79 @@
+[
+	"ds-netcelero-lite-watermark",
+	[
+		["dsx-mixins", ["watermark"]],
+		["ds-netcelero-lite-mixins", "color-1", "color-2"],
+		["dsx-mixins", ["boilerplate"]],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": 7,
+			"required": false
+		}
+	],
+	[
+		["dsx-background", {
+			"enabled": ["$", ["exists", ["var", "background"]]],
+			"color": ["$", ["var", "background"]]
+		}],
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"max-width": "800nsu",
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"gap": "40su"
+			}, [
+				["null", {
+					"mixins": ["ds-netcelero-lite-mixins", ["anchored-anim"]],
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]],
+					"padding": [
+						0,
+						"30su"
+					]
+				}, [
+					["asset", {
+						"mute": true,
+						"file": "./media/ds-netcelero-logo.svg",
+						"flex": {
+							"width": "300su",
+							"height": "300su"
+						},
+						"justify": ["$", ["concat", "fit ", ["var", "#align"]]]
+					}]
+				]],
+				["null", {
+					"enabled": ["$", ["exists", ["var", "text"]]],
+					"mixins": ["ds-netcelero-lite-mixins", ["anchored-anim"]],
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]],
+					"padding": [
+						0,
+						"30su",
+						"10su",
+						"30su"
+					],
+					"stagger": [400, -200]
+				}, [
+					["text", {
+						"mixins": ["ds-netcelero-lite-mixins", ["text-2"]],
+						"color": ["$", ["var", "color-1"]],
+						"string": ["$", ["var", "text"]],
+						"justify": ["$", ["var", "#align"]],
+						"boundary": "line",
+						"leading": 0.3,
+						"background-radius": "150su",
+						"background-color": ["$", ["var", "color-2"]],
+						"background-padding": [
+							"10su",
+							"30su"
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

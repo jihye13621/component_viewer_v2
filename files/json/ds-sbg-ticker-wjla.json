@@ -1,0 +1,51 @@
+[
+	"ds-sbg-ticker-wjla",
+	[
+		{
+			"key": "category",
+			"display": "Category",
+			"type": "string",
+			"options": [
+				{
+					"key": "breaking",
+					"display": "Breaking News"
+				},
+				{
+					"key": "national",
+					"display": "National News"
+				},
+				{
+					"key": "local",
+					"display": "Local News"
+				},
+				{
+					"key": "politics",
+					"display": "Politics"
+				},
+				{
+					"key": "sports-nationals",
+					"display": "Sports - Nationals"
+				},
+				{
+					"key": "sports-wizards",
+					"display": "Sports - Wizards"
+				},
+				{
+					"key": "sports-capitals",
+					"display": "Sports - Capitals"
+				},
+				{
+					"key": "sports-commanders",
+					"display": "Sports - Commanders"
+				}
+			],
+			"default": "national",
+			"required": false
+		}
+	],
+	[
+		["ds-sbg-ticker", {
+			"category": ["$", ["var", "category"]]
+		}]
+	]
+]

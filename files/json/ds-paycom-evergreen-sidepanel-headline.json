@@ -1,0 +1,106 @@
+[
+	"ds-paycom-evergreen-sidepanel-headline",
+	[
+		["dsx-mixins",
+			"intro"
+		],
+		{
+			"key": "switch",
+			"display": "Switch Side",
+			"type": "bool",
+			"default": false,
+			"required": false
+		},
+		["ds-paycom-mixins",
+			"green",
+			"font-bold-italic",
+			"font-bold"
+		]
+	],
+	[
+		["ds-paycom-evergreen-sidepanel", {
+			"switch": ["$", ["var", "switch"]],
+			"mixins": ["dsx-mixins",
+				"set-su"
+			]
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"gap": "40su",
+				"align": "center left",
+				"padding": [
+					"60su",
+					"120su"
+				]
+			}, [
+				["text", {
+					"stagger": [300, -300],
+					"flex": {
+						"height": "200su"
+					},
+					"enabled": ["$", ["exists", ["var", "headline"]]],
+					"font": ["$", ["var", "font-bold-italic"]],
+					"height": "60su",
+					"leading": "30su",
+					"measure": "cap-size",
+					"justify": "left",
+					"case": "uppercase",
+					"string": ["$", ["var", "headline"]],
+					"color": ["$", ["var", "green"]],
+					"animations": [
+						{
+							"translate": [
+								0,
+								"100su"
+							]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+1000", 1],
+								["100%", 0],
+								["-1000", 1]
+							],
+							"easing": "easeOutQuad",
+							"ramp": 2,
+							"opacity": 1,
+							"translate": [0, 0]
+						}
+					]
+				}],
+				["text", {
+					"stagger": [500, -500],
+					"enabled": ["$", ["exists", ["var", "subhead"]]],
+					"font": ["$", ["var", "font-bold"]],
+					"height": "60su",
+					"leading": "40su",
+					"measure": "cap-size",
+					"case": "uppercase",
+					"justify": "left",
+					"string": ["$", ["var", "subhead"]],
+					"color": [1, 1, 1, 1],
+					"animations": [
+						{
+							"translate": [
+								0,
+								"100su"
+							]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+1000", 1],
+								["100%", 0],
+								["-1000", 1]
+							],
+							"easing": "easeOutQuad",
+							"ramp": 2,
+							"opacity": 1,
+							"translate": [0, 0]
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

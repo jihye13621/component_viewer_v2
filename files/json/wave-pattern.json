@@ -1,0 +1,107 @@
+[
+    "wave-pattern",
+    [
+        {
+            "key": "color-1",
+            "display": "Color 1",
+            "type": "color",
+            "default": [0.4, 0.6, 1, 1],
+            "required": false
+        },
+        {
+            "key": "color-2",
+            "display": "Color 2",
+            "type": "color",
+            "default": [0.6, 0.4, 1, 1],
+            "required": false
+        },
+        {
+            "key": "color-3",
+            "display": "Color 3",
+            "type": "color",
+            "default": [1, 0.4, 0.6, 1],
+            "required": false
+        }
+    ],
+    [
+        ["solid", {
+            "start": 0,
+            "duration": 4000,
+            "mixins": ["dsx-mixins", "set-su"],
+            "color": [0.05, 0.05, 0.1, 1]
+        }, [
+            ["solid", {
+                "color": ["$", ["var", "color-1"]],
+                "rect": ["200su", "50su"],
+                "transform": [
+                    ["translate",
+                        ["animate",
+                            [0, "-800su", "easeInOutSine"],
+                            ["+2000", 0]
+                        ],
+                        ["animate",
+                            [0, "100su", "easeInOutSine"],
+                            ["+1000", "-100su"],
+                            ["+2000", 0]
+                        ]
+                    ],
+                    ["scale",
+                        ["animate",
+                            [0, 1.2, "easeInOutSine"],
+                            ["+1000", 0.8],
+                            ["+2000", 1]
+                        ]
+                    ]
+                ]
+            }],
+            ["solid", {
+                "color": ["$", ["var", "color-2"]],
+                "rect": ["200su", "50su"],
+                "transform": [
+                    ["translate",
+                        ["animate",
+                            [0, "800su", "easeInOutSine"],
+                            ["+2000", 0]
+                        ],
+                        ["animate",
+                            [0, "-100su", "easeInOutSine"],
+                            ["+1000", "100su"],
+                            ["+2000", 0]
+                        ]
+                    ],
+                    ["scale",
+                        ["animate",
+                            [0, 0.8, "easeInOutSine"],
+                            ["+1000", 1.2],
+                            ["+2000", 1]
+                        ]
+                    ]
+                ]
+            }],
+            ["solid", {
+                "color": ["$", ["var", "color-3"]],
+                "rect": ["200su", "50su"],
+                "transform": [
+                    ["translate",
+                        ["animate",
+                            [0, "-400su", "easeInOutSine"],
+                            ["+2000", 0]
+                        ],
+                        ["animate",
+                            [0, "200su", "easeInOutSine"],
+                            ["+1000", "-200su"],
+                            ["+2000", 0]
+                        ]
+                    ],
+                    ["scale",
+                        ["animate",
+                            [0, 1, "easeInOutSine"],
+                            ["+1000", 1.5],
+                            ["+2000", 1]
+                        ]
+                    ]
+                ]
+            }]
+        ]]
+    ]
+] 

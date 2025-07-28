@@ -1,0 +1,122 @@
+[
+    "color-burst",
+    [
+        {
+            "key": "color-1",
+            "display": "Color 1",
+            "type": "color",
+            "default": [1, 0.2, 0.4, 1],
+            "required": false
+        },
+        {
+            "key": "color-2",
+            "display": "Color 2",
+            "type": "color",
+            "default": [0.2, 0.8, 1, 1],
+            "required": false
+        },
+        {
+            "key": "color-3",
+            "display": "Color 3",
+            "type": "color",
+            "default": [0.4, 1, 0.2, 1],
+            "required": false
+        }
+    ],
+    [
+        ["solid", {
+            "start": 0,
+            "duration": 4000,
+            "mixins": ["dsx-mixins", "set-su"],
+            "color": [0.05, 0.05, 0.1, 1]
+        }, [
+            ["solid", {
+                "color": ["$", ["var", "color-1"]],
+                "rect": ["100su", "100su"],
+                "transform": [
+                    ["translate",
+                        ["animate",
+                            [0, "400su", "easeInOutQuad"],
+                            ["+2000", 0]
+                        ],
+                        ["animate",
+                            [0, "-400su", "easeInOutQuad"],
+                            ["+2000", 0]
+                        ]
+                    ],
+                    ["scale",
+                        ["animate",
+                            [0, 2, "easeInOutQuad"],
+                            ["+1000", 1],
+                            ["+2000", 0.5]
+                        ]
+                    ],
+                    ["rotate",
+                        ["animate",
+                            [0, 360, "easeInOutQuad"],
+                            ["+2000", 0]
+                        ]
+                    ]
+                ]
+            }],
+            ["solid", {
+                "color": ["$", ["var", "color-2"]],
+                "rect": ["80su", "80su"],
+                "transform": [
+                    ["translate",
+                        ["animate",
+                            [0, "-400su", "easeInOutQuad"],
+                            ["+2000", 0]
+                        ],
+                        ["animate",
+                            [0, "400su", "easeInOutQuad"],
+                            ["+2000", 0]
+                        ]
+                    ],
+                    ["scale",
+                        ["animate",
+                            [0, 0.5, "easeInOutQuad"],
+                            ["+1000", 2],
+                            ["+2000", 1]
+                        ]
+                    ],
+                    ["rotate",
+                        ["animate",
+                            [0, -360, "easeInOutQuad"],
+                            ["+2000", 0]
+                        ]
+                    ]
+                ]
+            }],
+            ["solid", {
+                "color": ["$", ["var", "color-3"]],
+                "rect": ["60su", "60su"],
+                "transform": [
+                    ["translate",
+                        ["animate",
+                            [0, "200su", "easeInOutQuad"],
+                            ["+2000", 0]
+                        ],
+                        ["animate",
+                            [0, "200su", "easeInOutQuad"],
+                            ["+2000", 0]
+                        ]
+                    ],
+                    ["scale",
+                        ["animate",
+                            [0, 1.5, "easeInOutQuad"],
+                            ["+1000", 0.5],
+                            ["+2000", 1.5]
+                        ]
+                    ],
+                    ["rotate",
+                        ["animate",
+                            [0, 180, "easeInOutQuad"],
+                            ["+2000", 0]
+                        ]
+                    ]
+                ]
+            }]
+        ]]
+    ]
+] 

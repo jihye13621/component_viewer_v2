@@ -1,0 +1,154 @@
+[
+	"ds-paycom-sales-speaker",
+	[
+		{
+			"key": "name",
+			"display": "Speaker name",
+			"type": "text",
+			"default": "Speaker name",
+			"required": false
+		},
+		{
+			"key": "detail-1",
+			"display": "Title",
+			"type": "text",
+			"default": "Optional speaker detail",
+			"required": false
+		},
+		{
+			"key": "detail-2",
+			"display": "Company",
+			"type": "text",
+			"default": "",
+			"required": false
+		},
+		["dsx-mixins",
+			"boilerplate"
+		]
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			],
+			"padding": ["$",
+				["array",
+					["nth", ["safezone"], 0],
+					0,
+					["nth", ["safezone"], 2],
+					0
+				]
+			]
+		}, [
+			["null", {
+				"layout": "stacked",
+				"align": "bottom left"
+			}, [
+				["null", {
+					"layout": "horizontal packed",
+					"align": "center",
+					"padding": [
+						"50su",
+						"40su",
+						"50su",
+						"320su"
+					],
+					"gap": "20su",
+					"units": {
+						"zone": "100rw"
+					},
+					"transform": [
+						["translate",
+							["animate",
+								[0, "-100rw", "easeOutQuad"],
+								["+750", 0],
+								["100%", "-100rw"],
+								["-700", 0, "easeInQuad"]
+							],
+							0
+						]
+					]
+				}, [
+					["asset", {
+						"flex": {
+							"position": "fixed"
+						},
+						"file": "./media/ds-paycom-sales-speaker-bg.png",
+						"justify": "fill center",
+						"mask": {}
+					}],
+					["asset", {
+						"flex": {
+							"position": "fixed"
+						},
+						"z-index": 10,
+						"file": "./media/ds-paycom-sales-speaker-end.png",
+						"justify": "fit center left",
+						"align": "center left",
+						"rect": [
+							0,
+							0,
+							"400su",
+							"200su"
+						],
+						"effect": [
+							["shadow", {
+								"color": [0, 0, 0, 0.5],
+								"radius": "10su"
+							}]
+						],
+						"transform": [
+							["translate",
+								["animate",
+									[0, "1zone", "easeOutQuad"],
+									["+750", 0],
+									["100%", "1zone"],
+									["-700", 0, "easeInQuad"]
+								],
+								0
+							],
+							["translate",
+								["animate",
+									[0, "-400su", "easeOutQuad"],
+									["+750", 0],
+									["100%", "-400su"],
+									["-700", 0, "easeInQuad"]
+								],
+								0
+							]
+						]
+					}],
+					["text", {
+						"enabled": ["$", ["exists", ["var", "name"]]],
+						"font": "./media/Bebas Neue Pro Bold.otf",
+						"measure": "letter-size",
+						"height": "60su",
+						"color": "#ffffff",
+						"case": "uppercase",
+						"string": ["$", ["var", "name"]]
+					}],
+					["text", {
+						"enabled": ["$", ["or",
+							["exists", ["var", "detail-1"]],
+							["exists", ["var", "detail-2"]]
+						]],
+						"font": "./media/Bebas Neue Pro Italic.otf",
+						"measure": "letter-size",
+						"height": "30su",
+						"color": "#ffffff",
+						"case": "uppercase",
+						"fit": true,
+						"string": ["$", ["join",
+							["compact", ["array",
+								["var", "detail-1"],
+								["var", "detail-2"]
+							]],
+							"\n"
+						]]
+					}]
+				]]
+			]]
+		]]
+	]
+]

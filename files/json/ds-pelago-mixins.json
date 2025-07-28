@@ -1,0 +1,170 @@
+{
+	"params": {
+		"color-primary": [
+				{
+				"key": "color-primary",
+				"display": "Primary",
+				"type": "color",
+				"default": "#ffffff",
+				"required": false,
+				"private": true
+			}
+		],
+		"color-secondary": [
+			{
+				"key": "color-jet-black",
+				"display": "Jet Black",
+				"type": "color",
+				"default": "#212633",
+				"required": false,
+				"private": true
+			}
+		],
+		"color-accent": [
+			{
+				"key": "color-yellow",
+				"display": "Accent",
+				"type": "color",
+				"default": "#FAE355",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "color-maroon",
+				"display": "Accent",
+				"type": "color",
+				"default": "#722F49",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "color-moss-green",
+				"display": "Accent",
+				"type": "color",
+				"default": "#4D6525",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "color-cerulean",
+				"display": "Accent",
+				"type": "color",
+				"default": "#A4BDFF",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "color-punch-pink",
+				"display": "Accent",
+				"type": "color",
+				"default": "#EEBCFF",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "color-tea-green",
+				"display": "Accent",
+				"type": "color",
+				"default": "#DDF1C4",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "color-mist-blue",
+				"display": "Accent",
+				"type": "color",
+				"default": "#E8EEFF",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "color-tan",
+				"display": "Accent",
+				"type": "color",
+				"default": "#BDA98C",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "color-peach",
+				"display": "Accent",
+				"type": "color",
+				"default": "#722F49",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "color-cream",
+				"display": "Accent",
+				"type": "color",
+				"default": "#FFF4DC",
+				"required": false,
+				"private": true
+			}
+		],
+		"font-headline": {
+			"key": "font-headline",
+			"display": "Font Headline",
+			"type": "string",
+			"default": "./media/Rebond-Grotesque-Medium.ttf",
+			"required": false,
+			"private": true
+		},
+		"font-headline-bold": {
+			"key": "font-headline-bold",
+			"display": "Font Headline Bold",
+			"type": "string",
+			"default": "./media/Rebond-Grotesque-Bold.ttf",
+			"required": false,
+			"private": true
+		},
+		"font-headline-light": {
+			"key": "font-headline-light",
+			"display": "Font Headline Light",
+			"type": "string",
+			"default": "./media/Rebond-Grotesque-Regular.ttf",
+			"required": false,
+			"private": true
+		},
+		"font-body": {
+			"key": "font-body",
+			"display": "Font Body",
+			"type": "string",
+			"default": "./media/Suisse-Neue-Regular.ttf",
+			"required": false,
+			"private": true
+		},
+		"font-body-medium": {
+			"key": "font-body-medium",
+			"display": "Font Body Medium",
+			"type": "string",
+			"default": "./media/Suisse-Neue-Medium.ttf",
+			"required": false,
+			"private": true
+		}
+	},
+	"text": {
+		"measure": "letter-size"
+	},
+	"text-headline": {
+		"font": ["$", ["var", "font-headline"]],
+		"height": "100su",
+		"leading": "10su",
+		"kerning": -0.03
+	},
+	"text-subhead": {
+		"font": ["$", ["var", "font-headline"]],
+		"height": "60su",
+		"leading": "10su"
+	},
+	"text-body": {
+		"font": ["$", ["var", "font-body"]],
+		"height": "55su",
+		"leading": "10su",
+		"kerning": -0.02
+	},
+	"text-label": {
+		"font": ["$", ["var", "font-body"]],
+		"height": "48su"
+	}
+}

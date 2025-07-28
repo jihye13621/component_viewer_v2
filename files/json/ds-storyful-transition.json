@@ -1,0 +1,207 @@
+[
+	"ds-storyful-transition",
+	[
+		{
+			"key": "theme",
+			"display": "Theme",
+			"type": "string",
+			"default": "blue",
+			"required": false,
+			"options": [
+				{
+					"key": "blue",
+					"display": "Blue"
+				},
+				{
+					"key": "red",
+					"display": "Red"
+				}
+			]
+		},
+		{
+			"key": "direction",
+			"display": "Direction",
+			"type": "string",
+			"default": "vertical",
+			"required": false,
+			"options": [
+				{
+					"key": "vertical",
+					"display": "Vertical"
+				},
+				{
+					"key": "horizontal",
+					"display": "Horizontal"
+				}
+			]
+		},
+		{
+			"key": "do-transition-in",
+			"display": "Transition In",
+			"type": "bool",
+			"default": true,
+			"required": false,
+			"private": true
+		},
+		{
+			"key": "do-transition-out",
+			"display": "Transition Out",
+			"type": "bool",
+			"default": true,
+			"required": false,
+			"private": true
+		}
+	],
+	[
+		["solid", {
+			"color": "#F5F5F7",
+			"breakpoints": [
+				{
+					"enabled": ["$", ["or",
+						["var", "do-transition-in"],
+						["var", "do-transition-out"]
+					]],
+					"transform": [
+						["translate",
+							0,
+							["$", ["compact", ["array",
+								"animate",
+								["if", ["var", "do-transition-in"], ["'", 0, "100rh", "easeInOutCubic"]],
+								["if", ["var", "do-transition-in"], ["'", "+600", 0]],
+								["if", ["var", "do-transition-out"], ["'", "100%", "-100rh"]],
+								["if", ["var", "do-transition-out"], ["'", "-600", 0, "easeInOutCubic"]]
+							]]]
+						]
+					]
+				},
+				{
+					"enabled": ["$", ["and",
+						["or",
+							["var", "do-transition-in"],
+							["var", "do-transition-out"]
+						],
+						["eq", ["var", "direction"], "horizontal"]
+					]],
+					"transform": [
+						["translate",
+							["$", ["compact", ["array",
+								"animate",
+								["if", ["var", "do-transition-in"], ["'", 0, "-100rw", "easeInOutCubic"]],
+								["if", ["var", "do-transition-in"], ["'", "+600", 0]],
+								["if", ["var", "do-transition-out"], ["'", "100%", "100rw"]],
+								["if", ["var", "do-transition-out"], ["'", "-600", 0, "easeInOutCubic"]]
+							]]],
+							0
+						]
+					]
+				},
+				{
+					"enabled": ["$", ["and",
+						["or",
+							["var", "do-transition-in"],
+							["var", "do-transition-out"]
+						],
+						["eq", ["var", "direction"], "vertical"]
+					]],
+					"transform": [
+						["translate",
+							0,
+							["$", ["compact", ["array",
+								"animate",
+								["if", ["var", "do-transition-in"], ["'", 0, "100rh", "easeInQuad"]],
+								["if", ["var", "do-transition-in"], ["'", "+550", 0]],
+								["if", ["var", "do-transition-out"], ["'", "100%", "-100rh"]],
+								["if", ["var", "do-transition-out"], ["'", "-300", 0, "easeOutQuad"]]
+							]]]
+						]
+					]
+				},
+				{
+					"enabled": ["$", ["and",
+						["or",
+							["var", "do-transition-in"],
+							["var", "do-transition-out"]
+						],
+						["eq", ["var", "direction"], "horizontal"]
+					]],
+					"transform": [
+						["translate",
+							["$", ["compact", ["array",
+								"animate",
+								["if", ["var", "do-transition-in"], ["'", 0, "-100rw", "easeInQuad"]],
+								["if", ["var", "do-transition-in"], ["'", "+550", 0]],
+								["if", ["var", "do-transition-out"], ["'", "100%", "100rw"]],
+								["if", ["var", "do-transition-out"], ["'", "-300", 0, "easeOutQuad"]]
+							]]],
+							0
+						]
+					]
+				}
+			]
+		}],
+		["solid", {
+			"stagger": [350, -200],
+			"color": [1, 1, 1, 1],
+			"breakpoints": [
+				{
+					"enabled": ["$", ["eq", ["var", "theme"], "blue"]],
+					"color": ["linear-gradient",
+						0.0,
+						[0.0, "#0F142c"],
+						[1.0, "#53617f"]
+					]
+				},
+				{
+					"enabled": ["$", ["eq", ["var", "theme"], "red"]],
+					"color": ["linear-gradient",
+						0.0,
+						[0.0, "#FF300"],
+						[1.0, "#FF005c"]
+					]
+				},
+				{
+					"enabled": ["$", ["and",
+						["or",
+							["var", "do-transition-in"],
+							["var", "do-transition-out"]
+						],
+						["eq", ["var", "direction"], "vertical"]
+					]],
+					"transform": [
+						["translate",
+							0,
+							["$", ["compact", ["array",
+								"animate",
+								["if", ["var", "do-transition-in"], ["'", 0, "100rh", "easeInQuad"]],
+								["if", ["var", "do-transition-in"], ["'", "+300", 0]],
+								["if", ["var", "do-transition-out"], ["'", "100%", "-100rh"]],
+								["if", ["var", "do-transition-out"], ["'", "-250", 0, "easeOutQuad"]]
+							]]]
+						]
+					]
+				},
+				{
+					"enabled": ["$", ["and",
+						["or",
+							["var", "do-transition-in"],
+							["var", "do-transition-out"]
+						],
+						["eq", ["var", "direction"], "horizontal"]
+					]],
+					"transform": [
+						["translate",
+							["$", ["compact", ["array",
+								"animate",
+								["if", ["var", "do-transition-in"], ["'", 0, "-100rw", "easeInQuad"]],
+								["if", ["var", "do-transition-in"], ["'", "+300", 0]],
+								["if", ["var", "do-transition-out"], ["'", "100%", "100rw"]],
+								["if", ["var", "do-transition-out"], ["'", "-250", 0, "easeOutQuad"]]
+							]]],
+							0
+						]
+					]
+				}
+			]
+		}]
+	]
+]

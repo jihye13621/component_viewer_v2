@@ -1,0 +1,294 @@
+[
+	"ds-sothebys-outro",
+	[
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "text",
+			"default": "optional call to action",
+			"required": false
+		},
+		{
+			"key": "logo",
+			"display": "Partner Logo",
+			"type": "string",
+			"default": "none",
+			"options": [
+				{
+					"key": "none",
+					"display": "None"
+				},
+				{
+					"key": "nba",
+					"display": "NBA"
+				}
+			],
+			"required": false
+		},
+		{
+			"key": "theme",
+			"display": "Theme",
+			"type": "string",
+			"default": "white",
+			"options": [
+				{
+					"key": "white",
+					"display": "White"
+				},
+				{
+					"key": "black",
+					"display": "Black"
+				},
+				{
+					"key": "blue",
+					"display": "Blue"
+				}
+			]
+		},
+		["ds-sothebys-mixins",
+			"color-primary-private",
+			"color-secondary-private",
+			"color-accent-private",
+			"font-body"
+		],
+		{
+			"key": "background",
+			"display": "Background",
+			"type": "color",
+			"default": null,
+			"required": false
+		},
+		{
+			"key": "do-transition-in",
+			"display": "Transition In",
+			"type": "bool",
+			"default": false,
+			"required": false
+		},
+		{
+			"key": "do-transition-out",
+			"display": "Transition Out",
+			"type": "bool",
+			"default": false,
+			"required": false
+		}
+	],
+	[
+		["solid", {
+			"enabled": ["$", ["not", ["exists", ["var", "background"]]]],
+			"color": ["$",
+				["if",
+					["eq", ["var", "theme"], "white"],
+					["var", "color-primary-private"],
+					["if",
+						["eq", ["var", "theme"], "black"],
+						["var", "color-secondary-private"],
+						["var", "color-accent-private"]
+					]
+				]
+			],
+			"breakpoints": [
+				{
+					"enabled": ["$", ["var", "do-transition-in"]],
+					"opacity": ["animate",
+						[0, 0, "easeOutSine"],
+						["+350", 1]
+					]
+				},
+				{
+					"enabled": ["$", ["var", "do-transition-out"]],
+					"opacity": ["animate",
+						["100%", 0],
+						["-350", 1, "easeInSine"]
+					]
+				},
+				{
+					"enabled": ["$", ["and",
+						["var", "do-transition-in"],
+						["var", "do-transition-out"]
+					]],
+					"opacity": ["animate",
+						[0, 0, "easeOutSine"],
+						["+350", 1],
+						["100%", 0],
+						["-350", 1, "easeInSine"]
+					]
+				}
+			]
+		}],
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"max-width": "800nsu",
+				"align": "center",
+				"breakpoints": [
+					{
+						"enabled": ["$", 
+							["gte",
+								["aspect"],
+								1.1
+							]
+						],
+						"max-width": "1200su"
+					},
+					{
+						"enabled": ["$", ["var", "do-transition-in"]],
+						"opacity": ["animate",
+							[0, 0, "easeOutSine"],
+							["+350", 1]
+						]
+					},
+					{
+						"enabled": ["$", ["var", "do-transition-out"]],
+						"opacity": ["animate",
+							["100%", 0],
+							["-350", 1, "easeInSine"]
+						]
+					},
+					{
+						"enabled": ["$", ["and",
+							["var", "do-transition-in"],
+							["var", "do-transition-out"]
+						]],
+						"opacity": ["animate",
+							[0, 0, "easeOutSine"],
+							["+350", 1],
+							["100%", 0],
+							["-350", 1, "easeInSine"]
+						]
+					}
+				]
+			}, [
+				["null", {
+					"layout": "vertical packed",
+					"align": "center",
+					"gap": "100su"
+				}, [
+					["null", {
+						"flex": {
+							"width": "700su",
+							"height": "700su"
+						},
+						"layout": "stacked",
+						"align": "center",
+						"breakpoints": [
+							{
+								"enabled": ["$", 
+									["gte",
+										["aspect"],
+										1.1
+									]
+								],
+								"flex": {
+									"width": "1050su",
+									"height": "700su"
+								}
+							}
+						]
+					}, [
+						["asset", {
+							"mute": true,
+							"file": "./media/ds-sothebys-logo.svg",
+							"justify": "fit center",
+							"svg-recolor": ["$",
+								["if",
+									["eq", ["var", "theme"], "white"],
+									["var", "color-secondary-private"],
+									["if",
+										["eq", ["var", "theme"], "black"],
+										["var", "color-primary-private"],
+										["var", "color-primary-private"]
+									]
+								]
+							],
+							"transform": [
+								["scale",
+									["animate",
+										[0, 0.9],
+										["100%", 1]
+									]
+								]
+							],
+							"breakpoints": [
+								{
+									"enabled": ["$", ["neq", ["var", "logo"], "none"]],
+									"opacity": ["animate",
+										[0, 0, "holdIn"],
+										["50%", 1]
+									]
+								}
+							]
+						}],
+						["asset", {
+							"enabled": ["$", ["neq", ["var", "logo"], "none"]],
+							"mute": true,
+							"file": ["$", ["if",
+								["and", 
+									["eq", ["var", "logo"], "nba"],
+									["eq", ["var", "theme"], "white"]
+								],
+								"./media/ds-sothebys-NBA_Auctions_horiz.svg",
+								"./media/ds-sothebys-NBA_Auctions_horiz_onDkBkgd.svg"
+							]],
+							"justify": "fit center",
+							"opacity": ["animate",
+								[0, 1, "holdIn"],
+								["50%", 0]
+							],
+							"transform": [
+								["scale",
+									["animate",
+										[0, 0.9],
+										["100%", 1]
+									]
+								]
+							]
+						}]
+					]],
+					["text", {
+						"enabled": ["$", ["exists", ["var", "text"]]],
+						"mixins": ["ds-sothebys-mixins",
+							"text",
+							"text-label"
+						],
+						"font": ["$", ["var", "font-body"]],
+						"case": "uppercase",
+						"string": ["$", ["var", "text"]],
+						"color": ["$",
+							["if",
+								["eq", ["var", "theme"], "white"],
+								["var", "color-secondary-private"],
+								["if",
+									["eq", ["var", "theme"], "black"],
+									["var", "color-primary-private"],
+									["var", "color-primary-private"]
+								]
+							]
+						],
+						"justify": "center",
+						"boundary": "line",
+						"animations": [
+							{
+								"translate": [
+									0,
+									"40su"
+								]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+1000", 1]
+								],
+								"easing": "easeOutCubic",
+								"translate": [0, 0],
+								"opacity": 1
+							}
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

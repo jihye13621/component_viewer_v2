@@ -1,0 +1,61 @@
+[
+	"ds-amp-list",
+	[
+		["dsx-mixins", ["list"]],
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": "#EBEBEB",
+			"required": false
+		},
+		{
+			"key": "color-2",
+			"display": "Color 2",
+			"type": "color",
+			"default": "#1E7AFA",
+			"required": false
+		},
+		["dsx-mixins", ["boilerplate"]]
+	],
+	[
+		["dsx-background", {
+			"enabled": ["$", ["exists", ["var", "background"]]],
+			"color": ["$", ["var", "background"]]
+		}],
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["for-each", {
+				"items": ["$", ["array",
+					["var", "item-1"],
+					["var", "item-2"],
+					["var", "item-3"]
+				]],
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"gap": "30su"
+			}, [
+				["solid", {
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]],
+					"color": ["$", ["var", "color-2"]],
+					"padding": [
+						"2su",
+						"10su",
+						"2su",
+						"10su"
+					]
+				}, [
+					["text", {
+						"mixins": ["ds-amp-mixins", ["text-1"]],
+						"string": ["$", ["var", "item"]],
+						"justify": ["$", ["var", "#align"]],
+						"boundary": "line",
+						"background-color": ["$", ["var", "color-2"]]
+					}]
+				]]
+			]] 
+		]]
+	]
+]

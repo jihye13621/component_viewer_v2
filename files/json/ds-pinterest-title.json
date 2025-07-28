@@ -1,0 +1,73 @@
+[
+	"ds-pinterest-title",
+	[
+		["dsx-mixins",
+			"text"
+		],
+		["ds-pinterest-mixins",
+			"colors",
+			"font-pinterest-bold"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		]
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			],
+			"color": ["$", ["var", "color-white"]]
+		}, [
+			["null", {
+				"enabled": ["$", ["exists", ["var", "text"]]],
+				"align": "center",
+				"max-width": "1300su",
+				"transform": [
+					["scale",
+						["animate",
+							[0, 0.9],
+							["100%", 1]
+						]
+					]
+				]
+			}, [
+				["text", {
+					"string": ["$", ["var", "text"]],
+					"font": ["$", ["var", "font-pinterest-bold"]],
+					"measure": "letter-size",
+					"height": "120su",
+					"color": ["$", ["var", "color-black"]],
+					"kerning": -0.04,
+					"leading": "5su",
+					"justify": "center",
+					"animations": [
+						{
+							"translate": [0, "150su"],
+							"opacity": 0
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+550", 1]
+							],
+							"opacity": 1,
+							"ramp": 2,
+							"easing": "plateauIn"
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+550", 1]
+							],
+							"translate": [0, 0],
+							"ramp": 2,
+							"easing": "easeOutCubic"
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

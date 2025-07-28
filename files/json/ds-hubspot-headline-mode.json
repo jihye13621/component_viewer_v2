@@ -1,0 +1,34 @@
+[
+	"ds-hubspot-headline-mode",
+	[
+		{
+			"key": "headline",
+			"display": "Headline",
+			"type": "text",
+			"default": "Add a headline",
+			"required": false
+		},
+		["dsx-mixins", "boilerplate"],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [1, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": true,
+				"minimum": -100,
+				"maximum": 100
+			},
+			"required": false
+		}
+	],
+	[
+		["ds-hubspot-headline", {
+			"headline": ["$", ["var", "headline"]],
+			"size": ["$", ["var", "size"]],
+			"position": ["$", ["var", "position"]],
+			"use-safezone": ["$", ["var", "use-safezone"]]
+		}]
+	]
+]

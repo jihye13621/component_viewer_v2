@@ -1,0 +1,391 @@
+[
+	"api-brandlive-academy-walkup",
+	[
+		{
+			"key": "name",
+			"display": "Speaker name",
+			"type": "string",
+			"default": "Olivia Walker",
+			"required": false
+		},
+		{
+			"key": "title",
+			"display": "Title",
+			"type": "string",
+			"default": "Chief Brand Officer",
+			"required": false
+		},
+		{
+			"key": "font-1",
+			"display": "Font 1",
+			"type": "string",
+			"default": "./media/api-brandlive/Poppins-Medium.ttf",
+			"required": false
+		},
+		{
+			"key": "font-2",
+			"display": "Font 2",
+			"type": "string",
+			"default": "./media/api-brandlive/Poppins-Regular.ttf",
+			"required": false
+		},
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": "#ffbc1e",
+			"required": false
+		},
+		{
+			"key": "color-2",
+			"display": "Color 2",
+			"type": "color",
+			"default": "#0b45ac",
+			"required": false
+		},
+		{
+			"key": "color-3",
+			"display": "Color 3",
+			"type": "color",
+			"default": "#ededed",
+			"required": false
+		},
+		{
+			"key": "color-4",
+			"display": "Color 4",
+			"type": "color",
+			"default": "#040347",
+			"required": false
+		},
+		{
+			"key": "gradient-1-left",
+			"display": "Gradient 1 Left",
+			"type": "color",
+			"default": "#FFCF31",
+			"required": false
+		},
+		{
+			"key": "gradient-1-right",
+			"display": "Gradient 1 Right",
+			"type": "color",
+			"default": "#FFF85C",
+			"required": false
+		}, 
+		{
+			"key": "gradient-2-left",
+			"display": "Gradient 1 Left",
+			"type": "color",
+			"default": "#09083F",
+			"required": false
+		},
+		{
+			"key": "gradient-2-right",
+			"display": "Gradient 1 Right",
+			"type": "color",
+			"default": "#0A348E",
+			"required": false
+		},        
+		{
+			"key": "text-color-1",
+			"display": "Text Color 1",
+			"type": "color",
+			"default": "#FFFFFF",
+			"required": false
+		},
+		{
+			"key": "text-color-2",
+			"display": "Text Color 2",
+			"type": "color",
+			"default": "#FFFFFF",
+			"required": false
+		},
+		{
+			"key": "text-color-3",
+			"display": "Text Color 3",
+			"type": "color",
+			"default": "#000000",
+			"required": false
+		},
+		{
+			"key": "image",
+			"display": "Image",
+			"type": "asset",
+			"default": "./media/api-brandlive/stock_presenter_no_background.png",
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-dsx-su"
+			]
+		},[
+			["solid", {
+				"rect": [0, 0, "100rw", "100rh"],
+				"color": ["$", ["var", "color-1"]],
+				"end": 2000
+			}],
+			["solid", {
+				"rect": [0, 0, "100rw", "100rw"],
+				"stroke": "125su",
+				"stroke-color": ["$", ["var", "color-3"]],
+				"color": [0, 0, 0, 0],
+				"align": "center",
+				"transform": [
+					["scale",
+						["animate",
+							[0, 0, "easeInQuad"],
+							["+1000", 1.25]
+						]
+					],
+					["rotate",
+						["animate",
+							[0, 0, "easeInQuad"],
+							["+1000", 0.125] 
+						]
+					]
+				],
+				"end": 2000
+			}],
+			["solid", {
+				"rect": [0, 0, "100rw", "100rw"],
+				"color": ["$", ["var", "color-2"]],
+				"align": "center",
+				"transform": [
+					["scale",
+						["animate",
+							[0, 0, "easeInQuad"],
+							["+1466", 1.25]
+						]
+					],
+					["rotate",
+						["animate",
+							[0, 0, "easeInQuad"],
+							["+1466", 0.125]
+						]
+					]
+				],
+				"end": 2000
+			}],
+			["null", {
+				"buffer": "knockout",
+				"//": "square matte"
+			}, [
+				["solid", {
+					"color": "#000000"
+				}],
+				["solid", {
+					"rect": [
+						0, 
+						0, 
+						"100rw", 
+						"100rw"
+					],
+					"color": "#FFFFFF",
+					"align": "center",
+					"transform": [
+						["scale",
+							["animate",
+								[0, 0, "easeInQuad"],
+								["+2000", 1.0]
+							]
+						],
+						["rotate",
+							["animate",
+								[0, 0, "easeInQuad"],
+								["+2000", 0.25]
+							]
+						]
+					]
+				}]
+			]],
+			["null", {
+				"effect": [
+					["matte", {
+						"buffer-in": "knockout"
+					}]
+				]
+			}, [
+				["solid", {
+					"rect": [0, 0, "100rw", "100rh"],
+					"color": ["linear-gradient",
+						-0.25,
+						[0.0, ["$", ["var", "gradient-2-left"]]],
+						[1.0, ["$", ["var", "gradient-2-right"]]]
+					]
+				}],
+				["solid", {
+					"rect": ["1230su", "6rh", "650su", "650su"],
+					"radius": "1000su",
+					"color": ["$", ["var", "color-2"]],
+					"start": 2666,
+					"transform": [
+						["scale",
+							["animate",
+								[0, 1.46, "easeOutQuad"],
+								["+2666", 1.0],
+								["+4333", 0.855, "easeInQuad"],
+								["+800", 0.65]
+							]
+						],
+						["rotate",
+							["animate",
+								[0, 0.18, "easeOutQuad"],
+								["+2666", 0],
+								["+4333", -0.04, "easeInQuad"],
+								["+800", -0.34]
+							],
+							"-1500su", "200rh"
+						]
+					]
+				}],
+				["null", {
+					"buffer": "knockout2",
+					"//": "circle mask"
+				}, [
+					["solid", {
+						"color": "#000000"
+					}],
+					["solid", {
+						"rect": [0, 0, "85rw", "85rw"],
+						"color": "#FFFFFF",
+						"align": "center",
+						"radius": "2000su",
+						"transform": [
+							["translate",
+								["animate",
+									["+2000", 0, "easeInOutCubic"],
+									["+1400", "-45rw"]
+								],
+								0
+							]
+						]
+					}]
+				]],
+				["null", {
+					"effect": [
+						["matte", {
+							"buffer-in": "knockout2"
+						}]
+					]
+				}, [
+					["solid", {
+						"rect": [0, 0, "100rw", "100rh"],
+						"color": ["linear-gradient",
+							-0.25,
+							[0.0, ["$", ["var", "gradient-1-left"]]],
+							[1.0, ["$", ["var", "gradient-1-right"]]]
+						]
+					}],
+					["asset", {
+						"file": ["$", ["var", "image"]],
+						"start": 2000,
+						"rect": [
+								0,
+								0,
+								"55rw",
+								"100rh"
+						],
+						"transform": [
+							["translate",
+								["animate",
+									[0, "-65rw", "easeInOutCubic"],
+									["+1400", "-5rw"]
+								],
+								0
+							]
+						]
+					}]
+				]]
+			]],
+			["text", {
+				"string": "Introducing",
+				"color": ["$", ["var", "text-color-3"]],
+				"font": ["$", ["var", "font-1"]],
+				"height": "100su",
+				"boundary": "letter",
+				"measure": "letter-size",
+				"start": 1266,
+				"end": 3066,
+				"transform": [
+					["translate",
+						["animate",
+							["+1266", 0, "easeInOutQuad"],
+							["+533", "-250su"]
+						],
+						["animate",
+							[0, "80su", "easeInOutQuad"],
+							["+333", 0]
+						]
+					]
+				],
+				"opacity": ["animate", 
+					[0, 0, "easeInOutQuad"],
+					["+333", 1]
+				],
+				"justify": "center",
+				"animations": [
+					{
+						"mix": ["animate",
+							[1266, 1],
+							[1799, 0]
+						],
+						"opacity": 1,
+						"ramp": 1.5,
+						"easing": "easeInOutCubic"
+					}
+				]
+			}],
+			["null", {
+				"layout": "vertical packed",
+				"rect": ["56rw", "62rh", "50rw", "50rh"],
+				"padding": [0, "12rw", "15rh", 0],
+				"gap": "60su",
+				"start": 3000
+			}, [
+				["text", {
+					"string": ["$", ["var", "name"]],
+					"color": ["$", ["var", "text-color-1"]],
+					"font": ["$", ["var", "font-1"]],
+					"height": "100su",
+					"boundary": "letter",
+					"measure": "letter-size",
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[0, "80su", "easeInOutQuad"],
+								["+500", 0]
+							]
+						]
+					],
+					"opacity": ["animate", 
+						[0, 0, "easeInOutQuad"],
+						["+500", 1]
+					]
+				}],
+				["text", {
+					"string": ["$", ["var", "title"]],
+					"enabled": ["$", ["exists", ["var", "title"]]],
+					"color": ["$", ["var", "text-color-2"]],
+					"font": ["$", ["var", "font-2"]],
+					"align": "left",
+					"height": "50su",
+					"boundary": "letter",
+					"measure": "letter-size",                                    
+					"animations": [
+						{
+							"mix": ["animate",
+								[0, 0],
+								[1000, 1]
+							],
+							"opacity": 1,
+							"ramp": 1.5,
+							"easing": "round"
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

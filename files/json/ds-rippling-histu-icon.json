@@ -1,0 +1,63 @@
+[
+	"ds-rippling-histu-icon",
+	[
+		["ds-rippling-histu-mixins",
+			"histu-icons"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [0, 0, 0],
+			"required": false,
+			"ui": {
+				"grid": false,
+				"offset": true,
+				"minimum": -100,
+				"maximum": 100
+			}
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su-roi",
+				"safezone",
+				"offset-screen"
+			]
+		}, [
+			["null", {
+				"rect": [
+					0,
+					0,
+					"600su",
+					"600su"
+				],
+				"align": "center"
+			}, [
+				["ds-rippling-histu-icon-comp", {
+					"icon": ["$", ["var", "icon"]],
+					"transform": [
+						["scale",
+							["animate",
+								[0, 0, "easeOutBack"],
+								["+400", 1]
+							]
+						],
+						["translate",
+							0,
+							["animate",
+								["100%", "100roih"],
+								["-600", 0, "easeInBack"]
+							]
+						]
+					]
+				}]
+			]]
+			
+		]]
+	]
+]

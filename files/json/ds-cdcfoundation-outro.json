@@ -1,0 +1,75 @@
+[
+	"ds-cdcfoundation-outro",
+	[
+		["dsx-mixins", ["outro"]],
+		["ds-cdcfoundation-mixins", "color-1", "color-2"],
+		["dsx-mixins", ["boilerplate-intro-outro"]]
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins", "set-dsx-su"],
+			"color": ["$", ["var", "color-1"]]
+		}, [
+			["asset", {
+				"file": "./media/ds-cdcfoundation-outro-logo.mov",
+				"mute": true,
+				"justify": "fill",
+				"breakpoints": [
+					{
+						"enabled": ["$", ["lt", ["aspect"], 0.6]],
+						"transform": [
+							["scale", 0.75]
+						]
+					},
+					{
+						"enabled": ["$", ["and",
+							["gt", ["aspect"], 0.6],
+							["lt", ["aspect"], 0.7]
+						]],
+						"transform": [
+							["scale", 0.9]
+						]
+					}
+				]
+			}],
+			["null", {
+				"mixins": ["dsx-mixins", "safezone"]
+			}, [
+				["text", {
+					"enabled": ["$", ["exists", ["var", "text"]]],
+					"stagger": [2000, 0],
+					"mixins": ["ds-cdcfoundation-mixins", ["font-outro"]],
+					"rect": [
+						0,
+						0,
+						"100rw",
+						"30rh"
+					],
+					"string": ["$", ["var", "text"]],
+					"align": "bottom center",
+					"justify": "center",
+					"color": ["$", ["var", "color-2"]],
+					"boundary": "word",
+					"animations": [
+						{
+							"translate": [
+								0,
+								"50su"
+							]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								[700, 1]
+							],
+							"easing": "easeOutCubic",
+							"ramp": 1.5,
+							"opacity": 1,
+							"translate": [0, 0]
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

@@ -1,0 +1,100 @@
+[
+	"ds-aspect-watermark",
+	[
+		{
+			"key": "theme",
+			"display": "Theme",
+			"type": "string",
+			"default": "color",
+			"options": [
+				{
+					"key": "color",
+					"display": "Color"
+				},
+				{
+					"key": "light",
+					"display": "Light"
+				},
+				{
+					"key": "dark",
+					"display": "Dark"
+				}
+			],
+			"required": false
+		},
+		["ds-aspect-mixins",
+			"colors"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "override-opacity",
+			"display": "Opacity",
+			"type": "number",
+			"default": 0.6,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"step": 0.05,
+				"minimum": 0.0,
+				"maximum": 1.0
+			}
+		},
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [9, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": true,
+				"minimum": -100,
+				"maximum": 100
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-dsx-su",
+				"safezone",
+				"offset"
+			]
+		}, [
+			["asset", {
+				"rect": [
+					0,
+					0,
+					"500su",
+					"300su"
+				],
+				"justify": ["$", ["concat", "fit ", ["var", "#align"]]],
+				"align": ["$", ["var", "#align"]],
+				"opacity": ["animate",
+					[0, 0],
+					["+250", ["$", ["var", "override-opacity"]]],
+					["100%", 0],
+					["-200", ["$", ["var", "override-opacity"]]]
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["=", ["var", "theme"], "color"]],
+						"file": "./media/ds-aspect-logo-horiz-color.svg"
+					},
+					{
+						"enabled": ["$", ["=", ["var", "theme"], "light"]],
+						"file": "./media/ds-aspect-logo-horiz-white.svg",
+						"svg-recolor": ["$", ["var", "color-eggshell"]]
+					},
+					{
+						"enabled": ["$", ["=", ["var", "theme"], "dark"]],
+						"file": "./media/ds-aspect-logo-horiz-white.svg",
+						"svg-recolor": ["$", ["var", "color-black"]]
+					}
+				]
+			}]
+		]]
+	]
+]

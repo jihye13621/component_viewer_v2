@@ -1,0 +1,127 @@
+[
+	"ds1-captions",
+	[
+		{
+			"key": "transcript",
+			"display": "Transcript",
+			"type": "transcript",
+			"required": true
+		},
+		{
+			"key": "font-1",
+			"display": "Font",
+			"type": "fontstyle",
+			"default": {
+				"font": "./media/Inter-Medium.ttf",
+				"height": 50
+			},
+			"required": false,
+			"script": ["$",
+				["key-set",
+					["var", "font-1"],
+					"height",
+					["round", ["*", ["var", "size"], ["var", "font-1", "height"]]]
+				]
+			]
+		},
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": [1, 1, 1, 1],
+			"required": false
+		},
+		{
+			"key": "color-2",
+			"display": "Color 2",
+			"type": "color",
+			"default": [0, 0, 0, 1],
+			"required": false
+		},
+		{
+			"key": "color-3",
+			"display": "Color 3",
+			"type": "color",
+			"default": "#20FF79",
+			"required": false
+		},
+		{
+			"key": "background",
+			"display": "Background",
+			"type": "color",
+			"default": null,
+			"required": false
+		},
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": 2,
+			"required": false
+		},
+		{
+			"key": "size",
+			"display": "Size",
+			"type": "number",
+			"default": 1.0,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"step": 0.05,
+				"minimum": 0.5,
+				"maximum": 2.0
+			}
+		},
+		{
+			"key": "#align",
+			"type": "string",
+			"default": "center",
+			"required": false,
+			"private": true,
+			"script": ["$", ["switch", ["var", "position"], {
+				"1": "bottom left",
+				"2": "bottom center",
+				"3": "bottom right",
+				"4": "left",
+				"5": "center",
+				"6": "right",
+				"7": "top left",
+				"8": "top center",
+				"9": "top right",
+				"_": "center"
+			}]]
+		}
+	],
+	[
+		["dsx-background", {
+			"enabled": ["$", ["exists", ["var", "background"]]],
+			"color": ["$", ["var", "background"]]
+		}],
+		["dsx-padding", {
+			"position": ["$", ["var", "position"]]
+		}, [
+			["text", {
+				"justify": ["$", ["var", "#align"]],
+				"transcript": ["$",
+					["transcript-split",
+						["var", "transcript"],
+						["max", 1, ["floor", ["/", 10, ["var", "size"]]]]
+					]
+				],
+				"color": ["$", ["var", "color-1"]],
+				"background-color": ["$", ["var", "color-2"]],
+				"background-padding": [
+					["$", ["*", 0.15, ["var", "font-1", "height"]]],
+					["$", ["*", 0.4, ["var", "font-1", "height"]]]
+				],
+				"style": ["$", ["var", "font-1"]],
+				"animations": [
+					{
+						"mix": [[0, 0], [0.5, 1]],
+						"color": ["$", ["var", "color-3"]]
+					}
+				]
+			}]
+		]]
+	]
+]

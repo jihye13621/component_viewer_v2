@@ -1,0 +1,68 @@
+[
+	"ds-toast-intro",
+	[
+		["ds-toast-mixins",
+			"color-primary",
+			"color-accent"
+		],
+		{
+			"key": "dark-mode",
+			"display": "Dark Mode",
+			"type": "bool",
+			"default": false,
+			"required": false
+		}
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins", ["set-su", "safezone"]],
+			"color": ["$", ["var", "color-primary"]],
+			"breakpoints": [
+				{
+					"enabled": ["$", ["var", "dark-mode"]],
+					"color": ["$", ["var", "color-accent"]]
+				}
+			],
+			"opacity": ["animate", 
+				[0, 0, "easeOutSine"],
+				["+500", 1],
+				["100%", 0],
+				["-500", 1, "easeInSine"]
+			]
+		}, [
+			["null", {
+				"padding": [
+					"200su",
+					"400su"
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["lt", ["aspect"], 1.1]],
+						"padding": [
+							"100su",
+							"100su"
+						]
+					}
+				]
+			}, [
+				["false-color", {
+					"color-1": ["$", ["var", "color-accent"]],
+					"color-2": ["$", ["var", "color-primary"]],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["var", "dark-mode"]],
+							"color-1": ["$", ["var", "color-primary"]],
+							"color-2": ["$", ["var", "color-accent"]]
+						}
+					]
+				}, [
+					["asset", {
+						"file": "./media/ds-toast-logo.mp4",
+						"justify": "fit center",
+						"hold": true
+					}]
+				]]
+			]]
+		]]
+	]
+]

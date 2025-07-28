@@ -1,0 +1,136 @@
+[
+	"ds-abariatric-lite-headline",
+	[
+		["dsx-mixins", ["headline"]],
+		["ds-abariatric-lite-mixins", "color-light", "color-accent"],
+		["dsx-mixins", ["boilerplate"]],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [4, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"enabled": ["$", 
+					["or",
+						["exists", ["var", "headline"]],
+						["exists", ["var", "subhead"]]
+					]
+				],
+				"max-width": "800nsu",
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"gap": "70su",
+				"padding": [
+					"40su",
+					0,
+					0,
+					0
+				]
+			}, [
+				["solid", {
+					"flex": {
+						"position": "fixed"
+					},
+					"rect": [
+						0,
+						["animate",
+							[0, "50rh"],
+							["+350", "50rh", "easeInOutQuart"],
+							["+800", "-40su"],
+							["100%", "50rh"],
+							["-400", "-20su", "easeInCubic"]
+						],
+						["animate",
+							[0, 0],
+							["+250", "140su", "easeInOutQuart"]
+						],
+						"16su"
+					],
+					"color": ["$", ["var", "color-accent"]],
+					"opacity": ["animate",
+						["100%", 0],
+						["-400", 1, "easeInQuad"]
+					]
+				}],
+				["text", {
+					"enabled": ["$", ["exists", ["var", "headline"]]],
+					"mixins": ["ds-abariatric-lite-mixins", ["headline-0"]],
+					"string": ["$", ["var", "headline"]],
+					"justify": ["$", ["var", "#align"]],
+					"color": ["$", ["var", "color-light"]],
+					"boundary": "word",
+					"stagger": [800, -150],
+					"animations": [
+						{
+							"translate": [
+								0,
+								"100su"
+							]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+650", 1],
+								["100%", 0],
+								["-400", 1]
+							],
+							"translate": [0, 0],
+							"opacity": 1,
+							"easing": "easeOutQuad"
+						}
+					]
+				}],
+				["text", {
+					"flex": {
+						"weight": 0.5
+					},
+					"enabled": ["$", ["exists", ["var", "subhead"]]],
+					"mixins": ["ds-abariatric-lite-mixins", ["text-1-sans"]],
+					"string": ["$", ["var", "subhead"]],
+					"color": ["$", ["var", "color-light"]],
+					"justify": ["$", ["var", "#align"]],
+					"boundary": "line",
+					"stagger": [1100, -350],
+					"animations": [
+						{
+							"translate": [
+								0,
+								"100su"
+							]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+500", 1]
+							],
+							"translate": [0, 0],
+							"opacity": 1,
+							"easing": "easeOutQuad"
+						},
+						{
+							"mix": ["animate",
+								["100%", 1],
+								["-350", 0]
+							],
+							"translate": [0, "50su"],
+							"opacity": 0,
+							"easing": "easeInQuad",
+							"reverse": true
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

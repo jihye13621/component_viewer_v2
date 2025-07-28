@@ -1,0 +1,275 @@
+[
+	"api-brandlive-onboarding-segment-1",
+	[
+		{
+			"key": "headline",
+			"display": "Headline",
+			"type": "string",
+			"default": "History",
+			"required": false
+		},
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "text",
+			"default": "Episode 1",
+			"required": false
+		},
+		{
+			"key": "font-1",
+			"display": "Font 1",
+			"type": "string",
+			"default": "./media/api-brandlive/BeniBold.ttf",
+			"required": false
+		},
+		{
+			"key": "font-2",
+			"display": "Font 2",
+			"type": "string",
+			"default": "./media/api-brandlive/BeniRegular.ttf",
+			"required": false
+		},
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": "#FE6545",
+			"required": false
+		},
+		{
+			"key": "color-2",
+			"display": "Color 2",
+			"type": "color",
+			"default": "#00E69B",
+			"required": false
+		},
+		{
+			"key": "color-3",
+			"display": "Color 3",
+			"type": "color",
+			"default": "#21DCFD",
+			"required": false
+		},
+		{
+			"key": "color-4",
+			"display": "Color 4",
+			"type": "color",
+			"default": "#042E30",
+			"required": false
+		},
+		{
+			"key": "text-color-1",
+			"display": "Text Color 1",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		},
+		{
+			"key": "text-color-2",
+			"display": "Text Color 2",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		}
+	],
+	[
+	   	["null", {
+			"mixins": ["dsx-mixins",
+				"set-dsx-su"
+			]
+		}, [
+			["solid", {
+				"rect": [0, 0, "100rw", "100rh"],
+				"color": ["$", ["var", "color-1"]],
+				"transform": [
+					["scale",
+						["animate",
+							[0, 1.0, "easeInOutCubic"],
+							["+666", 0.96]
+						]
+					]
+				]
+			}],
+			["null", {
+				"padding": [0, 0, 0, "50su"]
+			}, [                    
+				["null", {
+					"buffer": "knockout"
+				}, [
+					["solid", {
+						"color": "#000000"
+					}],
+					["solid", {
+						"rect": [0, "25rh", "720su", "720su"],
+						"transform": [
+							["scale",
+								["animate",
+									[0, 0, "easeInOutCubic"],
+									["+666", 1.0]
+								],
+								1.0,
+								0, "30rh"
+							]
+						],
+						"color": "#FFFFFF",
+						"//": "mask"
+					}]
+				]],
+				["matte", {
+					"buffer-in": "knockout"
+				}, [
+					["solid", {
+						"rect": [0, "25rh", "720su", "720su"],
+						"color": ["$", ["var", "color-4"]]
+					}],
+					["solid", {
+						"rect": [0, "50rh", "360su", "360su"],
+						"color": ["$", ["var", "color-2"]],
+						"transform": [
+							["scale",
+								1.0,
+								["animate",
+									[0, 0, "easeInOutCubic"],
+									["+666", 1.0]
+								],
+								0, "360su"
+							]
+						]
+					}],
+					["solid", {
+						"rect": ["720su", "50rh", "360su", "360su"],
+						"radius": "1000su",
+						"color": ["$", ["var", "color-2"]],
+						"transform": [
+							["translate", 
+								["animate",
+									["+266", 0, "easeInOutCubic"],
+									["+666", "-180su"]
+								],
+								0
+							]
+						]
+					}],
+					["null", {
+						"rect": ["360su", "50rh", "360su", "360su"],
+						"mask": {
+							"padding": [0, "180su", 0, 0],
+							"transform": "true"
+						},
+						"transform": [
+							["translate",
+								["animate",
+									["+200", "30rw", "easeInOutCubic"],
+									["+666", 0]
+								], 
+								0
+							]
+						]
+					}, [
+						["solid", {
+							"rect": [0, 0, "100rw", "100rh"],
+							"color": ["$", ["var", "color-3"]],
+							"radius": "1000su"
+						}]
+					]],
+					["solid", {
+						"path": [
+							["360su", "360su"],
+							["720su", "360su"],
+							["360su", "50rh"]
+						],
+						"color": ["$", ["var", "color-2"]],
+						"transform": [
+							["translate",
+								0,
+								["animate",
+									["+133", "-360su", "easeInOutCubic"],
+									["+666", 0]
+								]
+							]
+						]
+					}],
+					["solid", {
+						"rect": [0, "540su", "360su", "180su"],
+						"color": ["$", ["var", "color-3"]],
+						"transform": [
+							["translate",
+								["animate", 
+									["+66", "-360su", "easeInOutCubic"],
+									["+666", 0]
+								],
+								0
+							]
+						]
+					}]
+				]]
+			]],
+			["null", {
+				"layout": "vertical packed",
+				"rect": ["40rw", "35rh", "55rw", "60rh"],
+				"gap": "50su"
+			}, [
+				["text", {
+					"string": ["$", ["var", "text"]],
+					"enabled": ["$", ["exists", ["var", "text"]]],
+					"color": ["$", ["var", "text-color-1"]],
+					"font": ["$", ["var", "font-2"]],
+					"height": "100su",
+					"measure": "cap-size",
+					"kerning": 0.03,
+					"boundary": "word",
+					"start": 1000,    
+					"case": "uppercase",                                
+					"animations": [
+						{
+							"translate": [
+								0,
+								"20su"
+							]
+						},
+						{
+							"mix": [
+								"animate",
+								[
+									0,
+									0
+								],
+								[
+									833,
+									1
+								]
+							],
+							"opacity": 1,
+							"ramp": 1.5,
+							"easing": "easeOutCubic",
+							"translate": [0, 0]
+						}
+					]
+				}],
+				["text", {
+					"string": ["$", ["var", "headline"]],
+					"enabled": ["$", ["exists", ["var", "headline"]]],
+					"color": ["$", ["var", "text-color-2"]],
+					"font": ["$", ["var", "font-1"]],
+					"height": "350su",
+					"measure": "cap-size",
+					"start": 1666,    
+					"case": "uppercase",                                
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[0, "20su", "easeOutCubic"],
+								["+833", 0]
+							]
+						]
+					],
+					"opacity": ["animate", 
+						[0, 0, "easeOutCubic"],
+						["+833", 1]
+					]
+				}]
+			]]
+		]]
+	]
+]

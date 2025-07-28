@@ -1,0 +1,78 @@
+{
+	"params": {
+		"colors": [
+			{
+				"key": "color-primary-red",
+				"display": "Color",
+				"type": "color",
+				"default": "#DD0100",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "color-primary-grey",
+				"display": "Color",
+				"type": "color",
+				"default": "#3C3C3B",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "color-white",
+				"display": "Color",
+				"type": "color",
+				"default": [1, 1, 1, 1],
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "color-black",
+				"display": "Color",
+				"type": "color",
+				"default": [0, 0, 0, 1],
+				"required": false,
+				"private": true
+			}
+		],
+        "font-din-regular": {
+            "key": "font-din-regular",
+            "display": "Font Din Regular",
+            "type": "string",
+            "default": "./media/DINR.TTF",
+            "required": false,
+			"private": true
+        },
+        "font-din-bold": {
+            "key": "font-din-bold",
+            "display": "Font Din Bold",
+            "type": "string",
+            "default": "./media/DINBL.TTF",
+            "required": false,
+			"private": true
+        },
+		"font-agency-regular": {
+            "key": "font-agency-regular",
+            "display": "Font Agency Regular",
+            "type": "string",
+            "default": "./media/AgencyFB-RegularCondensed.otf",
+            "required": false,
+			"private": true
+        },
+        "font-agency-bold": {
+            "key": "font-agency-bold",
+            "display": "Font Agency Bold",
+            "type": "string",
+            "default": "./media/AgencyFB-BoldCondensed.otf",
+            "required": false,
+			"private": true
+        },
+        "font-agency-black": {
+            "key": "font-agency-black",
+            "display": "Font Agency Black",
+            "type": "string",
+            "default": "./media/AgencyFB-BlackCondensed.otf",
+            "required": false,
+			"private": true
+        }
+	}
+}

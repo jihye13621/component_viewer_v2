@@ -1,0 +1,107 @@
+[
+	"ds-pinterest-cta",
+	[
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "text",
+			"default": "Add a call to action",
+			"required": false
+		},
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		},
+		{
+			"key": "color-2",
+			"display": "Color 2",
+			"type": "color",
+			"default": "#E60023",
+			"required": false
+		},
+		{
+			"key": "color-3",
+			"display": "Color 3",
+			"type": "color",
+			"default": "#000000",
+			"required": false
+		},
+		["dsx-mixins", ["boilerplate"]],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": 5,
+			"required": false
+		}
+	],
+	[
+		["dsx-background", {
+			"enabled": ["$", ["exists", ["var", "background"]]],
+			"color": ["$", ["var", "background"]]
+		}],
+		["null", {
+			"mixins": ["dsx-mixins", ["set-su", "safezone"]]
+		}, [
+			["null", {
+				"mixins": ["ds-pinterest-mixins", ["overlay-padding"]]
+			}, [
+				["solid", {
+					"max-width": "800nsu",
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]],
+					"color": ["$", ["var", "color-2"]],
+					"radius": "100su",
+					"padding": [
+						"40su",
+						"80su"
+					],
+					"transform": [
+						["scale", ["animate",
+							[0, 0, "easeOutBack"],
+							["+400", 1],
+							["100%", 0],
+							["-400", 1, "easeInBack"]
+						]]
+					],
+					"opacity": ["animate",
+					[0, 0, "easeOutQuad"],
+					["+150", 1],
+					["100%", 0],
+					["-150", 1, "easeInQuad"]
+					]
+				}, [
+					["text", {
+						"mixins": ["ds-pinterest-mixins", ["font-text"]],
+						"justify": ["$", ["var", "#align"]],
+						"string": ["$", ["var", "text"]],
+						"color": ["$", ["var", "color-1"]],
+						"fit": true,
+						"boundary": "letter",
+						"animations": [
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+400", 1]
+								],
+								"opacity": 1,
+								"easing": "easeOutQuad"
+							},
+							{
+								"mix": ["animate",
+									["100%", 1],
+									["-300", 0]
+								],
+								"opacity": 0,
+								"easing": "easeInQuad"
+							}
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

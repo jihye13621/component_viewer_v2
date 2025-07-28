@@ -1,0 +1,207 @@
+[
+	"api-brandlive-4",
+	[
+		{
+			"key": "font-1",
+			"display": "Font 1",
+			"type": "string",
+			"default": "./media/api-brandlive/AvantGardeGothicItcT-Demi.ttf",
+			"required": false
+		},
+		{
+			"key": "seconds",
+			"display": "Seconds",
+			"type": "int",
+			"default": 30,
+			"required": false
+		},
+		{
+			"key": "color-background",
+			"display": "Color Background",
+			"type": "color",
+			"default": [0.7, 0.3, 0.2, 1],
+			"required": false
+		},
+		{
+			"key": "color-foreground",
+			"display": "Color Foreground",
+			"type": "color",
+			"default": [1, 1, 0.85, 1],
+			"required": false
+		},
+		{
+			"key": "color-accent",
+			"display": "Color Accent",
+			"type": "color",
+			"default": [0.8, 0.8, 0.7, 1],
+			"required": false
+		}
+	],
+	[
+		["solid", {
+			"start": 0,
+			"duration": ["$", ["+", 500, ["*", 1000, ["var", "seconds"]]]],
+			"color": ["$", ["var", "color-background"]],
+			"mixins": ["dsx-mixins", "set-su"],
+			"padding": [
+				0,
+				0,
+				0,
+				0
+			]
+		}, [
+			["solid", {
+				"color": ["$", ["var", "color-accent"]],
+				"rect": [
+					0,
+					0,
+					"100rw",
+					"50su"
+				],
+				"align": "center"
+			}],
+			["null", {
+				"padding": [
+					"200su",
+					"200su"
+				]
+			}, [
+				["solid", {
+					"color": ["$", ["var", "color-background"]],
+					"layout": "horizontal packed",
+					"align": ["$",
+						["if",
+							["gt",
+								["aspect"],
+								1.0
+							],
+							"center right",
+							"center"
+						]
+					],
+					"padding": [
+						0,
+						"40su"
+					]
+				}, [
+					["for-each", {
+						"enabled": ["$", ["gt", ["var", "seconds"], 59]],
+						"items": [9, 8, 7, 6, 5, 4, 3, 2, 1, 0],
+						"layout": "stacked",
+						"align": "center right",
+						"mask": {}
+					}, [
+						["text", {
+							"mixins": ["api-brandlive-mixins", "looping-number-min"],
+							"color": ["$", ["var", "color-foreground"]],
+							"font": ["$", ["var", "font-1"]],
+							"height": ["$",
+								["*",
+									0.6,
+									["min",
+										["width"],
+										["height"]
+									]
+								]
+							],
+							"justify": "center right",
+							"string": ["$", ["var", "item"]],
+							"stagger": [
+								["$",
+									["+",
+										["*", 60000, ["var", "index"]],
+										["*", 1000, ["var", "seconds"]],
+										1000
+									]
+								],
+								0
+							]
+						}]
+					]],
+					["text", {
+						"enabled": ["$", ["gt", ["var", "seconds"], 59]],
+						"color": ["$", ["var", "color-foreground"]],
+						"font": ["$", ["var", "font-1"]],
+						"height": ["$",
+							["*",
+								0.6,
+								["min",
+									["width"],
+									["height"]
+								]
+							]
+						],
+						"justify": "center right",
+						"string": ":"
+					}],
+					["for-each", {
+						"items": [5, 4, 3, 2, 1, 0],
+						"layout": "stacked",
+						"align": "center right",
+						"mask": {}
+					}, [
+						["text", {
+							"mixins": ["api-brandlive-mixins", "looping-number-ten"],
+							"color": ["$", ["var", "color-foreground"]],
+							"font": ["$", ["var", "font-1"]],
+							"height": ["$",
+								["*",
+									0.6,
+									["min",
+										["width"],
+										["height"]
+									]
+								]
+							],
+							"justify": "center right",
+							"string": ["$", ["var", "item"]],
+							"stagger": [
+								["$",
+									["+",
+										["*", 10000, ["var", "index"]],
+										["*", 1000, ["var", "seconds"]],
+										1000
+									]
+								],
+								0
+							]
+						}]
+					]],
+					["for-each", {
+						"items": [9, 8, 7, 6, 5, 4, 3, 2, 1, 0],
+						"layout": "stacked",
+						"align": "center left",
+						"mask": {}
+					}, [
+						["text", {
+							"mixins": ["api-brandlive-mixins", "looping-number-second"],
+							"color": ["$", ["var", "color-foreground"]],
+							"font": ["$", ["var", "font-1"]],
+							"height": ["$",
+								["*",
+									0.6,
+									["min",
+										["width"],
+										["height"]
+									]
+								]
+							],
+							"justify": "center left",
+							"string": ["$", ["var", "item"]],
+							"stagger": [
+								["$",
+									["+",
+										["*", 1000, ["var", "index"]],
+										["*", 1000, ["mod", ["var", "seconds"], 10]],
+										1000
+									]
+								],
+								0
+							]
+						}]
+					]]
+				]]
+			]]
+		]]
+	]
+]

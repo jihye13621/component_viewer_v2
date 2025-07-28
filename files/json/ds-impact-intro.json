@@ -1,0 +1,143 @@
+[
+	"ds-impact-intro",
+	[
+		["dsx-mixins",
+			"intro"
+		],
+		{
+			"key": "background-image",
+			"display": "Background",
+			"type": "asset",
+			"default": "./media/ds-impact-bg-1.mp4",
+			"required": false,
+			"parameters": [
+				["gain", 0],
+				["motion", "none"]
+			]
+		},
+		["ds-impact-mixins",
+			"color-primary",
+			"color-accent",
+			"font-headline",
+			"font-body"
+		],
+		["dsx-mixins",
+			"boilerplate-intro-outro"
+		]
+	],
+	[
+		["user-asset", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]],
+			"file": ["$", ["var", "background-image"]],
+			"justify": "fill center",
+			"breakpoints": [
+				{
+					"enabled": ["$", ["eq", ["media-type", ["var", "variable"], "image"]]],
+					"transform": [
+						["scale", ["animate",
+							[0, 1],
+							["100%", 1.05]
+						]]
+					]
+				}
+			]
+		}, [
+			["null", {
+				"start": 0,
+				"breakpoints": [
+					{
+						"enabled": ["$", ["exists", ["var", "subhead"]]],
+						"end": "50%"
+					}
+				]
+			}, [
+				["text", {
+					"max-width": "1000nsu",
+					"mixins": ["ds-impact-mixins",
+						"text",
+						"text-display"
+					],
+					"string": ["$", ["var", "headline"]],
+					"justify": "center",
+					"align": "center",
+					"case": "uppercase",
+					"stroke-color": ["$", ["var", "color-accent"]],
+					"color": [0, 0, 0, 0],
+					"boundary": "word",
+					"animations": [
+						{
+							"stroke": "3su",
+							"scale": 1.2
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+500", 1],
+								["100%", 0],
+								["-300", 1]
+							],
+							"easing": "round",
+							"scale": 1,
+							"color": ["$", ["var", "color-primary"]],
+							"stroke": 0
+						}
+					],
+					"transform": [
+						["scale",
+							["animate",
+								[0, 2, "holdIn"],
+								[100, 1.8, "holdIn"],
+								[170, 1.2, "holdIn"],
+								[250, 1, "holdIn"]
+							]
+						]
+					]
+				}]
+			]],
+			["null", {
+				"enabled": ["$", ["exists", ["var", "subhead"]]],
+				"start": "50%",
+				"breakpoints": [
+					{
+						"enabled": ["$", ["!", ["exists", ["var", "headline"]]]],
+						"start": 0
+					}
+				]
+			}, [	
+				["text", {
+					"mixins": ["ds-impact-mixins",
+						"text",
+						"text-body"
+					],
+					"height": "96su",
+					"kerning": -0.008,
+					"max-width": "1000nsu",
+					"string": ["$", ["var", "subhead"]],
+					"justify": "center",
+					"align": "center",
+					"stroke-color": ["$", ["var", "color-accent"]],
+					"color": [0, 0, 0, 0],
+					"boundary": "word",
+					"animations": [
+						{
+							"stroke": "3su",
+							"scale": 1.2
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+500", 1],
+								["100%", 0],
+								["-300", 1]
+							],
+							"easing": "round",
+							"scale": 1,
+							"color": ["$", ["var", "color-primary"]],
+							"stroke": 0
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

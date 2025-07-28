@@ -1,0 +1,421 @@
+[
+	"ds-servicenow-nowsell-list",
+	[
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["gain", 0],
+				["motion", "none"]
+			]
+		},
+		{
+			"key": "headline",
+			"display": "Headline",
+			"type": "text",
+			"default": "Add headline",
+			"required": false
+		},
+		{
+			"key": "text-1",
+			"display": "Text 1",
+			"type": "text",
+			"default": "Add text",
+			"required": false
+		},
+		{
+			"key": "text-2",
+			"display": "Text 2",
+			"type": "text",
+			"default": "Add text",
+			"required": false
+		},
+		{
+			"key": "text-3",
+			"display": "Text 3",
+			"type": "text",
+			"default": "Add text",
+			"required": false
+		},
+		{
+			"key": "color-bg",
+			"display": "Background",
+			"type": "color",
+			"default": "#336672",
+			"required": false
+		},
+		["ds-servicenow-mixins",
+			"color-primary",
+			"color-secondary",
+			"color-accent",
+			"font-regular",
+			"font-black"
+		]
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins", "set-su-roi"],
+			"color": ["$", ["var", "color-secondary"]],
+			"breakpoints": [
+				{
+					"enabled": ["$", ["exists", ["var", "asset"]]],
+					"padding": [
+						0,
+						"35roiw",
+						0,
+						0
+					]
+				},
+				{
+					"enabled": ["$", ["and",
+						["lt", ["aspect"], 1],
+						["exists", ["var", "asset"]]
+					]],
+					"padding": [
+						0,
+						0,
+						"35roih",
+						0
+					]
+				}
+			]
+		}, [
+			["user-asset", {
+				"enabled": ["$", ["exists", ["var", "asset"]]],
+				"flex": {
+					"position": "fixed"
+				},
+				"rect": [
+					0,
+					0,
+					"35roiw",
+					"100rh"
+				],
+				"align": "right",
+				"file": ["$", ["var", "asset"]],
+				"justify": "fill center",
+				"mask": {
+					"transform": true
+				},
+				"transform": [
+					["translate",
+						["animate",
+							[0, "100rw", "easeInOutQuad"],
+							["+1000", 0]
+						],
+						0
+					]
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["lt", ["aspect"], 1]],
+						"rect": [
+							0,
+							0,
+							"100rw",
+							"35roih"
+						],
+						"align": "bottom",
+						"transform": [
+							["translate",
+								0,
+								["animate",
+									[0, "100rh", "easeInOutQuad"],
+									["+1000", 0]
+								]
+							]
+						]
+					}
+				]
+			}],
+			["solid", {
+				"flex": {
+					"position": "fixed"
+				},
+				"rect": [
+					0,
+					0,
+					["animate",
+						[0, 0, "easeInOutQuad"],
+						["+500", "25nsu"]
+					],
+					"100rh"
+				],
+				"color": ["$", ["var", "color-accent"]],
+				"align": "right center",
+				"breakpoints": [
+					{
+						"enabled": ["$", ["lt", ["aspect"], 1]],
+						"rect": [
+							0,
+							0,
+							"100rw",
+							["animate",
+								[0, 0, "easeInOutQuad"],
+								["+500", "25nsu"]
+							]
+						],
+						"align": "bottom center"
+					}
+				]
+			}],
+			["null", {
+				"mixins": ["dsx-mixins", "safezone"],
+				"layout": "vertical",
+				"breakpoints": [
+					{
+						"enabled": ["$",
+							["and",
+								["exists", ["var", "asset"]],
+								["gte", ["aspect"], 1]
+							]
+						],
+						"padding": [
+							["$", ["nth", ["safezone"], 0]],
+							"50su",
+							["$", ["nth", ["safezone"], 2]],
+							["$", ["nth", ["safezone"], 3]]
+						]
+					},
+					{
+						"enabled": ["$",
+							["and",
+								["exists", ["var", "asset"]],
+								["lt", ["aspect"], 1]
+							]
+						],
+						"padding": [
+							["$", ["nth", ["safezone"], 0]],
+							["$", ["nth", ["safezone"], 1]],
+							"70su",
+							["$", ["nth", ["safezone"], 3]]
+						]
+					}
+				]
+			}, [
+				["text", {
+					"enabled": ["$", ["exists", ["var", "headline"]]],
+					"flex": {
+						"height": "170su"
+					},
+					"font": ["$", ["var", "font-black"]],
+					"height": "70su",
+					"measure": "letter-size",
+					"color": ["$", ["var", "color-primary"]],
+					"string": ["$", ["var", "headline"]],
+					"animations": [
+						{
+							"translate": [0, "200su"],
+							"mask": [0, 0, 0, 0]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+1000", 1]
+							],
+							"easing": "easeOutQuint",
+							"translate": [0, 0]
+						}
+					]
+				}],
+				["for-each", {
+					"items": ["$", ["compact", ["array",
+						["var", "text-1"],
+						["var", "text-2"],
+						["var", "text-3"]
+					]]],
+					"layout": "horizontal",
+					"align": "center",
+					"gap": "25su",
+					"breakpoints": [
+						{
+							"enabled": ["$", ["lte", ["aspect"], 1]],
+							"layout": "vertical"
+						}
+					]
+				}, [
+					["solid", {
+						"stagger": [
+							["$", ["*", 200, ["var", "index"]]],
+							0
+						],
+						"color": ["$", ["var", "color-bg"]],
+						"radius": "25su",
+						"padding": [
+							"40su",
+							"40su"
+						],
+						"transform": [
+							["translate",
+								0,
+								["animate",
+									[0, "100roih", "easeInOutQuad"],
+									["+1000", 0]
+								]
+							]
+						],
+						"breakpoints": [
+							{
+								"enabled": ["$", ["lt", ["aspect"], 1]],
+								"transform": [
+									["translate",
+										["animate",
+											[0, "100roiw", "easeInOutQuad"],
+											["+1000", 0]
+										],
+										0
+									]
+								]
+							}
+						]
+					}, [
+						["text", {
+							"stagger": [
+								["$", ["+", 600, ["*", 200, ["var", "index"]]]],
+								0
+							],
+							"font": ["$", ["var", "font-black"]],
+							"height": "50su",
+							"measure": "cap-size",
+							"color": ["$", ["var", "color-primary"]],
+							"string": ["$", ["to-string", ["+", ["var", "index"], 1]]],
+							"rect": [
+								0,
+								0,
+								"100rw",
+								"120su"
+							],
+							"justify": "center",
+							"animations": [
+								{
+									"mix": ["animate",
+										[0, 0],
+										["+1000", 1]
+									],
+									"ramp": -1,
+									"opacity": 1
+								}
+							],
+							"breakpoints": [
+								{
+									"enabled": ["$", ["lte", ["aspect"], 1]],
+									"height": "50su",
+									"rect": [
+										0,
+										0,
+										"100su",
+										"100rh"
+									],
+									"justify": "center"
+								}
+							]
+						}, [
+							["solid", {
+								"stagger": [
+									["$", ["+", 600, ["*", 200, ["var", "index"]]]],
+									0
+								],
+								"rect": [
+									0,
+									0,
+									["animate",
+										[0, 0, "easeInOutQuad"],
+										["+1000", "100rw"]
+									],
+									"2su"
+								],
+								"align": "bottom center",
+								"breakpoints": [
+									{
+										"enabled": ["$", ["lte", ["aspect"], 1]],
+										"rect": [
+											0,
+											0,
+											"2su",
+											["animate",
+												[0, 0, "easeInOutQuad"],
+												["+1000", "100rh"]
+											]
+										],
+										"align": "right center"
+									}
+								]
+							}]
+						]],
+						["null", {
+							"padding": [
+								"170su",
+								0,
+								0,
+								0
+							],
+							"breakpoints": [
+								{
+									"enabled": ["$", ["lte", ["aspect"], 1]],
+									"padding": [
+										0,
+										0,
+										0,
+										"140su"
+									]
+								}
+							]
+						}, [
+							["text", {
+								"stagger": [
+									["$", ["+", 800, ["*", 200, ["var", "index"]]]],
+									0
+								],
+								"font": ["$", ["var", "font-regular"]],
+								"height": "36su",
+								"measure": "letter-size",
+								"color": ["$", ["var", "color-primary"]],
+								"string": ["$", ["var", "item"]],
+								"leading": "10su",
+								"animations": [
+									{
+										"translate": [
+											0,
+											"100su"
+										]
+									},
+									{
+										"mix": ["animate",
+											[0, 0],
+											["+1000", 1]
+										],
+										"easing": "easeOutQuad",
+										"opacity": 1,
+										"translate": [0, 0]
+									}
+								]
+							}]
+						]]
+					]]
+				]],
+				["asset", {
+					"stagger": [600, 0],
+					"flex": {
+						"height": "100nsu"
+					},
+					"file": "./media/ds-servicenow-nowsell-logo-animated-large.json",
+					"justify": "fit bottom left",
+					"lottie-driver": 1,
+					"rect": [
+						0,
+						0,
+						"200nsu",
+						"100nsu"
+					],
+					"opacity": ["animate",
+						[0, 0],
+						["+500", 1]
+					]
+				}]
+			]]
+		]]
+	]
+]

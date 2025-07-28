@@ -1,0 +1,93 @@
+[
+	"ds-amp-quote",
+	[
+		["dsx-mixins", ["quote"]],
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": "#EBEBEB",
+			"required": false
+		},
+		{
+			"key": "color-2",
+			"display": "Color 2",
+			"type": "color",
+			"default": "#1E7AFA",
+			"required": false
+		},
+		{
+			"key": "color-3",
+			"display": "Color 3",
+			"type": "color",
+			"default": "#0F0D0C",
+			"required": false
+		},
+		["dsx-mixins", ["boilerplate"]]
+	],
+	[
+		["dsx-background", {
+			"enabled": ["$", ["exists", ["var", "background"]]],
+			"color": ["$", ["var", "background"]]
+		}],
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["solid", {
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"color": ["$", ["var", "color-3"]],
+				"padding": [
+					"2su",
+					"10su",
+					"2su",
+					"10su"
+				]
+			}, [
+				["text", {
+					"mixins": ["ds-amp-mixins", ["headline-2"]],
+					"string": ["$", ["concat", "\"", ["var", "quote"], "\""]],
+					"justify": ["$", ["var", "#align"]]
+				}]
+			]],
+			["solid", {
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"color": ["$", ["var", "color-2"]],
+				"padding": [
+					"2su",
+					"10su",
+					"2su",
+					"10su"
+				]
+			}, [
+				["text", {
+					"mixins": ["ds-amp-mixins", ["text-1"]],
+					"string": ["$", ["var", "detail-1"]],
+					"color": ["$", ["var", "color-1"]],
+					"justify": ["$", ["var", "#align"]],
+					"boundary": "line"
+				}]
+			]],
+			["solid", {
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"color": ["$", ["var", "color-2"]],
+				"padding": [
+					"2su",
+					"10su",
+					"2su",
+					"10su"
+				]
+			}, [
+				["text", {
+					"mixins": ["ds-amp-mixins", ["text-2"]],
+					"string": ["$", ["var", "detail-2"]],
+					"color": ["$", ["var", "color-1"]],
+					"justify": ["$", ["var", "#align"]],
+					"boundary": "line"
+				}]
+			]]
+		]]
+	]
+]

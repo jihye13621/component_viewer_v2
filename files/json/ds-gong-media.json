@@ -1,0 +1,95 @@
+[
+	"ds-gong-media",
+	[
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["gain", 0],
+				["justify", "fill"]
+			],
+			"script": ["$", ["if",
+				["exists", ["var", "asset"]],
+				["var", "asset"],
+				"./media/image-wide.jpg"	
+			]]
+		},
+		["ds-gong-mixins",
+			"theme",	
+			"color-mid-purple",
+			"color-dark-purple"
+		],
+		{
+			"key": "do-background",
+			"display": "Show Background",
+			"type": "bool",
+			"default": true,
+			"required": false
+		}
+	],
+	[
+		["solid", {
+			"skip": ["$", ["not", ["var", "do-background"]]],
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			],
+			"color": ["$", ["var", "color-mid-purple"]],
+			"breakpoints": [
+				{
+					"enabled": ["$", ["eq", ["var", "theme"], "theme-2"]],
+					"color": ["$", ["var", "color-white"]]
+				},
+				{
+					"enabled": ["$", ["eq", ["var", "theme"], "theme-3"]],
+					"color": ["linear-gradient",
+						-0.1,
+						[0, ["$", ["var", "color-mid-purple"]]],
+						[1, ["$", ["var", "color-dark-purple"]]]
+					]
+				}
+			]
+		}, [
+			["user-asset", {
+				"file": ["$", ["var", "asset"]],
+				"justify": "fill center",
+				"opacity": ["animate",
+					[0, 0],
+					["+350", 1, "easeOutQuad"],
+					["100%", 0],
+					["-350", 1, "easeInQuad"]
+				],
+				"tags": ["b-roll"],
+				"mask": {
+					"radius": "50su",
+					"transform": true,
+					"padding": [
+						["animate",
+							[0, "50rh", "easeOutCubic"],
+							["+600", 0],
+							["100%", "30rh"],
+							["-500", 0, "easeInCubic"]
+						],
+						0,
+						0,
+						0
+					]
+				},
+				"transform": [
+					["translate",
+						0,
+						["animate",
+							[0, "20rh", "easeOutCubic"],
+							["+500", 0],
+							["100%", "12rh"],
+							["-500", 0, "easeInCubic"]
+						]
+					]
+				]
+			}]
+		]]
+	]
+]

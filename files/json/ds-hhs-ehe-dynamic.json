@@ -1,0 +1,101 @@
+[
+	"ds-hhs-ehe-dynamic",
+	[
+		["dsx-mixins",
+			"captions"
+		],
+		{
+			"key": "color-white",
+			"display": "Color",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		},
+		{
+			"key": "color-black",
+			"display": "Color",
+			"type": "color",
+			"default": "#000000",
+			"required": false
+		},
+		{
+			"key": "color-yellow",
+			"display": "Color",
+			"type": "color",
+			"default": "#FDE338",
+			"required": false
+		},
+		["ds-hhs-ehe-mixins",
+			"font-bold"
+		],
+		["dsx-mixins",
+			"boilerplate-captions"
+		],
+		{
+			"key": "max-words",
+			"display": "Words",
+			"type": "number",
+			"default": 4,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 1,
+				"minimum": 1,
+				"maximum": 12
+			}
+		},
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [2, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["shadow", {
+				"max-width": "800nsu",
+				"align": ["$", ["var", "#align"]],
+				"color": ["$", ["var", "color-black"]],
+				"offset": ["3su", "3su"]
+			}, [
+				["text", {
+					"mixins": ["ds-hhs-ehe-mixins",
+						"text"
+					],
+					"font": ["$", ["var", "font-bold"]],
+					"height": "100su",
+					"kerning": 0.015,
+					"justify": ["$", ["var", "#align"]],
+					"transcript": ["$",
+						["transcript-split",
+							["var", "transcript"],
+							["var", "max-words"]
+						]
+					],
+					"color": ["$", ["var", "color-white"]],
+					"stroke-color": ["$", ["var", "color-black"]],
+					"stroke": "6su",
+					"animations": [
+						{
+							"mix": [[0, 0], [0.00001, 1]],
+							"color": ["$", ["var", "color-yellow"]]
+						},
+						{
+							"mix": [[0.99999, 0], [1.0, 1]],
+							"color": ["$", ["var", "color-white"]]
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

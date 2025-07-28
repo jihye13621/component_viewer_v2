@@ -1,0 +1,332 @@
+[
+	"ds-aeg-artist-2",
+	[
+		{
+			"key": "band",
+			"display": "Band",
+			"type": "textarea",
+			"default": "Band Name",
+			"required": false
+		},
+		{
+			"key": "date",
+			"display": "Date",
+			"type": "text",
+			"default": "Thursday, June 19",
+			"required": false
+		},
+		{
+			"key": "location",
+			"display": "Location",
+			"type": "text",
+			"default": "Main Stage",
+			"required": false
+		},
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [],
+			"script": ["$", ["if",
+				["exists", ["var", "asset"]],
+				["var", "asset"],
+				"./media/image-wide.jpg"	
+			]]
+		},
+		{
+			"key": "swap-sides",
+			"display": "Swap Sides",
+			"type": "bool",
+			"default": false,
+			"required": false
+		},
+		{
+			"key": "y-pos",
+			"display": "Y Position",
+			"type": "number",
+			"default": 10,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 0.05,
+				"minimum": 0.0,
+				"maximum": 100.0
+			}
+		},
+		["ds-aeg-mixins",
+			"color-white",
+			"color-black",
+			"font-medium",
+			"font-bold"
+		]
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su"
+			]
+		}, [
+			["null", {
+				"layout": "stacked",
+				"align": "top right",
+				"units": {
+					"zone": "1rw"
+				},
+				"transform": [
+					["translate",
+						0,
+						["$", ["*",
+							["height"],
+							["/",
+								["var", "y-pos"],
+								100
+							]
+						]]
+					]
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["var", "swap-sides"]],
+						"align": "top left"
+					}
+				]
+			}, [
+				["null", {
+					"enabled": ["$", ["exists", ["var", "band"]]],
+					"mask": {},
+					"layout": "stacked",
+					"align": ["$", ["if",
+						["var", "swap-sides"],
+						"top left",
+						"top right"
+					]]
+				}, [
+					["solid", {
+						"mask": {
+							"transform": true
+						},
+						"color": ["$", ["var", "color-white"]],
+						"stroke": "4px",
+						"stroke-color": ["$", ["var", "color-black"]],
+						"align": ["$", ["if",
+							["var", "swap-sides"],
+							"left",
+							"right"
+						]],
+						"layout": "horizontal packed match",
+						"padding": [
+							"4su",
+							"4su"
+						],
+						"transform": [
+							["translate",
+								["animate",
+									[0, "100zone", "easeOutQuad"],
+									["+700", 0],
+									["50%", "-100zone"],
+									["-600", 0, "easeInQuad"]
+								],
+								0
+							]
+						]
+					}, [
+						["null", {
+							"flex": {
+								"shrink": true,
+								"width": "200su"
+							},
+							"layout": "stacked",
+							"align": "center"
+						}, [
+							["user-asset", {
+								"file": ["$", ["var", "asset"]],
+								"justify": "fill center",
+								"mask": {
+									"transform": true
+								},
+								"transform": [
+									["translate",
+										["animate",
+											[0, "50zone", "easeOutQuad"],
+											["+700", 0]
+										],
+										0
+									]
+								]
+							}]
+						]],
+						["null", {
+							"layout": "stacked",
+							"align": "center",
+							"padding": [
+								"40su",
+								"40su"
+							],
+							"transform": [
+								["translate",
+									["animate",
+										[0, "50zone", "easeOutQuad"],
+										["+1000", 0]
+									],
+									0
+								]
+							]
+						}, [
+							["text", {
+								"font": ["$", ["var", "font-bold"]],
+								"height": "80su",
+								"measure": "letter-size",
+								"color": ["$", ["var", "color-black"]],
+								"string": ["$", ["var", "band"]],
+								"align": "left center",
+								"justify": "left"
+							}]
+						]]
+					]]
+				]],
+				["null", {
+					"layout": "vertical packed",
+					"align": ["$", ["if",
+						["var", "swap-sides"],
+						"top left",
+						"top right"
+					]]
+				}, [
+					["null", {
+						"layout": "vertical packed",
+						"align": "top right",
+						"mask": {
+							"padding": [
+								0,
+								0,
+								0,
+								"-100su"
+							]
+						},
+						"breakpoints": [
+							{
+								"enabled": ["$", ["var", "swap-sides"]],
+								"mask": {
+									"padding": [
+										0,
+										"-100su",
+										0,
+										0
+									]
+								}
+							}
+						]
+					}, [
+						["null", {
+							"enabled": ["$", ["exists", ["var", "date"]]],
+							"layout": "vertical packed",
+							"align": "left",
+							"transform": [
+								["translate",
+									["$", ["not", ["var", "swap-sides"]]],
+									"-100su",
+									0
+								],
+								["translate",
+									["animate",
+										["50%", "-100zone", "easeOutQuad"],
+										["+700", 0],
+										["100%", "100zone"],
+										["-600", 0, "easeInQuad"]
+									],
+									0
+								]
+							]
+						}, [
+							["solid", {
+								"color": ["$", ["var", "color-white"]],
+								"stroke": "4px",
+								"stroke-color": ["$", ["var", "color-black"]],
+								"align": "center",
+								"layout": "stacked",
+								"padding": [
+									"20su",
+									"20su"
+								]
+							}, [
+								["text", {
+									"font": ["$", ["var", "font-medium"]],
+									"height": "30su",
+									"measure": "cap-size",
+									"color": ["$", ["var", "color-black"]],
+									"case": "uppercase",
+									"string": ["$", ["var", "date"]],
+									"align": "left center",
+									"justify": "center",
+									"transform": [
+										["translate",
+											["animate",
+												["50%", "-50zone", "easeOutQuad"],
+												["+700", 0]
+											],
+											0
+										]
+									]
+								}]
+							]]
+						]],
+						["null", {
+							"enabled": ["$", ["exists", ["var", "location"]]],
+							"layout": "vertical packed",
+							"align": "right",
+							"transform": [
+								["translate",
+									["$", ["var", "swap-sides"]],
+									"100su",
+									0
+								],
+								["translate",
+									["animate",
+										["50%", "100zone", "easeOutQuad"],
+										["+700", 0],
+										["100%", "-100zone"],
+										["-600", 0, "easeInQuad"]
+									],
+									0
+								]
+							]
+						}, [
+							["solid", {
+								"color": ["$", ["var", "color-black"]],
+								"align": "center",
+								"layout": "stacked",
+								"padding": [
+									"20su",
+									"20su"
+								]
+							}, [
+								["text", {
+									"font": ["$", ["var", "font-medium"]],
+									"height": "30su",
+									"measure": "cap-size",
+									"color": ["$", ["var", "color-white"]],
+									"case": "uppercase",
+									"string": ["$", ["var", "location"]],
+									"align": "left center",
+									"justify": "center",
+									"transform": [
+										["translate",
+											["animate",
+												["50%", "50zone", "easeOutQuad"],
+												["+700", 0]
+											],
+											0
+										]
+									]
+								}]
+							]]
+						]]
+					]]
+				]]
+			]]
+		]]
+	]
+]

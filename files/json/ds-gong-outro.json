@@ -1,0 +1,24 @@
+[
+	"ds-gong-outro",
+	[
+	],
+	[
+		["solid", {
+			"color": "#3F0075",
+			"opacity": ["animate",
+				["100%", null],
+				["-100", 0],
+				["-400", 1]
+			]
+		}, [
+			["asset", {
+				"file": "./media/ds-gong-endcard.mp4",
+				"justify": "fit center",
+				"hold": true,
+				"cuts": [
+					[3200, 10000]
+				]
+			}]
+		]]
+	]
+]

@@ -1,0 +1,160 @@
+[
+	"ds-salesforce-intro",
+	[
+		{
+			"key": "#mask-size",
+			"display": "Mask Size",
+			"type": "number",
+			"default": 0,
+			"required": false,
+			"private": true,
+			"script": ["$",
+				["*",
+					["max",
+						["width"],
+						["height"]
+					],
+					1.7
+				]
+			]
+		}
+	],
+	[
+		["null", {
+			"mask": {
+				"rect": [
+					["animate",
+						["100%", ["$",
+							["/",
+								["-",
+									["width"],
+									["var", "#mask-size"]
+								],
+								2
+							]
+						]],
+						["-500", ["$", ["/", ["width"], 2]], "easeInQuad"]
+					],
+					["animate",
+						["100%", ["$",
+							["-",
+								["/",
+									["-",
+										["height"],
+										["var", "#mask-size"]
+									],
+									2
+								],
+								["*", ["height"], 0.3]
+							]
+						]],
+						["-500", ["$",
+							["-",
+								["/", ["height"], 2],
+								["*", ["height"], 0.3]
+							]
+						], "easeInQuad"]
+					],
+					["animate",
+						["100%", ["$", ["var", "#mask-size"]]],
+						["-500", 0, "easeInQuad"]
+					],
+					["animate",
+						["100%", ["$", ["var", "#mask-size"]]],
+						["-500", 0, "easeInQuad"]
+					]
+				],
+				"radius": 10000,
+				"invert": true
+			}
+		}, [
+			["asset", {
+				"file": "./media/ds-salesforce-bg.jpg",
+				"justify": "fill center",
+				"transform": [
+					["scale",
+						1.1
+					],
+					["translate",
+						["animate",
+							[0, "5rw"],
+							["100%", "-5rw"]
+						],
+						0
+					]
+				]
+			}],
+			["null", {
+				"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+			}, [
+				["asset", {
+					"file": "./media/ds-salesforce-logo.svg",
+					"justify": "fit center",
+					"align": "center",
+					"rect": [
+						0,
+						0,
+						"600su",
+						"600su"
+					],
+					"transform": [
+						["scale",
+							["animate",
+								[0, 0, "easeOutBack"],
+								["+500", 1]
+							]
+						]
+					]
+				}],
+				["solid", {
+					"stagger": [0, -500],
+					"rect": [
+						0,
+						0,
+						["$", ["var", "#mask-size"]],
+						["$", ["var", "#mask-size"]]
+					],
+					"color": "#90D0FE",
+					"radius": 10000,
+					"align": "center",
+					"transform": [
+						["scale",
+							["animate",
+								["100%", 1],
+								["-500", 0, "easeInQuad"]
+							]
+						],
+						["translate",
+							"15rw",
+							"5rh"
+						]
+					]
+				}],
+				["solid", {
+					"stagger": [0, -250],
+					"rect": [
+						0,
+						0,
+						["$", ["var", "#mask-size"]],
+						["$", ["var", "#mask-size"]]
+					],
+					"color": "#0D9DDA",
+					"radius": 10000,
+					"align": "center",
+					"transform": [
+						["scale",
+							["animate",
+								["100%", 1],
+								["-500", 0, "easeInQuad"]
+							]
+						],
+						["translate",
+							"-15rw",
+							"5rh"
+						]
+					]
+				}]
+			]]
+		]]
+	]
+]

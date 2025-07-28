@@ -1,0 +1,32 @@
+{
+	"params": {
+		"color-black": {
+			"key": "color-black",
+			"display": "Black",
+			"type": "color",
+			"default": "#404040",
+			"required": false
+		},
+		"color-blue": {
+			"key": "color-blue",
+			"display": "Blue",
+			"type": "color",
+			"default": "#4563BE",
+			"required": false
+		},
+		"font-regular": {
+			"key": "font-regular",
+			"display": "Font Regular",
+			"type": "string",
+			"default": "./media/MarkPro.ttf",
+			"requird": false
+		},
+		"font-medium": {
+			"key": "font-medium",
+			"display": "Font Medium",
+			"type": "string",
+			"default": "./media/MarkPro-Medium.ttf",
+			"requird": false
+		}
+	}
+}

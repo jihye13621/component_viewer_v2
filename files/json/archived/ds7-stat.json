@@ -1,0 +1,233 @@
+[
+	"ds7-stat",
+	[
+		{
+			"key": "stat",
+			"display": "Stat",
+			"type": "text",
+			"default": "Add a statistic",
+			"required": false
+		},
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "text",
+			"default": "Optional statistic details",
+			"required": false
+		},
+		{
+			"key": "font-1",
+			"display": "Style",
+			"type": "fontstyle",
+			"default": {
+				"font": "./media/CooperHewitt-HeavyItalic.otf",
+				"height": 130,
+				"leading": -0.1
+			},
+			"required": false,
+			"script": ["$",
+				["key-set",
+					["var", "font-1"],
+					"height",
+					["round", ["*", ["var", "size"], ["var", "font-1", "height"]]]
+				]
+			]
+		},
+		{
+			"key": "font-2",
+			"display": "Style",
+			"type": "fontstyle",
+			"default": {
+				"font": "./media/CooperHewitt-Bold.otf",
+				"height": 52
+			},
+			"required": false,
+			"script": ["$",
+				["key-set",
+					["var", "font-2"],
+					"height",
+					["round", ["*", ["var", "size"], ["var", "font-2", "height"]]]
+				]
+			]
+		},
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": "#E03467",
+			"required": false
+		},
+		{
+			"key": "color-2",
+			"display": "Color 2",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		},
+		{
+			"key": "background",
+			"display": "Background",
+			"type": "color",
+			"default": null,
+			"required": false
+		},
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": 2,
+			"required": false
+		},
+		{
+			"key": "size",
+			"display": "Size",
+			"type": "number",
+			"default": 1.0,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"step": 0.05,
+				"minimum": 0.5,
+				"maximum": 1.5
+			}
+		},
+		{
+			"key": "#align",
+			"type": "string",
+			"default": "center",
+			"required": false,
+			"private": true,
+			"script": ["$", ["switch", ["var", "position"], {
+				"1": "bottom left",
+				"2": "bottom center",
+				"3": "bottom right",
+				"4": "left",
+				"5": "center",
+				"6": "right",
+				"7": "top left",
+				"8": "top center",
+				"9": "top right",
+				"_": "center"
+			}]]
+		}
+	],
+	[
+		["dsx-background", {
+			"enabled": ["$", ["exists", ["var", "background"]]],
+			"color": ["$", ["var", "background"]]
+		}],
+		["dsx-padding", {
+			"position": ["$", ["var", "position"]]
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"gap": ["$", ["*", 0.0, ["var", "font-1", "height"]]],
+				"transform": [
+					["translate",
+						0,
+						["animate",
+							[0, 0, "easeInOutQuad"],
+							[1000, ["$", ["*", 0.2, ["var", "font-1", "height"]]]],
+							"boomerang"
+						]
+					],
+					["scale",
+						["animate",
+							[1000, 0.9, "easeInOutQuad"],
+							["+300", 1],
+							["100%", 0],
+							["-300", 1, "easeInOutQuad"]
+						]
+					],
+					["rotate",
+						["animate",
+							[1000, 0, "easeInOutQuad"],
+							["+300", -0.008]
+						]
+					]
+				]
+			}, [
+				["text", {
+					"justify": ["$", ["var", "#align"]],
+					"string": ["$", ["var", "stat"]],
+					"color": ["$", ["var", "color-2"]],
+					"style": ["$", ["var", "font-1"]],
+					"stroke-color": ["$", ["var", "color-1"]],
+					"stroke": ["$", ["*", 0.15, ["var", "font-1", "height"]]],
+					"boundary": "word",
+					"animations": [
+						{
+							"translate": [
+								0,
+								["$", ["*", 1, ["var", "font-1", "height"]]]
+							]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+500", 1]
+							],
+							"ramp": 1.0,
+							"opacity": 1,
+							"easing": "easeOutBack",
+							"translate": [
+								0,
+								0
+							]
+						}
+					]
+				}],
+				["solid", {
+					"layout": "vertical packed",
+					"mask": {
+						"padding": [
+							["animate",
+								[200, "100rh", "easeInOutCubic"],
+								["+300", 0]
+							],
+							0,
+							0,
+							0
+						]
+					},
+					"color": ["$", ["var", "color-1"]],
+					"padding": [
+						["$", ["*", 0.2, ["var", "font-2", "height"]]],
+						["$", ["*", 0.2, ["var", "font-2", "height"]]],
+						["$", ["*", 0.2, ["var", "font-2", "height"]]],
+						["$", ["*", 0.2, ["var", "font-2", "height"]]]
+					]
+				}, [
+					["text", {
+						"justify": ["$", ["var", "#align"]],
+						"string": ["$", ["var", "text"]],
+						"color": ["$", ["var", "color-2"]],
+						"style": ["$", ["var", "font-2"]],
+						"boundary": "word",
+						"animations": [
+							{
+								"translate": [
+									0,
+									["$", ["*", 1, ["var", "font-2", "height"]]]
+								]
+							},
+							{
+								"mix": ["animate",
+									[200, 0],
+									["+700", 1]
+								],
+								"ramp": 1.0,
+								"opacity": 1,
+								"translate": [
+									0,
+									0
+								]
+							}
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

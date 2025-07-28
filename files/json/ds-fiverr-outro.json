@@ -1,0 +1,43 @@
+[
+	"ds-fiverr-outro",
+	[
+		["ds-fiverr-mixins",
+			"bg-options",
+			"bg-options-solid",
+			"color-white"
+		]
+	],
+	[
+		["ds-fiverr-bg", {
+			"palette": ["$", ["var", "palette"]],
+			"solid-color": ["$", ["var", "solid-color"]],
+			"swap-colors": ["$", ["var", "swap-colors"]],
+			"blur": ["$", ["var", "blur"]],
+			"shape": ["$", ["var", "shape"]]
+		}],
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			]
+		}, [
+			["asset", {
+				"file": "./media/ds-fiverr-outro-logo.json",
+				"justify": "fit center",
+				"lottie-driver": ["animate",
+					[0, 0],
+					[
+						["$", ["to-relative-string", ["dur", "./media/ds-paycom-logo-animated.json"]]],
+						1
+					]
+				],
+				"effect": [
+					["false-color", {
+						"color-1": ["$", ["var", "color-white"]],
+						"color-2": ["$", ["var", "color-white"]]
+					}]
+				]
+			}]
+		]]
+	]
+]

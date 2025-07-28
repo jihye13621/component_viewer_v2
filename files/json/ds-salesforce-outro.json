@@ -1,0 +1,464 @@
+[
+	"ds-salesforce-outro",
+	[
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "textarea",
+			"default": "salesforce.com",
+			"required": false
+		},
+		["ds-salesforce-mixins",
+			"font-headline",
+			"font-body"
+		],
+		{
+			"key": "#mask-size",
+			"display": "Mask Size",
+			"type": "number",
+			"default": 0,
+			"required": false,
+			"private": true,
+			"script": ["$",
+				["*",
+					["max",
+						["width"],
+						["height"]
+					],
+					1.7
+				]
+			]
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su"]]
+		}, [
+			["solid", {
+				"stagger": [0, 0],
+				"rect": [
+					0,
+					0,
+					["$", ["var", "#mask-size"]],
+					["$", ["var", "#mask-size"]]
+				],
+				"color": "#90D0FE",
+				"radius": 10000,
+				"align": "center",
+				"transform": [
+					["scale",
+						["animate",
+							[0, 0, "easeInQuad"],
+							["+700", 1.2]
+						]
+					],
+					["translate",
+						"15rw",
+						"5rh"
+					]
+				]
+			}],
+			["solid", {
+				"stagger": [250, 0],
+				"rect": [
+					0,
+					0,
+					["$", ["var", "#mask-size"]],
+					["$", ["var", "#mask-size"]]
+				],
+				"color": "#0D9DDA",
+				"radius": 10000,
+				"align": "center",
+				"transform": [
+					["scale",
+						["animate",
+							[0, 0, "easeInQuad"],
+							["+700", 1.2]
+						]
+					],
+					["translate",
+						"-15rw",
+						"5rh"
+					]
+				]
+			}],
+			["null", {
+				"stagger": [500, 0],
+				"mask": {
+					"rect": [
+						["animate",
+							[0, ["$", ["/", ["width"], 2]], "easeInQuad"],
+							["+500", ["$",
+								["/",
+									["-",
+										["width"],
+										["var", "#mask-size"]
+									],
+									2
+								]
+							]]
+						],
+						["animate",
+							[0, ["$",
+								["-",
+									["/",
+										["height"],
+										2
+									],
+									["*", ["height"], 0.3]
+								]
+							], "easeInQuad"],
+							["+500", ["$",
+								["-",
+									["/",
+										["-",
+											["height"],
+											["var", "#mask-size"]
+										],
+										2
+									],
+									["*", ["height"], 0.3]
+								]
+							]]
+						],
+						["animate",
+							[0, 0, "easeInQuad"],
+							["+500", ["$", ["var", "#mask-size"]]]
+						],
+						["animate",
+							[0, 0, "easeInQuad"],
+							["+500", ["$", ["var", "#mask-size"]]]
+						]
+					],
+					"radius": 10000
+				}
+			}, [
+				["asset", {
+					"file": "./media/ds-salesforce-bg.jpg",
+					"justify": "fill center",
+					"transform": [
+						["scale",
+							1.1
+						],
+						["translate",
+							["animate",
+								[0, "5rw"],
+								["100%", "-5rw"]
+							],
+							0
+						]
+					]
+				}],
+				["null", {
+				}, [
+					["asset", {
+						"file": "./media/ds-salesforce-astro.mov",
+						"justify": "fit bottom right",
+						"align": "bottom right",
+						"hold": true,
+						"rect": [
+							0,
+							0,
+							"1700su",
+							"1000su"
+						],
+						"transform": [
+							["translate",
+								"400su",
+								0
+							]
+						],
+						"breakpoints": [
+							{
+								"enabled": ["$", ["lt", ["aspect"], 1]],
+								"rect": [
+									0,
+									0,
+									"1500su",
+									"1000su"
+								]
+							}
+						]
+					}]
+				]],
+				["null", {
+					"mixins": ["dsx-mixins", "safezone"]
+				}, [
+					["null", {
+						"layout": "vertical packed",
+						"align": "center",
+						"gap": "80su",
+						"breakpoints": [
+							{
+								"enabled": ["$",
+									["and",
+										["lte", ["aspect"], 1],
+										["gt", ["aspect"], 0.9]
+									]
+								],
+								"align": "top center",
+								"transform": [
+									["scale", 0.9],
+									["translate",
+										0,
+										"100su"
+									]
+								]
+							},
+							{
+								"enabled": ["$",
+									["and",
+										["lte", ["aspect"], 0.9],
+										["gt", ["aspect"], 0.7]
+									]
+								],
+								"align": "top center",
+								"transform": [
+									["scale", 0.8],
+									["translate",
+										0,
+										"100su"
+									]
+								]
+							},
+							{
+								"enabled": ["$",
+									["and",
+										["lte", ["aspect"], 0.7],
+										["gt", ["aspect"], 0.6]
+									]
+								],
+								"align": "center",
+								"transform": [
+									["scale", 0.8],
+									["translate",
+										0,
+										"-100su"
+									]
+								]
+							}
+						]
+					}, [
+						["asset", {
+							"flex": {
+								"weight": 2
+							},
+							"stagger": [750, 0],
+							"max-height": "400su",
+							"file": "./media/ds-salesforce-logo.svg",
+							"justify": "fit center",
+							"align": "center",
+							"transform": [
+								["scale",
+									["animate",
+										[0, 0, "easeOutBack"],
+										["+500", 1]
+									]
+								]
+							]
+						}, [
+							["asset", {
+								"stagger": [800, 0],
+								"file": "./media/ds-salesforce-bird.mov",
+								"justify": "fit bottom center",
+								"loop": true,
+								"rect": [
+									"-250su",
+									"-150su",
+									"300su",
+									"300su"
+								],
+								"opacity": ["animate",
+									[200, 0, "holdIn"],
+									["+1", 1]
+								],
+								"transform": [
+									["rotate",
+										["animate",
+											[0, 0, "easeInOutQuad"],
+											["+500", -0.025, "easeInOutQuad"],
+											["+500", 0],
+											"loop"
+										]
+									],
+									["scale",
+										-1,
+										1
+									],
+									["translate",
+										["animate",
+											[0, "-20cw", "easeInOutQuad"],
+											["+1500", 0]
+										],
+										["animate",
+											[0, "160ch", "easeOutQuad"],
+											["+1000", "-10ch", "easeInOutQuad"],
+											["+500", 0]
+										]
+									]
+								]
+							}]
+						]],
+						["null", {
+							"enabled": ["$", ["exists", ["var", "text"]]],
+							"layout": "vertical packed",
+							"align": "center",
+							"max-width": "1000su"
+						}, [
+							["text", {
+								"stagger": [1000, 0],
+								"mixins": ["ds-salesforce-mixins",
+									"text",
+									"text-headline"
+								],
+								"string": ["$", ["var", "text"]],
+								"justify": "top center",
+								"color": "#13326A",
+								"boundary": "word",
+								"animations": [
+									{
+										"translate": [
+											0,
+											"100su"
+										]
+									},
+									{
+										"mix": ["animate",
+											[0, 0],
+											["+1000", 1]
+										],
+										"easing": "easeOutQuad",
+										"ramp": 0.5,
+										"translate": [0, 0],
+										"opacity": 1
+									}
+								]
+							}]
+						]]
+					]]
+				]]
+			]],
+			["warp", {
+				"stagger": [400, 0],
+				"amount": ["animate",
+					[0, 0.1, "easeInOutQuad"],
+					["+400", -0.03, "easeInOutQuad"],
+					["+400", 0]
+				]
+			}, [
+				["asset", {
+					"file": "./media/ds-salesforce-bushes1.png",
+					"justify": "fit bottom",
+					"align": "bottom left",
+					"rect": [
+						0,
+						0,
+						"600su",
+						"600su"
+					],
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[300, "600su", "easeOutQuad"],
+								["+300", 0]
+							]
+						]
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["lt", ["aspect"], 1]],
+							"rect": [
+								0,
+								0,
+								"400su",
+								"400su"
+							]
+						}
+					]
+				}]
+			]],
+			["warp", {
+				"stagger": [400, 0],
+				"amount": ["animate",
+					[0, 0, "easeInOutQuad"],
+					["+300", 0.03, "easeInOutQuad"],
+					["+300", -0.02, "easeInOutQuad"],
+					["+300", 0]
+				]
+			}, [
+				["asset", {
+					"file": "./media/ds-salesforce-bushes3.png",
+					"justify": "fit bottom",
+					"align": "bottom left",
+					"rect": [
+						0,
+						0,
+						"600su",
+						"200su"
+					],
+					"transform": [
+						["translate",
+							"120su",
+							["animate",
+								[400, "200su", "easeOutQuad"],
+								["+300", 0]
+							]
+						]
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["lt", ["aspect"], 1]],
+							"rect": [
+								0,
+								0,
+								"500su",
+								"150su"
+							]
+						}
+					]
+				}]
+			]],
+			["warp", {
+				"stagger": [600, 0],
+				"amount": ["animate",
+					[0, 0, "easeInOutQuad"],
+					["+300", -0.05, "easeInOutQuad"],
+					["+300", 0]
+				]
+			}, [
+				["asset", {
+					"file": "./media/ds-salesforce-bushes2.png",
+					"justify": "fit bottom",
+					"align": "bottom right",
+					"rect": [
+						0,
+						0,
+						"700su",
+						"600su"
+					],
+					"transform": [
+						["translate",
+							"100su",
+							["animate",
+								[500, "600su", "easeOutQuad"],
+								["+400", 0]
+							]
+						]
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["lt", ["aspect"], 1]],
+							"rect": [
+								0,
+								0,
+								"500su",
+								"300su"
+							]
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

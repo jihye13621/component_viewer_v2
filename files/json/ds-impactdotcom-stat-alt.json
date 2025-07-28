@@ -1,0 +1,318 @@
+[
+	"ds-impactdotcom-stat-alt",
+	[
+		{
+			"key": "headline",
+			"display": "Headline",
+			"type": "text",
+			"default": "BUT, they faced challenges that prevented growth",
+			"required": false
+		},
+		{
+			"key": "highlight",
+			"display": "Highlight",
+			"type": "number",
+			"default": 2,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 1,
+				"minimum": 0,
+				"maximum": 10
+			}
+		},
+		{
+			"key": "stat-1",
+			"display": "Stat 1",
+			"type": "text",
+			"default": "stat 1", 
+			"required": false
+		},
+		{
+			"key": "stat-1-detail",
+			"display": "Detail",
+			"type": "text",
+			"default": "detail 1", 
+			"required": false
+		},
+		{
+			"key": "stat-2",
+			"display": "Stat 2",
+			"type": "text",
+			"default": "stat 2", 
+			"required": false
+		},
+		{
+			"key": "stat-2-detail",
+			"display": "Detail",
+			"type": "text",
+			"default": "detail 2", 
+			"required": false
+		},
+		{
+			"key": "stat-3",
+			"display": "Stat 3",
+			"type": "text",
+			"default": "stat 3", 
+			"required": false
+		},
+		{
+			"key": "stat-3-detail",
+			"display": "Detail",
+			"type": "text",
+			"default": "detail 3", 
+			"required": false
+		},
+		["ds-impactdotcom-mixins",
+			"color-fg",
+			"color-bg",
+			"color-pink",
+			"font-headline",
+			"font-body"
+		],
+		{
+			"key": "#stats",
+			"type": "object",
+			"default": [], 
+			"required": false,
+			"script": ["$",
+				["compact",
+					["array",
+						["if",
+							["exists", ["var", "stat-3"]],
+							["array", ["var", "stat-3"], ["var", "stat-3-detail"]],
+							null
+						],
+						["if",
+							["exists", ["var", "stat-2"]],
+							["array", ["var", "stat-2"], ["var", "stat-2-detail"]],
+							null
+						],
+						["if",
+							["exists", ["var", "stat-1"]],
+							["array", ["var", "stat-1"], ["var", "stat-1-detail"]],
+							null
+						]
+					]
+				]
+			]
+		}
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins", ["set-su", "safezone"]],
+			"color": ["$", ["var", "color-bg"]]
+		}, [
+			["null", {
+				"layout": "vertical",
+				"align": "center",
+				"gap": "100su",
+				"transform": [
+					["translate",
+						0,
+						["animate",
+							["100%", "-100ch"],
+							["-1000", 0, "easeInQuint"]
+						]
+					],
+					["scale",
+						["animate",
+							[0, 1],
+							["100%", 0.95]
+						]
+					]
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["lte", ["aspect"], 0.6]],
+						"max-height": "1000su"
+					}
+				]
+			}, [
+				["null", {
+					"layout": "vertical",
+					"align": "top center",
+					"transform": [
+						["translate",
+							0,
+							"50rh"
+						]
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["gt", ["length", ["var", "#stats"]], 0]],
+							"transform": [
+								["translate",
+									0,
+									["animate",
+										[1000, "50rh", "easeInOutExpo"],
+										["+1000", 0],
+										["100%", "-100ch"],
+										["-1000", 0, "easeInQuint"]
+									]
+								],
+								["translate",
+									0,
+									["animate",
+										[1000, "200su", "easeInOutExpo"],
+										["+1000", 0]
+									]
+								]
+							]
+						}
+					]
+				}, [
+					["null", {
+						"stagger": [1000, 0],
+						"layout": "vertical packed",
+						"transform": [
+							["translate",
+								0,
+								"-50rh"
+							]
+						],
+						"breakpoints": [
+							{
+								"enabled": ["$", ["gt", ["length", ["var", "#stats"]], 0]],
+								"transform": [
+									["translate",
+										0,
+										["animate",
+											[0, "-50rh", "easeInOutExpo"],
+											["+1000", 0]
+										]
+									]
+								]
+							}
+						]
+					}, [
+						["text", {
+							"mixins": ["ds-impactdotcom-mixins",
+								"text",
+								"text-display"
+							],
+							"color": ["$", ["var", "color-fg"]],
+							"string": ["$", ["var", "headline"]],
+							"background-color": ["$", ["var", "color-pink"]],
+							"background-padding": [
+								"10su",
+								"10su"
+							],
+							"justify": "top left",
+							"background-radius": "20su",
+							"trim-descender": false,
+							"boundary": "word",
+							"animations": [
+								{
+									"translate": [
+										"100su",
+										0
+									]
+								},
+								{
+									"mix": ["animate",
+										[0, 0],
+										["+1000", 1]
+									],
+									"indices": [
+										["$", ["-", ["var", "highlight"], 1]],
+										1
+									],
+									"background-opacity": 0.5
+								},
+								{
+									"mix": ["animate",
+										[0, 0],
+										["+1000", 1]
+									],
+									"easing": "easeOutQuad",
+									"opacity": 1,
+									"translate": [0, 0]
+								}
+							]
+						}]
+					]]
+				]],
+				["for-each", {
+					"enabled": ["$", ["gt", ["length", ["var", "#stats"]], 0]],
+					"flex": {
+						"height": "400su"
+					},
+					"items": ["$", ["var", "#stats"]],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["lte", ["aspect"], 1]],
+							"transform": [
+								["scale",
+									0.7,
+									"100rw",
+									"100rh"
+								]
+							]
+						}
+					]
+				}, [
+					["ds-impactdotcom-circle", {
+						"stagger": [1000, 0],
+						"rect": [
+							0,
+							0,
+							"400su",
+							"400su"
+						],
+						"align": "right",
+						"z-index": ["$", ["var", "index"]],
+						"text-1": ["$", ["nth", ["var", "item"], 0]],
+						"text-2": ["$", ["nth", ["var", "item"], 1]],
+						"color-bg": ["$", ["var", "color-pink"]],
+						"color-fg": ["$", ["var", "color-bg"]],
+						"transform": [
+							["scale",
+								["animate",
+									[0, 0, "easeOutCubic"],
+									["+750", 1]
+								]
+							],
+							["translate",
+								["animate",
+									[
+										1000,
+										0,
+										"easeInOutCubic"
+									],
+									[
+										"+750",
+										["$",
+											["concat",
+												["*",
+													-350,
+													["var", "index"]
+												],
+												"su"
+											]
+										]
+									]
+								],
+								0
+							]
+						],
+						"breakpoints": [
+							{
+								"enabled": ["$", ["eq", ["var", "index"], 1]],
+								"color-bg": ["$", ["var", "color-fg"]]
+							},
+							{
+								"enabled": ["$", ["eq", ["var", "index"], 0]],
+								"color-bg": ["$", ["var", "color-bg"]],
+								"color-fg": ["$", ["var", "color-fg"]],
+								"color-stroke": ["$", ["var", "color-fg"]],
+								"stroke": "4su"
+							}
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

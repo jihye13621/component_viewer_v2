@@ -1,0 +1,157 @@
+{
+	"params": {
+		"color-white": {
+			"key": "color-white",
+			"display": "Color",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		},
+		"color-black": {
+			"key": "color-black",
+			"display": "Color",
+			"type": "color",
+			"default": "#000000",
+			"required": false
+		},
+		"color-green": {
+			"key": "color-green",
+			"display": "Color",
+			"type": "color",
+			"default": "#003912",
+			"required": false
+		},
+		"color-bright-green": {
+			"key": "color-bright-green",
+			"display": "Color",
+			"type": "color",
+			"default": "#1DBF73",
+			"required": false
+		},
+		"color-orange": {
+			"key": "color-orange",
+			"display": "Color",
+			"type": "color",
+			"default": "#FF7D4C",
+			"required": false
+		},
+		"color-yellow": {
+			"key": "color-yellow",
+			"display": "Color",
+			"type": "color",
+			"default": "#D0E500",
+			"required": false
+		},
+		"font-regular": {
+			"key": "font-regular",
+			"display": "Font Regular",
+			"type": "string",
+			"default": "./media/Macan-Regular.otf",
+			"required": false,
+			"private": true
+		},
+		"font-bold": {
+			"key": "font-bold",
+			"display": "Font Bold",
+			"type": "string",
+			"default": "./media/Macan-Bold.otf",
+			"required": false,
+			"private": true
+		},
+		"font-italic": {
+			"key": "font-italic",
+			"display": "Font Italic",
+			"type": "string",
+			"default": "./media/ObviouslyDemo-NarrowBlackItalic.otf",
+			"required": false,
+			"private": true
+		},
+		"bg-options-solid": [
+			{
+				"key": "solid-color",
+				"display": "Solid Color",
+				"type": "bool",
+				"default": false,
+				"required": false
+			}
+		],
+		"bg-options": [
+			{
+				"key": "shape",
+				"display": "Shape",
+				"type": "string",
+				"default": "edgy-1",
+				"options": [
+					{
+						"key": "edgy-1",
+						"display": "Edgy 1"
+					},
+					{
+						"key": "edgy-2",
+						"display": "Edgy 2"
+					},
+					{
+						"key": "kaleida-1",
+						"display": "Kaleidoscope"
+					},
+					{
+						"key": "stars-1",
+						"display": "Spinning Stars"
+					},
+					{
+						"key": "symmetrical-1",
+						"display": "Symmetrical 1"
+					},
+					{
+						"key": "symmetrical-2",
+						"display": "Symmetrical 2"
+					},
+					{
+						"key": "vert-circles-1",
+						"display": "Vertical Circles"
+					}
+				],
+				"required": false
+			},
+			{
+				"key": "palette",
+				"display": "Palette",
+				"type": "string",
+				"default": "1",
+				"options": [
+					{
+						"key": "1",
+						"display": "1"
+					},
+					{
+						"key": "2",
+						"display": "2"
+					},
+					{
+						"key": "3",
+						"display": "3"
+					},
+					{
+						"key": "4",
+						"display": "4"
+					}
+				],
+				"required": false
+			},
+			{
+				"key": "swap-colors",
+				"display": "Swap Colors",
+				"type": "bool",
+				"default": false,
+				"required": false
+			},
+			{
+				"key": "blur",
+				"display": "Blur",
+				"type": "bool",
+				"default": true,
+				"required": false
+			}
+		]
+	}
+}

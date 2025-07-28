@@ -1,0 +1,30 @@
+[
+	"ds-documentcrunch-transition",
+	[
+		["ds-documentcrunch-mixins",
+			"darkmode"
+		]
+	],
+	[
+		["ds-documentcrunch-bg", {
+			"stripe": ["$", ["var", "#lightblue"]]
+		}, [
+			["solid", {
+				"mixins": ["dsx-mixins",
+					"set-su",
+					"safezone"
+				],
+				"color": ["$", ["var", "#bg"]]
+			}, [
+				["asset", {
+					"file": ["$", ["if", ["var", "darkmode"],
+						"./media/ds-documentcrunch-logo-white.png",
+						"./media/ds-documentcrunch-logo-dark.png"
+					]],
+					"justify": "fit",
+					"opacity": 0.2
+				}]
+			]]
+		]]
+	]
+]

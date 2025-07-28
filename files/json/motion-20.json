@@ -1,0 +1,466 @@
+[
+    "motion-20",
+    [
+        {
+            "key": "start",
+            "display": "Start",
+            "type": "number",
+            "default": 0,
+            "required": false
+        },
+        {
+            "key": "duration",
+            "display": "Duration",
+            "type": "number",
+            "default": 12000,
+            "required": false
+        },
+        {
+            "key": "text",
+            "display": "Text",
+            "type": "text",
+            "default": "MOTION",
+            "required": false
+        }
+    ],
+    [
+        ["solid", {
+            "start": ["$", ["var", "start"]],
+            "duration": ["$", ["var", "duration"]],
+            "mixins": ["dsx-mixins", "set-su"],
+            "color": [0.13, 0.14, 0.15, 1],
+            "layout": "stacked",
+            "align": "center",
+            "rect": ["100rw", "100rh"]
+        }],
+        ["solid", {
+            "start": ["$", ["var", "start"]],
+            "duration": ["$", ["var", "duration"]],
+            "mixins": ["dsx-mixins", "set-su"],
+            "color": [1, 0.6, 0.4, 1],
+            "layout": "stacked",
+            "align": "center",
+            "rect": ["100su", "100su"],
+            "transform": [
+                ["scale",
+                    ["animate",
+                        [0, 0.1, "easeInOutQuart"],
+                        ["+3000", 1.2],
+                        ["+9000", 1]
+                    ]
+                ]
+            ]
+        }, [
+            ["null", {
+                "layout": "stacked",
+                "align": "left"
+            }, [
+                ["text", {
+                    "enabled": ["$", ["exists", ["var", "text"]]],
+                    "font": "./media/Barlow-Bold.ttf",
+                    "color": [0.4, 0.6, 1, 1],
+                    "string": "M",
+                    "justify": "center left",
+                    "shadow": {
+                        "color": [0, 0, 0, 0.7],
+                        "offset": [0, 10],
+                        "blur": 20
+                    },
+                    "transform": [
+                        ["translate",
+                            ["animate",
+                                [0, "0su", "easeInOutQuart"],
+                                ["+2000", "0su"]
+                            ],
+                            ["animate",
+                                [0, "-300su", "easeInOutQuart"],
+                                ["+2000", "50su"]
+                            ]
+                        ],
+                        ["scale",
+                            ["animate",
+                                [0, 0.1, "easeInOutQuart"],
+                                ["+2000", 1]
+                            ]
+                        ]
+                    ],
+                    "opacity": ["animate",
+                        [0, 0, "easeInOutQuart"],
+                        ["+2000", 1]
+                    ]
+                }],
+                ["solid", {
+                    "color": [1, 0.99, 0.6, 1],
+                    "rect": ["350su", "350su"],
+                    "shadow": {
+                        "color": [0, 0, 0, 0.7],
+                        "offset": [0, 5],
+                        "blur": 5
+                    },
+                    "transform": [
+                        ["translate",
+                            ["animate",
+                                [0, "+1000su", "easeInOutElastic"],
+                                ["+4000", "0su"]
+                            ],
+                            ["animate",
+                                [0, "0su", "easeInOutElastic"],
+                                ["+4000", "-50su"]
+                            ]
+                        ],
+                        ["rotate",
+                            ["animate",
+                                [0, 0, "easeInOutElastic"],
+                                ["+4000", 360]
+                            ]
+                        ]
+                    ]
+                }]
+            ]],
+            ["null", {
+                "layout": "stacked",
+                "align": "left"
+            }, [
+                ["text", {
+                    "enabled": ["$", ["exists", ["var", "text"]]],
+                    "font": "./media/Barlow-Bold.ttf",
+                    "color": [0.6, 0.4, 1, 1],
+                    "string": "O",
+                    "justify": "center left",
+                    "shadow": {
+                        "color": [0, 0, 0, 0.7],
+                        "offset": [0, 10],
+                        "blur": 20
+                    },
+                    "transform": [
+                        ["translate",
+                            ["animate",
+                                [0, "150su", "easeInOutQuart"],
+                                ["+3000", "150su"]
+                            ],
+                            ["animate",
+                                [0, "-300su", "easeInOutQuart"],
+                                ["+3000", "50su"]
+                            ]
+                        ],
+                        ["scale",
+                            ["animate",
+                                [0, 0.1, "easeInOutQuart"],
+                                ["+3000", 1]
+                            ]
+                        ]
+                    ],
+                    "opacity": ["animate",
+                        [0, 0, "easeInOutQuart"],
+                        ["+3000", 1]
+                    ]
+                }],
+                ["solid", {
+                    "rect": ["300su", "300su"],
+                    "color": ["linear-gradient",
+                        0.0,
+                        [0.0, [0.4, 0.99, 0.99, 1]],
+                        [1.0, [0.58, 0.4, 0.98, 1]]
+                    ],
+                    "shadow": {
+                        "color": [0, 0, 0, 0.7],
+                        "offset": [0, 5],
+                        "blur": 5
+                    },
+                    "transform": [
+                        ["translate",
+                            ["animate",
+                                [0, "150su", "easeInOutElastic"],
+                                ["+5000", "150su"]
+                            ],
+                            ["animate",
+                                [0, "1000su", "easeInOutElastic"],
+                                ["+5000", "0su"]
+                            ]
+                        ],
+                        ["rotate",
+                            ["animate",
+                                [0, 0, "easeInOutElastic"],
+                                ["+5000", -360]
+                            ]
+                        ]
+                    ]
+                }]
+            ]],
+            ["null", {
+                "layout": "stacked",
+                "align": "left"
+            }, [
+                ["text", {
+                    "enabled": ["$", ["exists", ["var", "text"]]],
+                    "font": "./media/Barlow-Bold.ttf",
+                    "color": [1, 0.4, 0.6, 1],
+                    "string": "T",
+                    "justify": "center left",
+                    "shadow": {
+                        "color": [0, 0, 0, 0.7],
+                        "offset": [0, 10],
+                        "blur": 20
+                    },
+                    "transform": [
+                        ["translate",
+                            ["animate",
+                                [0, "300su", "easeInOutQuart"],
+                                ["+4000", "300su"]
+                            ],
+                            ["animate",
+                                [0, "-300su", "easeInOutQuart"],
+                                ["+4000", "50su"]
+                            ]
+                        ],
+                        ["scale",
+                            ["animate",
+                                [0, 0.1, "easeInOutQuart"],
+                                ["+4000", 1]
+                            ]
+                        ]
+                    ],
+                    "opacity": ["animate",
+                        [0, 0, "easeInOutQuart"],
+                        ["+4000", 1]
+                    ]
+                }],
+                ["solid", {
+                    "rect": ["250su", "250su"],
+                    "color": ["linear-gradient",
+                        0.0,
+                        [0.0, [1, 0.42, 0.98, 1]],
+                        [1.0, [0.4, 0.99, 0.6, 1]]
+                    ],
+                    "shadow": {
+                        "color": [0, 0, 0, 0.7],
+                        "offset": [0, 5],
+                        "blur": 5
+                    },
+                    "transform": [
+                        ["translate",
+                            ["animate",
+                                [0, "300su", "easeInOutElastic"],
+                                ["+6000", "300su"]
+                            ],
+                            ["animate",
+                                [0, "-1000su", "easeInOutElastic"],
+                                ["+6000", "0su"]
+                            ]
+                        ],
+                        ["rotate",
+                            ["animate",
+                                [0, 0, "easeInOutElastic"],
+                                ["+6000", 520]
+                            ]
+                        ]
+                    ]
+                }]
+            ]],
+            ["null", {
+                "layout": "stacked",
+                "align": "left"
+            }, [
+                ["text", {
+                    "enabled": ["$", ["exists", ["var", "text"]]],
+                    "font": "./media/Barlow-Bold.ttf",
+                    "color": [0.4, 1, 0.6, 1],
+                    "string": "I",
+                    "justify": "center left",
+                    "shadow": {
+                        "color": [0, 0, 0, 0.7],
+                        "offset": [0, 10],
+                        "blur": 20
+                    },
+                    "transform": [
+                        ["translate",
+                            ["animate",
+                                [0, "450su", "easeInOutQuart"],
+                                ["+5000", "450su"]
+                            ],
+                            ["animate",
+                                [0, "-300su", "easeInOutQuart"],
+                                ["+5000", "50su"]
+                            ]
+                        ],
+                        ["scale",
+                            ["animate",
+                                [0, 0.1, "easeInOutQuart"],
+                                ["+5000", 1]
+                            ]
+                        ]
+                    ],
+                    "opacity": ["animate",
+                        [0, 0, "easeInOutQuart"],
+                        ["+5000", 1]
+                    ]
+                }],
+                ["solid", {
+                    "rect": ["400su", "400su"],
+                    "color": ["linear-gradient",
+                        0.0,
+                        [0.0, [1, 0.99, 0.6, 1]],
+                        [1.0, [1, 0.6, 0.4, 1]]
+                    ],
+                    "shadow": {
+                        "color": [0, 0, 0, 0.7],
+                        "offset": [0, 5],
+                        "blur": 5
+                    },
+                    "transform": [
+                        ["translate",
+                            ["animate",
+                                [0, "450su", "easeInOutElastic"],
+                                ["+7000", "450su"]
+                            ],
+                            ["animate",
+                                [0, "1000su", "easeInOutElastic"],
+                                ["+7000", "0su"]
+                            ]
+                        ],
+                        ["rotate",
+                            ["animate",
+                                [0, 0, "easeInOutElastic"],
+                                ["+7000", -720]
+                            ]
+                        ]
+                    ]
+                }]
+            ]],
+            ["null", {
+                "layout": "stacked",
+                "align": "center"
+            }, [
+                ["text", {
+                    "enabled": ["$", ["exists", ["var", "text"]]],
+                    "font": "./media/Barlow-Bold.ttf",
+                    "color": [5, 0.6, 4, 1],
+                    "string": "O",
+                    "justify": "center left",
+                    "shadow": {
+                        "color": [0, 0, 0, 0.7],
+                        "offset": [0, 10],
+                        "blur": 20
+                    },
+                    "transform": [
+                        ["translate",
+                            ["animate",
+                                [0, "60su", "easeInOutQuart"],
+                                ["+6000", "400su"]
+                            ],
+                            ["animate",
+                                [0, "-300su", "easeInOutQuart"],
+                                ["+6000", "50su"]
+                            ]
+                        ],
+                        ["scale",
+                            ["animate",
+                                [0, 0.1, "easeInOutQuart"],
+                                ["+6000", 1]
+                            ]
+                        ]
+                    ],
+                    "opacity": ["animate",
+                        [0, 0, "easeInOutQuart"],
+                        ["+6000", 1]
+                    ]
+                }],
+                ["solid", {
+                    "color": [0.4, 0.99, 0.99, 1],
+                    "rect": ["200su", "200su"],
+                    "shadow": {
+                        "color": [0, 0, 0, 0.7],
+                        "offset": [0, 5],
+                        "blur": 5
+                    },
+                    "transform": [
+                        ["translate",
+                            ["animate",
+                                [0, "600su", "easeInOutElastic"],
+                                ["+8000", "600su"]
+                            ],
+                            ["animate",
+                                [0, "-1000su", "easeInOutElastic"],
+                                ["+8000", "-50su"]
+                            ]
+                        ],
+                        ["rotate",
+                            ["animate",
+                                [0, 0, "easeInOutElastic"],
+                                ["+8000", 180]
+                            ]
+                        ]
+                    ]
+                }]
+            ]],
+            ["null", {
+                "layout": "stacked",
+                "align": "left"
+            }, [
+                ["text", {
+                    "enabled": ["$", ["exists", ["var", "text"]]],
+                    "font": "./media/Barlow-Bold.ttf",
+                    "color": [0.6, 0.4, 0.98, 1],
+                    "string": "N",
+                    "justify": "center left",
+                    "shadow": {
+                        "color": [0, 0, 0, 0.7],
+                        "offset": [0, 10],
+                        "blur": 20
+                    },
+                    "transform": [
+                        ["translate",
+                            ["animate",
+                                [0, "60su", "easeInOutQuart"],
+                                ["+7000", "750su"]
+                            ],
+                            ["animate",
+                                [0, "-300su", "easeInOutQuart"],
+                                ["+7000", "50su"]
+                            ]
+                        ],
+                        ["scale",
+                            ["animate",
+                                [0, 0.1, "easeInOutQuart"],
+                                ["+7000", 1]
+                            ]
+                        ]
+                    ],
+                    "opacity": ["animate",
+                        [0, 0, "easeInOutQuart"],
+                        ["+7000", 1]
+                    ]
+                }],
+                ["solid", {
+                    "color": [0.88, 0.4, 0.58, 1],
+                    "rect": ["450su", "450su"],
+                    "shadow": {
+                        "color": [0, 0, 0, 0.7],
+                        "offset": [0, 5],
+                        "blur": 5
+                    },
+                    "transform": [
+                        ["translate",
+                            ["animate",
+                                [0, "750su", "easeInOutElastic"],
+                                ["+9000", "750su"]
+                            ],
+                            ["animate",
+                                [0, "1000su", "easeInOutElastic"],
+                                ["+9000", "-50su"]
+                            ]
+                        ],
+                        ["rotate",
+                            ["animate",
+                                [0, 0, "easeInOutElastic"],
+                                ["+9000", -1080]
+                            ]
+                        ]
+                    ]
+                }]
+            ]]
+        ]]
+    ]
+] 
+
+

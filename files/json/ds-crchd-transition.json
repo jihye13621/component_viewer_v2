@@ -1,0 +1,124 @@
+[
+	"ds-crchd-transition",
+	[
+		{
+			"key": "color",
+			"display": "Color",
+			"type": "string",
+			"default": "blue",
+			"required": false,
+			"options": [
+				{
+					"key": "blue",
+					"display": "Blue"
+				},
+				{
+					"key": "dark-blue",
+					"display": "Dark Blue"
+				},
+				{
+					"key": "green",
+					"display": "Green"
+				},
+				{
+					"key": "cranberry",
+					"display": "Cranberry"
+				}
+			]
+		},
+		{
+			"key": "#color",
+			"display": "Color",
+			"type": "color",
+			"default": "#007BBD",
+			"required": false,
+			"private": true,
+			"script": ["$", ["switch", ["var", "color"], {
+				"blue": "#007BBD",
+				"dark-blue": "#1a5e86",
+				"green": "#3c989e",
+				"cranberry": "#bb0e3d",
+				"_": "#007BBD"
+			}]]
+		},
+		{
+			"key": "direction",
+			"display": "Direction",
+			"type": "string",
+			"default": "vertical",
+			"required": false,
+			"options": [
+				{
+					"key": "vertical",
+					"display": "Vertical"
+				},
+				{
+					"key": "horizontal",
+					"display": "Horizontal"
+				}
+			]
+		},
+		{
+			"key": "do-transition-in",
+			"display": "Transition In",
+			"type": "bool",
+			"default": true,
+			"required": false,
+			"private": true
+		},
+		{
+			"key": "do-transition-out",
+			"display": "Transition Out",
+			"type": "bool",
+			"default": true,
+			"required": false,
+			"private": true
+		}
+	],
+	[
+		["solid", {
+			"color": ["$", ["var", "#color"]],
+			"breakpoints": [
+				{
+					"enabled": ["$", ["or",
+						["var", "do-transition-in"],
+						["var", "do-transition-out"]
+					]],
+					"transform": [
+						["translate",
+							0,
+							["$", ["compact", ["array",
+								"animate",
+								["if", ["var", "do-transition-in"], ["'", 0, "100rh", "easeInOutCubic"]],
+								["if", ["var", "do-transition-in"], ["'", "+600", 0]],
+								["if", ["var", "do-transition-out"], ["'", "100%", "-100rh"]],
+								["if", ["var", "do-transition-out"], ["'", "-600", 0, "easeInOutCubic"]]
+							]]]
+						]
+					]
+				},
+				{
+					"enabled": ["$", ["and",
+						["or",
+							["var", "do-transition-in"],
+							["var", "do-transition-out"]
+						],
+						["eq", ["var", "direction"], "horizontal"]
+					]],
+					"transform": [
+						["translate",
+							["$", ["compact", ["array",
+								"animate",
+								["if", ["var", "do-transition-in"], ["'", 0, "-100rw", "easeInOutCubic"]],
+								["if", ["var", "do-transition-in"], ["'", "+600", 0]],
+								["if", ["var", "do-transition-out"], ["'", "100%", "100rw"]],
+								["if", ["var", "do-transition-out"], ["'", "-600", 0, "easeInOutCubic"]]
+							]]],
+							0
+						]
+					]
+				}
+			]
+		}]
+	]
+]

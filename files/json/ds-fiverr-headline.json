@@ -1,0 +1,92 @@
+[
+	"ds-fiverr-headline",
+	[
+		{
+			"key": "headline",
+			"display": "Headline",
+			"type": "text",
+			"default": "Add a headline",
+			"required": false
+		},
+		{
+			"key": "font-select",
+			"display": "Italic Font",
+			"type": "bool",
+			"default": false,
+			"required": false
+		},
+		["ds-fiverr-mixins",
+			"bg-options",
+			"font-bold",
+			"font-italic",
+			"color-black"
+		],
+		{
+			"key": "size",
+			"display": "Size",
+			"type": "number",
+			"default": 1.0,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"step": 0.05,
+				"minimum": 0.5,
+				"maximum": 1.5
+			}
+		}
+	],
+	[
+		["ds-fiverr-bg", {
+			"palette": ["$", ["var", "palette"]],
+			"swap-colors": ["$", ["var", "swap-colors"]],
+			"blur": ["$", ["var", "blur"]],
+			"shape": ["$", ["var", "shape"]]
+		}],
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			],
+			"transform": [
+				["scale",
+					["animate",
+						[0, 1.25, "easeOutQuint"],
+						["+1000", 1],
+						["100%", 0.75],
+						["-1000", 1, "easeInQuint"]
+					]
+				],
+				["scale",
+					["animate",
+						[0, 1],
+						["100%", 0.97]
+					]
+				]
+			]
+		}, [
+			["text", {
+				"enabled": ["$", ["exists", ["var", "headline"]]],
+				"font": ["$", ["if",
+					["var", "font-select"],
+					["var", "font-italic"],
+					["var", "font-bold"]
+				]],
+				"height": "100su",
+				"leading": "10su",
+				"measure": "letter-size",
+				"string": ["$", ["var", "headline"]],
+				"color": ["$", ["var", "color-black"]],
+				"justify": "center",
+				"breakpoints": [
+					{
+						"enabled": ["$", ["var", "font-select"]],
+						"height": "150su",
+						"leading": "30su",
+						"case": "uppercase",
+						"measure": "cap-size"
+					}
+				]
+			}]
+		]]
+	]
+]

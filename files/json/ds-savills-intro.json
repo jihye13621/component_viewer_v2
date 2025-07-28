@@ -1,0 +1,41 @@
+[
+	"ds-savills-intro",
+	[
+		["dsx-mixins",
+			"intro"
+		]
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su"
+			]
+		}, [
+			["solid", {
+				"color": ["$", ["var", "color-background"]],
+				"mixins": ["dsx-mixins",
+					"safezone"
+				]
+			},[
+				["null", {
+					"layout": "vertical",
+					"padding": ["50su", "100su"]
+				}, [
+					["asset", {
+						"file": "./media/ds-savills-logo-grid.json",
+						"justify": "fit center",
+						"align": "center",
+						"rect": [0, 0, "500su", "500su"],
+						"lottie-driver": ["animate",
+							[0, 0],
+							[
+								["$", ["to-relative-string", ["dur", "./media/ds-savills-logo-grid.json"]]],
+								1
+							]
+						]
+					}]
+				]]
+			]]
+		]
+	]]
+]

@@ -1,0 +1,264 @@
+[
+	"ds-aspect-list",
+	[
+		{
+			"key": "theme",
+			"display": "Theme",
+			"type": "string",
+			"default": "light",
+			"options": [
+				{
+					"key": "plum",
+					"display": "Plum"
+				},
+				{
+					"key": "raspberry",
+					"display": "Raspberry"
+				},
+				{
+					"key": "light",
+					"display": "Light"
+				}
+			],
+			"required": false
+		},
+		{
+			"key": "bullet",
+			"display": "Bullet",
+			"type": "string",
+			"default": "circle",
+			"options": [
+				{
+					"key": "circle",
+					"display": "Circle"
+				},
+				{
+					"key": "plus",
+					"display": "Plus"
+				}
+			],
+			"required": false
+		},
+		{
+			"key": "container",
+			"display": "Container",
+			"type": "string",
+			"default": "default",
+			"options": [
+				{
+					"key": "default",
+					"display": "Default"
+				},
+				{
+					"key": "slim",
+					"display": "Slim"
+				},
+				{
+					"key": "half",
+					"display": "Half"
+				},
+				{
+					"key": "full",
+					"display": "Full"
+				}
+			],
+			"required": false
+		},
+		{
+			"key": "headline",
+			"display": "Title",
+			"type": "text",
+			"default": "List title",
+			"required": false
+		},
+		{
+			"key": "items",
+			"display": "Items",
+			"type": "textarea",
+			"default": "This is a list\nAdd a line break for new items\nIt's that easy :)",
+			"required": false
+		},
+		["ds-aspect-mixins",
+			"colors",
+			"font-wallop",
+			"font-roobert"
+		]
+	],
+	[
+		["null", {
+			"mixins": [
+				["dsx-mixins", "set-su"],
+				["ds-aspect-mixins", "sidepanel-breakpoints"]
+			]
+		}, [
+			["ds-aspect-bg", {
+				"flex": {
+					"position": "fixed"
+				},
+				"theme": ["$", ["switch", ["var", "theme"], ["object",
+					["array", "plum", "plum"],
+					["array", "raspberry", "raspberry"],
+					["array", "light", "eggshell"]
+				]]]
+			}],
+			["null", {
+				"layout": "vertical packed",
+				"align": "left center",
+				"gap": "60su"
+			}, [
+				["text", {
+					"flex": {
+						"weight": 0.5
+					},
+					"enabled": ["$", ["exists", ["var", "headline"]]],
+					"stagger": [200, 0],
+					"font": ["$", ["var", "font-wallop"]],
+					"height": "120su",
+					"color": ["$", ["switch", ["var", "theme"], ["object",
+						["array", "plum", ["var", "color-gray-light"]],
+						["array", "raspberry", ["var", "color-gray-light"]],
+						["array", "light", ["var", "color-black"]]
+					]]],
+					"leading": "-15su",
+					"string": ["$", ["var", "headline"]],
+					"align": "left center",
+					"justify": "left center",
+					"animations": [
+						{
+							"translate": [
+								"100su",
+								0
+							]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+1000", 1]
+							],
+							"easing": "easeOutQuint",
+							"ramp": 3,
+							"opacity": 1,
+							"translate": [0, 0]
+						}
+					]
+				}],
+				["for-each", {
+					"items": ["$", ["split", ["var", "items"]]],
+					"layout": "vertical packed",
+					"align": "top left",
+					"gap": "20su"
+				}, [
+					["null", {
+						"enabled": ["$", ["exists", ["var", "item"]]],
+						"layout": "vertical packed",
+						"align": "center left",
+						"padding": [
+							0,
+							0,
+							0,
+							"60su"
+						]
+					}, [
+						["solid", {
+							"stagger": [
+								["$",
+									["+",
+										["*", ["var", "index"], 400],
+										800
+									]
+								],
+								0
+							],
+							"flex": {
+								"position": "fixed"
+							},
+							"rect": [
+								0,
+								"30su",
+								"15su",
+								"15su"
+							],
+							"radius": 10000,
+							"color": ["$", ["switch", ["var", "theme"], ["object",
+								["array", "plum", ["var", "color-raspberry"]],
+								["array", "raspberry", ["var", "color-plum"]],
+								["array", "light", ["var", "color-raspberry"]]
+							]]],
+							"transform": [
+								["scale",
+									["animate",
+										[0, 0, "easeOutBack"],
+										["+500", 1]
+									]
+								]
+							],
+							"skip": ["$", ["neq", ["var", "bullet"], "circle"]]
+						}, [
+							["asset", {
+								"enabled": ["$", ["neq", ["var", "bullet"], "circle"]],
+								"file": "./media/ds-aspect-icon-plus.svg",
+								"justify": "fit center",
+								"replace-color": [
+									[
+										[1, 1, 1, 1],
+										["$", ["switch", ["var", "theme"], ["object",
+											["array", "plum", ["var", "color-raspberry"]],
+											["array", "raspberry", ["var", "color-plum"]],
+											["array", "light", ["var", "color-raspberry"]]
+										]]]
+									]
+								],
+								"rect": [
+									0,
+									0,
+									"30su",
+									"30su"
+								],
+								"align": "center"
+							}]
+						]],
+						["text", {
+							"font": ["$", ["var", "font-roobert"]],
+							"height": "70su",
+							"string": ["$", ["var", "item"]],
+							"justify": "top left",
+							"color": ["$", ["switch", ["var", "theme"], ["object",
+								["array", "plum", ["var", "color-gray-light"]],
+								["array", "raspberry", ["var", "color-gray-light"]],
+								["array", "light", ["var", "color-black"]]
+							]]],
+							"boundary": "line",
+							"stagger": [
+								["$",
+									["+",
+										["*", ["var", "index"], 400],
+										600
+									]
+								],
+								0
+							],
+							"animations": [
+								{
+									"translate": [
+										"200su",
+										0
+									]
+								},
+								{
+									"mix": ["animate",
+										[0, 0],
+										["+1000", 1]
+									],
+									"easing": "easeOutQuint",
+									"ramp": -1,
+									"opacity": 1,
+									"translate": [0, 0]
+								}
+							]
+						}]
+					]]
+				]]
+			]]
+		]]
+	]
+]

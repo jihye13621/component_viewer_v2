@@ -1,0 +1,154 @@
+[
+	"dsx-search-bar",
+	[
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "string",
+			"default": "Add search text",
+			"required": false
+		},
+		{
+			"key": "search-icon",
+			"display": "Square Search Icon",
+			"type": "asset",
+			"default": null,
+			"required": false
+		},
+		["dsx-mixins", 
+			"boilerplate"
+		]
+	],
+	[	
+		["null", {
+			"mixins": [
+				"dsx-mixins", [
+					"set-dsx-su", "safezone"
+				]
+			]
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]]
+			}, [
+				["null", {
+					"layout": "horizontal packed",
+					"gap": "60su",
+					"align": "center left",
+					"padding": ["70su", "90su", "70su", "70su"],
+					"opacity": ["animate",
+						[0, 0],
+						["+500", 1],
+						["100%", 0],
+						["-500", 1],
+						["+200", 0]
+					],
+					"transform": [
+						["scale",
+							["animate",
+								[0, 0],
+								["+500", 1],
+								["100%", 0],
+								["-500", 1]
+							]
+						]
+					],
+					"script": ["$$",
+						["let",
+							[
+								["start", ["+", ["key", ["var", "self"], "start"], 600]],
+								["end", ["-", ["key", ["var", "self"], "end"], 400]],
+								["child", ["nth", ["key", ["var", "self"], "children"], 0]],
+								["width", ["key", ["key", ["var", "self"], "roi"], "width"]],
+								["child-width", ["key", ["key", ["var", "child"], "roi"], "width"]],
+								["offset", ["-", ["var", "width"], ["var", "child-width"]]],
+								["animation",
+									["ease",
+										["map",
+											["var", "frame"],
+											["var", "start"],
+											["+", ["var", "start"], 600],
+											0,
+											1
+										],
+										"easeInOutCubic"
+									]
+								]
+							],
+							["live-transform",
+								["var", "self"],
+								"translate",
+								["*", ["-", 1, ["var", "animation"]], ["/", ["var", "offset"], 2]],
+								0
+							]
+						]	
+					]
+				}, [
+					["solid", {
+						"background": [1, 1, 1, 0],
+						"radius": "50rh",
+						"flex": {
+							"position": "fixed"
+						},
+						"rect": [
+							0, 
+							0, 
+							["animate",
+								[500, "100rh", "easeOutQuint"],
+								["+750", "100rw"]
+							], 
+							"100rh"
+						]
+						
+					}, []],
+					["asset", {
+						"enabled": ["$", ["exists", ["var", "search-icon"]]],
+						"start": 0,
+						"hold": true,
+						"rect": [0, 0, "80su", "80su"],
+						"file": ["$", ["var", "search-icon"]],
+						"transform": [
+							["scale",
+								["animate",
+									[250, 0],
+									["+250", 1]
+								]
+							]
+						],
+						"opacity": 
+							["animate", 
+								[250, 0, "easeInQuint"], 
+								["+250", 1]
+							]
+					}],
+					["text", {
+						"height": "80su",
+						"string": ["$", ["var", "text"]],
+						"font": "./media/Inter-Medium.ttf",
+						"color": [0,0,0,1],
+						"boundary": "letter",
+						"fit": true,
+						"animations": [
+							{ "opacity": 0 },
+							{
+								"mix": ["animate",
+									[750, 0],
+									[
+										["$", ["to-relative-string",
+											["*", 
+												["length", ["replace-all", ["var", "text"], " ", ""]],
+												100
+											]]
+										], 1
+									]
+								],
+								"ramp": 0.01,
+								"opacity": 1
+							}
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

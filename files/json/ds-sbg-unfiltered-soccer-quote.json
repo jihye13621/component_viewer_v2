@@ -1,0 +1,230 @@
+[
+	"ds-sbg-unfiltered-soccer-quote",
+	[
+		{
+			"key": "quote",
+			"display": "Quote",
+			"type": "text",
+			"default": "Add quote text",
+			"required": false
+		},
+		{
+			"key": "detail-1",
+			"display": "Source",
+			"type": "text",
+			"default": "Quote source",
+			"required": false
+		},
+		{
+			"key": "detail-2",
+			"display": "Source Details",
+			"type": "text",
+			"default": "",
+			"required": false
+		},
+		["ds-sbg-unfiltered-soccer-mixins",
+			"colors",
+			"theme",
+			"font-headline",
+			"font-body"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [4, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": true,
+				"minimum": -100,
+				"maximum": 100
+			},
+			"private": true,
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			],
+			"mask": {
+				"transform": true
+			},
+			"transform": [
+				["translate",
+					["animate",
+						[0, "100rw", "easeOutQuad"],
+						["+400", 0],
+						["100%", "100rw"],
+						["-400", 0, "easeInQuad"]
+					],
+					0
+				]
+			],
+			"script": ["$$",
+				["let",
+					[
+						["start", ["key", ["var", "self"], "start"]],
+						["end", ["key", ["var", "self"], "end"]],
+						["width", ["key", ["key", ["var", "self"], "roi"], "width"]],
+						["animate-in",
+							["ease",
+								["map",
+									["var", "frame"],
+									["+", ["var", "start"], 0],
+									["+", ["var", "start"], 400],
+									0,
+									1
+								],
+								"easeOutQuad"
+							]
+						],
+						["animate-out",
+							["ease",
+								["map",
+									["var", "frame"],
+									["-", ["var", "end"], 400],
+									["var", "end"],
+									0,
+									1
+								],
+								"easeInQuad"
+							]
+						],
+						["animation", ["-", ["var", "animate-in"], ["var", "animate-out"]]]
+					],
+					["live-transform",
+						["lookup-by-tag", "clip"],
+						"translate",
+						["*", -1, ["var", "animation"], ["var", "width"]],
+						0
+					]
+				]
+			]
+		}, [
+			["asset", {
+				"flex": {
+					"position": "fixed"
+				},
+				"file": "./media/ds-sbg-unfiltered-soccer-paper-texture.jpg",
+				"justify": "fill center"
+			}],
+			["null", {
+				"mixins": ["dsx-mixins",
+					"offset"
+				],
+				"max-width": "1400nsu",
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"gap": "50su"
+			}, [
+				["text", {
+					"flex": {
+						"weight": 3
+					},
+					"enabled": ["$", ["exists", ["var", "quote"]]],
+					"font": ["$", ["var", "font-headline"]],
+					"measure": "cap-size",
+					"height": "70su",
+					"leading": "30su",
+					"string": ["$", ["var", "quote"]],
+					"color": ["$", ["var", "color-black"]],
+					"justify": ["$", ["var", "#align"]],
+					"boundary": "word",
+					"animations": [
+						{
+							"mix": ["animate",
+								[0, 0, "easeOutQuad"],
+								["+1500", 1]
+							],
+							"easing": "round",
+							"ramp": 0.1,
+							"opacity": 1
+						}
+					]
+				}],
+				["solid", {
+					"stagger": [1400, 0],
+					"enabled": ["$", ["exists", ["var", "detail-1"]]],
+					"padding": [
+						"20su",
+						"20su"
+					],
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]],
+					"gap": "10su",
+					"mask": {
+						"padding": [
+							"-50su",
+							["animate",
+								[0, "150rw", "easeOutQuad"],
+								["+300", "-50su"]
+							],
+							"-50su",
+							"-50su"
+						]
+					},
+					"breakpoints": [
+						{
+							"enabled": ["$", ["eq", ["var", "theme"], "black"]],
+							"color": ["$", ["var", "color-black"]]
+						},
+						{
+							"enabled": ["$", ["eq", ["var", "theme"], "red"]],
+							"color": ["$", ["var", "color-red"]]
+						},
+						{
+							"enabled": ["$", ["eq", ["var", "theme"], "blue"]],
+							"color": ["$", ["var", "color-blue"]]
+						},
+						{
+							"enabled": ["$", ["eq", ["var", "theme"], "white"]],
+							"color": ["$", ["var", "color-white"]],
+							"stroke-color": ["$", ["var", "color-black"]],
+							"stroke": "4su"
+						}
+					]
+				}, [
+					["text", {
+						"enabled": ["$", ["exists", ["var", "detail-1"]]],
+						"font": ["$", ["var", "font-headline"]],
+						"measure": "cap-size",
+						"height": "50su",
+						"leading": "10su",
+						"string": ["$", ["var", "detail-1"]],
+						"color": ["$", ["var", "color-white"]],
+						"justify": ["$", ["var", "#align"]],
+						"boundary": "word",
+						"breakpoints": [
+							{
+								"enabled": ["$", ["eq", ["var", "theme"], "white"]],
+								"color": ["$", ["var", "color-black"]]
+							}
+						]
+					}],
+					["text", {
+						"enabled": ["$", ["exists", ["var", "detail-2"]]],
+						"font": ["$", ["var", "font-body"]],
+						"measure": "cap-size",
+						"height": "30su",
+						"string": ["$", ["var", "detail-2"]],
+						"color": ["$", ["var", "color-white"]],
+						"justify": ["$", ["var", "#align"]],
+						"boundary": "word",
+						"breakpoints": [
+							{
+								"enabled": ["$", ["eq", ["var", "theme"], "white"]],
+								"color": ["$", ["var", "color-black"]]
+							}
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

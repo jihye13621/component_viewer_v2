@@ -1,0 +1,81 @@
+[
+	"ds-braze-chapter",
+	[
+		["dsx-mixins",
+			"text"
+		],
+		["ds-braze-mixins",
+			"font-black"
+		],
+		{
+			"key": "gradient-style",
+			"display": "BG Gradient",
+			"type": "string",
+			"default": "heat-2",
+			"required": false,
+			"options": [
+				{
+					"key": "heat-1",
+					"display": "Heat 1"
+				},
+				{
+					"key": "heat-2",
+					"display": "Heat 2"
+				},
+				{
+					"key": "heat-3",
+					"display": "Heat 3"
+				}
+			]
+		},
+		["dsx-mixins",
+			"boilerplate"
+		]
+	],
+	[
+		["ds-braze-bg", {
+			"gradient-style": ["$", ["var", "gradient-style"]]
+		}, [
+			["null", {
+				"mixins": ["dsx-mixins",
+					"set-su",
+					"safezone"
+				]
+			}, [
+				["null", {
+					"layout": "vertical packed",
+					"align": "center left"
+				}, [
+					["text", {
+						"stagger": [200, 0],
+						"enabled": ["$", ["exists", ["var", "text"]]],
+						"font": ["$", ["var", "font-black"]],
+						"measure": "letter-size",
+						"height": "100su",
+						"leading": "15su",
+						"kerning": -0.02,
+						"color": [1, 1, 1, 1],
+						"string": ["$", ["var", "text"]],
+						"justify": "left center",
+						"max-width": "1200nsu",
+						"animations": [
+							{
+								"translate": [0, "100su"]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+1000", 1]
+								],
+								"easing": "easeOutCubic",
+								"ramp": 0.75,
+								"opacity": 1,
+								"translate": [0, 0]
+							}
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

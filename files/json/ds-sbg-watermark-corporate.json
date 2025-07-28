@@ -1,0 +1,388 @@
+[
+	"ds-sbg-watermark-corporate",
+	[
+		{
+			"key": "station",
+			"display": "Station",
+			"type": "string",
+			"default": "kabb",
+			"options": [
+				{
+					"key": "kabb",
+					"display": "KABB: San Antonio, TX"
+				},
+				{
+					"key": "katu",
+					"display": "KATU: Portland, OR"
+				},
+				{
+					"key": "katv",
+					"display": "KATV: Little Rock, AK"
+				},
+				{
+					"key": "kbak",
+					"display": "KBAK: Bakersfield, CA"
+				},
+				{
+					"key": "kboi",
+					"display": "KBOI: Boise, ID"
+				},
+				{
+					"key": "keci",
+					"display": "KECI: Butte/Bozeman/Missoula, MT"
+				},
+				{
+					"key": "kepr",
+					"display": "KEPR: Pasco, WA"
+				},
+				{
+					"key": "keye",
+					"display": "KEYE: Austin, TX"
+				},
+				{
+					"key": "kfdm-cbs",
+					"display": "KFDM (CBS): Beaumont, TX"
+				},
+				{
+					"key": "kfdm-fox",
+					"display": "KFDM (FOX): Beaumont, TX"
+				},
+				{
+					"key": "kfox",
+					"display": "KFOX: El Paso, TX"
+				},
+				{
+					"key": "kgan",
+					"display": "KGAN: Cedar Rapids, IA"
+				},
+				{
+					"key": "khqa-abc",
+					"display": "KHQA (ABC): Quincy, Il"
+				},
+				{
+					"key": "khqa-cbs",
+					"display": "KHQA (CBS): Quincy, Il"
+				},
+				{
+					"key": "kima",
+					"display": "KIMA: Yakima, WA"
+				},
+				{
+					"key": "klew",
+					"display": "KLEW: Lewiston, ID"
+				},
+				{
+					"key": "kmph",
+					"display": "KMPH: Fresno, CA"
+				},
+				{
+					"key": "kokh",
+					"display": "KOKH: Oklahoma City, OK"
+				},
+				{
+					"key": "komo",
+					"display": "KOMO: Seattle, WA"
+				},
+				{
+					"key": "krcg",
+					"display": "KRCG: Columbia, MO"
+				},
+				{
+					"key": "krcr",
+					"display": "KRCR: Redding, CA"
+				},
+				{
+					"key": "krnv",
+					"display": "KRNV: Reno, NV"
+				},
+				{
+					"key": "ksnv",
+					"display": "KSNV: Las Vegas, NV"
+				},
+				{
+					"key": "ktul",
+					"display": "KTUL: Tulsa, OK"
+				},
+				{
+					"key": "ktvm",
+					"display": "KTVM: Butte/Bozeman/Missoula, MT"
+				},
+				{
+					"key": "ktvo",
+					"display": "KTVO: Ottumwa, IA"
+				},
+				{
+					"key": "ktxs",
+					"display": "KTXS: Abilene, TX"
+				},
+				{
+					"key": "kutv",
+					"display": "KUTV: Salt Lake City, UT"
+				},
+				{
+					"key": "kval",
+					"display": "KVAL: Eugene, OR"
+				},
+				{
+					"key": "kvii",
+					"display": "KVII: Amarillo, TX"
+				},
+				{
+					"key": "wach",
+					"display": "WACH: Columbia, SC"
+				},
+				{
+					"key": "wbff-fox",
+					"display": "WBFF (FOX): Baltimore, MD"
+				},
+				{
+					"key": "wbff-mytv",
+					"display": "WBFF (MYTV): Baltimore, MD"
+				},
+				{
+					"key": "wbma",
+					"display": "WBMA: Birmingham, AL"
+				},
+				{
+					"key": "wchs-abc",
+					"display": "WCHS (ABC): Charleston, WV"
+				},
+				{
+					"key": "wchs-fox",
+					"display": "WCHS (FOX): Charleston, WV"
+				},
+				{
+					"key": "wciv",
+					"display": "WCIV: Charleston, SC"
+				},
+				{
+					"key": "wcti",
+					"display": "WCTI: New Bern, NC"
+				},
+				{
+					"key": "wcyb-cw",
+					"display": "WCYV (CW): Tri-Cities, VA"
+				},
+				{
+					"key": "wcyb-nbc",
+					"display": "WCYV (NBC): Tri-Cities, VA"
+				},
+				{
+					"key": "wear",
+					"display": "WEAR: Pensacola, FL"
+				},
+				{
+					"key": "weyi",
+					"display": "WEYI: Flint, MI"
+				},
+				{
+					"key": "wgme",
+					"display": "WGME: Portland, ME"
+				},
+				{
+					"key": "wgxa",
+					"display": "WGXA: Macon, GA"
+				},
+				{
+					"key": "wham-abc",
+					"display": "WHAM (ABC): Rochester, NY"
+				},
+				{
+					"key": "wham-cw",
+					"display": "WHAM (CW): Rochester, NY"
+				},
+				{
+					"key": "whpc",
+					"display": "WHP: Harrisburg, PA"
+				},
+				{
+					"key": "wics",
+					"display": "WICS: Springfield, IL"
+				},
+				{
+					"key": "wjac",
+					"display": "WJAC: Johnstown, PA"
+				},
+				{
+					"key": "wjar",
+					"display": "WJAR: Providence, RI"
+				},
+				{
+					"key": "wjla",
+					"display": "WJLA: Washington, DC"
+				},
+				{
+					"key": "wkef-abc",
+					"display": "WKEF (ABC): Dayton, OH"
+				},
+				{
+					"key": "wkef-fox",
+					"display": "WKEF (FOX): Dayton, OH"
+				},
+				{
+					"key": "wkef-mytv",
+					"display": "WKEF (MYTV): Dayton, OH"
+				},
+				{
+					"key": "wkrc-cbs",
+					"display": "WKRC (CBS): Cincinatti, OH"
+				},
+				{
+					"key": "wkrc-cw",
+					"display": "WKRC (CW): Cincinatti, OH"
+				},
+				{
+					"key": "wlos-abc",
+					"display": "WLOS: Ashville, NC"
+				},
+				{
+					"key": "wlos-mytv",
+					"display": "WLOS: Ashville, NC"
+				},
+				{
+					"key": "wluk",
+					"display": "WLUK: Green Bay, WI"
+				},
+				{
+					"key": "woai",
+					"display": "WOAI: San Antonio, TX"
+				},
+				{
+					"key": "wolf",
+					"display": "WOLF: Wilkes-Barre, PA"
+				},
+				{
+					"key": "wpbn",
+					"display": "WPBN: Traverse City, MI"
+				},
+				{
+					"key": "wpde",
+					"display": "WPDE: Myrtle Beach, SC"
+				},
+				{
+					"key": "wpec",
+					"display": "WPEC: West Palm Beach, FL"
+				},
+				{
+					"key": "wpmi",
+					"display": "WPMI: Mobile, AL"
+				},
+				{
+					"key": "wrgb",
+					"display": "WRGB: Albany, NY"
+				},
+				{
+					"key": "wrsp",
+					"display": "WRSP: Springfield, IL"
+				},
+				{
+					"key": "wsbt-cbs",
+					"display": "WSBT (CBS): South Bend, IN"
+				},
+				{
+					"key": "wsbt-fox",
+					"display": "WSBT (FOX): South Bend, IN"
+				},
+				{
+					"key": "wset",
+					"display": "WSET: Lynchburg, VA"
+				},
+				{
+					"key": "wstm-cny",
+					"display": "WSTM (CNY): Syracuse, NY"
+				},
+				{
+					"key": "wstm-nbc",
+					"display": "WSTM (NBC): Syracuse, NY"
+				},
+				{
+					"key": "wsyx-abc",
+					"display": "WSYX (ABC): Columbus, OH"
+				},
+				{
+					"key": "wsyx-fox",
+					"display": "WSYX (FOX): Columbus, OH"
+				},
+				{
+					"key": "wsyx-mytv",
+					"display": "WSYX (MYTV): Columbus, OH"
+				},
+				{
+					"key": "wtov-fox",
+					"display": "WTOV (FOX): Steubenville, OH"
+				},
+				{
+					"key": "wtov-metv",
+					"display": "WTOV (METV): Steubenville, OH"
+				},
+				{
+					"key": "wtov-nbc",
+					"display": "WTOV (NBC): Steubenville, OH"
+				},
+				{
+					"key": "wtvc-abc",
+					"display": "WTVC (ABC): Chattanooga, TN"
+				},
+				{
+					"key": "wtvc-fox",
+					"display": "WTVC (FOX): Chattanooga, TN"
+				},
+				{
+					"key": "wwmt-cbs",
+					"display": "WWMT: Grand Rapids, MI"
+				},
+				{
+					"key": "wwmt-cw",
+					"display": "WWMT: Grand Rapids, MI"
+				},
+				{
+					"key": "wxlv",
+					"display": "WCLV: Winston-Salem, NC"
+				},
+				{
+					"key": "wztv-cw",
+					"display": "WZTV (CW): Nashville, TN"
+				},
+				{
+					"key": "wztv-fox",
+					"display": "WZTV (FOX): Nashville, TN"
+				}
+			]
+		},
+		{
+			"key": "size",
+			"display": "Size",
+			"type": "number",
+			"default": 1.0,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"step": 0.05,
+				"minimum": 0.5,
+				"maximum": 1.5
+			}
+		},
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [9, 0, 0],
+			"ui": {
+				"grid": false,
+				"offset": true,
+				"minimum": -100,
+				"maximum": 100
+			},
+			"required": false
+		},
+		["ds-sbg-mixins", "do-safezone"]
+	],
+	[
+		["ds-sbg-watermark", {
+			"size": ["$", ["var", "size"]],
+			"do-safezone": ["$", ["var", "do-safezone"]],
+			"station": ["$", ["var", "station"]],
+			"position": ["$", ["var", "position"]]
+		}]
+	]
+]

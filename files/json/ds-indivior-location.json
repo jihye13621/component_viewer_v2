@@ -1,0 +1,164 @@
+[
+	"ds-indivior-location",
+	[
+		{
+			"key": "text",
+			"display": "Location",
+			"type": "text",
+			"default": "New York, NY",
+			"required": false
+		},
+		["ds-indivior-mixins",
+			"color-white",
+			"color-salmon",
+			"font-body"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [9, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"layout": "horizontal packed match",
+				"max-width": "700nsu",
+				"gap": "20su",
+				"align": ["$", ["var", "#align"]],
+				"color": ["$", ["var", "color-salmon"]],
+				"padding": [
+					"20su",
+					"30su",
+					"20su",
+					"20su"
+				],
+				"mask": {
+					"padding": [
+						["animate",
+							[0, "100rh", "easeOutQuad"],
+							["+500", 0],
+							["100%", "100rh"],
+							["-500", 0, "easeInQuad"]
+						],
+						["animate",
+							[0, "100rw", "easeOutQuad"],
+							["+500", 0],
+							["100%", "100rw"],
+							["-500", 0, "easeInQuad"]
+						],
+						0,
+						0
+					]
+				}
+			}, [
+				["for-each", {
+					"flex": {
+						"position": "fixed"
+					},
+					"items": [1, 2, 3]
+				}, [
+					["solid", {
+						"rect": [
+							0,
+							0,
+							"100rw",
+							"100rh"
+						],
+						"color": ["$",
+							["rgba-set",
+								["var", "color-salmon"],
+								"a",
+								["/", ["+", 1, ["var", "index"]], 3]
+							]
+						],
+						"transform": [
+							["scale",
+								["animate",
+									[["$",
+										["to-relative-string",
+											["*", 100, ["var", "index"]]
+										]
+									], 0, "easeOutQuad"],
+									["+500", 1],
+									["100%", null],
+									[["$",
+										["to-relative-string",
+											["*", -100, ["var", "index"]]
+										]
+									], 0],
+									["-500", 1, "easeInQuad"]
+								],
+								0,
+								"100rh"
+							]
+						]
+					}]
+				]],
+				["dsx-icon", {
+					"stagger": [150, 0],
+					"flex": {
+						"shrink": true,
+						"width": "40su",
+						"height": "40su"
+					},
+					"color": ["$", ["var", "color-white"]],
+					"justify": "fit top center",
+					"icon": "pin",
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[0, "200rh", "easeOutCubic"],
+								["+400", 0]
+							]
+						]
+					]
+				}],
+				["null", {
+					"min-height": "30su",
+					"enabled": ["$", ["exists", ["var", "text"]]],
+					"layout": "vertical packed",
+					"align": "center"
+				}, [
+					["text", {
+						"mixins": ["ds-indivior-mixins",
+							"text",
+							"text-label"
+						],
+						"stagger": [350, 0],
+						"color": ["$", ["var", "color-white"]],
+						"string": ["$", ["var", "text"]],
+						"justify": "top left",
+						"fit": true,
+						"boundary": "letter",
+						"animations": [
+							{
+								"translate": [0, "55su"]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+500", 1]
+								],
+								"translate": [0, 0],
+								"easing": "easeOutCubic"
+							}
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

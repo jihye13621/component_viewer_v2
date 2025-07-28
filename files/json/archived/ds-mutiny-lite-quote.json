@@ -1,0 +1,295 @@
+[
+	"ds-mutiny-lite-quote",
+	[
+		["dsx-mixins", ["quote"]],
+		["ds-mutiny-lite-mixins", "color-light", "color-dark", "color-accent"],
+		["dsx-mixins", ["boilerplate"]],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": 4,
+			"required": false
+		}
+	],
+	[
+		["dsx-background", {
+			"enabled": ["$", ["exists", ["var", "background"]]],
+			"color": ["$", ["var", "background"]]
+		}],
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]],
+			"mask": {}
+		}, [
+			["null", {
+				"max-width": "800nsu",
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["exists", ["var", "quote"]]],
+						"transform": [
+							["translate",
+								0,
+								["animate",
+									[0, "120su", "easeInOutQuart"],
+									["+800", 0],
+									["100%", "100su"],
+									["-600", 0, "easeInOutQuart"]
+								]
+							]
+						]
+					}
+				]
+			}, [
+				["solid", {
+					"enabled": ["$",
+						["gt",
+							["var", "review"],
+							0
+						]
+					],
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]],
+					"color": ["$", ["var", "color-accent"]],
+					"padding": [
+						"15su",
+						"20su"
+					],
+					"mask": {
+						"padding": [
+							["animate",
+								[0, "100rh", "easeInOutQuart"],
+								[800, 0],
+								["100%", "100rh"],
+								["-600", 0, "easeInOutQuart"]
+							],
+							0,
+							0,
+							0
+						]
+					}
+				}, [
+					["for-each", {
+						"enabled": ["$",
+							["gt",
+								["var", "review"],
+								0
+							]
+						],
+						"flex": {
+							"height": "50su"
+						},
+						"layout": "horizontal packed",
+						"items": [1, 2, 3, 4, 5],
+						"gap": "20su"
+					}, [
+						["dsx-icon", {
+							"flex": {
+								"width": "70su",
+								"height": "70su"
+							},
+							"icon": "star-alt-open",
+							"color": ["$", ["var", "color-dark"]],
+							"stagger": [
+								["$", ["*", 50, ["var", "index"]]],
+								["$", ["*", -50, ["var", "index"]]]
+							],
+							"opacity": ["animate",
+								[400, 0, "easeOutQuad"],
+								["+200", 1],
+								["100%", 0],
+								["-600", 1, "easeInQuad"]
+							],
+							"transform": [
+								["translate",
+									0,
+									["animate",
+										[400, "60su", "easeOutQuart"],
+										["+300", 0],
+										["100%", "50su"],
+										["-300", 0, "easeInQuart"]
+									]
+								]
+							],
+							"breakpoints": [
+								{
+									"enabled": ["$",
+										["gt",
+											["var", "review"],
+											["var", "index"]
+										]
+									],
+									"icon": "star-alt"
+								}
+							]
+						}]
+					]]
+				]],
+				["solid", {
+					"enabled": ["$", ["exists", ["var", "quote"]]],
+					"layout": "vertical packed",
+					"flex": {
+						"weight": 1
+					},
+					"align": ["$", ["var", "#align"]],
+					"color": ["$", ["var", "color-dark"]],
+					"padding": [
+						"60su",
+						"40su",
+						"60su",
+						"40su"
+					],
+					"mask": {
+						"padding": [
+							0,
+							0,
+							["animate",
+								[0, "100rh", "easeInOutQuart"],
+								[800, 0],
+								["100%", "100rh"],
+								["-600", 0, "easeInOutQuart"]
+							],
+							0
+						]
+					}
+				}, [
+					["text", {
+						"mixins": ["ds-mutiny-lite-mixins", ["font-body"]],
+						"string": ["$", ["concat", "“", ["var", "quote"], "”"]],
+						"height": "80su",
+						"color": ["$", ["var", "color-light"]],
+						"justify": ["$", ["var", "#align"]],
+						"stagger": [350, -200],
+						"boundary": "word",
+						"animations": [
+							{
+								"translate": [0, "80su"]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+1000", 1],
+									["100%", 0],
+									["-600", 1]
+								],
+								"opacity": 1,
+								"translate": [0, 0],
+								"ramp": 1.5,
+								"easing": "easeOutQuart"
+							}
+						]
+					}]
+				]],
+				["solid", {
+					"enabled": ["$", ["exists", ["var", "detail-1"]]],
+					"layout": "vertical packed",
+					"flex": {
+						"weight": 0.5
+					},
+					"align": ["$", ["var", "#align"]],
+					"color": ["$", ["var", "color-light"]],
+					"padding": [
+						"22su",
+						"40su",
+						"22su",
+						"40su"
+					],
+					"stagger": [700, -400],
+					"mask": {
+						"padding": [
+							0,
+							["animate",
+								[0, "100rw", "easeInOutQuart"],
+								["+600", 0],
+								["100%", "100rw"],
+								["-400", 0, "easeInOutQuart"]
+							],
+							0,
+							0
+						]
+					}
+				}, [
+					["text", {
+						"mixins": ["ds-mutiny-lite-mixins", ["font-label"]],
+						"string": ["$", ["var", "detail-1"]],
+						"justify": ["$", ["var", "#align"]],
+						"color": ["$", ["var", "color-dark"]],
+						"stagger": [1000, -600],
+						"boundary": "line",
+						"animations": [
+							{
+								"translate": ["-30rw", 0]
+							},
+							{
+								"mix": ["animate", 
+									[0, 0],
+									["+600", 1],
+									["100%", 0],
+									["-400", 1]
+								],
+								"translate": [0, 0],
+								"opacity": 1,
+								"easing": "easeOutQuart"
+							}
+						]
+					}]
+				]],
+				["solid", {
+					"enabled": ["$", ["exists", ["var", "detail-2"]]],
+					"layout": "vertical packed",
+					"flex": {
+						"weight": 0.5
+					},
+					"align": ["$", ["var", "#align"]],
+					"color": ["$", ["var", "color-light"]],
+					"padding": [
+						"22su",
+						"40su",
+						"22su",
+						"40su"
+					],
+					"stagger": [800, -300],
+					"mask": {
+						"padding": [
+							0,
+							0,
+							0,
+							["animate",
+								[0, "100rw", "easeInOutQuart"],
+								["+600", 0],
+								["100%", "100rw"],
+								["-400", 0, "easeInOutQuart"]
+							]
+						]
+					}
+				}, [
+					["text", {
+						"mixins": ["ds-mutiny-lite-mixins", ["font-label"]],
+						"string": ["$", ["var", "detail-2"]],
+						"justify": ["$", ["var", "#align"]],
+						"color": ["$", ["var", "color-dark"]],
+						"stagger": [1100, -500],
+						"boundary": "line",
+						"animations": [
+							{
+								"translate": ["30rw", 0]
+							},
+							{
+								"mix": ["animate", 
+									[0, 0],
+									["+600", 1],
+									["100%", 0],
+									["-400", 1]
+								],
+								"translate": [0, 0],
+								"opacity": 1,
+								"easing": "easeOutQuart"
+							}
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

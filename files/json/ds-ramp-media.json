@@ -1,0 +1,76 @@
+[
+	"ds-ramp-media",
+	[
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["gain", 0],
+				["justify", "fill"]
+			],
+			"script": ["$", ["if",
+				["exists", ["var", "asset"]],
+				["var", "asset"],
+				"./media/image-wide.jpg"	
+			]]
+		},
+		{
+			"key": "do-background",
+			"display": "Show Background",
+			"type": "bool",
+			"default": true,
+			"required": false
+		},
+		["ds-ramp-mixins",
+			"colors"
+		]
+	],
+	[
+		["solid", {
+			"skip": ["$", ["not", ["var", "do-background"]]],
+			"mixins": ["dsx-mixins", "set-su", "safezone"],
+			"color": ["$", ["var", "color-green"]]
+		}, [
+			["user-asset", {
+				"file": ["$", ["var", "asset"]],
+				"justify": "fill center",
+				"opacity": ["animate",
+					[0, 0],
+					["+350", 1, "easeOutQuad"],
+					["100%", 0],
+					["-350", 1, "easeInQuad"]
+				],
+				"tags": ["b-roll"],
+				"mask": {
+					"radius": "50su",
+					"transform": true,
+					"padding": [
+						["animate",
+							[0, "50rh", "easeOutCubic"],
+							["+600", 0],
+							["100%", "30rh"],
+							["-500", 0, "easeInCubic"]
+						],
+						0,
+						0,
+						0
+					]
+				},
+				"transform": [
+					["translate",
+						0,
+						["animate",
+							[0, "20rh", "easeOutCubic"],
+							["+500", 0],
+							["100%", "12rh"],
+							["-500", 0, "easeInCubic"]
+						]
+					]
+				]
+			}]
+		]]
+	]
+]

@@ -1,0 +1,152 @@
+[
+	"ds-aiedu-outro",
+	[
+		["ds-aiedu-mixins",
+			"font-main"
+		],
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "text",
+			"default": "Optional text",
+			"required": false
+		},
+		{
+			"key": "theme",
+			"display": "Theme",
+			"type": "string",
+			"default": "white",
+			"options": [
+				{
+					"key": "white",
+					"display": "White"
+				},
+				{
+					"key": "blue-sky",
+					"display": "Blue Sky"
+				},
+				{
+					"key": "bright-blue",
+					"display": "Bright Blue"
+				},
+				{
+					"key": "teal",
+					"display": "Teal"
+				}
+			]
+		},
+		{
+			"key": "background-image",
+			"display": "Background Image",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["gain", 0],
+				["justify", "fill"],
+				["motion", "zoom-in"]
+			]
+		},
+		["dsx-mixins", 
+			"boilerplate-intro-outro"
+		],
+		{
+			"key": "#colors",
+			"display": "Colors",
+			"type": "object",
+			"default": ["#FFFFFF", "#000000"],
+			"private": true,
+			"script": ["$",
+				["switch", ["var", "theme"], {
+					"white": ["#FFFFFF", "#000000"],
+					"blue-sky": ["#DBFBFB", "#222244"],
+					"bright-blue": ["#18DCDC", "#006464"],
+					"teal": ["#006464", "#FFFFFF"],
+					"_": ["#ffffff", "#000000"]
+				}]
+			]
+		}
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins", "set-dsx-su"],
+			"color": ["$", ["nth", ["var", "#colors"], 0]]
+		}, [
+			["user-asset", {
+				"enabled": ["$", ["exists", ["var", "background-image"]]],
+				"file": ["$", ["var", "background-image"]],
+				"motion": ["$",
+					["if", ["exists", ["var", "background-image"]],
+						["if", ["eq", ["media-type", ["var", "background-image"]], "image"],
+							"zoom-in"
+						]
+					]
+				]
+			}],
+			["false-color", {
+				"mixins": ["dsx-mixins", "safezone"],
+				"layout": "vertical packed",
+				"align": "center",
+				"color-1": ["$", ["nth", ["var", "#colors"], 0]],
+				"color-2": ["$", ["nth", ["var", "#colors"], 1]],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["exists", ["var", "background-image"]]],
+						"color-1": [0, 0, 0, 0]
+					}
+				]
+			}, [
+				["null", {
+					"layout": "vertical packed",
+					"align": "center"
+				}, [
+					["null", {
+					}],
+					["asset", {
+						"flex": {
+							"weight": 2
+						},
+						"hold": true,
+						"file": "./media/ds-aiedu-logo-animated.mp4",
+						"justify": "fit center"
+					}],
+					["null", {
+					}, [
+						["text", {
+							"stagger": [400, 0],
+							"enabled": ["$", ["exists", ["var", "text"]]],
+							"mixins": ["ds-aiedu-mixins",
+								"text"
+							],
+							"font": ["$", ["var", "font-main"]],
+							"height": "65su",
+							"kerning": -0.01,
+							"string": ["$", ["var", "text"]],
+							"color": "#ffffff",
+							"justify": "center",
+							"boundary": "word",
+							"animations": [
+								{
+									"translate": [
+										0,
+										"60su"
+									]
+								},
+								{
+									"mix": ["animate",
+										[0, 0],
+										["+500", 1]
+									],
+									"easing": "easeOutQuad",
+									"ramp": 1,
+									"translate": [0, 0],
+									"opacity": 1
+								}
+							]
+						}]
+					]]
+				]]
+			]]
+		]]
+	]
+]

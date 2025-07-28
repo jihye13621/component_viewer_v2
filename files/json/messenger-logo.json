@@ -1,0 +1,26 @@
+[
+	"messenger-logo",
+	[
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [9, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["solid", {
+			"color": "#111C3D"
+		}],
+		["asset", {
+			"mute": true,
+			"justify": "fit center",
+			"file": "./media/messenger-outro.mp4"
+		}]
+	]
+]

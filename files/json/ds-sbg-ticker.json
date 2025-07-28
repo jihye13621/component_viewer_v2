@@ -1,0 +1,206 @@
+[
+	"ds-sbg-ticker",
+	[
+		["ds-sbg-mixins",
+			"color-fg",
+			"color-bg",
+			"font-headline",
+			"font-body"
+		],
+		{
+			"key": "category",
+			"display": "Category",
+			"type": "string",
+			"options": [
+				{
+					"key": "breaking",
+					"display": "Breaking News"
+				},
+				{
+					"key": "national",
+					"display": "National News"
+				},
+				{
+					"key": "local",
+					"display": "Local News"
+				},
+				{
+					"key": "world",
+					"display": "World News"
+				},
+				{
+					"key": "weather",
+					"display": "Weather"
+				},
+				{
+					"key": "politics",
+					"display": "Politics"
+				},
+				{
+					"key": "sports",
+					"display": "Sports"
+				}
+			],
+			"default": "national",
+			"required": false
+		},
+		{
+			"key": "#category-config",
+			"private": true,
+			"required": false,
+			"default": [],
+			"script": ["$", ["switch", ["var", "category"], {
+				"breaking": ["Breaking News", "#DC0101"],
+				"national": ["National News", "#043968"],
+				"local": ["Local News", "#06569D"],
+				"world": ["World News", "#00859d"],
+				"weather": ["Weather", "#0076c8", 250],
+				"politics": ["Politics", "#4A4A4A", 250],
+				"sports": ["Sports", "#000000", 250],
+				"_": ["News", "#DC0101"]
+			}]]
+		},
+		{
+			"key": "#vertical-loop",
+			"display": "Vertical Loop",
+			"type": "number",
+			"required": false,
+			"private": true,
+			"default": 350,
+			"script": ["$",
+				["if",
+					["gt", ["length", ["var", "#category-config"]], 2],
+					["nth", ["var", "#category-config"], 2],
+					350
+				]
+			]
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", "set-su"]
+		}, [
+			["null", {
+				"transform": [
+					["translate",
+						["animate",
+							[0, "50su", "easeInOutQuad"],
+							["+300", 0],
+							["100%", "50su"],
+							["-300", 0, "easeInOutQuad"]
+						],
+						0
+					]
+				]
+			}, [
+				["solid", {
+					"rect": [
+						0,
+						0,
+						"50su",
+						"100rh"
+					],
+					"align": "right",
+					"color": ["$", ["nth", ["var", "#category-config"], 1]]
+				}],
+				["fract", {
+					"roll-y": ["animate",
+						[0, 0],
+						["+5000", ["$",
+							["/",
+								["*",
+									["var", "#vertical-loop"],
+									["*",
+										["/",
+											["min", ["width"], ["height"]],
+											1080
+										],
+										["if",
+											["exists", 
+												["var", "size"]
+											],
+											["var", "size"],
+											1
+										]
+									]
+								],
+								["height"]
+							]
+						]],
+						"loop"
+					],
+					"mod-y": ["$",
+						["/",
+							["*",
+								["var", "#vertical-loop"],
+								["*",
+									["/",
+										["min", ["width"], ["height"]],
+										1080
+									],
+									["if",
+										["exists", 
+											["var", "size"]
+										],
+										["var", "size"],
+										1
+									]
+								]
+							],
+							["height"]
+						]
+					]
+				}, [
+					["null", {
+						"rect": [
+							"-50su",
+							0,
+							["$", ["concat", ["var", "#vertical-loop"], "su"]],
+							"50su"
+						],
+						"layout": "horizontal",
+						"transform": [
+							["rotate",
+								-0.25,
+								0,
+								0
+							],
+							["translate",
+								"100cw",
+								["$", ["concat", ["var", "#vertical-loop"], "su"]]
+							]
+						]
+					}, [
+						["text", {
+							"mixins": ["ds-sbg-mixins",
+								"text",
+								"text-label"
+							],
+							"color": ["$", ["var", "color-fg"]],
+							"string": ["$", ["nth", ["var", "#category-config"], 0]],
+							"case": "uppercase",
+							"height": "30su",
+							"kerning": "0.01",
+							"justify": "center",
+							"measure": "letter-size"
+						}]
+					]]
+				]],
+				["solid", {
+					"rect": [
+						0,
+						0,
+						"50su",
+						"60rh"
+					],
+					"align": "right",
+					"color": ["linear-gradient",
+						0.0,
+						[0.0, ["$", ["nth", ["var", "#category-config"], 1]]],
+						[1.0, ["$", ["rgba-set", ["nth", ["var", "#category-config"], 1], "a", 0.0]]]
+					]
+				}]
+			]]
+		]]
+	]
+]

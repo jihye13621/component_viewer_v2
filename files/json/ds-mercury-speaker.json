@@ -1,0 +1,231 @@
+[
+	"ds-mercury-speaker",
+	[
+		["dsx-mixins",
+			"speaker"
+		],
+		{
+			"key": "color-primary",
+			"display": "Primary",
+			"type": "color",
+			"default": "#000000",
+			"global": "color-primary",
+			"required": false
+		},
+		{
+			"key": "color-secondary",
+			"display": "Secondary",
+			"type": "color",
+			"default": "#ffffff",
+			"global": "color-secondary",
+			"required": false
+		},
+		["ds-mercury-mixins",
+			"font-headline",
+			"font-body"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [1, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["shadow", {
+				"enabled": ["$",
+					["or",
+						["exists", ["var", "name"]],
+						["exists", ["var", "detail-1"]],
+						["exists", ["var", "detail-2"]]
+					]
+				],
+				"layout": "vertical packed",
+				"max-width": "800nsu",
+				"align": ["$", ["var", "#align"]],
+				"gap": "20su",
+				"color": "#00000033",
+				"radius": "3su"
+			}, [
+				["null", {
+					"enabled": ["$", ["exists", ["var", "name"]]],
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]],
+					"stagger": [0, -100],
+					"opacity": ["animate",
+						[0, 0, "easeOutSine"],
+						["+500", 1],
+						["100%", 0],
+						["-350", 1, "easeInSine"]
+					],
+					"transform": [
+						["translate",
+							["animate",
+								[0, "-100su", "easeOutQuad"],
+								["+500", 0]
+							],
+							0
+						]
+					]
+				}, [
+					["solid", {
+						"layout": "vertical packed",
+						"align": ["$", ["var", "#align"]],
+						"gap": "10su",
+						"padding": [
+							"45su",
+							"45su"
+						],
+						"radius": "20su",
+						"color": ["linear-gradient",
+							-0.25,
+							[0.0, ["$", ["rgba-set", ["var", "color-secondary"], "a", 0.9]]],
+							[1.0, ["$", ["rgba-set", ["var", "color-secondary"], "a", 0.5]]]
+						],
+						"stroke": "2su",
+						"stroke-color": "#00000022",
+						"mask": {}
+					}, [
+						["text", {
+							"mixins": ["ds-capsule-mixins",
+								"text",
+								"text-title"
+							],
+							"stagger": [150, 0],
+							"color": ["$", ["var", "color-primary"]],
+							"height": "70su",
+							"string": ["$", ["var", "name"]],
+							"justify": ["$", ["var", "#align"]],
+							"boundary": "word",
+							"animations": [
+								{
+									"translate": [
+										0,
+										"60su"
+									]
+								},
+								{
+									"mix": ["animate",
+										[0, 0],
+										["+650", 1]
+									],
+									"easing": "easeOutCubic",
+									"opacity": 1,
+									"translate": [0, 0],
+									"ramp": 1.5
+								}
+							]
+						}]
+					]]
+				]],
+				["null", {
+					"enabled": ["$",
+						["or",
+							["exists", ["var", "detail-1"]],
+							["exists", ["var", "detail-2"]]
+						]
+					],
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]],
+					"stagger": [350, 0],
+					"opacity": ["animate",
+						[0, 0, "easeOutSine"],
+						["+500", 1],
+						["100%", 0],
+						["-350", 1, "easeInSine"]
+					],
+					"transform": [
+						["translate",
+							["animate",
+								[0, "-100su", "easeOutCubic"],
+								["+500", 0]
+							],
+							0
+						]
+					]
+				}, [
+					["solid", {
+						"layout": "vertical packed",
+						"align": ["$", ["var", "#align"]],
+						"gap": "10su",
+						"padding": [
+							"30su",
+							"40su"
+						],
+						"radius": "20su",
+						"color": ["linear-gradient",
+							-0.25,
+							[0.0, ["$", ["rgba-set", ["var", "color-secondary"], "a", 0.9]]],
+							[1.0, ["$", ["rgba-set", ["var", "color-secondary"], "a", 0.5]]]
+						],
+						"stroke": "2su",
+						"stroke-color": "#00000022",
+						"mask": {}
+					}, [
+						["text", {
+							"mixins": ["ds-capsule-mixins",
+								"text",
+								"text-label"
+							],
+							"stagger": [500, 0],
+							"string": ["$",
+								["concat",
+									["if",
+										["exists", ["var", "detail-1"]],
+										["var", "detail-1"],
+										""
+									],
+									["if",
+										["and",
+											["exists", ["var", "detail-1"]],
+											["exists", ["var", "detail-2"]]
+										],
+										"\n",
+										""
+									],
+									["if",
+										["exists", ["var", "detail-2"]],
+										["var", "detail-2"],
+										""
+									]
+								]
+							],
+							"color": ["$", ["var", "color-primary"]],
+							"justify": ["$", ["var", "#align"]],
+							"boundary": "word",
+							"animations": [
+								{
+									"translate": [
+										0,
+										"50su"
+									]
+								},
+								{
+									"mix": ["animate",
+										[0, 0],
+										[650, 1]
+									],
+									"easing": "easeOutCubic",
+									"opacity": 1,
+									"translate": [0, 0],
+									"ramp": 1.5
+								}
+							]
+						}]
+					]]
+				]]
+			]]
+		]]
+	]
+]

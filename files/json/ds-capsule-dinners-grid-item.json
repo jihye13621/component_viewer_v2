@@ -1,0 +1,79 @@
+[
+	"ds-capsule-dinners-grid-item",
+	[
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": []
+		},
+		{
+			"key": "do-recolor",
+			"display": "White Fill",
+			"type": "bool",
+			"default": false,
+			"required": false
+		},
+		{
+			"key": "internal-stagger",
+			"display": "Stagger",
+			"type": "object",
+			"default": [100, -100],
+			"required": false
+		},
+		["ds-capsule-dinners-mixins",
+			"color-primary",
+			"color-secondary"
+		]
+	],
+	[
+		["null", {
+			"stagger": [
+				["$",
+					["nth", ["var", "internal-stagger"], 0]
+				],
+				["$",
+					["nth", ["var", "internal-stagger"], 1]
+				]
+			],
+			"align": "center",
+			"opacity": ["animate",
+				[0, 0], 
+				["+300", 1, "easeOutQuad"],
+				["100%", 0],
+				["-300", 1, "easeInQuad"]
+			]
+		}, [
+			["null", {
+				"align": "center"
+			}, [
+				["solid", {
+					"color": ["$", ["rgba-set", ["var", "color-secondary"], "a", 0.9]],
+					"stroke": "5su",
+					"stroke-color": ["$", ["var", "color-secondary"]],
+					"radius": "30su"
+				}],
+				["user-asset", {
+					"file": ["$", ["var", "asset"]],
+					"justify": "fit center",
+					"transform": [
+						["scale", 0.7]
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["var", "do-recolor"]],
+							"effect": [
+								["false-color", {
+									"color-1": ["$", ["var", "color-primary"]],
+									"color-2": ["$", ["var", "color-primary"]]
+								}]
+							]
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

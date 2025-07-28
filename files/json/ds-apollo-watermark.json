@@ -1,0 +1,56 @@
+[
+	"ds-apollo-watermark",
+	[
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "shadow",
+			"display": "Shadow",
+			"type": "bool",
+			"default": false,
+			"required": false
+		},
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [7, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["shadow", {
+				"skip": ["$", ["not", ["var", "shadow"]]],
+				"color": [0, 0, 0, 0.8],
+				"radius": "40su",
+				"layout": "horizontal packed",
+				"max-width": "800nsu",
+				"align": ["$", ["var", "#align"]]
+			}, [
+				["asset", {
+					"mute": true,
+					"file": "./media/ds-apollo-logo.svg",
+					"flex": {
+						"width": "300su",
+						"height": "300su"
+					},
+					"justify": ["$", ["concat", "fit ", ["var", "#align"]]],
+					"opacity": ["animate",
+						[0, 0, "easeOutQuad"],
+						["+350", 0.5],
+						["100%", 0],
+						["-350", 0.5, "easeInQuad"]
+					]
+				}]
+			]]
+		]]
+	]
+]

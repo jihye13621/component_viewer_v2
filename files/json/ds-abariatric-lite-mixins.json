@@ -1,0 +1,57 @@
+{
+	"params": {
+		"color-light": {
+			"key": "color-light",
+			"display": "Color Light",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		},
+		"color-dark": {
+			"key": "color-dark",
+			"display": "Color Dark",
+			"type": "color",
+			"default": "#000000",
+			"required": false
+		},
+		"color-accent": {
+			"key": "color-accent",
+			"display": "Color Accent",
+			"type": "color",
+			"default": "#D69D71",
+			"required": false
+		}
+	},
+	"headline-0": {
+		"font": "./media/BebasNeue-Regular.ttf",
+		"height": "250su",
+		"leading": -0.2
+	},
+	"headline-1": {
+		"font": "./media/BebasNeue-Regular.ttf",
+		"height": "150su",
+		"leading": "-20su"
+	},
+	"headline-2": {
+		"font": "./media/BebasNeue-Regular.ttf",
+		"height": "88su"
+	},
+	"text-1": {
+		"font": "./media/BebasNeue-Regular.ttf",
+		"height": "90su",
+		"leading": -0.08
+	},
+	"text-1-sans": {
+		"font": "./media/BebasNeue-Regular.ttf",
+		"height": "86su",
+		"leading": -0.1
+	},
+	"text-2": {
+		"font": "./media/BebasNeue-Regular.ttf",
+		"height": "60su"
+	},
+	"speaker-detail": {
+		"font": "./media/BebasNeue-Regular.ttf",
+		"height": "68su"
+	}
+}

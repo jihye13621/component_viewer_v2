@@ -1,0 +1,75 @@
+[
+	"ds-arrows-lite-prompt",
+	[
+		["dsx-mixins", ["prompt"]],
+		["ds-arrows-lite-mixins", "color-1", "color-2"],
+		["dsx-mixins", ["boilerplate"]],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": 1,
+			"required": false
+		}
+	],
+	[
+		["dsx-background", {
+			"enabled": ["$", ["exists", ["var", "background"]]],
+			"color": ["$", ["var", "background"]]
+		}],
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"max-width": "800nsu",
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"gap": "30su"
+			}, [
+				["ds-arrows-lite-pill", {
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]],
+					"position": ["$", ["var", "position"]],
+					"color-1": ["$", ["var", "color-2"]],
+					"color-2": ["$", ["var", "color-1"]],
+					"string": "Question",
+					"pill-mixin": "text-2",
+					"pill-padding": ["48su", "96su"],
+					"pill-radius": "200su",
+					"pill-stagger": [0, 0]
+				}],
+				["solid", {
+					"enabled": ["$", ["exists", ["var", "text"]]],
+					"mixins": ["ds-arrows-lite-mixins", ["anchored-anim-top"]],
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]],
+					"color": ["$", ["var", "color-2"]],
+					"padding": [
+						"80su",
+						"96su"
+					],
+					"radius": "100su",
+					"stagger": [300, -250]
+				}, [
+					["text", {
+						"mixins": ["ds-arrows-lite-mixins", ["headline-2"]],
+						"string": ["$", ["var", "text"]],
+						"color": ["$", ["var", "color-1"]],
+						"justify": ["$", ["var", "#align"]],
+						"stagger": [300, -250],
+						"animations": [
+							{
+								"mix": ["animate",
+									[0, 0.1],
+									["+700", 1]
+								],
+								"opacity": 1,
+								"easing": "easeOutQuad"
+							}
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

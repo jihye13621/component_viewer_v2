@@ -1,0 +1,358 @@
+[
+	"api-brandlive-6",
+	[
+		{
+			"key": "font-1",
+			"display": "Font 1",
+			"type": "string",
+			"default": "./media/api-brandlive/Founders-Grotesk-Bold.otf",
+			"required": false
+		},
+		{
+			"key": "font-2",
+			"display": "Font 2",
+			"type": "string",
+			"default": "./media/api-brandlive/Founders-Grotesk-Regular.otf",
+			"required": false
+		},
+		{
+			"key": "seconds",
+			"display": "Seconds",
+			"type": "int",
+			"default": 30,
+			"required": false
+		},
+		{
+			"key": "color-trim",
+			"display": "Color Trim",
+			"type": "color",
+			"default": "#f0eefc",
+			"required": false
+		},
+		{
+			"key": "color-background",
+			"display": "Color Background",
+			"type": "color",
+			"default": [0.2, 0.2, 0.3, 1],
+			"required": false
+		},
+		{
+			"key": "color-foreground",
+			"display": "Color Foreground",
+			"type": "color",
+			"default": [1, 1, 1, 1],
+			"required": false
+		},
+		{
+			"key": "color-accent",
+			"display": "Color Accent",
+			"type": "color",
+			"default": [0.7, 0.3, 0.2, 1],
+			"required": false
+		},
+		{
+			"key": "text-line-1",
+			"display": "Text Line 2",
+			"type": "string",
+			"default": "Charter Skills Accelerator",
+			"required": false
+		},
+		{
+			"key": "text-line-2",
+			"display": "Text Line 2",
+			"type": "string",
+			"default": "The show begins in",
+			"required": false
+		},
+		{
+			"key": "logo",
+			"display": "Logo",
+			"type": "asset",
+			"default": "./media/api-brandlive/topo-logo.png",
+			"required": false
+		},
+		{
+			"key": "image",
+			"display": "Image",
+			"type": "asset",
+			"default": "./media/api-brandlive/api-brandlive-6-image.jpg",
+			"required": false
+		}
+	],
+	[
+		["solid", {
+			"start": 0,
+			"duration": ["$", ["+", 1000, ["*", 1000, ["var", "seconds"]]]],
+			"color": ["$", ["var", "color-trim"]],
+			"mixins": ["dsx-mixins", "set-su"],
+			"padding": [
+				"80su",
+				"80su"
+			]
+		}, [
+			["solid", {
+				"color": ["$", ["var", "color-background"]]
+			}],
+			["null", {
+				"rect": [
+					0,
+					0,
+					"50rw",
+					"100rh"
+				],
+				"padding": [
+					"80su",
+					"80su"
+				],
+				"layout": "vertical"
+			}, [
+				["text", {
+					"string": ["$", ["var", "text-line-1"]],
+					"color": ["$", ["var", "color-foreground"]],
+					"font": ["$", ["var", "font-2"]],
+					"height": "110su",
+					"leading": -0.2,
+					"justify": "left center"
+				}],
+				["null", {
+					"flex": {
+						"height": "200su"
+					}
+				}, [
+					["asset", {
+						"max-width": "200su",
+						"align": "center",
+						"file": ["$", ["var", "logo"]],
+						"justify": "fit center bottom"
+					}]
+				]]
+			]],
+			["null", {
+				"rect": [
+					"50rw",
+					0,
+					"50rw",
+					"100rh"
+				],
+				"padding": [
+					"80su",
+					0,
+					"80su", 
+					"80su"
+				],
+				"mask": {
+				}
+			}, [
+				["asset", {
+					"flex": {
+						"position": "fixed"
+					},
+					"file": ["$", ["var", "image"]],
+					"justify": "fill center",
+					"opacity": 0.5
+				}],
+				["null", {
+					"layout": "vertical packed"
+				}, [
+					["null", {
+						"flex": {
+							"weight": 0.5
+						}
+					}, [
+						["text", {
+							"string": ["$", ["var", "text-line-2"]],
+							"color": ["$", ["var", "color-foreground"]],
+							"font": ["$", ["var", "font-2"]],
+							"height": "30su",
+							"justify": "left center"
+						}]
+					]],
+					["null", {
+						"layout": "horizontal packed"
+					}, [
+						["for-each", {
+							"items": [9, 8, 7, 6, 5, 4, 3, 2, 1, 0],
+							"layout": "stacked",
+							"align": "center right"
+						}, [
+							["text", {
+								"mixins": ["api-brandlive-mixins", "looping-number-minten-no-anim"],
+								"color": ["$", ["var", "color-foreground"]],
+								"font": ["$", ["var", "font-1"]],
+								"height": "200su",
+								"justify": "center right",
+								"string": ["$", ["var", "item"]],
+								"stagger": [
+									["$",
+										["+",
+											["*", 600000, ["var", "index"]],
+											["*", 1000, ["mod", ["var", "seconds"], 6000]],
+											1000
+										]
+									],
+									0
+								]
+							}]
+						]],
+						["for-each", {
+							"items": [9, 8, 7, 6, 5, 4, 3, 2, 1, 0],
+							"layout": "stacked",
+							"align": "center right"
+						}, [
+							["text", {
+								"mixins": ["api-brandlive-mixins", "looping-number-min-no-anim"],
+								"color": ["$", ["var", "color-foreground"]],
+								"font": ["$", ["var", "font-1"]],
+								"height": "200su",
+								"justify": "center left",
+								"string": ["$", ["var", "item"]],
+								"stagger": [
+									["$",
+										["+",
+											["*", 60000, ["var", "index"]],
+											["*", 1000, ["var", "seconds"]],
+											1000
+										]
+									],
+									0
+								]
+							}]
+						]]
+					]],
+					["null", {
+						"layout": "vertical packed",
+						"flex": {
+							"weight": 0.5
+						},
+						"transform": [
+							["translate",
+								0,
+								"-50su"
+							]
+						]
+					}, [
+						["text", {
+							"string": "Minutes",
+							"color": ["$", ["var", "color-foreground"]],
+							"font": ["$", ["var", "font-2"]],
+							"height": "80su",
+							"justify": "left center"
+						}],
+						["solid", {
+							"flex": {
+								"height": "5su"
+							},
+							"color": ["$", ["var", "color-accent"]],
+							"rect": [
+								0,
+								0,
+								"100rw",
+								"100rh"
+							]
+						}]
+					]],
+					["null", {
+						"layout": "horizontal packed"
+					}, [
+						["text", {
+							"color": ["$", ["var", "color-foreground"]],
+							"font": ["$", ["var", "font-1"]],
+							"height": "200su",
+							"justify": "center right",
+							"string": ":"
+						}],
+						["for-each", {
+							"items": [5, 4, 3, 2, 1, 0],
+							"layout": "stacked",
+							"align": "center right"
+						}, [
+							["text", {
+								"mixins": ["api-brandlive-mixins", "looping-number-ten-no-anim"],
+								"color": ["$", ["var", "color-foreground"]],
+								"font": ["$", ["var", "font-1"]],
+								"height": "200su",
+								"justify": "center right",
+								"string": ["$", ["var", "item"]],
+								"stagger": [
+									["$",
+										["+",
+											["*", 10000, ["var", "index"]],
+											["*", 1000, ["var", "seconds"]],
+											1000
+										]
+									],
+									0
+								]
+							}]
+						]],
+						["for-each", {
+							"items": [9, 8, 7, 6, 5, 4, 3, 2, 1, 0],
+							"layout": "stacked",
+							"align": "center left"
+						}, [
+							["text", {
+								"mixins": ["api-brandlive-mixins", "looping-number-second-no-anim"],
+								"color": ["$", ["var", "color-foreground"]],
+								"font": ["$", ["var", "font-1"]],
+								"height": "200su",
+								"justify": "center left",
+								"string": ["$", ["var", "item"]],
+								"stagger": [
+									["$",
+										["+",
+											["*", 1000, ["var", "index"]],
+											["*", 1000, ["mod", ["var", "seconds"], 10]],
+											1000
+										]
+									],
+									0
+								]
+							}]
+						]]
+					]],
+					["null", {
+						"layout": "vertical packed",
+						"flex": {
+							"weight": 0.5
+						},
+						"transform": [
+							["translate",
+								0,
+								"-50su"
+							]
+						]
+					}, [
+						["text", {
+							"string": "Seconds",
+							"color": ["$", ["var", "color-foreground"]],
+							"font": ["$", ["var", "font-2"]],
+							"height": "80su",
+							"justify": "left center"
+						}],
+						["solid", {
+							"flex": {
+								"height": "5su"
+							},
+							"color": ["$", ["var", "color-accent"]],
+							"stagger": [
+								["$",
+									["+",
+										["*", 1000, ["mod", ["var", "seconds"], 60]],
+										1000
+									]
+								],
+								-1
+							],
+							"rect": [
+								0,
+								0,
+								"100rw",
+								"100rh"
+							]
+						}]
+					]]
+				]]
+			]]
+		]]
+	]
+]

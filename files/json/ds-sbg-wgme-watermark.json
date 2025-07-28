@@ -1,0 +1,277 @@
+[
+	"ds-sbg-wgme-watermark",
+	[
+		["ds-sbg-mixins",
+			"color-fg",
+			"color-bg",
+			"font-headline",
+			"font-body"
+		],
+		{
+			"key": "category",
+			"display": "Category",
+			"type": "string",
+			"options": [
+				{
+					"key": "breaking",
+					"display": "Breaking News"
+				},
+				{
+					"key": "national",
+					"display": "National News"
+				},
+				{
+					"key": "local",
+					"display": "Local News"
+				},
+				{
+					"key": "politics",
+					"display": "Politics"
+				},
+				{
+					"key": "sports-redsox",
+					"display": "Sports - Red Sox"
+				},
+				{
+					"key": "sports-celtics",
+					"display": "Sports - Celtics"
+				},
+				{
+					"key": "sports-bruins",
+					"display": "Sports - Bruins"
+				},
+				{
+					"key": "sports-patriots",
+					"display": "Sports - Patriots"
+				}
+			],
+			"default": "national",
+			"required": false
+		},
+		{
+			"key": "#color-category",
+			"display": "Color Category",
+			"type": "color",
+			"default": [0, 0, 0, 1],
+			"required": false,
+			"private": true,
+			"script": ["$", ["switch", ["var", "category"], {
+				"breaking": "#DC0101",
+				"national": "#043968",
+				"local": "#06569D",
+				"politics": "#4A4A4A",
+				"sports-redsox": "#BD3039",
+				"sports-celtics": "#007A33",
+				"sports-bruins": "#FFB81C",
+				"sports-patriots": "#002244",
+				"_": "#1F3F66"
+			}]]
+		},
+		{
+			"key": "#string-category",
+			"display": "String Category",
+			"type": "string",
+			"default": "National",
+			"required": false,
+			"private": true,
+			"script": ["$", ["switch", ["var", "category"], {
+				"breaking": "Breaking News",
+				"national": "National News",
+				"local": "Local News",
+				"politics": "Politics",
+				"sports-redsox": "Sports",
+				"sports-celtics": "Sports",
+				"sports-bruins": "Sports",
+				"sports-patriots": "Sports",
+				"_": "News"
+			}]]
+		},
+		{
+			"key": "#vertical-loop",
+			"display": "Vertical Loop",
+			"type": "number",
+			"required": false,
+			"private": true,
+			"default": 350,
+			"script": ["$",
+				["if",
+					["in", ["var", "category"],
+						"politics",
+						"sports-redsox",
+						"sports-celtics",
+						"sports-bruins",
+						"sports-patriots"
+					],
+					250,
+					350
+				]
+			]
+		},
+		["ds-sbg-mixins", "do-safezone"]
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", "set-su"]
+		}, [
+			["null", {
+				"transform": [
+					["translate",
+						["animate",
+							[0, "50su", "easeInOutQuad"],
+							["+300", 0],
+							["100%", "50su"],
+							["-300", 0, "easeInOutQuad"]
+						],
+						0
+					]
+				]
+			}, [
+				["solid", {
+					"rect": [
+						0,
+						0,
+						"50su",
+						"100rh"
+					],
+					"align": "right",
+					"color": ["$", ["var", "#color-category"]]
+				}],
+				["fract", {
+					"roll-y": ["animate",
+						[0, 0],
+						["+5000", ["$",
+							["/",
+								["*",
+									["var", "#vertical-loop"],
+									["*",
+										["/",
+											["min", ["width"], ["height"]],
+											1080
+										],
+										["if",
+											["exists", 
+												["var", "size"]
+											],
+											["var", "size"],
+											1
+										]
+									]
+								],
+								["height"]
+							]
+						]],
+						"loop"
+					],
+					"mod-y": ["$",
+						["/",
+							["*",
+								["var", "#vertical-loop"],
+								["*",
+									["/",
+										["min", ["width"], ["height"]],
+										1080
+									],
+									["if",
+										["exists", 
+											["var", "size"]
+										],
+										["var", "size"],
+										1
+									]
+								]
+							],
+							["height"]
+						]
+					]
+				}, [
+					["null", {
+						"rect": [
+							"-50su",
+							0,
+							["$", ["concat", ["var", "#vertical-loop"], "su"]],
+							"50su"
+						],
+						"layout": "horizontal",
+						"transform": [
+							["rotate",
+								-0.25,
+								0,
+								0
+							],
+							["translate",
+								"100cw",
+								["$", ["concat", ["var", "#vertical-loop"], "su"]]
+							]
+						]
+					}, [
+						["text", {
+							"mixins": ["ds-sbg-mixins",
+								"text",
+								"text-label"
+							],
+							"color": ["$", 
+								["if", 
+									["eq", ["var", "category"], "sports-bruins"],
+									["var", "color-bg"],
+									["var", "color-fg"]
+								]
+							],
+							"string": ["$", ["var", "#string-category"]],
+							"case": "uppercase",
+							"height": "30su",
+							"kerning": "0.01",
+							"justify": "center",
+							"measure": "letter-size"
+						}]
+					]]
+				]],
+				["solid", {
+					"rect": [
+						0,
+						0,
+						"50su",
+						"60rh"
+					],
+					"align": "right",
+					"color": ["linear-gradient",
+						0.0,
+						[0.0, ["$", ["var", "#color-category"]]],
+						[1.0, ["$", ["rgba-set", ["var", "#color-category"], "a", 0.0]]]
+					]
+				}]
+			]],
+			["null", {
+				"mixins": ["ds-sbg-mixins", "watermark-safezone"]
+			}, [
+				["shadow", {
+					"radius": "20su",
+					"color": [0, 0, 0, 0.3],
+					"opacity": ["animate",
+						[0, 0, "easeOutSine"],
+						["+350", 1],
+						["100%", 0],
+						["-250", 1, "easeInSine"]
+					],
+					"padding": [
+						0,
+						"30nsu",
+						0,
+						0
+					]
+				}, [
+					["asset", {
+						"rect": [
+							0,
+							0,
+							"200su",
+							"100su"
+						],
+						"align": "top right",
+						"file": "./media/ds-sbg-logo-wgme.png",
+						"justify": "fit top right"
+					}]
+				]]
+			]]
+		]]
+	]
+]

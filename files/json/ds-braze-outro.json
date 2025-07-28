@@ -1,0 +1,95 @@
+[
+	"ds-braze-outro",
+	[
+		{
+			"key": "graphic-style",
+			"display": "Graphic Shape",
+			"type": "string",
+			"default": "graphic-1",
+			"required": false,
+			"options": [
+				{
+					"key": "graphic-1",
+					"display": "Graphic 1"
+				},
+				{
+					"key": "graphic-2",
+					"display": "Graphic 2"
+				},
+				{
+					"key": "graphic-3",
+					"display": "Graphic 3"
+				},
+				{
+					"key": "graphic-4",
+					"display": "Graphic 4"
+				},
+				{
+					"key": "graphic-5",
+					"display": "Graphic 5"
+				}
+			]
+		},
+		["ds-braze-mixins",
+			"font-black",
+			"font-regular"
+		]
+	],
+	[
+		["ds-braze-bg", {
+			"animate-out": false,
+			"gradient-style": "heat-2"
+		}, [
+			["null", {
+				"mixins": ["dsx-mixins",
+					"set-su",
+					"safezone"
+				]
+			}, [
+				["ds-braze-supergraphic", {
+					"color-style": "orange-gradient-3",
+					"graphic-style": ["$", ["var", "graphic-style"]],
+					"transform": [
+						["scale", ["$", ["switch", ["var", "graphic-style"], ["object",
+							["array", "graphic-1", 1.8],
+							["array", "graphic-2", 1.6],
+							["array", "graphic-3", 1.5],
+							["array", "graphic-4", 1.6],
+							["array", "graphic-5", 1.4]
+						]]]]
+					]
+				}],
+				["null", {
+					"layout": "vertical packed",
+					"gap": "20su",
+					"align": "center",
+					"transform": [
+						["scale", 0.75],
+						["scale", ["animate",
+							[0, 1.35, "easeOutQuart"],
+							["+1400", 1]
+						]]
+					]
+				}, [
+					["asset", {
+						"start": 700,
+						"flex": {
+							"height": "240su"
+						},
+						"file": "./media/ds-braze-logo-animated.mov",
+						"justify": "fit center",
+						"hold": true,
+						"mute": true
+					}],
+					["asset", {
+						"start": 700,
+						"file": "./media/ds-braze-engaging.mov",
+						"justify": "fit center",
+						"hold": true,
+						"mute": true
+					}]
+				]]
+			]]
+		]]
+	]
+]

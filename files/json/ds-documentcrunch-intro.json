@@ -1,0 +1,55 @@
+[
+	"ds-documentcrunch-intro",
+	[
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su"
+			]
+		},[
+			["null", {
+				"transform": [
+					["scale",
+						["animate",
+							[0, 1],
+							["100%", "4su"],
+							["-300", 1]
+						]
+					]
+				],
+				"effect": [
+					["blur", {
+						"center": ["50rw", "50rh"],
+						"radius": ["animate",
+							[0, 0, "easeInOutExpo"],
+							["100%", "3rw"],
+							["-300", 0]
+						]
+					}]
+				],
+				"opacity": ["animate",
+					[0, 1],
+					["100%", 0],
+					["-200", 1]
+				]
+			},[
+				["solid", {
+					"color": "#ffffff"
+				}],
+				["asset", {
+					"file": "./media/ds-documentcrunch-logo.mov",
+					"justify": "fill center",
+					"hold": true,
+					"mute": true,
+					"breakpoints": [
+						{
+							"enabled": ["$", ["lte", ["aspect"], 1]],
+							"justify": "fit center"
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

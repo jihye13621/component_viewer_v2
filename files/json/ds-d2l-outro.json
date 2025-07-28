@@ -1,0 +1,82 @@
+[
+    "ds-d2l-outro",
+    [
+        ["ds-d2l-mixins",
+            "color-white",
+            "color-black"
+        ],
+        {
+            "key": "background-asset",
+            "display": "Background",
+            "type": "asset",
+            "default": null,
+            "required": false,
+            "parameters": []
+        },
+        {
+            "key": "dark-mode",
+            "display": "Dark Mode",
+            "type": "bool",
+            "default": false,
+            "required": false
+        }
+    ],
+    [
+        ["null", {
+            "mixins": ["dsx-mixins",
+                "set-dsx-su",
+                "safezone"
+            ]
+        }, [
+            ["solid", {
+                "flex": {
+                    "position": "fixed"
+                },
+                "enabled": ["$", ["exists", ["var", "background-asset"]]],
+                "color": [0, 0, 0, 1]
+            }],
+            ["user-asset", {
+                "flex": {
+                    "position": "fixed"
+                },
+                "enabled": ["$", ["exists", ["var", "background-asset"]]],
+                "file": ["$", ["var", "background-asset"]],
+                "loop": true,
+                "mute": true,
+                "justify": "fill center",
+                "effect": [
+                    ["blur", {
+                        "radius": ["$", ["/", ["min", ["width"], ["height"]], 50]] 
+                    }]
+                ]
+            }],
+            ["asset", {
+                "file": "./media/ds-d2l-logo-animated-black.mov",
+                "justify": "center",
+                "align": "center",
+                "hold": true,
+                "breakpoints": [
+                    {
+                        "enabled": ["$", ["var", "dark-mode"]],
+                        "file": "./media/ds-d2l-logo-animated-white.mov"
+                    },
+                    {
+                        "enabled": ["$", ["not", ["exists", ["var", "background-asset"]]]],
+                        "script": ["$$",
+                            ["live-effect",
+                                ["lookup-by-tag", "clip"],
+                                "blur",
+                                ["$", ["object",
+                                    ["array",
+                                        "radius",
+                                        ["/", ["min", ["width"], ["height"]], 50]
+                                    ]
+                                ]]
+                            ]
+                        ]
+                    }
+                ]
+            }]
+        ]]
+    ]
+]

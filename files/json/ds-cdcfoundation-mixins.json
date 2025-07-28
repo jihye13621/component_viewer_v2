@@ -1,0 +1,72 @@
+{
+	"params": {
+		"color-1": {
+			"key": "color-1",
+			"display": "Primary",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		},
+		"color-2": {
+			"key": "color-2",
+			"display": "Secondary",
+			"type": "color",
+			"default": "#43396b",
+			"required": false
+		},
+		"color-3": {
+			"key": "color-3",
+			"display": "Accent",
+			"type": "color",
+			"default": "#3697db",
+			"required": false
+		}
+	},
+	"font-stat": {
+		"font": "./media/Roboto-Bold.ttf",
+		"height": "200su",
+		"leading": "-30su",
+		"kerning": -0.02
+	},
+	"font-stat-text": {
+		"font": "./media/Roboto-Medium.ttf",
+		"height": "55su"
+	},
+	"font-quote": {
+		"font": "./media/Roboto-Medium.ttf",
+		"height": "60su",
+		"leading": "7su"
+	},
+	"font-quote-source": {
+		"font": "./media/RobotoSlab-Bold.ttf",
+		"height": "40su"
+	},
+	"font-quote-detail": {
+		"font": "./media/Roboto-Regular.ttf",
+		"height": "40su"
+	},
+	"font-speaker-name": {
+		"font": "./media/RobotoSlab-Medium.ttf",
+		"height": "75su"
+	},
+	"font-speaker-detail": {
+		"font": "./media/Roboto-Medium.ttf",
+		"height": "55su"
+	},
+	"font-text": {
+		"font": "./media/RobotoSlab-Medium.ttf",
+		"height": "75su"
+	},
+	"font-captions": {
+		"font": "./media/Roboto-Bold.ttf",
+		"height": "55su"
+	},
+	"font-watermark": {
+		"font": "./media/Roboto-Regular.ttf",
+		"height": "35su"
+	},
+	"font-outro": {
+		"font": "./media/Roboto-Regular.ttf",
+		"height": "45su"
+	}
+}

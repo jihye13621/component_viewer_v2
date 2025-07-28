@@ -1,0 +1,85 @@
+[
+	"ds-ramp-sound",
+	[
+		{
+			"key": "x-offset",
+			"display": "X Offset",
+			"type": "number",
+			"default": 0,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 0.5,
+				"minimum": -25.0,
+				"maximum": 25.0
+			}
+		},
+		{
+			"key": "y-offset",
+			"display": "Y Offset",
+			"type": "number",
+			"default": 0,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 0.5,
+				"minimum": -25.0,
+				"maximum": 25.0
+			}
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", "set-su", "safezone"]
+		}, [
+			["null", {
+				"rect": [
+					0,
+					0,
+					"150su",
+					"150su"
+				],
+				"align": "bottom center",
+				"transform": [
+					["translate",
+						["$", ["concat", ["var", "x-offset"], "cw"]],
+						["$", ["concat", ["var", "y-offset"], "ch"]]
+					]
+				]
+			}, [
+				["solid", {
+					"color": "#F5FF7866",
+					"radius": 1000,
+					"transform": [
+						["scale",
+							["animate",
+								[0, 1.1, "easeInOutQuad"],
+								["+100", 1.5, "easeInOutQuad"],
+								["+150", 1.1, "easeInOutQuad"],
+								["+100", 1.25, "easeInOutQuad"],
+								["+200", 1.1, "easeInOutQuad"],
+								["+100", 1.5, "easeInOutQuad"],
+								["+150", 1.1, "easeInOutQuad"],
+								["+100", 1.25, "easeInOutQuad"],
+								["+200", 1.1, "easeInOutQuad"],
+								["+150", 1.15, "easeInOutQuad"],
+								["+100", 1.25, "easeInOutQuad"],
+								["+100", 1.5, "easeInOutQuad"],
+								["+200", 1.1, "easeInOutQuad"],
+								["+100", 1.25, "easeInOutQuad"],
+								["+200", 1.1],
+								"loop"
+							]
+						]
+					]
+				}],
+				["asset", {
+					"file": "./media/ds-ramp-sound-icon.svg",
+					"justify": "fit center"
+				}]
+			]]
+		]
+	]]
+]

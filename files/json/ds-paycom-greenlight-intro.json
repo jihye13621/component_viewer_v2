@@ -1,0 +1,153 @@
+[
+	"ds-paycom-greenlight-intro",
+	[
+		{
+			"key": "#fg-asset",
+			"display": "Foreground Asset",
+			"private": true,
+			"type": "string",
+			"default": "./media/ds-paycom-greenlight-intro-logo-1.mov"
+		},
+		{
+			"key": "#bg-asset",
+			"display": "Background Asset",
+			"private": true,
+			"type": "string",
+			"default": "./media/ds-paycom-greenlight-intro.mp4"
+		},
+		{
+			"key": "#shape-dur",
+			"display": "Shape Dur",
+			"private": true,
+			"type": "number",
+			"default": 100,
+			"script": ["$", ["dur", ["var", "#bg-asset"]]]
+		},
+		{
+			"key": "#media-dur",
+			"display": "Media Dur",
+			"private": true,
+			"type": "number",
+			"default": 100,
+			"script": ["$", ["dur", ["var", "#fg-asset"]]]
+		},
+		{
+			"key": "#shape-hold",
+			"display": "Shape Hold",
+			"private": true,
+			"type": "number",
+			"default": 1650
+		},
+		{
+			"key": "#media-hold",
+			"display": "Media Hold",
+			"private": true,
+			"type": "number",
+			"default": 1500
+		},
+		{
+			"key": "#shape-pivot",
+			"display": "Shape Pivot",
+			"private": true,
+			"type": "number",
+			"default": 100,
+			"script": ["$",
+				["let",
+					[
+						["dur", ["key", ["comp-timing"], "duration"]],
+						["remainder", ["-", ["var", "#shape-dur"], ["var", "#shape-hold"]]]
+					],
+					["-", ["var", "dur"], ["var", "remainder"]]
+				]
+			]
+		},
+		{
+			"key": "#media-pivot",
+			"display": "Media Pivot",
+			"private": true,
+			"type": "number",
+			"default": 100,
+			"script": ["$",
+				["let",
+					[
+						["dur", ["key", ["comp-timing"], "duration"]],
+						["remainder", ["-", ["var", "#media-dur"], ["var", "#media-hold"]]]
+					],
+					["-", ["var", "dur"], ["var", "remainder"]]
+				]
+			]
+		}
+	],
+	[
+		["null", {
+			"opacity": ["animate",
+				["100%", 0],
+				["-500", 1]
+			]
+		}, [
+			["asset", {
+				"file": ["$", ["var", "#bg-asset"]],
+				"justify": "fill center",
+				"cuts": [
+					[
+						["$", ["var", "#shape-hold"]],
+						10000
+					]
+				],
+				"mute": true,
+				"hold": true,
+				"end": ["$", ["var", "#shape-pivot"]],
+				"breakpoints": [
+					{
+						"enabled":  ["$", ["<", ["aspect"], 1]],
+						"rotate": 0.25
+					}
+				]
+			}],
+			["asset", {
+				"file": ["$", ["var", "#bg-asset"]],
+				"justify": "fill center",
+				"mute": true,
+				"hold": true,
+				"start": ["$", ["var", "#shape-pivot"]],
+				"slip": ["$", ["var", "#shape-hold"]],
+				"breakpoints": [
+					{
+						"enabled":  ["$", ["<", ["aspect"], 1]],
+						"rotate": 0.25
+					}
+				]
+			}],
+			["null", {
+				"rect": [
+					0,
+					0,
+					"50rw",
+					"50rh"
+				],
+				"align": "center"
+			}, [
+				["asset", {
+					"file": ["$", ["var", "#fg-asset"]],
+					"justify": "fit center",
+					"cuts": [
+						[
+							["$", ["var", "#media-hold"]],
+							10000
+						]
+					],
+					"hold": true,
+					"mute": true,
+					"end": ["$", ["var", "#media-pivot"]]
+				}],
+				["asset", {
+					"file": ["$", ["var", "#fg-asset"]],
+					"justify": "fit center",
+					"mute": true,
+					"slip": ["$", ["var", "#media-hold"]],
+					"start": ["$", ["var", "#media-pivot"]]
+				}]
+			]]
+		]]
+	]
+]

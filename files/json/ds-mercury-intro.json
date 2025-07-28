@@ -1,0 +1,226 @@
+[
+	"ds-mercury-intro",
+	[
+		["dsx-mixins",
+			"intro"
+		],
+		["ds-mercury-mixins",
+			"color-primary",
+			"color-secondary",
+			"color-midtone",
+			"font-headline",
+			"font-body"
+		],
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["gain", 0],
+				["justify", "fill"],
+				["motion", "none"]
+			]
+		},
+		["dsx-mixins",
+			"boilerplate-intro-outro"
+		]
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins", ["set-su", "safezone"]],
+			"color": ["$", ["var", "color-midtone"]]
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"gap": "40su",
+				"align": "center left",
+				"breakpoints": [
+					{
+						"enabled": ["$",
+							["gt",
+								["aspect"],
+								1.0
+							]
+						],
+						"layout": "horizontal"
+					},
+					{
+						"enabled": ["$",
+							["lt",
+								["aspect"],
+								0.6
+							]
+						],
+						"layout": "vertical packed center"
+					}
+				]
+			}, [
+				["null", {
+					"layout": "vertical packed",
+					"gap": "60su"
+				}, [
+					["asset", {
+						"flex": {
+							"width": "300su",
+							"height": "70su"
+						},
+						"file": "./media/ds-mercury-logo-wordmark-white.svg",
+						"justify": "fit left top",
+						"svg-recolor": ["$", ["var", "color-primary"]]
+					}],
+					["null", {
+						"enabled": ["$", 
+							["or",
+								["exists", ["var", "headline"]],
+								["exists", ["var", "subhead"]]
+							]
+						],
+						"layout": "vertical packed",
+						"gap": "20su",
+						"padding": [
+							0,
+							0,
+							"20su",
+							0
+						],
+						"breakpoints": [
+							{
+								"enabled": ["$",
+									["gt",
+										["aspect"],
+										1.0
+									]
+								],
+								"padding": [
+									"80su",
+									0,
+									0,
+									0
+								]
+							}
+						]
+					}, [
+						["text", {
+							"enabled": ["$", ["exists", ["var", "headline"]]],
+							"mixins": ["ds-mercury-mixins",
+								"text",
+								"text-headline"
+							],
+							"trim-descender": false,
+							"color": ["$", ["var", "color-primary"]],
+							"string": ["$", ["var", "headline"]],
+							"stagger": [0, 0],
+							"animations": [
+								{
+									"translate": [
+										"-300su",
+										0
+									]
+								},
+								{
+									"mix": ["animate",
+										[0, 0],
+										["+1000", 1],
+										["100%", 0],
+										["-600", 1]
+									],
+									"easing": "easeOutCubic",
+									"translate": [0, 0],
+									"opacity": 1
+								}
+							]
+						}],
+						["text", {
+							"flex": {
+								"weight": 0.6
+							},
+							"enabled": ["$", ["exists", ["var", "subhead"]]],
+							"mixins": ["ds-mercury-mixins",
+								"text",
+								"text-label"
+							],
+							"trim-descender": false,
+							"color": ["$", ["var", "color-primary"]],
+							"string": ["$", ["var", "subhead"]],
+							"stagger": [200, -100],
+							"animations": [
+								{
+									"translate": [
+										"-300su",
+										0
+									]
+								},
+								{
+									"mix": ["animate",
+										[0, 0],
+										["+1000", 1],
+										["100%", 0],
+										["-600", 1]
+									],
+									"easing": "easeOutCubic",
+									"translate": [0, 0],
+									"opacity": 1
+								}
+							]
+						}]
+					]]
+				]],
+				["false-color", {
+					"enabled": ["$", ["exists", ["var", "asset"]]],
+					"flex": {
+						"grow": true
+					},
+					"color-1": ["$", ["var", "color-primary"]],
+					"color-2": ["$", ["var", "color-secondary"]],
+					"brightness": 0.1,
+					"contrast": 1.5,
+					"opacity": ["animate",
+						[500, 0],
+						["+500", 1],
+						["100%", 0],
+						["-500", 1]
+					],
+					"transform": [
+						["scale",
+							["animate",
+								[500, 0.8, "easeOutCubic"],
+								["+500", 1],
+								["100%", 0.8],
+								["-500", 1, "easeInCubic"]
+							]
+						]
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$",
+								["lt",
+									["aspect"],
+									0.6
+								]
+							],
+							"flex": {
+								"grow": true,
+								"height": "100rw"
+							}
+						}
+					]
+				}, [
+					["null", {
+						"mask": {
+							"radius": "70nsu"
+						},
+						"max-width": "100rh",
+						"max-height": "100rw"
+					}, [
+						["user-asset", {
+							"file": ["$", ["var", "asset"]],
+							"justify": "fill center"
+						}]
+					]]
+				]]
+			]]
+		]]
+	]
+]

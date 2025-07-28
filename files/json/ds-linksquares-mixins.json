@@ -1,0 +1,77 @@
+{
+	"params": {
+		"color-primary": {
+			"key": "color-primary",
+			"display": "Primary",
+			"type": "color",
+			"default": "#ffffff",
+			"global": "color-primary",
+			"required": false
+		},
+		"color-secondary": {
+			"key": "color-secondary",
+			"display": "Secondary",
+			"type": "color",
+			"default": "#1C2250",
+			"global": "color-secondary",
+			"required": false
+		},
+		"color-accent": {
+			"key": "color-accent",
+			"display": "Accent",
+			"type": "color",
+			"default": "#F96425",
+			"global": "color-accent",
+			"required": false
+		},
+		"font-headline": {
+			"key": "font-headline",
+			"display": "Font Headline",
+			"type": "string",
+			"default": "./media/GT-America-Standard-Medium.otf",
+			"global": "font-headline",
+			"required": false,
+			"private": true
+		},
+		"font-body": {
+			"key": "font-body",
+			"display": "Font Body",
+			"type": "string",
+			"default": "./media/GT-America-Standard-Regular.otf",
+			"global": "font-body",
+			"required": false,
+			"private": true
+		}
+	},
+	"text": {
+		"measure": "letter-size"
+	},
+	"text-display": {
+		"font": ["$", ["var", "font-headline"]],
+		"height": "150su",
+		"leading": "10su",
+		"kerning": -0.01
+	},
+	"text-headline": {
+		"font": ["$", ["var", "font-headline"]],
+		"height": "120su",
+		"leading": "10su",
+		"kerning": -0.01
+	},
+	"text-title": {
+		"font": ["$", ["var", "font-headline"]],
+		"height": "90su",
+		"leading": "10su"
+	},
+	"text-body": {
+		"font": ["$", ["var", "font-body"]],
+		"height": "60su",
+		"leading": "10su",
+		"kerning": -0.01
+	},
+	"text-label": {
+		"font": ["$", ["var", "font-body"]],
+		"height": "40su",
+		"leading": "10su"
+	}
+}

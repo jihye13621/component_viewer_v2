@@ -1,0 +1,51 @@
+[
+	"ds-d2l-teach-outro",
+	[
+		{
+			"key": "#files",
+			"display": "Files",
+			"type": "object",
+			"default": [],
+			"required": false,
+			"private": true,
+			"script": ["$",
+				["if",
+					[">", ["aspect"], 1],
+					["array",
+						"./media/ds-d2l-teach-outro-wide-1.mov",
+						"./media/ds-d2l-teach-outro-wide-2.mp4"
+					],
+					["if",
+						["=", ["aspect"], 1],
+						["array",
+							"./media/ds-d2l-teach-outro-square-1.mov",
+							"./media/ds-d2l-teach-outro-square-2.mp4"
+						],
+						["array",
+							"./media/ds-d2l-teach-outro-vert-1.mov",
+							"./media/ds-d2l-teach-outro-vert-2.mp4"
+						]
+					]
+				]
+			]
+		}
+	],
+	[
+		["null", {
+		}, [
+			["asset", {
+				"file": ["$", ["nth", ["var", "#files"], 0]],
+				"end": ["$", ["dur", ["nth", ["var", "#files"], 0]]],
+				"justify": "fill center",
+				"mute": true
+			}],
+			["asset", {
+				"file": ["$", ["nth", ["var", "#files"], 1]],
+				"start": ["$", ["dur", ["nth", ["var", "#files"], 0]]],
+				"justify": "fill center",
+				"hold": true,
+				"mute": true
+			}]
+		]]
+	]
+]

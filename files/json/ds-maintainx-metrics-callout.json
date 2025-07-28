@@ -1,0 +1,245 @@
+[
+	"ds-maintainx-metrics-callout",
+	[
+		{
+			"key": "asset-1",
+			"display": "Asset 1",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": []
+		},
+		{
+			"key": "stat-1",
+			"display": "Stat 1",
+			"type": "text",
+			"default": "11%",
+			"required": false
+		},
+		{
+			"key": "detail-1",
+			"display": "Detail 1",
+			"type": "text",
+			"default": "Reduction in unplanned downtime",
+			"required": false
+		},
+		{
+			"key": "asset-2",
+			"display": "Asset 2",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": []
+		},
+		{
+			"key": "stat-2",
+			"display": "Stat 2",
+			"type": "text",
+			"default": "22%",
+			"required": false
+		},
+		{
+			"key": "detail-2",
+			"display": "Detail 2",
+			"type": "text",
+			"default": "Increase in MTBF (mean time between failures)",
+			"required": false
+		},
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [3, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			],
+			"effect": [
+				["shadow", {
+					"offset": [
+						"5su",
+						"5su"
+					],
+					"radius": "50su",
+					"color": [0, 0, 0, 0.75]
+				}]
+			]
+		}, [
+			["solid", {
+				"color": [1, 1, 1, 1],
+				"padding": [
+					"40su",
+					"40su"
+				],
+				"rect": [
+					0,
+					0,
+					"1000su",
+					"600su"
+				],
+				"align": ["$", ["var", "#align"]],
+				"mask": {
+					"rect": [
+						0,
+						0,
+						["animate",
+							[0, 0, "easeInOutQuart"],
+							["+1000", "100rw"],
+							["100%", 0],
+							["-750", "100rw", "easeInOutQuart"]
+						],
+						["animate",
+							[0, 0, "easeInOutQuart"],
+							["+1000", "100rh"],
+							["100%", 0],
+							["-750", "100rh", "easeInOutQuart"]
+						]
+					]
+				},
+				"breakpoints": [
+					{
+						"enabled": ["$", ["not", ["exists", ["var", "stat-2"]]]],
+						"rect": [
+							0,
+							0,
+							"600su",
+							"600su"
+						]
+					},
+					{
+						"enabled": ["$", ["lte", ["aspect"], 1]],
+						"rect": [
+							0,
+							0,
+							"800su",
+							"600su"
+						]
+					},
+					{
+						"enabled": ["$", ["and",
+							["lte", ["aspect"], 1],
+							["not", ["exists", ["var", "stat-2"]]]
+						]],
+						"rect": [
+							0,
+							0,
+							"800su",
+							"400su"
+						]
+					}
+				]
+			}, [
+				["for-each", {
+					"items": ["$", ["compact", ["array",
+						["if",
+							["exists", ["var", "stat-1"]],
+							["array", ["var", "stat-1"], ["var", "detail-1"], ["var", "asset-1"]]
+						],
+						["if",
+							["exists", ["var", "stat-2"]],
+							["array", ["var", "stat-2"], ["var", "detail-2"], ["var", "asset-2"]]
+						]
+					]]],
+					"layout": "horizontal",
+					"breakpoints": [
+						{
+							"enabled": ["$", ["lte", ["aspect"], 1]],
+							"layout": "vertical"
+						}
+					]
+				}, [
+					["null", {
+					}, [
+						["ds-maintainx-stat", {
+							"stat": ["$", ["nth", ["var", "item"], 0]],
+							"text": ["$", ["nth", ["var", "item"], 1]],
+							"asset": ["$", ["nth", ["var", "item"], 2]],
+							"start-frame": ["$", ["*", 400, ["var", "index"]]],
+							"opacity": ["animate",
+								[
+									["$", ["*", 400, ["var", "index"]]],
+									0,
+									"easeOutQuad"
+								],
+								[
+									"+500",
+									1
+								]
+							],
+							"transform": [
+								["translate",
+									0,
+									["animate",
+										[
+											["$", ["*", 400, ["var", "index"]]],
+											"200su",
+											"easeOutCubic"
+										],
+										[
+											"+800",
+											0
+										]
+									]
+								]
+							],
+							"breakpoints": [
+								{
+									"enabled": ["$", ["lte", ["aspect"], 1]],
+									"direction": "horizontal"
+								}
+							]
+						}]
+					]],
+					["null", {
+						"enabled": ["$", ["<", ["var", "index"], ["-", ["var", "count"], 1]]],
+						"flex": {
+							"width": "80nsu"
+						},
+						"breakpoints": [
+							{
+								"enabled": ["$", ["lte", ["aspect"], 1]],
+								"flex": {
+									"height": "80nsu"
+								}
+							}
+						]
+					}, [
+						["solid", {
+							"rect": [
+								0,
+								0,
+								"4nsu",
+								"100rh"
+							],
+							"color": [0, 0, 0, 0.1],
+							"align": "center",
+							"breakpoints": [
+								{
+									"enabled": ["$", ["lte", ["aspect"], 1]],
+									"rect": [
+										0,
+										0,
+										"100rw",
+										"4nsu"
+									]
+								}
+							]
+						}]
+					]]
+				]]
+			]]
+		]]
+	]
+]

@@ -1,0 +1,98 @@
+[
+	"ds-gong-transition",
+	[
+		["ds-gong-mixins",
+			"color-light-purple",
+			"color-mid-purple",
+			"color-dark-purple"
+		]
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su"
+			]
+		}, [
+			["solid", {
+				"color": ["$", ["var", "color-light-purple"]],
+				"transform": [
+					["translate",
+						["animate",
+							[0, "100rw", "easeOutQuart"],
+							["+1500", "-100rw"]
+						],
+						0
+					]
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["<", ["aspect"], 1]],
+						"transform": [
+										["translate",
+											0,
+											["animate",
+												[0, "100rh", "easeOutQuart"],
+												["+1500", "-100rh"]
+											]
+										]
+									]
+					}
+				]
+			}, [
+				["solid", {
+					"color": ["$", ["var","color-mid-purple"]],
+					"transform": [
+						["scale",
+							["animate",
+								[0, 0.5, "easeOutCirc"],
+								["+1500", 1]
+							],
+							1
+						]
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["<", ["aspect"], 1]],
+							"transform": [
+											["scale",
+												1,
+												["animate",
+													[0, 0.33, "easeOutCirc"],
+													["+1500", 1]
+												]
+											]
+										]
+						}
+					]
+				}, [
+					["solid", {
+						"color": ["$", ["var","color-dark-purple"]],
+						"transform": [
+							["scale",
+								["animate",
+									[0, 0.36, "easeOutCubic"],
+									["+1500", 1]
+								],
+								1
+							]
+						],
+						"breakpoints": [
+							{
+								"enabled": ["$", ["<", ["aspect"], 1]],
+								"transform": [
+												["scale",
+													1,
+													["animate",
+														[0, 0.2, "easeOutCubic"],
+														["+1500", 1]
+													]
+												]
+											]
+							}
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

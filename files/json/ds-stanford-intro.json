@@ -1,0 +1,58 @@
+[
+	"ds-stanford-intro",
+	[
+		["ds-stanford-mixins",
+			"colors"
+		]
+	],
+	[
+		["solid", {
+			"color": ["radial-gradient",
+				["50rw", "50rh"],
+				"50rw",
+				[0, ["$", ["var", "red"]]],
+				[1, ["$", ["color-mix", ["var", "red"], "#000000", 0.3]]]
+			]
+		}],
+		["null", {
+			"mixins": ["dsx-mixins", 
+				"set-su",
+				"safezone"
+			]
+		}, [
+			["asset", {
+				"file": "./media/ds-stanford-business-school-seal-w.png",
+				"justify": "fit center",
+				"align": "center",
+				"rect": [
+					0,
+					0,
+					"1200su",
+					"1200su"
+				],
+				"transform": [
+					["scale",
+						["animate",
+							[0, 0, [0.05, 1.15, 0.5, 1]],
+							["+500", 1],
+							["100%", 0.9],
+							["-500", 1, "easeInCubic"]
+						]
+					]
+				],
+				"opacity": ["animate",
+					[0, 0, "easeOutQuad"],
+					["+400", 1],
+					["100%", 0],
+					["-400", 1, "easeInQuad"]
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["<=", ["aspect"], 1]],
+						"max-width": "900nsu"
+					}
+				]
+			}]
+		]]
+	]
+]

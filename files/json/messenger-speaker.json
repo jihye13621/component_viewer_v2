@@ -1,0 +1,223 @@
+[
+	"messenger-speaker",
+	[
+		{
+			"key": "name",
+			"display": "Speaker name",
+			"type": "text",
+			"default": "Jane Smith",
+			"required": false
+		},
+		{
+			"key": "detail-1",
+			"display": "Title",
+			"type": "text",
+			"default": "Industry Expert",
+			"required": false
+		},
+		{
+			"key": "detail-2",
+			"display": "Company",
+			"type": "text",
+			"default": "ABC Company",
+			"required": false
+		},
+		{
+			"key": "font-1",
+			"display": "Style",
+			"type": "fontstyle",
+			"default": {
+				"font": "./media/Selecta Bold.otf",
+				"height": 64
+			},
+			"required": false 
+		},
+		{
+			"key": "font-2",
+			"display": "Style Detail",
+			"type": "fontstyle",
+			"default": {
+				"font": "./media/Selecta Bold.otf",
+				"height": 40
+			},
+			"required": false 
+		},
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": [0, 0, 0, 1],
+			"required": false
+		},
+		{
+			"key": "color-2",
+			"display": "Color 2",
+			"type": "color",
+			"default": [1, 1, 1, 1],
+			"required": false
+		},
+		{
+			"key": "color-3",
+			"display": "Color 3",
+			"type": "color",
+			"default": "#F5BC41",
+			"required": false
+		},
+		{
+			"key": "#align",
+			"type": "string",
+			"default": "center",
+			"required": false,
+			"script": ["$", ["switch", ["nth", ["var", "position"], 0], {
+				"1": "left",
+				"3": "right",
+				"4": "left",
+				"6": "right",
+				"7": "left",
+				"9": "right",
+				"_": "center"
+			}]],
+			"private": true
+		},
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [1, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["dsx-padding", {
+			"position": ["$", ["nth", ["var", "position"], 0]]
+		}, [
+			["null", {
+				"align": ["$", ["var", "#align"]],
+				"layout": ["$", ["switch", ["nth", ["var", "position"], 0], {
+					"1": "vertical packed reverse",
+					"2": "vertical packed reverse",
+					"3": "vertical packed reverse",
+					"4": "vertical packed center",
+					"5": "vertical packed center",
+					"6": "vertical packed center",
+					"_": "vertical packed"
+				}]]
+			}, [
+				["solid", {
+					"padding": [2, 20, 2, 20],
+					"layout": "vertical packed",
+					"color": ["$", ["var", "color-2"]],
+					"mask": {
+						"padding": [
+							0,
+							0,
+							0,
+							["animate",
+								[0, "100rw", "easeInOutCubic"],
+								["+300", 0],
+								["100%", null],
+								["-0", "100rw"],
+								["-300", 0, "easeInOutCubic"]
+							]
+						]
+					}
+				}, [
+					["text", {
+						"string": ["$", ["var", "name"]],
+						"color": ["$", ["var", "color-1"]],
+						"style": ["$", ["var", "font-1"]],
+						"transform": [
+							["translate",
+								["animate",
+									[0, "-100px", "easeOutQuad"],
+									["400", 0],
+									["100%", "-100px"],
+									["-400", 0, "easeInQuad"]
+								],
+								0
+							]
+						]
+					}]
+				]],
+				["null", {
+					"enabled": ["$", ["exists", ["var", "detail-1"]]],
+					"layout": "vertical packed"
+				}, [
+					["solid", {
+						"flex": {
+							"position": "fixed"
+						},
+						"color": ["$", ["var", "color-3"]],
+						"rect": [
+							0,
+							"100rh",
+							"100rw",
+							5
+						],
+						"mask": {
+							"padding": [
+								0,
+								0,
+								0,
+								["animate",
+									[0, "100rw", "easeInOutQuint"],
+									["+1000", 0],
+									["100%", "100rw"],
+									["-1000", 0, "easeInOutQuint"]
+								]
+							]
+						}
+					}],
+					["solid", {
+						"padding": [10, 20, 10, 20],
+						"layout": "vertical packed",
+						"gap": 4,
+						"color": ["$", ["var", "color-2"]],
+						"transform": [
+							["translate",
+								0,
+								["animate",
+									[200, "-100rh", "easeInOutQuart"],
+									["+300", 0],
+									["100%", null],
+									["-200", "-100rh"],
+									["-300", 0, "easeInOutQuart"]
+								]
+							]
+						],
+						"mask": {
+							"padding": [
+								["animate",
+									[200, "100rh", "easeInOutQuart"],
+									["+300", 0],
+									["100%", null],
+									["-200", "100rh"],
+									["-300", 0, "easeInOutQuart"]
+								],
+								0,
+								0,
+								0
+							]
+						}
+					}, [
+						["text", {
+							"string": ["$", ["var", "detail-1"]],
+							"color": ["$", ["var", "color-1"]],
+							"style": ["$", ["var", "font-2"]]
+						}],
+						["text", {
+							"enabled": ["$", ["exists", ["var", "detail-2"]]],
+							"string": ["$", ["var", "detail-2"]],
+							"color": ["$", ["var", "color-1"]],
+							"style": ["$", ["var", "font-2"]]
+						}]
+					]]
+				]]
+			]]
+		]]
+	]
+]

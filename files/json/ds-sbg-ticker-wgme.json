@@ -1,0 +1,51 @@
+[
+	"ds-sbg-ticker-wgme",
+	[
+		{
+			"key": "category",
+			"display": "Category",
+			"type": "string",
+			"options": [
+				{
+					"key": "breaking",
+					"display": "Breaking News"
+				},
+				{
+					"key": "national",
+					"display": "National News"
+				},
+				{
+					"key": "local",
+					"display": "Local News"
+				},
+				{
+					"key": "politics",
+					"display": "Politics"
+				},
+				{
+					"key": "sports-redsox",
+					"display": "Sports - Red Sox"
+				},
+				{
+					"key": "sports-celtics",
+					"display": "Sports - Celtics"
+				},
+				{
+					"key": "sports-bruins",
+					"display": "Sports - Bruins"
+				},
+				{
+					"key": "sports-patriots",
+					"display": "Sports - Patriots"
+				}
+			],
+			"default": "national",
+			"required": false
+		}
+	],
+	[
+		["ds-sbg-ticker", {
+			"category": ["$", ["var", "category"]]
+		}]
+	]
+]

@@ -1,0 +1,182 @@
+[
+	"ds-hubspot-sandbox-3window",
+	[
+		{
+			"key": "bg-image",
+			"display": "Background",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["gain", 0],
+				["justify", "fit"],
+				["motion", "none"]
+			]
+		},
+		{
+			"key": "asset-1",
+			"display": "Asset 1",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [],
+			"script": ["$", ["if",
+				["exists", ["var", "asset-1"]],
+				["var", "asset-1"],
+				"./media/image-wide.jpg"
+			]]
+		},
+		{
+			"key": "asset-2",
+			"display": "Asset 2",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": []
+		},
+		{
+			"key": "asset-3",
+			"display": "Asset 3",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": []
+		},
+		{
+			"key": "#assets",
+			"display": "Asset",
+			"type": "object",
+			"default": [],
+			"required": false,
+			"script": ["$",
+				["array",
+					["var", "asset-1"],
+					["var", "asset-2"],
+					["var", "asset-3"]
+				]
+			]
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", "set-su-roi"],
+			"-": ["$", ["set", "#cycle",
+				["floor",
+					["/",
+						["key", ["comp-timing"], "duration"],
+						["length", ["var", "#assets"]]
+					]
+				]
+			]],
+			"--": ["$", ["set", "#cycle-wait",
+				["to-relative-string", ["-", ["var", "#cycle"], 1000]]
+			]]
+		}, [
+			["user-asset", {
+				"enabled": ["$", ["exists", ["var", "bg-image"]]],
+				"file": ["$", ["var", "bg-image"]],
+				"justify": "fill center",
+				"mute": true
+			}],
+			["for-each", {
+				"items": ["$", ["var", "#assets"]]
+			}, [
+				["solid", {
+					"skip": ["$", ["exists", ["var", "item"]]],
+					"color": [1, 1, 1, 1],
+					"stagger": [
+						["$", ["*", ["var", "#cycle"], ["var", "index"]]],
+						0
+					],
+					"mask": {
+						"transform": true,
+						"radius": "50su"
+					},
+					"rect": [
+						0,
+						0,
+						"600su",
+						"600su"
+					],
+					"align": "center",
+					"z-index": ["animate",
+						[0, 1],
+						[
+							["$", ["var", "#cycle-wait"]],
+							1
+						],
+						["+1000", 0],
+						[
+							["$", ["var", "#cycle-wait"]],
+							0
+						],
+						["+1000", 0],
+						[
+							["$", ["var", "#cycle-wait"]],
+							0
+						],
+						["+1000", 1],
+						"loop"
+					],
+					"transform": [
+						["scale",
+							["animate",
+								[0, 1],
+								[
+									["$", ["var", "#cycle-wait"]],
+									1,
+									"easeInOutQuart"
+								],
+								["+1000", 0.8],
+								[
+									["$", ["var", "#cycle-wait"]],
+									0.8,
+									"easeInOutQuart"
+								],
+								["+1000", 0.8],
+								[
+									["$", ["var", "#cycle-wait"]],
+									0.8,
+									"easeInOutQuart"
+								],
+								["+1000", 1],
+								"loop"
+							]
+						],
+						["translate",
+							["animate",
+								[0, 0],
+								[
+									["$", ["var", "#cycle-wait"]],
+									0,
+									"easeInOutQuart"
+								],
+								["+1000", "-40rw"],
+								[
+									["$", ["var", "#cycle-wait"]],
+									"-40rw",
+									"easeInOutQuart"
+								],
+								["+1000", "40rw"],
+								[
+									["$", ["var", "#cycle-wait"]],
+									"40rw",
+									"easeInOutQuart"
+								],
+								["+1000", 0],
+								"loop"
+							],
+							0
+						]
+					]
+				}, [
+					["user-asset", {
+						"mute": true,
+						"file": ["$", ["var", "item"]],
+						"justify": "fill center"
+					}]
+				]]
+			]]
+		]]
+	]
+]

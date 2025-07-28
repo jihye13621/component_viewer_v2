@@ -1,0 +1,335 @@
+[
+	"ds-horizonmedia-definition-card",
+	[
+		{
+			"key": "asset-1",
+			"display": "Icon 1",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["justify", "fill"]
+			]
+		},
+		{
+			"key": "headline-1",
+			"display": "Word 1",
+			"type": "text",
+			"default": "Autonomy",
+			"required": false
+		},
+		{
+			"key": "subhead-1",
+			"display": "Pronunciation 1",
+			"type": "text",
+			"default": "/əˈnætəmi/",
+			"required": false
+		},
+		{
+			"key": "paragraph-1",
+			"display": "Definition 1",
+			"type": "textarea",
+			"default": "The ability to perform tasks in complex environments without constant guidance by the user.",
+			"required": false
+		},
+		{
+			"key": "asset-2",
+			"display": "Icon 2",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["justify", "fill"]
+			]
+		},
+		{
+			"key": "headline-2",
+			"display": "Word 2",
+			"type": "text",
+			"default": "Adaptivity",
+			"required": false
+		},
+		{
+			"key": "subhead-2",
+			"display": "Pronunciation 2",
+			"type": "text",
+			"default": "/əˈdæptɪvɪtɪ/",
+			"required": false
+		},
+		{
+			"key": "paragraph-2",
+			"display": "Definition 2",
+			"type": "textarea",
+			"default": "The ability to improve performance by learning from experience.",
+			"required": false
+		},
+		["ds-horizonmedia-mixins",
+			"font-bold",
+			"font-regular"
+		],
+		{
+			"key": "#items",
+			"display": "Items",
+			"private": true,
+			"type": "object",
+			"default": [],
+			"required": false,
+			"script": ["$",
+				["compact", ["array",
+					["if",
+						["exists", ["var", "headline-1"]],
+						["array",
+							["var", "asset-1"],
+							["var", "headline-1"],
+							["var", "subhead-1"],
+							["var", "paragraph-1"]
+						]
+					],
+					["if",
+						["exists", ["var", "headline-2"]],
+						["array",
+							["var", "asset-2"],
+							["var", "headline-2"],
+							["var", "subhead-2"],
+							["var", "paragraph-2"]
+						]
+					]
+				]]
+			]
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"safezone",
+				"offset"
+			],
+			"units": {
+				"su": ["$",
+					["*",
+						["/",
+							["min", ["width"], ["height"]],
+							1080
+						],
+						["if",
+							["exists", 
+								["var", "size"]
+							],
+							["var", "size"],
+							1
+						],
+						["if",
+							["=",
+								["aspect"],
+								1
+							],
+							0.66,
+							1
+						],
+						["if",
+							["and",
+								["<", ["aspect"], 1],
+								[">", ["aspect"], 0.7]
+							],
+							0.8,
+							1
+						],
+						["if",
+							["and",
+								[">", ["aspect"], 1],
+								["<", ["aspect"], 1.3]
+							],
+							0.8,
+							1
+						]
+					]
+				],
+				"nsu": ["$",
+					["*",
+						["/",
+							["min", ["width"], ["height"]],
+							1080
+						]
+					]
+				]
+			}
+		}, [
+			["for-each", {
+				"enabled": ["$", [">=", ["length", ["var", "#items"]], 1]],
+				"items": ["$", ["var", "#items"]],
+				"layout": "horizontal packed",
+				"gap": "50su",
+				"align": "center",
+				"breakpoints": [
+					{
+						"enabled": ["$", ["<", ["aspect"], 1]],
+						"layout": "vertical packed"
+					}
+				]
+			},[
+				["solid", {
+					"stagger": [
+						["$",
+							["*",
+								["var", "index"],
+								500
+							]
+						],
+						["$",
+							["*",
+								["-", ["var", "count"], 1, ["var", "index"]],
+								-250
+							]
+						]
+					],
+					"layout": "vertical",
+					"align": "center",
+					"color": [1, 1, 1, 1],
+					"gap": "10su",
+					"rect": [
+						0,
+						0,
+						"700su",
+						"750su"
+					],
+					"padding": [
+						"75su",
+						"75su",
+						"75su",
+						"75su"
+					],
+					"radius": "40su",
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[0, "250rh", "easeOutQuad"],
+								["+1000", 0],
+								["100%", "-250rh"],
+								["-1000", 0, "easeInQuad"]
+							]
+						]
+					]
+				}, [
+					["null", {
+						"flex": {
+							"height": "200su"
+						},
+						"layout": "stacked",
+						"min-width": "100rw",
+						"align": "top left"
+					}, [
+						["null", {
+							"layout": "vertical packed",
+							"padding": [
+								0,
+								"170su",
+								0,
+								0
+							]
+						}, [
+							["text", {
+								"string": ["$", ["nth", ["var", "item"], 1]],
+								"font": ["$", ["var", "font-bold"]],
+								"color": "#000000",
+								"justify": "left",
+								"leading": -0.3,
+								"height": "90su",
+								"boundary": "word"
+							}],
+							["text", {
+								"flex": {
+									"height": "75su"
+								},
+								"stagger": [
+									["$",
+										["+",
+											["*",
+												["var", "index"],
+												500
+											],
+											750
+										]
+									],
+									-750
+								],
+								"font": ["$", ["var", "font-regular"]],
+								"string": ["$", ["nth", ["var", "item"], 2]],
+								"color": "#000000",
+								"justify": "left",
+								"fit": true,
+								"height": "70su",
+								"boundary": "character",
+								"animations": [
+									{
+										"mix": ["animate",
+											[0, 0],
+											[500, 1]
+										],
+										"opacity": 1,
+										"easing": "easeOutQuint"
+									}
+								]
+							}]
+						]],
+						["null", {
+							"flex": {
+								"position": "fixed"
+							},
+							"rect": [
+								0,
+								0,
+								"150su",
+								"150su"
+							],
+							"align": "top right"
+						}, [
+							["user-asset", {
+								"file": ["$", ["nth", ["var", "item"], 0]],
+								"justify": "fill center",
+								"mask": {
+									"radius": "20su"
+								}
+							}]
+						]]
+					]],
+					["null", {
+					}, [
+						["text", {
+							"stagger": [
+								["$",
+									["+",
+										["*",
+											["var", "index"],
+											500
+										],
+										1000
+									]
+								],
+								0
+							],
+							"font": ["$", ["var", "font-regular"]],
+							"string": ["$", ["nth", ["var", "item"], 3]],
+							"color": "#000000",
+							"justify": "left",
+							"measure": "letter-size",
+							"leading": 0.2,
+							"height": "50su",
+							"boundary": "word",
+							"animations": [
+								{
+									"mix": ["animate",
+										[0, 0],
+										[1000, 1]
+									],
+									"opacity": 1,
+									"easing": "easeOutQuint"
+								}
+							]
+						}]
+					]]
+				]]
+			]]
+		]]
+	]
+]

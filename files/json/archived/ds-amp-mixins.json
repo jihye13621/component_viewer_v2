@@ -1,0 +1,34 @@
+{
+	"headline-1": {
+		"style": {
+			"font": "./media/Unbounded-ExtraBold.ttf",
+			"height": "100su", 
+			"kerning": -0.01
+		},
+		"color": ["$", ["var", "color-1"]]
+	},
+	"headline-2": {
+		"style": {
+			"font": "./media/Unbounded-Bold.ttf",
+			"height": "70su",
+			"kerning": -0.01
+		},
+		"color": ["$", ["var", "color-1"]]
+	},
+	"text-1": {
+		"style": {
+			"font": "./media/WorkSans-Bold.ttf",
+			"height": "60su", 
+			"kerning": -0.02
+		},
+		"color": ["$", ["var", "color-1"]]
+	},
+	"text-2": {
+		"style": {
+			"font": "./media/WorkSans-Medium.ttf",
+			"height": "50su", 
+			"kerning": -0.01
+		},
+		"color": ["$", ["var", "color-1"]]
+	}
+}

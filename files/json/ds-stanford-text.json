@@ -1,0 +1,121 @@
+[
+	"ds-stanford-text",
+	[
+		["dsx-mixins",
+			"text"
+		],
+		{
+			"key": "style",
+			"display": "Style",
+			"type": "string",
+			"default": "pop",
+			"options": [
+				{
+					"key": "pop",
+					"display": "Pop"
+				},
+				{
+					"key": "type",
+					"display": "Type"
+				}
+			]
+		},
+		["ds-stanford-mixins",
+			"colors"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [5, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-dsx-su",
+				"safezone"
+			]
+		}, [
+			["solid", {
+				"max-width": "800nsu",
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"color": ["$", ["var", "red"]],
+				"padding": [
+					"30su",
+					"30su"
+				],
+				"opacity": ["animate",
+					[0, 0],
+					["+200", 1],
+					["100%", 0],
+					["-200", 1]
+				],
+				"transform": [
+					["scale",
+						["animate",
+							[0, 0.7, "easeOutCubic"],
+							["+350", 1],
+							["100%", 0.7],
+							["-300", 1, "easeInCubic"]
+						]
+					]
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["eq", ["var", "style"], "type"]],
+						"skip": true,
+						"transform": null,
+						"opacity": 1,
+						"padding": null
+					}
+				]
+			}, [
+				["text", {
+					"stagger": [300, 0],
+					"enabled": ["$", ["exists", ["var", "text"]]],
+					"mixins": ["ds-stanford-mixins",
+						"text-regular"
+					],
+					"leading": "20su",
+					"color": ["$", ["var", "white"]],
+					"string": ["$", ["var", "text"]],
+					"justify": ["$", ["var", "#align"]],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["eq", ["var", "style"], "type"]],
+							"background-color": ["$", ["var", "red"]],
+							"background-padding": [
+								"30su",
+								"30su"
+							],
+							"boundary": "word",
+							"animations": [
+								{
+									"mix": ["animate",
+										[0, 0],
+										["+450", 1],
+										["100%", 0],
+										["-300", 1]
+									],
+									"ramp": 0.0,
+									"easing": "round",
+									"opacity": 1
+								}
+							]
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

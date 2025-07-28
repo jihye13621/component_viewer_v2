@@ -1,0 +1,31 @@
+[
+	"ds-hubspot-api-text-1",
+	[
+		{
+			"key": "text-1",
+			"display": "Text 1",
+			"type": "textarea",
+			"default": "Add Text",
+			"required": false
+		},
+		["ds-hubspot-api-mixins",
+			"animation-select"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		]
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			]
+		}, [
+			["ds-hubspot-api-text", {
+				"text": ["$", ["var", "text-1"]],
+				"animation-select": ["$", ["var", "animation-select"]]
+			}]
+		]]
+	]
+]

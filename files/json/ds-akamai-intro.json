@@ -1,0 +1,114 @@
+[
+	"ds-akamai-intro",
+	[
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "textarea",
+			"default": "Add text",
+			"required": false
+		},
+		{
+			"key": "subhead",
+			"display": "Subhead",
+			"type": "textarea",
+			"default": "",
+			"required": false
+		},
+		["dsx-mixins", "boilerplate-intro-outro"],
+		["ds-akamai-mixins",
+			"colors",
+			"font-bold",
+			"font-light"
+		]
+	],
+	[
+		["solid", {
+			"color": [0, 0, 0.3, 1]
+		}],
+		["null", {
+		}, [
+			["asset", {
+				"file": "./media/ds-akamai-grid-bg-2.mp4",
+				"justify": "fill center",
+				"loop": true
+			}]
+		]],
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"layout": "vertical",
+				"max-width": "1200nsu",
+				"align": "center"
+			}, [
+				["null", {
+					"layout": "vertical packed",
+					"align": "center",
+					"gap": "100su"
+				}, [
+					["text", {
+						"flex": {
+							"weight": 2
+						},
+						"enabled": ["$", ["exists", ["var", "text"]]],
+						"stagger": [700, 0],
+						"mixins": ["ds-akamai-mixins", "text"],
+						"font": ["$", ["var", "font-bold"]],
+						"blend": "normal",
+						"height": "110su",
+						"leading": "20su",
+						"string": ["$", ["var", "text"]],
+						"justify": "center",
+						"align": "center",
+						"boundary": "line",
+						"animations": [
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+500", 1]
+								],
+								"ramp": -1,
+								"opacity": 1
+							}
+						]
+					}],
+					["text", {
+						"enabled": ["$", ["exists", ["var", "subhead"]]],
+						"stagger": [600, 0],
+						"mixins": ["ds-akamai-mixins", "text"],
+						"font": ["$", ["var", "font-light"]],
+						"blend": "normal",
+						"height": "70su",
+						"leading": "20su",
+						"string": ["$", ["var", "subhead"]],
+						"justify": "center",
+						"align": "center",
+						"opacity": ["animate",
+							[0, 0],
+							["+500", 1]
+						],
+						"effect": [
+							["blur", {
+								"start": 0,
+								"end": 500,
+								"radius": ["animate",
+									[0, "100su"],
+									["+500", 0]
+								]
+							}]
+						]
+					}]
+				]],
+				["asset", {
+					"flex": {
+						"height": "150nsu"
+					},
+					"file": "./media/ds-akamai-logo-animated.mov",
+					"justify": "fit center",
+					"hold": true
+				}]
+			]]
+		]]
+	]
+]

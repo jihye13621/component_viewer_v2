@@ -1,0 +1,53 @@
+[
+	"ds-abariatric-lite-dynamic",
+	[
+		["dsx-mixins", ["captions"]],
+		["ds-abariatric-lite-mixins", "color-light", "color-accent"],
+		["dsx-mixins", ["boilerplate"]],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [4, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"max-width": "800nsu",
+				"align": ["$", ["var", "#align"]]
+			}, [
+				["text", {
+					"mixins": ["ds-abariatric-lite-mixins", ["headline-1"]],
+					"justify": ["$", ["var", "#align"]],
+					"transcript": ["$",
+						["transcript-split",
+							["var", "transcript"],
+							["max", 1, ["floor", ["/", 10, ["var", "size"]]]]
+						]
+					],
+					"color": ["$", ["var", "color-light"]],
+					"background-rect": [0, "80rh", "100rw", "10rh"],
+					"background-color": ["$", ["var", "color-accent"]],
+					"animations": [
+						{
+							"mix": [[0, 0], [0.2, 1]],
+							"background-opacity": 1
+						},
+						{
+							"mix": [[0.8, 0], [1.0, 1]],
+							"background-opacity": 0
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

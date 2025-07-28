@@ -1,0 +1,107 @@
+[
+	"ds-sbg-crimobs-subhead",
+	[
+		{
+			"key": "location",
+			"display": "Location",
+			"type": "text",
+			"default": "Location",
+			"required": false
+		},
+		{
+			"key": "date",
+			"display": "Date",
+			"type": "text",
+			"default": "Date",
+			"required": false
+		},
+		["ds-sbg-crimobs-mixins",
+			"color-crime-tape-yellow"
+		],
+		["ds-sbg-mixins", "do-safezone"],
+		["dsx-mixins", "boilerplate"],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [0, 0, 0],
+			"required": false,
+			"ui": {
+				"grid": false,
+				"offset": true,
+				"minimum": -100,
+				"maximum": 100
+			}
+		}
+	],
+	[
+		["null", {
+			"enabled": ["$",
+				["or",
+					["exists", ["var", "location"]],
+					["exists", ["var", "date"]]
+				]
+			],
+			"mixins": [
+				["dsx-mixins",
+					"set-su",
+					"offset"
+				],
+				["ds-sbg-mixins",
+					"watermark-safezone"
+				]
+			],
+			"mask": {
+				"padding": [
+					0,
+					["animate",
+						[0, "100rw", "easeOutQuad"],
+						["+400", 0]
+					],
+					0,
+					["animate",
+						["100%", "100rw", "easeInQuad"],
+						["-400", 0]
+					]
+				]
+			}
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"align": "top right",
+				"gap": "30su",
+				"max-width": "800nsu"
+			}, [
+				["text", {
+					"font": "./media/Inter-Bold.ttf",
+					"string": ["$",
+						["join",
+							["compact", ["array",
+								["var", "location"],
+								["var", "date"]
+							]],
+							"\n"
+						]
+					],
+					"height": "25su",
+					"measure": "cap-size",
+					"justify": "top right",
+					"leading": "40su",
+					"color": [0, 0, 0, 1],
+					"case": "uppercase",
+					"background-color": ["$", ["var", "color-crime-tape-yellow"]],
+					"background-padding": [
+						"15su",
+						"12su"
+					],
+					"transform": [
+						["translate",
+							"-12su",
+							0
+						]
+					]
+				}]
+			]]
+		]]
+	]
+]

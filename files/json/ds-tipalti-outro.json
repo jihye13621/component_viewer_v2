@@ -1,0 +1,52 @@
+[
+	"ds-tipalti-outro",
+	[
+
+	],
+	[
+		["asset", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			],
+			"file": "./media/ds-tipalti-bg.mp4",
+			"justify": "fill center",
+			"mute": true
+		}, [
+			["null", {
+				"align": "center",
+				"rect": [
+					0,
+					0,
+					"25rw",
+					"25rh"
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["<=", ["aspect"], 1]],
+						"rect": [
+							0,
+							0,
+							"50rw",
+							"50rh"
+						]
+					}
+				]
+			}, [
+				["asset", {
+					"stagger": [0, 0],
+					"file": "./media/ds-tipalti-logo-reveal.mov",
+					"justify": "fit center",
+					"mute": true,
+					"hold": true,
+					"effect": [
+						["shadow", {
+							"radius": "25su",
+							"color": [1, 1, 1, 0.6]
+						}]
+					]
+				}]
+			]]
+		]]
+	]
+]

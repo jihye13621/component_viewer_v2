@@ -1,0 +1,252 @@
+{
+	"params": {
+		"color-primary": {
+			"key": "color-primary",
+			"display": "Primary",
+			"type": "color",
+			"default": "#ffffff",
+			"global": "color-primary",
+			"required": false
+		},
+		"color-secondary": {
+			"key": "color-secondary",
+			"display": "Secondary",
+			"type": "color",
+			"default": "#000000",
+			"global": "color-secondary",
+			"required": false
+		},
+		"color-accent": {
+			"key": "color-accent",
+			"display": "Accent",
+			"type": "color",
+			"default": "#FFF510",
+			"global": "color-accent",
+			"required": false
+		},
+		"font-headline": {
+			"key": "font-headline",
+			"display": "Font Headline",
+			"type": "string",
+			"default": "./media/Thunder-BlackLC.ttf",
+			"global": "font-headline",
+			"required": false,
+			"private": true
+		},
+		"font-body": {
+			"key": "font-body",
+			"display": "Font Body",
+			"type": "string",
+			"default": "./media/SpaceGrotesk-Bold.ttf",
+			"global": "font-body",
+			"required": false,
+			"private": true
+		}
+	},
+
+	"text": {
+		"measure": "letter-size"
+	},
+	"text-display": {
+		"font": ["$", ["var", "font-headline"]],
+		"height": "150su",
+		"leading": "20su",
+		"case": "uppercase",
+		"measure": "cap-size"
+	},
+	"text-headline": {
+		"font": ["$", ["var", "font-headline"]],
+		"height": "120su",
+		"leading": "20su"
+	},
+	"text-title": {
+		"font": ["$", ["var", "font-headline"]],
+		"height": "70su",
+		"leading": "20su"
+	},
+	"text-body": {
+		"font": ["$", ["var", "font-body"]],
+		"height": "65su",
+		"leading": "10su"
+	},
+	"text-label": {
+		"font": ["$", ["var", "font-body"]],
+		"height": "35su",
+		"leading": "14su"
+	},
+	
+	"anim-headline": {
+		"animations": [
+			{
+				"stroke": "3su",
+				"scale": 1.75
+			},
+			{
+				"opacity": 1,
+				"mix": ["animate",
+					[0, 0],
+					["+300", 1]
+				],
+				"easing": "round"
+			},
+			{
+				"scale": 1.3,
+				"mix": ["animate",
+					[150, 0],
+					["+300", 1]
+				],
+				"easing": "round"
+			},
+			{
+				"mix": ["animate",
+					[300, 0],
+					["+300", 1]
+				],
+				"easing": "round",
+				"color": ["$", ["var", "color-primary"]],
+				"scale": 1,
+				"stroke": 0
+			},
+			{
+				"scale": 1.2,
+				"color": [0, 0, 0, 0],
+				"stroke": "3su",
+				"easing": "round",
+				"mix": ["animate",
+					["100%", null],
+					["-400", 0],
+					["+300", 1]
+				]
+			},
+			{
+				"scale": 1,
+				"easing": "round",
+				"mix": ["animate",
+					["100%", 1],
+					["-300", 0]
+				]
+			},
+			{
+				"opacity": 0,
+				"easing": "round",
+				"mix": ["animate",
+					["100%", 1],
+					["-150", 0]
+				]
+			}
+		]
+	},
+	"anim-subhead": {
+		"animations": [
+			{
+				"stroke": "2su",
+				"scale": 1.2
+			},
+			{
+				"mix": ["animate",
+					[0, 0],
+					["+400", 1]
+				],
+				"easing": "round",
+				"opacity": 1
+			},
+			{
+				"mix": ["animate",
+					[50, 0],
+					["+500", 1]
+				],
+				"easing": "round",
+				"color": ["$", ["var", "color-primary"]],
+				"scale": 1,
+				"stroke": 0
+			},
+			{
+				"mix": ["animate",
+					["100%", null],
+					["-300", 0],
+					["+200", 1]
+				],
+				"easing": "round",
+				"color": [0, 0, 0, 0],
+				"scale": 1.1,
+				"stroke": "2su"
+			},
+			{
+				"mix": ["animate",
+					["100%", 1],
+					["-200", 0]
+				],
+				"easing": "round",
+				"opacity": 0
+			}
+		]
+	},
+	"anim-body": {
+		"animations": [
+			{
+				"stroke": "3su"
+			},
+			{
+				"mix": ["animate",
+					[0, 0],
+					["+400", 1]
+				],
+				"easing": "round",
+				"opacity": 1
+			},
+			{
+				"mix": ["animate",
+					[50, 0],
+					["+500", 1]
+				],
+				"easing": "round",
+				"color": ["$", ["var", "color-primary"]],
+				"stroke": 0
+			},
+			{
+				"mix": ["animate",
+					["100%", null],
+					["-300", 0],
+					["+200", 1]
+				],
+				"easing": "round",
+				"color": [0, 0, 0, 0],
+				"stroke": "3su"
+			},
+			{
+				"mix": ["animate",
+					["100%", 1],
+					["-200", 0]
+				],
+				"easing": "round",
+				"opacity": 0
+			}
+		]
+	},
+	"scale-3step": {
+		"transform": [
+			["scale", ["animate",
+				[0, 0, "round"],
+				["+100", 0.33, "round"],
+				["+100", 0.67, "round"],
+				["+100", 1],
+				["100%", 0],
+				["-60", 0.33, "round"],
+				["-60", 0.67, "round"],
+				["-60", 1, "round"]
+			]]
+		]
+	},
+	"scale-2step": {
+		"transform": [
+			["scale", ["animate",
+				[0, 0, "round"],
+				["+100", 0.5, "round"],
+				["+100", 1],
+				["100%", 0],
+				["-100", 0.5, "round"],
+				["-100", 1, "round"]
+			]]
+		]
+	}
+}

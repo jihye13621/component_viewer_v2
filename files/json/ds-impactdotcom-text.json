@@ -1,0 +1,348 @@
+[
+	"ds-impactdotcom-text",
+	[
+		{
+			"key": "image",
+			"display": "Image",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["gain", 0],
+				["justify", "fill"],
+				["motion", "none"]
+			]
+		},
+		{
+			"key": "headline",
+			"display": "Headline",
+			"type": "text",
+			"default": "SharkNinja is a powerhouse in home appliance innovation",
+			"required": false
+		},
+		{
+			"key": "highlight",
+			"display": "Highlight",
+			"type": "number",
+			"default": 2,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 1,
+				"minimum": 0,
+				"maximum": 10
+			}
+		},
+		["ds-impactdotcom-mixins",
+			"color-fg",
+			"color-bg",
+			"color-blue",
+			"font-headline",
+			"font-body"
+		],
+		{
+			"key": "mask",
+			"display": "Image Shape",
+			"type": "string",
+			"default": "box",
+			"required": false,
+			"options": [
+				{
+					"key": "box",
+					"display": "Box"
+				},
+				{
+					"key": "lines",
+					"display": "Lines"
+				}
+			]
+		}
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins", ["set-su", "safezone"]],
+			"color": ["$", ["var", "color-bg"]]
+		}, [
+			["null", {
+				"layout": "horizontal",
+				"gap": "100su",
+				"align": "right",
+				"stagger": [800, 0],
+				"transform": [
+					["scale",
+						["animate",
+							[0, 1.5, "easeInOutExpo"],
+							["+1000", 1]
+						],
+						0,
+						0
+					],
+					["translate",
+						0,
+						["animate",
+							["100%", "100ch"],
+							["-750", 0, "easeInQuad"]
+						]
+					]
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["lte", ["aspect"], 1]],
+						"stagger": [0, 0],
+						"layout": "vertical",
+						"transform": [
+							["translate",
+								["animate",
+									["100%", "-100cw"],
+									["-750", 0, "easeInQuad"]
+								],
+								["animate",
+									[1000, "50rh", "easeInOutExpo"],
+									["+1000", 0]
+								]
+							]
+						]
+					}
+				]
+			}, [
+				["null", {
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								["100%", null],
+								["-250", "50ch"],
+								["-750", 0, "easeInQuad"]
+							]
+						]
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["lte", ["aspect"], 1]],
+							"align": "top",
+							"transform": [
+								["translate",
+									0,
+									["animate",
+										[1000, "-50rh", "easeInOutExpo"],
+										["+1000", 0]
+									]
+								],
+								["translate",
+									["animate",
+										["100%", null],
+										["-250", "-50cw"],
+										["-750", 0, "easeInQuad"]
+									],
+									0
+								]
+							]
+						}
+					]
+				}, [
+					["text", {
+						"mixins": ["ds-impactdotcom-mixins",
+							"text",
+							"text-display"
+						],
+						"color": ["$", ["var", "color-fg"]],
+						"string": ["$", ["var", "headline"]],
+						"background-color": ["$", ["var", "color-blue"]],
+						"background-padding": [
+							"10su",
+							"10su"
+						],
+						"background-radius": "20su",
+						"trim-descender": false,
+						"boundary": "word",
+						"animations": [
+							{
+								"background-opacity": 0,
+								"translate": [
+									0,
+									"100su"
+								]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+1000", 1]
+								],
+								"indices": [
+									["$", ["-", ["var", "highlight"], 1]],
+									1
+								],
+								"background-opacity": 0.5
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+1000", 1]
+								],
+								"easing": "easeOutQuad",
+								"opacity": 1,
+								"translate": [0, 0]
+							}
+						]
+					}]
+				]],
+				["null", {
+					"flex": {
+						"width": "700su"
+					},
+					"transform": [
+						["translate",
+							["animate",
+								[800, "+500su", "easeOutQuad"],
+								["+1300", 0]
+							],
+							0
+						]
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["lte", ["aspect"], 1]],
+							"flex": {
+								"width": "300su"
+							}
+						},
+						{
+							"enabled": ["$", ["lte", ["aspect"], 0.9]],
+							"flex": {
+								"width": "400su"
+							}
+						},
+						{
+							"enabled": ["$", ["lte", ["aspect"], 0.6]],
+							"flex": {
+								"width": "700su"
+							}
+						},
+						{
+							"enabled": ["$", ["lte", ["aspect"], 1]],
+							"opacity": ["animate",
+								[1000, 0],
+								["+1000", 1]
+							],
+							"transform": [
+								["translate",
+									0,
+									["animate",
+										[1000, "50rh", "easeInOutQuad"],
+										["+1000", 0]
+									]
+								]
+							]
+						}
+					]
+				}, [
+					["null", {
+						"enabled": ["$", ["eq", ["var", "mask"], "lines"]],
+						"buffer": "knockout"
+					}, [
+						["solid", {
+							"color": [0, 0, 0, 1]
+						}, [
+							["solid", {
+								"color": [1, 1, 1, 1],
+								"radius": "20su",
+								"rect": [
+									"2rw",
+									["animate",
+										[0, "10rh", "easeInOutQuad"],
+										["+1500", "30rh", "easeInOutQuad"],
+										["+1500", "10rh"],
+										"loop"
+									],
+									"18rw",
+									"60rh"
+								]
+							}],
+							["solid", {
+								"color": [1, 1, 1, 1],
+								"radius": "20su",
+								"rect": [
+									"22rw",
+									["animate",
+										[300, "15rh", "easeInOutQuad"],
+										["+1700", "0rh", "easeInOutQuad"],
+										["+1700", "15rh"],
+										"loop"
+									],
+									"18rw",
+									"70rh"
+								]
+							}],
+							["solid", {
+								"color": [1, 1, 1, 1],
+								"radius": "20su",
+								"rect": [
+									"42rw",
+									["animate",
+										[700, 0, "easeInOutQuad"],
+										["+1500", "20rh", "easeInOutQuad"],
+										["+1500", 0],
+										"loop"
+									],
+									"18rw",
+									"80rh"
+								]
+							}],
+							["solid", {
+								"color": [1, 1, 1, 1],
+								"radius": "20su",
+								"rect": [
+									"62rw",
+									["animate",
+										[400, "20rh", "easeInOutQuad"],
+										["+1500", "30rh", "easeInOutQuad"],
+										["+1500", "20rh"],
+										"loop"
+									],
+									"18rw",
+									"60rh"
+								]
+							}],
+							["solid", {
+								"color": [1, 1, 1, 1],
+								"radius": "20su",
+								"rect": [
+									"82rw",
+									["animate",
+										[600, 0, "easeInOutQuad"],
+										["+1500", "18rh", "easeInOutQuad"],
+										["+1500", 0],
+										"loop"
+									],
+									"18rw",
+									"80rh"
+								]
+							}]
+						]]
+					]],
+					["matte", {
+						"skip": ["$", ["neq", ["var", "mask"], "lines"]],
+						"buffer-in": "knockout"
+					}, [
+						["solid", {
+							"skip": ["$", ["exists", ["var", "image"]]],
+							"color": ["$", ["var", "color-blue"]],
+							"radius": "20su",
+							"align": "right",
+							"mask": {
+								"radius": "20su"
+							}		
+						}, [
+							["user-asset", {
+								"enabled": ["$", ["exists", ["var", "image"]]],
+								"file": ["$", ["var", "image"]],
+								"justify": "center fill"
+							}]
+						]]
+					]]
+				]]
+			]]
+		]]
+	]
+]

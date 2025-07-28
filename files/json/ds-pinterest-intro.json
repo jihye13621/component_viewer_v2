@@ -1,0 +1,215 @@
+[
+	"ds-pinterest-intro",
+	[
+		["dsx-mixins",
+			"headline"
+		],
+		{
+			"key": "pill-text",
+			"display": "Pill Text",
+			"type": "text",
+			"default": "style ideas",
+			"required": false
+		},
+		{
+			"key": "asset",
+			"display": "Background",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["gain", 0],
+				["justify", "fill"],
+				["motion", "none"]
+			],
+			"script": ["$", ["if",
+				["exists", ["var", "asset"]],
+				["var", "asset"],
+				"./media/ds-pinterest-image.jpg"
+			]]
+		},
+		["dsx-mixins",
+			"boilerplate"
+		],
+		["ds-pinterest-mixins",
+			"colors",
+			"font-pinterest-bold",
+			"font-pinterest-regular"
+		]
+	],
+	[
+		["user-asset", {
+			"mixins": ["dsx-mixins",
+				"set-su"
+			],
+			"file": ["$", ["var", "asset"]],
+			"loop": true,
+			"justify": "fill center"
+		}, [
+			["solid", {
+				"color": [0, 0, 0, 0.2]
+			}],
+			["null", {
+				"mixins": ["dsx-mixins",
+					"safezone"
+				],
+				"enabled": ["$",
+					["or",
+						["exists", ["var", "headline"]],
+						["exists", ["var", "subhead"]]
+					]
+				],
+				"layout": "vertical packed",
+				"align": "center",
+				"gap": "50su"
+			}, [
+				["asset", {
+					"flex": {
+						"height": "100su"
+					},
+					"file": "./media/ds-pinterest-pushpin-intro.mov",
+					"hold": true,
+					"justify": "fit center",
+					"align": "top center",
+					"transform": [
+						["scale", 3]
+					]
+				}],
+				["text", {
+					"stagger": [150, 0],
+					"enabled": ["$", ["exists", ["var", "subhead"]]],
+					"string": ["$", ["var", "subhead"]],
+					"font": "./media/Pinterest-Sans-Pro-Bold.otf",
+					"measure": "letter-size",
+					"height": "60su",
+					"leading": "10su",
+					"justify": "center",
+					"kerning": -0.03,
+					"boundary": "line",
+					"animations": [
+						{
+							"translate": [
+								0,
+								"100su"
+							]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+750", 1]
+							],
+							"easing": "plateauIn",
+							"ramp": 1,
+							"opacity": 1
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+750", 1]
+							],
+							"easing": "easeOutQuad",
+							"ramp": 1,
+							"translate": [0, 0]
+						}
+					]
+				}],
+				["text", {
+					"stagger": [200, 0],
+					"enabled": ["$", ["exists", ["var", "headline"]]],
+					"flex": {
+						"weight": 2
+					},
+					"string": ["$", ["var", "headline"]],
+					"font": "./media/Pinterest-Sans-Pro-Bold.otf",
+					"measure": "letter-size",
+					"height": "150su",
+					"leading": "10su",
+					"kerning": -0.02,
+					"justify": "center",
+					"trim-descender": false,
+					"animations": [
+						{
+							"translate": [
+								0,
+								"120su"
+							]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+750", 1]
+							],
+							"easing": "plateauIn",
+							"ramp": 3,
+							"opacity": 1
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+750", 1]
+							],
+							"easing": "easeOutQuart",
+							"ramp": 3,
+							"translate": [0, 0]
+						}
+					]
+				}],
+				["solid", {
+					"enabled": ["$", ["exists", ["var", "pill-text"]]],
+					"flex": {
+						"height": "80su"
+					},
+					"stagger": [500, 0],
+					"radius": "100rw",
+					"layout": "horizontal packed",
+					"gap": "10su",
+					"padding": [
+						"20su",
+						"25su"
+					],
+					"transform": [
+						["scale",
+							["animate",
+								[0, 0, "easeOutQuart"],
+								["+200", 1.07, "easeInOutQuart"],
+								["+200", 0.9, "easeInOutQuart"],
+								["+200", 1.02, "easeInOutQuart"],
+								["+200", 1, "easeInOutQuart"]
+							]
+						],
+						["rotate",
+							["animate",
+								[0, 0],
+								["+200", 0, "easeInOutQuart"],
+								["+200", 0.01, "easeInOutQuart"],
+								["+200", 0]
+							]
+						]
+					]
+				}, [
+					["asset", {
+						"file": "./media/ds-pinterest-icon-magnifyingglass.svg",
+						"justify": "fit",
+						"transform": [
+							["scale", 0.7]
+						]
+					}],
+					["text", {
+						"font": "./media/Pinterest-Sans-Pro-Regular.otf",
+						"height": "38su",
+						"justify": "center",
+						"string": ["$", ["var", "pill-text"]],
+						"color": ["$", ["var", "color-black"]]
+					}],
+					["asset", {
+						"file": "./media/ds-pinterest-icon-arrow-stepped.svg",
+						"justify": "fit center",
+						"transform": [
+							["scale", 0.6]
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

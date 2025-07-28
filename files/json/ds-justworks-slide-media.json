@@ -1,0 +1,301 @@
+[
+	"ds-justworks-slide-media",
+	[
+		{
+			"key": "headline",
+			"display": "Headline",
+			"type": "text",
+			"default": "Distribute Paychecks and Pay stubs",
+			"required": false
+		},
+		{
+			"key": "asset-1",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [],
+			"script": ["$", ["if",
+				["exists", ["var", "asset-1"]],
+				["var", "asset-1"],
+				"./media/image-wide.jpg"	
+			]]
+		},
+		{
+			"key": "asset-2",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": []
+		},
+		{
+			"key": "subhead",
+			"display": "Subhead",
+			"type": "text",
+			"default": "Lorem ipsum dolor sit amet",
+			"required": false
+		},
+		["ds-justworks-mkii-mixins",
+			"fonts",
+			"color-primary",
+			"color-secondary"
+		],
+		{
+			"key": "color-mode",
+			"display": "Color Logo",
+			"type": "bool",
+			"default": false,
+			"required": false
+		},
+		{
+			"key": "dark-mode",
+			"display": "Dark Logo",
+			"type": "bool",
+			"default": true,
+			"required": false			
+		}
+	],
+	[		
+		["null", {
+			"buffer": "matte"
+		}, [
+			["solid", {
+				"color": "#ffffff",
+				"mask": {
+					"padding": [
+						["animate",
+							[0, "100rh", "easeOutCubic"],
+							[500, 0]
+						],
+						0,
+						["animate",
+							["100%", "100rh"],
+							["-350", 0, "easeInCubic"]
+						],
+						0
+					]
+				}
+			}]
+		]],
+		["solid", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			],
+			"color": ["$", ["var", "color-primary"]],
+			"effect": [
+				["matte", {
+					"buffer-in": "matte",
+					"end": 500
+				}],
+				["matte", {
+					"buffer-in": "matte",
+					"start": ["$", ["-", ["key", ["comp-timing"], "duration"], 350]]
+				}]
+			]
+		}, [
+			["null", {
+				"layout": "vertical",
+				"gap": "50su",
+				"breakpoints": [
+					{
+						"enabled": ["$", ["<=", ["aspect"], 1]],
+						"gap": "50su"
+					}
+				]
+			}, [
+				["text", {
+					"flex": {
+						"height": "75su"
+					},
+					"enabled": ["$", ["exists", ["var", "headline"]]],
+					"font": ["$", ["var", "font-bold"]],
+					"string": ["$", ["var", "headline"]],
+					"color": ["$", ["var", "color-secondary"]],
+					"height": "75su",
+					"fit": true,
+					"justify": "bottom left",
+					"stagger": [200, -200],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["<=", ["aspect"], 1]],
+							"justify": "fit left"
+						}
+					],
+					"animations": [
+						{
+							"mask": [0, 0, 0, 0],
+							"translate": [
+								0,
+								"150rh"
+							]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+800", 1]
+							],
+							"easing": "easeOutCubic",
+							"translate": [0, 0]
+						}
+					]
+				}],
+				["null", {
+					"layout": "horizontal",
+					"gap": "100su",
+					"breakpoints": [
+						{
+							"enabled": ["$", ["<=", ["aspect"], 1]],
+							"layout": "vertical",
+							"gap": "50su"
+						}
+					]
+				}, [			
+					["null", {
+						"enabled": ["$", ["exists", ["var", "asset-1"]]],
+						"mask": {}
+					},[
+						["null", {
+							"stagger": [400, -400],
+							"transform": [
+								["translate",
+									0,
+									["animate",
+										[0, "100rh", "easeOutCubic"],
+										[800, 0]
+									]
+								]
+							],
+							"breakpoints": [
+								{
+									"enabled": ["$", ["<=", ["aspect"], 0.66]],
+									"transform": [
+										["translate",
+											["animate",
+												[0, "-100rw", "easeOutCubic"],
+												[800, 0]
+											],
+											0
+										]
+									]
+								}
+							]
+						}, [
+							["user-asset", {
+								"file": ["$", ["var", "asset-1"]],
+								"justify": "fill center",
+								"mute": true,
+								"hold": true,
+								"mask": {}
+							}]
+						]]
+					]],
+					["null", {
+						"enabled": ["$", ["exists", ["var", "asset-2"]]],
+						"mask": {}
+					}, [
+						["null", {
+							"stagger": [500, -500],
+							"transform": [
+								["translate",
+									0,
+									["animate",
+										[0, "100rh", "easeOutCubic"],
+										[800, 0]
+									]
+								]
+							],
+							"breakpoints": [
+								{
+									"enabled": ["$", ["<=", ["aspect"], 0.66]],
+									"transform": [
+										["translate",
+											["animate",
+												[0, "100rw", "easeOutCubic"],
+												[800, 0]
+											],
+											0
+										]
+									]
+								}
+							]
+						}, [
+							["user-asset", {
+								"file": ["$", ["var", "asset-2"]],
+								"justify": "fill center",
+								"mute": true,
+								"hold": true,
+								"mask": {}
+							}]
+						]]
+					]]
+				]],
+				["null", {
+					"layout": "vertical",
+					"flex": {
+						"height": ["$", ["if",
+							["exists", ["var", "subhead"]],
+							"100su",
+							"50su"
+						]]
+					}
+				}, [
+					["text", {
+						"enabled": ["$", ["exists", ["var", "subhead"]]],
+						"string": ["$", ["var", "subhead"]],
+						"color": ["$", ["var", "color-secondary"]],
+						"font": ["$", ["var", "font-regular"]],
+						"height": "50su",
+						"justify": "bottom left",
+						"stagger": [800, -800],
+						"breakpoints": [
+							{
+								"enabled": ["$", ["<=", ["aspect"], 1]],
+								"justify": "fit left"
+							}
+						],
+						"animations": [
+							{
+								"mask": [0, 0, "-10su", 0],
+								"translate": [
+									0,
+									"150rh"
+								]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+800", 1]
+								],
+								"easing": "easeOutCubic",
+								"translate": [0, 0]
+							}
+						]
+					}],
+					["asset", {
+						"flex": {
+							"height": "50su"
+						},
+						"file": ["$", 
+							["if",
+								["var", "color-mode"],
+								"./media/ds-justworks-logo-j-white-color.svg",
+								"./media/ds-justworks-logo-j-white.svg"
+							]
+						],
+						"align": "bottom right",
+						"justify": "fit bottom right",
+						"breakpoints": [
+							{
+								"enabled": ["$", ["var", "dark-mode"] ],
+								"svg-recolor": "#050000"
+							}
+						]
+					}]
+				]]
+			]]
+			
+		]]
+	]
+]

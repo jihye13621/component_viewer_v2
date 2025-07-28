@@ -1,0 +1,46 @@
+{
+	"params": {
+		"color-1": {
+			"key": "color-1",
+			"display": "Primary",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		},
+		"color-2": {
+			"key": "color-2",
+			"display": "Secondary",
+			"type": "color",
+			"default": "#262626",
+			"required": false
+		},
+		"color-3": {
+			"key": "color-3",
+			"display": "Accent",
+			"type": "color",
+			"default": "#FFE249",
+			"required": false
+		}
+	},
+	"headline-0": {
+		"font": "./media/Montserrat-Black.ttf",
+		"height": "300su"
+	},
+	"headline-1": {
+		"font": "./media/Montserrat-Black.ttf",
+		"height": "140su"
+	},
+	"headline-2": {
+		"font": "./media/Montserrat-Black.ttf",
+		"height": "75su",
+		"leading": -0.2
+	},
+	"text-1": {
+		"font": "./media/Lato-Bold.ttf",
+		"height": "72su"
+	},
+	"text-2": {
+		"font": "./media/Lato-Regular.ttf",
+		"height": "48su" 
+	}
+}

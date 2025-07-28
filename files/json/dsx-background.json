@@ -1,0 +1,24 @@
+[
+	"dsx-background",
+	[
+		{
+			"key": "color",
+			"display": "Color",
+			"type": "color",
+			"default": null,
+			"required": false
+		}
+	],
+	[
+		["solid", {
+			"enabled": ["$",
+				["if", 
+					["exists", ["var", "color"]],
+					["gt", ["rgba-get", ["var", "color"], "a"], 0],
+					false
+				]
+			],
+			"color": ["$", ["var", "color"]]
+		}]
+	]
+]

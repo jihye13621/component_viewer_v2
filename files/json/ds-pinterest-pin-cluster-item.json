@@ -1,0 +1,121 @@
+[
+	"ds-pinterest-pin-cluster-item",
+	[
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": []
+		},
+		{
+			"key": "trigger",
+			"display": "Trigger",
+			"type": "number",
+			"default": 1000,
+			"required": false
+		},
+		["ds-pinterest-mixins",
+			"colors",
+			"font-pinterest-bold"
+		]
+	],
+	[
+		["null", {
+			"layout": "stacked",
+			"align": "center",
+			"transform": [
+				["scale",
+					["animate",
+						[
+							["$", ["var", "trigger"]],
+							null
+						],
+						["+400", 1, "easeInOutQuad"],
+						["-400", 0.92, "easeInOutQuad"],
+						["-200", 1, "easeInOutQuad"]
+					]
+				]
+			]
+		}, [
+			["user-asset", {
+				"file": ["$", ["var", "asset"]],
+				"justify": "fill center",
+				"mask": {
+					"radius": "40su"
+				}
+			}],
+			["null", {
+				"align": "bottom center",
+				"rect": [
+					0,
+					0,
+					"120su",
+					"80su"
+				],
+				"transform": [
+					["translate",
+						0,
+						"120su"
+					]
+				],
+				"end": ["$", ["+", ["var", "trigger"], 700]]
+			}, [
+				["solid", {
+					"end": ["$", ["var", "trigger"]],
+					"align": "center",
+					"color": ["$", ["var", "color-red"]],
+					"radius": "100su",
+					"transform": [
+						["scale",
+							["animate",
+								[
+									["$", ["var", "trigger"]],
+									0.5
+								],
+								["-100", 1, "easeInQuad"]
+							]
+						]
+					]
+				}, [
+					["text", {
+						"font": ["$", ["var", "font-pinterest-bold"]],
+						"justify": "center",
+						"string": "Save",
+						"height": "35su",
+						"fit": true,
+						"color": [1, 1, 1, 1]
+					}]
+				]],
+				["solid", {
+					"start": ["$", ["var", "trigger"]],
+					"align": "center",
+					"color": [0, 0, 0, 1],
+					"radius": "100su",
+					"padding": [
+						"20su",
+						"20su"
+					],
+					"transform": [
+						["scale",
+							["animate",
+								[0, 0.5],
+								["+100", 1, "easeOutQuad"]
+							]
+						]
+					]
+				}, [
+					["text", {
+						"font": ["$", ["var", "font-pinterest-bold"]],
+						"justify": "center",
+						"string": "Saved",
+						"height": "35su",
+						"fit": true,
+						"color": [1, 1, 1, 1]
+					}]
+				]]
+			]]
+		]]
+	]
+]

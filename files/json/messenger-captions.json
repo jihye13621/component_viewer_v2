@@ -1,0 +1,114 @@
+[
+	"messenger-captions",
+	[
+		{
+			"key": "font",
+			"display": "Style 1",
+			"type": "fontstyle",
+			"default": {
+				"font": "./media/TiemposHeadline-Semibold.otf",
+				"height": 50
+			},
+			"required": false
+		},
+		{
+			"key": "transcript",
+			"display": "Transcript",
+			"type": "transcript",
+			"default": null,
+			"required": false,
+			"private": true
+		},
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": [1, 1, 1, 1],
+			"required": false
+		},
+		{
+			"key": "background",
+			"display": "Background",
+			"type": "color",
+			"default": null,
+			"required": false
+		},
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [2, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["dsx-padding", {
+			"position": ["$", ["nth", ["var", "position"], 0]]
+		}, [
+			["null", {
+				"align": ["$", ["switch", ["nth", ["var", "position"], 0], {
+					"1": "left",
+					"3": "right",
+					"4": "left",
+					"6": "right",
+					"7": "left",
+					"9": "right",
+					"_": "center"
+				}]],
+				"layout": ["$", ["switch", ["nth", ["var", "position"], 0], {
+					"1": "vertical packed reverse",
+					"2": "vertical packed reverse",
+					"3": "vertical packed reverse",
+					"4": "vertical packed center",
+					"5": "vertical packed center",
+					"6": "vertical packed center",
+					"_": "vertical packed"
+				}]]
+			}, [
+				["text", {
+					"justify": ["$", ["switch", ["nth", ["var", "position"], 0], {
+						"1": "left",
+						"2": "center",
+						"3": "right",
+						"4": "left",
+						"5": "center",
+						"6": "right",
+						"7": "left",
+						"8": "center",
+						"9": "right",
+						"_": "center"
+					}]],
+					"style": ["$", ["var", "font"]],
+					"color": ["$", ["var", "color-1"]],
+					"transcript": ["$",
+						["transcript-split",
+							["var", "transcript"],
+							10
+						]
+					],
+					"animations": [
+						{
+							"translate": [
+								0,
+								["$", ["*", -0.5, ["var", "font", "height"]]]
+							]
+						},
+						{
+							"mix": [[0, 0], [0.5, 1.0]],
+							"opacity": 1,
+							"easing": "easeOutCubic",
+							"translate": [
+								0,
+								0
+							]
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

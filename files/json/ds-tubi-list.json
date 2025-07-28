@@ -1,0 +1,70 @@
+[
+	"ds-tubi-list",
+	[
+		{
+			"key": "items",
+			"display": "Items",
+			"type": "textarea",
+			"default": "FREE\nTHIS\nMONTH\nON",
+			"required": false
+		},
+		["ds-tubi-mixins",
+			"color-primary",
+			"color-secondary",
+			"font-black"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		]
+	],
+	[
+		["for-each", {
+			"items": ["$", ["split", ["var", "items"]]]
+		}, [
+			["solid", {
+				"start": ["$",
+					["*",
+						["var", "index"],
+						["floor", ["/", ["key", ["comp-timing"], "duration"], ["var", "count"]]]
+					]
+				],
+				"duration": ["$",
+					["floor", ["/", ["key", ["comp-timing"], "duration"], ["var", "count"]]]
+				],
+				"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]],
+				"color": ["$", ["var", "color-hello-yellow"]],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["eq", 0, ["mod", ["var", "index"], 2]]],
+						"mixins": [
+							["dsx-mixins", ["set-dsx-su", "safezone"]],
+							["ds-tubi-mixins", ["bg-gradient"]]
+						]
+					}
+				]
+			}, [
+				["text", {
+					"mixins": ["ds-tubi-mixins", "text"],
+					"font": ["$", ["var", "font-black"]],
+					"height": "200su",
+					"string": ["$", ["var", "item"]],
+					"justify": "center",
+					"measure": "cap-size",
+					"leading": "10su",
+					"case": "uppercase",
+					"color": ["$", ["var", "color-white"]],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["eq", 1, ["mod", ["var", "index"], 2]]],
+							"color": ["$", ["var", "color-deep-purple"]]
+						},
+						{
+							"enabled": ["$", ["lte", ["aspect"], 1]],
+							"height": "120su"
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

@@ -1,0 +1,128 @@
+[
+	"ds-instacart-sizzle-phone",
+	[
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "textarea",
+			"default": "In-Store Mode",
+			"required": false
+		},
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"parameters": [],
+			"script": ["$", ["if",
+				["exists", ["var", "asset"]],
+				["var", "asset"],
+				"./media/image-tall.jpg"
+			]]
+		},
+		["ds-instacart-mixins",
+			"colors",
+			"font-sans-800",
+			"theme"
+		]
+	],
+	[
+
+		["solid", {
+			"mixins": ["dsx-mixins", "safezone", "set-su-roi"],
+			"color": ["$", ["var", "#background"]]
+		}, [
+			["null", {
+				"layout": "vertical",
+				"align": "center",
+				"gap": "80su",
+				"transform": [
+					["translate",
+						0,
+						["animate",
+							[0, "50rh", "easeOutCubic"],
+							["+650", 0],
+							["100%", "-250rh"],
+							["-500", 0, "easeInCubic"]
+						]
+					]
+				]
+			}, [
+				["text", {
+					"flex": {
+						"height": "40rh"
+					},
+					"stagger": [0, -100],
+					"enabled": ["$", ["exists", ["var", "text"]]],
+					"font": ["$", ["var", "font-sans-800"]],
+					"measure": "letter-size",
+					"height": "100su",
+					"string": ["$", ["var", "text"]],
+					"color": ["$", ["var", "#foreground"]],
+					"justify": "bottom center",
+					"boundary": "line",
+					"z-index": 5,
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[0, "50roih", "easeOutCubic"],
+								["+650", 0],
+								["100%", "-50roih"],
+								["-500", 0, "easeInCubic"]
+							]
+						]
+					]
+				}],
+				["null", {
+					"stagger": [100, 0],
+					"rect": [
+						0,
+						0,
+						"100rw",
+						"350rh"
+					],
+					"layout": "stacked",
+					"align": "top center",
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[0, "50roih", "easeOutQuad"],
+								["+500", 0],
+								["100%", "-50roih"],
+								["-500", 0, "easeInQuad"]
+							]
+						]
+					]
+				}, [
+					["user-asset", {
+						"file": ["$", ["var", "asset"]],
+						"justify": "fit center",
+						"hold": true,
+						"mute": true
+					}, [
+						["solid", {
+							"color": [0, 0, 0, 0],
+							"stroke": "80su",
+							"stroke-color": ["$", ["var", "#background"]],
+							"inset": [
+								"-80su",
+								"-80su",
+								"-80su",
+								"-80su"
+							],
+							"radius": "200su"
+						}],
+						["solid", {
+							"color": [0, 0, 0, 0],
+							"stroke": "10su",
+							"stroke-color": [0, 0, 0, 1],
+							"radius": "100su"
+						}]
+					]]
+				]]
+			]]
+		]]
+	]
+]

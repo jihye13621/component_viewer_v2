@@ -1,0 +1,116 @@
+[
+	"ds-paycom-evergreen-sidepanel-list",
+	[
+		{
+			"key": "items",
+			"display": "List Items",
+			"type": "textarea",
+			"default": "List Item 1\nList Item 2\nList Item 3",
+			"required": false
+		},
+		{
+			"key": "switch",
+			"display": "Switch Side",
+			"type": "bool",
+			"default": false,
+			"required": false
+		},
+		["ds-paycom-mixins",
+			"green",
+			"font-bold-italic",
+			"font-bold"
+		]
+	],
+	[
+		["ds-paycom-evergreen-sidepanel", {
+			"switch": ["$", ["var", "switch"]],
+			"mixins": ["dsx-mixins",
+				"set-su"
+			]
+		}, [
+			["for-each", {
+				"items": ["$", ["split",
+					["var", "items"],
+					"\n"
+				]],
+				"layout": "vertical packed",
+				"gap": "80su",
+				"align": "center",
+				"padding": [
+					"120su",
+					"120su"
+				]
+			}, [
+				["text", {
+					"stagger": [
+						["$",
+							["+",
+								["*", ["var", "index"], 250],
+								500
+							]
+						],
+						0
+					],
+					"enabled": ["$", ["exists", ["var", "item"]]],
+					"font": ["$", ["var", "font-bold"]],
+					"height": "60su",
+					"leading": "40su",
+					"kerning": 0.08,
+					"measure": "cap-size",
+					"case": "uppercase",
+					"justify": "center",
+					"string": ["$", ["var", "item"]],
+					"color": [1, 1, 1, 1],
+					"boundary": "letter",
+					"animations": [
+						{
+							"translate": ["-40su", 0]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+2000", 1]
+							],
+							"easing": "easeOutQuad",
+							"ramp": 2,
+							"opacity": 1,
+							"translate": [0, 0]
+						}
+					],
+					"padding": [
+						0,
+						"-10su"
+					]
+				}, [
+					["solid", {
+						"stagger": [
+							["$",
+								["+",
+									["*", ["var", "index"], 250],
+									750
+								]
+							],
+							0
+						],
+						"rect": [
+							0,
+							"100rh",
+							["animate",
+								[0, 0, "easeOutQuad"],
+								["+500", "100rw"]
+							],
+							"3su"
+						],
+						"color": ["$", ["var", "green"]],
+						"transform": [
+							["translate",
+								0,
+								"15su"
+							]
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

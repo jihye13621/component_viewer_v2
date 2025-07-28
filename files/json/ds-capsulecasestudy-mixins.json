@@ -1,0 +1,112 @@
+{
+	"params": {
+		"color-primary": [
+			{
+				"key": "color-white",
+				"display": "Primary",
+				"type": "color",
+				"default": "#ffffff",
+				"global": "color-primary",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "color-black",
+				"display": "Primary",
+				"type": "color",
+				"default": "#000000",
+				"global": "color-primary",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "color-red",
+				"display": "Primary",
+				"type": "color",
+				"default": "#fc333f",
+				"global": "color-primary",
+				"required": false,
+				"private": true
+			}
+		],
+		"color-orange": {
+			"key": "color-orange",
+			"display": "Accent",
+			"type": "color",
+			"default": "#E54D2E",
+			"global": "color-accent",
+			"required": false
+		},
+		"color-yellow": {
+			"key": "color-yellow",
+			"display": "Accent",
+			"type": "color",
+			"default": "#C3F551",
+			"global": "color-accent",
+			"required": false
+		},
+		"color-blue": {
+			"key": "color-blue",
+			"display": "Accent",
+			"type": "color",
+			"default": "#3060FF",
+			"global": "color-accent",
+			"required": false
+		},
+		"color-purple": {
+			"key": "color-purple",
+			"display": "Accent",
+			"type": "color",
+			"default": "#4006BB",
+			"global": "color-accent",
+			"required": false
+		},
+		"font-headline": {
+			"key": "font-headline",
+			"display": "Font Headline",
+			"type": "string",
+			"default": "./media/Inter-Bold.ttf",
+			"global": "font-headline",
+			"required": false,
+			"private": true
+		},
+		"font-body": {
+			"key": "font-body",
+			"display": "Font Body",
+			"type": "string",
+			"default": "./media/Inter-Medium.ttf",
+			"global": "font-body",
+			"required": false,
+			"private": true
+		}
+	},
+
+	"text": {
+		"measure": "letter-size"
+	},
+	"text-display": {
+		"font": ["$", ["var", "font-headline"]],
+		"height": "150su",
+		"leading": "20su"
+	},
+	"text-headline": {
+		"font": ["$", ["var", "font-headline"]],
+		"height": "120su",
+		"leading": "20su"
+	},
+	"text-title": {
+		"font": ["$", ["var", "font-headline"]],
+		"height": "70su",
+		"leading": "20su"
+	},
+	"text-body": {
+		"font": ["$", ["var", "font-body"]],
+		"height": "50su",
+		"leading": "10su"
+	},
+	"text-label": {
+		"font": ["$", ["var", "font-body"]],
+		"height": "35su",
+		"leading": "14su"
+	}
+}

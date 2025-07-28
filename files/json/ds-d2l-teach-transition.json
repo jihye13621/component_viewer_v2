@@ -1,0 +1,18 @@
+[
+	"ds-d2l-teach-transition",
+	[
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-su", "safezone"]]
+		}, [
+			["asset", {
+				"flex": {
+					"position": "fixed"
+				},
+				"file": "./media/ds-d2l-transition.mov",
+				"justify": "fill center"
+			}]
+		]]
+	]
+]

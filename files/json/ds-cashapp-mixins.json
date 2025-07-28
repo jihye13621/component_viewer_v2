@@ -1,0 +1,38 @@
+{
+	"params": {
+		"colors": [
+			{
+				"key": "color-green",
+				"display": "Color",
+				"type": "color",
+				"default": "#00D533",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "color-white",
+				"display": "Color",
+				"type": "color",
+				"default": [1, 1, 1, 1],
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "color-black",
+				"display": "Color",
+				"type": "color",
+				"default": "#222222",
+				"required": false,
+				"private": true
+			}
+		],
+        "font-bold": {
+            "key": "font-bold",
+            "display": "Font Bold",
+            "type": "string",
+            "default": "./media/CashSans-Bold.otf",
+            "required": false,
+			"private": true
+        }
+	}
+}

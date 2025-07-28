@@ -1,0 +1,120 @@
+[
+	"ds-kismet-lite-watermark",
+	[
+		["dsx-mixins", ["watermark"]],
+		["ds-kismet-lite-mixins", "color-1", "color-2"],
+		["dsx-mixins", ["boilerplate"]],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": 7,
+			"required": false
+		}
+	],
+	[
+		["dsx-background", {
+			"enabled": ["$", ["exists", ["var", "background"]]],
+			"color": ["$", ["var", "background"]]
+		}],
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"max-width": "800nsu",
+				"align": ["$", ["var", "#align"]]
+			}, [
+				["null", {
+					"layout": "horizontal packed",
+					"align": "center",
+					"gap": "40su"
+				}, [
+					["asset", {
+						"mute": true,
+						"file": "./media/ds-kismet-logo.svg",
+						"svg-recolor": ["$", ["var", "color-1"]],
+						"flex": {
+							"width": "300su",
+							"height": "300su"
+						},
+						"justify": ["$", ["concat", "fit ", ["var", "#align"]]],
+						"opacity": ["animate",
+							[0, 0],
+							["+350", 1],
+							["100%", 0],
+							["-350", 1]
+						]
+					}],
+					["null", {
+						"enabled": ["$", ["exists", ["var", "text"]]],
+						"layout": "vertical packed",
+						"padding": [
+							"10su",
+							"20su",
+							"10su",
+							"20su"
+						],
+						"stagger": [400, -400],
+						"mask": {
+							"radius": "10su",
+							"padding": [
+								0,
+								["animate",
+									[0, "100rw", "easeInOutCubic"],
+									[500, 0]
+								],
+								0,
+								["animate",
+									["100%", "100rw"],
+									["-350", 0, "easeInOutCubic"]
+								]
+							]
+						}
+					}, [
+						["solid", {
+							"flex": {
+								"position": "fixed"
+							},
+							"color": ["$", ["var", "color-2"]]
+						}],
+						["text", {
+							"mixins": ["ds-kismet-lite-mixins", ["text-2"]],
+							"string": ["$", ["var", "text"]],
+							"color": ["$", ["var", "color-1"]],
+							"justify": ["$", ["var", "#align"]],
+							"stagger": [500, -400],
+							"transform": [
+								["translate",
+									["animate",
+										[0, "-100su", "easeOutCubic"],
+										["+500", 0],
+										["100%", "100su"],
+										["-350", 0, "easeInCubic"]
+									],
+									0
+								]
+							],
+							"boundary": "word",
+							"animations": [
+								{
+									"opacity": 0
+								},
+								{
+									"mix": ["animate",
+										[0, 0],
+										[500, 1],
+										["100%", 0],
+										["-350", 1]
+									],
+									"easing": "easeOutQuad",
+									"opacity": 1
+								}
+							]
+						}]
+					]]
+				]]
+			]]
+		]]
+	]
+]

@@ -1,0 +1,48 @@
+{
+	"params": {
+		"color-1": {
+			"key": "color-1",
+			"display": "Primary",
+			"type": "color",
+			"default": "#ededed",
+			"required": false
+		},
+		"color-2": {
+			"key": "color-2",
+			"display": "Secondary",
+			"type": "color",
+			"default": "#1d1d1b",
+			"required": false
+		},
+		"color-3": {
+			"key": "color-3",
+			"display": "Accent",
+			"type": "color",
+			"default": "#ffd500",
+			"required": false
+		}
+	},
+	"headline-0": {
+		"font": "./media/framd.ttf",
+		"height": "250su",
+		"leading": -0.2
+	},
+	"headline-1": {
+		"font": "./media/framd.ttf",
+		"height": "125su",
+		"leading": "-20su"
+	},
+	"headline-2": {
+		"font": "./media/framd.ttf",
+		"height": "88su"
+	},
+	"text-1": {
+		"font": "./media/GillSansNova.ttf",
+		"height": "90su",
+		"leading": -0.08
+	},
+	"text-2": {
+		"font": "./media/GillSansNova.ttf",
+		"height": "60su"
+	}
+}

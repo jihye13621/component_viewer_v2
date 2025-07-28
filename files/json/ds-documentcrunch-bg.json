@@ -1,0 +1,206 @@
+[
+	"ds-documentcrunch-bg",
+	[
+		{
+			"key": "stripe",
+			"display": "Stripe",
+			"type": "color",
+			"default": [1, 0, 0, 0],
+			"required": false
+		},
+		{
+			"key": "animate-in",
+			"display": "Animate In",
+			"type": "bool",
+			"default": true,
+			"required": false
+		},
+		{
+			"key": "animate-out",
+			"display": "Animate Out",
+			"type": "bool",
+			"default": true,
+			"required": false
+		},
+		{
+			"key": "#screen-diag",
+			"display": "Screen Diagonal",
+			"type": "number",
+			"default": 0,
+			"private": true,
+			"required": false,
+			"script": ["$", ["sqrt", ["+", ["*", ["width"], ["width"]], ["*", ["height"], ["height"]] ]]]
+		}
+	],
+	[
+		["null", {
+			"end": 1000,
+			"buffer": "screenmask-in"
+		}, [
+			["solid", {
+				"color": [0, 0, 0, 1]
+			}],
+			["solid", {
+				"color": [1, 1, 1, 1],
+				"rect": [
+					0,
+					0,
+					["$", ["var", "#screen-diag"]],
+					["$", ["var", "#screen-diag"]]
+				],
+				"align": "center",
+				"transform": [
+					["translate",
+						["animate",
+							[
+								0,
+								["$", ["*", -1, ["var", "#screen-diag"]]],
+								"easeInOutQuad"
+							],
+							[
+								"+1000",
+								0
+							]
+						],
+						0
+					],
+					["rotate",
+						0.125
+					]
+				]
+			}]
+		]],
+		["null", {
+			"enabled": ["$", ["var", "animate-out"]],
+			"start": ["$", ["-", ["key", ["comp-timing"], "duration"], 800]],
+			"buffer": "screenmask-out"
+		}, [
+			["solid", {
+				"color": [1, 1, 1, 1]
+			}],
+			["solid", {
+				"color": [0, 0, 0, 1],
+				"rect": [
+					0,
+					0,
+					["$", ["var", "#screen-diag"]],
+					["$", ["var", "#screen-diag"]]
+				],
+				"align": "center",
+				"transform": [
+					["translate",
+						["animate",
+							[
+								0,
+								["$", ["*", -1, ["var", "#screen-diag"]]],
+								"easeInOutQuad"
+							],
+							[
+								"+800",
+								0
+							]
+						],
+						0
+					],
+					["rotate",
+						0.125
+					]
+				]
+			}]
+		]],
+		["null", {
+			"effect": [
+				["matte", {
+					"enabled": ["$", ["var", "animate-in"]],
+					"end": 1000,
+					"buffer-in": "screenmask-in"
+				}],
+				["matte", {
+					"enabled": ["$", ["var", "animate-out"]],
+					"start": ["$", ["-", ["key", ["comp-timing"], "duration"], 800]],
+					"buffer-in": "screenmask-out"
+				}]
+			]
+		}, [
+			["null", {
+				"slot": "default"
+			}]
+		]],
+		["null", {
+			"rect": [
+				0,
+				0,
+				["$", ["var", "#screen-diag"]],
+				["$", ["var", "#screen-diag"]]
+			],
+			"align": "center",
+			"transform": [
+				["translate",
+					["animate",
+						[
+							0,
+							["$",
+								["if",
+									["var", "animate-in"],
+									["*", -1, ["var", "#screen-diag"]],
+									0
+								]
+							],
+							"easeInOutQuad"
+						],
+						[
+							"+1000",
+							["$",
+								["if",
+									["var", "animate-out"],
+									0,
+									["*", 0.2, ["var", "#screen-diag"]]
+								]
+							]
+						]
+					],
+					0
+				],
+				["rotate",
+					0.125
+				]
+			]
+		}, [
+			["solid", {
+				"color": ["$", ["var", "stripe"]],
+				"rect": [
+					0,
+					0,
+					["animate",
+						[
+							0,
+							["$", ["*", 0.2, ["var", "#screen-diag"]]]
+						],
+						[
+							"100%",
+							["$", ["*", 0.1, ["var", "#screen-diag"]]]
+						]
+					],
+					"100rh"
+				],
+				"align": "right",
+				"transform": [
+					["translate",
+						["animate",
+							[
+								"100%",
+								["$", ["*", 0.1, ["var", "#screen-diag"]]]
+							],
+							[
+								"-1000",
+								0,
+								"easeInQuint"
+							]
+						],
+						0
+					]
+				]
+			}]
+		]]
+	]
+]

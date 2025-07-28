@@ -1,0 +1,160 @@
+{
+	"params": {
+		"colors": [
+			{
+				"key": "color-green",
+				"display": "Green",
+				"type": "color",
+				"default": "#003D29",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "color-light-green",
+				"display": "Green",
+				"type": "color",
+				"default": "#0aad0a",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "color-orange",
+				"display": "Orange",
+				"type": "color",
+				"default": "#FF7009",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "color-white",
+				"display": "White",
+				"type": "color",
+				"default": "#FAF1E5",
+				"required": false,
+				"private": true
+			}
+		],
+		"theme": [
+			{
+				"key": "theme",
+				"display": "Theme",
+				"type": "string",
+				"default": "cashew",
+				"options": [
+					{
+						"key": "cashew",
+						"display": "Cashew"
+					},
+					{
+						"key": "kale",
+						"display": "Kale"
+					}
+				]
+			},
+			{
+				"key": "#foreground",
+				"display": "Foreground",
+				"type": "color",
+				"default": [0, 0, 0, 0],
+				"private": true,
+				"script": ["$",
+					["if",
+						["eq", ["var", "theme"], "cashew"],
+						["var", "color-green"],
+						["var", "color-white"]
+					]
+				]
+			},
+			{
+				"key": "#background",
+				"display": "Background",
+				"type": "color",
+				"default": [0, 0, 0, 0],
+				"private": true,
+				"script": ["$",
+					["if",
+						["eq", ["var", "theme"], "cashew"],
+						["var", "color-white"],
+						["var", "color-green"]
+					]
+				]
+			},
+			{
+				"key": "#accent",
+				"display": "Accent",
+				"type": "color",
+				"default": [0, 0, 0, 0],
+				"private": true,
+				"script": ["$",
+					["if",
+						["eq", ["var", "theme"], "cashew"],
+						["var", "color-light-green"],
+						["var", "color-orange"]
+					]
+				]
+			},
+			{
+				"key": "#logo",
+				"display": "Logo",
+				"type": "string",
+				"default": "",
+				"private": true,
+				"script": ["$",
+					["if",
+						["eq", ["var", "theme"], "cashew"],
+						"./media/ds-instacart-logo-dark.svg",
+						"./media/ds-instacart-logo-light.svg"
+					]
+				]
+			}
+		],
+		"font-sans-400": {
+			"key": "font-sans-400",
+			"display": "Font Sans",
+			"type": "string",
+			"default": "./media/ic-sans-400.ttf",
+			"required": false,
+			"private": true
+		},
+		"font-sans-600": {
+			"key": "font-sans-600",
+			"display": "Font Sans",
+			"type": "string",
+			"default": "./media/ic-sans-600.ttf",
+			"required": false,
+			"private": true
+		},
+		"font-sans-800": {
+			"key": "font-sans-800",
+			"display": "Font Sans",
+			"type": "string",
+			"default": "./media/ic-sans-800.ttf",
+			"required": false,
+			"private": true
+		},
+		"font-contrast-400": {
+			"key": "font-contrast-400",
+			"display": "Font Contrast",
+			"type": "string",
+			"default": "./media/ic-contrast-400.ttf",
+			"required": false,
+			"private": true
+		},
+		"font-contrast-600": {
+			"key": "font-contrast-600",
+			"display": "Font Contrast",
+			"type": "string",
+			"default": "./media/ic-contrast-600.ttf",
+			"required": false,
+			"private": true
+		},
+		"font-contrast-800": {
+			"key": "font-contrast-800",
+			"display": "Font Contrast",
+			"type": "string",
+			"default": "./media/ic-contrast-800.ttf",
+			"required": false,
+			"private": true
+		}
+	}
+}

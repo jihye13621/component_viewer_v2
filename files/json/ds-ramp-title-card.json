@@ -1,0 +1,100 @@
+[
+	"ds-ramp-title-card",
+	[
+		["dsx-mixins",
+			"headline"
+		],
+		{
+			"key": "location",
+			"display": "Location",
+			"type": "string",
+			"default": "center",
+			"required": false,
+			"options": [
+				{
+					"key": "center",
+					"display": "Center"
+				},
+				{
+					"key": "top",
+					"display": "Top"
+				}
+			]
+		},
+		{
+			"key": "do-background",
+			"display": "Show Background",
+			"type": "bool",
+			"default": true,
+			"required": false
+		},
+		["ds-ramp-mixins",
+			"colors",
+			"fonts"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		]
+	],
+	[
+		["solid", {
+			"skip": ["$", ["not", ["var", "do-background"]]],
+			"mixins": ["dsx-mixins", ["set-su", "safezone"]],
+			"color": ["$", ["var", "color-green"]]
+		}, [
+			["text", {
+				"enabled": ["$", ["exists", ["var", "headline"]]],
+				"stagger": [0, 0],
+				"font": ["$", ["var", "font-350"]],
+				"string": ["$", ["var", "headline"]],
+				"color": ["$", ["var", "color-white"]],
+				"height": "128su",
+				"kerning": -0.01,
+				"boundary": "line",
+				"measure": "letter-size",
+				"justify": ["$", ["concat", ["var", "location"], " left"]],
+				"animations": [
+					{
+						"mask": [0, 0, 0, 0],
+						"translate": [0, "200su"]
+					},
+					{
+						"mix": ["animate",
+							[0, 0],
+							["+1300", 1]
+						],
+						"ramp": 2,
+						"easing": "easeOutCubic",
+						"translate": [0, 0]
+					},
+					{
+						"mix": ["animate",
+							["100%", 1],
+							["-850", 0]
+						],
+						"ramp": 3,
+						"easing": "easeInCubic",
+						"translate": [0, "-200su"]
+					}
+				]
+			}],
+			["text", {
+				"enabled": ["$", ["exists", ["var", "subhead"]]],
+				"stagger": [500, 0],
+				"font": ["$", ["var", "font-350"]],
+				"string": ["$", ["var", "subhead"]],
+				"color": ["$", ["var", "color-white"]],
+				"height": "40su",
+				"boundary": "line",
+				"measure": "letter-size",
+				"justify": "bottom left",
+				"opacity": ["animate",
+					[0, 0, "easeOutQuad"],
+					["+1000", 1],
+					["100%", 0],
+					["-1000", 1, "easeInQuad"]
+				]
+			}]
+		]]
+	]
+]

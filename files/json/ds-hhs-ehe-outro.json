@@ -1,0 +1,267 @@
+[
+	"ds-hhs-ehe-outro",
+	[
+		["ds-hhs-ehe-mixins",
+			"font-bold"
+		],
+		{
+			"key": "theme",
+			"display": "Theme",
+			"type": "string",
+			"default": "purple",
+			"options": [
+				{
+					"key": "purple",
+					"display": "Purple"
+				},
+				{
+					"key": "indigo",
+					"display": "Indigo"
+				},
+				{
+					"key": "pink",
+					"display": "Pink"
+				},
+				{
+					"key": "yellow",
+					"display": "Yellow"
+				},
+				{
+					"key": "blue",
+					"display": "Blue"
+				}
+			]
+		},
+		{
+			"key": "language",
+			"display": "Language",
+			"type": "string",
+			"default": "english",
+			"options": [
+				{
+					"key": "english",
+					"display": "English"
+				},
+				{
+					"key": "spanish",
+					"display": "Spanish"
+				}
+			]
+		},
+		{
+			"key": "#colors",
+			"display": "Colors",
+			"type": "object",
+			"default": ["#B982F7", "#54006F"],
+			"private": true,
+			"script": ["$",
+				["switch", ["var", "theme"], {
+					"purple": ["#B982F7", "#54006F", "#D1FF03"],
+					"indigo": ["#88ACFF", "#34006F", "#FCA0FC"],
+					"pink": ["#FF99CC", "#663366", "#FED403"],
+					"yellow": ["#FDE338", "#FF2600", "#C383FF"],
+					"blue": ["#66CCFF", "#003DB8", "#FEA1FD"],
+					"_": ["#B982F7", "#54006F", "#D1FF03"]
+				}]
+			]
+		},
+		{
+			"key": "#asset",
+			"display": "Headline Asset",
+			"type": "string",
+			"default": "english",
+			"script": ["$",
+				["if",
+					["eq", ["var", "language"], "english"],
+					"./media/ds-hhs-outro-english.mov",
+					"./media/ds-hhs-outro-spanish.mov"
+				]
+			]
+		}
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins", "set-dsx-su"],
+			"color": ["$", ["nth", ["var", "#colors"], 0]]
+		}, [
+			["null", {
+				"mixins": ["dsx-mixins", "safezone"],
+				"layout": "vertical packed",
+				"align": "center",
+				"gap": "200su"
+			}, [
+				["channel-map", {
+					"flex": {
+						"width": "100rw",
+						"height": "400su"
+					},
+					"r": [1, 1, 1, 1],
+					"g": ["$", ["nth", ["var", "#colors"], 1]],
+					"b": ["$", ["nth", ["var", "#colors"], 2]]
+				}, [
+					["asset", {
+						"file": ["$", ["var", "#asset"]],
+						"justify": "fit center",
+						"hold": true,
+						"transform": [
+							["scale",
+								2
+							]
+						]
+					}]
+				]],
+				["null", {
+					"layout": "vertical packed",
+					"align": "center",
+					"gap": "40su"
+				}, [
+					["null", {
+						"layout": "vertical packed",
+						"align": "center",
+						"gap": "40su",
+						"breakpoints": [
+							{
+								"enabled": ["$", ["gt", ["aspect"], 1.1]],
+								"layout": "horizontal packed",
+								"gap": "20su"
+							}
+						]
+					}, [
+						["text", {
+							"mixins": ["ds-hhs-ehe-mixins",
+								"text"
+							],
+							"font": ["$", ["var", "font-bold"]],
+							"height": "50su",
+							"string": ["$", ["switch", ["var", "language"], {
+								"english": "LEARN MORE ABOUT HIV CARE AND ART",
+								"spanish": "CONOCE MÁS SOBRE EL TRATAMIENTO PARA EL VIH"
+							}]],
+							"kerning": 0.06,
+							"justify": "center",
+							"color": ["$", ["nth", ["var", "#colors"], 1]],
+							"mask": {
+								"padding": [
+									"-20su",
+									0,
+									"-20su",
+									0
+								]
+							},
+							"transform": [
+								["translate",
+									0,
+									["animate",
+										[0, "100rh", "easeOutQuad"],
+										["+400", 0]
+									]
+								],
+								["translate",
+									0,
+									["animate",
+										[0, "20su", "easeOutQuad"],
+										["+400", 0]
+									]
+								]
+							]
+						}],
+						["null", {
+							"layout": "horizontal packed match",
+							"align": "center"
+						}, [
+							["solid", {
+								"stagger": [100, -100],
+								"layout": "horizontal packed match",
+								"align": "center",
+								"padding": [
+									"20su",
+									"20su"
+								],
+								"color": [0, 0, 0, 0],
+								"stroke": "4su",
+								"stroke-color": [1, 1, 1, 1],
+								"gap": "10su",
+								"mask": {},
+								"transform": [
+									["translate",
+										0,
+										["animate",
+											[0, "100rh", "easeOutQuad"],
+											["+400", 0]
+										]
+									]
+								]
+							}, [
+								["text", {
+									"mixins": ["ds-hhs-ehe-mixins",
+										"text"
+									],
+									"font": ["$", ["var", "font-bold"]],
+									"height": "50su",
+									"string": "HIV.GOV",
+									"kerning": 0.06,
+									"justify": "center",
+									"color": ["$", ["nth", ["var", "#colors"], 1]]
+								}],
+								["solid", {
+									"flex": {
+										"width": "30su",
+										"shrink": true
+									},
+									"path": [
+										["100rw", "-36su"],
+										[0, "100rh"]
+									],
+									"color": [0, 0, 0, 0],
+									"stroke": "4su",
+									"stroke-color": [1, 1, 1, 1],
+									"transform": [
+										["translate",
+											0,
+											"18su"
+										]
+									]
+								}],
+								["text", {
+									"mixins": ["ds-hhs-ehe-mixins",
+										"text"
+									],
+									"font": ["$", ["var", "font-bold"]],
+									"height": "50su",
+									"string": ["$", ["switch", ["var", "language"], {
+										"english": "ART",
+										"spanish": "CELEBRO-MI-SALUD"
+									}]],
+									"kerning": 0.05,
+									"justify": "center",
+									"color": ["$", ["nth", ["var", "#colors"], 1]]
+								}]
+							]],
+							["solid", {
+								"flex": {
+									"position": "fixed"
+								},
+								"color": [1, 1, 1, 1],
+								"rect": [
+									0,
+									0,
+									"100rw",
+									"4su"
+								],
+								"align": "bottom"
+							}]
+						]]
+					]],
+					["asset", {
+						"flex": {
+							"height": "150su",
+							"width": "300su"
+						},
+						"file": "./media/ds-hhs-ehe-logos.svg",
+						"justify": "fit center"
+					}]
+				]]
+			]]
+		]]
+	]
+]

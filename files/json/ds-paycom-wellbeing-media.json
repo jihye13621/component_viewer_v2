@@ -1,0 +1,355 @@
+[
+	"ds-paycom-wellbeing-media",
+	[
+		{
+			"key": "asset-1",
+			"display": "Asset 1",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["justify", "fit"],
+				["motion", "none"]
+			],
+			"script": ["$", ["if",
+				["exists", ["var", "asset-1"]],
+				["var", "asset-1"],
+				"./media/image-wide.jpg"
+			]]
+		},
+		{
+			"key": "asset-2",
+			"display": "Asset 2",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["justify", "fit"],
+				["motion", "none"]
+			]
+		},
+		{
+			"key": "headline",
+			"display": "Headline",
+			"type": "text",
+			"default": "Optional Headline",
+			"required": false
+		},
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "#screen-diag",
+			"display": "Screen Diagonal",
+			"type": "number",
+			"default": 0,
+			"private": true,
+			"required": false,
+			"script": ["$", ["sqrt", ["+", ["*", ["width"], ["width"]], ["*", ["height"], ["height"]] ]]]
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su-roi"
+			]
+		}, [
+			["solid", {
+				"end": 700,
+				"color": [0, 0, 0, 1],
+				"buffer": "knockout-in"
+			}, [
+				["solid", {
+					"color": [1, 1, 1, 1],
+					"radius": 10000,
+					"rect": [
+						0,
+						0,
+						["$", ["var", "#screen-diag"]],
+						["$", ["var", "#screen-diag"]]
+					],
+					"align": "center",
+					"transform": [
+						["scale",
+							["animate",
+								[0, 0, "easeInOutQuad"],
+								["100%", 1]
+							]
+						]
+					]
+				}]
+			]],
+			["solid", {
+				"start": ["$", ["-", ["key", ["comp-timing"], "duration"], 700]],
+				"color": [0, 0, 0, 1],
+				"buffer": "knockout-out"
+			}, [
+				["solid", {
+					"color": [1, 1, 1, 1],
+					"radius": 10000,
+					"rect": [
+						0,
+						0,
+						["$", ["var", "#screen-diag"]],
+						["$", ["var", "#screen-diag"]]
+					],
+					"align": "center",
+					"transform": [
+						["scale",
+							["animate",
+								[0, 1, "easeOutQuad"],
+								["100%", 0]
+							]
+						]
+					]
+				}]
+			]],
+			["solid", {
+				"color": [1, 1, 1, 1],
+				"effect": [
+					["matte", {
+						"end": 700,
+						"buffer-in": "knockout-in"
+					}],
+					["matte", {
+						"start": ["$", ["-", ["key", ["comp-timing"], "duration"], 700]],
+						"buffer-in": "knockout-out"
+					}]
+				],
+				"padding": [
+					["$",
+						["concat",
+							["+",
+								["height", "./media/ds-paycom-wellbeing-media-right.json"],
+								10
+							],
+							"nsu"
+						]
+					],
+					"100su",
+					"100su",
+					"100su"
+				]
+			}, [
+				["null", {
+					"layout": "horizontal packed",
+					"align": "center",
+					"gap": "100su",
+					"breakpoints": [
+						{
+							"enabled": ["$", ["<", ["aspect"], 1]],
+							"layout": "vertical packed"
+						}
+					]
+				}, [
+					["user-asset", {
+						"stagger": [700, -800],
+						"enabled": ["$", ["exists", ["var", "asset-1"]]],
+						"file": ["$", ["var", "asset-1"]],
+						"justify": "fit center",
+						"mask": {
+							"transform": true
+						},
+						"transform": [
+							["scale",
+								["animate",
+									[0, 0, "easeOutBack"],
+									["+500", 1],
+									["100%", 0],
+									["-500", 1, "easeInBack"]
+								]
+							]
+						]
+					}],
+					["user-asset", {
+						"stagger": [800, -700],
+						"enabled": ["$", ["exists", ["var", "asset-2"]]],
+						"file": ["$", ["var", "asset-2"]],
+						"justify": "fit center",
+						"mask": {
+							"transform": true
+						},
+						"transform": [
+							["scale",
+								["animate",
+									[0, 0, "easeOutBack"],
+									["+500", 1],
+									["100%", 0],
+									["-500", 1, "easeInBack"]
+								]
+							]
+						]
+					}]
+				]]
+			]],
+			["asset", {
+				"file": "./media/ds-paycom-wellbeing-media-left.json",
+				"justify": "fit bottom left",
+				"rect": [
+					0,
+					0,
+					["$",
+						["concat",
+							["width", "./media/ds-paycom-wellbeing-media-left.json"],
+							"nsu"
+						]
+					],
+					["$",
+						["concat",
+							["height", "./media/ds-paycom-wellbeing-media-left.json"],
+							"nsu"
+						]
+					]
+				],
+				"align": "top left",
+				"lottie-driver": ["animate",
+					[0, 0],
+					[
+						"+2000",
+						["$",
+							["/",
+								2000,
+								["dur", "./media/ds-paycom-wellbeing-media-left.json"]
+							]
+						]
+					],
+					["100%", 1],
+					[
+						"-2000",
+						["$",
+							["/",
+								["-",
+									["dur", "./media/ds-paycom-wellbeing-media-left.json"],
+									2000
+								],
+								["dur", "./media/ds-paycom-wellbeing-media-left.json"]
+							]
+						]
+					]
+				]
+			}],
+			["asset", {
+				"file": "./media/ds-paycom-wellbeing-media-right.json",
+				"justify": "fit bottom right",
+				"rect": [
+					0,
+					0,
+					["$",
+						["concat",
+							["width", "./media/ds-paycom-wellbeing-media-right.json"],
+							"nsu"
+						]
+					],
+					["$",
+						["concat",
+							["height", "./media/ds-paycom-wellbeing-media-right.json"],
+							"nsu"
+						]
+					]
+				],
+				"align": "top right",
+				"lottie-driver": ["animate",
+					[0, 0],
+					[
+						"+2000",
+						["$",
+							["/",
+								2000,
+								["dur", "./media/ds-paycom-wellbeing-media-right.json"]
+							]
+						]
+					],
+					["100%", 1],
+					[
+						"-2000",
+						["$",
+							["/",
+								["-",
+									["dur", "./media/ds-paycom-wellbeing-media-right.json"],
+									2000
+								],
+								["dur", "./media/ds-paycom-wellbeing-media-right.json"]
+							]
+						]
+					]
+				]
+			}],
+			["null", {
+				"enabled": ["$", ["exists", ["var", "headline"]]],
+				"rect": [
+					"15rw",
+					"100su",
+					"70rw",
+					"200su"
+				],
+				"effect": [
+					["shadow", {
+						"radius": "10su",
+						"color": [0, 0, 0, 0.25],
+						"offset": [
+							"5su",
+							"5su"
+						]
+					}]
+				]
+			}, [
+				["null", {
+					"layout": "stacked",
+					"align": "center",
+					"mask": {
+						"radius": 100000,
+						"padding": [
+							0,
+							0,
+							0,
+							["animate",
+								[0, "100rw", "easeInOutQuad"],
+								["+600", 0],
+								["100%", "100rw"],
+								["-600", 0, "easeInOutQuad"]
+							]
+						]
+					},
+					"padding": [
+						"40su",
+						"120su"
+					]
+				}, [
+					["solid", {
+						"flex": {
+							"position": "fixed"
+						},
+						"layout": "stacked",
+						"align": "center",
+						"color": "#71CDCE",
+						"radius": 1000000,
+						"mask": {
+							"transform": true,
+							"path": [
+								[0, "50rh"],
+								["50rh", 0],
+								["100rw", 0],
+								["100rw", "100rh"],
+								["50rh", "100rh"]
+							]
+						},
+						"transform": [
+							["scale",
+								-1,
+								1
+							]
+						]
+					}],
+					["text", {
+						"font": "./media/FilsonSoftMedium.ttf",
+						"height": "60su",
+						"measure": "letter-size",
+						"color": [0, 0, 0, 1],
+						"fit": true,
+						"string": ["$", ["var", "headline"]]
+					}]
+				]]
+			]]
+		]]
+	]
+]

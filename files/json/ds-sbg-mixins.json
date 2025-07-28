@@ -1,0 +1,94 @@
+{
+	"params": {
+		"color-fg": {
+			"key": "color-fg",
+			"display": "Color",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false,
+			"private": true
+		},
+		"color-bg": {
+			"key": "color-bg",
+			"display": "Color",
+			"type": "color",
+			"default": "#000000",
+			"required": false,
+			"private": true
+		},
+		"color-accent": {
+			"key": "color-accent",
+			"display": "Color",
+			"type": "color",
+			"default": "#1F3F66",
+			"required": false,
+			"private": true
+		},
+		"font-headline": {
+			"key": "font-headline",
+			"display": "Font Headline",
+			"type": "string",
+			"default": "./media/ProximaNova-Black.otf",
+			"required": false,
+			"private": true
+		},
+		"font-body": {
+			"key": "font-body",
+			"display": "Font Body",
+			"type": "string",
+			"default": "./media/ProximaNova-Bold.otf",
+			"required": false,
+			"private": true
+		},
+		"do-safezone": {
+			"key": "do-safezone",
+			"display": "Safezone",
+			"type": "bool",
+			"default": true,
+			"required": false
+		}
+	},
+	"watermark-safezone": {
+		"padding": ["$",
+			["if",
+				["var", "do-safezone"],
+				["safezone"],
+				["array",
+					["nth", ["safezone"], 0],
+					["nth", ["safezone"], 3],
+					["nth", ["safezone"], 2],
+					["nth", ["safezone"], 3]
+				]
+			]
+		]
+	},
+	"text": {
+		"measure": "letter-size"
+	},
+	"text-display": {
+		"font": ["$", ["var", "font-headline"]],
+		"height": "200su",
+		"leading": "10su"
+	},
+	"text-headline": {
+		"font": ["$", ["var", "font-headline"]],
+		"height": "80su",
+		"leading": "15su"
+	},
+	"text-title": {
+		"font": ["$", ["var", "font-body"]],
+		"height": "90su",
+		"leading": "20su"
+	},
+	"text-body": {
+		"font": ["$", ["var", "font-body"]],
+		"height": "55su",
+		"leading": "5su",
+		"kerning": -0.01
+	},
+	"text-label": {
+		"font": ["$", ["var", "font-body"]],
+		"height": "35su",
+		"leading": "10su"
+	}
+}

@@ -1,0 +1,110 @@
+[
+	"ds-aspect-text",
+	[
+		{
+			"key": "theme",
+			"display": "Theme",
+			"type": "string",
+			"default": "plum",
+			"options": [
+				{
+					"key": "plum",
+					"display": "Plum"
+				},
+				{
+					"key": "raspberry",
+					"display": "Raspberry"
+				},
+				{
+					"key": "light",
+					"display": "Light"
+				}
+			],
+			"required": false
+		},
+		["dsx-mixins",
+			"text"
+		],
+		["ds-aspect-mixins",
+			"colors",
+			"font-wallop"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [7, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": true,
+				"minimum": -100,
+				"maximum": 100
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone",
+				"offset"
+			],
+			"layout": "stacked",
+			"align": ["$", ["var", "#align"]],
+			"max-width": "900su"
+		}, [
+			["text", {
+				"enabled": ["$", ["exists", ["var", "text"]]],
+				"font": ["$", ["var", "font-wallop"]],
+				"color": ["$", ["switch", ["var", "theme"], ["object",
+					["array", "plum", ["var", "color-plum"]],
+					["array", "raspberry", ["var", "color-raspberry"]],
+					["array", "light", ["var", "color-white"]]
+				]]],
+				"measure": "letter-size",
+				"height": "60su",
+				"leading": "20su",
+				"justify": ["$", ["var", "#align"]],
+				"string": ["$", ["var", "text"]],
+				"boundary": "word",
+				"effect": [
+					["shadow", {
+						"color": [0.36, 0.03, 0.28, 0.12],
+						"radius": "30su",
+						"offset": ["2su", "2su"]
+					}]
+				],
+				"animations": [
+					{
+						"translate": [
+							"100su",
+							0
+						]
+					},
+					{
+						"mix": ["animate",
+							[0, 0],
+							["+1000", 1]
+						],
+						"easing": "easeOutCubic",
+						"ramp": 1.75,
+						"opacity": 1,
+						"translate": [0, 0]
+					},
+					{
+						"mix": ["animate",
+							["100%", 1],
+							["-600", 0]
+						],
+						"easing": "easeInQuad",
+						"opacity": 0
+					}
+				]
+			}]
+		]]
+	]
+]

@@ -1,0 +1,199 @@
+[
+	"ds-horizonmedia-outro",
+	[
+		{
+			"key": "asset",
+			"display": "Partner Logo",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": []
+		},
+		{
+			"key": "logo",
+			"display": "Logo",
+			"type": "string",
+			"default": "horizon-media",
+			"options": [
+				{
+					"key": "horizon-media",
+					"display": "Horizon Media"
+				},
+				{
+					"key": "horizon",
+					"display": "Horizon"
+				},
+				{
+					"key": "horizon-next",
+					"display": "Horizon Next"
+				},
+				{
+					"key": "blu",
+					"display": "Blu"
+				}
+			],
+			"required": false,
+			"script": ["$", ["switch", ["var", "logo"], {
+				"horizon-media": "./media/ds-horizonmedia-logo.svg",
+				"horizon": "./media/ds-horizonmedia-icon.svg",
+				"horizon-next": "./media/ds-horizonmedia-next.svg",
+				"blu": "./media/ds-horizonmedia-blu-logo.svg"
+			}]]
+		},
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "textarea",
+			"default": "Optional Text",
+			"required": false
+		},
+		["ds-horizonmedia-mixins",
+			"color-white",
+			"font-regular"
+		],
+		["dsx-mixins",
+			"boilerplate-intro-outro"
+		],
+		{
+			"key": "#screen-diag",
+			"display": "Screen Diagonal",
+			"type": "number",
+			"default": 0,
+			"private": true,
+			"required": false,
+			"script": ["$", ["sqrt", ["+", ["*", ["width"], ["width"]], ["*", ["height"], ["height"]] ]]]
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-su", "safezone"]]
+		}, [
+			["solid", {
+				"flex": {
+					"position": "fixed"
+				},
+				"color": "#0A2D3E",
+				"radius": 10000,
+				"rect": [
+					0,
+					0,
+					["$", ["var", "#screen-diag"]],
+					["$", ["var", "#screen-diag"]]
+				],
+				"align": "top center",
+				"transform": [
+					["scale",
+						["animate",
+							[0, 1, "easeOutQuad"],
+							["+1000", 3.2]
+						]
+					],
+					["translate",
+						0,
+						["$", ["var", "#screen-diag"]]
+					]
+				]
+			}],
+			["null", {
+				"layout": "vertical packed",
+				"align": "center",
+				"max-width": "1000nsu",
+				"gap": "120su"
+			}, [
+				["null", {
+					"stagger": [700, 0],
+					"layout": "horizontal packed match",
+					"align": "center",
+					"gap": "80su",
+					"opacity": ["animate",
+						[0, 0],
+						["+500", 1]
+					]
+				}, [
+					["asset", {
+						"stagger": [700, 0],
+						"file": ["$", ["var", "logo"]],
+						"justify": "fit center",
+						"flex": {
+							"height": "300su"
+						},
+						"breakpoints": [
+							{
+								"enabled": ["$", ["exists", ["var", "asset"]]],
+								"transform": [
+									["translate",
+										["animate",
+											[0, "50su", "easeOutQuad"],
+											["+500", 0]
+										],
+										0
+									]
+								]
+							}
+						]
+					}],
+					["solid", {
+						"enabled": ["$", ["exists", ["var", "asset"]]],
+						"flex": {
+							"width": "4su",
+							"shrink": true
+						},
+						"rect": [
+							0,
+							0,
+							"100rw",
+							"80rh"
+						],
+						"align": "center"
+					}],
+					["user-asset", {
+						"stagger": [700, 0],
+						"enabled": ["$", ["exists", ["var", "asset"]]],
+						"flex": {
+							"height": "300su"
+						},
+						"file": ["$", ["var", "asset"]],
+						"justify": "fit center",
+						"mute": true,
+						"hold": true,
+						"transform": [
+							["translate",
+								["animate",
+									[0, "-50su", "easeOutQuad"],
+									["+500", 0]
+								],
+								0
+							]
+						]
+					}]
+				]],
+				["text", {
+					"enabled": ["$", ["exists", ["var", "text"]]],
+					"stagger": [1200, 0],
+					"font": ["$", ["var", "font-regular"]],
+					"height": "60su",
+					"color": ["$", ["var", "color-white"]],
+					"measure": "letter-size",
+					"string": ["$", ["var", "text"]],
+					"boundary": "word",
+					"justify": "center",
+					"animations": [
+						{
+							"translate": [0, "40su"]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+700", 1]
+							],
+							"easing": "easeOutQuad",
+							"ramp": 2,
+							"translate": [0, 0],
+							"opacity": 1
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

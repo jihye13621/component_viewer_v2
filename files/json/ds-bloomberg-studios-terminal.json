@@ -1,0 +1,164 @@
+[
+	"ds-bloomberg-studios-terminal",
+	[
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "text",
+			"default": "TRST",
+			"required": false
+		},
+		["ds-bloomberg-studios-mixins",
+			"font-headline",
+			"font-body"
+		],
+		{
+			"key": "color-primary",
+			"display": "Color",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false,
+			"private": true
+		},
+		{
+			"key": "color-blue",
+			"display": "Color",
+			"type": "color",
+			"default": "#2E55BA",
+			"required": false,
+			"private": true
+		},
+		{
+			"key": "#finder",
+			"display": "Finder",
+			"type": "object",
+			"default": null,
+			"required": false,
+			"private": true,
+			"script": ["$",
+				["rect-subrect-n",
+					["rect-solve",
+						["size", "./media/ds-bloomberg-studios-screen.jpg"],
+						["dim-to-rect", ["size"]],
+						"fill top left"
+					],
+					["rect-px-to-n",
+						["size", "./media/ds-bloomberg-studios-screen.jpg"],
+						["'", 102, 276, 300, 77]
+					]
+				]
+			]
+		}
+	],
+	[
+		["asset", {
+			"file": "./media/ds-bloomberg-studios-screen.jpg",
+			"justify": "fill top left"
+		}],
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su"]]
+		}, [
+			["null", {
+				"rect": ["$", ["print", ["var", "#finder"]]]
+			}, [
+				["solid", {
+					"rect": [
+						0,
+						0,
+						["$", ["/", ["nth", ["var", "#finder"], 3], 2.5]],
+						["$", ["/", ["nth", ["var", "#finder"], 3], 1.2]]
+					],
+					"color": ["$", ["var", "color-blue"]],
+					"opacity": ["animate",
+						[300, 1],
+						["+1", 0]
+					],
+					"align": "center left"
+				}],
+				["for-each", {
+					"enabled": ["$", ["exists", ["var", "text"]]],
+					"items": ["$", ["string-to-letters", ["var", "text"]]],
+					"layout": "horizontal packed",
+					"align": "left center"
+				}, [
+					["text", {
+						"stagger": [
+							["$",
+								["+",
+									300,
+									["*",
+										100,
+										["var", "index"]
+									]
+								]
+							],
+							0
+						],
+						"mixins": ["ds-bloomberg-studios-mixins",
+							"text"
+						],
+						"font": "./media/SourceCodePro-Regular.ttf",
+						"case": "uppercase",
+						"string": ["$", ["var", "item"]],
+						"height": ["$", ["*", 0.6, ["nth", ["var", "#finder"], 3]]],
+						"justify": "left center",
+						"color": ["$", ["var", "color-primary"]],
+						"opacity": ["animate",
+							[0, 0],
+							["+1", 1]
+						]
+					}, [
+						["solid", {
+							"stagger": [
+								["$",
+									["+",
+										300,
+										["*",
+											100,
+											["+", 1, ["var", "index"]]
+										]
+									]
+								],
+								0
+							],
+							"rect": [
+								0,
+								0,
+								["$", ["/", ["nth", ["var", "#finder"], 3], 2.5]],
+								["$", ["/", ["nth", ["var", "#finder"], 3], 1.2]]
+							],
+							"align": "left center",
+							"color": ["$", ["var", "color-blue"]],
+							"opacity": ["animate",
+								[0, 1],
+								["+1", 0]
+							],
+							"transform": [
+								["translate",
+									["$", ["/", ["nth", ["var", "#finder"], 3], 2.5]],
+									0
+								]
+							],
+							"breakpoints": [
+								{
+									"enabled": ["$",
+										["eq",
+											["+", 1, ["var", "index"]],
+											["var", "count"]
+										]
+									],
+									"opacity": ["animate",
+										[0, 1, "holdIn"],
+										["+500", 0.5, "holdIn"],
+										["+500", 1, "holdIn"],
+										"loop"
+									]
+								}
+							]
+						}]
+					]]
+				]]
+			]]
+		]]
+	]
+]

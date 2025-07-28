@@ -1,0 +1,197 @@
+[
+	"ds-ntv-headline",
+	[
+		["dsx-mixins",
+			"headline"
+		],
+		["ds-ntv-mixins",
+			"color-primary",
+			"color-accent",
+			"color-blue-homebase",
+			"font-medium"
+		],
+		{
+			"key": "do-logo",
+			"display": "Logo",
+			"type": "bool",
+			"default": true,
+			"required": false
+		},
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [4, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]],
+			"layout": "horizontal packed",
+			"align": ["$", ["var", "#align"]],
+			"gap": "30su"
+		}, [
+			["asset", {
+				"enabled": ["$", ["var", "do-logo"]],
+				"flex": {
+					"width": "350su"
+				},
+				"file": "./media/ds-ntv-logo-color.svg",
+				"justify": "fit top center",
+				"transform": [
+					["scale",
+						["animate",
+							[0, 0.5, "easeOutQuad"],
+							["+300", 1],
+							["100%", 0.5],
+							["-300", 1, "easeInQuad"]
+						]
+					]
+				],
+				"opacity": ["animate",
+					[0, 0],
+					["+300", 1],
+					["100%", 0],
+					["-300", 1]
+				]
+			}],
+			["null", {
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"max-width": "1200nsu",
+				"gap": "10su"
+			}, [
+				["solid", {
+					"enabled": ["$", ["exists", ["var", "headline"]]],
+					"stagger": [150, -50],
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]],
+					"color": ["$", ["var", "color-blue-homebase"]],
+					"padding": ["40su", "30su"],
+					"mask": {
+						"padding": [
+							0,
+							["animate",
+								[0, "100rw", "easeInOutQuad"],
+								["+750", 0],
+								["100%", "100rw"],
+								["-500", 0, "easeInOutQuad"]
+							],
+							0,
+							0
+						]
+					},
+					"breakpoints": [
+						{
+							"enabled": ["$", ["not", ["var", "do-logo"]]],
+							"stagger": [0, 0]
+						}
+					]
+				}, [
+					["text", {
+						"stagger": [300, 0],
+						"measure": "cap-size",
+						"font": ["$", ["var", "font-medium"]],
+						"height": "100su",
+						"leading": "20su",
+						"case": "uppercase",
+						"string": ["$", ["var", "headline"]],
+						"justify": ["$", ["var", "#align"]],
+						"color": ["$", ["var", "color-primary"]],
+						"transform": [
+							["translate",
+								["animate",
+									[0, "100rw", "easeInOutCubic"],
+									["+750", 0]
+								],
+								0
+							],
+							["translate",
+								["animate",
+									[0, "30su", "easeInOutCubic"],
+									["+750", 0]
+								],
+								0
+							]
+						],
+						"breakpoints": [
+							{
+								"enabled": ["$", ["not", ["var", "do-logo"]]],
+								"stagger": [150, 0]
+							}
+						]
+					}]
+				]],
+				["solid", {
+					"enabled": ["$", ["exists", ["var", "subhead"]]],
+					"stagger": [400, -100],
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]],
+					"color": ["$", ["var", "color-accent"]],
+					"padding": ["40su", "30su"],
+					"mask": {
+						"padding": [
+							0,
+							0,
+							0,
+							["animate",
+								[0, "100rw", "easeInOutQuad"],
+								["+750", 0],
+								["100%", "100rw"],
+								["-500", 0, "easeInOutQuad"]
+							]
+						]
+					},
+					"breakpoints": [
+						{
+							"enabled": ["$", ["not", ["var", "do-logo"]]],
+							"stagger": [250, -50]
+						}
+					]
+				}, [
+					["text", {
+						"stagger": [600, 0],
+						"measure": "cap-size",
+						"font": ["$", ["var", "font-medium"]],
+						"height": "70su",
+						"leading": "20su",
+						"case": "uppercase",
+						"string": ["$", ["var", "subhead"]],
+						"justify": ["$", ["var", "#align"]],
+						"color": ["$", ["var", "color-primary"]],
+						"transform": [
+							["translate",
+								["animate",
+									[0, "100rw", "easeInOutCubic"],
+									["+750", 0]
+								],
+								0
+							],
+							["translate",
+								["animate",
+									[0, "30su", "easeInOutCubic"],
+									["+750", 0]
+								],
+								0
+							]
+						],
+						"breakpoints": [
+							{
+								"enabled": ["$", ["not", ["var", "do-logo"]]],
+								"stagger": [450, 0]
+							}
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

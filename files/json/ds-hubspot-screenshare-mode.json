@@ -1,0 +1,100 @@
+[
+	"ds-hubspot-screenshare-mode",
+	[
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["gain", 0],
+				["justify", "fit"],
+				["motion", "none"]
+			]
+		},
+		{
+			"key": "asset-2",
+			"display": "Asset 2",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["gain", 0],
+				["justify", "fit"],
+				["motion", "none"]
+			]
+		},
+		{
+			"key": "asset-3",
+			"display": "Asset 3",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["gain", 0],
+				["justify", "fit"],
+				["motion", "none"]
+			]
+		},
+		{
+			"key": "asset-4",
+			"display": "Asset 4",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["gain", 0],
+				["justify", "fit"],
+				["motion", "none"]
+			]
+		},
+		{
+			"key": "asset-5",
+			"display": "Asset 5",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["gain", 0],
+				["justify", "fit"],
+				["motion", "none"]
+			]
+		},
+		{
+			"key": "animate-direction",
+			"display": "Animate Direction",
+			"type": "string",
+			"default": "right",
+			"required": false,
+			"options": [
+				{
+					"key": "right",
+					"display": "Right"
+				},
+				{
+					"key": "left",
+					"display": "Left"
+				},
+				{
+					"key": "top",
+					"display": "Top"
+				},
+				{
+					"key": "bottom",
+					"display": "Bottom"
+				}
+			]
+		}
+	],
+	[
+		["ds-hubspot-screenshare", {
+			"asset": ["$", ["var", "asset"]],
+			"asset-2": ["$", ["var", "asset-2"]],
+			"asset-3": ["$", ["var", "asset-3"]],
+			"asset-4": ["$", ["var", "asset-4"]],
+			"asset-5": ["$", ["var", "asset-5"]],
+			"animate-direction": ["$", ["var", "animate-direction"]]
+		}]
+	]
+]

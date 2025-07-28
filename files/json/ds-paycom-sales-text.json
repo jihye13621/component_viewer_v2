@@ -1,0 +1,76 @@
+[
+	"ds-paycom-sales-text",
+	[
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "textarea",
+			"default": "Add a headline",
+			"required": false
+		}
+	],
+	[
+		["asset", {
+			"file": "./media/ds-paycom-sales-intro-bg.mp4",
+			"loop": true,
+			"mute": true,
+			"justify": "fill center",
+			"breakpoints": [
+				{
+					"enabled": ["$", ["<", ["aspect"], 1]],
+					"rotate": 0.25
+				}
+			]
+		}],
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			]
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"align": "center",
+				"gap": "80su",
+				"transform": [
+					["scale",
+						["animate",
+							[0, 0.9],
+							["100%", 1]
+						]
+					]
+				]
+			}, [
+				["text", {
+					"font": "./media/Bebas Neue Pro Bold.otf",
+					"measure": "letter-size",
+					"height": "100su",
+					"leading": "30su",
+					"kerning": 0.05,
+					"color": "#ffffff",
+					"justify": "center",
+					"case": "uppercase",
+					"string": ["$", ["var", "text"]],
+					"animations": [
+						{
+							"translate": [
+								0,
+								"20su"
+							]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+1000", 1]
+							],
+							"ramp": 3,
+							"easing": "easeOutQuad",
+							"opacity": 1,
+							"translate": [0, 0]
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

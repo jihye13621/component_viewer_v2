@@ -1,0 +1,73 @@
+{
+	"params": {
+		"color-blue": {
+			"key": "color-blue",
+			"display": "Blue",
+			"type": "color",
+			"default": "#0057FF",
+			"required": false
+		},
+		"color-navy-blue": {
+			"key": "color-navy-blue",
+			"display": "Navy Blue",
+			"type": "color",
+			"default": "#0C2241",
+			"required": false
+		},
+		"color-dark-navy-blue": {
+			"key": "color-dark-navy-blue",
+			"display": "Dark Navy",
+			"type": "color",
+			"default": "#001D30",
+			"required": false
+		},
+		"color-white": {
+			"key": "color-white",
+			"display": "White",
+			"type": "color",
+			"default": "#EDF0F1",
+			"required": false
+		},
+		"color-accent": {
+			"key": "color-accent",
+			"display": "Accent",
+			"type": "color",
+			"default": "#646F79",
+			"required": false
+		},
+		"font-semibold": {
+			"key": "font-semibold",
+			"display": "Font SemiBold",
+			"type": "string",
+			"default": "./media/IBMPlexSans-SemiBold.ttf",
+			"required": false,
+			"private": true
+		},
+		"font-regular": {
+			"key": "font-regular",
+			"display": "Font Regular",
+			"type": "string",
+			"default": "./media/IBMPlexSans-Regular.ttf",
+			"required": false,
+			"private": true
+		}
+	},
+	"text": {
+		"measure": "letter-size"
+	},
+	"text-title": {
+		"font": ["$", ["var", "font-semibold"]],
+		"height": "90su",
+		"leading": "20su"
+	},
+	"text-label": {
+		"font": ["$", ["var", "font-regular"]],
+		"height": "40su",
+		"leading": "10su"
+	},
+	"text-body": {
+		"font": ["$", ["var", "font-regular"]],
+		"height": "55su",
+		"leading": "10su"
+	}
+}

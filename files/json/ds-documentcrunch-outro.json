@@ -1,0 +1,79 @@
+[
+	"ds-documentcrunch-outro",
+	[
+		{
+			"key": "text",
+			"display": "Text",
+			"default": "Optional CTA Text",
+			"type": "text",
+			"required": false
+		},
+		["ds-documentcrunch-mixins",
+			"font-medium",
+			"darkmode"
+		]
+	],
+	[
+		["ds-documentcrunch-bg", {
+			"stripe": ["$", ["var", "#lightblue"]],
+			"animate-out": false
+		}, [
+			["null", {
+				"mixins": ["dsx-mixins",
+					"set-su",
+					"safezone"
+				]
+			}, [
+				["solid", {
+					"flex": {
+						"position": "fixed"
+					},
+					"color": ["$", ["var", "#bg"]]
+				}],
+				["null", {
+					"layout": "vertical packed",
+					"align": "center",
+					"gap": "100su"
+				}, [
+					["asset", {
+						"flex": {
+							"height": "500su"
+						},
+						"file": ["$",
+							["if",
+								["var", "darkmode"],
+								"./media/ds-documentcrunch-logo-white.png",
+								"./media/ds-documentcrunch-logo-dark.png"
+							]
+						],
+						"justify": "fit center"
+					}],
+					["text", {
+						"flex": {
+							"height": "100su"
+						},
+						"enabled": ["$", ["exists", ["var", "text"]]],
+						"stagger": [700, 0],
+						"font": ["$", ["var", "font-medium"]],
+						"string": ["$", ["var", "text"]],
+						"measure": "letter-size",
+						"height": "50su",
+						"fit": true,
+						"color": ["$", ["var", "#fg"]],
+						"boundary": "word",
+						"animations": [
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+1000", 1]
+								],
+								"easing": "easeOutCubic",
+								"opacity": 1
+							}
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

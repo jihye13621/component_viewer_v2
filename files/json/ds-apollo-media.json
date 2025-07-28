@@ -1,0 +1,201 @@
+[
+	"ds-apollo-media",
+	[
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["gain", 0],
+				["justify", "fit"],
+				["motion", "none"]
+			],
+			"script": ["$", ["if",
+				["exists", ["var", "asset"]],
+				["var", "asset"],
+				"./media/image-wide.jpg"	
+			]]
+		},
+		{
+			"key": "theme",
+			"display": "Theme",
+			"type": "string",
+			"default": "yellow",
+			"options": [
+				{
+					"key": "yellow",
+					"display": "Yellow"
+				},
+				{
+					"key": "orange",
+					"display": "Orange"
+				},
+				{
+					"key": "red",
+					"display": "Red"
+				},
+				{
+					"key": "blue",
+					"display": "Blue"
+				},
+				{
+					"key": "purple",
+					"display": "Purple"
+				},
+				{
+					"key": "green",
+					"display": "Green"
+				},
+				{
+					"key": "lime",
+					"display": "Lime"
+				}
+			]
+		},
+		{
+			"key": "animate-direction",
+			"display": "Animate Direction",
+			"type": "string",
+			"default": "right",
+			"required": false,
+			"options": [
+				{
+					"key": "right",
+					"display": "Right"
+				},
+				{
+					"key": "left",
+					"display": "Left"
+				},
+				{
+					"key": "top",
+					"display": "Top"
+				},
+				{
+					"key": "bottom",
+					"display": "Bottom"
+				}
+			]
+		},
+		{
+			"key": "#colors",
+			"display": "Colors",
+			"type": "color",
+			"default": [0, 0, 0, 1],
+			"required": false,
+			"private": true,
+			"script": ["$", ["switch", ["var", "theme"], {
+				"yellow": ["#FECF40", "#FEE28C"],
+				"orange": ["#FF7D1F", "#FFB179"],
+				"red": ["#E75571", "#F199AA"],
+				"blue": ["#146EF6", "#6CA4F9"],
+				"purple": ["#8B6AF9", "#B9A6FB"],
+				"green": ["#1BDD5D", "#61E88F"],
+				"lime": ["#ADF21B", "#CEF776"],
+				"_": ["#FECF40", "#CEF776"]
+			}]]
+		}
+	],
+	[
+		["false-color", {
+			"color-1": ["$", ["nth", ["var", "#colors"], 0]],
+			"color-2": ["$", ["nth", ["var", "#colors"], 1]],
+			"opacity": ["animate",
+				[0, 0, "easeOutSine"],
+				["+200", 1],
+				["100%", 0],
+				["-200", 1, "easeInSine"]
+			]
+		}, [
+			["asset", {
+				"file": "./media/ds-apollo-background.mp4",
+				"justify": "fill center",
+				"loop": true
+			}]
+		]],
+		["null", {
+			"mixins": ["dsx-mixins", "set-su", "safezone"],
+			"transform": [
+				["translate",
+					["animate",
+						[0, "100rw", "easeOutQuint"],
+						["+1000", 0],
+						["100%", "100rw"],
+						["-700", 0, "easeInQuint"]
+					],
+					0
+				]
+			],
+			"breakpoints": [
+				{
+					"enabled": ["$", ["eq", ["var", "animate-direction"], "left"]],
+					"transform": [
+						["translate",
+							["animate",
+								[0, "-100rw", "easeOutQuint"],
+								["+1000", 0],
+								["100%", "-100rw"],
+								["-700", 0, "easeInQuint"]
+							],
+							0
+						]
+					]
+				},
+				{
+					"enabled": ["$", ["eq", ["var", "animate-direction"], "top"]],
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[0, "-100rh", "easeOutQuint"],
+								["+1000", 0],
+								["100%", "-100rh"],
+								["-700", 0, "easeInQuint"]
+							]
+						]
+					]
+				},
+				{
+					"enabled": ["$", ["eq", ["var", "animate-direction"], "bottom"]],
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[0, "100rh", "easeOutQuint"],
+								["+1000", 0],
+								["100%", "100rh"],
+								["-700", 0, "easeInQuint"]
+							]
+						]
+					]
+				}
+			]
+		}, [
+			["null", {
+				"enabled": ["$", ["exists", ["var", "asset"]]],
+				"stagger": [600, -400],
+				"transform": [
+					["scale",
+						["animate",
+							[0, 0.65, "easeInOutQuad"],
+							["+500", 1],
+							["100%", 0.65],
+							["-400", 1, "easeInOutQuad"]
+						]
+					]
+				]
+			}, [
+				["user-asset", {
+					"file": ["$", ["var", "asset"]],
+					"justify": "fit center",
+					"tags": ["b-roll"],
+					"mask": {
+						"radius": "20su"
+					}
+				}]
+			]]
+		]]
+	]
+]

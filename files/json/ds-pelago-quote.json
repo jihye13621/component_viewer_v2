@@ -1,0 +1,262 @@
+[
+	"ds-pelago-quote",
+	[
+		{
+			"key": "quote",
+			"display": "Quote",
+			"type": "text",
+			"default": "Add quote text",
+			"required": false
+		},
+		{
+			"key": "detail-1",
+			"display": "Source",
+			"type": "text",
+			"default": "Quote source",
+			"required": false
+		},
+		{
+			"key": "detail-2",
+			"display": "Details",
+			"type": "text",
+			"default": "Optional source details",
+			"required": false
+		},
+		["ds-pelago-mixins",
+			"color-primary",
+			"color-secondary",
+			"color-accent",
+			"font-headline",
+			"font-body-medium"
+		],
+		{
+			"key": "theme",
+			"display": "Theme",
+			"type": "string",
+			"default": "yellow",
+			"required": false,
+			"options": [
+				{
+					"key": "yellow",
+					"display": "Yell-O"
+				},
+				{
+					"key": "cerulean",
+					"display": "Cerulean"
+				},
+				{
+					"key": "maroon",
+					"display": "Maroon"
+				},
+				{
+					"key": "moss-green",
+					"display": "Moss Green"
+				},
+				{
+					"key": "punch-pink",
+					"display": "Punch Pink"
+				},
+				{
+					"key": "tea-green",
+					"display": "Tea Green"
+				}
+			]
+		},
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [4, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		},
+		{
+			"key": "#colors",
+			"display": "Colors",
+			"type": "object",
+			"default": ["#FAE355", "#212633"],
+			"private": true,
+			"script": ["$",
+				["switch", ["var", "theme"], {
+					"yellow": ["#FAE355", "#212633"],
+					"cerulean": ["#A4BDFF", "#ffffff"],
+					"maroon": ["#722F49", "#ffffff"],
+					"moss-green": ["#4D6525", "#ffffff"],
+					"punch-pink": ["#EEBCFF", "#212633"],
+					"tea-green": ["#DDF1C4", "#212633"],
+					"_": ["#FAE355", "#212633"]
+				}]
+			]
+		}
+	],
+	[
+		["shadow", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]],
+			"radius": "30su",
+			"color": [0, 0, 0, 0.2],
+			"offset": ["20su", "20su"]
+		}, [
+			["solid", {
+				"enabled": ["$", ["or",
+					["exists", ["var", "quote"]],
+					["exists", ["var", "detail-1"]],
+					["exists", ["var", "detail-2"]]
+				]],
+				"max-width": "800nsu",
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"color": ["$", ["nth", ["var", "#colors"], 0]],
+				"radius": "20su",
+				"transform": [
+					["scale",
+						["animate",
+							[0, 0.85, "easeOutQuad"],
+							["+400", 1],
+							["100%", 0.85],
+							["-350", 1, "easeInQuad"]
+						]
+					]
+				],
+				"opacity": ["animate",
+					[0, 0, "easeOutQuad"],
+					["+350", 1],
+					["100%", 0],
+					["-300", 1, "easeInQuad"]
+				]
+			}, [
+				["null", {
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]],
+					"padding": [
+						"70su",
+						"70su",
+						"60su",
+						"70su"
+					],
+					"gap": "45su"
+				}, [
+					["asset", {
+						"stagger": [200, 0],
+						"flex": {
+							"position": "fixed"
+						},
+						"rect": [
+							"10su",
+							"-70su",
+							"115su",
+							"115su"
+						],
+						"justify": "fit center",
+						"file": "./media/ds-pelago-ellipse-pair.svg",
+						"svg-recolor": ["$", ["nth", ["var", "#colors"], 1]],
+						"transform": [
+							["scale",
+								["animate",
+									[0, 0, "easeOutCubic"],
+									["+400", 1]
+								]
+							],
+							["rotate", 
+								["animate",
+									[0, 0.1, "easeOutCubic"],
+									["+400", 0]
+								]
+							]
+						],
+						"breakpoints": [
+							{
+								"enabled": ["$", ["or", 
+									["eq", ["nth", ["var", "position"], 0], 9],
+									["eq", ["nth", ["var", "position"], 0], 6],
+									["eq", ["nth", ["var", "position"], 0], 3]
+								]],
+								"rect": [
+									"83rw",
+									"-70su",
+									"115su",
+									"115su"
+								]
+							}
+						]
+					}],
+					["text", {
+						"enabled": ["$", ["exists", ["var", "quote"]]],
+						"stagger": [250, 0],
+						"mixins": ["ds-pelago-mixins",
+							"text"
+						],
+						"font": ["$", ["var", "font-body-medium"]],
+						"height": "60su",
+						"leading": "10su",
+						"color": ["$", ["nth", ["var", "#colors"], 1]],
+						"string": ["$", ["var", "quote"]],
+						"justify": ["$", ["var", "#align"]],
+						"boundary": "letter",
+						"animations": [
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+1000", 1]
+								],
+								"easing": "easeOutQuad",
+								"opacity": 1,
+								"ramp": 2
+							}
+						]
+					}],
+					["text", {
+						"enabled": ["$",
+							["or",
+								["exists", ["var", "detail-1"]],
+								["exists", ["var", "detail-2"]]
+							]
+						],
+						"stagger": [500, 0],
+						"mixins": ["ds-pelago-mixins",
+							"text"
+						],
+						"font": ["$", ["var", "font-headline"]],
+						"height": "38su",
+						"leading": "10su",
+						"color": ["$", ["nth", ["var", "#colors"], 1]],
+						"string": ["$", ["var", "detail-1"]],
+						"justify": ["$", ["var", "#align"]],
+						"boundary": "letter",
+						"animations": [
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+800", 1]
+								],
+								"easing": "easeOutQuad",
+								"opacity": 1
+							}
+						],
+						"breakpoints": [
+							{
+								"enabled": ["$", ["exists", ["var", "detail-2"]]],
+								"string": ["$",
+									["concat",
+										["var", "detail-1"],
+										["if",
+											["exists", ["var", "detail-1"]],
+											"\n",
+											""
+										],
+										["var", "detail-2"]
+									]
+								]
+							}
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

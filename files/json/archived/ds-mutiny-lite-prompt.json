@@ -1,0 +1,156 @@
+[
+	"ds-mutiny-lite-prompt",
+	[
+		["dsx-mixins", ["prompt"]],
+		["ds-mutiny-lite-mixins", "color-light", "color-dark"],
+		["dsx-mixins", ["boilerplate"]],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": 4,
+			"required": false
+		}
+	],
+	[
+		["dsx-background", {
+			"enabled": ["$", ["exists", ["var", "background"]]],
+			"color": ["$", ["var", "background"]]
+		}],
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"max-width": "800nsu",
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["exists", ["var", "text"]]],
+						"transform": [
+							["translate",
+								0,
+								["animate",
+									[600, "250su", "easeInOutQuart"],
+									["+1000", 0],
+									["100%", "200su"],
+									["-600", 0, "easeInOutQuart"]
+								]
+							]
+						]
+					}
+				]
+			}, [
+				["solid", {
+					"layout": "vertical packed",
+					"flex": {
+						"weight": 0.5
+					},
+					"align": ["$", ["var", "#align"]],
+					"color": ["$", ["var", "color-dark"]],
+					"padding": [
+						"20su",
+						"32su",
+						"12su",
+						"32su"
+					],
+					"mask": {
+						"padding": [
+							["animate",
+								[0, "100rh", "easeInOutQuart"],
+								[600, 0],
+								["100%", "100rh"],
+								["-600", 0, "easeInOutQuart"]
+							],
+							0,
+							0,
+							0
+						]
+					}
+				}, [
+					["text", {
+						"mixins": ["ds-mutiny-lite-mixins", ["font-label"]],
+						"string": "QUESTION",
+						"justify": ["$", ["var", "#align"]],
+						"color": ["$", ["var", "color-light"]],
+						"boundary": "letter",
+						"stagger": [300, -50],
+						"animations": [
+							{
+								"translate": [0, "50su"]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									[400, 1],
+									["100%", 0],
+									["-600", 1]
+								],
+								"translate": [0, 0],
+								"opacity": 1,
+								"ramp": 1.5,
+								"easing": "easeOutCubic"
+							}
+						]
+					}]
+				]],
+				["solid", {
+					"enabled": ["$", ["exists", ["var", "text"]]],
+					"layout": "vertical packed",
+					"flex": {
+						"weight": 1
+					},
+					"align": ["$", ["var", "#align"]],
+					"color": ["$", ["var", "color-light"]],
+					"stagger": [600, 0],
+					"padding": [
+						"60su",
+						"32su",
+						"60su",
+						"32su"
+					],
+					"mask": {
+						"padding": [
+							0,
+							0,
+							["animate",
+								[0, "100rh", "easeInOutQuart"],
+								["+1000", 0],
+								["100%", "100rh"],
+								["-600", 0, "easeInOutQuart"]
+							],
+							0
+						]
+					}
+				}, [
+					["text", {
+						"mixins": ["ds-mutiny-lite-mixins", ["font-body"]],
+						"string": ["$", ["var", "text"]],
+						"height": "80su",
+						"color": ["$", ["var", "color-dark"]],
+						"justify": ["$", ["var", "#align"]],
+						"stagger": [1000, -100],
+						"boundary": "word",
+						"animations": [
+							{
+								"translate": [0, "80su"]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+800", 1],
+									["100%", 0],
+									["-600", 1]
+								],
+								"translate": [0, 0],
+								"opacity": 1,
+								"ramp": 1.5,
+								"easing": "easeOutCubic"
+							}
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

@@ -1,0 +1,51 @@
+[
+	"ds-voltage-lite-headline",
+	[
+		["dsx-mixins", ["headline"]],
+		["ds-voltage-lite-mixins", "color-1", "color-3"],
+		["dsx-mixins", ["boilerplate"]],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": 7,
+			"required": false
+		}
+	],
+	[
+		["dsx-background", {
+			"enabled": ["$", ["exists", ["var", "background"]]],
+			"color": ["$", ["var", "background"]]
+		}],
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"max-width": "800nsu",
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"gap": "20su"
+			}, [
+				["text", {
+					"mixins": ["ds-voltage-lite-mixins", ["font-headline", "anim-headline"]],
+					"string": ["$", ["var", "headline"]],
+					"justify": ["$", ["var", "#align"]],
+					"case": "uppercase",
+					"stroke-color": ["$", ["var", "color-3"]],
+					"color": [0, 0, 0, 0],
+					"boundary": "word"
+				}],
+				["text", {
+					"mixins": ["ds-voltage-lite-mixins", ["font-label", "anim-subhead"]],
+					"string": ["$", ["var", "subhead"]],
+					"justify": ["$", ["var", "#align"]],
+					"case": "uppercase",
+					"stroke-color": ["$", ["var", "color-3"]],
+					"color": [0, 0, 0, 0],
+					"stagger": [250, -100],
+					"boundary": "word"
+				}]
+			]]
+		]]
+	]
+]

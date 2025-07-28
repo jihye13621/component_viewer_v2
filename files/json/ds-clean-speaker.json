@@ -1,0 +1,83 @@
+[
+	"ds-clean-speaker",
+	[
+		["dsx-mixins",
+			"speaker"
+		],
+		["ds-clean-mixins",
+			"color-primary",
+			"color-accent",
+			"font-headline",
+			"font-body"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [1, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["null", {
+				"max-width": "800nsu",
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]]
+			}, [
+				["ds-clean-pill", {
+					"enabled": ["$", ["exists", ["var", "name"]]],
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]],
+					"position": ["$", ["nth", ["var", "position"], 0]],
+					"color-1": ["$", ["var", "color-accent"]],
+					"color-2": ["$", ["var", "color-primary"]],
+					"string": ["$", ["var", "name"]],
+					"pill-font": ["$", ["var", "font-headline"]],
+					"pill-height": "72su",
+					"pill-padding": ["38su", "72su"],
+					"pill-stroke": "10su",
+					"pill-radius": "88su",
+					"pill-stagger": [0, 0]
+				}],
+				["ds-clean-pill", {
+					"enabled": ["$", ["exists", ["var", "detail-1"]]],
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]],
+					"position": ["$", ["nth", ["var", "position"], 0]],
+					"color-1": ["$", ["var", "color-primary"]],
+					"color-2": ["$", ["var", "color-accent"]],
+					"string": ["$", ["var", "detail-1"]],
+					"pill-font": ["$", ["var", "font-body"]],
+					"pill-height": "48su",
+					"pill-padding": ["32su", "64su"],
+					"pill-radius": "77su",
+					"pill-stagger": [200, -100]
+				}],
+				["ds-clean-pill", {
+					"enabled": ["$", ["exists", ["var", "detail-2"]]],
+					"layout": "vertical packed",
+					"align": ["$", ["var", "#align"]],
+					"position": ["$", ["nth", ["var", "position"], 0]],
+					"color-1": ["$", ["var", "color-primary"]],
+					"color-2": ["$", ["var", "color-accent"]],
+					"string": ["$", ["var", "detail-2"]],
+					"pill-font": ["$", ["var", "font-body"]],
+					"pill-height": "48su",
+					"pill-padding": ["32su", "64su"],
+					"pill-radius": "77su",
+					"pill-stagger": [400, -200]
+				}]
+			]]
+		]]
+	]
+]

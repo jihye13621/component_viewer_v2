@@ -1,0 +1,126 @@
+[
+	"ds-maintainx-rating",
+	[
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "string",
+			"default": "./media/capsule.svg",
+			"required": false
+		},
+		{
+			"key": "value",
+			"display": "Value",
+			"type": "string",
+			"default": "5.0",
+			"required": false
+		},
+		{
+			"key": "start-frame",
+			"display": "Start Frame",
+			"type": "text",
+			"default": 0,
+			"required": false
+		}
+	],
+	[
+		["null", {
+
+		}, [
+			["asset", {
+				"stagger": [
+					["$", ["var", "start-frame"]],
+					0
+				],
+				"rect": [
+					0,
+					0,
+					"100rw",
+					"45rh"
+				],
+				"file": ["$", ["var", "asset"]],
+				"justify": "fit center",
+				"opacity": ["animate",
+					[0, 0, "easeOutQuad"],
+					["+600", 1]
+				],
+				"transform": [
+					["translate",
+						0,
+						["animate",
+							[0, "80rh", "easeOutQuart"],
+							["+800", 0]
+						]
+					]
+				]
+			}],
+			["null", {
+				"rect": [
+					0,
+					"60rh",
+					"100rw",
+					"40rh"
+				]
+			}, [
+				["null", {
+					"layout": "horizontal packed",
+					"align": "center",
+					"gap": "10rh"
+				}, [
+					["asset", {
+						"stagger": [
+							["$", ["+", ["var", "start-frame"], 0]],
+							0
+						],
+						"file": "./media/ds-maintainx-star.png",
+						"justify": "fit center",
+						"opacity": ["animate",
+							[0, 0, "easeOutQuad"],
+							["+1000", 1]
+						],
+						"z-index": 2,
+						"transform": [
+							["rotate",
+								["animate",
+									[0, -0.125, "easeOutQuad"],
+									["+500", 0]
+								]
+							],
+							["translate",
+								["animate",
+									[500, "50rw", "easeInOutQuart"],
+									["+800", 0]
+								],
+								0
+							]
+						]
+					}],
+					["text", {
+						"stagger": [
+							["$", ["+", ["var", "start-frame"], 700]],
+							0
+						],
+						"font": "./media/Inter-Regular.ttf",
+						"height": "100rh",
+						"color": [0, 0, 0, 1],
+						"string": ["$", ["var", "value"]],
+						"fit": true,
+						"opacity": ["animate",
+							[0, 0, "easeOutQuad"],
+							["+1000", 1]
+						],
+						"transform": [
+							["translate",
+								["animate",
+									[0, "-50rw", "easeOutQuart"],
+									["+800", 0]
+								],
+								"10rh"
+							]
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

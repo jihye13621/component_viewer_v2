@@ -1,0 +1,33 @@
+{
+	"params": {
+		"color-white": {
+			"key": "color-white",
+			"display": "White",
+			"type": "color",
+			"default": "#FFFFFF",
+			"required": false
+		},
+		"color-dark-blue": {
+			"key": "color-dark-blue",
+			"display": "Dark Blue",
+			"type": "color",
+			"default": "#032a44",
+			"required": false
+		},
+		"color-blue": {
+			"key": "color-blue",
+			"display": "Blue",
+			"type": "color",
+			"default": "#76aae0",
+			"required": false
+		}
+	},
+	"font-headline": {
+		"font": "./media/GothamNarrow-Bold.otf",
+		"height": "250su"
+	},
+	"font-body": {
+		"font": "./media/GothamNarrow-Book.otf",
+		"height": "250su"
+	}
+}

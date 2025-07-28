@@ -1,0 +1,187 @@
+[
+	"ds7-list",
+	[
+		{
+			"key": "item-1",
+			"display": "Item 1",
+			"type": "text",
+			"default": "Add a list item",
+			"required": false
+		},
+		{
+			"key": "item-2",
+			"display": "Item 2",
+			"type": "text",
+			"default": "Add a second list item",
+			"required": false
+		},
+		{
+			"key": "item-3",
+			"display": "Item 3",
+			"type": "text",
+			"default": "Add a third list item",
+			"required": false
+		},
+		{
+			"key": "font-1",
+			"display": "Style",
+			"type": "fontstyle",
+			"default": {
+				"font": "./media/CooperHewitt-Bold.otf",
+				"height": 40
+			},
+			"required": false,
+			"script": ["$",
+				["key-set",
+					["var", "font-1"],
+					"height",
+					["round", ["*", ["var", "size"], ["var", "font-1", "height"]]]
+				]
+			]
+		},
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		},
+		{
+			"key": "color-2",
+			"display": "Color 2",
+			"type": "color",
+			"default": "#5000FF",
+			"required": false
+		},
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": 4,
+			"required": false
+		},
+		{
+			"key": "size",
+			"display": "Size",
+			"type": "number",
+			"default": 1.0,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"step": 0.05,
+				"minimum": 0.5,
+				"maximum": 1.5
+			}
+		},
+		{
+			"key": "#align",
+			"type": "string",
+			"default": "center",
+			"required": false,
+			"private": true,
+			"script": ["$", ["switch", ["var", "position"], {
+				"1": "bottom left",
+				"2": "bottom center",
+				"3": "bottom right",
+				"4": "left",
+				"5": "center",
+				"6": "right",
+				"7": "top left",
+				"8": "top center",
+				"9": "top right",
+				"_": "center"
+			}]]
+		}
+	],
+	[
+		["dsx-background", {
+			"enabled": ["$", ["exists", ["var", "background"]]],
+			"color": ["$", ["var", "background"]]
+		}],
+		["dsx-padding", {
+			"position": ["$", ["var", "position"]]
+		}, [
+			["for-each", {	
+				"items": ["$", ["array",
+					["var", "item-1"],
+					["var", "item-2"],
+					["var", "item-3"]
+				]],
+				"layout": "vertical packed",
+				"gap": ["$", ["var", "font-1", "height"]],
+				"transform": [
+					["translate",
+						0,
+						["animate",
+							[0, 0, "easeInOutQuad"],
+							[1000, ["$", ["*", 0.2, ["var", "font-1", "height"]]]],
+							"boomerang"
+						]
+					]
+				]
+			}, [
+				["solid", {
+					"layout": "vertical packed",
+					"color": ["$", ["var", "color-2"]],
+					"stagger": [
+						["$", ["*", 400, ["var", "index"]]],
+						["$", ["*", -200, ["-", ["var", "count"], ["var", "index"], 1]]]
+					],
+					"padding": [
+						["$", ["*", 0.2, ["var", "font-1", "height"]]],
+						["$", ["*", 0.2, ["var", "font-1", "height"]]],
+						["$", ["*", 0.2, ["var", "font-1", "height"]]],
+						["$", ["*", 0.2, ["var", "font-1", "height"]]]
+					],
+					"mask": {
+						"padding": [
+							["animate",
+								[0, "100rh", "easeInOutQuad"],
+								["+300", 0],
+								["100%", "100rh"],
+								["-300", 0, "easeInOutQuad"]
+							],
+							0,
+							0,
+							0
+						]
+					}
+				}, [
+					["text", {
+						"string": ["$", ["var", "item"]],
+						"style": ["$", ["var", "font-1"]],
+						"color": ["$", ["var", "color-1"]],
+						"stagger": [
+							["$", ["*", 400, ["var", "index"]]],
+							["$", ["*", -200, ["-", ["var", "count"], ["var", "index"], 1]]]
+						],
+						"boundary": "word",
+						"animations": [
+							{
+								"translate": [
+									0,
+									["$", ["var", "font-1", "height"]]
+								]
+							},
+							{
+								"mix": ["animate",
+									[200, 0],
+									["+500", 1],
+									["100%", 0],
+									["-500", 1]
+								],
+								"opacity": 1,
+								"easing": "easeOutQuad",
+								"ramp": 1.0,
+								"translate": [
+									0,
+									0
+								]
+							}
+						]
+					}]
+				]]
+			]] 
+		]]
+	]
+]

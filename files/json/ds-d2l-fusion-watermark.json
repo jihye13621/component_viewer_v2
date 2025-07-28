@@ -1,0 +1,70 @@
+[
+	"ds-d2l-fusion-watermark",
+	[
+		{
+			"key": "do-safezone",
+			"display": "Safezone",
+			"type": "bool",
+			"default": false,
+			"required": false
+		},
+		["ds-d2l-mixins",
+			"fonts"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [7, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", "set-su"],
+			"layout": "stacked",
+			"align": ["$", ["var", "#align"]],
+			"breakpoints": [
+				{
+					"enabled": ["$", ["var", "do-safezone"]],
+					"mixins": ["dsx-mixins", "set-su", "safezone"]
+				}
+			]
+		}, [
+			["solid", {
+				"color": [0, 0, 0, 1],
+				"layout": "horizontal packed",
+				"align": "center",
+				"padding": [
+					"40su",
+					"40su"
+				],
+				"gap": "40su"
+			}, [
+				["asset", {
+					"flex": {
+						"height": "50su"
+					},
+					"file": "./media/ds-d2l-logo.svg",
+					"justify": "fit left center"
+				}],
+				["text", {
+					"font": ["$", ["var", "font-light"]],
+					"height": "50su",
+					"measure": "cap-size",
+					"string": "FUSION",
+					"kerning": -0.05,
+					"justify": "right center",
+					"color": [1, 1, 1, 1]
+				}]
+			]]
+		]]
+	]
+]

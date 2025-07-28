@@ -1,0 +1,121 @@
+[
+	"ds-sothebys-captions-alt-1",
+	[
+		["ds-sothebys-mixins",
+			"font-toggle"
+		],
+		{
+			"key": "direction",
+			"display": "Slide From",
+			"default": "top",
+			"type": "string",
+			"required": false,
+			"options": [
+				{
+					"key": "top",
+					"display": "Top"
+				},
+				{
+					"key": "bottom",
+					"display": "Bottom"
+				},
+				{
+					"key": "left",
+					"display": "Left"
+				},
+				{
+					"key": "right",
+					"display": "Right"
+				}
+			]
+		},
+		{
+			"key": "max-words",
+			"display": "Words",
+			"type": "number",
+			"default": 8,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 1,
+				"minimum": 1,
+				"maximum": 12
+			}
+		},
+		{
+			"key": "color-1",
+			"display": "Color",
+			"default": "#ffffff",
+			"type": "color",
+			"required": false
+		},
+		["dsx-mixins",
+			"captions",
+			"boilerplate-captions"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [5, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone"
+			]
+		}, [
+			["text", {
+				"mixins": ["ds-sothebys-mixins",
+					"font-toggle"
+				],
+				"max-width": "1200nsu",
+				"color": ["$", ["var", "color-1"]],
+				"transcript": ["$",
+					["transcript-split",
+						["var", "transcript"],
+						["var", "max-words"]
+					]
+				],
+				"justify": ["$", ["var", "#align"]],
+				"align": ["$", ["var", "#align"]],
+				"animations": [
+					{
+						"translate": [
+							["$", 
+								["switch", ["var", "direction"],
+								{
+									"right": "50su",
+									"left": "-50su",
+									"_": 0
+								}]
+							],
+							["$", 
+								["switch", ["var", "direction"],
+								{
+									"top": "-50su",
+									"bottom": "50su",
+									"_": 0
+								}]
+							]
+						]
+					},
+					{
+						"mix": [[0, 0], [0.75, 1]],
+						"opacity": 1,
+						"easing": "easeOutQuad",
+						"translate": [0, 0]
+					}
+				]
+			}]
+		]]
+	]
+]

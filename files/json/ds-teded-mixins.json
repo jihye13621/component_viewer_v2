@@ -1,0 +1,57 @@
+{
+	"params": {
+		"color-1": {
+			"key": "color-1",
+			"display": "Primary",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		},
+		"color-2": {
+			"key": "color-2",
+			"display": "Secondary",
+			"type": "color",
+			"default": "#333333",
+			"required": false
+		},
+		"color-3": {
+			"key": "color-3",
+			"display": "Accent",
+			"type": "color",
+			"default": "#E62B1E",
+			"required": false
+		}
+	},
+	"headline-0": {
+		"font": "./media/TEDBold-three.ttf",
+		"height": "200su"
+	},
+	"headline-1": {
+		"font": "./media/TEDBold-three.ttf",
+		"height": "150su",
+		"leading": -0.12
+	},
+	"headline-2": {
+		"font": "./media/TEDBold-three.ttf",
+		"height": "100su",
+		"leading": "-10su"
+	},
+	"text-1": {
+		"font": "./media/TEDLight-three.ttf",
+		"height": "64su",
+		"leading": "-7su"
+	},
+	"text-2": {
+		"font": "./media/TEDLight-three.ttf",
+		"height": "58su",
+		"leading": 0.1
+	},
+	"font-speaker": {
+		"font": "./media/TEDBold-three.ttf",
+		"height": "55su"
+	},
+	"font-speaker-detail": {
+		"font": "./media/TEDLight-three.ttf",
+		"height": "45su"
+	}
+}

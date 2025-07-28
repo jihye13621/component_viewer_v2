@@ -1,0 +1,244 @@
+[
+	"ds-braze-feature",
+	[
+		{
+			"key": "headline",
+			"display": "Headline",
+			"type": "text",
+			"default": "Add a headline",
+			"required": false
+		},
+		{
+			"key": "section-1",
+			"display": "Section 1",
+			"type": "text",
+			"default": "Add a section headline",
+			"required": false
+		},
+		{
+			"key": "text-1",
+			"display": "Text 1",
+			"type": "textarea",
+			"default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna",
+			"required": false
+		},
+		{
+			"key": "section-2",
+			"display": "Section 2",
+			"type": "text",
+			"default": "",
+			"required": false
+		},
+		{
+			"key": "text-2",
+			"display": "Text 2",
+			"type": "textarea",
+			"default": "",
+			"required": false
+		},
+		{
+			"key": "section-3",
+			"display": "Section 3",
+			"type": "text",
+			"default": "",
+			"required": false
+		},
+		{
+			"key": "text-3",
+			"display": "Text 3",
+			"type": "textarea",
+			"default": "",
+			"required": false
+		},
+		{
+			"key": "section-4",
+			"display": "Section 4",
+			"type": "text",
+			"default": "",
+			"required": false
+		},
+		{
+			"key": "text-4",
+			"display": "Text 4",
+			"type": "textarea",
+			"default": "",
+			"required": false
+		},
+		{
+			"key": "gradient-style",
+			"display": "BG Gradient",
+			"type": "string",
+			"default": "heat-2",
+			"required": false,
+			"options": [
+				{
+					"key": "heat-1",
+					"display": "Heat 1"
+				},
+				{
+					"key": "heat-2",
+					"display": "Heat 2"
+				},
+				{
+					"key": "heat-3",
+					"display": "Heat 3"
+				}
+			]
+		},
+		["ds-braze-mixins",
+			"font-black",
+			"font-regular"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		]
+	],
+	[
+		["ds-braze-bg", {
+			"gradient-style": ["$", ["var", "gradient-style"]]
+		}, [
+			["null", {
+				"mixins": ["dsx-mixins",
+					"set-su",
+					"safezone"
+				],
+				"layout": "horizontal",
+				"align": "center",
+				"gap": "80su",
+				"breakpoints": [
+					{
+						"enabled": ["$", ["<", ["aspect"], 1]],
+						"layout": "vertical packed",
+						"gap": "80su",
+						"align": "top left"
+					}
+				]
+			}, [
+				["null", {
+					"flex": {
+						"weight": 0.6
+					},
+					"breakpoints": [
+						{
+							"enabled": ["$", ["<", ["aspect"], 1]],
+							"layout": "stacked",
+							"align": "left",
+							"flex": {
+								"weight": 0.2
+							}
+						}
+					]
+				}, [
+					["text", {
+						"stagger": [200, 0],
+						"enabled": ["$", ["exists", ["var", "headline"]]],
+						"font": ["$", ["var", "font-black"]],
+						"measure": "letter-size",
+						"height": "100su",
+						"leading": "10su",
+						"kerning": -0.02,
+						"color": [1, 1, 1, 1],
+						"string": ["$", ["var", "headline"]],
+						"justify": "top left",
+						"animations": [
+							{
+								"translate": [0, "100su"]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+1000", 1]
+								],
+								"easing": "easeOutCubic",
+								"ramp": 2,
+								"opacity": 1,
+								"translate": [0, 0]
+							}
+						]
+					}]
+				]],
+				["for-each", {
+					"items": [1, 2, 3, 4],
+					"layout": "vertical packed",
+					"align": "top left",
+					"gap": "50su",
+					"breakpoints": [
+						{
+							"enabled": ["$", ["<", ["aspect"], 1]],
+							"flex": {
+								"weight": 0.2
+							}
+						}
+					]
+				}, [
+					["null", {
+						"layout": "vertical packed",
+						"align": "top left",
+						"gap": "-4su",
+						"stagger": [
+                            ["$", ["*", 200, ["var", "index"]]],
+                            0
+                        ],
+						"transform": [
+							["translate",
+								0,
+								["animate",
+									[0, "80su", "easeOutCubic"],
+									["+1200", 0]
+								]
+							]
+						],
+						"opacity": ["animate",
+							[0, 0, "easeOutQuad"],
+							["+1200", 1]
+						]
+					}, [
+						["text", {
+							"flex": {
+								"height": "45su"
+							},
+							"enabled": ["$", ["exists", ["var", ["concat", "section-", ["var", "item"]]]]],
+							"stagger": [
+								["$",
+									["+",
+										300,
+										["*", 100, ["var", "index"]]
+									]
+								],
+								0
+							],
+							"font": ["$", ["var", "font-black"]],
+							"measure": "legacy",
+							"height": "45su",
+							"fit": true,
+							"kerning": -0.02,
+							"color": [1, 1, 1, 1],
+							"string": ["$", ["var", ["concat", "section-", ["var", "item"]]]],
+							"justify": "top left"
+						}],
+						["text", {
+							"enabled": ["$", ["exists", ["var", ["concat", "text-", ["var", "item"]]]]],
+							"stagger": [
+								["$",
+									["+",
+										400,
+										["*", 100, ["var", "index"]]
+									]
+								],
+								0
+							],
+							"font": ["$", ["var", "font-regular"]],
+							"measure": "legacy",
+							"height": "45su",
+							"leading": -0.1,
+							"kerning": -0.02,
+							"color": [1, 1, 1, 1],
+							"string": ["$", ["var", ["concat", "text-", ["var", "item"]]]],
+							"justify": "top left"
+						}]
+					]]
+				]]
+			]]
+		]]
+	]
+]

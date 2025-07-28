@@ -1,0 +1,132 @@
+[
+	"ds-sbg-triple-watermark",
+	[
+		{
+			"key": "sponsor",
+			"display": "Sponsor",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": []
+		},
+		{
+			"key": "do-color",
+			"display": "Logo Color",
+			"type": "bool",
+			"default": true
+		},
+		["ds-sbg-triple-mixins",
+			"color-white"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [7, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": true,
+				"minimum": -100,
+				"maximum": 100
+			},
+			"required": false
+		},
+		["ds-sbg-mixins",
+			"do-safezone"
+		]
+	],
+	[
+		["null", {
+			"mixins": [
+				["dsx-mixins",
+					"set-su",
+					"offset"
+				],
+				["ds-sbg-mixins",
+					"watermark-safezone"
+				]
+			]
+		}, [
+			["null", {
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"max-width": "300su",
+				"gap": "20su",
+				"effect": [
+					["shadow", {
+						"radius": "50su",
+						"color": [0, 0, 0, 0.4]
+					}]
+				]
+			}, [
+				["asset", {
+					"file": ["$",
+						["if",
+							["var", "do-color"],
+							"./media/ds-sbg-triple-logo-color.svg",
+							"./media/ds-sbg-triple-logo-white.svg"
+						]
+					],
+					"justify": "fit center",
+					"opacity": ["animate",
+						[0, 0],
+						["+350", 1],
+						["100%", 0],
+						["-300", 1]
+					]
+				}],
+				["null", {
+					"stagger": [250, 0],
+					"enabled": ["$", ["exists", ["var", "sponsor"]]],
+					"flex": {
+						"height": "30su"
+					},
+					"transform": [
+						["rotate", 0.125]
+					],
+					"opacity": ["animate",
+						[0, 0],
+						["+350", 1],
+						["100%", 0],
+						["-530", 1]
+					]
+				}, [
+					["solid", {
+						"rect": [
+							0,
+							0,
+							"7su",
+							"30su"
+						],
+						"align": "center"
+					}],
+					["solid", {
+						"rect": [
+							0,
+							0,
+							"30su",
+							"7su"
+						],
+						"align": "center"
+					}]
+				]],
+				["user-asset", {
+					"stagger": [500, 0],
+					"enabled": ["$", ["exists", ["var", "sponsor"]]],
+					"file": ["$", ["var", "sponsor"]],
+					"justify": "fit center",
+					"mute": true,
+					"opacity": ["animate",
+						[0, 0],
+						["+350", 1],
+						["100%", 0],
+						["-300", 1]
+					]
+				}]
+			]]
+		]]
+	]
+]

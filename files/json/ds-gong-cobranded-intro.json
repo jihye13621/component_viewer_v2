@@ -1,0 +1,202 @@
+[
+	"ds-gong-cobranded-intro",
+	[
+		{
+			"key": "logo-1",
+			"display": "Logo Left",
+			"type": "asset",
+			"default": "./media/ds-gong-logo.png",
+			"required": false,
+			"private": true
+		},
+		{
+			"key": "logo-2",
+			"display": "Logo Right",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [],
+			"script": ["$", ["if",
+				["exists", ["var", "logo-2"]],
+				["var", "logo-2"],
+				"./media/capsule.svg"
+			]]
+		},
+		{
+			"key": "do-recolor",
+			"display": "White Logo",
+			"type": "bool",
+			"default": false,
+			"required": false
+		},
+		{
+			"key": "do-bg",
+			"display": "Background Blur",
+			"type": "bool",
+			"default": true,
+			"required": false
+		},
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [5, 0, 0],
+			"required": false,
+			"ui": {
+				"grid": false,
+				"offset": true,
+				"minimum": -100,
+				"maximum": 100
+			}
+		}
+	],
+	[
+		["null", {
+			"enabled": ["$", ["var", "do-bg"]],
+			"opacity": ["animate",
+				["100%", 0],
+				["-200", 1, "easeInSine"]
+			],
+			"effect": [
+				["compose", {
+				}],
+				["blur", {
+					"radius": ["$", ["/", ["min", ["width"], ["height"]], 100]]
+				}]
+			]
+		}, [
+			["solid", {
+				"color": [0, 0, 0, 0.5],
+				"opacity": 0.5
+			}]
+		]],
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone",
+				"offset-screen"
+			]
+		}, [
+			["null", {
+				"layout": "packed",
+				"max-width": "10000nsu",
+				"align": ["$", ["var", "#align"]]
+			}, [
+				["null", {
+					"stagger": [900, 0],
+					"layout": "horizontal packed",
+					"align": "center",
+					"opacity": ["animate", 
+						["100%", 0],
+						["-500", 1, "easeInQuad"]
+					],
+					"script": ["$$",
+						["let",
+							[
+								["frame", ["current-frame"]],
+								["start", ["$", ["var", "start"]]],
+								["animate",
+									["ease",
+										["map",
+											["var", "frame"],
+											["+", ["var", "start"], 900],
+											["+", ["var", "start"], 2000],
+											1,
+											0
+										],
+										"easeInQuint"
+									]
+								],
+								["gong-logo",
+									["nth",
+										["key",
+											["var", "self"],
+											"children"
+										],
+										0
+									]
+								],
+								["gong-logo-width", ["key", ["key", ["var", "gong-logo"], "roi"], "width"]],
+								["self-width", ["key", ["key", ["var", "self"], "roi"], "width"]],
+								["remaining", ["-", ["var", "self-width"], ["var", "gong-logo-width"]]]
+							],
+							["live-transform",
+								["var", "self"],
+								"translate",
+								["*", ["var", "animate"], ["/", ["var", "remaining"], 2]],
+								0
+							]
+						]
+					]
+				}, [
+					["user-asset", {
+						"file": ["$", ["var", "logo-1"]],
+						"flex": {
+							"height": "100su"
+						},
+						"mute": true,
+						"justify": "fit center",
+						"transform": [
+							["scale",
+								["animate",
+									[0, 0, "easeOutQuint"],
+									["+500", 1]
+								]
+							]
+						]
+					}],
+					["null", {
+						"layout": "horizontal packed",
+						"align": "center",
+						"stagger": [900, 0],
+						"opacity": ["animate", 
+							[0, 0, "easeOutQuad"],
+							["+500", 1]
+						]
+					}, [
+						["null", {
+							"layout": "horizontal",
+							"flex": {
+								"height": "150nsu",
+								"width": "120nsu"
+							}
+						}, [
+							["solid", {
+								"align": "center",
+								"rect": [
+									0,
+									0,
+									"25nsu",
+									"25nsu"
+								],
+								"radius": 1000
+							}]
+						]],
+						["user-asset", {
+							"file": ["$", ["var", "logo-2"]],
+							"flex": {
+								"height": "100su"
+							},
+							"mute": true,
+							"justify": "fit center",
+							"breakpoints": [
+								{
+									"enabled": ["$", ["var", "do-recolor"]],
+									"effect": [
+										["false-color", {
+											"color-1": "#ffffff",
+											"color-2": "#ffffff"
+										}]
+									]
+								}
+							]
+						}]
+					]]
+				]]
+			]]
+		]]
+	]
+]

@@ -1,0 +1,145 @@
+[
+	"ds-paycom-wins-transition",
+	[
+		{
+			"key": "style",
+			"display": "Style",
+			"type": "string",
+			"default": "one",
+			"options": [
+				{
+					"key": "one",
+					"display": "One"
+				},
+				{
+					"key": "two",
+					"display": "Two"
+				}
+			],
+			"required": false
+		}
+	],
+	[
+		["for-each", {
+			"items": [0, 1, 2, 3, 4, 5]
+		}, [
+			["asset", {
+				"stagger": ["$",
+					["let",
+						[
+							["is-even", ["=", ["mod", ["var", "index"], 2], 1]],
+							["anim", 300],
+							["meter", ["floor", ["/", ["var", "anim"], 6]]],
+							["offset",
+								["if",
+									["=", ["var", "style"], "one"],
+									["*", ["mod", ["var", "index"], 3], ["var", "meter"]],
+									["*", ["var", "index"], ["var", "meter"]]
+								]
+							]
+						],
+						["array",
+							["var", "offset"],
+							["*", ["-", ["var", "anim"], ["var", "offset"]], -1]
+						]
+					]
+				],
+				"rect": ["$",
+					["let",
+						[
+							["height-box", ["/", ["height"], 6]]
+						],
+						["array",
+							0,
+							["*", ["var", "height-box"], ["var", "index"]],
+							"100rw",
+							["var", "height-box"]
+						]
+					]
+				],
+				"transform": [
+					["$",
+						["let",
+							[
+								["height-box", ["/", ["height"], 6]],
+								["is-even", ["=", ["mod", ["var", "index"], 2], 1]]
+							],
+							["array",
+								"translate",
+								["array", "animate",
+									["array",
+										0,
+										["+",
+											["*",
+												["if", ["var", "is-even"],
+													-1,
+													1
+												],
+												["*",
+													-0.1,
+													["var", "height-box"]
+												]
+											],
+											["if", ["var", "is-even"],
+												["*",
+													0.5,
+													["var", "height-box"]
+												],
+												["*",
+													-0.5,
+													["var", "height-box"]
+												]
+											]
+										]
+									],
+									["array",
+										"100%",
+										["+",
+											["*",
+												["if", ["var", "is-even"],
+													1,
+													-1
+												],
+												["*",
+													-0.1,
+													["var", "height-box"]
+												]
+											],
+											["if", ["var", "is-even"],
+												["*",
+													0.5,
+													["var", "height-box"]
+												],
+												["*",
+													-0.5,
+													["var", "height-box"]
+												]
+											]
+										]
+									]
+								],
+								0
+							]
+						]
+					]
+				],
+				"justify": "fill",
+				"file": "./media/ds-paycom-wins-shapes.jpg",
+				"mask": {
+					"padding": [
+						0,
+						["animate",
+							[0, "100rw"],
+							["+300", 0]
+						],
+						0,
+						["animate",
+							["100%", "100rw"],
+							["-300", 0]
+						]
+					]
+				}
+			}]
+		]]
+	]
+]

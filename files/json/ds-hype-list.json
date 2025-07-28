@@ -1,0 +1,37 @@
+[
+	"ds-hype-list",
+	[
+		["dsx-mixins", ["list"]],
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		},
+		["dsx-mixins", ["boilerplate"]]
+	],
+	[
+		["dsx-padding", {
+			"position": ["$", ["nth", ["var", "position"], 0]],
+			"mixins": ["dsx-mixins", ["set-su"]]
+		}, [
+			["for-each", {
+				"items": ["$", ["array",
+					["var", "item-1"],
+					["var", "item-2"],
+					["var", "item-3"]
+				]],
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"gap": "30su"
+			}, [
+				["text", {
+					"mixins": ["ds-hype-mixins", ["text-1"]],
+					"string": ["$", ["var", "item"]],
+					"justify": ["$", ["var", "#align"]]
+				}]
+			]] 
+		]]
+	]
+]

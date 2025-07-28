@@ -1,0 +1,111 @@
+[
+	"ds-documentcrunch-text",
+	[
+		{
+			"key": "text",
+			"display": "Text",
+			"default": "Text Title",
+			"type": "textarea",
+			"required": false
+		},
+		{
+			"key": "highlight",
+			"display": "Highlight",
+			"type": "number",
+			"default": 2,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 1,
+				"minimum": 0,
+				"maximum": 10
+			}
+		},
+		["ds-documentcrunch-mixins",
+			"font-bold",
+			"darkmode"
+		]
+	],
+	[
+		["ds-documentcrunch-bg", {
+			"stripe": ["$", ["var", "#lightblue"]]
+		}, [
+			["solid", {
+				"mixins": ["dsx-mixins",
+					"set-su",
+					"safezone"
+				],
+				"color": ["$", ["var", "#bg"]]
+			}, [
+				["text", {
+					"stagger": [700, -500],
+					"font": ["$", ["var", "font-bold"]],
+					"string": ["$", ["var", "text"]],
+					"measure": "letter-size",
+					"height": "120su",
+					"leading": "10su",
+					"justify": "center",
+					"max-width": "1200su",
+					"align": "center",
+					"color": ["$", ["var", "#fg"]],
+					"background-color": ["$", ["var", "#lightblue"]],
+					"background-padding": [
+						"20su",
+						"20su"
+					],
+					"background-radius": "20su",
+					"boundary": "word",
+					"animations": [
+						{
+							"background-opacity": 0
+						},
+						{
+							"mix": ["animate",
+								[500, 0],
+								["+200", 1],
+								["100%", 0],
+								["-200", 1]
+							],
+							"easing": "easeOutQuad",
+							"indices": [
+								["$", ["-", ["var", "highlight"], 1]],
+								1
+							],
+							"background-opacity": 1
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+1000", 1]
+							],
+							"easing": "easeOutCubic",
+							"translate": [0, 0],
+							"opacity": 1
+						},
+						{
+							"mix": ["animate",
+								["100%", 1],
+								["-500", 0]
+							],
+							"ramp": -1,
+							"easing": "easeInQuad",
+							"opacity": 0
+						}
+					],
+					"transform": [
+						["translate",
+							["animate",
+								[0, "-80su", "easeOutCubic"],
+								["+1000", 0],
+								["100%", "50su"],
+								["-500", 0, "easeInCubic"]
+							],
+							0
+						]
+					]
+				}]
+			]]
+		]]
+	]
+]

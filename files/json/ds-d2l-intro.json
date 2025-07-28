@@ -1,0 +1,120 @@
+[
+	"ds-d2l-intro",
+	[
+		{
+			"key": "headlines",
+			"display": "Headlines",
+			"type": "textarea",
+			"default": "Featuring the sharpest minds in the K-20 space.\nSharpen your pencils, class is about to begin.",
+			"required": false
+		},
+		["ds-d2l-mixins",
+			"color-white",
+			"fonts"
+		],
+		["dsx-mixins",
+			"boilerplate-intro-outro"
+		]
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-su", "safezone"]]
+		}, [
+			["asset", {
+				"flex": {
+					"position": "fixed"
+				},
+				"file": "./media/ds-d2l-transition.mov",
+				"justify": "fill center",
+				"hold": true,
+				"start": ["$", ["-", ["key", ["comp-timing"], "duration"], ["dur", "./media/ds-d2l-transition.mov"]]],
+				"z-index": 100
+			}],
+			["asset", {
+				"flex": {
+					"position": "fixed"
+				},
+				"file": "./media/ds-d2l-plate.mov",
+				"end": ["$", ["-", ["key", ["comp-timing"], "duration"], 1000]],
+				"justify": "fill center",
+				"hold": true,
+				"opacity": ["animate",
+					[0, 0],
+					["+500", 1]
+				]
+			}],
+			["asset", {
+				"file": "./media/ds-d2l-tlpod.png",
+				"justify": "fit center",
+				"start": 1800,
+				"duration": 4000,
+				"opacity": ["animate",
+					[0, 0],
+					["+1000", 1],
+					["100%", 0],
+					["-1000", 1]
+				],
+				"rect": [
+					0,
+					0,
+					"60rw",
+					"60rh"
+				],
+				"align": "center"
+			}],
+			["for-each", {
+				"items": ["$", ["split", ["var", "headlines"], "\n"]],
+				"start": ["$", ["+", 1800, 4000]],
+				"-": ["$",
+					["set", "#remaining",
+						["let",
+							[
+								["d", ["-", ["key", ["comp-timing"], "duration"], 1000]]
+							],
+							["if",
+								["gt", ["var", "d"], 0],
+								["var", "d"],
+								0
+							]
+						]
+					]
+				],
+				"enabled": ["$",
+					["and",
+						["print", ["exists", ["var", "headlines"]]],
+						["gt", ["var", "#remaining"], 1000]
+					]
+				]
+			}, [
+				["text", {
+					"font": ["$", ["var", "font-bold"]],
+					"height": "100su",
+					"justify": "center",
+					"align": "center",
+					"measure": "letter-size",
+					"leading": "10su",
+					"color": ["$", ["var", "color-white"]],
+					"string": ["$", ["var", "item"]],
+					"start": ["$",
+						["floor", ["*",
+							["/", ["var", "#remaining"], ["var", "count"]],
+							["var", "index"]
+						]]
+					],
+					"duration": ["$",
+						["floor", ["/", ["var", "#remaining"], ["var", "count"]]]
+					],
+					"max-width": "1200nsu",
+					"transform": [
+						["scale",
+							["animate",
+								[0, 0.95],
+								["100%", 1]
+							]
+						]
+					]
+				}]
+			]]
+		]]
+	]
+]

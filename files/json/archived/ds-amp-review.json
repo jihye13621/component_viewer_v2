@@ -1,0 +1,205 @@
+[
+	"ds-amp-review",
+	[
+		["dsx-mixins", ["review"]],
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": "#EBEBEB",
+			"required": false
+		},
+		{
+			"key": "color-2",
+			"display": "Color 2",
+			"type": "color",
+			"default": "#1E7AFA",
+			"required": false
+		},
+		{
+			"key": "color-3",
+			"display": "Color 3",
+			"type": "color",
+			"default": "#0F0D0C",
+			"required": false
+		},
+		["dsx-mixins", ["boilerplate"]]
+	],
+	[
+		["dsx-background", {
+			"enabled": ["$", ["exists", ["var", "background"]]],
+			"color": ["$", ["var", "background"]]
+		}],
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["solid", {
+				"layout": "horizontal packed",
+				"color": ["$", ["var", "color-2"]],
+				"align": ["$", ["var", "#align"]],
+				"gap": "10su",
+				"padding": [
+					"10su",
+					"10su",
+					"10su",
+					"10su"
+				]
+			}, [
+				["dsx-icon", {
+					"flex": {
+						"width": "50su",
+						"height": "50su"
+					},
+					"icon": "arrow-up-right",
+					"color": ["$", ["var", "color-1"]],
+					"stagger": [0, -400],
+					"transform": [
+						["scale", 
+							["animate",
+								[0, 0, "easeOutQuad"],
+								["+200", 1],
+								["100%", 0],
+								["-200", 1, "easeInQuad"]
+							]
+						]
+					]
+				}],
+				["dsx-icon", {
+					"enabled": ["$", [">", ["var", "review"], 1]],
+					"flex": {
+						"width": "50su",
+						"height": "50su"
+					},
+					"icon": "arrow-up-right",
+					"color": ["$", ["var", "color-1"]],
+					"stagger": [100, -300],
+					"transform": [
+						["scale", 
+							["animate",
+								[0, 0, "easeOutQuad"],
+								["+200", 1],
+								["100%", 0],
+								["-200", 1, "easeInQuad"]
+							]
+						]
+					]
+				}],
+				["dsx-icon", {
+					"enabled": ["$", [">", ["var", "review"], 2]],
+					"flex": {
+						"width": "50su",
+						"height": "50su"
+					},
+					"icon": "arrow-up-right",
+					"color": ["$", ["var", "color-1"]],
+					"stagger": [200, -200],
+					"transform": [
+						["scale", 
+							["animate",
+								[0, 0, "easeOutQuad"],
+								["+200", 1],
+								["100%", 0],
+								["-200", 1, "easeInQuad"]
+							]
+						]
+					]
+				}],
+				["dsx-icon", {
+					"enabled": ["$", [">", ["var", "review"], 3]],
+					"flex": {
+						"width": "50su",
+						"height": "50su"
+					},
+					"icon": "arrow-up-right",
+					"color": ["$", ["var", "color-1"]],
+					"stagger": [300, -100],
+					"transform": [
+						["scale", 
+							["animate",
+								[0, 0, "easeOutQuad"],
+								["+200", 1],
+								["100%", 0],
+								["-200", 1, "easeInQuad"]
+							]
+						]
+					]
+				}],
+				["dsx-icon", {
+					"enabled": ["$", [">", ["var", "review"], 4]],
+					"flex": {
+						"width": "50su",
+						"height": "50su"
+					},
+					"icon": "arrow-up-right",
+					"color": ["$", ["var", "color-1"]],
+					"stagger": [400, -0],
+					"transform": [
+						["scale", 
+							["animate",
+								[0, 0, "easeOutQuad"],
+								["+200", 1],
+								["100%", 0],
+								["-200", 1, "easeInQuad"]
+							]
+						]
+					]
+				}]
+			]],
+			["solid", {
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"color": ["$", ["var", "color-3"]],
+				"padding": [
+					"2su",
+					"10su",
+					"2su",
+					"10su"
+				]
+			}, [
+				["text", {
+					"mixins": ["ds-amp-mixins", ["headline-2"]],
+					"string": ["$", ["concat", "\"", ["var", "quote"], "\""]],
+					"justify": ["$", ["var", "#align"]]
+				}]
+			]],
+			["solid", {
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"color": ["$", ["var", "color-3"]],
+				"padding": [
+					"2su",
+					"10su",
+					"2su",
+					"10su"
+				]
+			}, [
+				["text", {
+					"mixins": ["ds-amp-mixins", ["text-1"]],
+					"string": ["$", ["var", "detail-1"]],
+					"color": ["$", ["var", "color-2"]],
+					"justify": ["$", ["var", "#align"]],
+					"boundary": "line"
+				}]
+			]],
+			["solid", {
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"color": ["$", ["var", "color-3"]],
+				"padding": [
+					"2su",
+					"10su",
+					"2su",
+					"10su"
+				]
+			}, [
+				["text", {
+					"mixins": ["ds-amp-mixins", ["text-2"]],
+					"string": ["$", ["var", "detail-2"]],
+					"color": ["$", ["var", "color-2"]],
+					"justify": ["$", ["var", "#align"]],
+					"boundary": "line"
+				}]
+			]]
+		]]
+	]
+]

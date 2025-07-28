@@ -1,0 +1,121 @@
+[
+	"ds-zendesk-outro",
+	[
+		{
+			"key": "cta",
+			"display": "CTA",
+			"type": "text",
+			"default": "Learn more",
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su"
+			]
+		}, [
+			["solid", {
+				"start": 2870,
+				"end": 3700,
+				"color": "#16140C"
+			}],
+			["solid", {
+				"mixins": ["dsx-mixins",
+					"safezone"
+				],
+				"color": "#FFFCF6",
+				"mask": {
+					"padding": [
+						["animate",
+							[3300, 0, [0.6, 0, 0.86, 0.42]],
+							["+400", "30su"]
+						],
+						0,
+						["animate",
+							[0, "100rh", [0, 0.3, 0.2, 0.78]],
+							["+375", 0],
+							[3300, 0, [0.6, 0, 0.86, 0.42]],
+							["+400", "30su"]
+						],
+						0
+					]
+				} 
+			}, [
+				["solid", {
+					"color": "#DEF991",
+					"layout": "stacked",
+					"stroke": "2su",
+					"stroke-color": "#16140C",
+					"radius": 10000,
+					"padding": [
+						"34su",
+						"80su"
+					],
+					"align": "center",
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								[0, "-60su", [0.2, 0.7, 0.6, 1]],
+								["+800", 0]
+							]
+						]
+					]
+				}, [
+					["text", {
+						"font": "./media/ZendeskSocial-Medium.otf",
+						"string": ["$",
+							["if",
+								["exists", ["var", "cta"]],
+								["var", "cta"],
+								"Learn more"
+							]
+						],
+						"height": "40su",
+						"leading": "10su",
+						"measure": "letter-size",
+						"color": "#16140C"
+					}]
+				]]
+			]],
+			["solid", {
+				"start": 3700,
+				"mixins": ["dsx-mixins",
+					"safezone"
+				],
+				"color": "#16140C"
+			}, [
+				["asset", {
+					"file": "./media/ds-zendesk-logo-animated-light.json",
+					"lottie-driver": ["animate",
+						[
+							0,
+							["$", ["/",
+								1000,
+								["dur", "./media/ds-zendesk-logo-animated-light.json"]
+							]]
+						],
+						[
+							["$", ["to-relative-string", ["-",
+								["dur", "./media/ds-zendesk-logo-animated-light.json"],
+								1000
+							]]],
+							1
+						]
+					],
+					"justify": "fit center",
+					"rect": [
+						0,
+						0,
+						"300su",
+						"300su"
+					],
+					"align": "center",
+					"mute": true,
+					"hold": true
+				}]
+			]]
+		]]
+	]
+]

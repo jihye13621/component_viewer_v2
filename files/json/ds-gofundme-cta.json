@@ -1,0 +1,122 @@
+[
+	"ds-gofundme-cta",
+	[
+		{
+			"key": "headline",
+			"display": "Headline",
+			"type": "text",
+			"default": "Add a headline",
+			"required": false
+		},
+		{
+			"key": "subhead",
+			"display": "Link",
+			"type": "text",
+			"default": "gofund.me/link",
+			"required": false
+		},
+		["ds-gofundme-mixins",
+			"dark-green",
+			"font-bold",
+			"font-medium"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [5, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": true,
+				"minimum": -100,
+				"maximum": 100
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins",
+				"set-su",
+				"safezone",
+				"offset"
+			]
+		}, [
+			["solid", {
+				"enabled": ["$", ["or",
+					["exists", ["var", "headline"]],
+					["exists", ["var", "subhead"]]
+				]],
+				"layout": "vertical packed",
+				"align": ["$", ["var", "#align"]],
+				"color": ["$", ["var", "dark-green"]],
+				"max-width": "1000nsu",
+				"radius": "35nsu",
+				"padding": [
+					"50su",
+					"50su"
+				],
+				"opacity": ["animate",
+					[0, 0, "easeOutQuad"],
+					["+250", 1],
+					["100%", 0],
+					["-200", 1, "easeInQuad"]
+				],
+				"transform": [
+					["scale",
+						["animate",
+							[0, 0.5, "easeOutBack"],
+							["+400", 1],
+							["100%", 0.7],
+							["-300", 1, "easeInBack"]
+						]
+					]
+				]
+			}, [
+				["null", {
+					"layout": "vertical packed",
+					"align": "center",
+					"gap": "30su"
+				}, [
+					["text", {
+						"enabled": ["$", ["exists", ["var", "headline"]]],
+						"font": ["$", ["var", "font-medium"]],
+						"measure": "letter-size",
+						"height": "70su",
+						"leading": 0.2,
+						"justify": "center",
+						"string": ["$", ["var", "headline"]],
+						"color": [1, 1, 1, 1]
+					}],
+					["null", {
+						"enabled": ["$", ["exists", ["var", "subhead"]]],
+						"layout": "horizontal packed",
+						"align": "center",
+						"gap": "20su"
+					}, [
+						["asset", {
+							"file": "./media/dsx-icon-link.svg",
+							"flex": {
+								"width": "45su"
+							},
+							"justify": "fit center"
+						}],
+						["text", {
+							"font": ["$", ["var", "font-medium"]],
+							"measure": "letter-size",
+							"height": "45su",
+							"leading": 0.2,
+							"justify": "center",
+							"fit": true,
+							"string": ["$", ["var", "subhead"]],
+							"color": [1, 1, 1, 1]
+						}]
+					]]
+				]]
+			]]
+		]]
+	]
+]

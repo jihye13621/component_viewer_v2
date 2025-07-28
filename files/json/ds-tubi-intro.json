@@ -1,0 +1,45 @@
+[
+	"ds-tubi-intro",
+	[
+		["ds-tubi-mixins",
+			"color-primary"
+		],
+		{
+			"key": "color-logo",
+			"display": "Color Logo",
+			"type": "bool",
+			"default": true,
+			"required": false
+		}
+	],
+	[
+		["solid", {
+			"mixins": [
+				["dsx-mixins", ["set-dsx-su", "safezone"]],
+				["ds-tubi-mixins", ["bg-gradient"]]
+			]
+		}, [
+			["asset", {
+				"file": "./media/ds-tubi-intro-simple.mov",
+				"justify": "fit center",
+				"hold": true,
+				"align": "center",
+				"breakpoints": [
+					{
+						"enabled": ["$", ["gt", ["aspect"], 1.0]],
+						"rect": [
+							0,
+							0,
+							"59rw",
+							"50rh"
+						]
+					},
+					{
+						"enabled": ["$", ["var", "color-logo"]],
+						"file": "./media/ds-tubi-intro-simple-yellow.mov"
+					}
+				]
+			}]
+		]]
+	]
+]

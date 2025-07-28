@@ -1,0 +1,20 @@
+[
+	"dsx-placeholder",
+	[
+	],
+	[
+		["solid", {
+			"color": "#26292Bdd"
+		}],
+		["asset", {
+			"file": "./media/asset-placeholder.svg",
+			"rect": [0, 0, "15rw", "15rh"],
+			"justify": "fit center",
+			"align": "center",
+			"mute": true
+		}],
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su"]]
+		}]
+	]
+]

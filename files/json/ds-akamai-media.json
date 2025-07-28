@@ -1,0 +1,59 @@
+[
+	"ds-akamai-media",
+	[
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["gain", 0],
+				["justify", "fit"],
+				["motion", "none"]
+			],
+			"script": ["$", ["if",
+				["exists", ["var", "asset"]],
+				["var", "asset"],
+				"./media/image-tall.jpg"	
+			]]
+		},
+		["ds-akamai-mixins",
+			"colors"
+		]
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]],
+			"color": ["$", ["var", "color-black"]],
+			"opacity": ["animate",
+				[0, 0],
+				["+250", 1],
+				["100%", 0],
+				["-200", 1]
+			]
+		}, [
+			["null", {
+				"enabled": ["$", ["exists", ["var", "asset"]]],
+				"transform": [
+					["scale",
+						["animate",
+							[0, 0.9, "easeOutQuad"],
+							["+400", 1],
+							["100%", 0.9],
+							["-300", 1, "easeInQuad"]
+						]
+					]
+				]
+			}, [
+				["user-asset", {
+					"file": ["$", ["var", "asset"]],
+					"justify": "fit center",
+					"mask": {
+						"radius": "10nsu"
+					}
+				}]
+			]]
+		]]
+	]
+]

@@ -1,0 +1,89 @@
+[
+	"ds-rippling-outro",
+	[
+		{
+			"key": "text",
+			"display": "Text",
+			"type": "text",
+			"default": "rippling.com",
+			"required": false
+		},
+		["dsx-mixins",
+			"boilerplate"
+		],
+		["ds-rippling-mixins",
+			"colors",
+			"color-selector",
+			"font-bgtf-medium"
+		]
+	],
+	[
+		["null", {
+		}, [
+			["solid", {
+				"mixins": ["dsx-mixins",
+					"set-su",
+					"safezone"
+				],
+				"justify": "fill center",
+				"color": ["$", ["var", "#background"]]
+			}, [
+				["null", {
+					
+				}, [
+					["asset", {
+						"mute": true,
+						"file": "./media/ds-rippling-logo-animation.mov",
+						"justify": "fit center",
+						"stagger": [0, 0],
+						"hold": true,
+						"effect": [
+							["false-color", {
+								"color-1": ["$", ["var", "#foreground"]],
+								"color-2": ["$", ["var", "#foreground"]]
+							}]
+						]
+					}]
+				]],
+				["text", {
+					"stagger": [1000, 0],
+					"enabled": ["$", ["exists", ["var", "text"]]],
+					"font": ["$", ["var", "font-bgtf-medium"]],
+					"height": "38su",
+					"kerning": 0.03,
+					"measure": "letter-size",
+					"color": ["$", ["var", "#foreground"]],
+					"string": ["$", ["var", "text"]],
+					"justify": "bottom center",
+					"align": "bottom center",
+					"boundary": "word",
+					"animations": [
+						{
+							"opacity": 0,
+							"scale": 0.75
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+700", 1]
+							],
+							"easing": "plateauIn",
+							"ramp": 1,
+							"opacity": 1              
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+700", 1]
+							],
+							"easing": "easeOutCubic",
+							"ramp": 1,
+							"scale": 1  
+						}
+					]
+				}]
+			]]
+
+		]]
+	]
+]

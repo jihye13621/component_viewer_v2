@@ -1,0 +1,268 @@
+[
+	"ds-ffao-intro",
+	[
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["motion", "none"]
+			],
+			"script": ["$", ["if",
+				["exists", ["var", "asset"]],
+				["var", "asset"],
+				"./media/image-wide.jpg"	
+			]]
+		},
+		["dsx-mixins",
+			"headline"
+		],
+		["ds-ffao-mixins",
+			"theme-selector",
+			"font-bold",
+			"font-mono-bold"
+		],
+		{
+			"key": "#bg-theme",
+			"private": true,
+			"display": "Color Scheme",
+			"type": "object",
+			"default": [],
+			"required": false,
+			"script": ["$",
+				["switch", ["var", "theme-selector"], {
+					"green-black": ["#3C5240", "#090909"],
+					"orange-black": ["#F06A48", "#090909"],
+					"blue-white": ["#DAECFC", "#090909"],
+					"black": ["#ffffff", "#090909"],
+					"white": ["#ffffff", "#090909"],
+					"_": ["#ffffff", "#090909"]
+				}]
+			]
+		}
+	],
+	[
+		["user-asset", {
+			"end": ["$", ["-", ["key", ["comp-timing"], "duration"], 500]],
+			"file": ["$", ["var", "asset"]],
+			"mute": true,
+			"hold": true,
+			"justify": "fill center",
+			"effect": [
+				["false-color", {
+					"color-1": ["$", ["nth", ["var", "#bg-theme"], 1]],
+					"color-2": ["$", ["nth", ["var", "#bg-theme"], 0]]
+				}]
+			]
+		}],
+		["null", {
+			"mixins": ["dsx-mixins", "safezone", "set-su"],
+			"end": ["$", ["-", ["key", ["comp-timing"], "duration"], 500]]
+		}, [
+			["solid", {
+				"flex": {
+					"position": "fixed"
+				},
+				"color": ["$", ["nth", ["var", "#theme"], 0]],
+				"rect": [
+					0,
+					0,
+					["animate",
+						[0, 0, "easeInOutQuint"],
+						["+500", "100rw"]
+					],
+					"50rh"
+				],
+				"align": "center left"
+			}],
+			["solid", {
+				"color": [0, 0, 0, 0],
+				"stroke": "10su",
+				"stroke-color": ["$", ["nth", ["var", "#theme"], 2]],
+				"padding": [
+					"60su",
+					"60su"
+				]
+			}, [
+				["solid", {
+					"flex": {
+						"position": "fixed"
+					},
+					"color": ["$", ["nth", ["var", "#theme"], 2]],
+					"padding": [
+						"30su",
+						"30su"
+					],
+					"layout": "stacked",
+					"align": "top left",
+					"max-width": "300su"
+				}, [
+					["asset", {
+						"file": "./media/ds-ffao-logo-white.svg",
+						"justify": "fit top left",
+						"effect": [
+							["false-color", {
+								"color-1": ["$", ["nth", ["var", "#theme"], 0]],
+								"color-2": ["$", ["nth", ["var", "#theme"], 1]]
+							}]
+						]
+					}]
+				]],
+				["null", {
+					"enabled": ["$", ["or",
+						["var", "headline"],
+						["var", "subhead"]
+					]],
+					"layout": "vertical packed",
+					"align": "center left",
+					"gap": "60su"
+				}, [
+					["text", {
+						"enabled": ["$", ["exists", ["var", "headline"]]],
+						"stagger": [200, 0],
+						"font": ["$", ["var", "font-bold"]],
+						"color": ["$", ["nth", ["var", "#theme"], 2]],
+						"height": "100su",
+						"measure": "letter-size",
+						"string": ["$", ["var", "headline"]],
+						"boundary": "word",
+						"animations": [
+							{
+								"translate": [
+									0,
+									"50su"
+								]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+1000", 1]
+								],
+								"easing": "easeOutQuad",
+								"ramp": 1,
+								"opacity": 1,
+								"translate": [
+									0,
+									0
+								]
+							}
+						]
+					}],
+					["solid", {
+						"enabled": ["$", ["exists", ["var", "subhead"]]],
+						"stagger": [700, 0],
+						"layout": "vertical packed",
+						"align": "center left",
+						"color": ["$", ["nth", ["var", "#theme"], 2]],
+						"padding": [
+							"10su",
+							"10su"
+						],
+						"mask": {
+							"padding": [
+								0,
+								["animate",
+									[0, "100rw", "easeInOutQuad"],
+									["+500", 0]
+								],
+								0,
+								0
+							]
+						}
+					}, [
+						["text", {
+							"stagger": [700, 0],
+							"font": ["$", ["var", "font-mono-bold"]],
+							"color": ["$", ["nth", ["var", "#theme"], 1]],
+							"height": "40su",
+							"measure": "letter-size",
+							"leading": "10su",
+							"case": "uppercase",
+							"string": ["$", ["var", "subhead"]],
+							"boundary": "word",
+							"animations": [
+								{
+									"translate": [
+										0,
+										"50su"
+									],
+									"mask": [
+										0,
+										0,
+										0,
+										0
+									]
+								},
+								{
+									"mix": ["animate",
+										[0, 0],
+										["+1000", 1]
+									],
+									"easing": "easeOutQuad",
+									"ramp": 1,
+									"translate": [
+										0,
+										0
+									]
+								}
+							]
+						}]
+					]]
+				]]
+			]]
+		]],
+		["null", {
+			"start": ["$", ["-", ["key", ["comp-timing"], "duration"], 1000]],
+			"transform": [
+				["translate",
+					["animate",
+						["100%", "200rw"],
+						["-1000", "-50rh", "easeInQuad"],
+						["+500", "100rw", "easeOutQuad"]
+					],
+					0
+				],
+				["translate",
+					["animate",
+						["100%", "50rh"],
+						["-500", 0, "easeOutQuad"]
+					],
+					0
+				]
+			]
+		}, [
+			["solid", {
+				"color": ["$", ["nth", ["var", "#theme"], 2]],
+				"path": [
+					[0, 0],
+					["50rh", "50rh"],
+					[0, "100rh"],
+					["-100rw", "100rh"],
+					["-100rw", 0]
+				]
+			}],
+			["solid", {
+				"color": ["$", ["nth", ["var", "#theme"], 2]],
+				"path": [
+					[0, 0],
+					[0, "100rh"],
+					["-50rh", "100rh"],
+					[0, "50rh"],
+					["-50rh", 0]
+				],
+				"transform": [
+					["translate",
+						"-100rw",
+						0
+					],
+					["translate",
+						2,
+						0
+					]
+				]
+			}]
+		]]
+	]
+]

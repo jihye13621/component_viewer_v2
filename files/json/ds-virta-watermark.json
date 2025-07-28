@@ -1,0 +1,71 @@
+[
+	"ds-virta-watermark",
+	[
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [9, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		},
+		{
+			"key": "animated",
+			"display": "Animated",
+			"type": "bool",
+			"default": true,
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su", "safezone"]]
+		}, [
+			["shadow", {
+				"layout": "vertical packed",
+				"max-width": "800nsu",
+				"align": ["$", ["var", "#align"]],
+				"color": [0, 0, 0, 0.25],
+				"radius": "30su"
+			}, [
+				["asset", {
+					"file": ["$",
+						["if",
+							["var", "animated"],
+							"./media/ds-virta-logo-animated.mov",
+							"./media/ds-virta-logo-horizontal.svg"
+						]
+					],
+					"flex": {
+						"width": "250su",
+						"height": "300su"
+					},
+					"hold": true,
+					"mute": true,
+					"justify": ["$", ["concat", "fit ", ["var", "#align"]]],
+					"opacity": ["animate",
+						["100%", 0],
+						["-350", 1]
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["!", ["var", "animated"]]],
+							"opacity": ["animate",
+								[0, 0],
+								["350", 1],
+								["100%", 0],
+								["-350", 1]
+							]
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

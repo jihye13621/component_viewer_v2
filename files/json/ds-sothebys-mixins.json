@@ -1,0 +1,192 @@
+{
+	"params": {
+		"color-primary": {
+			"key": "color-primary",
+			"display": "Primary",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		},
+		"color-secondary": {
+			"key": "color-secondary",
+			"display": "Secondary",
+			"type": "color",
+			"default": "#000000",
+			"required": false
+		},
+		"color-accent": {
+			"key": "color-accent",
+			"display": "Accent",
+			"type": "color",
+			"default": "#102D51",
+			"required": false
+		},
+		"color-primary-private": {
+			"key": "color-primary-private",
+			"display": "Primary",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false,
+			"private": true
+		},
+		"color-secondary-private": {
+			"key": "color-secondary-private",
+			"display": "Secondary",
+			"type": "color",
+			"default": "#000000",
+			"required": false,
+			"private": true
+		},
+		"color-accent-private": {
+			"key": "color-accent-private",
+			"display": "Accent",
+			"type": "color",
+			"default": "#102D51",
+			"required": false,
+			"private": true
+		},
+		"font-headline": {
+			"key": "font-headline",
+			"display": "Font Headline",
+			"type": "string",
+			"default": "./media/MercuryTextG3-Roman-Pro.otf",
+			"required": false,
+			"private": true
+		},
+		"font-body": {
+			"key": "font-body",
+			"display": "Font Body",
+			"type": "string",
+			"default": "./media/BentonSans-Medium.otf",
+			"required": false,
+			"private": true
+		},
+		"font-label": {
+			"key": "font-label",
+			"display": "Font Label",
+			"type": "string",
+			"default": "./media/BentonSans-Bold.otf",
+			"required": false,
+			"private": true
+		},
+		"font-display": {
+			"key": "font-display",
+			"display": "Font Display",
+			"type": "string",
+			"default": "./media/MercuryDisplay-Italic.otf",
+			"required": false,
+			"private": true
+		},
+		"font-heavy": {
+			"key": "font-heavy",
+			"display": "Font Heavy",
+			"type": "string",
+			"default": "./media/BentonSans-Black.otf",
+			"required": false,
+			"private": true
+		},
+		"font-toggle": [
+			{
+				"key": "font-display-toggle",
+				"display": "Font Display",
+				"type": "string",
+				"default": "./media/MercuryDisplay-Italic.otf",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "font-heavy-toggle",
+				"display": "Font Heavy",
+				"type": "string",
+				"default": "./media/BentonSans-Black.otf",
+				"required": false,
+				"private": true
+			},
+			{
+				"key": "theme",
+				"display": "Font",
+				"default": "font-heavy",
+				"type": "string",
+				"required": false,
+				"options": [
+					{
+						"key": "font-heavy",
+						"display": "Standard Font"
+					},
+					{
+						"key": "font-display",
+						"display": "Display Font"
+					}
+				]
+			}
+		]
+	},
+	"text": {
+		"measure": "letter-size"
+	},
+	"text-display": {
+		"font": ["$", ["var", "font-headline"]],
+		"height": "200su"
+	},
+	"text-headline": {
+		"font": ["$", ["var", "font-headline"]],
+		"height": "80su"
+	},
+	"text-title": {
+		"font": ["$", ["var", "font-body"]],
+		"height": "90su"
+	},
+	"text-body": {
+		"font": ["$", ["var", "font-body"]],
+		"height": "50su"
+	},
+	"text-label": {
+		"font": ["$", ["var", "font-label"]],
+		"height": "35su",
+		"kerning": 0.03
+	},
+	"font-toggle": {
+		"font": ["$",
+			["if", 
+				["eq",["var", "theme"], "font-heavy"],
+				["var", "font-heavy-toggle"],
+				["var", "font-display-toggle"]
+			]
+		],
+		"case": ["$",
+			["if", 
+				["eq",["var", "theme"], "font-heavy"],
+				"uppercase",
+				"lowercase"
+			]
+		],
+		"measure": ["$",
+			["if", 
+				["eq",["var", "theme"], "font-heavy"],
+				"cap-size",
+				"letter-size"
+			]
+		],
+		"height": ["$",
+			["if", 
+				["eq",["var", "theme"], "font-heavy"],
+				"60su",
+				"90su"
+			]
+		],
+		"leading": ["$",
+			["if", 
+				["eq",["var", "theme"], "font-heavy"],
+				"10su",
+				"0su"
+			]
+		],
+		"kerning": ["$",
+			["if", 
+				["eq",["var", "theme"], "font-heavy"],
+				0,
+				-0.02
+			]
+		]
+	}
+}

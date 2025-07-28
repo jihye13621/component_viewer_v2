@@ -1,0 +1,112 @@
+[
+	"ds-horizonmedia-annotation",
+	[
+		{
+			"key": "color",
+			"display": "Color",
+			"type": "color",
+			"default": "#0A9BCF",
+			"required": false
+		},
+		{
+			"key": "rect-x",
+			"display": "X",
+			"type": "number",
+			"default": 0,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 0.05,
+				"minimum": 0.05,
+				"maximum": 100.0
+			}
+		},
+		{
+			"key": "rect-y",
+			"display": "Y",
+			"type": "number",
+			"default": 0,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 0.05,
+				"minimum": 0.05,
+				"maximum": 100.0
+			}
+		},
+		{
+			"key": "rect-z",
+			"display": "Width",
+			"type": "number",
+			"default": 30,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 0.05,
+				"minimum": 0.05,
+				"maximum": 100.0
+			}
+		},
+		{
+			"key": "rect-w",
+			"display": "Height",
+			"type": "number",
+			"default": 30,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 0.05,
+				"minimum": 0.05,
+				"maximum": 100.0
+			}
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", "set-su"]
+		}, [
+			["null", {
+				"rect": [
+					["$", ["concat", ["var", "rect-x"], "cw"]],
+					["$", ["concat", ["var", "rect-y"], "ch"]],
+					["$", ["concat", ["var", "rect-z"], "cw"]],
+					["$", ["concat", ["var", "rect-w"], "ch"]]
+				],
+				"mask": {
+					"path": [
+						[0, 0],
+						[
+							["animate",
+								[0, 0, "easeInOutQuad"],
+								["+500", "200rw"],
+								["100%", 0],
+								["-500", "200rw", "easeInOutQuad"]
+							],
+							0
+						],
+						[
+							0,
+							["animate",
+								[0, 0, "easeInOutQuad"],
+								["+500", "200rh"],
+								["100%", 0],
+								["-500", "200rh", "easeInOutQuad"]
+							]
+						]
+					]
+				}
+			}, [
+				["solid", {
+					"color": [0, 0, 0, 0],
+					"stroke": "8su",
+					"stroke-color": ["$", ["var", "color"]],
+					"radius": "20su"
+				}]
+			]]
+		]]
+	]
+]

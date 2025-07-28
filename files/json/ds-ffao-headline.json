@@ -1,0 +1,138 @@
+[
+	"ds-ffao-headline",
+	[
+		["dsx-mixins",
+			"headline"
+		],
+		["ds-ffao-mixins",
+			"color-blue",
+			"color-white",
+			"color-black",
+			"font-bold",
+			"font-regular"
+		],
+		["dsx-mixins",
+			"boilerplate"
+		],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": [1, 0, 0],
+			"ui": {
+				"grid": true,
+				"offset": false
+			},
+			"required": false
+		}
+	],
+	[
+		["null", {
+			"enabled": ["$", ["or",
+				["exists", ["var", "headline"]],
+				["exists", ["var", "subhead"]]
+			]],
+			"mixins": ["dsx-mixins",
+				"safezone",
+				"set-su"
+			],
+			"layout": "vertical packed",
+			"align": ["$", ["var", "#align"]]
+		}, [
+			["solid", {
+				"layout": "vertical packed",
+				"align": "top left",
+				"max-width": "750nsu",
+				"color": ["$", ["var", "color-black"]],
+				"padding": [
+					"60su",
+					"60su"
+				],
+				"gap": "50su",
+				"mask": {
+					"rect": [
+						0,
+						0,
+						["animate",
+							[0, 0, "easeOutQuint"],
+							["+500", "100rw"],
+							["100%", 0],
+							["-500", "100rw", "easeInQuint"]
+						],
+						["animate",
+							[0, 0, "easeOutQuint"],
+							["+500", "100rh"],
+							["100%", 0],
+							["-500", "100rh", "easeInQuint"]
+						]
+					]
+				}
+			}, [
+				["text", {
+					"enabled": ["$", ["exists", ["var", "headline"]]],
+					"stagger": [100, 0],
+					"font": ["$", ["var", "font-bold"]],
+					"color": ["$", ["var", "color-blue"]],
+					"height": "65su",
+					"leading": "5su",
+					"measure": "letter-size",
+					"string": ["$", ["var", "headline"]],
+					"boundary": "word",
+					"animations": [
+						{
+							"translate": [
+								0,
+								"50su"
+							]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+550", 1]
+							],
+							"easing": "easeOutCubic",
+							"ramp": 1,
+							"opacity": 1,
+							"translate": [
+								0,
+								0
+							]
+						}
+					]
+				}],
+				["text", {
+					"enabled": ["$", ["exists", ["var", "subhead"]]],
+					"stagger": [450, 0],
+					"font": ["$", ["var", "font-regular"]],
+					"color": ["$", ["var", "color-white"]],
+					"height": "40su",
+					"leading": "8su",
+					"measure": "letter-size",
+					"string": ["$", ["var", "subhead"]],
+					"boundary": "line",
+					"animations": [
+						{
+							"translate": [
+								0,
+								"40su"
+							]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+600", 1]
+							],
+							"easing": "easeOutQuad",
+							"ramp": 2,
+							"opacity": 1,
+							"translate": [
+								0,
+								0
+							]
+						}
+					]
+				}]
+			]]
+		]]
+	]
+]

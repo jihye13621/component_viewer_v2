@@ -1,0 +1,166 @@
+[
+	"ds-maintainx-text",
+	[
+		["dsx-mixins",
+			"text"
+		]
+	],
+	[
+		["null", {
+			"buffer": "knockout"
+		}, [
+			["solid", {
+				"color": [0, 0, 0, 1]
+			}],
+			["solid", {
+				"stagger": [100, 0],
+				"path": [
+					[0, 0],
+					["40rh", "50rh"],
+					[0, "100rh"],
+					["-100rw", "100rh"],
+					["-100rw", 0]
+				],
+				"transform": [
+					["translate",
+						["animate",
+							[0, "-40rh", "easeInOutQuad"],
+							["+500", "100rw"]
+						],
+						0
+					]
+				],
+				"color": [1, 1, 1, 1]
+			}],
+			["solid", {
+				"path": [
+					[0, 0],
+					["40rh", "50rh"],
+					[0, "100rh"],
+					["-100rw", "100rh"],
+					["-100rw", 0]
+				],
+				"transform": [
+					["translate",
+						["animate",
+							["100%", "100rw"],
+							["-500", "-40rh", "easeInOutQuad"]
+						],
+						0
+					]
+				],
+				"color": [0, 0, 0, 1]
+			}]
+		]],
+		["solid", {
+			"end": 600,
+			"path": [
+				[0, 0],
+				["40rh", "50rh"],
+				[0, "100rh"],
+				["-100rw", "100rh"],
+				["-100rw", 0]
+			],
+			"transform": [
+				["translate",
+					["animate",
+						[0, "-40rh", "easeInOutQuad"],
+						["+500", "100rw", "plateauIn"]
+					],
+					0
+				]
+			],
+			"color": "#246CFF"
+		}],
+		["null", {
+			"effect": [
+				["matte", {
+					"buffer-in": "knockout",
+					"end": 600
+				}],
+				["matte", {
+					"buffer-in": "knockout",
+					"start": ["$", ["-", ["key", ["comp-timing"], "duration"], 600]] 
+				}]
+			]
+		}, [
+			["solid", {
+				"color": ["linear-gradient",
+					-0.25,
+					[0, "#041E40"],
+					[1, "#07296A"]
+				]
+			}],
+			["asset", {
+				"file": ["$", "./media/ds-maintainx-grid-dark.mov"],
+				"justify": "fill center",
+				"loop": true,
+				"opacity": 0.1
+			}],
+			["null", {
+				"enabled": ["$", ["exists", ["var", "text"]]],
+				"mixins": ["dsx-mixins", "set-su", "safezone"],
+				"layout": "stacked",
+				"align": "center",
+				"max-width": "1500nsu",
+				"transform": [
+					["translate",
+						["animate",
+							["100%", "20rw"],
+							["-1000", 0, "easeInCubic"]
+						],
+						0
+					]
+				]
+			}, [
+				["text", {
+					"font": "./media/Inter-Bold.ttf",
+					"height": "100su",
+					"leading": "20su",
+					"justify": "left",
+					"measure": "letter-size",
+					"color": [1, 1, 1, 1],
+					"string": ["$", ["var", "text"]],
+					"animations": [
+						{
+							"translate": [
+								"-200su",
+								0
+							]
+						},
+						{
+							"mix": ["animate",
+								[0, 0],
+								["+2000", 1]
+							],
+							"easing": "easeOutQuint",
+							"ramp": 3,
+							"opacity": 1,
+							"translate": [0, 0]
+						}
+					]
+				}]
+			]],
+			["solid", {
+				"stagger": [0, -100],
+				"path": [
+					[0, 0],
+					["40rh", "50rh"],
+					[0, "100rh"],
+					["-100rw", "100rh"],
+					["-100rw", 0]
+				],
+				"transform": [
+					["translate",
+						["animate",
+							["100%", "100rw"],
+							["-500", "-40rh", "easeInOutQuad"]
+						],
+						0
+					]
+				],
+				"color": "#246CFF"
+			}]
+		]]
+	]
+]

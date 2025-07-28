@@ -1,0 +1,134 @@
+[
+	"ds-horizonmedia-media",
+	[
+		{
+			"key": "asset",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["gain", 0],
+				["justify", "fit"],
+				["motion", "none"]
+			],
+			"script": ["$", ["if",
+				["exists", ["var", "asset"]],
+				["var", "asset"],
+				"./media/image-wide.jpg"	
+			]]
+		},
+		["ds-horizonmedia-mixins",
+			"color-white"
+		],
+		{
+			"key": "dark-mode",
+			"display": "Dark Mode",
+			"type": "bool",
+			"default": true,
+			"required": false
+		},
+		{
+			"key": "#fg",
+			"private": true,
+			"type": "color",
+			"default": [0, 0, 0, 0],
+			"required": false,
+			"script": ["$",
+				["if",
+					["var", "dark-mode"],
+					"#F3F0E5",
+					"#0A2D3E"
+				]
+			]
+		},
+		{
+			"key": "#bg",
+			"private": true,
+			"type": "color",
+			"default": [0, 0, 0, 0],
+			"required": false,
+			"script": ["$",
+				["if",
+					["var", "dark-mode"],
+					"#0A2D3E",
+					["var", "color-white"]
+				]
+			]
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", "set-su", "safezone"],
+			"transform": [
+				["translate",
+					0,
+					["animate",
+						[0, "200rh", "easeOutQuad"],
+						["+1000", 0],
+						["100%", "-200rh"],
+						["-1000", 0, "easeInQuad"]
+					]
+				]
+			]
+		}, [
+			["solid", {
+				"flex": {
+					"position": "fixed"
+				},
+				"rect": [
+					0,
+					"-100rh",
+					"100rw",
+					"300rh"
+				],
+				"color": ["linear-gradient",
+					0.0,
+					[0, "#0A9BCF00"],
+					[0.15, "#0A9BCF"],
+					[0.32, ["$", ["var", "#bg"]]],
+					[0.68, ["$", ["var", "#bg"]]],
+					[0.85, "#0A9BCF"],
+					[1, "#0A9BCF00"]
+				],
+				"transform": [
+					["translate",
+						0,
+						["animate",
+							[0, "50rh", "easeOutQuad"],
+							["+1000", 0],
+							["100%", "-50rh"],
+							["-1000", 0, "easeInQuad"]
+						]
+					]
+				]
+			}],
+			["null", {
+				"enabled": ["$", ["exists", ["var", "asset"]]],
+				"layout": "stacked",
+				"align": "center"
+			}, [
+				["user-asset", {
+					"file": ["$", ["var", "asset"]],
+					"justify": "fit center",
+					"mask": {
+						"radius": "20su"
+					}
+				}],
+				["solid", {
+					"flex": {
+						"position": "fixed"
+					},
+					"color": [0, 0, 0, 0],
+					"stroke-color": ["$", ["var", "#fg"]],
+					"stroke": "4su",
+					"radius": "40su",
+					"inset": [
+						"-25su",
+						"-25su"
+					]
+				}]
+			]]
+		]]
+	]
+]

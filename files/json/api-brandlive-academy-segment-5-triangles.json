@@ -1,0 +1,455 @@
+[
+	"api-brandlive-academy-segment-5-triangles",
+	[
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": "#FFFFFF",
+			"required": false
+		},
+		{
+			"key": "color-2",
+			"display": "Color 2",
+			"type": "color",
+			"default": "#09083F",
+			"required": false
+		},
+		{
+			"key": "color-3",
+			"display": "Color 3",
+			"type": "color",
+			"default": "#FFBC1E",
+			"required": false
+		},
+		{
+			"key": "color-4",
+			"display": "Color 4",
+			"type": "color",
+			"default": "#0B45AC",
+			"required": false
+		}
+	],
+	[
+		["solid", {
+			"path": [
+				[0, "535su"],
+				["160su", "255su"],
+				["320su", "535su"]
+			],
+			"color": ["$", ["var", "color-2"]],
+			"transform": [
+				["rotate", 
+					["animate",
+						[0, -0.0833333, "easeInOutQuad"],
+						["+266", 0],
+						["+2467", 0],
+						["+66", -0.03]
+					],
+					0, "535su"
+				]
+			],
+			"end": 2800,
+			"//": "left top yellow"
+		}],
+		["solid", {
+			"path": [
+				["160su", "815su"],
+				["320su", "535su"],
+				["480su", "815su"]
+			],
+			"color": ["$", ["var", "color-1"]],
+			"transform": [
+				["rotate", 
+					["animate",
+						[0, 0.0833333, "easeInOutQuad"],
+						["+266", 0], 
+						["+2467", 0],
+						["+66", 0.03]
+					],
+					"160su", "815su"
+				]
+			],
+			"//": "white middle left",
+			"end": 2800
+		}],
+		["solid", {
+			"path": [
+				[0, "1095su"],
+				["160su", "815su"],
+				["320su", "1095su"]
+			],
+			"color": ["$", ["var", "color-3"]],
+			"transform": [
+				["rotate", 
+					["animate",
+						[0, -0.0833333, "easeInOutQuad"],
+						["+266", 0],
+						["+2467", 0],
+						["+66", -0.03]
+					],
+					"160su", "815su"
+				]
+			],
+			"end": 2800,
+			"//": "left middle red"
+		}],
+		["solid", {
+			"path": [
+				["480su", "815su"],
+				["640su", "535su"],
+				["800su", "815su"]
+			],
+			"color": ["$", ["var", "color-2"]],
+			"start": 333,
+			"transform": [
+				["rotate", 
+					["animate", 
+						[0, -0.16666667, "easeInOutQuad"],
+						["+266", 0],
+						["+2101", 0],
+						["+66", -0.14]
+					],
+					"480su", "815su"
+				]
+			],
+			"end": 2766,
+			"//": "yellow middle"
+		}],
+		["solid", {
+			"path": [
+				["160su", "1375su"],
+				["320su", "1095su"],
+				["480su", "1375su"]
+			],
+			"color": ["$", ["var", "color-1"]],
+			"start": 333,
+			"transform": [
+				["rotate", 
+					["animate", 
+						[0, -0.16666667, "easeInOutQuad"],
+						["+266", 0],
+						["+2101", 0],
+						["+66", -0.14]
+					],
+					"160su", "1375su"
+				]
+			],
+			"end": 2766,
+			"//": "bottom left white"
+		}],
+		["solid", {
+			"path": [
+				["-160su", "1375su"],
+				[0, "1095su"],
+				["160su", "1375su"]
+			],
+			"color": ["$", ["var", "color-2"]],
+			"start": 333,
+			"//": "yellow",
+			"end": 2766
+		}],
+		["solid", {
+			"start": 533,
+			"path": [
+				["-320su", "1655su"],
+				["-160su", "1375su"],
+				[0, "1655su"]
+			],
+			"color": ["$", ["var", "color-4"]],
+			"transform": [
+				["rotate", 
+					["animate",
+						[0, -0.0833333, "easeInOutQuad"],
+						["+333", 0]
+					],
+					0, "1655su"
+				]
+			],
+			"enabled" : "false"
+		}],
+		["solid", {
+			"start": 533,
+			"path": [
+				["320su", "1655su"],
+				["480su", "1375su"],
+				["640su", "1655su"]
+			],
+			"color": ["$", ["var", "color-4"]],
+			"transform": [
+				["rotate", 
+					["animate",
+						[0, 0.0833333, "easeInOutQuad"],
+						["+333", 0]
+					],
+					"480su", "1655su"
+				]
+			],
+			"//": "bottom most blue",
+			"end": 2700
+		}],
+		["solid", {
+			"path": [
+				["480su", "1375su"],
+				["640su", "1095su"],
+				["800su", "1375su"]
+			],
+			"color": ["$", ["var", "color-4"]],
+			"start": 666,
+			"transform": [
+				["rotate",
+					["animate",
+						[0, -0.08333333, "easeInOutQuad"],
+						["+266", 0],
+						["+1701", 0],
+						["+66", -0.01]
+					],
+					"640su", "1095su"
+				]
+			],
+			"end": 2700,
+			"//": "middle bottom blue"
+		}],
+		["solid", {
+			"path": [
+				["640su", "1095su"],
+				["800su", "815su"],
+				["960su", "1095su"]
+			],
+			"color": ["$", ["var", "color-1"]],
+			"start": 666,
+			"transform": [
+				["rotate",
+					["animate",
+						[0, 0.08333333, "easeInOutQuad"],
+						["+266", 0], 
+						["+1701", 0],
+						["+66", 0.02]
+					],
+					"640su", "1095su"
+				]
+			],
+			"end": 2700,
+			"//": "right most white bottom"
+		}],
+		["solid", {
+			"path": [
+				["640su", "535su"],
+				["800su", "255su"],
+				["960su", "535su"]
+			],
+			"color": ["$", ["var", "color-1"]],
+			"start": 666,
+			"transform": [
+				["rotate",
+					["animate",
+						[0, 0.16666667, "easeInOutQuad"],
+						["+266", 0],
+						["+1701", 0],
+						["+66", 0.05]
+					],
+					"640su", "535su"
+				]
+			],
+			"end": 2700,
+			"//": "right most white top"
+		}],
+		["solid", {
+			"start": 800,
+			"path": [
+				["160su", "255su"],
+				["320su", "-5su"],
+				["480su", "255su"]
+			],
+			"color": ["$", ["var", "color-4"]],
+			"transform": [
+				["rotate",
+					["animate",
+						[0, 0.0833333, "easeInOutQuad"],
+						["+333", 0],
+						["+1500", 0],
+						["+66", 0.08]
+					],
+					"480su", "255su"
+				]
+			],
+			"end": 2700,
+			"//": "top blue"
+		}],
+		["solid", {
+			"start": 800,
+			"path": [
+				["480su", "255su"],
+				["640su", "-5su"],
+				["800su", "255su"]
+			],
+			"color": ["$", ["var", "color-3"]],
+			"transform": [
+				["rotate",
+					["animate",
+						[0, -0.0833333, "easeInOutQuad"],
+						["+333", 0],
+						["+1500", 0],
+						["+66", -0.08]
+					],
+					"480su", "255su"
+				]
+			],
+			"end": 2700,
+			"//": "top red"
+		}],
+		["solid", {
+			"start": 1000, 
+			"path": [
+				["960su", "535su"],
+				["1120su", "255su"],
+				["1280su", "535su"]
+			],
+			"color": ["$", ["var", "color-2"]],
+			"transform": [
+				["rotate",
+					["animate",
+						[0, -0.1666667, "easeInOutQuad"],
+						["+333", 0],
+						["+1233", 0],
+						["+66", -0.12]
+					],
+					"960su", "535su"
+				]
+			],
+			"end": 2633,
+			"//": "yellow far right top"
+		}],
+		["solid", {
+			"start": 1133,
+			"path": [
+				["960su", "1095su"],
+				["1120su", "815su"],
+				["1280su", "1095su"]
+			],
+			"color": ["$", ["var", "color-2"]],
+			"transform": [
+				["rotate",
+					["animate",
+						[0, -0.0833333, "easeInOutQuad"],
+						["+333", 0], 
+						["+1100", 0],
+						["+66", -0.04]
+					],
+					"1120su", "815su"
+				]
+			],
+			"end": 2633,
+			"//": "far right bottom yellow"
+		}],
+		["solid", {
+			"start": 1133,
+			"path": [
+				["1120su", "815su"],
+				["1280su", "535su"],
+				["1440su", "815su"]
+			],
+			"color": ["$", ["var", "color-3"]],
+			"transform": [
+				["rotate",
+					["animate",
+						[0, 0.0833333, "easeInOutQuad"],
+						["+333", 0],
+						["+1100", 0],
+						["+66", 0.04]
+					],
+					"1120su", "815su"
+				]
+			],
+			"end": 2633,
+			"//": "far right middle red"
+		}],
+		["solid", {
+			"start": "1333",
+			"path": [
+				["640su", "1655su"],
+				["800su", "1375su"],
+				["960su", "1655su"]
+			],
+			"color": ["$", ["var", "color-1"]],
+			"transform": [
+				["rotate",
+					["animate",
+						[0, 0.1666667, "easeInOutQuad"],
+						["+333", 0],
+						["+867", 0],
+						["+66", 0.1]
+					],
+					"800su", "1375su"
+				]
+			],
+			"end": 2600,
+			"//": "bottom most white"
+		}],
+		["solid", {
+			"start": "1333",
+			"path": [
+				["1120su", "255su"],
+				["1280su", "-25su"],
+				["1440su", "255su"]
+			],
+			"color": ["$", ["var", "color-4"]],
+			"transform": [
+				["rotate",
+					["animate",
+						[0, 0.166667, "easeInOutQuad"],
+						["+333", 0],
+						["+867", 0],
+						["+30", 0.083333]
+					],
+					"1120su", "255su"
+				]
+			],
+			"//": "top right blue",
+			"end": 2600
+		}],
+		["solid", {
+			"start": "1466",
+			"path": [
+				["960su", "1655su"],
+				["1120su", "1375su"],
+				["1280su", "1655su"]
+			],
+			"color": ["$", ["var", "color-3"]],
+			"transform": [
+				["rotate",
+					["animate",
+						[0, -0.083333, "easeInOutQuad"],
+						["+333", 0],
+						["+701", 0],
+						["+60", -0.08333]
+					],
+					"1120su", "1375su"
+				]
+			],
+			"end": 2600
+		}],
+		["solid", {
+			"start": "1466",
+			"path": [
+				["1120su", "1375su"],
+				["1280su", "1095su"],
+				["1440su", "1375su"]
+			],
+			"color": ["$", ["var", "color-4"]],
+			"transform": [
+				["rotate",
+					["animate",
+						[0, 0.083333, "easeInOutQuad"],
+						["+333", 0],
+						["+701", 0],
+						["+60", 0.08333]
+					],
+					"1120su", "1375su"
+				]
+			],
+			"end": 2600,
+			"//": "bottom right blue"
+		}]
+	]
+]

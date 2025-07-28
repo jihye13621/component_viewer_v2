@@ -1,0 +1,67 @@
+[
+	"ds-ramp-outro",
+	[
+		["ds-ramp-mixins",
+			"colors"
+		],
+		{
+			"key": "theme",
+			"display": "Theme",
+			"type": "string",
+			"default": "white-on-green",
+			"required": false,
+			"options": [
+				{
+					"key": "white-on-green",
+					"display": "Smolder"
+				},
+				{
+					"key": "white-on-black",
+					"display": "Black"
+				},
+				{
+					"key": "black-on-white",
+					"display": "White"
+				}
+			]
+		},
+		{
+			"key": "#colors",
+			"display": "Color",
+			"type": "object",
+			"default": ["#ffffff", "#000000"],
+			"required": false,
+			"private": true,
+			"script": ["$", ["switch", ["var", "theme"],
+				["object",
+					["array", "white-on-green", ["array", ["var", "color-white"], ["var", "color-green"]]],
+					["array", "white-on-black", ["array", ["var", "color-white"], ["var", "color-black"]]],
+					["array", "black-on-white", ["array", ["var", "color-black"], ["var", "color-white"]]]
+				] 
+			]]
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", ["set-dsx-su"]]
+		}, [
+			["solid", {
+				"mixins": ["dsx-mixins", ["safezone"]],
+				"color": ["$", ["nth", ["var", "#colors"], 1]]
+			},[
+				["false-color", {
+					"color-1": ["$", ["nth", ["var", "#colors"], 0]],
+					"color-2": ["$", ["nth", ["var", "#colors"], 0]]
+				}, [
+					["asset", {
+						"file": "./media/ds-ramp-logo-animated.mov",
+						"hold": true,
+						"justify": "fit center",
+						"align": "center",
+						"max-width": "400nsu"
+					}]
+				]]
+			]]
+		]
+	]]
+]

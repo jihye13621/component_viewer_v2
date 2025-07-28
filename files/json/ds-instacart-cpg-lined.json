@@ -1,0 +1,157 @@
+[
+	"ds-instacart-cpg-lined",
+	[
+		{
+			"key": "asset-1",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+			],
+			"script": ["$", ["if",
+				["exists", ["var", "asset-1"]],
+				["var", "asset-1"],
+				"./media/image-wide.jpg"	
+			]]
+		},
+		{
+			"key": "asset-2",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": []
+		},
+		{
+			"key": "asset-3",
+			"display": "Asset",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": []
+		},
+		{
+			"key": "#assets",
+			"display": "Asset",
+			"type": "object",
+			"default": [],
+			"required": false,
+			"script": ["$",
+				["compact", ["array",
+					["var", "asset-1"],
+					["var", "asset-2"],
+					["var", "asset-3"]
+				]]
+			]
+		},
+		{
+			"key": "#asset-dur",
+			"display": "Asset Dur",
+			"type": "number",
+			"private": true,
+			"default": 1000,
+			"required": false,
+			"script": ["$",
+				["dur", "./media/ds-instacart-cpg-box-outline.json"]
+			]
+		}
+	],
+	[
+		["null", {
+			"mixins": ["dsx-mixins", "set-su-roi"],
+			"-": ["$", ["set", "#cycle",
+				["floor",
+					["/",
+						["key", ["comp-timing"], "duration"],
+						["length", ["var", "#assets"]]
+					]
+				]
+			]]
+		}, [
+			["for-each", {
+				"items": ["$", ["var", "#assets"]],
+				"radius": "100su"
+			}, [
+				["user-asset", {
+					"stagger": [
+						["$",
+							["*",
+								["var", "index"],
+								["var", "#cycle"]
+							]
+						],
+						0
+					],
+					"mute": true,
+					"file": ["$", ["var", "item"]],
+					"justify": "fill center",
+					"breakpoints": [
+						{
+							"enabled": ["$", ["gt", ["var", "count"], 1]],
+							"opacity": ["animate",
+								[0, 1, "holdIn"],
+								[
+									["$", ["to-relative-string", ["var", "#cycle"]]],
+									0
+								],
+								[
+									["$",
+										["to-relative-string",
+											["*",
+												["var", "#cycle"],
+												["-", ["var", "count"], 1]
+											]
+										]
+									],
+									0,
+									"holdIn"
+								],
+								"loop"
+							]
+						}
+					]
+				}]
+			]],
+			["asset", {
+				"rect": [
+					"15rw",
+					"15rh",
+					"70rw",
+					"70rh"
+				],
+				"file": "./media/ds-instacart-cpg-box-outline.json",
+				"lottie-driver": ["animate",
+					[0, 0],
+					[
+						["$", ["to-relative-string", ["var", "#asset-dur"]]],
+						1
+					]
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["gt", ["length", ["var", "#assets"]], 1]],
+						"lottie-driver": ["animate",
+							[0, 0],
+							[
+								["$", ["to-relative-string", ["var", "#asset-dur"]]],
+								1
+							],
+							[
+								["$",
+									["to-relative-string", ["-",
+										["var", "#cycle"],
+										["var", "#asset-dur"]
+									]]
+								],
+								1,
+								"holdIn"
+							],
+							"loop"
+						]
+					}
+				]
+			}]
+		]]
+	]
+]

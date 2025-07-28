@@ -1,0 +1,79 @@
+[
+	"ds-pinterest-captions",
+	[
+		["dsx-mixins", ["captions"]],
+		{
+			"key": "color-1",
+			"display": "Color 1",
+			"type": "color",
+			"default": "#ffffff",
+			"required": false
+		},
+		{
+			"key": "color-2",
+			"display": "Color 2",
+			"type": "color",
+			"default": "#E60023",
+			"required": false
+		},
+		{
+			"key": "color-3",
+			"display": "Color 3",
+			"type": "color",
+			"default": "#000000",
+			"required": false
+		},
+		["dsx-mixins", ["boilerplate"]],
+		{
+			"key": "position",
+			"display": "Position",
+			"type": "position",
+			"default": 2,
+			"required": false
+		}
+	],
+	[
+		["dsx-background", {
+			"enabled": ["$", ["exists", ["var", "background"]]],
+			"color": ["$", ["var", "background"]]
+		}],
+		["null", {
+			"mixins": ["dsx-mixins", ["set-su", "safezone"]]
+		}, [
+			["null", {
+				"mixins": ["ds-pinterest-mixins", ["overlay-padding"]],
+				"align": ["$", ["var", "#align"]]
+			}, [
+				["shadow", {
+					"color": [0, 0, 0, 0.5],
+					"radius": "4su",
+					"offset": ["4su", "4su"]
+				}, [
+					["text", {
+						"mixins": ["ds-pinterest-mixins", ["font-captions"]],
+						"justify": ["$", ["var", "#align"]],
+						"transcript": ["$",
+							["transcript-split",
+								["var", "transcript"],
+								["max", 1, ["floor", ["/", 10, ["var", "size"]]]]
+							]
+						],
+						"stroke": "4su",
+						"stroke-color": ["$", ["var", "color-3"]],
+						"color": ["$", ["var", "color-1"]],
+						"animations": [
+							{
+								"mix": [[0, 0], [0.15, 1]],
+								"color": ["$", ["var", "color-2"]]
+							},
+							{
+								"mix": [[0.85, 0], [1.0, 1]],
+								"color": ["$", ["var", "color-1"]]
+							}
+						]
+					}]
+				]]
+			]]
+		]]
+	]
+]

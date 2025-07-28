@@ -1,0 +1,316 @@
+[
+	"ds-justworks-slide-proposal",
+	[
+		{
+			"key": "image",
+			"display": "Image",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["justify", "fill"],
+				["motion", "none"]
+			]
+		},
+		{
+			"key": "headline",
+			"display": "Headline",
+			"type": "text",
+			"default": "Proposal for Company Name",
+			"required": false
+		},
+		{
+			"key": "name",
+			"display": "Name",
+			"type": "text",
+			"default": "Full Name",
+			"required": false
+		},
+		{
+			"key": "detail-1",
+			"display": "Detail 1",
+			"type": "text",
+			"default": "Job title",
+			"required": false
+		},
+		{
+			"key": "detail-2",
+			"display": "Detail 2",
+			"type": "text",
+			"default": "Contact Info 1",
+			"required": false
+		},
+		{
+			"key": "detail-3",
+			"display": "Detail 3",
+			"type": "text",
+			"default": "Contact Info 2",
+			"required": false
+		},
+		{
+			"key": "color-mode",
+			"display": "Color Logo",
+			"type": "bool",
+			"default": false,
+			"required": false
+		},
+		{
+			"key": "dark-mode",
+			"display": "Dark Logo",
+			"type": "bool",
+			"default": true,
+			"required": false			
+		},
+		["ds-justworks-mkii-mixins",
+			"fonts",
+			"color-blue-200",
+			"color-blue-500",
+			"color-purple-500"
+		],
+		["dsx-mixins",
+			"boilerplate-intro-outro"
+		]
+	],
+	[
+		["solid", { 
+			"enabled" : true,
+			"mixins": ["dsx-mixins", ["set-su", "safezone"]],
+			"color": ["$", ["var", "color-blue-200"]],
+			"opacity": ["animate",
+				[0,  0, "easeOutQuad"],
+				[500, 1],
+				["100%", 0],
+				["-350", 1, "easeInQuad"]
+			]
+		}, [
+			["null", {
+				"layout": "vertical"
+			}, [
+				["null", {
+					"align": "left center",
+					"gap": "125su",
+					"breakpoints": [
+						{
+							"enabled": ["$", ["<=", ["aspect"], 1]],
+							"layout": "vertical packed",
+							"align": "top left",
+							"gap": "75su"
+						}
+					]
+				}, [
+					["text", {
+						"enabled": ["$", ["exists", ["var", "headline"]]],
+						"stagger": [200, -200],
+						"max-width": "1400su",
+						"mixins": ["ds-justworks-mkii-mixins",
+							"text"
+						],				
+						"font": ["$", ["var", "font-bold-display"]],
+						"color": ["$", ["var", "color-blue-500"]],
+						"string": ["$", ["var", "headline"]],
+						"boundary": "line",
+						"height": "125su",
+						"leading": "15su",
+						"animations": [
+							{
+								"mask": [0, 0, "-10su", 0],
+								"translate": [
+									0,
+									"150rh"
+								]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+650", 1]
+								],
+								"easing": "easeOutCubic",
+								"translate": [0, 0]
+							}
+						]
+					}
+					],
+					["null", {
+						"layout": "vertical packed",
+						"align": "bottom left",
+						"gap": "25su"
+					}, [
+						["text", {
+							"enabled": ["$", ["exists", ["var", "name"]]],
+							"mixins": ["ds-justworks-mkii-mixins",
+								"text"
+							],
+							"stagger": [1000, 0],
+							"color": ["$", ["var", "color-blue-500"]],
+							"string": ["$", ["var", "name"]],
+							"font": ["$", ["var", "font-bold"]],
+							"height": "50su",
+							"opacity": ["animate",
+								[0,  0, "easeOutCubic"],
+								["+300", 1]
+							]
+						}],
+						["text", {
+							"enabled": ["$", ["exists", ["var", "detail-1"]]],
+							"mixins": ["ds-justworks-mkii-mixins",
+								"text"
+							],
+							"stagger": [1000, 0],
+							"color": ["$", ["var", "color-blue-500"]],
+							"string": ["$", ["var", "detail-1"]],
+							"font": ["$", ["var", "font-regular"]],
+							"height": "40su",
+							"opacity": ["animate",
+								[0,  0, "easeOutCubic"],
+								["+600", 1]
+							]
+						}],
+						["text", {
+							"enabled": ["$", ["exists", ["var", "detail-2"]]],
+							"mixins": ["ds-justworks-mkii-mixins",
+								"text"
+							],
+							"stagger": [1100, 0],
+							"color": ["$", ["var", "color-blue-500"]],
+							"string": ["$", ["var", "detail-2"]],
+							"font": ["$", ["var", "font-regular"]],
+							"height": "40su",
+							"opacity": ["animate",
+								[0,  0, "easeOutCubic"],
+								["+600", 1]
+							]
+						}],
+						["text", {
+							"enabled": ["$", ["exists", ["var", "detail-3"]]],
+							"mixins": ["ds-justworks-mkii-mixins",
+								"text"
+							],
+							"stagger": [1200, 0],
+							"color": ["$", ["var", "color-blue-500"]],
+							"string": ["$", ["var", "detail-3"]],
+							"font": ["$", ["var", "font-regular"]],
+							"height": "40su",
+							"opacity": ["animate",
+								[0,  0, "easeOutCubic"],
+								["+600", 1]
+							]
+						}]
+					]]
+				]]
+			]],
+			["null", {
+				"position": "fixed",
+				"align": "bottom right",
+				"rect": [
+					0,
+					0,
+					"500nsu",
+					"500nsu"
+				],
+				"transform": [
+					["translate",
+						"-125nsu",
+						"-125nsu"
+					]
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["<=", ["aspect"], 1]],
+						"rect": [0, 0, "45rh", "45rh"],
+						"transform": [
+							["translate",
+								"-50nsu",
+								"-100nsu"
+							]
+						]
+					},
+					{
+						"enabled": ["$", ["<=", ["aspect"], 0.5625]],
+						"rect": [0, 0, "40rh", "40rh"],
+						"transform": [
+							["translate",
+								0,
+								"-250nsu"
+							]
+						]
+					}
+				]
+				
+			}, [
+				["solid", {
+					"stagger": [500, -500],
+					"opacity": ["animate",
+						[0,  0, "plateauIn"],
+						["+600", 1]
+					],
+					"color": ["$", ["var", "color-purple-500"]],
+					"align": "bottom right",
+					"transform": [
+						["scale",
+							["animate",
+								[0, 0.8, "easeOutCubic"],
+								["+600", 1]
+							]
+						]
+					],
+					"mask": {
+						"transform": true,
+						"radius": 10000,
+						"padding": [
+							["animate",
+								[0, "50rh", "easeOutCubic"],
+								["+300", 0]
+							],
+							["animate",
+								[0, "50rw", "easeOutCubic"],
+								["+300", 0]
+							],
+							["animate",
+								[0, "50rh", "easeOutCubic"],
+								["+300", 0]
+							],
+							["animate",
+								[0, "50rw", "easeOutCubic"],
+								["+300", 0]
+							]
+						]
+					}
+				}, [
+					["user-asset", {
+						"file": ["$", ["var", "image"]],
+						"justify": "center fill",
+						"hold": true
+					}]
+				]]
+			]],
+			["asset", { 
+				"file": ["$", 
+					["if",
+						["var", "color-mode"],
+						"./media/ds-justworks-logo-white-color.svg",
+						"./media/ds-justworks-logo.svg"
+					]
+				],
+				"align": "bottom right",
+				"justify": "fit bottom right",
+				"max-width": "300nsu",
+				"rect": [
+					0,
+					0,
+					"300nsu",
+					"200nsu"
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["var", "dark-mode"] ],
+						"svg-recolor": "#050000"
+					},
+					{
+						"enabled": ["$", ["<=", ["aspect"], 1]],
+						"max-width": "250nsu"
+					}
+				]
+			}]
+		]]
+	]
+]

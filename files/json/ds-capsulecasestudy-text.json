@@ -1,0 +1,232 @@
+[
+	"ds-capsulecasestudy-text",
+	[
+		{
+			"key": "image",
+			"display": "Image",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": []
+		},
+		{
+			"key": "headline",
+			"display": "Headline",
+			"type": "text",
+			"default": "Finally, a video editor made for enterprise",
+			"required": false
+		},
+		{
+			"key": "highlight",
+			"display": "Highlight",
+			"type": "number",
+			"default": 7,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 1,
+				"minimum": 0,
+				"maximum": 10
+			}
+		},
+		["ds-capsulecasestudy-mixins",
+			"color-primary",
+			"color-yellow",
+			"font-headline",
+			"font-body"
+		]
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins", ["set-su", "safezone"]],
+			"color": ["$", ["var", "color-white"]]
+		}, [
+			["null", {
+				"layout": "horizontal",
+				"gap": "100su",
+				"stagger": [800, 0],
+				"transform": [
+					["scale",
+						["animate",
+							[0, 1.5, "easeInOutExpo"],
+							["+1000", 1]
+						],
+						0,
+						0
+					],
+					["translate",
+						0,
+						["animate",
+							["100%", "100ch"],
+							["-750", 0, "easeInQuad"]
+						]
+					]
+				],
+				"breakpoints": [
+					{
+						"enabled": ["$", ["lte", ["aspect"], 1]],
+						"stagger": [0, 0],
+						"layout": "vertical",
+						"transform": [
+							["translate",
+								["animate",
+									["100%", "-100cw"],
+									["-750", 0, "easeInQuad"]
+								],
+								["animate",
+									[1000, "50rh", "easeInOutExpo"],
+									["+1000", 0]
+								]
+							]
+						]
+					}
+				]
+			}, [
+				["null", {
+					"transform": [
+						["translate",
+							0,
+							["animate",
+								["100%", null],
+								["-250", "50ch"],
+								["-750", 0, "easeInQuad"]
+							]
+						]
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["lte", ["aspect"], 1]],
+							"layout": "vertical packed",
+							"align": "top",
+							"transform": [
+								["translate",
+									0,
+									["animate",
+										[1000, "-50rh", "easeInOutExpo"],
+										["+1000", 0]
+									]
+								],
+								["translate",
+									["animate",
+										["100%", null],
+										["-250", "-50cw"],
+										["-750", 0, "easeInQuad"]
+									],
+									0
+								]
+							]
+						}
+					]
+				}, [
+					["text", {
+						"mixins": ["ds-capsulecasestudy-mixins",
+							"text",
+							"text-display"
+						],
+						"color": ["$", ["var", "color-black"]],
+						"string": ["$", ["var", "headline"]],
+						"background-color": ["$", ["var", "color-yellow"]],
+						"background-padding": [
+							"10su",
+							"10su"
+						],
+						"background-radius": "20su",
+						"trim-descender": false,
+						"boundary": "word",
+						"animations": [
+							{
+								"background-opacity": 0,
+								"translate": [
+									0,
+									"100su"
+								]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+1000", 1]
+								],
+								"indices": [
+									["$", ["-", ["var", "highlight"], 1]],
+									1
+								],
+								"background-opacity": 0.5
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+1000", 1]
+								],
+								"easing": "easeOutQuad",
+								"opacity": 1,
+								"translate": [0, 0]
+							}
+						]
+					}]
+				]],
+				["null", {
+					"transform": [
+						["translate",
+							["animate",
+								[800, "+500su", "easeOutQuad"],
+								["+1300", 0]
+							],
+							0
+						]
+					],
+					"breakpoints": [
+						{
+							"enabled": ["$", ["lte", ["aspect"], 1]],
+							"opacity": ["animate",
+								[1000, 0],
+								["+1000", 1]
+							],
+							"transform": [
+								["translate",
+									0,
+									["animate",
+										[1000, "50rh", "easeInOutQuad"],
+										["+1000", 0]
+									]
+								]
+							]
+						}
+					]
+				}, [
+					["solid", {
+						"color": ["$", ["var", "color-yellow"]],
+						"max-width": "700su",
+						"radius": "20su",
+						"align": "right",
+						"mask": {
+							"radius": "20su"
+						},
+						"breakpoints": [
+							{
+								"enabled": ["$", ["lte", ["aspect"], 1]],
+								"max-width": "300su"
+							},
+							{
+								"enabled": ["$", ["lte", ["aspect"], 0.9]],
+								"max-width": "400su"
+							},
+							{
+								"enabled": ["$", ["lte", ["aspect"], 0.6]],
+								"max-width": "700su"
+							}
+						]
+					}, [
+						["user-asset", {
+							"enabled": ["$", ["exists", ["var", "image"]]],
+							"mute": true,
+							"hold": true,
+							"file": ["$", ["var", "image"]],
+							"justify": "center fill"
+						}]
+					]]
+				]]
+			]]
+		]]
+	]
+]

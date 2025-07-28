@@ -1,0 +1,368 @@
+[
+	"ds-impactdotcom-list",
+	[
+		{
+			"key": "image",
+			"display": "Image",
+			"type": "asset",
+			"default": null,
+			"required": false,
+			"parameters": [
+				["gain", 0],
+				["justify", "fill"],
+				["motion", "none"]
+			]
+		},
+		{
+			"key": "headline",
+			"display": "Headline",
+			"type": "text",
+			"default": "Manage your income, cash flow and capital",
+			"required": false
+		},
+		{
+			"key": "highlight",
+			"display": "Highlight",
+			"type": "number",
+			"default": 2,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"display": "number",
+				"step": 1,
+				"minimum": 0,
+				"maximum": 10
+			}
+		},
+		{
+			"key": "item-1",
+			"display": "Item 1",
+			"type": "text",
+			"default": "Operating with tight margins",
+			"required": false
+		},
+		{
+			"key": "item-2",
+			"display": "Item 2",
+			"type": "text",
+			"default": "Dealing with a stagnant affiliate program",
+			"required": false
+		},
+		{
+			"key": "item-3",
+			"display": "Item 3",
+			"type": "text",
+			"default": "Struggling to establish effective partnership management strategies",
+			"required": false
+		},
+		{
+			"key": "item-4",
+			"display": "Item 4",
+			"type": "text",
+			"default": "",
+			"required": false
+		},
+		["ds-impactdotcom-mixins",
+			"color-fg",
+			"color-bg",
+			"color-pink",
+			"font-headline",
+			"font-body"
+		],
+		{
+			"key": "#list",
+			"type": "object",
+			"default": [], 
+			"required": false,
+			"script": ["$",
+				["compact",
+					["array",
+						["var", "item-1"],
+						["var", "item-2"],
+						["var", "item-3"],
+						["var", "item-4"]
+					]
+				]
+			]
+		},
+		{
+			"key": "text-size",
+			"display": "Text Size",
+			"type": "number",
+			"default": 1.0,
+			"required": false,
+			"ui": {
+				"input": "slider",
+				"step": 0.05,
+				"minimum": 0.5,
+				"maximum": 2
+			}
+		}
+	],
+	[
+		["solid", {
+			"mixins": ["dsx-mixins", ["set-su", "safezone"]],
+			"color": ["$", ["var", "color-bg"]]
+		}, [
+			["null", {
+				"layout": "vertical",
+				"gap": "25su",
+				"transform": [
+					["translate",
+						["animate",
+							["100%", "-100cw"],
+							["-1000", 0, "easeInQuad"]
+						],
+						["animate",
+							[0, "100ch", "easeOutQuad"],
+							["+1000", 0]
+						]
+					]
+				]
+			}, [
+				["null", {
+					"flex": {
+						"height": "250su"
+					},
+					"layout": "horizontal",
+					"align": "top",
+					"breakpoints": [
+						{
+							"enabled": ["$", ["eq", ["aspect"], 1]],
+							"flex": {
+								"height": "300su"
+							},
+							"gap": "50su"
+						},
+						{
+							"enabled": ["$", ["lt", ["aspect"], 1]],
+							"flex": {
+								"height": "400su"
+							},
+							"gap": "50su"
+						},
+						{
+							"enabled": ["$", ["lte", ["aspect"], 0.6]],
+							"flex": {
+								"height": "600su"
+							},
+							"gap": "50su"
+						}
+					]
+				}, [
+					["text", {
+						"mixins": ["ds-impactdotcom-mixins",
+							"text",
+							"text-headline"
+						],
+						"stagger": [500, 0],
+						"color": ["$", ["var", "color-fg"]],
+						"string": ["$", ["var", "headline"]],
+						"background-color": ["$", ["var", "color-pink"]],
+						"background-padding": [
+							"10su",
+							"10su"
+						],
+						"background-radius": "20su",
+						"boundary": "word",
+						"trim-descender": false,
+						"animations": [
+							{
+								"background-opacity": 0,
+								"translate": [
+									0,
+									"100su"
+								]
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+1000", 1]
+								],
+								"indices": [
+									["$", ["-", ["var", "highlight"], 1]],
+									1
+								],
+								"background-opacity": 0.5
+							},
+							{
+								"mix": ["animate",
+									[0, 0],
+									["+1000", 1]
+								],
+								"easing": "easeOutQuad",
+								"opacity": 1,
+								"translate": [0, 0]
+							}
+						]
+					}]
+				]],
+				["for-each", {
+					"items": ["$", ["var", "#list"]],
+					"layout": "horizontal",
+					"gap": "20su",
+					"breakpoints": [
+						{
+							"enabled": ["$", ["lte", ["aspect"], 1]],
+							"layout": "vertical"
+						}
+					]
+				}, [
+					["solid", {
+						"color": ["$", ["var", "color-pink"]],
+						"radius": "50su",
+						"stagger": [
+							["$", ["*", 200, ["var", "index"]]],
+							["$", ["+", -400, ["*", 100, ["var", "index"]]]]
+						],
+						"transform": [
+							["translate",
+								["animate",
+									["100%", "-100cw"],
+									["-1000", 0, "easeInQuad"]
+								],
+								["animate",
+									[0, "100rh", "easeOutQuad"],
+									["+1000", 0]
+								]
+							]
+						],
+						"breakpoints": [
+							{
+								"enabled": ["$", ["eq", ["var", "index"], 1]],
+								"color": ["$", ["var", "color-fg"]]
+							},
+							{
+								"enabled": ["$", ["eq", ["var", "index"], 2]],
+								"color": ["$", ["var", "color-bg"]],
+								"stroke-color": ["$", ["var", "color-fg"]],
+								"stroke": "4su"
+							}
+						]
+					}, [
+						["solid", {
+							"color": ["$", ["var", "color-fg"]],
+							"radius": "50su",
+							"rect": [
+								"50su",
+								"50su",
+								"80su",
+								"80su"
+							],
+							"breakpoints": [
+								{
+									"enabled": ["$", ["eq", ["var", "index"], 1]],
+									"color": ["$", ["var", "color-bg"]]
+								},
+								{
+									"enabled": ["$", ["eq", ["var", "index"], 2]],
+									"color": ["$", ["var", "color-pink"]]
+								},
+								{
+									"enabled": ["$", ["lte", ["aspect"], 1]],
+									"rect": [
+										0,
+										0,
+										"50su",
+										"50su"
+									],
+									"align": "left center",
+									"transform": [
+										["translate",
+											"40su",
+											0
+										]
+									]
+								}
+							]
+						}, [
+							["text", {
+								"mixins": ["ds-impactdotcom-mixins",
+									"text",
+									"text-label"
+								],
+								"color": ["$", ["var", "color-pink"]],
+								"string": ["$", ["+", 1, ["var", "index"]]],
+								"justify": "center",
+								"breakpoints": [
+									{
+										"enabled": ["$", ["eq", ["var", "index"], 1]],
+										"color": ["$", ["var", "color-fg"]]
+									},
+									{
+										"enabled": ["$", ["eq", ["var", "index"], 2]],
+										"color": ["$", ["var", "color-fg"]]
+									},
+									{
+										"enabled": ["$", ["lte", ["aspect"], 1]],
+										"height": "20su"
+									}
+								]
+							}]
+						]],
+						["null", {
+							"padding": [
+								"130su",
+								"50su",
+								"40su",
+								"50su"
+							],
+							"breakpoints": [
+								{
+									"enabled": ["$", ["lte", ["aspect"], 1]],
+									"padding": [
+										"20rh",
+										"50su",
+										"20rh",
+										"120su"
+									]
+								}
+							]
+						}, [
+							["text", {
+								"mixins": ["ds-impactdotcom-mixins",
+									"text",
+									"text-body"
+								],
+								"height": ["$",
+									["concat",
+										["*",
+											40,
+											["var", "text-size"]
+										],
+										"su"
+									]
+								],
+								"color": ["$", ["var", "color-bg"]],
+								"string": ["$", ["var", "item"]],
+								"justify": "left center",
+								"breakpoints": [
+									{
+										"enabled": ["$", ["eq", ["var", "index"], 2]],
+										"color": ["$", ["var", "color-fg"]]
+									}
+								]
+							}]
+						]]
+					]],
+					["null", {
+						"enabled": ["$",
+							["and",
+								["eq", ["var", "count"], ["+", 1, ["var", "index"]]],
+								["exists", ["var", "image"]]
+							]
+						],
+						"mask": {
+							"radius": "50su"
+						}
+					}, [
+						["user-asset", {
+							"file": ["$", ["var", "image"]],
+							"justify": "center fill"
+						}]
+					]]
+				]]
+			]]
+		]]
+	]
+]
